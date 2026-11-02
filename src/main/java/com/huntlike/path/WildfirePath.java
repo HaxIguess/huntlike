@@ -175,10 +175,9 @@ public final class WildfirePath {
 		}
 		data.wildfireGoals++;
 		player.setAttached(QuestManager.DATA, data);
-		if (index == 0) {
-			player.sendSystemMessage(Messages.c("You discovered the " + NAME + "! (Soul Nexus)", COLOR));
-		}
-		player.sendSystemMessage(Messages.c("Your affinity to the Path of the Wildfire has grown...", COLOR));
+		// Discovering the Path (the first goal) says only that; every later goal grows the affinity.
+		player.sendSystemMessage(Messages.c(index == 0 ? "You feel how a fiery path opens within your soul..."
+				: "Your affinity to the Path of the Wildfire has grown...", COLOR));
 		QuestManager.playSound(player, SoundEvents.LAVA_EXTINGUISH, 1.0F);
 		QuestManager.sync(player);
 	}
