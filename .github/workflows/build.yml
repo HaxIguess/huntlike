@@ -61,6 +61,7 @@ jobs:
           mkdir -p /tmp/log && cp build.log /tmp/log/build.log || echo "no log" > /tmp/log/build.log
           cp server.log /tmp/log/server.log || true
           cp client.log /tmp/log/client.log || true
+          mkdir -p /tmp/log/jar && cp build/libs/*.jar /tmp/log/jar/ 2>/dev/null || true
           mkdir -p /tmp/log/screenshots && find . -path ./.gradle -prune -o -name "*.png" -path "*screenshots*" -print -exec cp {} /tmp/log/screenshots/ \; || true
           find . -path ./.gradle -prune -o -name "latest.log" -print -exec cp {} /tmp/log/client-latest.log \; || true
           echo "${{ job.status }} ${{ github.sha }}" > /tmp/log/status.txt
