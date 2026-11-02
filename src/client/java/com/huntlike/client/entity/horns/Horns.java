@@ -82,13 +82,8 @@ public final class Horns {
 			new Segment(2, 3, 56, 8, -1.1F, 0.0F, -0.1F),
 			new Segment(1, 2, 56, 13, -0.9F, 0.0F, -0.25F)), 64, 32);
 
-	/** Demonling: one small horn from the blaze's forehead, forward and then up (its own 16x16 sheet). */
-	public static final Spec DEMONLING = new Spec("demonling", 0.0F, -3.0F, -3.5F, List.of(
-			new Segment(2, 3, 0, 0, -0.55F, 0.0F, 0.0F),
-			new Segment(1, 2, 0, 8, 0.65F, 0.0F, 0.0F)), 16, 16);
-
 	public static void registerLayers() {
-		for (Spec spec : List.of(AUROCHS, OVIS_AMMON, DEMONLING)) {
+		for (Spec spec : List.of(AUROCHS, OVIS_AMMON)) {
 			ModelLayerRegistry.registerModelLayer(spec.layer(), spec::create);
 		}
 	}

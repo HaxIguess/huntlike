@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 /**
- * A blaze fed a Blazing Heart ★★: 100 health, 15 contact damage, a small horn on its forehead. It hunts its feeder and,
+ * A blaze fed a Blazing Heart ★★: 100 health, 15 contact damage, 1.5x a blaze's size, with two big horns. It hunts its feeder and,
  * unlike the Blazing Piglin and Wither Skeleton, resists the heat (it never burns out). Drops a Blazing Heart ★★★.
  */
 public class Demonling extends Blaze {
@@ -25,7 +25,9 @@ public class Demonling extends Blaze {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Blaze.createAttributes().add(Attributes.MAX_HEALTH, HEALTH).add(Attributes.ATTACK_DAMAGE, DAMAGE)
-				.add(Attributes.FOLLOW_RANGE, 48.0);
+				.add(Attributes.FOLLOW_RANGE, 48.0)
+				// Half again a blaze's size.
+				.add(Attributes.SCALE, 1.5);
 	}
 
 	@Override
