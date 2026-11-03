@@ -352,8 +352,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			for (var mob : player.level().getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(48),
-					m -> !(m instanceof net.minecraft.world.entity.decoration.ArmorStand))) {
+			for (var mob : player.level().getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(48))) {
 				mob.discard();
 			}
 			player.setHealth(player.getMaxHealth());
