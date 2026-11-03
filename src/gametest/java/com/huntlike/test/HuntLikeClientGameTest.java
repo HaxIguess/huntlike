@@ -389,10 +389,6 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		// The Epicyon Haydeni, enraged, in the desert.
 		int dx = 3600;
 		sceneCamera(context, singleplayer, dx, 0, -4.0F);
-		singleplayer.getServer().runOnServer(server -> {
-			ServerPlayer player = player(server);
-			player.teleportTo(player.getX(), player.getY() - 1.0, player.getZ());
-		});
 		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand", new String[] {}, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			int y = player(server).blockPosition().getY();
@@ -414,6 +410,11 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					cmd(server, "fill " + cx + " " + y + " " + cz + " " + cx + " " + (y + height - 1) + " " + cz + " minecraft:cactus");
 				}
 			}
+		});
+		// Now lower the camera to just above the sand.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.teleportTo(player.getX(), player.getY() - 1.0, player.getZ());
 		});
 		context.waitTicks(40);
 		singleplayer.getServer().runOnServer(server -> {
