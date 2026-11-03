@@ -551,6 +551,21 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				}
 			});
 		}
+		// The Alpha Altar block, with its end portal sides.
+		net.minecraft.core.BlockPos[] altar = new net.minecraft.core.BlockPos[1];
+		singleplayer.getServer().runOnServer(server -> {
+			var level = player(server).level();
+			altar[0] = net.minecraft.core.BlockPos.containing(base[0], base[1], base[2] + 2.5);
+			level.setBlockAndUpdate(altar[0], com.huntlike.registry.ModBlocks.ALPHA_ALTAR.defaultBlockState());
+		});
+		context.runOnClient(client -> {
+			client.player.setYRot(-25.0F);
+			client.player.setXRot(35.0F);
+		});
+		context.waitTicks(10);
+		context.takeScreenshot("99z-alpha-altar");
+		singleplayer.getServer().runOnServer(server -> player(server).level().setBlockAndUpdate(altar[0],
+				net.minecraft.world.level.block.Blocks.AIR.defaultBlockState()));
 		// Armor sets on an armor stand (the Cluster ones are see-through).
 		for (var set : java.util.List.of(com.huntlike.gear.ModGear.ROTTEN, com.huntlike.gear.ModGear.GEL, com.huntlike.gear.ModGear.THERMODYNAMIC)) {
 			java.util.UUID[] stand = new java.util.UUID[1];

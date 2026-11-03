@@ -25,8 +25,14 @@ public final class ModBlocks {
 	/** Opens the Hunt menu. */
 	public static final Block ALPHA_ALTAR = register("alpha_altar", AlphaAltarBlock::new,
 			BlockBehaviour.Properties.of().mapColor(MapColor.SAND).strength(3.0F, 1200.0F).sound(SoundType.BONE_BLOCK)
-					.requiresCorrectToolForDrops().lightLevel(state -> 7),
+					.requiresCorrectToolForDrops().lightLevel(state -> 7).noOcclusion(),
 			Rarity.RARE);
+
+	/** The Alpha Altar's block entity: only there so its model (with the end portal sides) can be drawn. */
+	public static final net.minecraft.world.level.block.entity.BlockEntityType<com.huntlike.block.AlphaAltarBlockEntity> ALPHA_ALTAR_ENTITY =
+			Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, HuntLike.id("alpha_altar"),
+					new net.minecraft.world.level.block.entity.BlockEntityType<>(com.huntlike.block.AlphaAltarBlockEntity::new,
+							java.util.Set.of(ALPHA_ALTAR)));
 
 	/** Resistance I and creeper protection in a 17x17x17 cube. */
 	public static final Block SOUL_NEXUS = register("soul_nexus", com.huntlike.block.SoulNexusBlock::new,
