@@ -66,6 +66,9 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.waitTicks(3);
 			context.waitTicks(10);
 			context.takeScreenshot("02-boss-card-tier1");
+			context.getInput().setCursorPos(2, 2);
+			context.waitTicks(3);
+			galleryShot(context, "1-alpha-altar-sylviornis");
 			context.getInput().pressKey(InputConstants.KEY_D);
 			context.waitTicks(3);
 			context.takeScreenshot("03-boss-card-tier2-locked");
@@ -234,11 +237,179 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.takeScreenshot("94-aurochs-horns");
 			context.setScreen(() -> null);
 			modelGallery(context, singleplayer);
+			galleryScenes(context, singleplayer);
 			HuntLike.LOGGER.info("[test] HuntLike client game test passed");
 		}
 	}
 
 	/** Every mob of the mod alone on clean ground, from a three-quarter view, for checking the models. */
+	/** A 1920x1080 screenshot for the Modrinth gallery. */
+	private static void galleryShot(ClientGameTestContext context, String name) {
+		context.takeScreenshot(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions.of("gallery-" + name)
+				.withSize(1920, 1080));
+	}
+
+	private static void cmd(net.minecraft.server.MinecraftServer server, String command) {
+		server.getCommands().performPrefixedCommand(server.createCommandSourceStack().withSuppressedOutput(), command);
+	}
+
+	/** A 64x64 patch of a biome around (x, z), with its ground and some features; returns the ground's top y. */
+	private static void buildScene(TestSingleplayerContext singleplayer, int x, int z, String biome, String ground, String[] features,
+			int featureCount) {
+		singleplayer.getServer().runOnServer(server -> {
+			int y = player(server).blockPosition().getY();
+			for (int dx = -32; dx < 32; dx += 32) {
+				for (int dz = -32; dz < 32; dz += 32) {
+					cmd(server, "fillbiome " + (x + dx) + " " + (y - 8) + " " + (z + dz) + " " + (x + dx + 31) + " " + (y + 23) + " "
+							+ (z + dz + 31) + " " + biome);
+				}
+			}
+			if (ground != null) {
+				cmd(server, "fill " + (x - 32) + " " + (y - 1) + " " + (z - 32) + " " + (x + 31) + " " + (y - 1) + " " + (z + 31) + " " + ground);
+			}
+			java.util.Random random = new java.util.Random(x * 31L + z);
+			for (int i = 0; i < featureCount; i++) {
+				String feature = features[i % features.length];
+				int fx = x - 28 + random.nextInt(56);
+				int fz = z + 2 + random.nextInt(28);
+				// Keep the space right in front of the camera clear.
+				if (Math.abs(fx - x) < 4 && fz - z < 12) {
+					continue;
+				}
+				cmd(server, "place feature " + feature + " " + fx + " " + y + " " + fz);
+			}
+		});
+	}
+
+	/** Places the camera (spectator, no HUD) at (x, z) looking toward +z, a little down. */
+	private static void sceneCamera(ClientGameTestContext context, TestSingleplayerContext singleplayer, double x, double z, float pitch) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setGameMode(net.minecraft.world.level.GameType.SPECTATOR);
+			player.teleportTo(x + 0.5, player.getY(), z + 0.5);
+		});
+		context.waitTicks(80);
+		singleplayer.getConnection().waitForChunksRender();
+		context.runOnClient(client -> {
+			client.player.setYRot(0.0F);
+			client.player.setXRot(pitch);
+			client.gui.hud.getChat().clearMessages(false);
+		});
+	}
+
+	private static void hideHud(ClientGameTestContext context, boolean hide) {
+		context.runOnClient(client -> {
+			if (client.gui.hud.isHidden() != hide) {
+				client.gui.hud.toggle();
+			}
+		});
+	}
+
+	/** Staged scenes for the Modrinth gallery: an Aurochs charging, a Soul Strike, the enraged Epicyon. */
+	private static void galleryScenes(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runCommand("weather clear");
+		singleplayer.getServer().runCommand("time set 1000");
+		// Aurochs (Bos primigenius) charging across the plains.
+		int px = 3000;
+		sceneCamera(context, singleplayer, px, 0, 4.0F);
+		buildScene(singleplayer, px, 0, "minecraft:plains", null,
+				new String[] {"minecraft:patch_grass", "minecraft:flower_default", "minecraft:patch_grass", "minecraft:oak"}, 40);
+		context.waitTicks(40);
+		java.util.UUID[] boss = new java.util.UUID[1];
+		singleplayer.getServer().runOnServer(server -> {
+			var level = player(server).level();
+			var aurochs = com.huntlike.entity.ModEntities.AUROCHS.create(level, EntitySpawnReason.COMMAND);
+			aurochs.snapTo(px + 0.5, player(server).getY(), 16.5, 180.0F, 0.0F);
+			aurochs.setNoAi(true);
+			aurochs.setYHeadRot(180.0F);
+			aurochs.yBodyRot = 180.0F;
+			level.addFreshEntity(aurochs);
+			boss[0] = aurochs.getUUID();
+		});
+		hideHud(context, true);
+		for (int i = 0; i < 18; i++) {
+			singleplayer.getServer().runOnServer(server -> {
+				var level = player(server).level();
+				if (level.getEntity(boss[0]) instanceof net.minecraft.world.entity.Mob aurochs) {
+					aurochs.move(net.minecraft.world.entity.MoverType.SELF, new net.minecraft.world.phys.Vec3(0.0, 0.0, -0.45));
+					level.sendParticles(net.minecraft.core.particles.ParticleTypes.POOF, aurochs.getX(), aurochs.getY() + 0.1, aurochs.getZ() + 0.8,
+							2, 0.4, 0.05, 0.2, 0.01);
+				}
+			});
+			context.waitTicks(1);
+		}
+		galleryShot(context, "2-aurochs-charge");
+		hideHud(context, false);
+		singleplayer.getServer().runOnServer(server -> {
+			var entity = player(server).level().getEntity(boss[0]);
+			if (entity != null) {
+				entity.discard();
+			}
+		});
+
+		// Soul Strike, cast by the Hylochoerus in a forest.
+		int fx = 3300;
+		sceneCamera(context, singleplayer, fx, 0, 8.0F);
+		buildScene(singleplayer, fx, 0, "minecraft:forest", null,
+				new String[] {"minecraft:oak", "minecraft:birch", "minecraft:oak", "minecraft:patch_grass", "minecraft:fancy_oak"}, 60);
+		context.waitTicks(40);
+		singleplayer.getServer().runOnServer(server -> {
+			var level = player(server).level();
+			var hylo = com.huntlike.entity.ModEntities.HYLOCHOERUS.create(level, EntitySpawnReason.COMMAND);
+			hylo.snapTo(fx + 0.5, player(server).getY(), 5.5, 200.0F, 0.0F);
+			hylo.setNoAi(true);
+			hylo.setYHeadRot(200.0F);
+			hylo.yBodyRot = 200.0F;
+			level.addFreshEntity(hylo);
+			boss[0] = hylo.getUUID();
+		});
+		context.waitTicks(10);
+		context.runOnClient(client -> {
+			client.gui.hud.getChat().clearMessages(false);
+			client.gui.hud.setTimes(0, 200, 10);
+			client.gui.hud.setSubtitle(com.huntlike.hunt.Messages.c("Brace your soul...", com.huntlike.hunt.HuntDefs.GRAY));
+			client.gui.hud.setTitle(com.huntlike.hunt.Messages.c("Soul Strike!", 0x55FFFF).withStyle(style -> style.withBold(true)));
+		});
+		context.waitTicks(5);
+		galleryShot(context, "3-soul-strike");
+		context.runOnClient(client -> client.gui.hud.clearTitles());
+		singleplayer.getServer().runOnServer(server -> {
+			var entity = player(server).level().getEntity(boss[0]);
+			if (entity != null) {
+				entity.discard();
+			}
+		});
+
+		// The Epicyon Haydeni, enraged, in the desert.
+		int dx = 3600;
+		sceneCamera(context, singleplayer, dx, 0, 6.0F);
+		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand",
+				new String[] {"minecraft:patch_cactus", "minecraft:patch_dead_bush"}, 30);
+		context.waitTicks(40);
+		singleplayer.getServer().runOnServer(server -> {
+			var level = player(server).level();
+			var epicyon = com.huntlike.entity.ModEntities.EPICYON_HAYDENI.create(level, EntitySpawnReason.COMMAND);
+			epicyon.snapTo(dx + 0.5, player(server).getY(), 5.0, 215.0F, 0.0F);
+			epicyon.setNoAi(true);
+			epicyon.setYHeadRot(200.0F);
+			epicyon.yBodyRot = 215.0F;
+			epicyon.setEnraged(true);
+			level.addFreshEntity(epicyon);
+			boss[0] = epicyon.getUUID();
+		});
+		hideHud(context, true);
+		context.waitTicks(10);
+		galleryShot(context, "4-epicyon-enraged");
+		hideHud(context, false);
+		singleplayer.getServer().runOnServer(server -> {
+			var entity = player(server).level().getEntity(boss[0]);
+			if (entity != null) {
+				entity.discard();
+			}
+			player(server).setGameMode(net.minecraft.world.level.GameType.CREATIVE);
+		});
+	}
+
 	private static void modelGallery(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
 		java.util.List<net.minecraft.world.entity.EntityType<?>> types = java.util.List.of(
 				com.huntlike.entity.ModEntities.SYLVIORNIS, com.huntlike.entity.ModEntities.HYLOCHOERUS, com.huntlike.entity.ModEntities.OVIS_AMMON,
@@ -1490,6 +1661,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.setScreen(() -> new com.huntlike.client.screen.TowernaarScreen(null));
 		context.waitTicks(5);
 		context.takeScreenshot("84-towernaar-first-visit");
+		galleryShot(context, "5-towernaar-first-dialogue");
 		boolean shotKills = false;
 		for (int i = 0; i < 400; i++) {
 			int[] state = singleplayer.getServer().computeOnServer(server -> {
@@ -3305,6 +3477,12 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		check(singleplayer, "5 Wildfire points buy all 5 buffs", data -> data.wildfireBuffs == 31
 				&& com.huntlike.path.WildfirePath.free(data) == 0);
+		context.setScreen(() -> new com.huntlike.client.screen.PathsScreen(null));
+		context.getInput().setCursorPos(2, 2);
+		context.waitTicks(5);
+		galleryShot(context, "7a-path-of-the-wildfire");
+		context.setScreen(() -> null);
+		context.waitTicks(2);
 		send.accept(4, -1);
 		context.waitTicks(8);
 		check(singleplayer, "a buff can be given back for its point", data -> data.wildfireBuffs == 15
@@ -3619,6 +3797,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.getInput().setCursorPos(2, 2);
 		context.waitTicks(5);
 		context.takeScreenshot("97d-paths-wildfire");
+		galleryShot(context, "7b-path-of-the-wildfire-complete");
 		context.setScreen(() -> new com.huntlike.client.screen.PathSelectScreen(null));
 		context.waitTicks(5);
 		context.takeScreenshot("97i-path-select");
@@ -3660,6 +3839,9 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		send.accept("damage", 1);
 		context.waitTicks(10);
 		context.takeScreenshot("96b-soul-nexus-spent");
+		context.getInput().setCursorPos(2, 2);
+		context.waitTicks(3);
+		galleryShot(context, "6-soul-nexus");
 		check(singleplayer, "Health 10 (capped), Defense 3 (all that's left), Damage refused",
 				data -> data.nexusHealth == 10 && data.nexusDefense == 3 && data.nexusDamage == 0);
 		assertServer(singleplayer, "Health 10 gives +5 max health; Defense 3 means 0.75% less damage", server -> {
