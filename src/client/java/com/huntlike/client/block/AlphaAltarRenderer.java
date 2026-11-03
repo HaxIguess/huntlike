@@ -67,7 +67,7 @@ public class AlphaAltarRenderer implements BlockEntityRenderer<AlphaAltarBlockEn
 	}
 
 	static void draw(PoseStack pose, SubmitNodeCollector collector, int light, int overlay, float centerOffset) {
-		collector.submitCustomGeometry(pose, RenderTypes.entityCutoutNoCull(TEXTURE),
+		collector.submitCustomGeometry(pose, RenderTypes.entityCutout(TEXTURE),
 				(p, consumer) -> emit(p, consumer, false, light, overlay, centerOffset));
 		collector.submitCustomGeometry(pose, RenderTypes.endPortal(), (p, consumer) -> emit(p, consumer, true, light, overlay, centerOffset));
 	}
