@@ -245,8 +245,14 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 	/** Every mob of the mod alone on clean ground, from a three-quarter view, for checking the models. */
 	/** A 1920x1080 screenshot for the Modrinth gallery. */
 	private static void galleryShot(ClientGameTestContext context, String name) {
-		context.takeScreenshot(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions.of("gallery-" + name)
-				.withSize(1920, 1080));
+		// The window itself is resized, so menus and titles lay out for 1920x1080 (GUI scale 4).
+		int[] size = context.computeOnClient(client -> new int[] {client.getWindow().getScreenWidth(), client.getWindow().getScreenHeight()});
+		context.getInput().resizeWindow(1920, 1080);
+		context.runOnClient(client -> client.gui.toastManager().clear());
+		context.waitTicks(5);
+		context.takeScreenshot("gallery-" + name);
+		context.getInput().resizeWindow(size[0], size[1]);
+		context.waitTicks(3);
 	}
 
 	private static void cmd(net.minecraft.server.MinecraftServer server, String command) {
@@ -311,7 +317,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runCommand("time set 1000");
 		// Aurochs (Bos primigenius) charging across the plains.
 		int px = 3000;
-		sceneCamera(context, singleplayer, px, 0, 4.0F);
+		sceneCamera(context, singleplayer, px, 0, -6.0F);
 		buildScene(singleplayer, px, 0, "minecraft:plains", null,
 				new String[] {"minecraft:patch_grass", "minecraft:flower_default", "minecraft:patch_grass", "minecraft:oak"}, 40);
 		context.waitTicks(40);
@@ -319,7 +325,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runOnServer(server -> {
 			var level = player(server).level();
 			var aurochs = com.huntlike.entity.ModEntities.AUROCHS.create(level, EntitySpawnReason.COMMAND);
-			aurochs.snapTo(px + 0.5, player(server).getY(), 16.5, 180.0F, 0.0F);
+			aurochs.snapTo(px + 0.5, player(server).getY(), 12.5, 180.0F, 0.0F);
 			aurochs.setNoAi(true);
 			aurochs.setYHeadRot(180.0F);
 			aurochs.yBodyRot = 180.0F;
@@ -327,7 +333,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			boss[0] = aurochs.getUUID();
 		});
 		hideHud(context, true);
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 16; i++) {
 			singleplayer.getServer().runOnServer(server -> {
 				var level = player(server).level();
 				if (level.getEntity(boss[0]) instanceof net.minecraft.world.entity.Mob aurochs) {
@@ -349,14 +355,14 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 
 		// Soul Strike, cast by the Hylochoerus in a forest.
 		int fx = 3300;
-		sceneCamera(context, singleplayer, fx, 0, 8.0F);
+		sceneCamera(context, singleplayer, fx, 0, 4.0F);
 		buildScene(singleplayer, fx, 0, "minecraft:forest", null,
 				new String[] {"minecraft:oak", "minecraft:birch", "minecraft:oak", "minecraft:patch_grass", "minecraft:fancy_oak"}, 60);
 		context.waitTicks(40);
 		singleplayer.getServer().runOnServer(server -> {
 			var level = player(server).level();
 			var hylo = com.huntlike.entity.ModEntities.HYLOCHOERUS.create(level, EntitySpawnReason.COMMAND);
-			hylo.snapTo(fx + 0.5, player(server).getY(), 5.5, 200.0F, 0.0F);
+			hylo.snapTo(fx + 0.5, player(server).getY(), 3.8, 205.0F, 0.0F);
 			hylo.setNoAi(true);
 			hylo.setYHeadRot(200.0F);
 			hylo.yBodyRot = 200.0F;
@@ -382,14 +388,34 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 
 		// The Epicyon Haydeni, enraged, in the desert.
 		int dx = 3600;
-		sceneCamera(context, singleplayer, dx, 0, 6.0F);
-		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand",
-				new String[] {"minecraft:patch_cactus", "minecraft:patch_dead_bush"}, 30);
+		sceneCamera(context, singleplayer, dx, 0, 2.0F);
+		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand", new String[] {}, 0);
+		singleplayer.getServer().runOnServer(server -> {
+			int y = player(server).blockPosition().getY();
+			// Sand to the horizon (the flat world's grass is far enough to vanish in the haze).
+			for (int ox = -160; ox < 160; ox += 160) {
+				for (int oz = -32; oz < 288; oz += 160) {
+					cmd(server, "fill " + (dx + ox) + " " + (y - 1) + " " + oz + " " + (dx + ox + 159) + " " + (y - 1) + " " + (oz + 159)
+							+ " minecraft:sand");
+				}
+			}
+			java.util.Random random = new java.util.Random(7);
+			for (int i = 0; i < 40; i++) {
+				int cx = dx - 40 + random.nextInt(80);
+				int cz = 8 + random.nextInt(90);
+				if (random.nextInt(3) == 0) {
+					cmd(server, "setblock " + cx + " " + y + " " + cz + " minecraft:dead_bush");
+				} else {
+					int height = 1 + random.nextInt(3);
+					cmd(server, "fill " + cx + " " + y + " " + cz + " " + cx + " " + (y + height - 1) + " " + cz + " minecraft:cactus");
+				}
+			}
+		});
 		context.waitTicks(40);
 		singleplayer.getServer().runOnServer(server -> {
 			var level = player(server).level();
 			var epicyon = com.huntlike.entity.ModEntities.EPICYON_HAYDENI.create(level, EntitySpawnReason.COMMAND);
-			epicyon.snapTo(dx + 0.5, player(server).getY(), 5.0, 215.0F, 0.0F);
+			epicyon.snapTo(dx + 0.5, player(server).getY(), 3.0, 215.0F, 0.0F);
 			epicyon.setNoAi(true);
 			epicyon.setYHeadRot(200.0F);
 			epicyon.yBodyRot = 215.0F;
@@ -1661,7 +1687,6 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.setScreen(() -> new com.huntlike.client.screen.TowernaarScreen(null));
 		context.waitTicks(5);
 		context.takeScreenshot("84-towernaar-first-visit");
-		galleryShot(context, "5-towernaar-first-dialogue");
 		boolean shotKills = false;
 		for (int i = 0; i < 400; i++) {
 			int[] state = singleplayer.getServer().computeOnServer(server -> {
@@ -1689,6 +1714,10 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.runOnClient(client -> net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(
 					new com.huntlike.network.HuntPayloads.Action("towernaar_click", "cluster", 0)));
 			context.waitTicks(1);
+			if (state[0] == 0 && state[1] == 5) {
+				context.waitTicks(3);
+				galleryShot(context, "5-towernaar-first-dialogue");
+			}
 			if (state[0] == 1 && state[1] == 67) {
 				context.waitTicks(3);
 				context.takeScreenshot("86-towernaar-name");
