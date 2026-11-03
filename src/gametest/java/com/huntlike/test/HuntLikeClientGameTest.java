@@ -311,88 +311,117 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		});
 	}
 
-	/** Staged scenes for the Modrinth gallery: an Aurochs charging, a Soul Strike, the enraged Epicyon. */
+	/** Starts a real Animal Hunt boss fight of the given tier for the test player and waits for the boss to arrive. */
+	private static Mob realBoss(ClientGameTestContext context, TestSingleplayerContext singleplayer, int tier) {
+		String name = singleplayer.getServer().computeOnServer(server -> player(server).getScoreboardName());
+		singleplayer.getServer().runCommand("huntlike boss animal " + tier + " " + name);
+		for (int i = 0; i < 200; i++) {
+			boolean ready = singleplayer.getServer().computeOnServer(server -> {
+				var quest = QuestManager.data(player(server)).quest;
+				return quest != null && BossController.findBoss(player(server), quest) != null;
+			});
+			if (ready) {
+				break;
+			}
+			context.waitTicks(1);
+		}
+		return singleplayer.getServer().computeOnServer(server -> BossController.findBoss(player(server), QuestManager.data(player(server)).quest));
+	}
+
+	/** The test player as the camera: survival (bosses only fight survival players), unhurtable, looking toward +z. */
+	private static void fightCamera(ClientGameTestContext context, TestSingleplayerContext singleplayer, double x, double z, float pitch) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setGameMode(net.minecraft.world.level.GameType.SURVIVAL);
+			player.teleportTo(x + 0.5, player.getY(), z + 0.5);
+			player.setHealth(player.getMaxHealth());
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 6000, 4, false, false));
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.SATURATION, 6000, 4, false, false));
+		});
+		context.waitTicks(80);
+		singleplayer.getConnection().waitForChunksRender();
+		context.runOnClient(client -> {
+			client.player.setYRot(0.0F);
+			client.player.setXRot(pitch);
+			client.gui.hud.getChat().clearMessages(false);
+		});
+	}
+
+	private static void endFight(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runCommand("huntlike quest cancel @a");
+		context.waitTicks(5);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			for (var mob : player.level().getEntitiesOfClass(Mob.class, player.getBoundingBox().inflate(48),
+					m -> !(m instanceof net.minecraft.world.entity.decoration.ArmorStand))) {
+				mob.discard();
+			}
+			player.setHealth(player.getMaxHealth());
+		});
+	}
+
+	/** Real boss fights staged for the Modrinth gallery: the Aurochs charging, a Soul Strike, the enraged Epicyon. */
 	private static void galleryScenes(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
 		singleplayer.getServer().runCommand("weather clear");
 		singleplayer.getServer().runCommand("time set 1000");
-		// Aurochs (Bos primigenius) charging across the plains.
+		// The Aurochs (Bos primigenius, Tier IV) charging across the plains.
 		int px = 3000;
-		sceneCamera(context, singleplayer, px, 0, -6.0F);
+		fightCamera(context, singleplayer, px, 0, -2.0F);
 		buildScene(singleplayer, px, 0, "minecraft:plains", null,
 				new String[] {"minecraft:patch_grass", "minecraft:flower_default", "minecraft:patch_grass", "minecraft:oak"}, 40);
 		context.waitTicks(40);
-		java.util.UUID[] boss = new java.util.UUID[1];
+		Mob aurochs = realBoss(context, singleplayer, 4);
 		singleplayer.getServer().runOnServer(server -> {
-			var level = player(server).level();
-			var aurochs = com.huntlike.entity.ModEntities.AUROCHS.create(level, EntitySpawnReason.COMMAND);
-			aurochs.snapTo(px + 0.5, player(server).getY(), 12.5, 180.0F, 0.0F);
-			aurochs.setNoAi(true);
+			ServerPlayer player = player(server);
+			aurochs.snapTo(px + 0.5, player.getY(), 16.5, 180.0F, 0.0F);
 			aurochs.setYHeadRot(180.0F);
 			aurochs.yBodyRot = 180.0F;
-			level.addFreshEntity(aurochs);
-			boss[0] = aurochs.getUUID();
 		});
 		hideHud(context, true);
-		for (int i = 0; i < 16; i++) {
-			singleplayer.getServer().runOnServer(server -> {
-				var level = player(server).level();
-				if (level.getEntity(boss[0]) instanceof net.minecraft.world.entity.Mob aurochs) {
-					aurochs.move(net.minecraft.world.entity.MoverType.SELF, new net.minecraft.world.phys.Vec3(0.0, 0.0, -0.45));
-					level.sendParticles(net.minecraft.core.particles.ParticleTypes.POOF, aurochs.getX(), aurochs.getY() + 0.1, aurochs.getZ() + 0.8,
-							2, 0.4, 0.05, 0.2, 0.01);
-				}
-			});
+		for (int i = 0; i < 120; i++) {
+			double distance = singleplayer.getServer().computeOnServer(server -> Math.sqrt(aurochs.distanceToSqr(player(server))));
+			if (distance < 6.0) {
+				break;
+			}
 			context.waitTicks(1);
 		}
 		galleryShot(context, "2-aurochs-charge");
 		hideHud(context, false);
-		singleplayer.getServer().runOnServer(server -> {
-			var entity = player(server).level().getEntity(boss[0]);
-			if (entity != null) {
-				entity.discard();
-			}
-		});
+		endFight(context, singleplayer);
 
-		// Soul Strike, cast by the Hylochoerus in a forest.
+		// Soul Strike, cast by the Hylochoerus (Tier II) in a forest.
 		int fx = 3300;
-		sceneCamera(context, singleplayer, fx, 0, 4.0F);
+		fightCamera(context, singleplayer, fx, 0, 6.0F);
 		buildScene(singleplayer, fx, 0, "minecraft:forest", null,
 				new String[] {"minecraft:oak", "minecraft:birch", "minecraft:oak", "minecraft:patch_grass", "minecraft:fancy_oak"}, 60);
 		context.waitTicks(40);
+		Mob hylo = realBoss(context, singleplayer, 2);
 		singleplayer.getServer().runOnServer(server -> {
-			var level = player(server).level();
-			var hylo = com.huntlike.entity.ModEntities.HYLOCHOERUS.create(level, EntitySpawnReason.COMMAND);
-			hylo.snapTo(fx + 0.5, player(server).getY(), 3.8, 205.0F, 0.0F);
-			hylo.setNoAi(true);
+			ServerPlayer player = player(server);
+			hylo.snapTo(fx + 0.5, player.getY(), 4.5, 200.0F, 0.0F);
 			hylo.setYHeadRot(200.0F);
 			hylo.yBodyRot = 200.0F;
-			level.addFreshEntity(hylo);
-			boss[0] = hylo.getUUID();
-		});
-		context.waitTicks(10);
-		context.runOnClient(client -> {
-			client.gui.hud.getChat().clearMessages(false);
-			client.gui.hud.setTimes(0, 200, 10);
-			client.gui.hud.setSubtitle(com.huntlike.hunt.Messages.c("Brace your soul...", com.huntlike.hunt.HuntDefs.GRAY));
-			client.gui.hud.setTitle(com.huntlike.hunt.Messages.c("Soul Strike!", 0x55FFFF).withStyle(style -> style.withBold(true)));
+			hylo.setNoAi(true);
 		});
 		context.waitTicks(5);
-		galleryShot(context, "3-soul-strike");
-		context.runOnClient(client -> client.gui.hud.clearTitles());
+		context.runOnClient(client -> client.gui.hud.getChat().clearMessages(false));
+		// Below half health the real Soul Strike warning goes off.
 		singleplayer.getServer().runOnServer(server -> {
-			var entity = player(server).level().getEntity(boss[0]);
-			if (entity != null) {
-				entity.discard();
-			}
+			ServerPlayer player = player(server);
+			hylo.setHealth(hylo.getMaxHealth() * 0.55F);
+			hylo.hurtServer(player.level(), player.damageSources().playerAttack(player), hylo.getMaxHealth() * 0.1F);
 		});
+		context.waitTicks(7);
+		context.runOnClient(client -> client.gui.hud.getChat().clearMessages(false));
+		galleryShot(context, "3-soul-strike");
+		endFight(context, singleplayer);
 
-		// The Epicyon Haydeni, enraged, in the desert.
+		// The Epicyon Haydeni (Tier V), enraged, in the desert.
 		int dx = 3600;
-		sceneCamera(context, singleplayer, dx, 0, -4.0F);
+		fightCamera(context, singleplayer, dx, 0, 10.0F);
 		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand", new String[] {}, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			int y = player(server).blockPosition().getY();
-			// Sand to the horizon (the flat world's grass is far enough to vanish in the haze).
 			for (int ox = -160; ox < 160; ox += 160) {
 				for (int oz = -32; oz < 288; oz += 160) {
 					cmd(server, "fill " + (dx + ox) + " " + (y - 1) + " " + oz + " " + (dx + ox + 159) + " " + (y - 1) + " " + (oz + 159)
@@ -411,34 +440,27 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				}
 			}
 		});
-		// Now lower the camera to just above the sand.
+		context.waitTicks(40);
+		Mob epicyon = realBoss(context, singleplayer, 5);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.teleportTo(player.getX(), player.getY() - 1.0, player.getZ());
-		});
-		context.waitTicks(40);
-		singleplayer.getServer().runOnServer(server -> {
-			var level = player(server).level();
-			var epicyon = com.huntlike.entity.ModEntities.EPICYON_HAYDENI.create(level, EntitySpawnReason.COMMAND);
-			epicyon.snapTo(dx + 0.5, player(server).getY() + 1.0, 2.6, 215.0F, 0.0F);
+			epicyon.snapTo(dx + 0.5, player.getY(), 3.2, 210.0F, 0.0F);
+			epicyon.setYHeadRot(195.0F);
+			epicyon.yBodyRot = 210.0F;
 			epicyon.setNoAi(true);
-			epicyon.setYHeadRot(200.0F);
-			epicyon.yBodyRot = 215.0F;
-			epicyon.setEnraged(true);
-			level.addFreshEntity(epicyon);
-			boss[0] = epicyon.getUUID();
+			// Below 40% health: Apex Instinct, and it enrages.
+			epicyon.setHealth(epicyon.getMaxHealth() * 0.45F);
+			epicyon.hurtServer(player.level(), player.damageSources().playerAttack(player), epicyon.getMaxHealth() * 0.1F);
 		});
 		hideHud(context, true);
-		context.waitTicks(10);
+		context.waitTicks(15);
+		boolean enraged = singleplayer.getServer().computeOnServer(server ->
+				epicyon instanceof com.huntlike.entity.animal.EpicyonHaydeni e && e.isEnraged());
+		HuntLike.LOGGER.info("[test] gallery Epicyon enraged {}", enraged);
 		galleryShot(context, "4-epicyon-enraged");
 		hideHud(context, false);
-		singleplayer.getServer().runOnServer(server -> {
-			var entity = player(server).level().getEntity(boss[0]);
-			if (entity != null) {
-				entity.discard();
-			}
-			player(server).setGameMode(net.minecraft.world.level.GameType.CREATIVE);
-		});
+		endFight(context, singleplayer);
+		singleplayer.getServer().runOnServer(server -> player(server).setGameMode(net.minecraft.world.level.GameType.CREATIVE));
 	}
 
 	private static void modelGallery(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
@@ -1708,6 +1730,10 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					if (!shotKills) {
 						context.waitTicks(3);
 						context.takeScreenshot("85-towernaar-kill-quest");
+						if (!shotGallery[0]) {
+							shotGallery[0] = true;
+							galleryShot(context, "5-towernaar-first-dialogue");
+						}
 						shotKills = true;
 					}
 					// Rogue Hunters slain since the quest started.
@@ -1720,7 +1746,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.runOnClient(client -> net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(
 					new com.huntlike.network.HuntPayloads.Action("towernaar_click", "cluster", 0)));
 			context.waitTicks(1);
-			if (state[0] == 0 && state[1] >= 4 && !shotGallery[0]) {
+			if (state[0] == 0 && state[1] >= 12 && !shotGallery[0]) {
 				shotGallery[0] = true;
 				context.waitTicks(3);
 				galleryShot(context, "5-towernaar-first-dialogue");
