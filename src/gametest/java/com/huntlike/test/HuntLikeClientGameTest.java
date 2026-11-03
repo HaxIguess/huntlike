@@ -388,7 +388,11 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 
 		// The Epicyon Haydeni, enraged, in the desert.
 		int dx = 3600;
-		sceneCamera(context, singleplayer, dx, 0, 2.0F);
+		sceneCamera(context, singleplayer, dx, 0, -4.0F);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.teleportTo(player.getX(), player.getY() - 1.0, player.getZ());
+		});
 		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand", new String[] {}, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			int y = player(server).blockPosition().getY();
@@ -415,7 +419,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runOnServer(server -> {
 			var level = player(server).level();
 			var epicyon = com.huntlike.entity.ModEntities.EPICYON_HAYDENI.create(level, EntitySpawnReason.COMMAND);
-			epicyon.snapTo(dx + 0.5, player(server).getY(), 3.0, 215.0F, 0.0F);
+			epicyon.snapTo(dx + 0.5, player(server).getY() + 1.0, 2.6, 215.0F, 0.0F);
 			epicyon.setNoAi(true);
 			epicyon.setYHeadRot(200.0F);
 			epicyon.yBodyRot = 215.0F;
@@ -1688,6 +1692,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		context.takeScreenshot("84-towernaar-first-visit");
 		boolean shotKills = false;
+		boolean[] shotGallery = new boolean[1];
 		for (int i = 0; i < 400; i++) {
 			int[] state = singleplayer.getServer().computeOnServer(server -> {
 				HuntData data = QuestManager.data(player(server));
@@ -1714,7 +1719,8 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.runOnClient(client -> net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(
 					new com.huntlike.network.HuntPayloads.Action("towernaar_click", "cluster", 0)));
 			context.waitTicks(1);
-			if (state[0] == 0 && state[1] == 5) {
+			if (state[0] == 0 && state[1] >= 4 && !shotGallery[0]) {
+				shotGallery[0] = true;
 				context.waitTicks(3);
 				galleryShot(context, "5-towernaar-first-dialogue");
 			}
