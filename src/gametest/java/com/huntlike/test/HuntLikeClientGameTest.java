@@ -410,14 +410,20 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			hylo.setHealth(hylo.getMaxHealth() * 0.55F);
 			hylo.hurtServer(player.level(), player.damageSources().playerAttack(player), hylo.getMaxHealth() * 0.1F);
 		});
-		context.waitTicks(7);
-		context.runOnClient(client -> client.gui.hud.getChat().clearMessages(false));
+		context.waitTicks(4);
+		singleplayer.getServer().runOnServer(server -> player(server).setGameMode(net.minecraft.world.level.GameType.SPECTATOR));
+		context.waitTicks(2);
+		context.runOnClient(client -> {
+			client.gui.hud.getChat().clearMessages(false);
+			client.particleEngine.clearParticles();
+		});
 		galleryShot(context, "3-soul-strike");
+		singleplayer.getServer().runOnServer(server -> player(server).setGameMode(net.minecraft.world.level.GameType.SURVIVAL));
 		endFight(context, singleplayer);
 
 		// The Epicyon Haydeni (Tier V), enraged, in the desert.
 		int dx = 3600;
-		fightCamera(context, singleplayer, dx, 0, 10.0F);
+		fightCamera(context, singleplayer, dx, 0, 8.0F);
 		buildScene(singleplayer, dx, 0, "minecraft:desert", "minecraft:sand", new String[] {}, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			int y = player(server).blockPosition().getY();
@@ -443,7 +449,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		Mob epicyon = realBoss(context, singleplayer, 5);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			epicyon.snapTo(dx + 0.5, player.getY(), 3.2, 210.0F, 0.0F);
+			epicyon.snapTo(dx + 0.5, player.getY(), 6.5, 205.0F, 0.0F);
 			epicyon.setYHeadRot(195.0F);
 			epicyon.yBodyRot = 210.0F;
 			epicyon.setNoAi(true);
@@ -451,8 +457,16 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			epicyon.setHealth(epicyon.getMaxHealth() * 0.45F);
 			epicyon.hurtServer(player.level(), player.damageSources().playerAttack(player), epicyon.getMaxHealth() * 0.1F);
 		});
+		context.waitTicks(10);
+		// Make sure the shot shows it enraged, whatever the ability's timing.
+		singleplayer.getServer().runOnServer(server -> {
+			if (epicyon instanceof com.huntlike.entity.animal.EpicyonHaydeni e) {
+				e.setEnraged(true);
+			}
+		});
 		hideHud(context, true);
-		context.waitTicks(15);
+		context.waitTicks(5);
+		context.runOnClient(client -> client.particleEngine.clearParticles());
 		boolean enraged = singleplayer.getServer().computeOnServer(server ->
 				epicyon instanceof com.huntlike.entity.animal.EpicyonHaydeni e && e.isEnraged());
 		HuntLike.LOGGER.info("[test] gallery Epicyon enraged {}", enraged);
