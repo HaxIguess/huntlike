@@ -16,8 +16,7 @@ import com.huntlike.client.entity.horns.Horns;
 import com.huntlike.path.Demonling;
 
 /**
- * The Demonling: the blaze model, 1.5x a blaze, with nine rods (three per ring, 120 degrees apart) and the Imp's two horns
- * at twice their size (DemonlingHorns).
+ * The Demonling: the blaze model, 1.5x a blaze, with nine rods (three per ring, 120 degrees apart) and the Imp's two horns (DemonlingHorns).
  * Uses textures/entity/path/demonling.png when the mod has one (64x32, the blaze's layout), otherwise the blaze's skin.
  */
 public class DemonlingRenderer extends MobRenderer<Demonling, LivingEntityRenderState, BlazeModel> {
