@@ -1229,7 +1229,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				p.setAttached(QuestManager.DATA, data);
 			}
 			// The packmate has a quest of their own: joining pauses it.
-			QuestManager.forceStart(mate, HuntDefs.ANIMAL, 1);
+			QuestManager.forceStart(mate, com.huntlike.hunt.HuntDefs.ANIMAL, 1);
 			com.huntlike.hunt.HuntingPacks.handle(player, "pack_name", "Wolf Pack", 0);
 			com.huntlike.hunt.HuntingPacks.handle(player, "pack_invite", PACKMATE.toString(), 0);
 			var pack = com.huntlike.hunt.HuntingPacks.packOf(player.getUUID());
@@ -1246,13 +1246,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		context.takeScreenshot("98a-hunting-pack");
 		context.setScreen(() -> null);
-		singleplayer.getServer().runOnServer(server -> com.huntlike.hunt.HuntingPacks.start(player(server), HuntDefs.ANIMAL, 1));
+		singleplayer.getServer().runOnServer(server -> com.huntlike.hunt.HuntingPacks.start(player(server), com.huntlike.hunt.HuntDefs.ANIMAL, 1));
 		context.waitTicks(3);
 		assertServer(singleplayer, "Hunting Pack quest: quota x2, both pay tokens, it runs on the leader", server -> {
 			var pack = com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID());
 			var quest = pack.quest();
-			int cost = HuntDefs.ANIMAL.tier(1).tokenCost();
-			return quest != null && quest.quota == HuntDefs.ANIMAL.tier(1).quota() * 2 && quest.packSize == 2
+			int cost = com.huntlike.hunt.HuntDefs.ANIMAL.tier(1).tokenCost();
+			return quest != null && quest.quota == com.huntlike.hunt.HuntDefs.ANIMAL.tier(1).quota() * 2 && quest.packSize == 2
 					&& QuestManager.data(player(server)).quest == quest
 					&& QuestManager.data(player(server)).progress("animal").tokens == 50 - cost
 					&& QuestManager.data(packmate(server)).progress("animal").tokens == 50 - cost;
@@ -1287,7 +1287,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			var quest = QuestManager.data(player(server)).quest;
 			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
 			HuntLike.LOGGER.info("[test] pack boss health {}", boss == null ? "none" : boss.getMaxHealth());
-			return boss != null && Math.abs(boss.getMaxHealth() - HuntDefs.ANIMAL.tier(1).health() * 2) < 0.01F;
+			return boss != null && Math.abs(boss.getMaxHealth() - com.huntlike.hunt.HuntDefs.ANIMAL.tier(1).health() * 2) < 0.01F;
 		});
 		singleplayer.getServer().runOnServer(server -> {
 			var quest = QuestManager.data(player(server)).quest;
@@ -1312,7 +1312,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		context.takeScreenshot("98c-hunting-pack-red-dot");
 		context.runOnClient(client -> {
-			if (client.screen instanceof com.huntlike.client.screen.HuntMenuScreen menu) {
+			if (client.gui.screen() instanceof com.huntlike.client.screen.HuntMenuScreen menu) {
 				int[] at = menu.buttonCenter("Invites");
 				if (at != null) {
 					menu.mouseClicked(new net.minecraft.client.input.MouseButtonEvent(at[0], at[1],
