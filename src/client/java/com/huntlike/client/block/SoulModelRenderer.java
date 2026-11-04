@@ -114,7 +114,7 @@ public class SoulModelRenderer implements BlockEntityRenderer<SoulModelBlockEnti
 		pose.pushPose();
 		pose.translate(0.5F, 0.0F, 0.5F);
 		// The model's front points north; turn it to FACING.
-		pose.mulPose(Axis.YP.rotationDegrees(180.0F - state.facing.toYRot()));
+		pose.rotateDegrees(Axis.YP, 180.0F - state.facing.toYRot());
 		pose.translate(-0.5F, 0.0F, -0.5F);
 		draw(pose, collector, state.kind, state.lightCoords, OverlayTexture.NO_OVERLAY, state.time);
 		pose.popPose();
@@ -141,9 +141,9 @@ public class SoulModelRenderer implements BlockEntityRenderer<SoulModelBlockEnti
 		float[] rotation = sample(SoulMonolithGeometry.ROTATION, time);
 		pose.translate(-position[0] / 16.0F, position[1] / 16.0F, position[2] / 16.0F);
 		pose.translate(SoulMonolithGeometry.PIVOT_X, SoulMonolithGeometry.PIVOT_Y, SoulMonolithGeometry.PIVOT_Z);
-		pose.mulPose(Axis.ZP.rotationDegrees(rotation[2]));
-		pose.mulPose(Axis.YP.rotationDegrees(-rotation[1]));
-		pose.mulPose(Axis.XP.rotationDegrees(-rotation[0]));
+		pose.rotateDegrees(Axis.ZP, rotation[2]);
+		pose.rotateDegrees(Axis.YP, -rotation[1]);
+		pose.rotateDegrees(Axis.XP, -rotation[0]);
 		pose.translate(-SoulMonolithGeometry.PIVOT_X, -SoulMonolithGeometry.PIVOT_Y, -SoulMonolithGeometry.PIVOT_Z);
 	}
 
