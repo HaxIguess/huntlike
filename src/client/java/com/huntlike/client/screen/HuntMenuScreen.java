@@ -375,7 +375,7 @@ public class HuntMenuScreen extends Screen {
 			Hunt railHunt = HuntDefs.HUNTS.get(index);
 			boolean locked = !HuntDefs.huntUnlocked(ClientHuntState.data, railHunt);
 			g.blit(RenderPipelines.GUI_TEXTURED, symbol(railHunt), x0 + 3, y0 + 3, 0.0F, 0.0F, size - 6, size - 6,
-					26, 26, 26, 26);
+					32, 32, 32, 32);
 			if (locked) {
 				// Locked Hunts: a dark veil over the symbol and a padlock in the corner.
 				g.fill(x0, y0, x0 + size, y0 + size, 0x90101010);
