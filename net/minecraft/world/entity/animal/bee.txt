@@ -1,0 +1,166 @@
+Compiled from "Bee.java"
+public class net.minecraft.world.entity.animal.bee.Bee$BeeGoToHiveGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public static final int MAX_TRAVELLING_TICKS;
+  public net.minecraft.world.entity.animal.bee.Bee$BeeGoToHiveGoal(net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+  public boolean canContinueToUse();
+  public boolean canUse();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeWanderGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeWanderGoal(net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeLookControl(net.minecraft.world.entity.animal.bee.Bee, net.minecraft.world.entity.Mob);
+  public void tick();
+  protected boolean resetXRotOnTick();
+}
+Compiled from "Bee.java"
+public class net.minecraft.world.entity.animal.bee.Bee extends net.minecraft.world.entity.animal.Animal implements net.minecraft.world.entity.NeutralMob {
+  public static final float FLAP_DEGREES_PER_TICK;
+  public static final int TICKS_PER_FLAP;
+  public static final java.lang.String TAG_CROPS_GROWN_SINCE_POLLINATION;
+  public static final java.lang.String TAG_CANNOT_ENTER_HIVE_TICKS;
+  public static final java.lang.String TAG_TICKS_SINCE_POLLINATION;
+  public static final java.lang.String TAG_HAS_STUNG;
+  public static final java.lang.String TAG_HAS_NECTAR;
+  public static final java.lang.String TAG_FLOWER_POS;
+  public static final java.lang.String TAG_HIVE_POS;
+  public static final boolean DEFAULT_HAS_NECTAR;
+  public net.minecraft.world.entity.animal.bee.Bee(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.bee.Bee>, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  protected void registerGoals();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public void tick();
+  public net.minecraft.core.BlockPos getSavedFlowerPos();
+  public boolean hasSavedFlowerPos();
+  public void setSavedFlowerPos(net.minecraft.core.BlockPos);
+  public int getTravellingTicks();
+  public java.util.List<net.minecraft.core.BlockPos> getBlacklistedHives();
+  public void setStayOutOfHiveCountdown(int);
+  public float getRollAmount(float);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void resetTicksWithoutNectarSinceExitingHive();
+  public long getPersistentAngerEndTime();
+  public void setPersistentAngerEndTime(long);
+  public net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> getPersistentAngerTarget();
+  public void setPersistentAngerTarget(net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity>);
+  public void startPersistentAngerTimer();
+  public boolean hasHive();
+  public net.minecraft.core.BlockPos getHivePos();
+  public void aiStep();
+  public boolean hasNectar();
+  public boolean hasStung();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected float getSoundVolume();
+  public net.minecraft.world.entity.animal.bee.Bee getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  public boolean isFlapping();
+  public boolean isFlying();
+  protected boolean omnidirectionalAirMover();
+  public void dropOffNectar();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void jumpInLiquid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public void setHivePos(net.minecraft.core.BlockPos);
+  public static boolean attractsBees(net.minecraft.world.level.block.state.BlockState);
+  public void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeGrowCropGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void tick();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeLocateHiveGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void start();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeEnterHiveGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void start();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$ValidateFlowerGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public void start();
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+}
+Compiled from "Bee.java"
+public class net.minecraft.world.entity.animal.bee.Bee$BeeGoToKnownFlowerGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeGoToKnownFlowerGoal(net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+  public boolean canContinueToUse();
+  public boolean canUse();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeBecomeAngryTargetGoal extends net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<net.minecraft.world.entity.player.Player> {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeBecomeAngryTargetGoal(net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$ValidateHiveGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public void start();
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeAttackGoal(net.minecraft.world.entity.animal.bee.Bee, net.minecraft.world.entity.PathfinderMob, double, boolean);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "Bee.java"
+abstract class net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public abstract boolean canBeeUse();
+  public abstract boolean canBeeContinueToUse();
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.bee.package-info {
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeeHurtByOtherGoal extends net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal {
+  public net.minecraft.world.entity.animal.bee.Bee$BeeHurtByOtherGoal(net.minecraft.world.entity.animal.bee.Bee, net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canContinueToUse();
+  protected void alertOther(net.minecraft.world.entity.Mob, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "Bee.java"
+class net.minecraft.world.entity.animal.bee.Bee$BeePollinateGoal extends net.minecraft.world.entity.animal.bee.Bee$BaseBeeGoal {
+  public net.minecraft.world.entity.animal.bee.Bee$BeePollinateGoal(net.minecraft.world.entity.animal.bee.Bee);
+  public boolean canBeeUse();
+  public boolean canBeeContinueToUse();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}

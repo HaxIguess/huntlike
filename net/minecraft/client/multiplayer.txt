@@ -1,0 +1,880 @@
+Compiled from "ClientChunkCache.java"
+public class net.minecraft.client.multiplayer.ClientChunkCache extends net.minecraft.world.level.chunk.ChunkSource {
+  public net.minecraft.client.multiplayer.ClientChunkCache(net.minecraft.client.multiplayer.ClientLevel, int);
+  public net.minecraft.world.level.lighting.LevelLightEngine getLightEngine();
+  public void drop(net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.level.chunk.LevelChunk getChunk(int, int, net.minecraft.world.level.chunk.status.ChunkStatus, boolean);
+  public net.minecraft.world.level.BlockGetter getLevel();
+  public void replaceBiomes(int, int, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.world.level.chunk.LevelChunk replaceWithPacketData(int, int, net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData);
+  public void tick(java.util.function.BooleanSupplier, boolean);
+  public void updateViewCenter(int, int);
+  public void updateViewRadius(int);
+  public java.lang.String gatherStats();
+  public int getLoadedChunksCount();
+  public void onLightUpdate(net.minecraft.world.level.LightLayer, net.minecraft.core.SectionPos);
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet addedEmptySections();
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet removedEmptySections();
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet addedLoadedChunks();
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet removedLoadedChunks();
+  public void flipUpdateTrackingSets();
+  public void onSectionEmptinessChanged(int, int, int, boolean);
+  public net.minecraft.world.level.chunk.ChunkAccess getChunk(int, int, net.minecraft.world.level.chunk.status.ChunkStatus, boolean);
+}
+Compiled from "LegacyServerPinger.java"
+public class net.minecraft.client.multiplayer.LegacyServerPinger extends io.netty.channel.SimpleChannelInboundHandler<io.netty.buffer.ByteBuf> {
+  public net.minecraft.client.multiplayer.LegacyServerPinger(net.minecraft.client.multiplayer.resolver.ServerAddress, net.minecraft.client.multiplayer.LegacyServerPinger$Output);
+  public void channelActive(io.netty.channel.ChannelHandlerContext) throws java.lang.Exception;
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf);
+  public void exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable);
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, java.lang.Object) throws java.lang.Exception;
+}
+Compiled from "ClientRecipeContainer.java"
+public class net.minecraft.client.multiplayer.ClientRecipeContainer implements net.minecraft.world.item.crafting.RecipeAccess {
+  public net.minecraft.client.multiplayer.ClientRecipeContainer(java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet>, net.minecraft.world.item.crafting.RecipePropertySet>, net.minecraft.world.item.crafting.SelectableRecipe$SingleInputSet<net.minecraft.world.item.crafting.StonecutterRecipe>);
+  public net.minecraft.world.item.crafting.RecipePropertySet propertySet(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet>);
+  public net.minecraft.world.item.crafting.SelectableRecipe$SingleInputSet<net.minecraft.world.item.crafting.StonecutterRecipe> stonecutterRecipes();
+}
+Compiled from "ClientHandshakePacketListenerImpl.java"
+final class net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State extends java.lang.Enum<net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State> {
+  public static final net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State CONNECTING;
+  public static final net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State AUTHORIZING;
+  public static final net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State ENCRYPTING;
+  public static final net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State JOINING;
+  public static net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State[] values();
+  public static net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl$State valueOf(java.lang.String);
+}
+Compiled from "LevelLoadTracker.java"
+final class net.minecraft.client.multiplayer.LevelLoadTracker$WaitingForPlayerChunk extends java.lang.Record implements net.minecraft.client.multiplayer.LevelLoadTracker$ClientState {
+  public net.minecraft.client.multiplayer.LevelLoadTracker$ClientState tick();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.player.LocalPlayer player();
+  public net.minecraft.client.multiplayer.ClientLevel level();
+  public java.util.concurrent.atomic.AtomicBoolean playerSectionReady();
+  public long timeoutAfter();
+}
+Compiled from "ClientDebugSubscriber.java"
+class net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueMap<K, V> {
+  public void removeValues(java.util.function.Predicate<net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueWrapper<V>>);
+  public void removeKey(K);
+  public void removeKeys(java.util.function.Predicate<K>);
+  public V getValue(K);
+  public void apply(long, K, net.minecraft.util.debug.DebugSubscription$Update<V>);
+  public void forEach(java.util.function.BiConsumer<K, V>);
+}
+Compiled from "PlayerInfo.java"
+public class net.minecraft.client.multiplayer.PlayerInfo {
+  public net.minecraft.client.multiplayer.PlayerInfo(com.mojang.authlib.GameProfile, boolean);
+  public com.mojang.authlib.GameProfile getProfile();
+  public net.minecraft.network.chat.RemoteChatSession getChatSession();
+  public net.minecraft.network.chat.SignedMessageValidator getMessageValidator();
+  public boolean hasVerifiableChat();
+  protected void setChatSession(net.minecraft.network.chat.RemoteChatSession);
+  protected void clearChatSession(boolean);
+  public net.minecraft.world.level.GameType getGameMode();
+  protected void setGameMode(net.minecraft.world.level.GameType);
+  public int getLatency();
+  protected void setLatency(int);
+  public net.minecraft.world.entity.player.PlayerSkin getSkin();
+  public net.minecraft.world.scores.PlayerTeam getTeam();
+  public void setTabListDisplayName(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getTabListDisplayName();
+  public void setShowHat(boolean);
+  public boolean showHat();
+  public void setTabListOrder(int);
+  public int getTabListOrder();
+}
+Compiled from "MultiPlayerGameMode.java"
+public class net.minecraft.client.multiplayer.MultiPlayerGameMode {
+  public net.minecraft.client.multiplayer.MultiPlayerGameMode(net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.ClientPacketListener);
+  public void adjustPlayer(net.minecraft.world.entity.player.Player);
+  public void setLocalMode(net.minecraft.world.level.GameType, net.minecraft.world.level.GameType);
+  public void setLocalMode(net.minecraft.world.level.GameType);
+  public boolean canHurtPlayer();
+  public boolean destroyBlock(net.minecraft.core.BlockPos);
+  public boolean startDestroyBlock(net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public void stopDestroyBlock();
+  public boolean continueDestroyBlock(net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public void tick();
+  public net.minecraft.world.InteractionResult useItemOn(net.minecraft.client.player.LocalPlayer, net.minecraft.world.InteractionHand, net.minecraft.world.phys.BlockHitResult);
+  public net.minecraft.world.InteractionResult useItem(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public net.minecraft.client.player.LocalPlayer createPlayer(net.minecraft.client.multiplayer.ClientLevel, net.minecraft.stats.StatsCounter, net.minecraft.client.ClientRecipeBook, net.minecraft.client.player.ItemActivation);
+  public net.minecraft.client.player.LocalPlayer createPlayer(net.minecraft.client.multiplayer.ClientLevel, net.minecraft.stats.StatsCounter, net.minecraft.client.ClientRecipeBook, net.minecraft.world.entity.player.Input, boolean, net.minecraft.client.player.ItemActivation);
+  public void attack(net.minecraft.world.entity.player.Player, net.minecraft.world.entity.Entity);
+  public void spectate(net.minecraft.world.entity.Entity);
+  public void spectatorNoAction();
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.entity.Entity, net.minecraft.world.phys.EntityHitResult, net.minecraft.world.InteractionHand);
+  public void handleContainerInput(int, int, int, net.minecraft.world.inventory.ContainerInput, net.minecraft.world.entity.player.Player);
+  public void handlePlaceRecipe(int, net.minecraft.world.item.crafting.display.RecipeDisplayId, boolean);
+  public void handleInventoryButtonClick(int, int);
+  public void handleCreativeModeItemAdd(net.minecraft.world.item.ItemStack, int);
+  public void handleCreativeModeItemDrop(net.minecraft.world.item.ItemStack);
+  public void releaseUsingItem(net.minecraft.world.entity.player.Player);
+  public void piercingAttack(net.minecraft.world.item.component.SwingAnimation, net.minecraft.world.item.component.PiercingWeapon);
+  public boolean hasExperience();
+  public boolean hasMissTime();
+  public boolean isServerControlledInventory();
+  public boolean isSpectator();
+  public net.minecraft.world.level.GameType getPreviousPlayerMode();
+  public net.minecraft.world.level.GameType getPlayerMode();
+  public boolean isDestroying();
+  public int getDestroyStage();
+  public void handlePickItemFromBlock(net.minecraft.core.BlockPos, boolean);
+  public void handlePickItemFromEntity(net.minecraft.world.entity.Entity, boolean);
+  public void handleSlotStateChanged(int, int, boolean);
+  public void dropItem(net.minecraft.client.player.LocalPlayer, boolean);
+}
+Compiled from "ClientDebugSubscriber.java"
+class net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueMaps<V> {
+  public void purgeExpired(long);
+  public void dropChunkAndBlocks(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "CommonListenerCookie.java"
+public final class net.minecraft.client.multiplayer.CommonListenerCookie extends java.lang.Record {
+  public net.minecraft.client.multiplayer.CommonListenerCookie(net.minecraft.client.multiplayer.LevelLoadTracker, com.mojang.authlib.GameProfile, net.minecraft.client.telemetry.WorldSessionTelemetryManager, net.minecraft.core.RegistryAccess$Frozen, net.minecraft.world.flag.FeatureFlagSet, java.lang.String, net.minecraft.client.multiplayer.ServerData, net.minecraft.client.gui.screens.Screen, java.util.Map<net.minecraft.resources.Identifier, byte[]>, net.minecraft.client.gui.components.ChatComponent$State, java.util.Map<java.lang.String, java.lang.String>, net.minecraft.server.ServerLinks, java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo>, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.multiplayer.LevelLoadTracker levelLoadTracker();
+  public com.mojang.authlib.GameProfile localGameProfile();
+  public net.minecraft.client.telemetry.WorldSessionTelemetryManager telemetryManager();
+  public net.minecraft.core.RegistryAccess$Frozen receivedRegistries();
+  public net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public java.lang.String serverBrand();
+  public net.minecraft.client.multiplayer.ServerData serverData();
+  public net.minecraft.client.gui.screens.Screen postDisconnectScreen();
+  public java.util.Map<net.minecraft.resources.Identifier, byte[]> serverCookies();
+  public net.minecraft.client.gui.components.ChatComponent$State chatState();
+  public java.util.Map<java.lang.String, java.lang.String> customReportDetails();
+  public net.minecraft.server.ServerLinks serverLinks();
+  public java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo> seenPlayers();
+  public boolean seenInsecureChatWarning();
+}
+Compiled from "ClientExplosionTracker.java"
+public class net.minecraft.client.multiplayer.ClientExplosionTracker {
+  public net.minecraft.client.multiplayer.ClientExplosionTracker();
+  public void track(net.minecraft.world.phys.Vec3, float, int, net.minecraft.util.random.WeightedList<net.minecraft.core.particles.ExplosionParticleInfo>);
+  public void tick(net.minecraft.client.multiplayer.ClientLevel);
+}
+Compiled from "ClientConfigurationPacketListenerImpl.java"
+public class net.minecraft.client.multiplayer.ClientConfigurationPacketListenerImpl extends net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl implements net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener,net.minecraft.network.TickablePacketListener {
+  public static final net.minecraft.network.chat.Component DISCONNECTED_MESSAGE;
+  protected net.minecraft.client.gui.components.ChatComponent$State chatState;
+  public net.minecraft.client.multiplayer.ClientConfigurationPacketListenerImpl(net.minecraft.client.Minecraft, net.minecraft.network.Connection, net.minecraft.client.multiplayer.CommonListenerCookie);
+  public boolean isAcceptingMessages();
+  protected void handleCustomPayload(net.minecraft.network.protocol.common.custom.CustomPacketPayload);
+  public void handleRegistryData(net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket);
+  public void handleUpdateTags(net.minecraft.network.protocol.common.ClientboundUpdateTagsPacket);
+  public void handleEnabledFeatures(net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket);
+  public void handleSelectKnownPacks(net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks);
+  public void handleResetChat(net.minecraft.network.protocol.configuration.ClientboundResetChatPacket);
+  public void handleCodeOfConduct(net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket);
+  public void handleConfigurationFinished(net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket);
+  public void tick();
+  public void onDisconnect(net.minecraft.network.DisconnectionDetails);
+  protected net.minecraft.client.gui.screens.dialog.DialogConnectionAccess createDialogAccess();
+}
+Compiled from "ClientHandshakePacketListenerImpl.java"
+public class net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl implements net.minecraft.network.protocol.login.ClientLoginPacketListener,net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public net.minecraft.client.multiplayer.ClientHandshakePacketListenerImpl(net.minecraft.network.Connection, net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.ServerData, net.minecraft.client.gui.screens.Screen, boolean, java.time.Duration, java.util.function.Consumer<net.minecraft.network.chat.Component>, net.minecraft.client.multiplayer.LevelLoadTracker, net.minecraft.client.multiplayer.TransferState);
+  public void handleHello(net.minecraft.network.protocol.login.ClientboundHelloPacket);
+  public void handleLoginFinished(net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket);
+  public void onDisconnect(net.minecraft.network.DisconnectionDetails);
+  public boolean isAcceptingMessages();
+  public void handleDisconnect(net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket);
+  public void handleCompression(net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket);
+  public void handleCustomQuery(net.minecraft.network.protocol.login.ClientboundCustomQueryPacket);
+  public void setMinigameName(java.lang.String);
+  public void handleRequestCookie(net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket);
+  public void fillListenerSpecificCrashDetails(net.minecraft.CrashReport, net.minecraft.CrashReportCategory);
+}
+Compiled from "SessionSearchTrees.java"
+class net.minecraft.client.multiplayer.SessionSearchTrees$Key {
+}
+Compiled from "LevelLoadTracker.java"
+public class net.minecraft.client.multiplayer.LevelLoadTracker implements net.minecraft.server.level.progress.LevelLoadListener {
+  public static final long LEVEL_LOAD_CLOSE_DELAY_MS;
+  public net.minecraft.client.multiplayer.LevelLoadTracker();
+  public net.minecraft.client.multiplayer.LevelLoadTracker(long);
+  public void setServerChunkStatusView(net.minecraft.server.level.progress.ChunkLoadStatusView);
+  public void startClientLoad(net.minecraft.client.player.LocalPlayer, net.minecraft.client.multiplayer.ClientLevel);
+  public void tickClientLoad();
+  public boolean isLevelReady();
+  public void loadingPacketsReceived();
+  public void start(net.minecraft.server.level.progress.LevelLoadListener$Stage, int);
+  public void update(net.minecraft.server.level.progress.LevelLoadListener$Stage, int, int);
+  public void finish(net.minecraft.server.level.progress.LevelLoadListener$Stage);
+  public void updateFocus(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.server.level.progress.ChunkLoadStatusView statusView();
+  public float serverProgress();
+  public boolean hasProgress();
+  public java.lang.Runnable getPlayerCompiledSectionCallback();
+}
+Compiled from "ClientCommonPacketListenerImpl.java"
+public abstract class net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$CommonDialogAccess implements net.minecraft.client.gui.screens.dialog.DialogConnectionAccess {
+  protected net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$CommonDialogAccess(net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl);
+  public void disconnect(net.minecraft.network.chat.Component);
+  public void openDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>, net.minecraft.client.gui.screens.Screen);
+  public void sendCustomAction(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.Tag>);
+  public net.minecraft.server.ServerLinks serverLinks();
+}
+Compiled from "ClientPacketListener.java"
+final class net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult extends java.lang.Enum<net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult> {
+  public static final net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult NO_ISSUES;
+  public static final net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult PARSE_ERRORS;
+  public static final net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult SIGNATURE_REQUIRED;
+  public static final net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult PERMISSIONS_REQUIRED;
+  public static net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult[] values();
+  public static net.minecraft.client.multiplayer.ClientPacketListener$CommandCheckResult valueOf(java.lang.String);
+}
+Compiled from "ServerData.java"
+public final class net.minecraft.client.multiplayer.ServerData$State extends java.lang.Enum<net.minecraft.client.multiplayer.ServerData$State> {
+  public static final net.minecraft.client.multiplayer.ServerData$State INITIAL;
+  public static final net.minecraft.client.multiplayer.ServerData$State PINGING;
+  public static final net.minecraft.client.multiplayer.ServerData$State UNREACHABLE;
+  public static final net.minecraft.client.multiplayer.ServerData$State INCOMPATIBLE;
+  public static final net.minecraft.client.multiplayer.ServerData$State SUCCESSFUL;
+  public static net.minecraft.client.multiplayer.ServerData$State[] values();
+  public static net.minecraft.client.multiplayer.ServerData$State valueOf(java.lang.String);
+}
+Compiled from "ClientAdvancements.java"
+public class net.minecraft.client.multiplayer.ClientAdvancements {
+  public net.minecraft.client.multiplayer.ClientAdvancements(net.minecraft.client.Minecraft, net.minecraft.client.telemetry.WorldSessionTelemetryManager);
+  public void update(net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket);
+  public java.util.Map<net.minecraft.advancements.AdvancementHolder, net.minecraft.advancements.AdvancementProgress> progress();
+  public net.minecraft.advancements.AdvancementTree tree();
+  public void setSelectedTab(net.minecraft.advancements.AdvancementHolder, boolean);
+  public void setListener(net.minecraft.client.multiplayer.ClientAdvancements$Listener);
+  public net.minecraft.advancements.AdvancementHolder get(net.minecraft.resources.Identifier);
+}
+Compiled from "TransferState.java"
+public final class net.minecraft.client.multiplayer.TransferState extends java.lang.Record {
+  public net.minecraft.client.multiplayer.TransferState(java.util.Map<net.minecraft.resources.Identifier, byte[]>, java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo>, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.resources.Identifier, byte[]> cookies();
+  public java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo> seenPlayers();
+  public boolean seenInsecureChatWarning();
+}
+Compiled from "ServerData.java"
+public class net.minecraft.client.multiplayer.ServerData {
+  public java.lang.String name;
+  public java.lang.String ip;
+  public net.minecraft.network.chat.Component status;
+  public net.minecraft.network.chat.Component motd;
+  public net.minecraft.network.protocol.status.ServerStatus$Players players;
+  public long ping;
+  public int protocol;
+  public net.minecraft.network.chat.Component version;
+  public java.util.List<net.minecraft.network.chat.Component> playerList;
+  public net.minecraft.client.multiplayer.ServerData(java.lang.String, java.lang.String, net.minecraft.client.multiplayer.ServerData$Type);
+  public net.minecraft.nbt.CompoundTag write();
+  public net.minecraft.client.multiplayer.ServerData$ServerPackStatus getResourcePackStatus();
+  public void setResourcePackStatus(net.minecraft.client.multiplayer.ServerData$ServerPackStatus);
+  public static net.minecraft.client.multiplayer.ServerData read(net.minecraft.nbt.CompoundTag);
+  public byte[] getIconBytes();
+  public void setIconBytes(byte[]);
+  public boolean isLan();
+  public boolean isRealm();
+  public net.minecraft.client.multiplayer.ServerData$Type type();
+  public boolean hasAcceptedCodeOfConduct(java.lang.String);
+  public void acceptCodeOfConduct(java.lang.String);
+  public void clearCodeOfConduct();
+  public void copyNameIconFrom(net.minecraft.client.multiplayer.ServerData);
+  public void copyFrom(net.minecraft.client.multiplayer.ServerData);
+  public net.minecraft.client.multiplayer.ServerData$State state();
+  public void setState(net.minecraft.client.multiplayer.ServerData$State);
+  public static byte[] validateIcon(byte[]);
+}
+Compiled from "ClientExplosionTracker.java"
+final class net.minecraft.client.multiplayer.ClientExplosionTracker$ExplosionInfo extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.phys.Vec3 center();
+  public float radius();
+  public int blockCount();
+  public net.minecraft.util.random.WeightedList<net.minecraft.core.particles.ExplosionParticleInfo> blockParticles();
+}
+Compiled from "ClientDebugSubscriber.java"
+interface net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueMapType<K, V> {
+  public abstract net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueMap<K, V> get(net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueMaps<V>);
+}
+Compiled from "ChunkBatchSizeCalculator.java"
+public class net.minecraft.client.multiplayer.ChunkBatchSizeCalculator {
+  public net.minecraft.client.multiplayer.ChunkBatchSizeCalculator();
+  public void onBatchStart();
+  public void onBatchFinished(int);
+  public float getDesiredChunksPerTick();
+}
+Compiled from "CacheSlot.java"
+public class net.minecraft.client.multiplayer.CacheSlot<C extends net.minecraft.client.multiplayer.CacheSlot$Cleaner<C>, D> {
+  public net.minecraft.client.multiplayer.CacheSlot(java.util.function.Function<C, D>);
+  public D compute(C);
+  public void clear();
+}
+Compiled from "ServerList.java"
+public class net.minecraft.client.multiplayer.ServerList {
+  public net.minecraft.client.multiplayer.ServerList(net.minecraft.client.Minecraft);
+  public void load();
+  public void save();
+  public net.minecraft.client.multiplayer.ServerData get(int);
+  public net.minecraft.client.multiplayer.ServerData get(java.lang.String);
+  public net.minecraft.client.multiplayer.ServerData unhide(java.lang.String);
+  public void remove(net.minecraft.client.multiplayer.ServerData);
+  public void add(net.minecraft.client.multiplayer.ServerData, boolean);
+  public int size();
+  public void swap(int, int);
+  public void replace(int, net.minecraft.client.multiplayer.ServerData);
+  public static void saveSingleServer(net.minecraft.client.multiplayer.ServerData);
+}
+Compiled from "RegistryDataCollector.java"
+public class net.minecraft.client.multiplayer.RegistryDataCollector {
+  public net.minecraft.client.multiplayer.RegistryDataCollector();
+  public void appendContents(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry>);
+  public void appendTags(java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.tags.TagNetworkSerialization$NetworkPayload>);
+  public net.minecraft.core.RegistryAccess$Frozen collectGameRegistries(net.minecraft.server.packs.resources.ResourceProvider, net.minecraft.core.RegistryAccess$Frozen, boolean);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.multiplayer.package-info {
+}
+Compiled from "LegacyServerPinger.java"
+public interface net.minecraft.client.multiplayer.LegacyServerPinger$Output {
+  public abstract void handleResponse(int, java.lang.String, java.lang.String, int, int);
+}
+Compiled from "ClientDebugSubscriber.java"
+public class net.minecraft.client.multiplayer.ClientDebugSubscriber {
+  public net.minecraft.client.multiplayer.ClientDebugSubscriber(net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.client.gui.components.DebugScreenOverlay);
+  public void clear();
+  public void tick(long);
+  public net.minecraft.util.debug.DebugValueAccess createDebugValueAccess(net.minecraft.world.level.Level);
+  public <T> void updateChunk(long, net.minecraft.world.level.ChunkPos, net.minecraft.util.debug.DebugSubscription$Update<T>);
+  public <T> void updateBlock(long, net.minecraft.core.BlockPos, net.minecraft.util.debug.DebugSubscription$Update<T>);
+  public <T> void updateEntity(long, net.minecraft.world.entity.Entity, net.minecraft.util.debug.DebugSubscription$Update<T>);
+  public <T> void pushEvent(long, net.minecraft.util.debug.DebugSubscription$Event<T>);
+  public void dropLevel();
+  public void dropChunk(net.minecraft.world.level.ChunkPos);
+  public void dropEntity(net.minecraft.world.entity.Entity);
+}
+Compiled from "KnownPacksManager.java"
+public class net.minecraft.client.multiplayer.KnownPacksManager {
+  public net.minecraft.client.multiplayer.KnownPacksManager();
+  public java.util.List<net.minecraft.server.packs.repository.KnownPack> trySelectingPacks(java.util.List<net.minecraft.server.packs.repository.KnownPack>);
+  public net.minecraft.server.packs.resources.CloseableResourceManager createResourceManager();
+}
+Compiled from "ClientAdvancements.java"
+public interface net.minecraft.client.multiplayer.ClientAdvancements$Listener {
+  public abstract void onAdvancementsUpdated();
+  public abstract void onAdvancementsCleared();
+  public abstract void onSelectedTabChanged(net.minecraft.advancements.AdvancementHolder);
+}
+Compiled from "ClientDebugSubscriber.java"
+final class net.minecraft.client.multiplayer.ClientDebugSubscriber$ValueWrapper<T> extends java.lang.Record {
+  public boolean hasExpired(long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+  public long expiresAfterTime();
+}
+Compiled from "AccountProfileKeyPairManager.java"
+public class net.minecraft.client.multiplayer.AccountProfileKeyPairManager implements net.minecraft.client.multiplayer.ProfileKeyPairManager {
+  public net.minecraft.client.multiplayer.AccountProfileKeyPairManager(com.mojang.authlib.minecraft.UserApiService, java.util.UUID, java.nio.file.Path);
+  public java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.world.entity.player.ProfileKeyPair>> prepareKeyPair();
+  public boolean shouldRefreshKeyPair();
+}
+Compiled from "SessionSearchTrees.java"
+public class net.minecraft.client.multiplayer.SessionSearchTrees {
+  public net.minecraft.client.multiplayer.SessionSearchTrees();
+  public void rebuildAfterLanguageChange();
+  public void updateRecipes(net.minecraft.client.ClientRecipeBook, net.minecraft.world.level.Level);
+  public net.minecraft.client.searchtree.SearchTree<net.minecraft.client.gui.screens.recipebook.RecipeCollection> recipes();
+  public void updateCreativeTags(java.util.List<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.client.searchtree.SearchTree<net.minecraft.world.item.ItemStack> creativeTagSearch();
+  public void updateCreativeTooltips(net.minecraft.core.HolderLookup$Provider, java.util.List<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.client.searchtree.SearchTree<net.minecraft.world.item.ItemStack> creativeNameSearch();
+}
+Compiled from "ClientChunkCache.java"
+final class net.minecraft.client.multiplayer.ClientChunkCache$Storage {
+  public void onSectionEmptinessChanged(int, int, int, boolean);
+  public net.minecraft.world.level.chunk.LevelChunk getChunk(int);
+}
+Compiled from "LevelLoadTracker.java"
+interface net.minecraft.client.multiplayer.LevelLoadTracker$ClientState {
+  public default net.minecraft.client.multiplayer.LevelLoadTracker$ClientState tick();
+  public default net.minecraft.client.multiplayer.LevelLoadTracker$ClientState loadingPacketsReceived();
+}
+Compiled from "ClientLevel.java"
+public class net.minecraft.client.multiplayer.ClientLevel extends net.minecraft.world.level.Level implements net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.client.multiplayer.CacheSlot$Cleaner<net.minecraft.client.multiplayer.ClientLevel> {
+  public static final net.minecraft.network.chat.Component DEFAULT_QUIT_MESSAGE;
+  public void handleBlockChangedAck(int);
+  public void onBlockEntityAdded(net.minecraft.world.level.block.entity.BlockEntity);
+  public java.util.Set<net.minecraft.world.level.block.entity.BlockEntity> getGloballyRenderedBlockEntities();
+  public void setServerVerifiedBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public void syncBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.Vec3);
+  public boolean setBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int, int);
+  public net.minecraft.client.multiplayer.ClientLevel(net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.client.multiplayer.ClientLevel$ClientLevelData, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.Holder<net.minecraft.world.level.dimension.DimensionType>, int, int, net.minecraft.client.renderer.extract.LevelExtractor, boolean, long, int);
+  public void queueLightUpdate(java.lang.Runnable);
+  public void pollLightUpdates();
+  public net.minecraft.client.renderer.EndFlashState endFlashState();
+  public void tick(java.util.function.BooleanSupplier);
+  public void tickWeatherEffects();
+  public net.minecraft.world.level.biome.Biome$Precipitation getPrecipitationAt(net.minecraft.core.BlockPos);
+  public it.unimi.dsi.fastutil.longs.Long2ObjectMap<java.util.SortedSet<net.minecraft.server.level.BlockDestructionProgress>> destructionProgress();
+  public void setTimeFromServer(long);
+  public java.lang.Iterable<net.minecraft.world.entity.Entity> entitiesForRendering();
+  public void tickEntities();
+  public boolean isTickingEntity(net.minecraft.world.entity.Entity);
+  public boolean shouldTickDeath(net.minecraft.world.entity.Entity);
+  public void tickNonPassenger(net.minecraft.world.entity.Entity);
+  public void update();
+  public void unload(net.minecraft.world.level.chunk.LevelChunk);
+  public void onChunkLoaded(net.minecraft.world.level.ChunkPos);
+  public void clearTintCaches();
+  public boolean hasChunk(int, int);
+  public int getEntityCount();
+  public void addEntity(net.minecraft.world.entity.Entity);
+  public void removeEntity(int, net.minecraft.world.entity.Entity$RemovalReason);
+  public java.util.List<net.minecraft.world.entity.Entity> getPushableEntities(net.minecraft.world.entity.Entity, net.minecraft.world.phys.AABB);
+  public net.minecraft.world.entity.Entity getEntity(int);
+  public void disconnect(net.minecraft.network.chat.Component);
+  public void animateTick(int, int, int);
+  public void doAnimateTick(int, int, int, int, net.minecraft.util.RandomSource, net.minecraft.world.level.block.Block, net.minecraft.core.BlockPos$MutableBlockPos);
+  public net.minecraft.CrashReportCategory fillReportDetails(net.minecraft.CrashReport);
+  public void playSeededSound(net.minecraft.world.entity.Entity, double, double, double, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.sounds.SoundSource, float, float, long);
+  public void playSeededSound(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.sounds.SoundSource, float, float, long);
+  public void playLocalSound(net.minecraft.world.entity.Entity, net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundSource, float, float);
+  public void playPlayerSound(net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundSource, float, float);
+  public void playLocalSound(double, double, double, net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundSource, float, float, boolean);
+  public void createFireworks(double, double, double, double, double, double, java.util.List<net.minecraft.world.item.component.FireworkExplosion>, boolean);
+  public void sendPacketToServer(net.minecraft.network.protocol.Packet<?>);
+  public net.minecraft.world.level.border.WorldBorder getWorldBorder();
+  public net.minecraft.world.item.crafting.RecipeAccess recipeAccess();
+  public net.minecraft.world.TickRateManager tickRateManager();
+  public float getRelativeTickSpeed();
+  public net.minecraft.client.ClientClockManager clockManager();
+  public net.minecraft.world.attribute.EnvironmentAttributeSystem environmentAttributes();
+  public net.minecraft.world.ticks.LevelTickAccess<net.minecraft.world.level.block.Block> getBlockTicks();
+  public net.minecraft.world.ticks.LevelTickAccess<net.minecraft.world.level.material.Fluid> getFluidTicks();
+  public net.minecraft.client.multiplayer.ClientChunkCache getChunkSource();
+  public net.minecraft.world.level.saveddata.maps.MapItemSavedData getMapData(net.minecraft.world.level.saveddata.maps.MapId);
+  public void overrideMapData(net.minecraft.world.level.saveddata.maps.MapId, net.minecraft.world.level.saveddata.maps.MapItemSavedData);
+  public net.minecraft.world.scores.Scoreboard getScoreboard();
+  public void sendBlockUpdated(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, int);
+  public void setBlocksDirty(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState);
+  public void setSectionDirtyWithNeighbors(int, int, int);
+  public void setSectionRangeDirty(int, int, int, int, int, int);
+  public void destroyBlockProgress(int, net.minecraft.core.BlockPos, int);
+  public void globalLevelEvent(int, net.minecraft.core.BlockPos, int);
+  public void levelEvent(net.minecraft.world.entity.Entity, int, net.minecraft.core.BlockPos, int);
+  public void addParticle(net.minecraft.core.particles.ParticleOptions, double, double, double, double, double, double);
+  public void addParticle(net.minecraft.core.particles.ParticleOptions, boolean, boolean, double, double, double, double, double, double);
+  public void addAlwaysVisibleParticle(net.minecraft.core.particles.ParticleOptions, double, double, double, double, double, double);
+  public void addAlwaysVisibleParticle(net.minecraft.core.particles.ParticleOptions, boolean, double, double, double, double, double, double);
+  public java.util.List<net.minecraft.client.player.AbstractClientPlayer> players();
+  public java.util.List<net.minecraft.world.entity.boss.enderdragon.EnderDragonPart> dragonParts();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getUncachedNoiseBiome(int, int, int);
+  public void setSkyFlashTime(int);
+  public net.minecraft.world.level.CardinalLighting cardinalLighting();
+  public int getBlockTint(net.minecraft.core.BlockPos, net.minecraft.world.level.ColorResolver);
+  public int calculateBlockTint(net.minecraft.core.BlockPos, net.minecraft.world.level.ColorResolver);
+  public void setRespawnData(net.minecraft.world.level.storage.LevelData$RespawnData);
+  public net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public java.lang.String toString();
+  public net.minecraft.client.multiplayer.ClientLevel$ClientLevelData getLevelData();
+  public void gameEvent(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3, net.minecraft.world.level.gameevent.GameEvent$Context);
+  protected java.util.Map<net.minecraft.world.level.saveddata.maps.MapId, net.minecraft.world.level.saveddata.maps.MapItemSavedData> getAllMapData();
+  protected void addMapData(java.util.Map<net.minecraft.world.level.saveddata.maps.MapId, net.minecraft.world.level.saveddata.maps.MapItemSavedData>);
+  protected net.minecraft.world.level.entity.LevelEntityGetter<net.minecraft.world.entity.Entity> getEntities();
+  public java.lang.String gatherChunkSourceStats();
+  public void addDestroyBlockEffect(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void addBreakingBlockEffects(net.minecraft.core.BlockPos, net.minecraft.core.Direction, boolean);
+  public void setServerSimulationDistance(int);
+  public int getServerSimulationDistance();
+  public net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public void explode(net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, net.minecraft.world.level.ExplosionDamageCalculator, double, double, double, float, boolean, net.minecraft.world.level.Level$ExplosionInteraction, net.minecraft.core.particles.ParticleOptions, net.minecraft.core.particles.ParticleOptions, net.minecraft.util.random.WeightedList<net.minecraft.core.particles.ExplosionParticleInfo>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>);
+  public int getSeaLevel();
+  public int getClientLeafTintColor(net.minecraft.core.BlockPos);
+  public void registerForCleaning(net.minecraft.client.multiplayer.CacheSlot<net.minecraft.client.multiplayer.ClientLevel, ?>);
+  public void trackExplosionEffects(net.minecraft.world.phys.Vec3, float, int, net.minecraft.util.random.WeightedList<net.minecraft.core.particles.ExplosionParticleInfo>);
+  public net.minecraft.world.clock.ClockManager clockManager();
+  public net.minecraft.world.level.storage.LevelData getLevelData();
+  public java.util.Collection dragonParts();
+  public net.minecraft.world.level.chunk.ChunkSource getChunkSource();
+  public net.minecraft.world.attribute.EnvironmentAttributeReader environmentAttributes();
+}
+Compiled from "ClientCommonPacketListenerImpl.java"
+class net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$PackConfirmScreen extends net.minecraft.client.gui.screens.ConfirmScreen {
+  public net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$PackConfirmScreen update(net.minecraft.client.Minecraft, java.util.UUID, java.net.URL, java.lang.String, boolean, net.minecraft.network.chat.Component);
+}
+Compiled from "ClientRegistryLayer.java"
+public final class net.minecraft.client.multiplayer.ClientRegistryLayer extends java.lang.Enum<net.minecraft.client.multiplayer.ClientRegistryLayer> {
+  public static final net.minecraft.client.multiplayer.ClientRegistryLayer STATIC;
+  public static final net.minecraft.client.multiplayer.ClientRegistryLayer REMOTE;
+  public static net.minecraft.client.multiplayer.ClientRegistryLayer[] values();
+  public static net.minecraft.client.multiplayer.ClientRegistryLayer valueOf(java.lang.String);
+  public static net.minecraft.core.LayeredRegistryAccess<net.minecraft.client.multiplayer.ClientRegistryLayer> createRegistryAccess();
+}
+Compiled from "ClientPacketListener.java"
+public class net.minecraft.client.multiplayer.ClientPacketListener extends net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl implements net.minecraft.network.protocol.game.ClientGamePacketListener,net.minecraft.network.TickablePacketListener {
+  public static final int TELEPORT_INTERPOLATION_THRESHOLD;
+  public net.minecraft.client.multiplayer.ClientPacketListener(net.minecraft.client.Minecraft, net.minecraft.network.Connection, net.minecraft.client.multiplayer.CommonListenerCookie);
+  public net.minecraft.client.multiplayer.ClientSuggestionProvider getSuggestionsProvider();
+  public void close();
+  public void clearLevel();
+  public net.minecraft.world.item.crafting.RecipeAccess recipes();
+  public void handleLogin(net.minecraft.network.protocol.game.ClientboundLoginPacket);
+  public void handleAddEntity(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public void handleSetEntityMotion(net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket);
+  public void handleSetEntityData(net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket);
+  public void handleEntityPositionSync(net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket);
+  public void handleTeleportEntity(net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket);
+  public void handleTickingState(net.minecraft.network.protocol.game.ClientboundTickingStatePacket);
+  public void handleTickingStep(net.minecraft.network.protocol.game.ClientboundTickingStepPacket);
+  public void handleSetHeldSlot(net.minecraft.network.protocol.game.ClientboundSetHeldSlotPacket);
+  public void handleMoveEntity(net.minecraft.network.protocol.game.ClientboundMoveEntityPacket);
+  public void handleMinecartAlongTrack(net.minecraft.network.protocol.game.ClientboundMoveMinecartPacket);
+  public void handleRotateMob(net.minecraft.network.protocol.game.ClientboundRotateHeadPacket);
+  public void handleRemoveEntities(net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket);
+  public void handleMovePlayer(net.minecraft.network.protocol.game.ClientboundPlayerPositionPacket);
+  public void handleRotatePlayer(net.minecraft.network.protocol.game.ClientboundPlayerRotationPacket);
+  public void handleChunkBlocksUpdate(net.minecraft.network.protocol.game.ClientboundSectionBlocksUpdatePacket);
+  public void handleLevelChunkWithLight(net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket);
+  public void handleChunksBiomes(net.minecraft.network.protocol.game.ClientboundChunksBiomesPacket);
+  public void handleForgetLevelChunk(net.minecraft.network.protocol.game.ClientboundForgetLevelChunkPacket);
+  public void handleBlockUpdate(net.minecraft.network.protocol.game.ClientboundBlockUpdatePacket);
+  public void handleConfigurationStart(net.minecraft.network.protocol.game.ClientboundStartConfigurationPacket);
+  public void handleTakeItemEntity(net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket);
+  public void handleSystemChat(net.minecraft.network.protocol.game.ClientboundSystemChatPacket);
+  public void handlePlayerChat(net.minecraft.network.protocol.game.ClientboundPlayerChatPacket);
+  public void handleDisguisedChat(net.minecraft.network.protocol.game.ClientboundDisguisedChatPacket);
+  public void handleDeleteChat(net.minecraft.network.protocol.game.ClientboundDeleteChatPacket);
+  public void handleAnimate(net.minecraft.network.protocol.game.ClientboundAnimatePacket);
+  public void handleHurtAnimation(net.minecraft.network.protocol.game.ClientboundHurtAnimationPacket);
+  public void handleSwingAnimation(net.minecraft.network.protocol.game.ClientboundSwingAnimationPacket);
+  public void handleSetTime(net.minecraft.network.protocol.game.ClientboundSetTimePacket);
+  public void handleSetSpawn(net.minecraft.network.protocol.game.ClientboundSetDefaultSpawnPositionPacket);
+  public void handleSetEntityPassengersPacket(net.minecraft.network.protocol.game.ClientboundSetPassengersPacket);
+  public void handleAddTransientBlockPacket(net.minecraft.network.protocol.game.ClientboundAddTransientBlockPacket);
+  public void handleEntityLinkPacket(net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket);
+  public void handleEntityEvent(net.minecraft.network.protocol.game.ClientboundEntityEventPacket);
+  public void handleDamageEvent(net.minecraft.network.protocol.game.ClientboundDamageEventPacket);
+  public void handleSetHealth(net.minecraft.network.protocol.game.ClientboundSetHealthPacket);
+  public void handleSetExperience(net.minecraft.network.protocol.game.ClientboundSetExperiencePacket);
+  public void handleRespawn(net.minecraft.network.protocol.game.ClientboundRespawnPacket);
+  public void handleExplosion(net.minecraft.network.protocol.game.ClientboundExplodePacket);
+  public void handleMountScreenOpen(net.minecraft.network.protocol.game.ClientboundMountScreenOpenPacket);
+  public void handleOpenScreen(net.minecraft.network.protocol.game.ClientboundOpenScreenPacket);
+  public void handleContainerSetSlot(net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket);
+  public void handleSetCursorItem(net.minecraft.network.protocol.game.ClientboundSetCursorItemPacket);
+  public void handleSetPlayerInventory(net.minecraft.network.protocol.game.ClientboundSetPlayerInventoryPacket);
+  public void handleContainerContent(net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket);
+  public void handleOpenSignEditor(net.minecraft.network.protocol.game.ClientboundOpenSignEditorPacket);
+  public void handleBlockEntityData(net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket);
+  public void handleContainerSetData(net.minecraft.network.protocol.game.ClientboundContainerSetDataPacket);
+  public void handleSetEquipment(net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket);
+  public void handleContainerClose(net.minecraft.network.protocol.game.ClientboundContainerClosePacket);
+  public void handleBlockEvent(net.minecraft.network.protocol.game.ClientboundBlockEventPacket);
+  public void handleBlockDestruction(net.minecraft.network.protocol.game.ClientboundBlockDestructionPacket);
+  public void handleGameEvent(net.minecraft.network.protocol.game.ClientboundGameEventPacket);
+  public void handleMapItemData(net.minecraft.network.protocol.game.ClientboundMapItemDataPacket);
+  public void handleLevelEvent(net.minecraft.network.protocol.game.ClientboundLevelEventPacket);
+  public void handleUpdateAdvancementsPacket(net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket);
+  public void handleSelectAdvancementsTab(net.minecraft.network.protocol.game.ClientboundSelectAdvancementsTabPacket);
+  public void handleCommands(net.minecraft.network.protocol.game.ClientboundCommandsPacket);
+  public void handleStopSoundEvent(net.minecraft.network.protocol.game.ClientboundStopSoundPacket);
+  public void handleCommandSuggestions(net.minecraft.network.protocol.game.ClientboundCommandSuggestionsPacket);
+  public void handleUpdateRecipes(net.minecraft.network.protocol.game.ClientboundUpdateRecipesPacket);
+  public void handleLookAt(net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket);
+  public void handleTagQueryPacket(net.minecraft.network.protocol.game.ClientboundTagQueryPacket);
+  public void handleAwardStats(net.minecraft.network.protocol.game.ClientboundAwardStatsPacket);
+  public void handleRecipeBookAdd(net.minecraft.network.protocol.game.ClientboundRecipeBookAddPacket);
+  public void handleRecipeBookRemove(net.minecraft.network.protocol.game.ClientboundRecipeBookRemovePacket);
+  public void handleRecipeBookSettings(net.minecraft.network.protocol.game.ClientboundRecipeBookSettingsPacket);
+  public void handleUpdateMobEffect(net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket);
+  public void handleUpdateTags(net.minecraft.network.protocol.common.ClientboundUpdateTagsPacket);
+  public void handlePlayerCombatEnd(net.minecraft.network.protocol.game.ClientboundPlayerCombatEndPacket);
+  public void handlePlayerCombatEnter(net.minecraft.network.protocol.game.ClientboundPlayerCombatEnterPacket);
+  public void handlePlayerCombatKill(net.minecraft.network.protocol.game.ClientboundPlayerCombatKillPacket);
+  public void handleChangeDifficulty(net.minecraft.network.protocol.game.ClientboundChangeDifficultyPacket);
+  public void handleSetCamera(net.minecraft.network.protocol.game.ClientboundSetCameraPacket);
+  public void handleInitializeBorder(net.minecraft.network.protocol.game.ClientboundInitializeBorderPacket);
+  public void handleSetBorderCenter(net.minecraft.network.protocol.game.ClientboundSetBorderCenterPacket);
+  public void handleSetBorderLerpSize(net.minecraft.network.protocol.game.ClientboundSetBorderLerpSizePacket);
+  public void handleSetBorderSize(net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket);
+  public void handleSetBorderWarningDistance(net.minecraft.network.protocol.game.ClientboundSetBorderWarningDistancePacket);
+  public void handleSetBorderWarningDelay(net.minecraft.network.protocol.game.ClientboundSetBorderWarningDelayPacket);
+  public void handleTitlesClear(net.minecraft.network.protocol.game.ClientboundClearTitlesPacket);
+  public void handleServerData(net.minecraft.network.protocol.game.ClientboundServerDataPacket);
+  public void handleCustomChatCompletions(net.minecraft.network.protocol.game.ClientboundCustomChatCompletionsPacket);
+  public void setActionBarText(net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket);
+  public void setTitleText(net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket);
+  public void setSubtitleText(net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket);
+  public void setTitlesAnimation(net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket);
+  public void handleTabListCustomisation(net.minecraft.network.protocol.game.ClientboundTabListPacket);
+  public void handleRemoveMobEffect(net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket);
+  public void handlePlayerInfoRemove(net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket);
+  public void handlePlayerInfoUpdate(net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket);
+  public boolean onlineMode();
+  public void handlePlayerAbilities(net.minecraft.network.protocol.game.ClientboundPlayerAbilitiesPacket);
+  public void handleGameRuleValues(net.minecraft.network.protocol.game.ClientboundGameRuleValuesPacket);
+  public void handleSoundEvent(net.minecraft.network.protocol.game.ClientboundSoundPacket);
+  public void handleSoundEntityEvent(net.minecraft.network.protocol.game.ClientboundSoundEntityPacket);
+  public void handleBossUpdate(net.minecraft.network.protocol.game.ClientboundBossEventPacket);
+  public void handleItemCooldown(net.minecraft.network.protocol.game.ClientboundCooldownPacket);
+  public void handleMoveVehicle(net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket);
+  public void handleOpenBook(net.minecraft.network.protocol.game.ClientboundOpenBookPacket);
+  public void handleCustomPayload(net.minecraft.network.protocol.common.custom.CustomPacketPayload);
+  public void handleAddObjective(net.minecraft.network.protocol.game.ClientboundSetObjectivePacket);
+  public void handleSetScore(net.minecraft.network.protocol.game.ClientboundSetScorePacket);
+  public void handleResetScore(net.minecraft.network.protocol.game.ClientboundResetScorePacket);
+  public void handleSetDisplayObjective(net.minecraft.network.protocol.game.ClientboundSetDisplayObjectivePacket);
+  public void handleSetPlayerTeamPacket(net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket);
+  public void handleParticleEvent(net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket);
+  public void handleUpdateAttributes(net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket);
+  public void handlePlaceRecipe(net.minecraft.network.protocol.game.ClientboundPlaceGhostRecipePacket);
+  public void handleLightUpdatePacket(net.minecraft.network.protocol.game.ClientboundLightUpdatePacket);
+  public void handleMerchantOffers(net.minecraft.network.protocol.game.ClientboundMerchantOffersPacket);
+  public void handleSetChunkCacheRadius(net.minecraft.network.protocol.game.ClientboundSetChunkCacheRadiusPacket);
+  public void handleSetSimulationDistance(net.minecraft.network.protocol.game.ClientboundSetSimulationDistancePacket);
+  public void handleSetChunkCacheCenter(net.minecraft.network.protocol.game.ClientboundSetChunkCacheCenterPacket);
+  public void handleBlockChangedAck(net.minecraft.network.protocol.game.ClientboundBlockChangedAckPacket);
+  public void handleBundlePacket(net.minecraft.network.protocol.game.ClientboundBundlePacket);
+  public void handleProjectilePowerPacket(net.minecraft.network.protocol.game.ClientboundProjectilePowerPacket);
+  public void handleChunkBatchStart(net.minecraft.network.protocol.game.ClientboundChunkBatchStartPacket);
+  public void handleChunkBatchFinished(net.minecraft.network.protocol.game.ClientboundChunkBatchFinishedPacket);
+  public void handleDebugSample(net.minecraft.network.protocol.game.ClientboundDebugSamplePacket);
+  public void handlePongResponse(net.minecraft.network.protocol.ping.ClientboundPongResponsePacket);
+  public void handleTestInstanceBlockStatus(net.minecraft.network.protocol.game.ClientboundTestInstanceBlockStatus);
+  public void handleWaypoint(net.minecraft.network.protocol.game.ClientboundTrackedWaypointPacket);
+  public void handleDebugChunkValue(net.minecraft.network.protocol.game.ClientboundDebugChunkValuePacket);
+  public void handleDebugBlockValue(net.minecraft.network.protocol.game.ClientboundDebugBlockValuePacket);
+  public void handleDebugEntityValue(net.minecraft.network.protocol.game.ClientboundDebugEntityValuePacket);
+  public void handleDebugEvent(net.minecraft.network.protocol.game.ClientboundDebugEventPacket);
+  public void handleGameTestHighlightPos(net.minecraft.network.protocol.game.ClientboundGameTestHighlightPosPacket);
+  public void handleLowDiskSpaceWarning(net.minecraft.network.protocol.game.ClientboundLowDiskSpaceWarningPacket);
+  public net.minecraft.network.Connection getConnection();
+  public boolean isAcceptingMessages();
+  public java.util.Collection<net.minecraft.client.multiplayer.PlayerInfo> getListedOnlinePlayers();
+  public java.util.Collection<net.minecraft.client.multiplayer.PlayerInfo> getOnlinePlayers();
+  public java.util.Collection<java.util.UUID> getOnlinePlayerIds();
+  public net.minecraft.client.multiplayer.PlayerInfo getPlayerInfo(java.util.UUID);
+  public net.minecraft.client.multiplayer.PlayerInfo getPlayerInfo(java.lang.String);
+  public java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo> getSeenPlayers();
+  public net.minecraft.client.multiplayer.PlayerInfo getPlayerInfoIgnoreCase(java.lang.String);
+  public com.mojang.authlib.GameProfile getLocalGameProfile();
+  public net.minecraft.client.multiplayer.ClientAdvancements getAdvancements();
+  public com.mojang.brigadier.CommandDispatcher<net.minecraft.client.multiplayer.ClientSuggestionProvider> getCommands();
+  public net.minecraft.client.multiplayer.ClientLevel getLevel();
+  public net.minecraft.client.DebugQueryHandler getDebugQueryHandler();
+  public java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public net.minecraft.core.RegistryAccess$Frozen registryAccess();
+  public void markMessageAsProcessed(net.minecraft.network.chat.MessageSignature, boolean);
+  public void sendChat(java.lang.String);
+  public void sendCommand(java.lang.String);
+  public void sendUnattendedCommand(java.lang.String, net.minecraft.client.gui.screens.Screen);
+  public void broadcastClientInformation(net.minecraft.server.level.ClientInformation);
+  public void tick();
+  public java.lang.Runnable getPlayerCompiledSectionCallback();
+  public void prepareKeyPair();
+  protected net.minecraft.client.gui.screens.dialog.DialogConnectionAccess createDialogAccess();
+  public net.minecraft.client.multiplayer.ServerData getServerData();
+  public net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public boolean isFeatureEnabled(net.minecraft.world.flag.FeatureFlagSet);
+  public net.minecraft.world.scores.Scoreboard scoreboard();
+  public void updateSearchTrees();
+  public net.minecraft.client.multiplayer.SessionSearchTrees searchTrees();
+  public void registerForCleaning(net.minecraft.client.multiplayer.CacheSlot<?, ?>);
+  public net.minecraft.network.HashedPatchMap$HashGenerator decoratedHashOpsGenenerator();
+  public net.minecraft.client.waypoints.ClientWaypointManager getWaypointManager();
+  public net.minecraft.util.debug.DebugValueAccess createDebugValueAccess();
+  public boolean hasClientLoaded();
+  public net.minecraft.client.ClientClockManager clockManager();
+}
+Compiled from "ClientCommonPacketListenerImpl.java"
+public abstract class net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl implements net.minecraft.network.protocol.common.ClientCommonPacketListener,net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  protected final net.minecraft.client.Minecraft minecraft;
+  protected final net.minecraft.network.Connection connection;
+  protected final net.minecraft.client.multiplayer.ServerData serverData;
+  protected java.lang.String serverBrand;
+  protected final net.minecraft.client.telemetry.WorldSessionTelemetryManager telemetryManager;
+  protected final net.minecraft.client.gui.screens.Screen postDisconnectScreen;
+  protected boolean isTransferring;
+  protected final java.util.Map<net.minecraft.resources.Identifier, byte[]> serverCookies;
+  protected java.util.Map<java.lang.String, java.lang.String> customReportDetails;
+  protected final java.util.Map<java.util.UUID, net.minecraft.client.multiplayer.PlayerInfo> seenPlayers;
+  protected boolean seenInsecureChatWarning;
+  protected net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl(net.minecraft.client.Minecraft, net.minecraft.network.Connection, net.minecraft.client.multiplayer.CommonListenerCookie);
+  public net.minecraft.server.ServerLinks serverLinks();
+  public void onPacketError(net.minecraft.network.protocol.Packet, java.lang.Exception);
+  public net.minecraft.network.DisconnectionDetails createDisconnectionInfo(net.minecraft.network.chat.Component, java.lang.Throwable);
+  public boolean shouldHandleMessage(net.minecraft.network.protocol.Packet<?>);
+  public void handleKeepAlive(net.minecraft.network.protocol.common.ClientboundKeepAlivePacket);
+  public void handlePing(net.minecraft.network.protocol.common.ClientboundPingPacket);
+  public void handleCustomPayload(net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket);
+  protected abstract void handleCustomPayload(net.minecraft.network.protocol.common.custom.CustomPacketPayload);
+  public void handleResourcePackPush(net.minecraft.network.protocol.common.ClientboundResourcePackPushPacket);
+  public void handleResourcePackPop(net.minecraft.network.protocol.common.ClientboundResourcePackPopPacket);
+  public void handlePostEffects(net.minecraft.network.protocol.common.ClientboundPostEffectsPacket);
+  public void handleRequestCookie(net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket);
+  public void handleStoreCookie(net.minecraft.network.protocol.common.ClientboundStoreCookiePacket);
+  public void handleCustomReportDetails(net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket);
+  public void handleServerLinks(net.minecraft.network.protocol.common.ClientboundServerLinksPacket);
+  public void handleShowDialog(net.minecraft.network.protocol.common.ClientboundShowDialogPacket);
+  protected abstract net.minecraft.client.gui.screens.dialog.DialogConnectionAccess createDialogAccess();
+  public void showDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>, net.minecraft.client.gui.screens.Screen);
+  protected void showDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess, net.minecraft.client.gui.screens.Screen);
+  public void handleClearDialog(net.minecraft.network.protocol.common.ClientboundClearDialogPacket);
+  public void clearDialog();
+  public void handleTransfer(net.minecraft.network.protocol.common.ClientboundTransferPacket);
+  public void handleDisconnect(net.minecraft.network.protocol.common.ClientboundDisconnectPacket);
+  protected void sendDeferredPackets();
+  public void send(net.minecraft.network.protocol.Packet<?>);
+  public void onDisconnect(net.minecraft.network.DisconnectionDetails);
+  public void fillListenerSpecificCrashDetails(net.minecraft.CrashReport, net.minecraft.CrashReportCategory);
+  protected net.minecraft.client.gui.screens.Screen createDisconnectScreen(net.minecraft.network.DisconnectionDetails);
+  public java.lang.String serverBrand();
+}
+Compiled from "ClientCommonPacketListenerImpl.java"
+final class net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$PackConfirmScreen$PendingRequest extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID id();
+  public java.net.URL url();
+  public java.lang.String hash();
+}
+Compiled from "ClientLevel.java"
+public class net.minecraft.client.multiplayer.ClientLevel$ClientLevelData implements net.minecraft.world.level.storage.WritableLevelData {
+  public net.minecraft.client.multiplayer.ClientLevel$ClientLevelData(net.minecraft.world.Difficulty, boolean, boolean);
+  public net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public long getGameTime();
+  public void setGameTime(long);
+  public void setSpawn(net.minecraft.world.level.storage.LevelData$RespawnData);
+  public boolean isHardcore();
+  public net.minecraft.world.Difficulty getDifficulty();
+  public boolean isDifficultyLocked();
+  public void fillCrashReportCategory(net.minecraft.CrashReportCategory, net.minecraft.world.level.LevelHeightAccessor);
+  public void setDifficulty(net.minecraft.world.Difficulty);
+  public void setDifficultyLocked(boolean);
+  public double getHorizonHeight(net.minecraft.world.level.LevelHeightAccessor);
+  public float voidDarknessOnsetRange();
+}
+Compiled from "ServerData.java"
+public final class net.minecraft.client.multiplayer.ServerData$ServerPackStatus extends java.lang.Enum<net.minecraft.client.multiplayer.ServerData$ServerPackStatus> {
+  public static final net.minecraft.client.multiplayer.ServerData$ServerPackStatus ENABLED;
+  public static final net.minecraft.client.multiplayer.ServerData$ServerPackStatus DISABLED;
+  public static final net.minecraft.client.multiplayer.ServerData$ServerPackStatus PROMPT;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.client.multiplayer.ServerData$ServerPackStatus> FIELD_CODEC;
+  public static net.minecraft.client.multiplayer.ServerData$ServerPackStatus[] values();
+  public static net.minecraft.client.multiplayer.ServerData$ServerPackStatus valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component getName();
+}
+Compiled from "ClientSuggestionProvider.java"
+public class net.minecraft.client.multiplayer.ClientSuggestionProvider implements net.minecraft.commands.SharedSuggestionProvider {
+  public net.minecraft.client.multiplayer.ClientSuggestionProvider(net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.client.Minecraft, net.minecraft.server.permissions.PermissionSet);
+  public java.util.Collection<java.lang.String> getOnlinePlayerNames();
+  public java.util.Collection<java.lang.String> getCustomTabSuggestions();
+  public java.util.Collection<java.lang.String> getSelectedEntities();
+  public java.util.Collection<java.lang.String> getAllTeams();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailableSounds();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailablePostEffects();
+  public net.minecraft.server.permissions.PermissionSet permissions();
+  public <E> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestRegistryElements(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, com.mojang.brigadier.suggestion.SuggestionsBuilder, com.mojang.brigadier.context.CommandContext<?>, java.util.function.Predicate<E>);
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> customSuggestion(com.mojang.brigadier.context.CommandContext<?>);
+  public java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates> getRelevantCoordinates();
+  public java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates> getAbsoluteCoordinates();
+  public java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public net.minecraft.core.RegistryAccess registryAccess();
+  public net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public void completeCustomSuggestions(int, com.mojang.brigadier.suggestion.Suggestions);
+  public void modifyCustomCompletions(net.minecraft.network.protocol.game.ClientboundCustomChatCompletionsPacket$Action, java.util.List<java.lang.String>);
+}
+Compiled from "LevelLoadTracker.java"
+final class net.minecraft.client.multiplayer.LevelLoadTracker$ClientLevelReady extends java.lang.Record implements net.minecraft.client.multiplayer.LevelLoadTracker$ClientState {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long readyAt();
+}
+Compiled from "ServerStatusPinger.java"
+public class net.minecraft.client.multiplayer.ServerStatusPinger {
+  public net.minecraft.client.multiplayer.ServerStatusPinger();
+  public void pingServer(net.minecraft.client.multiplayer.ServerData, java.lang.Runnable, java.lang.Runnable, net.minecraft.server.network.EventLoopGroupHolder) throws java.net.UnknownHostException;
+  public static net.minecraft.network.chat.Component formatPlayerCount(int, int);
+  public void tick();
+  public void removeAll();
+}
+Compiled from "ServerData.java"
+public final class net.minecraft.client.multiplayer.ServerData$Type extends java.lang.Enum<net.minecraft.client.multiplayer.ServerData$Type> {
+  public static final net.minecraft.client.multiplayer.ServerData$Type LAN;
+  public static final net.minecraft.client.multiplayer.ServerData$Type REALM;
+  public static final net.minecraft.client.multiplayer.ServerData$Type OTHER;
+  public static net.minecraft.client.multiplayer.ServerData$Type[] values();
+  public static net.minecraft.client.multiplayer.ServerData$Type valueOf(java.lang.String);
+}
+Compiled from "ClientLevel.java"
+final class net.minecraft.client.multiplayer.ClientLevel$EntityCallbacks implements net.minecraft.world.level.entity.LevelCallback<net.minecraft.world.entity.Entity> {
+  public void onCreated(net.minecraft.world.entity.Entity);
+  public void onDestroyed(net.minecraft.world.entity.Entity);
+  public void onTickingStart(net.minecraft.world.entity.Entity);
+  public void onTickingEnd(net.minecraft.world.entity.Entity);
+  public void onTrackingStart(net.minecraft.world.entity.Entity);
+  public void onTrackingEnd(net.minecraft.world.entity.Entity);
+  public void onSectionChange(net.minecraft.world.entity.Entity);
+  public void onSectionChange(java.lang.Object);
+  public void onTrackingEnd(java.lang.Object);
+  public void onTrackingStart(java.lang.Object);
+  public void onTickingEnd(java.lang.Object);
+  public void onTickingStart(java.lang.Object);
+  public void onDestroyed(java.lang.Object);
+  public void onCreated(java.lang.Object);
+}
+Compiled from "LevelLoadTracker.java"
+final class net.minecraft.client.multiplayer.LevelLoadTracker$WaitingForServer extends java.lang.Record implements net.minecraft.client.multiplayer.LevelLoadTracker$ClientState {
+  public net.minecraft.client.multiplayer.LevelLoadTracker$ClientState loadingPacketsReceived();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.player.LocalPlayer player();
+  public net.minecraft.client.multiplayer.ClientLevel level();
+  public long timeoutAfter();
+}
+Compiled from "ProfileKeyPairManager.java"
+public interface net.minecraft.client.multiplayer.ProfileKeyPairManager {
+  public static final net.minecraft.client.multiplayer.ProfileKeyPairManager EMPTY_KEY_MANAGER;
+  public static net.minecraft.client.multiplayer.ProfileKeyPairManager create(com.mojang.authlib.minecraft.UserApiService, net.minecraft.client.User, java.nio.file.Path);
+  public abstract java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.world.entity.player.ProfileKeyPair>> prepareKeyPair();
+  public abstract boolean shouldRefreshKeyPair();
+}
+Compiled from "PingDebugMonitor.java"
+public class net.minecraft.client.multiplayer.PingDebugMonitor {
+  public net.minecraft.client.multiplayer.PingDebugMonitor(net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.util.debugchart.LocalSampleLogger);
+  public void tick();
+  public void onPongReceived(net.minecraft.network.protocol.ping.ClientboundPongResponsePacket);
+}
+Compiled from "RegistryDataCollector.java"
+class net.minecraft.client.multiplayer.RegistryDataCollector$ContentsCollector {
+  public void append(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry>);
+}
+Compiled from "ClientCommonPacketListenerImpl.java"
+final class net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl$DeferredPacket extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.protocol.Packet<? extends net.minecraft.network.ServerboundPacketListener> packet();
+  public java.util.function.BooleanSupplier sendCondition();
+  public long expirationTime();
+}
+Compiled from "RegistryDataCollector.java"
+class net.minecraft.client.multiplayer.RegistryDataCollector$TagCollector {
+  public void append(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.tags.TagNetworkSerialization$NetworkPayload);
+  public void forEach(java.util.function.BiConsumer<? super net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, ? super net.minecraft.tags.TagNetworkSerialization$NetworkPayload>);
+}
+Compiled from "CacheSlot.java"
+public interface net.minecraft.client.multiplayer.CacheSlot$Cleaner<C extends net.minecraft.client.multiplayer.CacheSlot$Cleaner<C>> {
+  public abstract void registerForCleaning(net.minecraft.client.multiplayer.CacheSlot<C, ?>);
+}

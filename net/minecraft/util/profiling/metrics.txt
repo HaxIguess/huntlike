@@ -1,0 +1,86 @@
+Compiled from "MetricSampler.java"
+public class net.minecraft.util.profiling.metrics.MetricSampler {
+  protected net.minecraft.util.profiling.metrics.MetricSampler(java.lang.String, net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase, net.minecraft.util.profiling.metrics.MetricCategory, java.util.function.DoubleSupplier, java.lang.Runnable, net.minecraft.util.profiling.metrics.MetricSampler$ThresholdTest);
+  public static net.minecraft.util.profiling.metrics.MetricSampler create(java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory, java.util.function.DoubleSupplier);
+  public static net.minecraft.util.profiling.metrics.MetricSampler createExtractSampler(java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory, java.util.function.DoubleSupplier);
+  public static <T> net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder<T> builder(java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory, java.util.function.ToDoubleFunction<T>, T);
+  public void onStartTick();
+  public void onEndTick(int);
+  public void onFinished();
+  public java.util.function.DoubleSupplier getSampler();
+  public java.lang.String getName();
+  public net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase samplingPhase();
+  public net.minecraft.util.profiling.metrics.MetricCategory getCategory();
+  public net.minecraft.util.profiling.metrics.MetricSampler$SamplerResult result();
+  public boolean triggersThreshold();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "MetricSampler.java"
+public class net.minecraft.util.profiling.metrics.MetricSampler$ValueIncreasedByPercentage implements net.minecraft.util.profiling.metrics.MetricSampler$ThresholdTest {
+  public net.minecraft.util.profiling.metrics.MetricSampler$ValueIncreasedByPercentage(float);
+  public boolean test(double);
+}
+Compiled from "ProfilerMeasured.java"
+public interface net.minecraft.util.profiling.metrics.ProfilerMeasured {
+  public abstract java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> profiledMetrics();
+}
+Compiled from "MetricCategory.java"
+public final class net.minecraft.util.profiling.metrics.MetricCategory extends java.lang.Enum<net.minecraft.util.profiling.metrics.MetricCategory> {
+  public static final net.minecraft.util.profiling.metrics.MetricCategory PATH_FINDING;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory EVENT_LOOPS;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory CONSECUTIVE_EXECUTORS;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory TICK_LOOP;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory JVM;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory CHUNK_RENDERING;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory CHUNK_RENDERING_DISPATCHING;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory CPU;
+  public static final net.minecraft.util.profiling.metrics.MetricCategory GPU;
+  public static net.minecraft.util.profiling.metrics.MetricCategory[] values();
+  public static net.minecraft.util.profiling.metrics.MetricCategory valueOf(java.lang.String);
+  public java.lang.String getDescription();
+}
+Compiled from "MetricSampler.java"
+public class net.minecraft.util.profiling.metrics.MetricSampler$SamplerResult {
+  public net.minecraft.util.profiling.metrics.MetricSampler$SamplerResult(int, int, it.unimi.dsi.fastutil.ints.Int2DoubleMap);
+  public double valueAtTick(int);
+  public int getFirstTick();
+  public int getLastTick();
+}
+Compiled from "MetricSampler.java"
+public class net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder<T> {
+  public net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder(java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory, java.util.function.ToDoubleFunction<T>, T);
+  public net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder<T> withBeforeTick(java.util.function.Consumer<T>);
+  public net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder<T> withThresholdAlert(net.minecraft.util.profiling.metrics.MetricSampler$ThresholdTest);
+  public net.minecraft.util.profiling.metrics.MetricSampler$MetricSamplerBuilder<T> withSamplingPhase(net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase);
+  public net.minecraft.util.profiling.metrics.MetricSampler build();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.profiling.metrics.package-info {
+}
+Compiled from "MetricSampler.java"
+public interface net.minecraft.util.profiling.metrics.MetricSampler$ThresholdTest {
+  public abstract boolean test(double);
+}
+Compiled from "MetricsSamplerProvider.java"
+public interface net.minecraft.util.profiling.metrics.MetricsSamplerProvider {
+  public abstract java.util.Set<net.minecraft.util.profiling.metrics.MetricSampler> samplers(java.util.function.Supplier<net.minecraft.util.profiling.ProfileCollector>);
+}
+Compiled from "MetricSampler.java"
+public final class net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase extends java.lang.Enum<net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase> {
+  public static final net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase EXTRACT;
+  public static final net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase END_TICK;
+  public static net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase[] values();
+  public static net.minecraft.util.profiling.metrics.MetricSampler$SamplingPhase valueOf(java.lang.String);
+}
+Compiled from "MetricsRegistry.java"
+public class net.minecraft.util.profiling.metrics.MetricsRegistry {
+  public static final net.minecraft.util.profiling.metrics.MetricsRegistry INSTANCE;
+  public void add(net.minecraft.util.profiling.metrics.ProfilerMeasured);
+  public java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> getRegisteredSamplers();
+}
+Compiled from "MetricsRegistry.java"
+class net.minecraft.util.profiling.metrics.MetricsRegistry$AggregatedMetricSampler extends net.minecraft.util.profiling.metrics.MetricSampler {
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}

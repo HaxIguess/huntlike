@@ -1,0 +1,112 @@
+Compiled from "ConfigCategory.java"
+public class mezz.jei.common.config.file.ConfigCategory implements mezz.jei.api.runtime.config.IJeiConfigCategory {
+  public mezz.jei.common.config.file.ConfigCategory(java.lang.String, java.util.List<mezz.jei.common.config.file.ConfigValue<?>>);
+  public java.lang.String getName();
+  public java.util.Optional<mezz.jei.common.config.file.ConfigValue<?>> getConfigValue(java.lang.String);
+  public java.util.Collection<mezz.jei.common.config.file.ConfigValue<?>> getConfigValues();
+  public java.util.Set<java.lang.String> getValueNames();
+  public void clearListeners();
+}
+Compiled from "ConfigCategoryBuilder.java"
+public class mezz.jei.common.config.file.ConfigCategoryBuilder implements mezz.jei.common.config.file.IConfigCategoryBuilder {
+  public mezz.jei.common.config.file.ConfigCategoryBuilder(java.lang.String, java.lang.String);
+  public java.lang.String getName();
+  public <T> mezz.jei.common.config.file.ConfigValue<T> addValue(mezz.jei.common.config.file.ConfigValue<T>);
+  public mezz.jei.common.config.file.ConfigValue<java.lang.Boolean> addBoolean(java.lang.String, boolean);
+  public <T extends java.lang.Enum<T>> mezz.jei.common.config.file.ConfigValue<T> addEnum(java.lang.String, T);
+  public mezz.jei.common.config.file.ConfigValue<java.lang.Integer> addInteger(java.lang.String, int, int, int);
+  public <T> mezz.jei.common.config.file.ConfigValue<java.util.List<T>> addList(java.lang.String, java.util.List<T>, mezz.jei.api.runtime.config.IJeiConfigValueSerializer<java.util.List<T>>);
+  public mezz.jei.common.config.file.ConfigCategory build(mezz.jei.common.config.file.ConfigSchema);
+}
+Compiled from "ConfigSchema.java"
+public class mezz.jei.common.config.file.ConfigSchema implements mezz.jei.common.config.file.IConfigSchema {
+  public mezz.jei.common.config.file.ConfigSchema(java.nio.file.Path, java.util.List<mezz.jei.common.config.file.ConfigCategoryBuilder>);
+  public void loadIfNeeded();
+  public void register(mezz.jei.common.config.file.FileWatcher, mezz.jei.common.config.ConfigManager);
+  public void markDirty();
+  public void clearListeners();
+  public java.util.List<mezz.jei.common.config.file.ConfigCategory> getCategories();
+  public java.nio.file.Path getPath();
+}
+Compiled from "ConfigSchemaBuilder.java"
+public class mezz.jei.common.config.file.ConfigSchemaBuilder implements mezz.jei.common.config.file.IConfigSchemaBuilder {
+  public mezz.jei.common.config.file.ConfigSchemaBuilder(java.nio.file.Path, java.lang.String);
+  public mezz.jei.common.config.file.IConfigCategoryBuilder addCategory(java.lang.String);
+  public mezz.jei.common.config.file.IConfigSchema build();
+}
+Compiled from "ConfigSerializer.java"
+public final class mezz.jei.common.config.file.ConfigSerializer {
+  public mezz.jei.common.config.file.ConfigSerializer();
+  public static void load(java.nio.file.Path, java.util.List<mezz.jei.common.config.file.ConfigCategory>) throws java.io.IOException;
+  public static void save(java.nio.file.Path, java.util.List<mezz.jei.common.config.file.ConfigCategory>) throws java.io.IOException;
+}
+Compiled from "ConfigValue.java"
+public class mezz.jei.common.config.file.ConfigValue<T> implements mezz.jei.api.runtime.config.IJeiConfigValue<T>, java.util.function.Supplier<T> {
+  public mezz.jei.common.config.file.ConfigValue(java.lang.String, java.lang.String, T, mezz.jei.api.runtime.config.IJeiConfigValueSerializer<T>);
+  public void setSchema(mezz.jei.common.config.file.IConfigSchema);
+  public java.lang.String getName();
+  public net.minecraft.network.chat.Component getLocalizedDescription();
+  public net.minecraft.network.chat.Component getLocalizedName();
+  public T getDefaultValue();
+  public T getValue();
+  public T get();
+  public mezz.jei.api.runtime.config.IJeiConfigValueSerializer<T> getSerializer();
+  public java.util.List<java.lang.String> setFromSerializedValue(java.lang.String);
+  public boolean set(T);
+  public void addListener(java.util.function.Consumer<T>);
+  public void clearListeners();
+}
+Compiled from "FileWatcher.java"
+public class mezz.jei.common.config.file.FileWatcher {
+  public mezz.jei.common.config.file.FileWatcher(java.lang.String);
+  public void addCallback(java.nio.file.Path, java.lang.Runnable);
+  public void start();
+}
+Compiled from "FileWatcherThread.java"
+class mezz.jei.common.config.file.FileWatcherThread$CallbackRunner extends java.lang.Thread {
+  public mezz.jei.common.config.file.FileWatcherThread$CallbackRunner(java.util.List<java.lang.Runnable>);
+  public void run();
+}
+Compiled from "FileWatcherThread.java"
+public class mezz.jei.common.config.file.FileWatcherThread extends java.lang.Thread {
+  public mezz.jei.common.config.file.FileWatcherThread(java.lang.String) throws java.io.IOException;
+  public synchronized void addCallback(java.nio.file.Path, java.lang.Runnable);
+  public void run();
+}
+Compiled from "IConfigCategoryBuilder.java"
+public interface mezz.jei.common.config.file.IConfigCategoryBuilder {
+  public abstract mezz.jei.common.config.file.ConfigValue<java.lang.Boolean> addBoolean(java.lang.String, boolean);
+  public abstract mezz.jei.common.config.file.ConfigValue<java.lang.Integer> addInteger(java.lang.String, int, int, int);
+  public abstract <T extends java.lang.Enum<T>> mezz.jei.common.config.file.ConfigValue<T> addEnum(java.lang.String, T);
+  public abstract <T> mezz.jei.common.config.file.ConfigValue<java.util.List<T>> addList(java.lang.String, java.util.List<T>, mezz.jei.api.runtime.config.IJeiConfigValueSerializer<java.util.List<T>>);
+}
+Compiled from "IConfigListener.java"
+public interface mezz.jei.common.config.file.IConfigListener<T> {
+  public abstract void onConfigValueChanged(T);
+}
+Compiled from "IConfigSchema.java"
+public interface mezz.jei.common.config.file.IConfigSchema extends mezz.jei.api.runtime.config.IJeiConfigFile {
+  public abstract void register(mezz.jei.common.config.file.FileWatcher, mezz.jei.common.config.ConfigManager);
+  public abstract void loadIfNeeded();
+  public abstract void markDirty();
+  public abstract void clearListeners();
+}
+Compiled from "IConfigSchemaBuilder.java"
+public interface mezz.jei.common.config.file.IConfigSchemaBuilder {
+  public abstract mezz.jei.common.config.file.IConfigCategoryBuilder addCategory(java.lang.String);
+  public abstract mezz.jei.common.config.file.IConfigSchema build();
+}
+Compiled from "JsonArrayFileHelper.java"
+public class mezz.jei.common.config.file.JsonArrayFileHelper {
+  public static <T> void write(java.nio.file.Path, int, java.util.Collection<T>, com.mojang.serialization.Codec<T>, com.mojang.serialization.DynamicOps<com.google.gson.JsonElement>, java.util.function.Consumer<? super com.mojang.serialization.DataResult$Error<com.google.gson.JsonElement>>, java.util.function.BiConsumer<T, java.lang.RuntimeException>) throws java.io.IOException;
+  public static <T> java.util.List<T> read(java.io.BufferedReader, java.lang.Integer, com.mojang.serialization.Codec<T>, com.mojang.serialization.DynamicOps<com.google.gson.JsonElement>, java.util.function.BiConsumer<com.google.gson.JsonElement, ? super com.mojang.serialization.DataResult$Error<com.mojang.datafixers.util.Pair<T, com.google.gson.JsonElement>>>, java.util.function.BiConsumer<com.google.gson.JsonElement, java.lang.RuntimeException>) throws com.google.gson.JsonIOException, com.google.gson.JsonSyntaxException;
+}
+Compiled from "JsonArrayWriter.java"
+public class mezz.jei.common.config.file.JsonArrayWriter {
+  public static mezz.jei.common.config.file.JsonArrayWriter start(java.io.BufferedWriter) throws java.io.IOException;
+  public void add(com.google.gson.JsonElement) throws java.io.IOException;
+  public void end() throws java.io.IOException;
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.config.file.package-info {
+}

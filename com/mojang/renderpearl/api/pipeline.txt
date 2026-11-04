@@ -1,0 +1,291 @@
+Compiled from "CompiledRenderPipeline.java"
+public interface com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract boolean isClosed();
+}
+Compiled from "ShaderType.java"
+public final class com.mojang.renderpearl.api.pipeline.ShaderType extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.ShaderType> {
+  public static final com.mojang.renderpearl.api.pipeline.ShaderType VERTEX;
+  public static final com.mojang.renderpearl.api.pipeline.ShaderType FRAGMENT;
+  public static com.mojang.renderpearl.api.pipeline.ShaderType[] values();
+  public static com.mojang.renderpearl.api.pipeline.ShaderType valueOf(java.lang.String);
+  public static com.mojang.renderpearl.api.pipeline.ShaderType byLocation(net.minecraft.resources.Identifier);
+  public java.lang.String getName();
+  public net.minecraft.resources.FileToIdConverter idConverter();
+}
+Compiled from "CompiledRenderPipeline.java"
+public interface com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline$Pending {
+  public static final com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline$Pending NULL;
+  public abstract com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline finishCompile();
+}
+Compiled from "BlendFunction.java"
+public final class com.mojang.renderpearl.api.pipeline.BlendFunction extends java.lang.Record {
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction LIGHTNING;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction GLINT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction OVERLAY;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction TRANSLUCENT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction TRANSLUCENT_PREMULTIPLIED_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction ADDITIVE;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction ENTITY_OUTLINE_BLIT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction INVERT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFunction MAX;
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendOp, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendOp);
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor);
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendEquation);
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendOp);
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor);
+  public com.mojang.renderpearl.api.pipeline.BlendFunction(com.mojang.renderpearl.api.pipeline.BlendEquation, com.mojang.renderpearl.api.pipeline.BlendEquation);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.BlendEquation color();
+  public com.mojang.renderpearl.api.pipeline.BlendEquation alpha();
+}
+Compiled from "BindGroupLayout.java"
+public final class com.mojang.renderpearl.api.pipeline.BindGroupLayout extends java.lang.Record {
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout(java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription>);
+  public static com.mojang.renderpearl.api.pipeline.BindGroupLayout$Builder builder();
+  public static java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription> flattenUniforms(java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout>);
+  public static void ensureCompatible(java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription> uniforms();
+}
+Compiled from "CompareOp.java"
+public final class com.mojang.renderpearl.api.pipeline.CompareOp extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.CompareOp> {
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp ALWAYS_PASS;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp LESS_THAN;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp LESS_THAN_OR_EQUAL;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp EQUAL;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp NOT_EQUAL;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp GREATER_THAN_OR_EQUAL;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp GREATER_THAN;
+  public static final com.mojang.renderpearl.api.pipeline.CompareOp NEVER_PASS;
+  public static com.mojang.renderpearl.api.pipeline.CompareOp[] values();
+  public static com.mojang.renderpearl.api.pipeline.CompareOp valueOf(java.lang.String);
+}
+Compiled from "IndexType.java"
+public final class com.mojang.renderpearl.api.pipeline.IndexType extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.IndexType> {
+  public static final com.mojang.renderpearl.api.pipeline.IndexType SHORT;
+  public static final com.mojang.renderpearl.api.pipeline.IndexType INT;
+  public final int bytes;
+  public static com.mojang.renderpearl.api.pipeline.IndexType[] values();
+  public static com.mojang.renderpearl.api.pipeline.IndexType valueOf(java.lang.String);
+  public static com.mojang.renderpearl.api.pipeline.IndexType least(int);
+}
+Compiled from "BlendOp.java"
+public final class com.mojang.renderpearl.api.pipeline.BlendOp extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.BlendOp> {
+  public static final com.mojang.renderpearl.api.pipeline.BlendOp ADD;
+  public static final com.mojang.renderpearl.api.pipeline.BlendOp SUBTRACT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendOp REVERSE_SUBTRACT;
+  public static final com.mojang.renderpearl.api.pipeline.BlendOp MIN;
+  public static final com.mojang.renderpearl.api.pipeline.BlendOp MAX;
+  public static com.mojang.renderpearl.api.pipeline.BlendOp[] values();
+  public static com.mojang.renderpearl.api.pipeline.BlendOp valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.api.pipeline.package-info {
+}
+Compiled from "PrimitiveTopology.java"
+public final class com.mojang.renderpearl.api.pipeline.PrimitiveTopology extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.PrimitiveTopology> {
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology LINES;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology DEBUG_LINES;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology DEBUG_LINE_STRIP;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology POINTS;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology TRIANGLES;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology TRIANGLE_STRIP;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology TRIANGLE_FAN;
+  public static final com.mojang.renderpearl.api.pipeline.PrimitiveTopology QUADS;
+  public final int primitiveLength;
+  public final int primitiveStride;
+  public final boolean connectedPrimitives;
+  public static com.mojang.renderpearl.api.pipeline.PrimitiveTopology[] values();
+  public static com.mojang.renderpearl.api.pipeline.PrimitiveTopology valueOf(java.lang.String);
+  public int indexCount(int);
+}
+Compiled from "BlendEquation.java"
+public final class com.mojang.renderpearl.api.pipeline.BlendEquation extends java.lang.Record {
+  public com.mojang.renderpearl.api.pipeline.BlendEquation(com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendFactor, com.mojang.renderpearl.api.pipeline.BlendOp);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.BlendFactor sourceFactor();
+  public com.mojang.renderpearl.api.pipeline.BlendFactor destFactor();
+  public com.mojang.renderpearl.api.pipeline.BlendOp op();
+}
+Compiled from "ColorTargetState.java"
+public final class com.mojang.renderpearl.api.pipeline.ColorTargetState extends java.lang.Record {
+  public static final int WRITE_RED;
+  public static final int WRITE_GREEN;
+  public static final int WRITE_BLUE;
+  public static final int WRITE_ALPHA;
+  public static final int WRITE_COLOR;
+  public static final int WRITE_ALL;
+  public static final int WRITE_NONE;
+  public static final com.mojang.renderpearl.api.pipeline.ColorTargetState DEFAULT;
+  public static final int MAX_COLOR_TARGETS;
+  public com.mojang.renderpearl.api.pipeline.ColorTargetState(com.mojang.renderpearl.api.pipeline.BlendFunction);
+  public com.mojang.renderpearl.api.pipeline.ColorTargetState(java.util.Optional<com.mojang.renderpearl.api.pipeline.BlendFunction>, com.mojang.renderpearl.api.GpuFormat, int);
+  public boolean writeRed();
+  public boolean writeGreen();
+  public boolean writeBlue();
+  public boolean writeAlpha();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<com.mojang.renderpearl.api.pipeline.BlendFunction> blendFunction();
+  public com.mojang.renderpearl.api.GpuFormat format();
+  public int writeMask();
+}
+Compiled from "BindGroupLayout.java"
+public class com.mojang.renderpearl.api.pipeline.BindGroupLayout$Builder {
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout$Builder withUniform(java.lang.String, com.mojang.renderpearl.api.pipeline.UniformType);
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout$Builder withUniform(java.lang.String, com.mojang.renderpearl.api.pipeline.UniformType, com.mojang.renderpearl.api.GpuFormat);
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout build();
+}
+Compiled from "DepthStencilState.java"
+public final class com.mojang.renderpearl.api.pipeline.DepthStencilState extends java.lang.Record {
+  public static final com.mojang.renderpearl.api.pipeline.DepthStencilState DEFAULT;
+  public com.mojang.renderpearl.api.pipeline.DepthStencilState(com.mojang.renderpearl.api.pipeline.CompareOp, boolean);
+  public com.mojang.renderpearl.api.pipeline.DepthStencilState(com.mojang.renderpearl.api.pipeline.CompareOp, boolean, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.CompareOp depthTest();
+  public boolean writeDepth();
+  public float depthBiasScaleFactor();
+  public float depthBiasConstant();
+}
+Compiled from "ShaderSource.java"
+public final class com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource extends java.lang.Record implements java.lang.AutoCloseable {
+  public com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource(long);
+  public static com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource create(net.minecraft.resources.Identifier, java.lang.String);
+  public static com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource createError(java.lang.String);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long includeResultPtr();
+}
+Compiled from "PolygonMode.java"
+public final class com.mojang.renderpearl.api.pipeline.PolygonMode extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.PolygonMode> {
+  public static final com.mojang.renderpearl.api.pipeline.PolygonMode FILL;
+  public static final com.mojang.renderpearl.api.pipeline.PolygonMode WIREFRAME;
+  public static com.mojang.renderpearl.api.pipeline.PolygonMode[] values();
+  public static com.mojang.renderpearl.api.pipeline.PolygonMode valueOf(java.lang.String);
+}
+Compiled from "ShaderSource.java"
+public interface com.mojang.renderpearl.api.pipeline.ShaderSource extends java.lang.AutoCloseable {
+  public abstract java.lang.String getShader(net.minecraft.resources.Identifier, com.mojang.renderpearl.api.pipeline.ShaderType);
+  public abstract com.mojang.renderpearl.api.pipeline.ShaderSource$CachedIncludeSource getInclude(net.minecraft.resources.Identifier);
+  public abstract void close();
+}
+Compiled from "BlendFactor.java"
+public final class com.mojang.renderpearl.api.pipeline.BlendFactor extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.BlendFactor> {
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor CONSTANT_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor CONSTANT_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor DST_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor DST_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_CONSTANT_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_CONSTANT_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_DST_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_DST_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_SRC_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ONE_MINUS_SRC_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor SRC_ALPHA;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor SRC_ALPHA_SATURATE;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor SRC_COLOR;
+  public static final com.mojang.renderpearl.api.pipeline.BlendFactor ZERO;
+  public static com.mojang.renderpearl.api.pipeline.BlendFactor[] values();
+  public static com.mojang.renderpearl.api.pipeline.BlendFactor valueOf(java.lang.String);
+}
+Compiled from "RenderPipeline.java"
+public final class com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet extends java.lang.Record implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline$Snippet {
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet(java.util.Map<com.mojang.renderpearl.api.pipeline.ShaderType, net.minecraft.resources.Identifier>, java.util.Optional<net.minecraft.client.renderer.ShaderDefines>, java.util.Optional<java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout>>, com.mojang.renderpearl.api.pipeline.ColorTargetState[], int, java.util.Optional<com.mojang.renderpearl.api.pipeline.DepthStencilState>, java.util.Optional<com.mojang.renderpearl.api.pipeline.PolygonMode>, java.util.Optional<java.lang.Boolean>, com.mojang.renderpearl.api.vertex.VertexFormat[], java.util.Optional<com.mojang.renderpearl.api.pipeline.PrimitiveTopology>, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<com.mojang.renderpearl.api.pipeline.ShaderType, net.minecraft.resources.Identifier> shaders();
+  public java.util.Optional<net.minecraft.client.renderer.ShaderDefines> shaderDefines();
+  public java.util.Optional<java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout>> bindGroupLayouts();
+  public com.mojang.renderpearl.api.pipeline.ColorTargetState[] colorTargetStates();
+  public int activeColorTargetStateCount();
+  public java.util.Optional<com.mojang.renderpearl.api.pipeline.DepthStencilState> depthStencilState();
+  public java.util.Optional<com.mojang.renderpearl.api.pipeline.PolygonMode> polygonMode();
+  public java.util.Optional<java.lang.Boolean> cull();
+  public com.mojang.renderpearl.api.vertex.VertexFormat[] vertexFormatPerBuffer();
+  public java.util.Optional<com.mojang.renderpearl.api.pipeline.PrimitiveTopology> vertexFormatMode();
+  public int pushConstantSize();
+}
+Compiled from "RenderPipeline.java"
+public class com.mojang.renderpearl.api.pipeline.RenderPipeline implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline {
+  protected com.mojang.renderpearl.api.pipeline.RenderPipeline(net.minecraft.resources.Identifier, java.util.Map<com.mojang.renderpearl.api.pipeline.ShaderType, net.minecraft.resources.Identifier>, net.minecraft.client.renderer.ShaderDefines, java.util.Collection<com.mojang.renderpearl.api.pipeline.BindGroupLayout>, com.mojang.renderpearl.api.pipeline.ColorTargetState[], com.mojang.renderpearl.api.pipeline.DepthStencilState, com.mojang.renderpearl.api.pipeline.PolygonMode, boolean, com.mojang.renderpearl.api.vertex.VertexFormat[], com.mojang.renderpearl.api.pipeline.PrimitiveTopology, int, int);
+  public int getSortKey();
+  public static void updateSortKeySeed();
+  public java.lang.String toString();
+  public com.mojang.renderpearl.api.pipeline.PolygonMode getPolygonMode();
+  public boolean isCull();
+  public java.util.List<com.mojang.renderpearl.api.pipeline.ColorTargetState> getColorTargetStates();
+  public com.mojang.renderpearl.api.pipeline.DepthStencilState getDepthStencilState();
+  public net.minecraft.resources.Identifier getLocation();
+  public java.util.List<com.mojang.renderpearl.api.vertex.VertexFormat> getVertexFormatBindings();
+  public com.mojang.renderpearl.api.vertex.VertexFormat getVertexFormatBinding(int);
+  public com.mojang.renderpearl.api.pipeline.PrimitiveTopology getPrimitiveTopology();
+  public java.util.Map<com.mojang.renderpearl.api.pipeline.ShaderType, net.minecraft.resources.Identifier> getShaders();
+  public net.minecraft.client.renderer.ShaderDefines getShaderDefines();
+  public java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout> getBindGroupLayouts();
+  public boolean wantsDepthTexture();
+  public int pushConstantSize();
+  public static com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder builder(com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet...);
+}
+Compiled from "ColorTargetState.java"
+public interface com.mojang.renderpearl.api.pipeline.ColorTargetState$WriteMask extends java.lang.annotation.Annotation {
+}
+Compiled from "UniformType.java"
+public final class com.mojang.renderpearl.api.pipeline.UniformType extends java.lang.Enum<com.mojang.renderpearl.api.pipeline.UniformType> {
+  public static final com.mojang.renderpearl.api.pipeline.UniformType COMBINED_IMAGE_SAMPLER;
+  public static final com.mojang.renderpearl.api.pipeline.UniformType UNIFORM_BUFFER;
+  public static final com.mojang.renderpearl.api.pipeline.UniformType TEXEL_BUFFER;
+  public static com.mojang.renderpearl.api.pipeline.UniformType[] values();
+  public static com.mojang.renderpearl.api.pipeline.UniformType valueOf(java.lang.String);
+}
+Compiled from "RenderPipeline.java"
+public class com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderPipeline$Builder {
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withLocation(java.lang.String);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withLocation(net.minecraft.resources.Identifier);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withFragmentShader(java.lang.String);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withFragmentShader(net.minecraft.resources.Identifier);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withVertexShader(java.lang.String);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withVertexShader(net.minecraft.resources.Identifier);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withShaderDefine(java.lang.String);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withShaderDefine(java.lang.String, int);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withShaderDefine(java.lang.String, float);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withBindGroupLayout(com.mojang.renderpearl.api.pipeline.BindGroupLayout);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withPolygonMode(com.mojang.renderpearl.api.pipeline.PolygonMode);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withCull(boolean);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withColorTargetState(int, com.mojang.renderpearl.api.pipeline.ColorTargetState);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withColorTargetStates(int, int, java.util.function.Supplier<com.mojang.renderpearl.api.pipeline.ColorTargetState>);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withUnusedColorTargetState(int);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withColorTargetState(com.mojang.renderpearl.api.pipeline.ColorTargetState);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withDepthStencilState(com.mojang.renderpearl.api.pipeline.DepthStencilState);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withDepthStencilState(java.util.Optional<com.mojang.renderpearl.api.pipeline.DepthStencilState>);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withVertexBinding(int, com.mojang.renderpearl.api.vertex.VertexFormat);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withPrimitiveTopology(com.mojang.renderpearl.api.pipeline.PrimitiveTopology);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withPushConstantSize(int);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder withSnippet(com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet buildSnippet();
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline build();
+}
+Compiled from "BindGroupLayout.java"
+public final class com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription extends java.lang.Record {
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription(java.lang.String, com.mojang.renderpearl.api.pipeline.UniformType);
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription(java.lang.String, com.mojang.renderpearl.api.GpuFormat);
+  public com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription(java.lang.String, com.mojang.renderpearl.api.pipeline.UniformType, com.mojang.renderpearl.api.GpuFormat);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public com.mojang.renderpearl.api.pipeline.UniformType type();
+  public com.mojang.renderpearl.api.GpuFormat gpuFormat();
+}

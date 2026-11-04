@@ -1,0 +1,305 @@
+Compiled from "GameRulesService.java"
+public class net.minecraft.server.jsonrpc.methods.GameRulesService {
+  public net.minecraft.server.jsonrpc.methods.GameRulesService();
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<?>> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static <T> net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<T> getTypedRule(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public static <T> net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<T> update(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<T>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "PlayerService.java"
+public final class net.minecraft.server.jsonrpc.methods.PlayerService$KickDto extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.PlayerService$KickDto> CODEC;
+  public net.minecraft.server.jsonrpc.methods.PlayerService$KickDto(net.minecraft.server.jsonrpc.api.PlayerDto, java.util.Optional<net.minecraft.server.jsonrpc.methods.Message>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.jsonrpc.api.PlayerDto player();
+  public java.util.Optional<net.minecraft.server.jsonrpc.methods.Message> message();
+}
+Compiled from "DiscoveryService.java"
+public final class net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverResponse extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverResponse> CODEC;
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverResponse(java.lang.String, net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverInfo, java.util.List<net.minecraft.server.jsonrpc.api.MethodInfo$Named<?, ?>>, net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverComponents);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String jsonRpcProtocolVersion();
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverInfo discoverInfo();
+  public java.util.List<net.minecraft.server.jsonrpc.api.MethodInfo$Named<?, ?>> methods();
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverComponents components();
+}
+Compiled from "InvalidRequestJsonRpcException.java"
+public class net.minecraft.server.jsonrpc.methods.InvalidRequestJsonRpcException extends java.lang.RuntimeException {
+  public net.minecraft.server.jsonrpc.methods.InvalidRequestJsonRpcException(java.lang.String);
+}
+Compiled from "ClientInfo.java"
+public final class net.minecraft.server.jsonrpc.methods.ClientInfo extends java.lang.Record {
+  public net.minecraft.server.jsonrpc.methods.ClientInfo(java.lang.Integer);
+  public static net.minecraft.server.jsonrpc.methods.ClientInfo of(java.lang.Integer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Integer connectionId();
+}
+Compiled from "PlayerService.java"
+public class net.minecraft.server.jsonrpc.methods.PlayerService {
+  public net.minecraft.server.jsonrpc.methods.PlayerService();
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> kick(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.PlayerService$KickDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "RemoteRpcErrorException.java"
+public class net.minecraft.server.jsonrpc.methods.RemoteRpcErrorException extends java.lang.RuntimeException {
+  public net.minecraft.server.jsonrpc.methods.RemoteRpcErrorException(com.google.gson.JsonElement, com.google.gson.JsonObject);
+}
+Compiled from "ServerStateService.java"
+public class net.minecraft.server.jsonrpc.methods.ServerStateService {
+  public net.minecraft.server.jsonrpc.methods.ServerStateService();
+  public static net.minecraft.server.jsonrpc.methods.ServerStateService$ServerState status(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean save(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean stop(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean systemMessage(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ServerStateService$SystemMessage, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "OperatorService.java"
+final class net.minecraft.server.jsonrpc.methods.OperatorService$Op extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.players.NameAndId user();
+  public java.util.Optional<net.minecraft.server.permissions.PermissionLevel> permissionLevel();
+  public java.util.Optional<java.lang.Boolean> bypassesPlayerLimit();
+}
+Compiled from "IpBanlistService.java"
+public class net.minecraft.server.jsonrpc.methods.IpBanlistService {
+  public net.minecraft.server.jsonrpc.methods.IpBanlistService();
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> add(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IncomingIpBanDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> clear(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> remove(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<java.lang.String>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> set(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "ServerStateService.java"
+public final class net.minecraft.server.jsonrpc.methods.ServerStateService$SystemMessage extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.jsonrpc.methods.ServerStateService$SystemMessage> CODEC;
+  public net.minecraft.server.jsonrpc.methods.ServerStateService$SystemMessage(net.minecraft.server.jsonrpc.methods.Message, boolean, java.util.Optional<java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.jsonrpc.methods.Message message();
+  public boolean overlay();
+  public java.util.Optional<java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>> receivingPlayers();
+}
+Compiled from "OperatorService.java"
+public final class net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> CODEC;
+  public net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto(net.minecraft.server.jsonrpc.api.PlayerDto, java.util.Optional<net.minecraft.server.permissions.PermissionLevel>, java.util.Optional<java.lang.Boolean>);
+  public static net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto from(net.minecraft.server.players.ServerOpListEntry);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.jsonrpc.api.PlayerDto player();
+  public java.util.Optional<net.minecraft.server.permissions.PermissionLevel> permissionLevel();
+  public java.util.Optional<java.lang.Boolean> bypassesPlayerLimit();
+}
+Compiled from "DiscoveryService.java"
+public final class net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverInfo extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverInfo> CODEC;
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverInfo(java.lang.String, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String title();
+  public java.lang.String version();
+}
+Compiled from "GameRulesService.java"
+public final class net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<T> extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<?>> TYPED_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate<?>> CODEC;
+  public net.minecraft.server.jsonrpc.methods.GameRulesService$GameRuleUpdate(net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.gamerules.GameRule<T> gameRule();
+  public T value();
+}
+Compiled from "ServerSettingsService.java"
+public class net.minecraft.server.jsonrpc.methods.ServerSettingsService {
+  public net.minecraft.server.jsonrpc.methods.ServerSettingsService();
+  public static boolean autosave(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setAutosave(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static net.minecraft.world.Difficulty difficulty(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static net.minecraft.world.Difficulty setDifficulty(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.world.Difficulty, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean enforceAllowlist(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setEnforceAllowlist(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean usingAllowlist(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setUsingAllowlist(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int maxPlayers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setMaxPlayers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int pauseWhenEmpty(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setPauseWhenEmpty(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int playerIdleTimeout(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setPlayerIdleTimeout(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean allowFlight(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setAllowFlight(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int spawnProtection(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setSpawnProtection(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.lang.String motd(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.lang.String setMotd(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.lang.String, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean forceGameMode(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setForceGameMode(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static net.minecraft.world.level.GameType gameMode(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static net.minecraft.world.level.GameType setGameMode(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.world.level.GameType, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int viewDistance(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setViewDistance(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int simulationDistance(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setSimulationDistance(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean acceptTransfers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setAcceptTransfers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int statusHeartbeatInterval(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setStatusHeartbeatInterval(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static net.minecraft.server.permissions.PermissionLevel operatorUserPermissionLevel(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static net.minecraft.server.permissions.PermissionLevel setOperatorUserPermissionLevel(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.permissions.PermissionLevel, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean hidesOnlinePlayers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setHidesOnlinePlayers(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static boolean repliesToStatus(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static boolean setRepliesToStatus(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, boolean, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static int entityBroadcastRangePercentage(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static int setEntityBroadcastRangePercentage(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, int, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "Message.java"
+public final class net.minecraft.server.jsonrpc.methods.Message extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.jsonrpc.methods.Message> CODEC;
+  public net.minecraft.server.jsonrpc.methods.Message(java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.util.List<java.lang.String>>);
+  public java.util.Optional<net.minecraft.network.chat.Component> asComponent();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<java.lang.String> literal();
+  public java.util.Optional<java.lang.String> translatable();
+  public java.util.Optional<java.util.List<java.lang.String>> translatableParams();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.jsonrpc.methods.package-info {
+}
+Compiled from "BanlistService.java"
+final class net.minecraft.server.jsonrpc.methods.BanlistService$UserBan extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.players.NameAndId player();
+  public java.lang.String reason();
+  public java.lang.String source();
+  public java.util.Optional<java.time.Instant> expires();
+}
+Compiled from "DiscoveryService.java"
+public final class net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverComponents extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverComponents> CODEC;
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverComponents(java.util.Map<java.lang.String, net.minecraft.server.jsonrpc.api.Schema<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.String, net.minecraft.server.jsonrpc.api.Schema<?>> schemas();
+}
+Compiled from "IpBanlistService.java"
+final class net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBan extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String ip();
+  public java.lang.String reason();
+  public java.lang.String source();
+  public java.util.Optional<java.time.Instant> expires();
+}
+Compiled from "BanlistService.java"
+public class net.minecraft.server.jsonrpc.methods.BanlistService {
+  public net.minecraft.server.jsonrpc.methods.BanlistService();
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> add(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> clear(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> remove(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> set(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "AllowlistService.java"
+public class net.minecraft.server.jsonrpc.methods.AllowlistService {
+  public net.minecraft.server.jsonrpc.methods.AllowlistService();
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> add(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> clear(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> remove(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> set(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "BanlistService.java"
+public final class net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto> CODEC;
+  public net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto(net.minecraft.server.jsonrpc.api.PlayerDto, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.time.Instant>);
+  public static net.minecraft.server.jsonrpc.methods.BanlistService$UserBanDto from(net.minecraft.server.players.UserBanListEntry);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.jsonrpc.api.PlayerDto player();
+  public java.util.Optional<java.lang.String> reason();
+  public java.util.Optional<java.lang.String> source();
+  public java.util.Optional<java.time.Instant> expires();
+}
+Compiled from "EncodeJsonRpcException.java"
+public class net.minecraft.server.jsonrpc.methods.EncodeJsonRpcException extends java.lang.RuntimeException {
+  public net.minecraft.server.jsonrpc.methods.EncodeJsonRpcException(java.lang.String);
+}
+Compiled from "OperatorService.java"
+public class net.minecraft.server.jsonrpc.methods.OperatorService {
+  public net.minecraft.server.jsonrpc.methods.OperatorService();
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> get(net.minecraft.server.jsonrpc.internalapi.MinecraftApi);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> clear(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> remove(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> add(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+  public static java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto> set(net.minecraft.server.jsonrpc.internalapi.MinecraftApi, java.util.List<net.minecraft.server.jsonrpc.methods.OperatorService$OperatorDto>, net.minecraft.server.jsonrpc.methods.ClientInfo);
+}
+Compiled from "InvalidParameterJsonRpcException.java"
+public class net.minecraft.server.jsonrpc.methods.InvalidParameterJsonRpcException extends java.lang.RuntimeException {
+  public net.minecraft.server.jsonrpc.methods.InvalidParameterJsonRpcException(java.lang.String);
+}
+Compiled from "DiscoveryService.java"
+public class net.minecraft.server.jsonrpc.methods.DiscoveryService {
+  public net.minecraft.server.jsonrpc.methods.DiscoveryService();
+  public static net.minecraft.server.jsonrpc.methods.DiscoveryService$DiscoverResponse discover(java.util.List<net.minecraft.server.jsonrpc.api.SchemaComponent<?>>);
+}
+Compiled from "IpBanlistService.java"
+public final class net.minecraft.server.jsonrpc.methods.IpBanlistService$IncomingIpBanDto extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.IpBanlistService$IncomingIpBanDto> CODEC;
+  public net.minecraft.server.jsonrpc.methods.IpBanlistService$IncomingIpBanDto(java.util.Optional<net.minecraft.server.jsonrpc.api.PlayerDto>, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.time.Instant>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.server.jsonrpc.api.PlayerDto> player();
+  public java.util.Optional<java.lang.String> ip();
+  public java.util.Optional<java.lang.String> reason();
+  public java.util.Optional<java.lang.String> source();
+  public java.util.Optional<java.time.Instant> expires();
+}
+Compiled from "ServerStateService.java"
+public final class net.minecraft.server.jsonrpc.methods.ServerStateService$ServerState extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.jsonrpc.methods.ServerStateService$ServerState> CODEC;
+  public static final net.minecraft.server.jsonrpc.methods.ServerStateService$ServerState NOT_STARTED;
+  public net.minecraft.server.jsonrpc.methods.ServerStateService$ServerState(boolean, java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto>, net.minecraft.network.protocol.status.ServerStatus$Version);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean started();
+  public java.util.List<net.minecraft.server.jsonrpc.api.PlayerDto> players();
+  public net.minecraft.network.protocol.status.ServerStatus$Version version();
+}
+Compiled from "MethodNotFoundJsonRpcException.java"
+public class net.minecraft.server.jsonrpc.methods.MethodNotFoundJsonRpcException extends java.lang.RuntimeException {
+  public net.minecraft.server.jsonrpc.methods.MethodNotFoundJsonRpcException(java.lang.String);
+}
+Compiled from "IpBanlistService.java"
+public final class net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto> CODEC;
+  public net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto(java.lang.String, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>, java.util.Optional<java.time.Instant>);
+  public static net.minecraft.server.jsonrpc.methods.IpBanlistService$IpBanDto from(net.minecraft.server.players.IpBanListEntry);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String ip();
+  public java.util.Optional<java.lang.String> reason();
+  public java.util.Optional<java.lang.String> source();
+  public java.util.Optional<java.time.Instant> expires();
+}

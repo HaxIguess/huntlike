@@ -1,0 +1,158 @@
+Compiled from "Tadpole.java"
+public class net.minecraft.world.entity.animal.frog.Tadpole extends net.minecraft.world.entity.animal.fish.AbstractFish {
+  public static int ticksToBeFrog;
+  public static final float HITBOX_WIDTH;
+  public static final float HITBOX_HEIGHT;
+  protected int ageLockParticleTimer;
+  public net.minecraft.world.entity.animal.frog.Tadpole(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.fish.AbstractFish>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.frog.Tadpole> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.frog.Tadpole> getBrain();
+  protected net.minecraft.sounds.SoundEvent getFlopSound();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public void aiStep();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void setAgeLocked(boolean);
+  public boolean isAgeLocked();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean fromBucket();
+  public void setFromBucket(boolean);
+  public void saveToBucketTag(net.minecraft.world.item.ItemStack);
+  public void loadFromBucketTag(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.item.ItemStack getBucketItemStack();
+  public net.minecraft.sounds.SoundEvent getPickupSound();
+  public boolean shouldDropExperience();
+}
+Compiled from "TadpoleAi.java"
+public class net.minecraft.world.entity.animal.frog.TadpoleAi {
+  public net.minecraft.world.entity.animal.frog.TadpoleAi();
+  public static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.frog.Tadpole>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.frog.Tadpole);
+}
+Compiled from "FrogVariant.java"
+public final class net.minecraft.world.entity.animal.frog.FrogVariant extends java.lang.Record implements net.minecraft.world.entity.variant.PriorityProvider<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.frog.FrogVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.frog.FrogVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.frog.FrogVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.frog.FrogVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.frog.FrogVariant(net.minecraft.core.ClientAsset$ResourceTexture, net.minecraft.world.entity.variant.SpawnPrioritySelectors);
+  public java.util.List<net.minecraft.world.entity.variant.PriorityProvider$Selector<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition>> selectors();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.ClientAsset$ResourceTexture assetInfo();
+  public net.minecraft.world.entity.variant.SpawnPrioritySelectors spawnConditions();
+}
+Compiled from "FrogAi.java"
+public class net.minecraft.world.entity.animal.frog.FrogAi {
+  public net.minecraft.world.entity.animal.frog.FrogAi();
+  protected static void initMemories(net.minecraft.world.entity.animal.frog.Frog, net.minecraft.util.RandomSource);
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.frog.Frog>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.frog.Frog);
+  public static java.util.function.Predicate<net.minecraft.world.item.ItemStack> getTemptations();
+}
+Compiled from "Frog.java"
+class net.minecraft.world.entity.animal.frog.Frog$FrogPathNavigation extends net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation {
+  public net.minecraft.world.entity.animal.frog.Frog$FrogPathNavigation(net.minecraft.world.entity.animal.frog.Frog, net.minecraft.world.level.Level);
+  public boolean canCutCorner(net.minecraft.world.level.pathfinder.PathType);
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+}
+Compiled from "ShootTongue.java"
+final class net.minecraft.world.entity.animal.frog.ShootTongue$State extends java.lang.Enum<net.minecraft.world.entity.animal.frog.ShootTongue$State> {
+  public static final net.minecraft.world.entity.animal.frog.ShootTongue$State MOVE_TO_TARGET;
+  public static final net.minecraft.world.entity.animal.frog.ShootTongue$State CATCH_ANIMATION;
+  public static final net.minecraft.world.entity.animal.frog.ShootTongue$State EAT_ANIMATION;
+  public static final net.minecraft.world.entity.animal.frog.ShootTongue$State DONE;
+  public static net.minecraft.world.entity.animal.frog.ShootTongue$State[] values();
+  public static net.minecraft.world.entity.animal.frog.ShootTongue$State valueOf(java.lang.String);
+}
+Compiled from "Frog.java"
+class net.minecraft.world.entity.animal.frog.Frog$FrogLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public net.minecraft.world.entity.animal.frog.Frog$FrogLookControl(net.minecraft.world.entity.animal.frog.Frog, net.minecraft.world.entity.Mob);
+  protected boolean resetXRotOnTick();
+}
+Compiled from "FrogVariants.java"
+public interface net.minecraft.world.entity.animal.frog.FrogVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.frog.FrogVariant> TEMPERATE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.frog.FrogVariant> WARM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.frog.FrogVariant> COLD;
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.frog.FrogVariant>);
+}
+Compiled from "Frog.java"
+public class net.minecraft.world.entity.animal.frog.Frog extends net.minecraft.world.entity.animal.Animal {
+  public final net.minecraft.world.entity.AnimationState jumpAnimationState;
+  public final net.minecraft.world.entity.AnimationState croakAnimationState;
+  public final net.minecraft.world.entity.AnimationState tongueAnimationState;
+  public final net.minecraft.world.entity.AnimationState swimIdleAnimationState;
+  public net.minecraft.world.entity.animal.frog.Frog(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.frog.Frog> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.frog.Frog> getBrain();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void eraseTongueTarget();
+  public java.util.Optional<net.minecraft.world.entity.Entity> getTongueTarget();
+  public void setTongueTarget(net.minecraft.world.entity.Entity);
+  public int getHeadRotSpeed();
+  public int getMaxHeadYRot();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.animal.frog.FrogVariant> getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  protected void updateWalkAnimation(float);
+  public void playEatingSound();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected boolean canBeABaby();
+  public void spawnChildFromBreeding(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.Animal);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean isPushedByFluid();
+  protected int calculateFallDamage(double, float);
+  protected void travelInWater(net.minecraft.world.phys.Vec3, double, boolean, double);
+  public static boolean canEat(net.minecraft.world.entity.LivingEntity);
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.LivingEntity getTarget();
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public static boolean checkFrogSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+}
+Compiled from "Frog.java"
+class net.minecraft.world.entity.animal.frog.Frog$FrogNodeEvaluator extends net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator {
+  public net.minecraft.world.entity.animal.frog.Frog$FrogNodeEvaluator(boolean);
+  public net.minecraft.world.level.pathfinder.Node getStart();
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+}
+Compiled from "ShootTongue.java"
+public class net.minecraft.world.entity.animal.frog.ShootTongue extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.animal.frog.Frog> {
+  public static final int TIME_OUT_DURATION;
+  public static final int CATCH_ANIMATION_DURATION;
+  public static final int TONGUE_ANIMATION_DURATION;
+  public static final int UNREACHABLE_TONGUE_TARGETS_COOLDOWN_DURATION;
+  public static final int MAX_UNREACHBLE_TONGUE_TARGETS_IN_MEMORY;
+  public net.minecraft.world.entity.animal.frog.ShootTongue(net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.frog.Frog);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.frog.Frog, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.frog.Frog, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.frog.Frog, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.frog.Frog, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.frog.package-info {
+}

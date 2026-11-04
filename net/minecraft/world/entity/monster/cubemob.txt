@@ -1,0 +1,231 @@
+Compiled from "SulfurCube.java"
+class net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeSearchForItemsGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeSearchForItemsGoal(net.minecraft.world.entity.monster.cubemob.SulfurCube, net.minecraft.world.entity.monster.cubemob.SulfurCube);
+  public boolean canUse();
+  public void tick();
+}
+Compiled from "AbstractCubeMob.java"
+public abstract class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob extends net.minecraft.world.entity.AgeableMob {
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> ID_SIZE;
+  public static final int MIN_SIZE;
+  public static final int MAX_SIZE;
+  public static final int MAX_NATURAL_SIZE;
+  public float targetSquish;
+  public float squish;
+  public float oSquish;
+  protected net.minecraft.world.entity.monster.cubemob.AbstractCubeMob(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected abstract void addBehaviourGoals();
+  protected abstract void addTargetingGoals();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void setSize(int, boolean);
+  protected void setCubeMobHealth(int);
+  public int getSize();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isTiny();
+  protected abstract net.minecraft.core.particles.ParticleOptions getParticleType();
+  public void tick();
+  protected void decreaseSquish();
+  protected int getJumpDelay();
+  public void refreshDimensions();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob> getType();
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  protected void setUpSplitCube(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob, int, float, float);
+  protected int getSplitCount();
+  public void push(net.minecraft.world.entity.Entity);
+  public void playerTouch(net.minecraft.world.entity.player.Player);
+  protected void dealDamage(net.minecraft.world.entity.LivingEntity);
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+  protected boolean canDealDamage();
+  protected float getAttackDamage();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public void jumpFromGround();
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  protected float getSoundVolume();
+  public int getMaxHeadXRot();
+  protected boolean doPlayJumpSound();
+  public float getSoundPitch();
+  protected abstract net.minecraft.sounds.SoundEvent getJumpSound();
+  protected abstract net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected abstract net.minecraft.sounds.SoundEvent getDeathSound();
+  protected abstract net.minecraft.sounds.SoundEvent getSquishSound();
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected void setSpawnSize(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "AbstractCubeMob.java"
+class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobKeepOnJumpingGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobKeepOnJumpingGoal(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob);
+  public boolean canUse();
+  public void tick();
+}
+Compiled from "SulfurCube.java"
+public class net.minecraft.world.entity.monster.cubemob.SulfurCube extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob implements net.minecraft.world.entity.Bucketable,net.minecraft.world.entity.Shearable {
+  public static final int SPLIT_COUNT;
+  public static final int MAX_SIZE;
+  public static final int MIN_SIZE;
+  public static final int PICKUP_TIMER_DURATION;
+  public static final double PUSH_DISTANCE_THRESHOLD;
+  public net.minecraft.world.entity.monster.cubemob.SulfurCube(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.cubemob.SulfurCube>, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addBehaviourGoals();
+  public boolean fromBucket();
+  public int getFuse();
+  public boolean isPrimed();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public void setFromBucket(boolean);
+  public net.minecraft.sounds.SoundEvent getPickupSound();
+  public void saveToBucketTag(net.minecraft.world.item.ItemStack);
+  public boolean canBreatheUnderwater();
+  protected void travelInFluid(net.minecraft.world.phys.Vec3);
+  public double getFluidJumpThreshold();
+  public void loadFromBucketTag(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.item.ItemStack getBucketItemStack();
+  protected void addTargetingGoals();
+  public float getLightLevelDependentMagicValue();
+  protected boolean canDealDamage();
+  public static boolean checkSulfurCubeSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.monster.cubemob.SulfurCube>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean requiresCustomPersistence();
+  public boolean canBeLeashed();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean hasBodyItem();
+  public boolean canExplode();
+  public java.util.List<net.minecraft.world.entity.SulfurCubeArchetype> matchingArchetypes(net.minecraft.world.item.ItemStack);
+  public void tick();
+  public boolean primeTime(boolean);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  protected java.util.Map<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack> collectEquipmentChanges(java.util.Map<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack>);
+  public float maxUpStep();
+  protected boolean omnidirectionalAirMover();
+  public boolean canFreeze();
+  protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean equipItem(net.minecraft.world.item.ItemStack);
+  protected void playEatingSound();
+  public boolean canBePickedUpWithBucket(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.EquipmentSlot getEquipmentSlotForItem(net.minecraft.world.item.ItemStack);
+  public boolean isEquippableInSlot(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot);
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getSquishSound();
+  protected net.minecraft.sounds.SoundEvent getJumpSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.core.particles.ParticleOptions getParticleType();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createSulfurCubeAttributes();
+  public void shear(net.minecraft.server.level.ServerLevel, net.minecraft.sounds.SoundSource, net.minecraft.world.item.ItemStack);
+  public boolean readyForShearing();
+  public boolean canPickUpLoot();
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  public boolean canHoldItem(net.minecraft.world.item.ItemStack);
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  protected int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  protected int getSplitCount();
+  protected void setSpawnSize(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance);
+  public void setSize(int, boolean);
+  protected void setUpSplitCube(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob, int, float, float);
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected void ageBoundaryReached();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void doPush(net.minecraft.world.entity.Entity);
+  public void playerTouch(net.minecraft.world.entity.player.Player);
+  public void knockback(double, double, double, net.minecraft.world.damagesource.DamageSource, float, boolean);
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  protected void setCubeMobHealth(int);
+  public boolean isInvulnerableToPiercingWeapon();
+  public boolean canBePickedFromInside();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "SulfurCube.java"
+public class net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeMobMoveControl<T extends net.minecraft.world.entity.monster.cubemob.SulfurCube> extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobMoveControl<T> {
+  public net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeMobMoveControl(T);
+  public void tick();
+}
+Compiled from "AbstractCubeMob.java"
+class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobFloatGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobFloatGoal(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob);
+  public boolean canUse();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "AbstractCubeMob.java"
+class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobRandomDirectionGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobRandomDirectionGoal(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob);
+  public boolean canUse();
+  public void tick();
+}
+Compiled from "AbstractCubeMob.java"
+public class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobAttackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobAttackGoal(net.minecraft.world.entity.monster.cubemob.AbstractCubeMob);
+  public boolean canUse();
+  public void start();
+  public boolean canContinueToUse();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "MagmaCube.java"
+public class net.minecraft.world.entity.monster.cubemob.MagmaCube extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob implements net.minecraft.world.entity.monster.Enemy {
+  public net.minecraft.world.entity.monster.cubemob.MagmaCube(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.cubemob.MagmaCube>, net.minecraft.world.level.Level);
+  protected void addBehaviourGoals();
+  protected void addTargetingGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public static boolean checkMagmaCubeSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.monster.cubemob.MagmaCube>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public void setSize(int, boolean);
+  public float getLightLevelDependentMagicValue();
+  protected net.minecraft.core.particles.ParticleOptions getParticleType();
+  public boolean isOnFire();
+  protected int getJumpDelay();
+  protected void decreaseSquish();
+  public void jumpFromGround();
+  protected void jumpInLiquid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+  protected boolean canDealDamage();
+  protected float getAttackDamage();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getSquishSound();
+  protected net.minecraft.sounds.SoundEvent getJumpSound();
+  protected boolean canBeABaby();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+}
+Compiled from "SulfurCube.java"
+class net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public void tick();
+}
+Compiled from "SulfurCube.java"
+class net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeTemptGoal extends net.minecraft.world.entity.ai.goal.TemptGoal$ForNonPathfinders {
+  public net.minecraft.world.entity.monster.cubemob.SulfurCube$SulfurCubeTemptGoal(net.minecraft.world.entity.Mob, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean, double);
+  protected void stopNavigation();
+  protected void navigateTowards(net.minecraft.world.entity.player.Player);
+}
+Compiled from "AbstractCubeMob.java"
+public class net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobMoveControl<T extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.monster.cubemob.AbstractCubeMob$CubeMobMoveControl(T);
+  public void setDirection(float, boolean);
+  public void setWantedMovement(double);
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.cubemob.package-info {
+}
+Compiled from "Slime.java"
+public class net.minecraft.world.entity.monster.cubemob.Slime extends net.minecraft.world.entity.monster.cubemob.AbstractCubeMob implements net.minecraft.world.entity.monster.Enemy {
+  public net.minecraft.world.entity.monster.cubemob.Slime(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.cubemob.Slime>, net.minecraft.world.level.Level);
+  protected void addBehaviourGoals();
+  protected void addTargetingGoals();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.core.particles.ParticleOptions getParticleType();
+  protected net.minecraft.sounds.SoundEvent getSquishSound();
+  protected net.minecraft.sounds.SoundEvent getJumpSound();
+  public static boolean checkSlimeSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.monster.cubemob.Slime>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected boolean canBeABaby();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public void setSize(int, boolean);
+}

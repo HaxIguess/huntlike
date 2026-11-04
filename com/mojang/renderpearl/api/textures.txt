@@ -1,0 +1,55 @@
+Compiled from "GpuTexture.java"
+public interface com.mojang.renderpearl.api.textures.GpuTexture extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final int USAGE_COPY_DST;
+  public static final int USAGE_COPY_SRC;
+  public static final int USAGE_TEXTURE_BINDING;
+  public static final int USAGE_RENDER_ATTACHMENT;
+  public static final int USAGE_CUBEMAP_COMPATIBLE;
+  public abstract int getWidth(int);
+  public abstract int getHeight(int);
+  public abstract int getDepthOrLayers();
+  public abstract int getMipLevels();
+  public abstract com.mojang.renderpearl.api.GpuFormat getFormat();
+  public abstract int usage();
+  public abstract java.lang.String getLabel();
+  public abstract boolean isClosed();
+}
+Compiled from "FilterMode.java"
+public final class com.mojang.renderpearl.api.textures.FilterMode extends java.lang.Enum<com.mojang.renderpearl.api.textures.FilterMode> {
+  public static final com.mojang.renderpearl.api.textures.FilterMode NEAREST;
+  public static final com.mojang.renderpearl.api.textures.FilterMode LINEAR;
+  public static com.mojang.renderpearl.api.textures.FilterMode[] values();
+  public static com.mojang.renderpearl.api.textures.FilterMode valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.api.textures.package-info {
+}
+Compiled from "GpuTextureView.java"
+public interface com.mojang.renderpearl.api.textures.GpuTextureView extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract boolean isClosed();
+  public abstract com.mojang.renderpearl.api.textures.GpuTexture texture();
+  public abstract int baseMipLevel();
+  public abstract int mipLevels();
+  public abstract int getWidth(int);
+  public abstract int getHeight(int);
+}
+Compiled from "GpuTexture.java"
+public interface com.mojang.renderpearl.api.textures.GpuTexture$Usage extends java.lang.annotation.Annotation {
+}
+Compiled from "GpuSampler.java"
+public interface com.mojang.renderpearl.api.textures.GpuSampler extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract com.mojang.renderpearl.api.textures.AddressMode getAddressModeU();
+  public abstract com.mojang.renderpearl.api.textures.AddressMode getAddressModeV();
+  public abstract com.mojang.renderpearl.api.textures.FilterMode getMinFilter();
+  public abstract com.mojang.renderpearl.api.textures.FilterMode getMagFilter();
+  public abstract int getMaxAnisotropy();
+  public abstract java.util.OptionalDouble getMaxLod();
+  public abstract boolean isClosed();
+}
+Compiled from "AddressMode.java"
+public final class com.mojang.renderpearl.api.textures.AddressMode extends java.lang.Enum<com.mojang.renderpearl.api.textures.AddressMode> {
+  public static final com.mojang.renderpearl.api.textures.AddressMode REPEAT;
+  public static final com.mojang.renderpearl.api.textures.AddressMode CLAMP_TO_EDGE;
+  public static com.mojang.renderpearl.api.textures.AddressMode[] values();
+  public static com.mojang.renderpearl.api.textures.AddressMode valueOf(java.lang.String);
+}

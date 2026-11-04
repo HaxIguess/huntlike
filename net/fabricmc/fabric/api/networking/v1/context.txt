@@ -1,0 +1,31 @@
+Compiled from "PacketContext.java"
+public interface net.fabricmc.fabric.api.networking.v1.context.PacketContext$Key<T> extends net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<T> {
+}
+Compiled from "PacketContext.java"
+public interface net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<T> {
+}
+Compiled from "PacketContext.java"
+public interface net.fabricmc.fabric.api.networking.v1.context.PacketContext {
+  public static final net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<net.minecraft.server.MinecraftServer> SERVER_INSTANCE;
+  public static final net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<net.minecraft.core.RegistryAccess> REGISTRY_ACCESS;
+  public static final net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<com.mojang.authlib.GameProfile> GAME_PROFILE;
+  public static final net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<net.minecraft.network.Connection> CONNECTION;
+  public abstract <T> T get(net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<T>);
+  public default <T> T orElseThrow(net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<T>);
+  public default <T> T orElse(net.fabricmc.fabric.api.networking.v1.context.PacketContext$ReadKey<T>, T);
+  public abstract <T> void set(net.fabricmc.fabric.api.networking.v1.context.PacketContext$Key<T>, T);
+  public static net.fabricmc.fabric.api.networking.v1.context.PacketContext get();
+  public static net.fabricmc.fabric.api.networking.v1.context.PacketContext orElseThrow();
+  public static void runWithContext(net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider, java.lang.Runnable);
+  public static <T> T supplyWithContext(net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider, java.util.function.Supplier<T>);
+  public static void runWithoutContext(java.lang.Runnable);
+  public static <T> T supplyWithoutContext(java.util.function.Supplier<T>);
+  public static <T> net.fabricmc.fabric.api.networking.v1.context.PacketContext$Key<T> key(net.minecraft.resources.Identifier);
+}
+Compiled from "PacketContextProvider.java"
+public interface net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public default net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.networking.v1.context.package-info {
+}

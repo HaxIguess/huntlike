@@ -1,0 +1,87 @@
+Compiled from "MaterialRules.java"
+public class net.minecraft.world.level.levelgen.material.MaterialRules {
+  public net.minecraft.world.level.levelgen.material.MaterialRules();
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule registerAndWrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.material.rule.MaterialRule>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.material.rule.MaterialRule>, net.minecraft.world.level.levelgen.material.rule.MaterialRule);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition registerAndWrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.material.condition.MaterialCondition>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.material.condition.MaterialCondition>, net.minecraft.world.level.levelgen.material.condition.MaterialCondition);
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule getRule(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.material.rule.MaterialRule>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.material.rule.MaterialRule>);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition getCondition(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.material.condition.MaterialCondition>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.material.condition.MaterialCondition>);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition stoneDepthCheck(int, boolean, net.minecraft.world.level.levelgen.placement.CaveSurface);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition stoneDepthCheck(int, boolean, int, net.minecraft.world.level.levelgen.placement.CaveSurface);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition not(net.minecraft.world.level.levelgen.material.condition.MaterialCondition);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition yBlockCheck(net.minecraft.world.level.levelgen.VerticalAnchor, int);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition yStartCheck(net.minecraft.world.level.levelgen.VerticalAnchor, int);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition waterBlockCheck(int, int);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition waterStartCheck(int, int);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition isBiome(net.minecraft.core.HolderGetter<net.minecraft.world.level.biome.Biome>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>...);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition noiseCondition2d(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>, double);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition noiseCondition2d(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>, double, double);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition noiseCondition3d(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>, double);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition noiseCondition3d(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>, double, double);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition verticalGradient(java.lang.String, net.minecraft.world.level.levelgen.VerticalAnchor, net.minecraft.world.level.levelgen.VerticalAnchor);
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition steep();
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition hole();
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition abovePreliminarySurface();
+  public static net.minecraft.world.level.levelgen.material.condition.MaterialCondition temperature();
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule ifTrue(net.minecraft.world.level.levelgen.material.condition.MaterialCondition, net.minecraft.world.level.levelgen.material.rule.MaterialRule);
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule sequence(net.minecraft.world.level.levelgen.material.rule.MaterialRule...);
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule sequence(java.util.List<net.minecraft.world.level.levelgen.material.rule.MaterialRule>);
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule state(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.level.levelgen.material.rule.MaterialRule bandlands();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.material.rule.MaterialRule> bootstrapRules(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.material.rule.MaterialRule>>);
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.material.condition.MaterialCondition> bootstrapConditions(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.material.condition.MaterialCondition>>);
+}
+Compiled from "MaterialSystem.java"
+public class net.minecraft.world.level.levelgen.material.MaterialSystem {
+  public net.minecraft.world.level.levelgen.material.MaterialSystem(net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.block.state.BlockState, int, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.PositionalRandomFactory);
+  public void buildSurface(net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.biome.BiomeManager, net.minecraft.world.level.levelgen.WorldGenerationContext, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.NoiseChunk, net.minecraft.world.level.levelgen.material.rule.MaterialRule, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  protected int getSurfaceDepth(int, int);
+  protected double getSurfaceSecondary(int, int);
+  public int getSeaLevel();
+  public java.util.Optional<net.minecraft.world.level.block.state.BlockState> topMaterial(net.minecraft.world.level.levelgen.material.rule.MaterialRule, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.WorldGenerationContext, java.util.function.Function<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet, net.minecraft.core.BlockPos, boolean);
+  protected net.minecraft.world.level.block.state.BlockState getBand(int, int, int);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction preliminarySurfaceFunction();
+}
+Compiled from "MaterialRuleContext.java"
+public abstract class net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyXZCondition implements net.minecraft.world.level.levelgen.material.condition.ConditionEvaluator {
+  protected final net.minecraft.world.level.levelgen.material.MaterialRuleContext context;
+  protected net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyXZCondition(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public boolean test();
+  protected abstract boolean compute();
+}
+Compiled from "MaterialRuleContext.java"
+public final class net.minecraft.world.level.levelgen.material.MaterialRuleContext {
+  public double getSurfaceSecondary();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getBiome();
+  public int getSeaLevel();
+  public int getMinSurfaceLevel();
+  public java.util.function.DoubleSupplier getNoiseSampler(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>, boolean);
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory getOrCreateRandomFactory(net.minecraft.resources.Identifier);
+  public net.minecraft.world.level.levelgen.material.MaterialRules$DensityGetter getDensitiesInChunk(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, boolean);
+  public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> possibleBiomes();
+  public int stoneDepthAbove();
+  public int stoneDepthBelow();
+  public int surfaceDepth();
+  public int waterHeight();
+  public int blockX();
+  public int blockY();
+  public int blockZ();
+  public net.minecraft.core.BlockPos blockPos();
+  public int surfaceGradientX();
+  public int surfaceGradientZ();
+  public int resolveAnchorY(net.minecraft.world.level.levelgen.VerticalAnchor);
+  public net.minecraft.world.level.block.state.BlockState getBand(int, int, int);
+}
+Compiled from "MaterialRules.java"
+public interface net.minecraft.world.level.levelgen.material.MaterialRules$DensityGetter {
+  public abstract float get();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.material.package-info {
+}
+Compiled from "MaterialRuleContext.java"
+public abstract class net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyYCondition implements net.minecraft.world.level.levelgen.material.condition.ConditionEvaluator {
+  protected final net.minecraft.world.level.levelgen.material.MaterialRuleContext context;
+  protected net.minecraft.world.level.levelgen.material.MaterialRuleContext$LazyYCondition(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public boolean test();
+  protected abstract boolean compute();
+}

@@ -1,0 +1,829 @@
+Compiled from "PotionContents.java"
+public final class net.minecraft.world.item.alchemy.PotionContents extends java.lang.Record implements net.minecraft.world.item.component.ConsumableListener,net.minecraft.world.item.component.TooltipProvider {
+  private final java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>> potion;
+
+  private final java.util.Optional<java.lang.Integer> customColor;
+
+  private final java.util.List<net.minecraft.world.effect.MobEffectInstance> customEffects;
+
+  private final java.util.Optional<java.lang.String> customName;
+
+  public static final net.minecraft.world.item.alchemy.PotionContents EMPTY;
+
+  private static final net.minecraft.network.chat.Component NO_EFFECT;
+
+  public static final int BASE_POTION_COLOR;
+
+  private static final com.mojang.serialization.Codec<net.minecraft.world.item.alchemy.PotionContents> FULL_CODEC;
+
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.alchemy.PotionContents> CODEC;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.alchemy.PotionContents> STREAM_CODEC;
+
+  public net.minecraft.world.item.alchemy.PotionContents(net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #23                 // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         5: invokestatic  #29                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+         8: invokestatic  #33                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+        11: invokestatic  #29                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        14: invokespecial #38                 // Method "<init>":(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/List;Ljava/util/Optional;)V
+        17: return
+
+  public net.minecraft.world.item.alchemy.PotionContents(java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>>, java.util.Optional<java.lang.Integer>, java.util.List<net.minecraft.world.effect.MobEffectInstance>, java.util.Optional<java.lang.String>);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field potion:Ljava/util/Optional;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field customColor:Ljava/util/Optional;
+        14: aload_0
+        15: aload_3
+        16: putfield      #16                 // Field customEffects:Ljava/util/List;
+        19: aload_0
+        20: aload         4
+        22: putfield      #20                 // Field customName:Ljava/util/Optional;
+        25: return
+
+  public static net.minecraft.world.item.ItemStack createItemStack(net.minecraft.world.item.Item, net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+    Code:
+         0: new           #41                 // class net/minecraft/world/item/ItemStack
+         3: dup
+         4: aload_0
+         5: invokespecial #43                 // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+         8: astore_2
+         9: aload_2
+        10: getstatic     #46                 // Field net/minecraft/core/component/DataComponents.POTION_CONTENTS:Lnet/minecraft/core/component/DataComponentType;
+        13: new           #8                  // class net/minecraft/world/item/alchemy/PotionContents
+        16: dup
+        17: aload_1
+        18: invokespecial #52                 // Method "<init>":(Lnet/minecraft/core/Holder;)V
+        21: invokevirtual #55                 // Method net/minecraft/world/item/ItemStack.set:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+        24: pop
+        25: aload_2
+        26: areturn
+
+  public boolean is(net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+    Code:
+         0: aload_0
+         1: invokevirtual #59                 // Method isPotionWithoutCustomEffects:()Z
+         4: ifeq          30
+         7: aload_0
+         8: getfield      #7                  // Field potion:Ljava/util/Optional;
+        11: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        14: checkcast     #67                 // class net/minecraft/core/Holder
+        17: aload_1
+        18: invokeinterface #69,  2           // InterfaceMethod net/minecraft/core/Holder.is:(Lnet/minecraft/core/Holder;)Z
+        23: ifeq          30
+        26: iconst_1
+        27: goto          31
+        30: iconst_0
+        31: ireturn
+
+  public boolean is(net.minecraft.tags.TagKey<net.minecraft.world.item.alchemy.Potion>);
+    Code:
+         0: aload_0
+         1: invokevirtual #59                 // Method isPotionWithoutCustomEffects:()Z
+         4: ifeq          30
+         7: aload_0
+         8: getfield      #7                  // Field potion:Ljava/util/Optional;
+        11: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        14: checkcast     #67                 // class net/minecraft/core/Holder
+        17: aload_1
+        18: invokeinterface #73,  2           // InterfaceMethod net/minecraft/core/Holder.is:(Lnet/minecraft/tags/TagKey;)Z
+        23: ifeq          30
+        26: iconst_1
+        27: goto          31
+        30: iconst_0
+        31: ireturn
+
+  public boolean isPotionWithoutCustomEffects();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field potion:Ljava/util/Optional;
+         4: invokevirtual #76                 // Method java/util/Optional.isPresent:()Z
+         7: ifeq          26
+        10: aload_0
+        11: getfield      #16                 // Field customEffects:Ljava/util/List;
+        14: invokeinterface #79,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        19: ifeq          26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: ireturn
+
+  public java.lang.Iterable<net.minecraft.world.effect.MobEffectInstance> getAllEffects();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field potion:Ljava/util/Optional;
+         4: invokevirtual #82                 // Method java/util/Optional.isEmpty:()Z
+         7: ifeq          15
+        10: aload_0
+        11: getfield      #16                 // Field customEffects:Ljava/util/List;
+        14: areturn
+        15: aload_0
+        16: getfield      #16                 // Field customEffects:Ljava/util/List;
+        19: invokeinterface #79,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        24: ifeq          49
+        27: aload_0
+        28: getfield      #7                  // Field potion:Ljava/util/Optional;
+        31: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        34: checkcast     #67                 // class net/minecraft/core/Holder
+        37: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        42: checkcast     #86                 // class net/minecraft/world/item/alchemy/Potion
+        45: invokevirtual #88                 // Method net/minecraft/world/item/alchemy/Potion.getEffects:()Ljava/util/List;
+        48: areturn
+        49: aload_0
+        50: getfield      #7                  // Field potion:Ljava/util/Optional;
+        53: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        56: checkcast     #67                 // class net/minecraft/core/Holder
+        59: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        64: checkcast     #86                 // class net/minecraft/world/item/alchemy/Potion
+        67: invokevirtual #88                 // Method net/minecraft/world/item/alchemy/Potion.getEffects:()Ljava/util/List;
+        70: aload_0
+        71: getfield      #16                 // Field customEffects:Ljava/util/List;
+        74: invokestatic  #91                 // Method com/google/common/collect/Iterables.concat:(Ljava/lang/Iterable;Ljava/lang/Iterable;)Ljava/lang/Iterable;
+        77: areturn
+
+  public void forEachEffect(java.util.function.Consumer<net.minecraft.world.effect.MobEffectInstance>, float);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field potion:Ljava/util/Optional;
+         4: invokevirtual #76                 // Method java/util/Optional.isPresent:()Z
+         7: ifeq          72
+        10: aload_0
+        11: getfield      #7                  // Field potion:Ljava/util/Optional;
+        14: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        17: checkcast     #67                 // class net/minecraft/core/Holder
+        20: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        25: checkcast     #86                 // class net/minecraft/world/item/alchemy/Potion
+        28: invokevirtual #88                 // Method net/minecraft/world/item/alchemy/Potion.getEffects:()Ljava/util/List;
+        31: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        36: astore_3
+        37: aload_3
+        38: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        43: ifeq          72
+        46: aload_3
+        47: invokeinterface #106,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        52: checkcast     #109                // class net/minecraft/world/effect/MobEffectInstance
+        55: astore        4
+        57: aload_1
+        58: aload         4
+        60: fload_2
+        61: invokevirtual #111                // Method net/minecraft/world/effect/MobEffectInstance.withScaledDuration:(F)Lnet/minecraft/world/effect/MobEffectInstance;
+        64: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+        69: goto          37
+        72: aload_0
+        73: getfield      #16                 // Field customEffects:Ljava/util/List;
+        76: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        81: astore_3
+        82: aload_3
+        83: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        88: ifeq          117
+        91: aload_3
+        92: invokeinterface #106,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        97: checkcast     #109                // class net/minecraft/world/effect/MobEffectInstance
+       100: astore        4
+       102: aload_1
+       103: aload         4
+       105: fload_2
+       106: invokevirtual #111                // Method net/minecraft/world/effect/MobEffectInstance.withScaledDuration:(F)Lnet/minecraft/world/effect/MobEffectInstance;
+       109: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       114: goto          82
+       117: return
+
+  public net.minecraft.world.item.alchemy.PotionContents withPotion(net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>);
+    Code:
+         0: new           #8                  // class net/minecraft/world/item/alchemy/PotionContents
+         3: dup
+         4: aload_1
+         5: invokestatic  #23                 // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         8: aload_0
+         9: getfield      #13                 // Field customColor:Ljava/util/Optional;
+        12: aload_0
+        13: getfield      #16                 // Field customEffects:Ljava/util/List;
+        16: aload_0
+        17: getfield      #20                 // Field customName:Ljava/util/Optional;
+        20: invokespecial #38                 // Method "<init>":(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/List;Ljava/util/Optional;)V
+        23: areturn
+
+  public net.minecraft.world.item.alchemy.PotionContents withEffectAdded(net.minecraft.world.effect.MobEffectInstance);
+    Code:
+         0: new           #8                  // class net/minecraft/world/item/alchemy/PotionContents
+         3: dup
+         4: aload_0
+         5: getfield      #7                  // Field potion:Ljava/util/Optional;
+         8: aload_0
+         9: getfield      #13                 // Field customColor:Ljava/util/Optional;
+        12: aload_0
+        13: getfield      #16                 // Field customEffects:Ljava/util/List;
+        16: aload_1
+        17: invokestatic  #121                // Method net/minecraft/util/Util.copyAndAdd:(Ljava/util/List;Ljava/lang/Object;)Ljava/util/List;
+        20: aload_0
+        21: getfield      #20                 // Field customName:Ljava/util/Optional;
+        24: invokespecial #38                 // Method "<init>":(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/List;Ljava/util/Optional;)V
+        27: areturn
+
+  public int getColor();
+    Code:
+         0: aload_0
+         1: ldc           #127                // int -13083194
+         3: invokevirtual #128                // Method getColorOr:(I)I
+         6: ireturn
+
+  public int getColorOr(int);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field customColor:Ljava/util/Optional;
+         4: invokevirtual #76                 // Method java/util/Optional.isPresent:()Z
+         7: ifeq          24
+        10: aload_0
+        11: getfield      #13                 // Field customColor:Ljava/util/Optional;
+        14: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        17: checkcast     #132                // class java/lang/Integer
+        20: invokevirtual #134                // Method java/lang/Integer.intValue:()I
+        23: ireturn
+        24: aload_0
+        25: invokevirtual #138                // Method getAllEffects:()Ljava/lang/Iterable;
+        28: invokestatic  #142                // Method getColorOptional:(Ljava/lang/Iterable;)Ljava/util/OptionalInt;
+        31: iload_1
+        32: invokevirtual #146                // Method java/util/OptionalInt.orElse:(I)I
+        35: ireturn
+
+  public net.minecraft.network.chat.Component getName(java.lang.String);
+    Code:
+         0: aload_0
+         1: getfield      #20                 // Field customName:Ljava/util/Optional;
+         4: aload_0
+         5: invokedynamic #151,  0            // InvokeDynamic #0:get:(Lnet/minecraft/world/item/alchemy/PotionContents;)Ljava/util/function/Supplier;
+        10: invokevirtual #154                // Method java/util/Optional.or:(Ljava/util/function/Supplier;)Ljava/util/Optional;
+        13: ldc           #158                // String empty
+        15: invokevirtual #159                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+        18: checkcast     #162                // class java/lang/String
+        21: astore_2
+        22: aload_1
+        23: aload_2
+        24: invokedynamic #164,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        29: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        32: areturn
+
+  public static java.util.OptionalInt getColorOptional(java.lang.Iterable<net.minecraft.world.effect.MobEffectInstance>);
+    Code:
+         0: iconst_0
+         1: istore_1
+         2: iconst_0
+         3: istore_2
+         4: iconst_0
+         5: istore_3
+         6: iconst_0
+         7: istore        4
+         9: aload_0
+        10: invokeinterface #174,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+        15: astore        5
+        17: aload         5
+        19: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        24: ifeq          120
+        27: aload         5
+        29: invokeinterface #106,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        34: checkcast     #109                // class net/minecraft/world/effect/MobEffectInstance
+        37: astore        6
+        39: aload         6
+        41: invokevirtual #177                // Method net/minecraft/world/effect/MobEffectInstance.isVisible:()Z
+        44: ifne          50
+        47: goto          17
+        50: aload         6
+        52: invokevirtual #180                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/core/Holder;
+        55: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        60: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+        63: invokevirtual #186                // Method net/minecraft/world/effect/MobEffect.getColor:()I
+        66: istore        7
+        68: aload         6
+        70: invokevirtual #189                // Method net/minecraft/world/effect/MobEffectInstance.getAmplifier:()I
+        73: iconst_1
+        74: iadd
+        75: istore        8
+        77: iload_1
+        78: iload         8
+        80: iload         7
+        82: invokestatic  #192                // Method net/minecraft/util/ARGB.red:(I)I
+        85: imul
+        86: iadd
+        87: istore_1
+        88: iload_2
+        89: iload         8
+        91: iload         7
+        93: invokestatic  #197                // Method net/minecraft/util/ARGB.green:(I)I
+        96: imul
+        97: iadd
+        98: istore_2
+        99: iload_3
+       100: iload         8
+       102: iload         7
+       104: invokestatic  #200                // Method net/minecraft/util/ARGB.blue:(I)I
+       107: imul
+       108: iadd
+       109: istore_3
+       110: iload         4
+       112: iload         8
+       114: iadd
+       115: istore        4
+       117: goto          17
+       120: iload         4
+       122: ifne          129
+       125: invokestatic  #203                // Method java/util/OptionalInt.empty:()Ljava/util/OptionalInt;
+       128: areturn
+       129: iload_1
+       130: iload         4
+       132: idiv
+       133: iload_2
+       134: iload         4
+       136: idiv
+       137: iload_3
+       138: iload         4
+       140: idiv
+       141: invokestatic  #206                // Method net/minecraft/util/ARGB.color:(III)I
+       144: invokestatic  #210                // Method java/util/OptionalInt.of:(I)Ljava/util/OptionalInt;
+       147: areturn
+
+  public boolean hasEffects();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field customEffects:Ljava/util/List;
+         4: invokeinterface #79,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+         9: ifne          14
+        12: iconst_1
+        13: ireturn
+        14: aload_0
+        15: getfield      #7                  // Field potion:Ljava/util/Optional;
+        18: invokevirtual #76                 // Method java/util/Optional.isPresent:()Z
+        21: ifeq          57
+        24: aload_0
+        25: getfield      #7                  // Field potion:Ljava/util/Optional;
+        28: invokevirtual #63                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        31: checkcast     #67                 // class net/minecraft/core/Holder
+        34: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        39: checkcast     #86                 // class net/minecraft/world/item/alchemy/Potion
+        42: invokevirtual #88                 // Method net/minecraft/world/item/alchemy/Potion.getEffects:()Ljava/util/List;
+        45: invokeinterface #79,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        50: ifne          57
+        53: iconst_1
+        54: goto          58
+        57: iconst_0
+        58: ireturn
+
+  public java.util.List<net.minecraft.world.effect.MobEffectInstance> customEffects();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field customEffects:Ljava/util/List;
+         4: invokedynamic #213,  0            // InvokeDynamic #2:apply:()Lcom/google/common/base/Function;
+         9: invokestatic  #217                // Method com/google/common/collect/Lists.transform:(Ljava/util/List;Lcom/google/common/base/Function;)Ljava/util/List;
+        12: areturn
+
+  public void applyToLivingEntity(net.minecraft.world.entity.LivingEntity, float);
+    Code:
+         0: aload_1
+         1: invokevirtual #223                // Method net/minecraft/world/entity/LivingEntity.level:()Lnet/minecraft/world/level/Level;
+         4: astore        4
+         6: aload         4
+         8: instanceof    #229                // class net/minecraft/server/level/ServerLevel
+        11: ifeq          23
+        14: aload         4
+        16: checkcast     #229                // class net/minecraft/server/level/ServerLevel
+        19: astore_3
+        20: goto          24
+        23: return
+        24: aload_1
+        25: instanceof    #231                // class net/minecraft/world/entity/player/Player
+        28: ifeq          42
+        31: aload_1
+        32: checkcast     #231                // class net/minecraft/world/entity/player/Player
+        35: astore        5
+        37: aload         5
+        39: goto          43
+        42: aconst_null
+        43: astore        4
+        45: aload_0
+        46: aload_3
+        47: aload         4
+        49: aload_1
+        50: invokedynamic #233,  0            // InvokeDynamic #3:accept:(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/function/Consumer;
+        55: fload_2
+        56: invokevirtual #236                // Method forEachEffect:(Ljava/util/function/Consumer;F)V
+        59: return
+
+  public static void addPotionTooltip(java.lang.Iterable<net.minecraft.world.effect.MobEffectInstance>, java.util.function.Consumer<net.minecraft.network.chat.Component>, float, float);
+    Code:
+         0: invokestatic  #240                // Method com/google/common/collect/Lists.newArrayList:()Ljava/util/ArrayList;
+         3: astore        4
+         5: iconst_1
+         6: istore        5
+         8: aload_0
+         9: invokeinterface #174,  1          // InterfaceMethod java/lang/Iterable.iterator:()Ljava/util/Iterator;
+        14: astore        6
+        16: aload         6
+        18: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        23: ifeq          153
+        26: aload         6
+        28: invokeinterface #106,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        33: checkcast     #109                // class net/minecraft/world/effect/MobEffectInstance
+        36: astore        7
+        38: iconst_0
+        39: istore        5
+        41: aload         7
+        43: invokevirtual #180                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/core/Holder;
+        46: astore        8
+        48: aload         7
+        50: invokevirtual #189                // Method net/minecraft/world/effect/MobEffectInstance.getAmplifier:()I
+        53: istore        9
+        55: aload         8
+        57: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        62: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+        65: iload         9
+        67: aload         4
+        69: invokedynamic #244,  0            // InvokeDynamic #4:accept:(Ljava/util/List;)Ljava/util/function/BiConsumer;
+        74: invokevirtual #247                // Method net/minecraft/world/effect/MobEffect.createModifiers:(ILjava/util/function/BiConsumer;)V
+        77: aload         8
+        79: iload         9
+        81: invokestatic  #251                // Method getPotionDescription:(Lnet/minecraft/core/Holder;I)Lnet/minecraft/network/chat/MutableComponent;
+        84: astore        10
+        86: aload         7
+        88: bipush        20
+        90: invokevirtual #257                // Method net/minecraft/world/effect/MobEffectInstance.endsWithin:(I)Z
+        93: ifne          123
+        96: ldc_w         #261                // String potion.withDuration
+        99: iconst_2
+       100: anewarray     #263                // class java/lang/Object
+       103: dup
+       104: iconst_0
+       105: aload         10
+       107: aastore
+       108: dup
+       109: iconst_1
+       110: aload         7
+       112: fload_2
+       113: fload_3
+       114: invokestatic  #265                // Method net/minecraft/world/effect/MobEffectUtil.formatDuration:(Lnet/minecraft/world/effect/MobEffectInstance;FF)Lnet/minecraft/network/chat/Component;
+       117: aastore
+       118: invokestatic  #271                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+       121: astore        10
+       123: aload_1
+       124: aload         10
+       126: aload         8
+       128: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       133: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+       136: invokevirtual #274                // Method net/minecraft/world/effect/MobEffect.getCategory:()Lnet/minecraft/world/effect/MobEffectCategory;
+       139: invokevirtual #278                // Method net/minecraft/world/effect/MobEffectCategory.getTooltipFormatting:()Lnet/minecraft/ChatFormatting;
+       142: invokevirtual #284                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       145: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       150: goto          16
+       153: iload         5
+       155: ifeq          167
+       158: aload_1
+       159: getstatic     #290                // Field NO_EFFECT:Lnet/minecraft/network/chat/Component;
+       162: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       167: aload         4
+       169: invokeinterface #79,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+       174: ifne          459
+       177: aload_1
+       178: getstatic     #294                // Field net/minecraft/network/chat/CommonComponents.EMPTY:Lnet/minecraft/network/chat/Component;
+       181: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       186: aload_1
+       187: ldc_w         #299                // String potion.whenDrank
+       190: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       193: getstatic     #301                // Field net/minecraft/ChatFormatting.DARK_PURPLE:Lnet/minecraft/ChatFormatting;
+       196: invokevirtual #284                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       199: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       204: aload         4
+       206: invokeinterface #97,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       211: astore        6
+       213: aload         6
+       215: invokeinterface #101,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       220: ifeq          459
+       223: aload         6
+       225: invokeinterface #106,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       230: checkcast     #307                // class com/mojang/datafixers/util/Pair
+       233: astore        7
+       235: aload         7
+       237: invokevirtual #309                // Method com/mojang/datafixers/util/Pair.getSecond:()Ljava/lang/Object;
+       240: checkcast     #312                // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+       243: astore        8
+       245: aload         8
+       247: invokevirtual #314                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.amount:()D
+       250: dstore        9
+       252: aload         8
+       254: invokevirtual #318                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.operation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       257: getstatic     #322                // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.ADD_MULTIPLIED_BASE:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       260: if_acmpeq     274
+       263: aload         8
+       265: invokevirtual #318                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.operation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       268: getstatic     #328                // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.ADD_MULTIPLIED_TOTAL:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       271: if_acmpne     288
+       274: aload         8
+       276: invokevirtual #314                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.amount:()D
+       279: ldc2_w        #331                // double 100.0d
+       282: dmul
+       283: dstore        11
+       285: goto          295
+       288: aload         8
+       290: invokevirtual #314                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.amount:()D
+       293: dstore        11
+       295: dload         9
+       297: dconst_0
+       298: dcmpl
+       299: ifle          373
+       302: aload_1
+       303: aload         8
+       305: invokevirtual #318                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.operation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       308: invokevirtual #333                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.id:()I
+       311: invokedynamic #336,  0            // InvokeDynamic #5:makeConcatWithConstants:(I)Ljava/lang/String;
+       316: iconst_2
+       317: anewarray     #263                // class java/lang/Object
+       320: dup
+       321: iconst_0
+       322: getstatic     #339                // Field net/minecraft/world/item/component/ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+       325: dload         11
+       327: invokevirtual #345                // Method java/text/DecimalFormat.format:(D)Ljava/lang/String;
+       330: aastore
+       331: dup
+       332: iconst_1
+       333: aload         7
+       335: invokevirtual #351                // Method com/mojang/datafixers/util/Pair.getFirst:()Ljava/lang/Object;
+       338: checkcast     #67                 // class net/minecraft/core/Holder
+       341: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       346: checkcast     #354                // class net/minecraft/world/entity/ai/attributes/Attribute
+       349: invokevirtual #356                // Method net/minecraft/world/entity/ai/attributes/Attribute.getDescriptionId:()Ljava/lang/String;
+       352: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       355: aastore
+       356: invokestatic  #271                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+       359: getstatic     #360                // Field net/minecraft/ChatFormatting.BLUE:Lnet/minecraft/ChatFormatting;
+       362: invokevirtual #284                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       365: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       370: goto          456
+       373: dload         9
+       375: dconst_0
+       376: dcmpg
+       377: ifge          456
+       380: dload         11
+       382: ldc2_w        #363                // double -1.0d
+       385: dmul
+       386: dstore        11
+       388: aload_1
+       389: aload         8
+       391: invokevirtual #318                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier.operation:()Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+       394: invokevirtual #333                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.id:()I
+       397: invokedynamic #365,  0            // InvokeDynamic #6:makeConcatWithConstants:(I)Ljava/lang/String;
+       402: iconst_2
+       403: anewarray     #263                // class java/lang/Object
+       406: dup
+       407: iconst_0
+       408: getstatic     #339                // Field net/minecraft/world/item/component/ItemAttributeModifiers.ATTRIBUTE_MODIFIER_FORMAT:Ljava/text/DecimalFormat;
+       411: dload         11
+       413: invokevirtual #345                // Method java/text/DecimalFormat.format:(D)Ljava/lang/String;
+       416: aastore
+       417: dup
+       418: iconst_1
+       419: aload         7
+       421: invokevirtual #351                // Method com/mojang/datafixers/util/Pair.getFirst:()Ljava/lang/Object;
+       424: checkcast     #67                 // class net/minecraft/core/Holder
+       427: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       432: checkcast     #354                // class net/minecraft/world/entity/ai/attributes/Attribute
+       435: invokevirtual #356                // Method net/minecraft/world/entity/ai/attributes/Attribute.getDescriptionId:()Ljava/lang/String;
+       438: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       441: aastore
+       442: invokestatic  #271                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+       445: getstatic     #366                // Field net/minecraft/ChatFormatting.RED:Lnet/minecraft/ChatFormatting;
+       448: invokevirtual #284                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       451: invokeinterface #115,  2          // InterfaceMethod java/util/function/Consumer.accept:(Ljava/lang/Object;)V
+       456: goto          213
+       459: return
+
+  public static net.minecraft.network.chat.MutableComponent getPotionDescription(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>, int);
+    Code:
+         0: aload_0
+         1: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         6: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+         9: invokevirtual #369                // Method net/minecraft/world/effect/MobEffect.getDescriptionId:()Ljava/lang/String;
+        12: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        15: astore_2
+        16: iload_1
+        17: ifle          47
+        20: ldc_w         #370                // String potion.withAmplifier
+        23: iconst_2
+        24: anewarray     #263                // class java/lang/Object
+        27: dup
+        28: iconst_0
+        29: aload_2
+        30: aastore
+        31: dup
+        32: iconst_1
+        33: iload_1
+        34: invokedynamic #372,  0            // InvokeDynamic #7:makeConcatWithConstants:(I)Ljava/lang/String;
+        39: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: aastore
+        43: invokestatic  #271                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+        46: areturn
+        47: aload_2
+        48: areturn
+
+  public void onConsume(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack, net.minecraft.world.item.component.Consumable);
+    Code:
+         0: aload_0
+         1: aload_2
+         2: aload_3
+         3: getstatic     #373                // Field net/minecraft/core/component/DataComponents.POTION_DURATION_SCALE:Lnet/minecraft/core/component/DataComponentType;
+         6: fconst_1
+         7: invokestatic  #376                // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+        10: invokevirtual #382                // Method net/minecraft/world/item/ItemStack.getOrDefault:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+        13: checkcast     #377                // class java/lang/Float
+        16: invokevirtual #385                // Method java/lang/Float.floatValue:()F
+        19: invokevirtual #389                // Method applyToLivingEntity:(Lnet/minecraft/world/entity/LivingEntity;F)V
+        22: return
+
+  public void addToTooltip(net.minecraft.world.item.Item$TooltipContext, java.util.function.Consumer<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag, net.minecraft.core.component.DataComponentGetter);
+    Code:
+         0: aload_0
+         1: invokevirtual #138                // Method getAllEffects:()Ljava/lang/Iterable;
+         4: aload_2
+         5: aload         4
+         7: getstatic     #373                // Field net/minecraft/core/component/DataComponents.POTION_DURATION_SCALE:Lnet/minecraft/core/component/DataComponentType;
+        10: fconst_1
+        11: invokestatic  #376                // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+        14: invokeinterface #393,  3          // InterfaceMethod net/minecraft/core/component/DataComponentGetter.getOrDefault:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+        19: checkcast     #377                // class java/lang/Float
+        22: invokevirtual #385                // Method java/lang/Float.floatValue:()F
+        25: aload_1
+        26: invokeinterface #396,  1          // InterfaceMethod net/minecraft/world/item/Item$TooltipContext.tickRate:()F
+        31: invokestatic  #401                // Method addPotionTooltip:(Ljava/lang/Iterable;Ljava/util/function/Consumer;FF)V
+        34: return
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #405,  0            // InvokeDynamic #8:toString:(Lnet/minecraft/world/item/alchemy/PotionContents;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #409,  0            // InvokeDynamic #8:hashCode:(Lnet/minecraft/world/item/alchemy/PotionContents;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #413,  0            // InvokeDynamic #8:equals:(Lnet/minecraft/world/item/alchemy/PotionContents;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.item.alchemy.Potion>> potion();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field potion:Ljava/util/Optional;
+         4: areturn
+
+  public java.util.Optional<java.lang.Integer> customColor();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field customColor:Ljava/util/Optional;
+         4: areturn
+
+  public java.util.Optional<java.lang.String> customName();
+    Code:
+         0: aload_0
+         1: getfield      #20                 // Field customName:Ljava/util/Optional;
+         4: areturn
+
+  private static void lambda$addPotionTooltip$0(java.util.List, net.minecraft.core.Holder, net.minecraft.world.entity.ai.attributes.AttributeModifier);
+    Code:
+         0: aload_0
+         1: new           #307                // class com/mojang/datafixers/util/Pair
+         4: dup
+         5: aload_1
+         6: aload_2
+         7: invokespecial #417                // Method com/mojang/datafixers/util/Pair."<init>":(Ljava/lang/Object;Ljava/lang/Object;)V
+        10: invokeinterface #420,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        15: pop
+        16: return
+
+  private static void lambda$applyToLivingEntity$0(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Player, net.minecraft.world.entity.LivingEntity, net.minecraft.world.effect.MobEffectInstance);
+    Code:
+         0: aload_3
+         1: invokevirtual #180                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/core/Holder;
+         4: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         9: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+        12: invokevirtual #424                // Method net/minecraft/world/effect/MobEffect.isInstantaneous:()Z
+        15: ifeq          45
+        18: aload_3
+        19: invokevirtual #180                // Method net/minecraft/world/effect/MobEffectInstance.getEffect:()Lnet/minecraft/core/Holder;
+        22: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        27: checkcast     #184                // class net/minecraft/world/effect/MobEffect
+        30: aload_0
+        31: aload_1
+        32: aload_1
+        33: aload_2
+        34: aload_3
+        35: invokevirtual #189                // Method net/minecraft/world/effect/MobEffectInstance.getAmplifier:()I
+        38: dconst_1
+        39: invokevirtual #427                // Method net/minecraft/world/effect/MobEffect.applyInstantaneousEffect:(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/LivingEntity;ID)V
+        42: goto          51
+        45: aload_2
+        46: aload_3
+        47: invokevirtual #431                // Method net/minecraft/world/entity/LivingEntity.addEffect:(Lnet/minecraft/world/effect/MobEffectInstance;)Z
+        50: pop
+        51: return
+
+  private java.util.Optional lambda$getName$0();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field potion:Ljava/util/Optional;
+         4: invokedynamic #435,  0            // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+         9: invokevirtual #438                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+        12: areturn
+
+  private static java.lang.String lambda$getName$1(net.minecraft.core.Holder);
+    Code:
+         0: aload_0
+         1: invokeinterface #83,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         6: checkcast     #86                 // class net/minecraft/world/item/alchemy/Potion
+         9: invokevirtual #442                // Method net/minecraft/world/item/alchemy/Potion.name:()Ljava/lang/String;
+        12: areturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$0(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+         0: aload_0
+         1: getstatic     #445                // Field net/minecraft/world/item/alchemy/Potion.CODEC:Lcom/mojang/serialization/Codec;
+         4: ldc_w         #449                // String potion
+         7: invokeinterface #450,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        12: invokedynamic #456,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+        17: invokevirtual #457                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        20: getstatic     #463                // Field com/mojang/serialization/Codec.INT:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+        23: ldc_w         #467                // String custom_color
+        26: invokeinterface #469,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        31: invokedynamic #472,  0            // InvokeDynamic #11:apply:()Ljava/util/function/Function;
+        36: invokevirtual #457                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        39: getstatic     #473                // Field net/minecraft/world/effect/MobEffectInstance.CODEC:Lcom/mojang/serialization/Codec;
+        42: invokeinterface #474,  1          // InterfaceMethod com/mojang/serialization/Codec.listOf:()Lcom/mojang/serialization/Codec;
+        47: ldc_w         #478                // String custom_effects
+        50: invokestatic  #33                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+        53: invokeinterface #480,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+        58: invokedynamic #483,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+        63: invokevirtual #457                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        66: getstatic     #484                // Field com/mojang/serialization/Codec.STRING:Lcom/mojang/serialization/codecs/PrimitiveCodec;
+        69: ldc_w         #487                // String custom_name
+        72: invokeinterface #469,  2          // InterfaceMethod com/mojang/serialization/codecs/PrimitiveCodec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        77: invokedynamic #489,  0            // InvokeDynamic #13:apply:()Ljava/util/function/Function;
+        82: invokevirtual #457                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        85: invokevirtual #490                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P4;
+        88: aload_0
+        89: invokedynamic #496,  0            // InvokeDynamic #14:apply:()Lcom/mojang/datafixers/util/Function4;
+        94: invokevirtual #499                // Method com/mojang/datafixers/Products$P4.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function4;)Lcom/mojang/datafixers/kinds/App;
+        97: areturn
+
+  static {};
+    Code:
+         0: new           #8                  // class net/minecraft/world/item/alchemy/PotionContents
+         3: dup
+         4: invokestatic  #29                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+         7: invokestatic  #29                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        10: invokestatic  #33                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+        13: invokestatic  #29                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        16: invokespecial #38                 // Method "<init>":(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/List;Ljava/util/Optional;)V
+        19: putstatic     #504                // Field EMPTY:Lnet/minecraft/world/item/alchemy/PotionContents;
+        22: ldc_w         #507                // String effect.none
+        25: invokestatic  #168                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        28: getstatic     #509                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+        31: invokevirtual #284                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+        34: putstatic     #290                // Field NO_EFFECT:Lnet/minecraft/network/chat/Component;
+        37: invokedynamic #512,  0            // InvokeDynamic #15:apply:()Ljava/util/function/Function;
+        42: invokestatic  #513                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+        45: putstatic     #519                // Field FULL_CODEC:Lcom/mojang/serialization/Codec;
+        48: getstatic     #519                // Field FULL_CODEC:Lcom/mojang/serialization/Codec;
+        51: getstatic     #445                // Field net/minecraft/world/item/alchemy/Potion.CODEC:Lcom/mojang/serialization/Codec;
+        54: invokedynamic #522,  0            // InvokeDynamic #16:apply:()Ljava/util/function/Function;
+        59: invokestatic  #523                // InterfaceMethod com/mojang/serialization/Codec.withAlternative:(Lcom/mojang/serialization/Codec;Lcom/mojang/serialization/Codec;Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+        62: putstatic     #527                // Field CODEC:Lcom/mojang/serialization/Codec;
+        65: getstatic     #528                // Field net/minecraft/world/item/alchemy/Potion.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        68: invokedynamic #532,  0            // InvokeDynamic #17:apply:()Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+        73: invokeinterface #535,  2          // InterfaceMethod net/minecraft/network/codec/StreamCodec.apply:(Lnet/minecraft/network/codec/StreamCodec$CodecOperation;)Lnet/minecraft/network/codec/StreamCodec;
+        78: invokedynamic #456,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+        83: getstatic     #540                // Field net/minecraft/network/codec/ByteBufCodecs.INT:Lnet/minecraft/network/codec/StreamCodec;
+        86: invokedynamic #532,  0            // InvokeDynamic #17:apply:()Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+        91: invokeinterface #535,  2          // InterfaceMethod net/minecraft/network/codec/StreamCodec.apply:(Lnet/minecraft/network/codec/StreamCodec$CodecOperation;)Lnet/minecraft/network/codec/StreamCodec;
+        96: invokedynamic #472,  0            // InvokeDynamic #11:apply:()Ljava/util/function/Function;
+       101: getstatic     #544                // Field net/minecraft/world/effect/MobEffectInstance.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+       104: invokestatic  #545                // InterfaceMethod net/minecraft/network/codec/ByteBufCodecs.list:()Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+       107: invokeinterface #535,  2          // InterfaceMethod net/minecraft/network/codec/StreamCodec.apply:(Lnet/minecraft/network/codec/StreamCodec$CodecOperation;)Lnet/minecraft/network/codec/StreamCodec;
+       112: invokedynamic #483,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+       117: getstatic     #548                // Field net/minecraft/network/codec/ByteBufCodecs.STRING_UTF8:Lnet/minecraft/network/codec/StreamCodec;
+       120: invokedynamic #532,  0            // InvokeDynamic #17:apply:()Lnet/minecraft/network/codec/StreamCodec$CodecOperation;
+       125: invokeinterface #535,  2          // InterfaceMethod net/minecraft/network/codec/StreamCodec.apply:(Lnet/minecraft/network/codec/StreamCodec$CodecOperation;)Lnet/minecraft/network/codec/StreamCodec;
+       130: invokedynamic #489,  0            // InvokeDynamic #13:apply:()Ljava/util/function/Function;
+       135: invokedynamic #496,  0            // InvokeDynamic #14:apply:()Lcom/mojang/datafixers/util/Function4;
+       140: invokestatic  #551                // InterfaceMethod net/minecraft/network/codec/StreamCodec.composite:(Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function4;)Lnet/minecraft/network/codec/StreamCodec;
+       143: putstatic     #555                // Field STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+       146: return
+}

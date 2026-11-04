@@ -1,0 +1,35 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.feature.featuresize.package-info {
+}
+Compiled from "FeatureSizeType.java"
+public class net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<P extends net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize> {
+  public static final net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize> TWO_LAYERS_FEATURE_SIZE;
+  public static final net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize> THREE_LAYERS_FEATURE_SIZE;
+  public com.mojang.serialization.MapCodec<P> codec();
+}
+Compiled from "FeatureSize.java"
+public abstract class net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize> CODEC;
+  protected static final int MAX_WIDTH;
+  protected final java.util.OptionalInt minClippedHeight;
+  protected static <S extends net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize> com.mojang.serialization.codecs.RecordCodecBuilder<S, java.util.OptionalInt> minClippedHeightCodec();
+  public net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize(java.util.OptionalInt);
+  protected abstract net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<?> type();
+  public abstract int getSizeAtHeight(int, int);
+  public java.util.OptionalInt minClippedHeight();
+}
+Compiled from "TwoLayersFeatureSize.java"
+public class net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize extends net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize> CODEC;
+  public net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize(int, int, int);
+  public net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize(int, int, int, java.util.OptionalInt);
+  protected net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<?> type();
+  public int getSizeAtHeight(int, int);
+}
+Compiled from "ThreeLayersFeatureSize.java"
+public class net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize extends net.minecraft.world.level.levelgen.feature.featuresize.FeatureSize {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize> CODEC;
+  public net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize(int, int, int, int, int, java.util.OptionalInt);
+  protected net.minecraft.world.level.levelgen.feature.featuresize.FeatureSizeType<?> type();
+  public int getSizeAtHeight(int, int);
+}

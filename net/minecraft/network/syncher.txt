@@ -1,0 +1,119 @@
+Compiled from "EntityDataSerializer.java"
+public interface net.minecraft.network.syncher.EntityDataSerializer<T> {
+  public abstract net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> codec();
+  public default net.minecraft.network.syncher.EntityDataAccessor<T> createAccessor(int);
+  public abstract T copy(T);
+  public static <T> net.minecraft.network.syncher.EntityDataSerializer<T> forValueType(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T>);
+}
+Compiled from "SyncedDataHolder.java"
+public interface net.minecraft.network.syncher.SyncedDataHolder {
+  public abstract void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public abstract void onSyncedDataUpdated(java.util.List<net.minecraft.network.syncher.SynchedEntityData$DataValue<?>>);
+}
+Compiled from "SynchedEntityData.java"
+public final class net.minecraft.network.syncher.SynchedEntityData$DataValue<T> extends java.lang.Record {
+  public net.minecraft.network.syncher.SynchedEntityData$DataValue(int, net.minecraft.network.syncher.EntityDataSerializer<T>, T);
+  public static <T> net.minecraft.network.syncher.SynchedEntityData$DataValue<T> create(net.minecraft.network.syncher.EntityDataAccessor<T>, T);
+  public void write(net.minecraft.network.RegistryFriendlyByteBuf);
+  public static net.minecraft.network.syncher.SynchedEntityData$DataValue<?> read(net.minecraft.network.RegistryFriendlyByteBuf, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int id();
+  public net.minecraft.network.syncher.EntityDataSerializer<T> serializer();
+  public T value();
+}
+Compiled from "SynchedEntityData.java"
+public class net.minecraft.network.syncher.SynchedEntityData$Builder {
+  public net.minecraft.network.syncher.SynchedEntityData$Builder(net.minecraft.network.syncher.SyncedDataHolder);
+  public <T> net.minecraft.network.syncher.SynchedEntityData$Builder define(net.minecraft.network.syncher.EntityDataAccessor<T>, T);
+  public net.minecraft.network.syncher.SynchedEntityData build();
+}
+Compiled from "EntityDataAccessor.java"
+public final class net.minecraft.network.syncher.EntityDataAccessor<T> extends java.lang.Record {
+  public net.minecraft.network.syncher.EntityDataAccessor(int, net.minecraft.network.syncher.EntityDataSerializer<T>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public int id();
+  public net.minecraft.network.syncher.EntityDataSerializer<T> serializer();
+}
+Compiled from "EntityDataSerializer.java"
+public interface net.minecraft.network.syncher.EntityDataSerializer$ForValueType<T> extends net.minecraft.network.syncher.EntityDataSerializer<T> {
+  public default T copy(T);
+}
+Compiled from "SynchedEntityData.java"
+public class net.minecraft.network.syncher.SynchedEntityData$DataItem<T> {
+  public net.minecraft.network.syncher.SynchedEntityData$DataItem(net.minecraft.network.syncher.EntityDataAccessor<T>, T);
+  public net.minecraft.network.syncher.EntityDataAccessor<T> getAccessor();
+  public void setValue(T);
+  public T getValue();
+  public boolean isDirty();
+  public void setDirty(boolean);
+  public boolean isSetToDefault();
+  public net.minecraft.network.syncher.SynchedEntityData$DataValue<T> value();
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.syncher.package-info {
+}
+Compiled from "SynchedEntityData.java"
+public class net.minecraft.network.syncher.SynchedEntityData {
+  public static <T> net.minecraft.network.syncher.EntityDataAccessor<T> defineId(java.lang.Class<? extends net.minecraft.network.syncher.SyncedDataHolder>, net.minecraft.network.syncher.EntityDataSerializer<T>);
+  public <T> T get(net.minecraft.network.syncher.EntityDataAccessor<T>);
+  public <T> void set(net.minecraft.network.syncher.EntityDataAccessor<T>, T);
+  public <T> void set(net.minecraft.network.syncher.EntityDataAccessor<T>, T, boolean);
+  public boolean isDirty();
+  public java.util.List<net.minecraft.network.syncher.SynchedEntityData$DataValue<?>> packDirty();
+  public java.util.List<net.minecraft.network.syncher.SynchedEntityData$DataValue<?>> getNonDefaultValues();
+  public void assignValues(java.util.List<net.minecraft.network.syncher.SynchedEntityData$DataValue<?>>);
+}
+Compiled from "EntityDataSerializers.java"
+public class net.minecraft.network.syncher.EntityDataSerializers {
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.Byte> BYTE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.Integer> INT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.Long> LONG;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.Float> FLOAT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.String> STRING;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.network.chat.Component> COMPONENT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.Optional<net.minecraft.network.chat.Component>> OPTIONAL_COMPONENT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.item.ItemStack> ITEM_STACK;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.level.block.state.BlockState> BLOCK_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.Optional<net.minecraft.world.level.block.state.BlockState>> OPTIONAL_BLOCK_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.lang.Boolean> BOOLEAN;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.particles.ParticleOptions> PARTICLE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.List<net.minecraft.core.particles.ParticleOptions>> PARTICLES;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Rotations> ROTATIONS;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.BlockPos> BLOCK_POS;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.Optional<net.minecraft.core.BlockPos>> OPTIONAL_BLOCK_POS;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Direction> DIRECTION;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.Optional<net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity>>> OPTIONAL_LIVING_ENTITY_REFERENCE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.Optional<net.minecraft.core.GlobalPos>> OPTIONAL_GLOBAL_POS;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.npc.villager.VillagerData> VILLAGER_DATA;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<java.util.OptionalInt> OPTIONAL_UNSIGNED_INT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.Pose> POSE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatVariant>> CAT_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatSoundVariant>> CAT_SOUND_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant>> CHICKEN_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant>> CHICKEN_SOUND_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.cow.CowVariant>> COW_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.cow.CowSoundVariant>> COW_SOUND_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.wolf.WolfVariant>> WOLF_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.wolf.WolfSoundVariant>> WOLF_SOUND_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.frog.FrogVariant>> FROG_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.pig.PigVariant>> PIG_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.pig.PigSoundVariant>> PIG_SOUND_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>> ZOMBIE_NAUTILUS_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.core.Holder<net.minecraft.world.entity.decoration.painting.PaintingVariant>> PAINTING_VARIANT;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState> ARMADILLO_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.animal.sniffer.Sniffer$State> SNIFFER_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.level.block.WeatheringCopper$WeatherState> WEATHERING_COPPER_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.animal.golem.CopperGolemState> COPPER_GOLEM_STATE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<org.joml.Vector3fc> VECTOR3;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<org.joml.Quaternionfc> QUATERNION;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.item.component.ResolvableProfile> RESOLVABLE_PROFILE;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.entity.HumanoidArm> HUMANOID_ARM;
+  public static final net.minecraft.network.syncher.EntityDataSerializer<net.minecraft.world.item.DyeColor> DYE_COLOR;
+  public static void registerSerializer(net.minecraft.network.syncher.EntityDataSerializer<?>);
+  public static net.minecraft.network.syncher.EntityDataSerializer<?> getSerializer(int);
+  public static int getSerializedId(net.minecraft.network.syncher.EntityDataSerializer<?>);
+}

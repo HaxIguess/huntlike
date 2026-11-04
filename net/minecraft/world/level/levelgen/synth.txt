@@ -1,0 +1,207 @@
+Compiled from "NoiseStack.java"
+class net.minecraft.world.level.levelgen.synth.NoiseStack$Perlin extends net.minecraft.world.level.levelgen.synth.NoiseStack {
+  public float get(double, double, double);
+  public void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+}
+Compiled from "NoiseStack.java"
+class net.minecraft.world.level.levelgen.synth.NoiseStack$SmearedPerlin extends net.minecraft.world.level.levelgen.synth.NoiseStack {
+  public float get(double, double, double);
+  public void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+}
+Compiled from "GradientNoise.java"
+public final class net.minecraft.world.level.levelgen.synth.GradientNoise$Gradient extends java.lang.Record {
+  protected net.minecraft.world.level.levelgen.synth.GradientNoise$Gradient(int, int, int);
+  public double dot(double, double, double);
+  public float dot(float, float, float);
+  public float dotXz(float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+  public int z();
+}
+Compiled from "NormalNoise.java"
+public final class net.minecraft.world.level.levelgen.synth.NormalNoise {
+  public static final double TARGET_DEVIATION;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.synth.NormalNoise> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>> CODEC;
+  public static net.minecraft.world.level.levelgen.synth.NormalNoise$Builder builder();
+  public static net.minecraft.world.level.levelgen.synth.NormalNoise createParity(int, it.unimi.dsi.fastutil.doubles.DoubleList);
+  public static net.minecraft.world.level.levelgen.synth.NormalNoise createParity(int, double...);
+  public net.minecraft.world.level.levelgen.synth.Noise create(net.minecraft.util.RandomSource);
+  public net.minecraft.world.level.levelgen.synth.Noise createForLegacyNetherBiome(net.minecraft.util.RandomSource);
+  public net.minecraft.util.Interval range();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public void parityConfigString(java.lang.StringBuilder, net.minecraft.util.RandomSource);
+}
+Compiled from "NoiseStack.java"
+public class net.minecraft.world.level.levelgen.synth.NoiseStack implements net.minecraft.world.level.levelgen.synth.Noise {
+  protected final net.minecraft.world.level.levelgen.synth.NoiseStack$Layer[] layers;
+  public static net.minecraft.world.level.levelgen.synth.NoiseStack$Builder builder();
+  public net.minecraft.util.Interval range();
+  public float get(double, double, double);
+  public float get(double, double);
+  public void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+  public net.minecraft.world.level.levelgen.synth.Noise getLayer(int);
+}
+Compiled from "LegacyFbmInitializer.java"
+public class net.minecraft.world.level.levelgen.synth.LegacyFbmInitializer {
+  public net.minecraft.world.level.levelgen.synth.LegacyFbmInitializer();
+  public static net.minecraft.world.level.levelgen.synth.NoiseStack createForLegacyNetherBiome(net.minecraft.util.RandomSource, int, it.unimi.dsi.fastutil.doubles.DoubleList);
+}
+Compiled from "NormalNoise.java"
+final class net.minecraft.world.level.levelgen.synth.NormalNoise$OctaveInfo extends java.lang.Record {
+  public java.lang.String seed();
+  public double absAmplitude();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int octaveIndex();
+  public double frequency();
+  public double amplitude();
+}
+Compiled from "NormalNoise.java"
+public class net.minecraft.world.level.levelgen.synth.NormalNoise$Builder {
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setBaseAmplitude(double);
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setBaseOctave(int);
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setOctaveCount(int);
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setNormalize(boolean);
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setLegacyNormalization();
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Builder setAmplitudeModifier(int, double);
+  public net.minecraft.world.level.levelgen.synth.NormalNoise build();
+}
+Compiled from "BlendedNoise.java"
+public final class net.minecraft.world.level.levelgen.synth.BlendedNoise$FbmSet extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.synth.BlendedNoise$FbmSet(net.minecraft.world.level.levelgen.synth.NoiseStack, net.minecraft.world.level.levelgen.synth.NoiseStack, net.minecraft.world.level.levelgen.synth.NoiseStack);
+  public void parityConfigString(java.lang.StringBuilder);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.synth.NoiseStack minLimitNoise();
+  public net.minecraft.world.level.levelgen.synth.NoiseStack maxLimitNoise();
+  public net.minecraft.world.level.levelgen.synth.NoiseStack mainNoise();
+}
+Compiled from "BlendedNoise.java"
+public final class net.minecraft.world.level.levelgen.synth.BlendedNoise extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DensityFunction {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.synth.BlendedNoise> CODEC;
+  public static final net.minecraft.resources.Identifier NOISE_SEED;
+  public net.minecraft.world.level.levelgen.synth.BlendedNoise(double, double, double, double, double);
+  public net.minecraft.world.level.levelgen.synth.BlendedNoise$FbmSet createFbmSet(net.minecraft.util.RandomSource);
+  public static net.minecraft.world.level.levelgen.synth.NoiseStack createFbm(net.minecraft.util.RandomSource, int, double, double);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler compileSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler compileSampler(net.minecraft.util.RandomSource);
+  public net.minecraft.util.Interval range();
+  public int domainAxes();
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.synth.BlendedNoise> codec();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewriteChildren(net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double xzScale();
+  public double yScale();
+  public double xzFactor();
+  public double yFactor();
+  public double smearScaleMultiplier();
+}
+Compiled from "SimplexNoise.java"
+public class net.minecraft.world.level.levelgen.synth.SimplexNoise extends net.minecraft.world.level.levelgen.synth.GradientNoise {
+  public static final net.minecraft.util.Interval RANGE;
+  public static final double STANDARD_DEVIATION;
+  public net.minecraft.world.level.levelgen.synth.SimplexNoise(net.minecraft.util.RandomSource);
+  public net.minecraft.world.level.levelgen.synth.SimplexNoise(net.minecraft.util.RandomSource, boolean);
+  public net.minecraft.util.Interval range();
+  public float get(double, double);
+  public float get(double, double, double);
+}
+Compiled from "NormalNoise.java"
+public final class net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization extends java.lang.Enum<net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization> {
+  public static final net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization DISABLED;
+  public static final net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization ENABLED;
+  public static final net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization LEGACY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization> CODEC;
+  public static net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization[] values();
+  public static net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization valueOf(java.lang.String);
+}
+Compiled from "PerlinNoise.java"
+public class net.minecraft.world.level.levelgen.synth.PerlinNoise extends net.minecraft.world.level.levelgen.synth.GradientNoise {
+  public static final net.minecraft.util.Interval RANGE;
+  public static final double STANDARD_DEVIATION;
+  public net.minecraft.world.level.levelgen.synth.PerlinNoise(net.minecraft.util.RandomSource);
+  public net.minecraft.util.Interval range();
+  public float get(double, double);
+  public float get(double, double, double);
+  public float noiseWithDerivative(double, double, double, float[]);
+  protected float sampleAndLerp(int, int, int, float, float, float, float);
+  public void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+  public void parityConfigString(java.lang.StringBuilder);
+}
+Compiled from "Noise.java"
+public interface net.minecraft.world.level.levelgen.synth.Noise {
+  public abstract net.minecraft.util.Interval range();
+  public abstract float get(double, double);
+  public abstract float get(double, double, double);
+  public default void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+}
+Compiled from "NoiseStack.java"
+public final class net.minecraft.world.level.levelgen.synth.NoiseStack$Layer extends java.lang.Record {
+  protected net.minecraft.world.level.levelgen.synth.NoiseStack$Layer(net.minecraft.world.level.levelgen.synth.Noise, double, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.synth.Noise noise();
+  public double frequency();
+  public float amplitude();
+}
+Compiled from "SmearedPerlinNoise.java"
+public class net.minecraft.world.level.levelgen.synth.SmearedPerlinNoise extends net.minecraft.world.level.levelgen.synth.PerlinNoise {
+  public net.minecraft.world.level.levelgen.synth.SmearedPerlinNoise(net.minecraft.util.RandomSource, double);
+  public static net.minecraft.util.Interval range(double);
+  public net.minecraft.util.Interval range();
+  public float get(double, double, double);
+  public void addToVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, double, double, float);
+}
+Compiled from "NoiseUtils.java"
+public class net.minecraft.world.level.levelgen.synth.NoiseUtils {
+  public net.minecraft.world.level.levelgen.synth.NoiseUtils();
+  public static double biasTowardsExtreme(double, double);
+  public static void parityNoiseOctaveConfigString(java.lang.StringBuilder, double, double, double, byte[]);
+  public static void parityNoiseOctaveConfigString(java.lang.StringBuilder, double, double, double, int[]);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.synth.package-info {
+}
+Compiled from "NoiseStack.java"
+public class net.minecraft.world.level.levelgen.synth.NoiseStack$Builder {
+  public net.minecraft.world.level.levelgen.synth.NoiseStack$Builder add(net.minecraft.world.level.levelgen.synth.Noise, double, float);
+  public net.minecraft.world.level.levelgen.synth.NoiseStack$Builder addStack(net.minecraft.world.level.levelgen.synth.NoiseStack, double, float);
+  public net.minecraft.world.level.levelgen.synth.NoiseStack build();
+}
+Compiled from "NormalNoise.java"
+final class net.minecraft.world.level.levelgen.synth.NormalNoise$Parameters extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.synth.NormalNoise$Parameters> CODEC;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double baseAmplitude();
+  public int baseOctave();
+  public int octaveCount();
+  public net.minecraft.world.level.levelgen.synth.NormalNoise$Normalization normalize();
+  public it.unimi.dsi.fastutil.doubles.DoubleList amplitudeModifiers();
+}
+Compiled from "GradientNoise.java"
+public abstract class net.minecraft.world.level.levelgen.synth.GradientNoise implements net.minecraft.world.level.levelgen.synth.Noise {
+  protected static final net.minecraft.world.level.levelgen.synth.GradientNoise$Gradient[] GRADIENT;
+  protected final byte[] perms;
+  protected final double offsetX;
+  protected final double offsetY;
+  protected final double offsetZ;
+  protected net.minecraft.world.level.levelgen.synth.GradientNoise(net.minecraft.util.RandomSource);
+  protected net.minecraft.world.level.levelgen.synth.GradientNoise(net.minecraft.util.RandomSource, double);
+  protected int permute(int);
+  protected net.minecraft.world.level.levelgen.synth.GradientNoise$Gradient permuteToGrad(int);
+  protected static float gradDot(int, float, float, float);
+  protected static double wrap(double);
+}

@@ -1,0 +1,97 @@
+Compiled from "HappyGhast.java"
+class net.minecraft.world.entity.animal.happyghast.HappyGhast$BabyFlyingPathNavigation extends net.minecraft.world.entity.ai.navigation.FlyingPathNavigation {
+  public net.minecraft.world.entity.animal.happyghast.HappyGhast$BabyFlyingPathNavigation(net.minecraft.world.entity.animal.happyghast.HappyGhast, net.minecraft.world.level.Level);
+  protected boolean canMoveDirectly(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+}
+Compiled from "HappyGhastAi.java"
+public class net.minecraft.world.entity.animal.happyghast.HappyGhastAi {
+  public net.minecraft.world.entity.animal.happyghast.HappyGhastAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.happyghast.HappyGhast>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.happyghast.HappyGhast);
+}
+Compiled from "HappyGhast.java"
+class net.minecraft.world.entity.animal.happyghast.HappyGhast$HappyGhastBodyRotationControl extends net.minecraft.world.entity.ai.control.BodyRotationControl {
+  public net.minecraft.world.entity.animal.happyghast.HappyGhast$HappyGhastBodyRotationControl(net.minecraft.world.entity.animal.happyghast.HappyGhast);
+  public void clientTick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.happyghast.package-info {
+}
+Compiled from "HappyGhast.java"
+class net.minecraft.world.entity.animal.happyghast.HappyGhast$HappyGhastLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public void tick();
+}
+Compiled from "HappyGhast.java"
+class net.minecraft.world.entity.animal.happyghast.HappyGhast$HappyGhastFloatGoal extends net.minecraft.world.entity.ai.goal.FloatGoal {
+  public net.minecraft.world.entity.animal.happyghast.HappyGhast$HappyGhastFloatGoal(net.minecraft.world.entity.animal.happyghast.HappyGhast);
+  public boolean canUse();
+}
+Compiled from "HappyGhast.java"
+public class net.minecraft.world.entity.animal.happyghast.HappyGhast extends net.minecraft.world.entity.animal.Animal {
+  public static final float BABY_SCALE;
+  public static final int WANDER_GROUND_DISTANCE;
+  public static final int SMALL_RESTRICTION_RADIUS;
+  public static final int LARGE_RESTRICTION_RADIUS;
+  public static final int RESTRICTION_RADIUS_BUFFER;
+  public static final int FAST_HEALING_TICKS;
+  public static final int SLOW_HEALING_TICKS;
+  public static final int MAX_PASSANGERS;
+  public static final float SPEED_MULTIPLIER_WHEN_PANICKING;
+  public net.minecraft.world.entity.animal.happyghast.HappyGhast(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.happyghast.HappyGhast>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void ageBoundaryReached();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected float sanitizeScale(float);
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  public boolean onClimbable();
+  public void travel(net.minecraft.world.phys.Vec3);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  public boolean canBreatheUnderwater();
+  protected boolean shouldStayCloseToLeashHolder();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public float getVoicePitch();
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  public int getAmbientSoundInterval();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected float getSoundVolume();
+  public int getMaxSpawnClusterSize();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean canFallInLove();
+  public float getAgeScale();
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  protected void addPassenger(net.minecraft.world.entity.Entity);
+  protected void removePassenger(net.minecraft.world.entity.Entity);
+  protected boolean canAddPassenger(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.LivingEntity getControllingPassenger();
+  protected net.minecraft.world.phys.Vec3 getRiddenInput(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.phys.Vec2 getRiddenRotation(net.minecraft.world.entity.LivingEntity);
+  protected void tickRidden(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.happyghast.HappyGhast> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.happyghast.HappyGhast> getBrain();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public void aiStep();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean isLeashHolder();
+  public boolean staysStill();
+  public boolean supportQuadLeashAsHolder();
+  public net.minecraft.world.phys.Vec3[] getQuadLeashHolderOffsets();
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public double leashElasticDistance();
+  public double leashSnapDistance();
+  public void onElasticLeashPull();
+  public void notifyLeashHolder(net.minecraft.world.entity.Leashable);
+  public void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isOnStillTimeout();
+  protected net.minecraft.world.entity.ai.control.BodyRotationControl createBodyControl();
+  public boolean canBeCollidedWith(net.minecraft.world.entity.Entity);
+  public boolean isFlyingVehicle();
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+}

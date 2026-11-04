@@ -1,0 +1,905 @@
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$ContextIntProviderArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$ContextIntProviderArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "OperationArgument.java"
+public interface net.minecraft.commands.arguments.OperationArgument$Operation {
+  public abstract void apply(net.minecraft.world.scores.ScoreAccess, net.minecraft.world.scores.ScoreAccess) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+public interface net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T> extends java.util.function.Predicate<net.minecraft.core.Holder<T>> {
+  public abstract com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, net.minecraft.tags.TagKey<T>> unwrap();
+  public abstract <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public abstract java.lang.String asPrintable();
+}
+Compiled from "ResourceArgument.java"
+public class net.minecraft.commands.arguments.ResourceArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.core.Holder$Reference<T>> {
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_UNKNOWN_RESOURCE;
+  public static final com.mojang.brigadier.exceptions.Dynamic3CommandExceptionType ERROR_INVALID_RESOURCE_TYPE;
+  public net.minecraft.commands.arguments.ResourceArgument(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceArgument<T> resource(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.core.Holder$Reference<T> getResource(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.entity.ai.attributes.Attribute> getAttribute(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.entity.EntityType<?>> getSummonableEntityType(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.effect.MobEffect> getMobEffect(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.item.enchantment.Enchantment> getEnchantment(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.clock.WorldClock> getClock(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.timeline.Timeline> getTimeline(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.core.Holder$Reference<T> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "SlotArgument.java"
+public class net.minecraft.commands.arguments.SlotArgument implements com.mojang.brigadier.arguments.ArgumentType<java.lang.Integer> {
+  public net.minecraft.commands.arguments.SlotArgument();
+  public static net.minecraft.commands.arguments.SlotArgument slot();
+  public static int getSlot(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public java.lang.Integer parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "MessageArgument.java"
+public class net.minecraft.commands.arguments.MessageArgument implements net.minecraft.commands.arguments.SignedArgument<net.minecraft.commands.arguments.MessageArgument$Message> {
+  public net.minecraft.commands.arguments.MessageArgument();
+  public static net.minecraft.commands.arguments.MessageArgument message();
+  public static net.minecraft.network.chat.Component getMessage(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static void resolveChatMessage(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, java.util.function.Consumer<net.minecraft.network.chat.PlayerChatMessage>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.MessageArgument$Message parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> net.minecraft.commands.arguments.MessageArgument$Message parse(com.mojang.brigadier.StringReader, S) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader, java.lang.Object) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "EntityArgument.java"
+public class net.minecraft.commands.arguments.EntityArgument$Info implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.EntityArgument, net.minecraft.commands.arguments.EntityArgument$Info$Template> {
+  public net.minecraft.commands.arguments.EntityArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.EntityArgument$Info$Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.EntityArgument$Info$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.EntityArgument$Info$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.EntityArgument$Info$Template unpack(net.minecraft.commands.arguments.EntityArgument);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "ScoreHolderArgument.java"
+public interface net.minecraft.commands.arguments.ScoreHolderArgument$Result {
+  public abstract java.util.Collection<net.minecraft.world.scores.ScoreHolder> getNames(net.minecraft.commands.CommandSourceStack, java.util.function.Supplier<java.util.Collection<net.minecraft.world.scores.ScoreHolder>>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T> implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T>, net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T>.Template> {
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T>.Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T>.Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T>.Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info<T>.Template unpack(net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T>);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T>> {
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T> resourceOrTagKey(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T> getResourceOrTagKey(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>, com.mojang.brigadier.exceptions.DynamicCommandExceptionType) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ScoreHolderArgument.java"
+public class net.minecraft.commands.arguments.ScoreHolderArgument$SelectorResult implements net.minecraft.commands.arguments.ScoreHolderArgument$Result {
+  public net.minecraft.commands.arguments.ScoreHolderArgument$SelectorResult(net.minecraft.commands.arguments.selector.EntitySelector);
+  public java.util.Collection<net.minecraft.world.scores.ScoreHolder> getNames(net.minecraft.commands.CommandSourceStack, java.util.function.Supplier<java.util.Collection<net.minecraft.world.scores.ScoreHolder>>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+final class net.minecraft.commands.arguments.ResourceOrTagKeyArgument$TagResult<T> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T> {
+  public com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, net.minecraft.tags.TagKey<T>> unwrap();
+  public <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public boolean test(net.minecraft.core.Holder<T>);
+  public java.lang.String asPrintable();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.tags.TagKey<T> key();
+  public boolean test(java.lang.Object);
+}
+Compiled from "SwingAnimationArgument.java"
+public class net.minecraft.commands.arguments.SwingAnimationArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.item.SwingAnimationType> {
+  public net.minecraft.commands.arguments.SwingAnimationArgument();
+  public net.minecraft.world.item.SwingAnimationType parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public static net.minecraft.commands.arguments.SwingAnimationArgument swingAnimationType();
+  public static net.minecraft.world.item.SwingAnimationType getSwingAnimationType(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "TeamArgument.java"
+public class net.minecraft.commands.arguments.TeamArgument implements com.mojang.brigadier.arguments.ArgumentType<java.lang.String> {
+  public net.minecraft.commands.arguments.TeamArgument();
+  public static net.minecraft.commands.arguments.TeamArgument team();
+  public static net.minecraft.world.scores.PlayerTeam getTeam(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.String parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$LootPredicateArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$LootPredicateArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "GameProfileArgument.java"
+public class net.minecraft.commands.arguments.GameProfileArgument$SelectorResult implements net.minecraft.commands.arguments.GameProfileArgument$Result {
+  public net.minecraft.commands.arguments.GameProfileArgument$SelectorResult(net.minecraft.commands.arguments.selector.EntitySelector);
+  public java.util.Collection<net.minecraft.server.players.NameAndId> getNames(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "GameProfileArgument.java"
+public class net.minecraft.commands.arguments.GameProfileArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.GameProfileArgument$Result> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_UNKNOWN_PLAYER;
+  public net.minecraft.commands.arguments.GameProfileArgument();
+  public static java.util.Collection<net.minecraft.server.players.NameAndId> getGameProfiles(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.GameProfileArgument gameProfile();
+  public <S> net.minecraft.commands.arguments.GameProfileArgument$Result parse(com.mojang.brigadier.StringReader, S) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.GameProfileArgument$Result parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader, java.lang.Object) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceSelectorArgument.java"
+public final class net.minecraft.commands.arguments.ResourceSelectorArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ResourceSelectorArgument<T>> {
+  public net.minecraft.commands.arguments.ResourceSelectorArgument<T> instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceSelectorArgument<T>, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "SlotSourceArgument.java"
+public interface net.minecraft.commands.arguments.SlotSourceArgument$Result {
+  public abstract net.minecraft.world.item.slot.SlotSource value();
+  public abstract java.util.Optional<java.lang.String> name();
+}
+Compiled from "DimensionArgument.java"
+public class net.minecraft.commands.arguments.DimensionArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.resources.Identifier> {
+  public net.minecraft.commands.arguments.DimensionArgument();
+  public net.minecraft.resources.Identifier parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public static net.minecraft.commands.arguments.DimensionArgument dimension();
+  public static net.minecraft.server.level.ServerLevel getDimension(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "SlotSourceArgument.java"
+public final class net.minecraft.commands.arguments.SlotSourceArgument$LiteralResult extends java.lang.Record implements net.minecraft.commands.arguments.SlotSourceArgument$Result {
+  public net.minecraft.commands.arguments.SlotSourceArgument$LiteralResult(net.minecraft.world.inventory.SlotRange);
+  public net.minecraft.world.item.slot.SlotSource value();
+  public java.util.Optional<java.lang.String> name();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.inventory.SlotRange slotRange();
+}
+Compiled from "ResourceOrTagArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrTagArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T>> {
+  public net.minecraft.commands.arguments.ResourceOrTagArgument(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceOrTagArgument<T> resourceOrTag(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T> getResourceOrTag(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "HexColorArgument.java"
+public class net.minecraft.commands.arguments.HexColorArgument implements com.mojang.brigadier.arguments.ArgumentType<java.lang.Integer> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_HEX;
+  public static net.minecraft.commands.arguments.HexColorArgument hexColor();
+  public static java.lang.Integer getHexColor(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public java.lang.Integer parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceKeyArgument.java"
+public final class net.minecraft.commands.arguments.ResourceKeyArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ResourceKeyArgument<T>> {
+  public net.minecraft.commands.arguments.ResourceKeyArgument<T> instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceKeyArgument<T>, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "EntityAnchorArgument.java"
+public class net.minecraft.commands.arguments.EntityAnchorArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.EntityAnchorArgument$Anchor> {
+  public net.minecraft.commands.arguments.EntityAnchorArgument();
+  public static net.minecraft.commands.arguments.EntityAnchorArgument$Anchor getAnchor(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.EntityAnchorArgument anchor();
+  public net.minecraft.commands.arguments.EntityAnchorArgument$Anchor parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "RangeArgument.java"
+public class net.minecraft.commands.arguments.RangeArgument$Floats implements net.minecraft.commands.arguments.RangeArgument<net.minecraft.advancements.predicates.MinMaxBounds$Doubles> {
+  public net.minecraft.commands.arguments.RangeArgument$Floats();
+  public static net.minecraft.advancements.predicates.MinMaxBounds$Doubles getRange(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.advancements.predicates.MinMaxBounds$Doubles parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "RangeArgument.java"
+public interface net.minecraft.commands.arguments.RangeArgument<T extends net.minecraft.advancements.predicates.MinMaxBounds<?>> extends com.mojang.brigadier.arguments.ArgumentType<T> {
+  public static net.minecraft.commands.arguments.RangeArgument$Ints intRange();
+  public static net.minecraft.commands.arguments.RangeArgument$Floats floatRange();
+}
+Compiled from "SlotSourceArgument.java"
+public class net.minecraft.commands.arguments.SlotSourceArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.SlotSourceArgument$Result> {
+  public static net.minecraft.commands.arguments.SlotSourceArgument slotSource(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.SlotSourceArgument$Result getSlotSource(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.SlotSourceArgument$Result parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrIdArgument.java"
+public interface net.minecraft.commands.arguments.ResourceOrIdArgument$Result<T, O> {
+  public abstract net.minecraft.core.Holder<T> parse(com.mojang.brigadier.ImmutableStringReader, net.minecraft.core.HolderLookup$Provider, com.mojang.serialization.DynamicOps<O>, com.mojang.serialization.Codec<T>, net.minecraft.core.HolderLookup$RegistryLookup<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "NbtPathArgument.java"
+interface net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public abstract void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public abstract void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public abstract net.minecraft.nbt.Tag createPreferredParentTag();
+  public abstract int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public abstract int removeTag(net.minecraft.nbt.Tag);
+  public default java.util.List<net.minecraft.nbt.Tag> get(java.util.List<net.minecraft.nbt.Tag>);
+  public default java.util.List<net.minecraft.nbt.Tag> getOrCreate(java.util.List<net.minecraft.nbt.Tag>, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public default java.util.List<net.minecraft.nbt.Tag> collect(java.util.List<net.minecraft.nbt.Tag>, java.util.function.BiConsumer<net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>>);
+}
+Compiled from "NbtPathArgument.java"
+public class net.minecraft.commands.arguments.NbtPathArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.NbtPathArgument$NbtPath> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_INVALID_NODE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_DATA_TOO_DEEP;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_NOTHING_FOUND;
+  public net.minecraft.commands.arguments.NbtPathArgument();
+  public static net.minecraft.commands.arguments.NbtPathArgument nbtPath();
+  public static net.minecraft.commands.arguments.NbtPathArgument$NbtPath getPath(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.NbtPathArgument$NbtPath parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$ContextFloatProviderArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$ContextFloatProviderArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrTagArgument.java"
+final class net.minecraft.commands.arguments.ResourceOrTagArgument$ResourceResult<T> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T> {
+  public com.mojang.datafixers.util.Either<net.minecraft.core.Holder$Reference<T>, net.minecraft.core.HolderSet$Named<T>> unwrap();
+  public <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public boolean test(net.minecraft.core.Holder<T>);
+  public java.lang.String asPrintable();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder$Reference<T> value();
+  public boolean test(java.lang.Object);
+}
+Compiled from "ScoreHolderArgument.java"
+public class net.minecraft.commands.arguments.ScoreHolderArgument$Info implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ScoreHolderArgument, net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template> {
+  public net.minecraft.commands.arguments.ScoreHolderArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template unpack(net.minecraft.commands.arguments.ScoreHolderArgument);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$MatchObjectNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public net.minecraft.commands.arguments.NbtPathArgument$MatchObjectNode(java.lang.String, net.minecraft.nbt.CompoundTag);
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "ResourceSelectorArgument.java"
+public class net.minecraft.commands.arguments.ResourceSelectorArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<java.util.Collection<net.minecraft.core.Holder$Reference<T>>> {
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_NO_MATCHES;
+  public java.util.Collection<net.minecraft.core.Holder$Reference<T>> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static <T> java.util.Collection<net.minecraft.core.Holder$Reference<T>> parse(com.mojang.brigadier.StringReader, net.minecraft.core.HolderLookup<T>);
+  public static <T> net.minecraft.commands.arguments.ResourceSelectorArgument<T> resourceSelector(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> java.util.Collection<net.minecraft.core.Holder$Reference<T>> getSelectedResources(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ArgumentSignatures.java"
+public final class net.minecraft.commands.arguments.ArgumentSignatures$Entry extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.commands.arguments.ArgumentSignatures$Entry> STREAM_CODEC;
+  public net.minecraft.commands.arguments.ArgumentSignatures$Entry(java.lang.String, net.minecraft.network.chat.MessageSignature);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.network.chat.MessageSignature signature();
+}
+Compiled from "ResourceOrTagArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T> implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceOrTagArgument<T>, net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T>.Template> {
+  public net.minecraft.commands.arguments.ResourceOrTagArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T>.Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T>.Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T>.Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ResourceOrTagArgument$Info<T>.Template unpack(net.minecraft.commands.arguments.ResourceOrTagArgument<T>);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "AngleArgument.java"
+public final class net.minecraft.commands.arguments.AngleArgument$SingleAngle {
+  public float getAngle(net.minecraft.commands.CommandSourceStack);
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$MatchElementNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public net.minecraft.commands.arguments.NbtPathArgument$MatchElementNode(net.minecraft.nbt.CompoundTag);
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "ArgumentSignatures.java"
+public final class net.minecraft.commands.arguments.ArgumentSignatures extends java.lang.Record {
+  public static final net.minecraft.commands.arguments.ArgumentSignatures EMPTY;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.commands.arguments.ArgumentSignatures> STREAM_CODEC;
+  public net.minecraft.commands.arguments.ArgumentSignatures(java.util.List<net.minecraft.commands.arguments.ArgumentSignatures$Entry>);
+  public static net.minecraft.commands.arguments.ArgumentSignatures signCommand(net.minecraft.network.chat.SignableCommand<?>, net.minecraft.commands.arguments.ArgumentSignatures$Signer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.commands.arguments.ArgumentSignatures$Entry> entries();
+}
+Compiled from "ParticleArgument.java"
+public class net.minecraft.commands.arguments.ParticleArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.core.particles.ParticleOptions> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_UNKNOWN_PARTICLE;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_OPTIONS;
+  public net.minecraft.commands.arguments.ParticleArgument(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.ParticleArgument particle(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.particles.ParticleOptions getParticle(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.core.particles.ParticleOptions parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public static net.minecraft.core.particles.ParticleOptions readParticle(com.mojang.brigadier.StringReader, net.minecraft.core.HolderLookup$Provider) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceKeyArgument.java"
+public class net.minecraft.commands.arguments.ResourceKeyArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.resources.ResourceKey<T>> {
+  public net.minecraft.commands.arguments.ResourceKeyArgument(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public net.minecraft.commands.arguments.ResourceKeyArgument(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, java.util.function.Predicate<T>);
+  public static <T> net.minecraft.commands.arguments.ResourceKeyArgument<T> key(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.commands.arguments.ResourceKeyArgument<T> key(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, java.util.function.Predicate<T>);
+  public static <T> net.minecraft.resources.ResourceKey<T> getRegistryKey(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>, com.mojang.brigadier.exceptions.DynamicCommandExceptionType) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.level.levelgen.structure.Structure> getStructure(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.Holder$Reference<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool> getStructureTemplatePool(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.world.item.crafting.RecipeHolder<?> getRecipe(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.advancements.AdvancementHolder getAdvancement(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.resources.ResourceKey<T> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ArgumentSignatures.java"
+public interface net.minecraft.commands.arguments.ArgumentSignatures$Signer {
+  public abstract net.minecraft.network.chat.MessageSignature sign(java.lang.String);
+}
+Compiled from "ResourceOrIdArgument.java"
+public final class net.minecraft.commands.arguments.ResourceOrIdArgument$InlineResult<T, O> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrIdArgument$Result<T, O> {
+  public net.minecraft.commands.arguments.ResourceOrIdArgument$InlineResult(O);
+  public net.minecraft.core.Holder<T> parse(com.mojang.brigadier.ImmutableStringReader, net.minecraft.core.HolderLookup$Provider, com.mojang.serialization.DynamicOps<O>, com.mojang.serialization.Codec<T>, net.minecraft.core.HolderLookup$RegistryLookup<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public O value();
+}
+Compiled from "OperationArgument.java"
+interface net.minecraft.commands.arguments.OperationArgument$SimpleOperation extends net.minecraft.commands.arguments.OperationArgument$Operation {
+  public abstract int apply(int, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public default void apply(net.minecraft.world.scores.ScoreAccess, net.minecraft.world.scores.ScoreAccess) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "TemplateRotationArgument.java"
+public class net.minecraft.commands.arguments.TemplateRotationArgument extends net.minecraft.commands.arguments.StringRepresentableArgument<net.minecraft.world.level.block.Rotation> {
+  public static net.minecraft.commands.arguments.TemplateRotationArgument templateRotation();
+  public static net.minecraft.world.level.block.Rotation getRotation(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+}
+Compiled from "ResourceSelectorArgument.java"
+public class net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T> implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceSelectorArgument<T>, net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T>.Template> {
+  public net.minecraft.commands.arguments.ResourceSelectorArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T>.Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T>.Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T>.Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ResourceSelectorArgument$Info<T>.Template unpack(net.minecraft.commands.arguments.ResourceSelectorArgument<T>);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "GameProfileArgument.java"
+public interface net.minecraft.commands.arguments.GameProfileArgument$Result {
+  public abstract java.util.Collection<net.minecraft.server.players.NameAndId> getNames(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$AllElementsNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public static final net.minecraft.commands.arguments.NbtPathArgument$AllElementsNode INSTANCE;
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "AngleArgument.java"
+public class net.minecraft.commands.arguments.AngleArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.AngleArgument$SingleAngle> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_COMPLETE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_INVALID_ANGLE;
+  public net.minecraft.commands.arguments.AngleArgument();
+  public static net.minecraft.commands.arguments.AngleArgument angle();
+  public static float getAngle(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.AngleArgument$SingleAngle parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "TimeArgument.java"
+public class net.minecraft.commands.arguments.TimeArgument implements com.mojang.brigadier.arguments.ArgumentType<java.lang.Integer> {
+  public static net.minecraft.commands.arguments.TimeArgument time();
+  public static net.minecraft.commands.arguments.TimeArgument time(int);
+  public java.lang.Integer parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "IdentifierArgument.java"
+public class net.minecraft.commands.arguments.IdentifierArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.resources.Identifier> {
+  public net.minecraft.commands.arguments.IdentifierArgument();
+  public static net.minecraft.commands.arguments.IdentifierArgument id();
+  public static net.minecraft.resources.Identifier getId(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.resources.Identifier parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "MessageArgument.java"
+public final class net.minecraft.commands.arguments.MessageArgument$Part extends java.lang.Record {
+  public net.minecraft.commands.arguments.MessageArgument$Part(int, int, net.minecraft.commands.arguments.selector.EntitySelector);
+  public net.minecraft.network.chat.Component toComponent(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int start();
+  public int end();
+  public net.minecraft.commands.arguments.selector.EntitySelector selector();
+}
+Compiled from "ObjectiveArgument.java"
+public class net.minecraft.commands.arguments.ObjectiveArgument implements com.mojang.brigadier.arguments.ArgumentType<java.lang.String> {
+  public net.minecraft.commands.arguments.ObjectiveArgument();
+  public static net.minecraft.commands.arguments.ObjectiveArgument objective();
+  public static net.minecraft.world.scores.Objective getObjective(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.world.scores.Objective getWritableObjective(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.String parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+public final class net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T>> {
+  public net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T> instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceOrTagKeyArgument<T>, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "ResourceOrTagArgument.java"
+final class net.minecraft.commands.arguments.ResourceOrTagArgument$TagResult<T> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T> {
+  public com.mojang.datafixers.util.Either<net.minecraft.core.Holder$Reference<T>, net.minecraft.core.HolderSet$Named<T>> unwrap();
+  public <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public boolean test(net.minecraft.core.Holder<T>);
+  public java.lang.String asPrintable();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet$Named<T> tag();
+  public boolean test(java.lang.Object);
+}
+Compiled from "OperationArgument.java"
+public class net.minecraft.commands.arguments.OperationArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.OperationArgument$Operation> {
+  public net.minecraft.commands.arguments.OperationArgument();
+  public static net.minecraft.commands.arguments.OperationArgument operation();
+  public static net.minecraft.commands.arguments.OperationArgument$Operation getOperation(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.OperationArgument$Operation parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "EntityArgument.java"
+public class net.minecraft.commands.arguments.EntityArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.selector.EntitySelector> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_SINGLE_ENTITY;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_SINGLE_PLAYER;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_ONLY_PLAYERS_ALLOWED;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType NO_ENTITIES_FOUND;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType NO_PLAYERS_FOUND;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_SELECTORS_NOT_ALLOWED;
+  protected net.minecraft.commands.arguments.EntityArgument(boolean, boolean);
+  public static net.minecraft.commands.arguments.EntityArgument entity();
+  public static net.minecraft.world.entity.Entity getEntity(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.EntityArgument entities();
+  public static java.util.Collection<? extends net.minecraft.world.entity.Entity> getEntities(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<? extends net.minecraft.world.entity.Entity> getOptionalEntities(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<net.minecraft.server.level.ServerPlayer> getOptionalPlayers(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.EntityArgument player();
+  public static net.minecraft.server.level.ServerPlayer getPlayer(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.EntityArgument players();
+  public static java.util.Collection<net.minecraft.server.level.ServerPlayer> getPlayers(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.selector.EntitySelector parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> net.minecraft.commands.arguments.selector.EntitySelector parse(com.mojang.brigadier.StringReader, S) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader, java.lang.Object) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ComponentArgument.java"
+public class net.minecraft.commands.arguments.ComponentArgument extends net.minecraft.util.parsing.packrat.commands.ParserBasedArgument<net.minecraft.network.chat.Component> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_COMPONENT;
+  public static net.minecraft.network.chat.Component getRawComponent(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.network.chat.Component getResolvedComponent(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, net.minecraft.world.entity.Entity) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.network.chat.Component getResolvedComponent(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.ComponentArgument textComponent(net.minecraft.commands.CommandBuildContext);
+  public java.util.Collection<java.lang.String> getExamples();
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$DialogArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.server.dialog.Dialog> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$DialogArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "SlotSourceArgument.java"
+public final class net.minecraft.commands.arguments.SlotSourceArgument$HolderResult extends java.lang.Record implements net.minecraft.commands.arguments.SlotSourceArgument$Result {
+  public net.minecraft.commands.arguments.SlotSourceArgument$HolderResult(net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource>);
+  public net.minecraft.world.item.slot.SlotSource value();
+  public java.util.Optional<java.lang.String> name();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource> holder();
+}
+Compiled from "TeamColorArgument.java"
+public class net.minecraft.commands.arguments.TeamColorArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.scores.TeamColor> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_VALUE;
+  public static net.minecraft.commands.arguments.TeamColorArgument teamColor();
+  public static net.minecraft.world.scores.TeamColor getTeamColor(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.world.scores.TeamColor parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "EntityArgument.java"
+public final class net.minecraft.commands.arguments.EntityArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.EntityArgument> {
+  public net.minecraft.commands.arguments.EntityArgument instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.EntityArgument, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "SlotsArgument.java"
+public class net.minecraft.commands.arguments.SlotsArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.inventory.SlotRange> {
+  public net.minecraft.commands.arguments.SlotsArgument();
+  public static net.minecraft.commands.arguments.SlotsArgument slots();
+  public static net.minecraft.world.inventory.SlotRange getSlots(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.world.inventory.SlotRange parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$LootTableArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.storage.loot.LootTable> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$LootTableArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "TimeArgument.java"
+public class net.minecraft.commands.arguments.TimeArgument$Info implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.TimeArgument, net.minecraft.commands.arguments.TimeArgument$Info$Template> {
+  public net.minecraft.commands.arguments.TimeArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.TimeArgument$Info$Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.TimeArgument$Info$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.TimeArgument$Info$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.TimeArgument$Info$Template unpack(net.minecraft.commands.arguments.TimeArgument);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "ResourceOrTagArgument.java"
+public interface net.minecraft.commands.arguments.ResourceOrTagArgument$Result<T> extends java.util.function.Predicate<net.minecraft.core.Holder<T>> {
+  public abstract com.mojang.datafixers.util.Either<net.minecraft.core.Holder$Reference<T>, net.minecraft.core.HolderSet$Named<T>> unwrap();
+  public abstract <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public abstract java.lang.String asPrintable();
+}
+Compiled from "WaypointArgument.java"
+public class net.minecraft.commands.arguments.WaypointArgument {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_A_WAYPOINT;
+  public net.minecraft.commands.arguments.WaypointArgument();
+  public static net.minecraft.world.waypoints.WaypointTransmitter getWaypoint(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ScoreHolderArgument.java"
+public final class net.minecraft.commands.arguments.ScoreHolderArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ScoreHolderArgument> {
+  public net.minecraft.commands.arguments.ScoreHolderArgument instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ScoreHolderArgument, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$MatchRootObjectNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public net.minecraft.commands.arguments.NbtPathArgument$MatchRootObjectNode(net.minecraft.nbt.CompoundTag);
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "GameModeArgument.java"
+public class net.minecraft.commands.arguments.GameModeArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.level.GameType> {
+  public net.minecraft.commands.arguments.GameModeArgument();
+  public net.minecraft.world.level.GameType parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public static net.minecraft.commands.arguments.GameModeArgument gameMode();
+  public static net.minecraft.world.level.GameType getGameMode(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "NbtTagArgument.java"
+public class net.minecraft.commands.arguments.NbtTagArgument extends net.minecraft.util.parsing.packrat.commands.ParserBasedArgument<net.minecraft.nbt.Tag> {
+  public static net.minecraft.commands.arguments.NbtTagArgument nbtTag();
+  public static <S> net.minecraft.nbt.Tag getNbtTag(com.mojang.brigadier.context.CommandContext<S>, java.lang.String);
+  public java.util.Collection<java.lang.String> getExamples();
+}
+Compiled from "RangeArgument.java"
+public class net.minecraft.commands.arguments.RangeArgument$Ints implements net.minecraft.commands.arguments.RangeArgument<net.minecraft.advancements.predicates.MinMaxBounds$Ints> {
+  public net.minecraft.commands.arguments.RangeArgument$Ints();
+  public static net.minecraft.advancements.predicates.MinMaxBounds$Ints getRange(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.advancements.predicates.MinMaxBounds$Ints parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "SignedArgument.java"
+public interface net.minecraft.commands.arguments.SignedArgument<T> extends com.mojang.brigadier.arguments.ArgumentType<T> {
+}
+Compiled from "ScoreHolderArgument.java"
+public class net.minecraft.commands.arguments.ScoreHolderArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.ScoreHolderArgument$Result> {
+  public static final com.mojang.brigadier.suggestion.SuggestionProvider<net.minecraft.commands.CommandSourceStack> SUGGEST_SCORE_HOLDERS;
+  public net.minecraft.commands.arguments.ScoreHolderArgument(boolean);
+  public static net.minecraft.world.scores.ScoreHolder getName(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<net.minecraft.world.scores.ScoreHolder> getNames(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<net.minecraft.world.scores.ScoreHolder> getNamesWithDefaultWildcard(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<net.minecraft.world.scores.ScoreHolder> getNames(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String, java.util.function.Supplier<java.util.Collection<net.minecraft.world.scores.ScoreHolder>>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.ScoreHolderArgument scoreHolder();
+  public static net.minecraft.commands.arguments.ScoreHolderArgument scoreHolders();
+  public net.minecraft.commands.arguments.ScoreHolderArgument$Result parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> net.minecraft.commands.arguments.ScoreHolderArgument$Result parse(com.mojang.brigadier.StringReader, S) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader, java.lang.Object) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ScoreboardSlotArgument.java"
+public class net.minecraft.commands.arguments.ScoreboardSlotArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.scores.DisplaySlot> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_VALUE;
+  public static net.minecraft.commands.arguments.ScoreboardSlotArgument displaySlot();
+  public static net.minecraft.world.scores.DisplaySlot getDisplaySlot(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.world.scores.DisplaySlot parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "UuidArgument.java"
+public class net.minecraft.commands.arguments.UuidArgument implements com.mojang.brigadier.arguments.ArgumentType<java.util.UUID> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_INVALID_UUID;
+  public net.minecraft.commands.arguments.UuidArgument();
+  public static java.util.UUID getUuid(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.UuidArgument uuid();
+  public java.util.UUID parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceOrIdArgument.java"
+public final class net.minecraft.commands.arguments.ResourceOrIdArgument$ReferenceResult<T, O> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrIdArgument$Result<T, O> {
+  public net.minecraft.commands.arguments.ResourceOrIdArgument$ReferenceResult(net.minecraft.resources.ResourceKey<T>);
+  public net.minecraft.core.Holder<T> parse(com.mojang.brigadier.ImmutableStringReader, net.minecraft.core.HolderLookup$Provider, com.mojang.serialization.DynamicOps<O>, com.mojang.serialization.Codec<T>, net.minecraft.core.HolderLookup$RegistryLookup<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<T> key();
+}
+Compiled from "ResourceOrTagKeyArgument.java"
+final class net.minecraft.commands.arguments.ResourceOrTagKeyArgument$ResourceResult<T> extends java.lang.Record implements net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<T> {
+  public com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, net.minecraft.tags.TagKey<T>> unwrap();
+  public <E> java.util.Optional<net.minecraft.commands.arguments.ResourceOrTagKeyArgument$Result<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public boolean test(net.minecraft.core.Holder<T>);
+  public java.lang.String asPrintable();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<T> key();
+  public boolean test(java.lang.Object);
+}
+Compiled from "MessageArgument.java"
+public final class net.minecraft.commands.arguments.MessageArgument$Message extends java.lang.Record {
+  public net.minecraft.commands.arguments.MessageArgument$Message(java.lang.String, net.minecraft.commands.arguments.MessageArgument$Part[]);
+  public net.minecraft.network.chat.Component toComponent(net.minecraft.commands.CommandSourceStack, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.MessageArgument$Message parseText(com.mojang.brigadier.StringReader, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String text();
+  public net.minecraft.commands.arguments.MessageArgument$Part[] parts();
+}
+Compiled from "ResourceKeyArgument.java"
+public class net.minecraft.commands.arguments.ResourceKeyArgument$Info<T> implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceKeyArgument<T>, net.minecraft.commands.arguments.ResourceKeyArgument$Info<T>.Template> {
+  public net.minecraft.commands.arguments.ResourceKeyArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ResourceKeyArgument$Info<T>.Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ResourceKeyArgument$Info<T>.Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ResourceKeyArgument$Info<T>.Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ResourceKeyArgument$Info<T>.Template unpack(net.minecraft.commands.arguments.ResourceKeyArgument<T>);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "ResourceArgument.java"
+public class net.minecraft.commands.arguments.ResourceArgument$Info<T> implements net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceArgument<T>, net.minecraft.commands.arguments.ResourceArgument$Info<T>.Template> {
+  public net.minecraft.commands.arguments.ResourceArgument$Info();
+  public void serializeToNetwork(net.minecraft.commands.arguments.ResourceArgument$Info<T>.Template, net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.commands.arguments.ResourceArgument$Info<T>.Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToJson(net.minecraft.commands.arguments.ResourceArgument$Info<T>.Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.arguments.ResourceArgument$Info<T>.Template unpack(net.minecraft.commands.arguments.ResourceArgument<T>);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template unpack(com.mojang.brigadier.arguments.ArgumentType);
+  public void serializeToJson(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, com.google.gson.JsonObject);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo$Template deserializeFromNetwork(net.minecraft.network.FriendlyByteBuf);
+  public void serializeToNetwork(net.minecraft.commands.synchronization.ArgumentTypeInfo$Template, net.minecraft.network.FriendlyByteBuf);
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.core.Holder<T>> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_FAILED_TO_PARSE;
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_NO_SUCH_ELEMENT;
+  public static final com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag> OPS;
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument(net.minecraft.commands.CommandBuildContext, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>);
+  public static <T, O> net.minecraft.util.parsing.packrat.commands.Grammar<net.minecraft.commands.arguments.ResourceOrIdArgument$Result<T, O>> createGrammar(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.DynamicOps<O>);
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$LootTableArgument lootTable(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable> getLootTable(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$LootModifierArgument lootModifier(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction> getLootModifier(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$LootPredicateArgument lootPredicate(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> getLootPredicate(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$ContextFloatProviderArgument floatProvider(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> getFloatProvider(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$ContextIntProviderArgument intProvider(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> getIntProvider(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$FeatureArgument feature(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature> getFeature(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.ResourceOrIdArgument$DialogArgument dialog(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog> getDialog(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.core.Holder<T> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "TemplateMirrorArgument.java"
+public class net.minecraft.commands.arguments.TemplateMirrorArgument extends net.minecraft.commands.arguments.StringRepresentableArgument<net.minecraft.world.level.block.Mirror> {
+  public static net.minecraft.commands.arguments.StringRepresentableArgument<net.minecraft.world.level.block.Mirror> templateMirror();
+  public static net.minecraft.world.level.block.Mirror getMirror(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+}
+Compiled from "NbtPathArgument.java"
+public class net.minecraft.commands.arguments.NbtPathArgument$NbtPath {
+  public static final com.mojang.serialization.Codec<net.minecraft.commands.arguments.NbtPathArgument$NbtPath> CODEC;
+  public static net.minecraft.commands.arguments.NbtPathArgument$NbtPath of(java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.NbtPathArgument$NbtPath(java.lang.String, net.minecraft.commands.arguments.NbtPathArgument$Node[], it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.commands.arguments.NbtPathArgument$Node>);
+  public java.util.List<net.minecraft.nbt.Tag> get(net.minecraft.nbt.Tag) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int countMatching(net.minecraft.nbt.Tag);
+  public java.util.List<net.minecraft.nbt.Tag> getOrCreate(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static boolean isTooDeep(net.minecraft.nbt.Tag, int);
+  public int set(net.minecraft.nbt.Tag, net.minecraft.nbt.Tag) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int insert(int, net.minecraft.nbt.CompoundTag, java.util.List<net.minecraft.nbt.Tag>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int remove(net.minecraft.nbt.Tag);
+  public java.lang.String toString();
+  public java.lang.String asString();
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$FeatureArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.levelgen.feature.Feature> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$FeatureArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ResourceArgument.java"
+public final class net.minecraft.commands.arguments.ResourceArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ResourceArgument<T>> {
+  public net.minecraft.commands.arguments.ResourceArgument<T> instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceArgument<T>, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.package-info {
+}
+Compiled from "EntityAnchorArgument.java"
+public final class net.minecraft.commands.arguments.EntityAnchorArgument$Anchor extends java.lang.Enum<net.minecraft.commands.arguments.EntityAnchorArgument$Anchor> {
+  public static final net.minecraft.commands.arguments.EntityAnchorArgument$Anchor FEET;
+  public static final net.minecraft.commands.arguments.EntityAnchorArgument$Anchor EYES;
+  public static net.minecraft.commands.arguments.EntityAnchorArgument$Anchor[] values();
+  public static net.minecraft.commands.arguments.EntityAnchorArgument$Anchor valueOf(java.lang.String);
+  public static net.minecraft.commands.arguments.EntityAnchorArgument$Anchor getByName(java.lang.String);
+  public net.minecraft.world.phys.Vec3 apply(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.phys.Vec3 apply(net.minecraft.commands.CommandSourceStack);
+}
+Compiled from "StringRepresentableArgument.java"
+public class net.minecraft.commands.arguments.StringRepresentableArgument<T extends java.lang.Enum<T> & net.minecraft.util.StringRepresentable> implements com.mojang.brigadier.arguments.ArgumentType<T> {
+  protected net.minecraft.commands.arguments.StringRepresentableArgument(com.mojang.serialization.Codec<T>, java.util.function.Supplier<T[]>);
+  public T parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  protected java.lang.String convertId(java.lang.String);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$IndexedElementNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public net.minecraft.commands.arguments.NbtPathArgument$IndexedElementNode(int);
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "CompoundTagArgument.java"
+public class net.minecraft.commands.arguments.CompoundTagArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.nbt.CompoundTag> {
+  public static net.minecraft.commands.arguments.CompoundTagArgument compoundTag();
+  public static <S> net.minecraft.nbt.CompoundTag getCompoundTag(com.mojang.brigadier.context.CommandContext<S>, java.lang.String);
+  public net.minecraft.nbt.CompoundTag parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "HeightmapTypeArgument.java"
+public class net.minecraft.commands.arguments.HeightmapTypeArgument extends net.minecraft.commands.arguments.StringRepresentableArgument<net.minecraft.world.level.levelgen.Heightmap$Types> {
+  public static net.minecraft.commands.arguments.HeightmapTypeArgument heightmap();
+  public static net.minecraft.world.level.levelgen.Heightmap$Types getHeightmap(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  protected java.lang.String convertId(java.lang.String);
+}
+Compiled from "ObjectiveCriteriaArgument.java"
+public class net.minecraft.commands.arguments.ObjectiveCriteriaArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.world.scores.criteria.ObjectiveCriteria> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_VALUE;
+  public static net.minecraft.commands.arguments.ObjectiveCriteriaArgument criteria();
+  public static net.minecraft.world.scores.criteria.ObjectiveCriteria getCriteria(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.world.scores.criteria.ObjectiveCriteria parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public <T> java.lang.String getName(net.minecraft.stats.StatType<T>, java.lang.Object);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "StyleArgument.java"
+public class net.minecraft.commands.arguments.StyleArgument extends net.minecraft.util.parsing.packrat.commands.ParserBasedArgument<net.minecraft.network.chat.Style> {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INVALID_STYLE;
+  public static net.minecraft.network.chat.Style getStyle(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.StyleArgument style(net.minecraft.commands.CommandBuildContext);
+  public java.util.Collection<java.lang.String> getExamples();
+}
+Compiled from "ResourceOrIdArgument.java"
+public class net.minecraft.commands.arguments.ResourceOrIdArgument$LootModifierArgument extends net.minecraft.commands.arguments.ResourceOrIdArgument<net.minecraft.world.level.storage.loot.functions.LootItemFunction> {
+  protected net.minecraft.commands.arguments.ResourceOrIdArgument$LootModifierArgument(net.minecraft.commands.CommandBuildContext);
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "NbtPathArgument.java"
+class net.minecraft.commands.arguments.NbtPathArgument$CompoundChildNode implements net.minecraft.commands.arguments.NbtPathArgument$Node {
+  public net.minecraft.commands.arguments.NbtPathArgument$CompoundChildNode(java.lang.String);
+  public void getTag(net.minecraft.nbt.Tag, java.util.List<net.minecraft.nbt.Tag>);
+  public void getOrCreateTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>, java.util.List<net.minecraft.nbt.Tag>);
+  public net.minecraft.nbt.Tag createPreferredParentTag();
+  public int setTag(net.minecraft.nbt.Tag, java.util.function.Supplier<net.minecraft.nbt.Tag>);
+  public int removeTag(net.minecraft.nbt.Tag);
+}
+Compiled from "TimeArgument.java"
+public final class net.minecraft.commands.arguments.TimeArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.TimeArgument> {
+  public net.minecraft.commands.arguments.TimeArgument instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.TimeArgument, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "ResourceOrTagArgument.java"
+public final class net.minecraft.commands.arguments.ResourceOrTagArgument$Info$Template implements net.minecraft.commands.synchronization.ArgumentTypeInfo$Template<net.minecraft.commands.arguments.ResourceOrTagArgument<T>> {
+  public net.minecraft.commands.arguments.ResourceOrTagArgument<T> instantiate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.synchronization.ArgumentTypeInfo<net.minecraft.commands.arguments.ResourceOrTagArgument<T>, ?> type();
+  public com.mojang.brigadier.arguments.ArgumentType instantiate(net.minecraft.commands.CommandBuildContext);
+}

@@ -1,0 +1,503 @@
+Compiled from "Player.java"
+public abstract class net.minecraft.world.entity.player.Player extends net.minecraft.world.entity.Avatar implements net.minecraft.world.entity.ContainerUser {
+  public static final int MAX_HEALTH;
+  public static final int SLEEP_DURATION;
+  public static final int WAKE_UP_DURATION;
+  public static final int ENDER_SLOT_OFFSET;
+  public static final int HELD_ITEM_SLOT;
+  public static final int CRAFTING_SLOT_OFFSET;
+  public static final float DEFAULT_BLOCK_INTERACTION_RANGE;
+  public static final float DEFAULT_ENTITY_INTERACTION_RANGE;
+  public static final float CREATIVE_ENTITY_INTERACTION_RANGE_MODIFIER_VALUE;
+  protected net.minecraft.world.inventory.PlayerEnderChestContainer enderChestInventory;
+  public final net.minecraft.world.inventory.InventoryMenu inventoryMenu;
+  public net.minecraft.world.inventory.AbstractContainerMenu containerMenu;
+  protected net.minecraft.world.food.FoodData foodData;
+  protected int jumpTriggerTime;
+  public int takeXpDelay;
+  protected boolean wasUnderwater;
+  public int experienceLevel;
+  public int totalExperience;
+  public float experienceProgress;
+  protected int enchantmentSeed;
+  protected final float defaultFlySpeed;
+  protected final java.util.List<net.minecraft.resources.Identifier> postEffects;
+  public net.minecraft.world.entity.projectile.FishingHook fishing;
+  protected float hurtDir;
+  public net.minecraft.world.entity.player.Player(net.minecraft.world.level.Level, com.mojang.authlib.GameProfile);
+  protected net.minecraft.world.entity.EntityEquipment createEquipment();
+  public boolean blockActionRestricted(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.GameType);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void tick();
+  protected float getMaxHeadRotationRelativeToBody();
+  public boolean isSecondaryUseActive();
+  protected boolean wantsToStopRiding();
+  protected boolean isStayingOnGroundSurface();
+  protected boolean updateIsUnderwater();
+  public void onAboveBubbleColumn(boolean, net.minecraft.core.BlockPos);
+  public void onInsideBubbleColumn(boolean);
+  protected net.minecraft.world.item.ItemCooldowns createItemCooldowns();
+  protected void updatePlayerPose();
+  protected boolean canPlayerFitWithinBlocksAndEntitiesWhen(net.minecraft.world.entity.Pose);
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  protected net.minecraft.sounds.SoundEvent getSwimSplashSound();
+  protected net.minecraft.sounds.SoundEvent getSwimHighSpeedSplashSound();
+  public int getDimensionChangingDelay();
+  public void playSound(net.minecraft.sounds.SoundEvent, float, float);
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  protected int getFireImmuneTicks();
+  public void handleEntityEvent(byte);
+  protected void closeContainer();
+  protected void doCloseContainer();
+  public void rideTick();
+  public void aiStep();
+  protected void tickRegeneration();
+  public void handleShoulderEntities();
+  protected void removeEntitiesOnShoulder();
+  public int getScore();
+  public void setScore(int);
+  public void increaseScore(int);
+  public void startAutoSpinAttack(int, float, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getWeaponItem();
+  public void die(net.minecraft.world.damagesource.DamageSource);
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+  protected void destroyVanishingCursedItems();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public void handleCreativeModeItemDrop(net.minecraft.world.item.ItemStack);
+  public float getDestroySpeed(net.minecraft.world.level.block.state.BlockState);
+  public boolean hasCorrectToolForDrops(net.minecraft.world.level.block.state.BlockState);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public boolean isInvulnerableTo(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void blockUsingItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource, float, boolean);
+  public boolean canBeSeenAsEnemy();
+  public boolean canHarmPlayer(net.minecraft.world.entity.player.Player);
+  protected void hurtArmor(net.minecraft.world.damagesource.DamageSource, float);
+  protected void hurtHelmet(net.minecraft.world.damagesource.DamageSource, float);
+  protected void actuallyHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean isTextFilteringEnabled();
+  public void openTextEdit(net.minecraft.world.level.block.entity.SignBlockEntity, net.minecraft.world.level.block.entity.SignTextSlot);
+  public void openMinecartCommandBlock(net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock);
+  public void openCommandBlock(net.minecraft.world.level.block.entity.CommandBlockEntity);
+  public void openStructureBlock(net.minecraft.world.level.block.entity.StructureBlockEntity);
+  public void openTestBlock(net.minecraft.world.level.block.entity.TestBlockEntity);
+  public void openTestInstanceBlock(net.minecraft.world.level.block.entity.TestInstanceBlockEntity);
+  public void openJigsawBlock(net.minecraft.world.level.block.entity.JigsawBlockEntity);
+  public void openHorseInventory(net.minecraft.world.entity.animal.equine.AbstractHorse, net.minecraft.world.Container);
+  public void openNautilusInventory(net.minecraft.world.entity.animal.nautilus.AbstractNautilus, net.minecraft.world.Container);
+  public java.util.OptionalInt openMenu(net.minecraft.world.MenuProvider);
+  public void openDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>);
+  public void sendMerchantOffers(int, net.minecraft.world.item.trading.MerchantOffers, int, int, boolean, boolean);
+  public void openItemGui(net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand);
+  public net.minecraft.world.InteractionResult interactOn(net.minecraft.world.entity.Entity, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public void removeVehicle();
+  protected boolean isImmobile();
+  public boolean isAffectedByFluids();
+  protected net.minecraft.world.phys.Vec3 maybeBackOffFromEdge(net.minecraft.world.phys.Vec3, net.minecraft.world.entity.MoverType);
+  public void attack(net.minecraft.world.entity.Entity);
+  public void causeExtraKnockback(net.minecraft.world.entity.Entity, float, net.minecraft.world.phys.Vec3, net.minecraft.world.damagesource.DamageSource, float, boolean);
+  public float getVoicePitch();
+  protected float getEnchantedDamage(net.minecraft.world.entity.Entity, float, net.minecraft.world.damagesource.DamageSource);
+  protected void doAutoAttackOnTouch(net.minecraft.world.entity.LivingEntity);
+  public void crit(net.minecraft.world.entity.Entity);
+  public boolean stabAttack(net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.entity.Entity, float, boolean, boolean, boolean);
+  public void magicCrit(net.minecraft.world.entity.Entity);
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  public boolean isClientAuthoritative();
+  protected boolean isLocalClientAuthoritative();
+  public boolean isLocalPlayer();
+  public net.minecraft.world.entity.MoveSimulationType getMoveSimulationType();
+  public boolean isEffectiveAi();
+  public com.mojang.authlib.GameProfile getGameProfile();
+  public net.minecraft.server.players.NameAndId nameAndId();
+  public net.minecraft.world.entity.player.Inventory getInventory();
+  public net.minecraft.world.entity.player.Abilities getAbilities();
+  public boolean hasInfiniteMaterials();
+  public boolean preventsBlockDrops();
+  public void updateTutorialInventoryAction(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.ClickAction);
+  public boolean hasContainerOpen();
+  public boolean canDropItems();
+  public com.mojang.datafixers.util.Either<net.minecraft.world.entity.player.Player$BedSleepingProblem, net.minecraft.util.Unit> startSleepInBed(net.minecraft.world.level.block.AbstractBedBlock, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.attribute.BedRule, net.minecraft.core.BlockPos);
+  public void stopSleepInBed(boolean, boolean);
+  public void stopSleeping();
+  public boolean isSleepingLongEnough();
+  public int getSleepTimer();
+  public void sendSystemMessage(net.minecraft.network.chat.Component);
+  public void sendOverlayMessage(net.minecraft.network.chat.Component);
+  public void awardStat(net.minecraft.resources.Identifier);
+  public void awardStat(net.minecraft.resources.Identifier, int);
+  public void awardStat(net.minecraft.stats.Stat<?>);
+  public void awardStat(net.minecraft.stats.Stat<?>, int);
+  public void resetStat(net.minecraft.stats.Stat<?>);
+  public int awardRecipes(java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<?>>);
+  public void triggerRecipeCrafted(net.minecraft.world.item.crafting.RecipeHolder<?>, java.util.List<net.minecraft.world.item.ItemStack>);
+  public void travel(net.minecraft.world.phys.Vec3);
+  protected boolean canGlide();
+  public void updateSwimming();
+  protected boolean freeAt(net.minecraft.core.BlockPos);
+  public float getSpeed();
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+  public boolean tryToStartFallFlying();
+  public void startFallFlying();
+  protected void doWaterSplashEffect();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.entity.LivingEntity$Fallsounds getFallSounds();
+  public boolean killedEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+  public void makeStuckInBlock(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.Vec3);
+  public void giveExperiencePoints(int);
+  public int getEnchantmentSeed();
+  public void onEnchantmentPerformed(net.minecraft.world.item.ItemStack, int);
+  public void giveExperienceLevels(int);
+  public int getXpNeededForNextLevel();
+  public void causeFoodExhaustion(float);
+  protected boolean hasEnoughFoodToDoExhaustiveManoeuvres();
+  public net.minecraft.world.food.FoodData getFoodData();
+  public boolean canEat(boolean);
+  public boolean isHurt();
+  public boolean mayBuild();
+  public boolean mayUseItemAt(net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.world.item.ItemStack);
+  protected int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  protected boolean isAlwaysExperienceDropper();
+  public boolean shouldShowName();
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  public void onUpdateAbilities();
+  public net.minecraft.network.chat.Component getName();
+  public java.lang.String getPlainTextName();
+  public net.minecraft.world.inventory.PlayerEnderChestContainer getEnderChestInventory();
+  protected boolean doesEmitEquipEvent(net.minecraft.world.entity.EquipmentSlot);
+  public boolean addItem(net.minecraft.world.item.ItemStack);
+  public abstract net.minecraft.world.level.GameType gameMode();
+  public boolean isSpectator();
+  public boolean isPickable();
+  public boolean isSwimming();
+  public boolean isCreative();
+  public boolean isPushedByFluid();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public java.lang.String getScoreboardName();
+  protected void internalSetAbsorptionAmount(float);
+  public float getAbsorptionAmount();
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public boolean isReducedDebugInfo();
+  public void setReducedDebugInfo(boolean);
+  public void setRemainingFireTicks(int);
+  protected static java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant> extractParrotVariant(net.minecraft.nbt.CompoundTag);
+  protected static java.util.OptionalInt convertParrotVariant(java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant>);
+  public void setShoulderParrotLeft(java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant>);
+  public java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant> getShoulderParrotLeft();
+  public void setShoulderParrotRight(java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant>);
+  public java.util.Optional<net.minecraft.world.entity.animal.parrot.Parrot$Variant> getShoulderParrotRight();
+  public float getCurrentItemAttackStrengthDelay();
+  public boolean cannotAttackWithItem(net.minecraft.world.item.ItemStack, int);
+  public float getAttackStrengthScale(float);
+  public float getItemSwapScale(float);
+  public void resetAttackStrengthTicker();
+  public void onAttack();
+  public void resetOnlyAttackStrengthTicker();
+  public net.minecraft.world.item.ItemCooldowns getCooldowns();
+  protected float getBlockSpeedFactor();
+  public float getLuck();
+  public boolean canUseGameMasterBlocks();
+  public net.minecraft.server.permissions.PermissionSet permissions();
+  public com.google.common.collect.ImmutableList<net.minecraft.world.entity.Pose> getDismountPoses();
+  public net.minecraft.world.item.ItemStack getProjectile(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.phys.Vec3 getRopeHoldPosition(float);
+  public boolean isAlwaysTicking();
+  public boolean isScoping();
+  public boolean shouldBeSaved();
+  public java.util.Optional<net.minecraft.core.GlobalPos> getLastDeathLocation();
+  public void setLastDeathLocation(java.util.Optional<net.minecraft.core.GlobalPos>);
+  public float getHurtDir();
+  public void animateHurt(float);
+  public boolean isMobilityRestricted();
+  public boolean canSprint();
+  protected float getFlyingSpeed();
+  public boolean hasContainerOpen(net.minecraft.world.level.block.entity.ContainerOpenersCounter, net.minecraft.core.BlockPos);
+  public double getContainerInteractionRange();
+  public double blockInteractionRange();
+  public double entityInteractionRange();
+  public boolean isWithinEntityInteractionRange(net.minecraft.world.entity.Entity, double);
+  public boolean isWithinEntityInteractionRange(net.minecraft.world.phys.AABB, double);
+  public boolean isWithinAttackRange(net.minecraft.world.item.ItemStack, net.minecraft.world.phys.AABB, double);
+  public boolean isWithinBlockInteractionRange(net.minecraft.core.BlockPos, double);
+  public boolean shouldRotateWithMinecart();
+  public boolean onClimbable();
+  public java.lang.String debugInfo();
+  public net.minecraft.world.item.component.ResolvableProfile getProfile();
+  public net.minecraft.world.damagesource.DamageSource createDamageSource();
+}
+Compiled from "StackedContents.java"
+class net.minecraft.world.entity.player.StackedContents$RecipePicker {
+  public net.minecraft.world.entity.player.StackedContents$RecipePicker(java.util.List<? extends net.minecraft.world.entity.player.StackedContents$IngredientInfo<T>>);
+  public boolean tryPick(int, net.minecraft.world.entity.player.StackedContents$Output<T>);
+  public int tryPickAll(int, net.minecraft.world.entity.player.StackedContents$Output<T>);
+}
+Compiled from "Inventory.java"
+public class net.minecraft.world.entity.player.Inventory implements net.minecraft.world.Container,net.minecraft.world.Nameable {
+  public static final int POP_TIME_DURATION;
+  public static final int INVENTORY_SIZE;
+  public static final int SELECTION_SIZE;
+  public static final int SLOT_OFFHAND;
+  public static final int SLOT_BODY_ARMOR;
+  public static final int SLOT_SADDLE;
+  public static final int NOT_FOUND_INDEX;
+  public static final it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.world.entity.EquipmentSlot> EQUIPMENT_SLOT_MAPPING;
+  public final net.minecraft.world.entity.player.Player player;
+  public net.minecraft.world.entity.player.Inventory(net.minecraft.world.entity.player.Player, net.minecraft.world.entity.EntityEquipment);
+  public int getSelectedSlot();
+  public void setSelectedSlot(int);
+  public net.minecraft.world.item.ItemStack getSelectedItem();
+  public net.minecraft.world.item.ItemStack setSelectedItem(net.minecraft.world.item.ItemStack);
+  public static int getSelectionSize();
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getNonEquipmentItems();
+  public int getFreeSlot();
+  public void addAndPickItem(net.minecraft.world.item.ItemStack);
+  public void pickSlot(int);
+  public static boolean isHotbarSlot(int);
+  public int findSlotMatchingItem(net.minecraft.world.item.ItemStack);
+  public static boolean isUsableForCrafting(net.minecraft.world.item.ItemStack);
+  public int findSlotMatchingCraftingIngredient(net.minecraft.core.Holder<net.minecraft.world.item.Item>, net.minecraft.world.item.ItemStack);
+  public int getSuitableHotbarSlot();
+  public int clearOrCountMatchingItems(java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean, int, net.minecraft.world.Container);
+  public int getSlotWithRemainingSpace(net.minecraft.world.item.ItemStack);
+  public void tick();
+  public boolean add(net.minecraft.world.item.ItemStack);
+  public boolean add(int, net.minecraft.world.item.ItemStack);
+  public void placeItemBackInInventory(net.minecraft.world.item.ItemStack, net.minecraft.util.Prediction);
+  public void placeItemBackInInventory(net.minecraft.world.item.ItemStack, boolean, net.minecraft.util.Prediction);
+  public net.minecraft.network.protocol.game.ClientboundSetPlayerInventoryPacket createInventoryUpdatePacket(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public void removeItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public void save(net.minecraft.world.level.storage.ValueOutput$TypedOutputList<net.minecraft.world.ItemStackWithSlot>);
+  public void load(net.minecraft.world.level.storage.ValueInput$TypedInputList<net.minecraft.world.ItemStackWithSlot>);
+  public int getContainerSize();
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.network.chat.Component getName();
+  public void dropAll();
+  public void setChanged();
+  public int getTimesChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public boolean contains(net.minecraft.world.item.ItemStack);
+  public boolean contains(net.minecraft.tags.TagKey<net.minecraft.world.item.Item>);
+  public boolean contains(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public void replaceWith(net.minecraft.world.entity.player.Inventory);
+  public void clearContent();
+  public void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public net.minecraft.world.item.ItemStack removeFromSelected(boolean);
+}
+Compiled from "ProfilePublicKey.java"
+public class net.minecraft.world.entity.player.ProfilePublicKey$ValidationException extends net.minecraft.network.chat.ThrowingComponent {
+  public net.minecraft.world.entity.player.ProfilePublicKey$ValidationException(net.minecraft.network.chat.Component);
+}
+Compiled from "PlayerSkin.java"
+public final class net.minecraft.world.entity.player.PlayerSkin extends java.lang.Record {
+  public net.minecraft.world.entity.player.PlayerSkin(net.minecraft.core.ClientAsset$Texture, net.minecraft.core.ClientAsset$Texture, net.minecraft.core.ClientAsset$Texture, net.minecraft.world.entity.player.PlayerModelType, boolean);
+  public static net.minecraft.world.entity.player.PlayerSkin insecure(net.minecraft.core.ClientAsset$Texture, net.minecraft.core.ClientAsset$Texture, net.minecraft.core.ClientAsset$Texture, net.minecraft.world.entity.player.PlayerModelType);
+  public net.minecraft.world.entity.player.PlayerSkin with(net.minecraft.world.entity.player.PlayerSkin$Patch);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.ClientAsset$Texture body();
+  public net.minecraft.core.ClientAsset$Texture cape();
+  public net.minecraft.core.ClientAsset$Texture elytra();
+  public net.minecraft.world.entity.player.PlayerModelType model();
+  public boolean secure();
+}
+Compiled from "Input.java"
+public final class net.minecraft.world.entity.player.Input extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.world.entity.player.Input> STREAM_CODEC;
+  public static final net.minecraft.world.entity.player.Input EMPTY;
+  public net.minecraft.world.entity.player.Input(boolean, boolean, boolean, boolean, boolean, boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean forward();
+  public boolean backward();
+  public boolean left();
+  public boolean right();
+  public boolean jump();
+  public boolean shift();
+  public boolean sprint();
+}
+Compiled from "Abilities.java"
+public final class net.minecraft.world.entity.player.Abilities$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.Abilities$Packed> CODEC;
+  public net.minecraft.world.entity.player.Abilities$Packed(boolean, boolean, boolean, boolean, boolean, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean invulnerable();
+  public boolean flying();
+  public boolean mayFly();
+  public boolean instabuild();
+  public boolean mayBuild();
+  public float flyingSpeed();
+  public float walkingSpeed();
+}
+Compiled from "PlayerModelType.java"
+public final class net.minecraft.world.entity.player.PlayerModelType extends java.lang.Enum<net.minecraft.world.entity.player.PlayerModelType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.player.PlayerModelType SLIM;
+  public static final net.minecraft.world.entity.player.PlayerModelType WIDE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.PlayerModelType> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.player.PlayerModelType> STREAM_CODEC;
+  public static net.minecraft.world.entity.player.PlayerModelType[] values();
+  public static net.minecraft.world.entity.player.PlayerModelType valueOf(java.lang.String);
+  public static net.minecraft.world.entity.player.PlayerModelType byLegacyServicesName(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "ProfilePublicKey.java"
+public final class net.minecraft.world.entity.player.ProfilePublicKey$Data extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.ProfilePublicKey$Data> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.player.ProfilePublicKey$Data> STREAM_CODEC;
+  public net.minecraft.world.entity.player.ProfilePublicKey$Data(java.time.Instant, java.security.PublicKey, byte[]);
+  public boolean hasExpired();
+  public boolean hasExpired(java.time.Duration);
+  public boolean equals(java.lang.Object);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public java.time.Instant expiresAt();
+  public java.security.PublicKey key();
+  public byte[] keySignature();
+}
+Compiled from "PlayerSkin.java"
+public final class net.minecraft.world.entity.player.PlayerSkin$Patch extends java.lang.Record {
+  public static final net.minecraft.world.entity.player.PlayerSkin$Patch EMPTY;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.entity.player.PlayerSkin$Patch> MAP_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.player.PlayerSkin$Patch> STREAM_CODEC;
+  public net.minecraft.world.entity.player.PlayerSkin$Patch(java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.world.entity.player.PlayerModelType>);
+  public static net.minecraft.world.entity.player.PlayerSkin$Patch create(java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture>, java.util.Optional<net.minecraft.world.entity.player.PlayerModelType>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture> body();
+  public java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture> cape();
+  public java.util.Optional<net.minecraft.core.ClientAsset$ResourceTexture> elytra();
+  public java.util.Optional<net.minecraft.world.entity.player.PlayerModelType> model();
+}
+Compiled from "StackedContents.java"
+public class net.minecraft.world.entity.player.StackedContents<T> {
+  public final it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap<T> amounts;
+  public net.minecraft.world.entity.player.StackedContents();
+  public boolean tryPick(java.util.List<? extends net.minecraft.world.entity.player.StackedContents$IngredientInfo<T>>, int, net.minecraft.world.entity.player.StackedContents$Output<T>);
+  public int tryPickAll(java.util.List<? extends net.minecraft.world.entity.player.StackedContents$IngredientInfo<T>>, int, net.minecraft.world.entity.player.StackedContents$Output<T>);
+  public void clear();
+  public void account(T, int);
+  public int getResultUpperBound(java.util.List<? extends net.minecraft.world.entity.player.StackedContents$IngredientInfo<T>>);
+}
+Compiled from "StackedItemContents.java"
+public class net.minecraft.world.entity.player.StackedItemContents {
+  public net.minecraft.world.entity.player.StackedItemContents();
+  public void accountSimpleStack(net.minecraft.world.item.ItemStack);
+  public void accountStack(net.minecraft.world.item.ItemStack);
+  public void accountStack(net.minecraft.world.item.ItemStack, int);
+  public boolean canCraft(net.minecraft.world.item.crafting.Recipe<?>, net.minecraft.world.entity.player.StackedContents$Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+  public boolean canCraft(net.minecraft.world.item.crafting.Recipe<?>, int, net.minecraft.world.entity.player.StackedContents$Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+  public boolean canCraft(java.util.List<? extends net.minecraft.world.entity.player.StackedContents$IngredientInfo<net.minecraft.core.Holder<net.minecraft.world.item.Item>>>, net.minecraft.world.entity.player.StackedContents$Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+  public int getBiggestCraftableStack(net.minecraft.world.item.crafting.Recipe<?>, net.minecraft.world.entity.player.StackedContents$Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+  public int getBiggestCraftableStack(net.minecraft.world.item.crafting.Recipe<?>, int, net.minecraft.world.entity.player.StackedContents$Output<net.minecraft.core.Holder<net.minecraft.world.item.Item>>);
+  public void clear();
+}
+Compiled from "ChatVisiblity.java"
+public final class net.minecraft.world.entity.player.ChatVisiblity extends java.lang.Enum<net.minecraft.world.entity.player.ChatVisiblity> {
+  public static final net.minecraft.world.entity.player.ChatVisiblity FULL;
+  public static final net.minecraft.world.entity.player.ChatVisiblity SYSTEM;
+  public static final net.minecraft.world.entity.player.ChatVisiblity HIDDEN;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.ChatVisiblity> LEGACY_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.player.ChatVisiblity> STREAM_CODEC;
+  public static net.minecraft.world.entity.player.ChatVisiblity[] values();
+  public static net.minecraft.world.entity.player.ChatVisiblity valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+}
+Compiled from "PlayerEquipment.java"
+public class net.minecraft.world.entity.player.PlayerEquipment extends net.minecraft.world.entity.EntityEquipment {
+  public net.minecraft.world.entity.player.PlayerEquipment(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack set(net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack get(net.minecraft.world.entity.EquipmentSlot);
+  public boolean isEmpty();
+}
+Compiled from "ProfilePublicKey.java"
+public final class net.minecraft.world.entity.player.ProfilePublicKey extends java.lang.Record {
+  public static final net.minecraft.network.chat.Component EXPIRED_PROFILE_PUBLIC_KEY;
+  public static final java.time.Duration EXPIRY_GRACE_PERIOD;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.ProfilePublicKey> TRUSTED_CODEC;
+  public net.minecraft.world.entity.player.ProfilePublicKey(net.minecraft.world.entity.player.ProfilePublicKey$Data);
+  public static net.minecraft.world.entity.player.ProfilePublicKey createValidated(net.minecraft.util.SignatureValidator, java.util.UUID, net.minecraft.world.entity.player.ProfilePublicKey$Data) throws net.minecraft.world.entity.player.ProfilePublicKey$ValidationException;
+  public net.minecraft.util.SignatureValidator createSignatureValidator();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.player.ProfilePublicKey$Data data();
+}
+Compiled from "Player.java"
+public final class net.minecraft.world.entity.player.Player$BedSleepingProblem extends java.lang.Record {
+  public static final net.minecraft.world.entity.player.Player$BedSleepingProblem TOO_FAR_AWAY;
+  public static final net.minecraft.world.entity.player.Player$BedSleepingProblem OBSTRUCTED;
+  public static final net.minecraft.world.entity.player.Player$BedSleepingProblem OTHER_PROBLEM;
+  public static final net.minecraft.world.entity.player.Player$BedSleepingProblem NOT_SAFE;
+  public net.minecraft.world.entity.player.Player$BedSleepingProblem(net.minecraft.network.chat.Component);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component message();
+}
+Compiled from "PlayerModelPart.java"
+public final class net.minecraft.world.entity.player.PlayerModelPart extends java.lang.Enum<net.minecraft.world.entity.player.PlayerModelPart> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.player.PlayerModelPart CAPE;
+  public static final net.minecraft.world.entity.player.PlayerModelPart JACKET;
+  public static final net.minecraft.world.entity.player.PlayerModelPart LEFT_SLEEVE;
+  public static final net.minecraft.world.entity.player.PlayerModelPart RIGHT_SLEEVE;
+  public static final net.minecraft.world.entity.player.PlayerModelPart LEFT_PANTS_LEG;
+  public static final net.minecraft.world.entity.player.PlayerModelPart RIGHT_PANTS_LEG;
+  public static final net.minecraft.world.entity.player.PlayerModelPart HAT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.PlayerModelPart> CODEC;
+  public static net.minecraft.world.entity.player.PlayerModelPart[] values();
+  public static net.minecraft.world.entity.player.PlayerModelPart valueOf(java.lang.String);
+  public int getMask();
+  public int getBit();
+  public java.lang.String getId();
+  public net.minecraft.network.chat.Component getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "StackedContents.java"
+public interface net.minecraft.world.entity.player.StackedContents$IngredientInfo<T> {
+  public abstract boolean acceptsItem(T);
+}
+Compiled from "ProfileKeyPair.java"
+public final class net.minecraft.world.entity.player.ProfileKeyPair extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.player.ProfileKeyPair> CODEC;
+  public net.minecraft.world.entity.player.ProfileKeyPair(java.security.PrivateKey, net.minecraft.world.entity.player.ProfilePublicKey, java.time.Instant);
+  public boolean dueRefresh();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.security.PrivateKey privateKey();
+  public net.minecraft.world.entity.player.ProfilePublicKey publicKey();
+  public java.time.Instant refreshedAfter();
+}
+Compiled from "StackedContents.java"
+public interface net.minecraft.world.entity.player.StackedContents$Output<T> {
+  public abstract void accept(T);
+}
+Compiled from "Abilities.java"
+public class net.minecraft.world.entity.player.Abilities {
+  public boolean invulnerable;
+  public boolean flying;
+  public boolean mayfly;
+  public boolean instabuild;
+  public boolean mayBuild;
+  public net.minecraft.world.entity.player.Abilities();
+  public float getFlyingSpeed();
+  public void setFlyingSpeed(float);
+  public float getWalkingSpeed();
+  public void setWalkingSpeed(float);
+  public net.minecraft.world.entity.player.Abilities$Packed pack();
+  public void apply(net.minecraft.world.entity.player.Abilities$Packed);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.player.package-info {
+}

@@ -1,0 +1,52 @@
+Compiled from "BrandPayload.java"
+public final class net.minecraft.network.protocol.common.custom.BrandPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.common.custom.BrandPayload> STREAM_CODEC;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.minecraft.network.protocol.common.custom.BrandPayload> TYPE;
+  public net.minecraft.network.protocol.common.custom.BrandPayload(java.lang.String);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.minecraft.network.protocol.common.custom.BrandPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String brand();
+}
+Compiled from "CustomPacketPayload.java"
+public final class net.minecraft.network.protocol.common.custom.CustomPacketPayload$TypeAndCodec<B extends net.minecraft.network.FriendlyByteBuf, T extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> extends java.lang.Record {
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$TypeAndCodec(net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T>, net.minecraft.network.codec.StreamCodec<B, T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T> type();
+  public net.minecraft.network.codec.StreamCodec<B, T> codec();
+}
+Compiled from "CustomPacketPayload.java"
+public interface net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public abstract net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public static <B extends io.netty.buffer.ByteBuf, T extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> net.minecraft.network.codec.StreamCodec<B, T> codec(net.minecraft.network.codec.StreamMemberEncoder<B, T>, net.minecraft.network.codec.StreamDecoder<B, T>);
+  public static <T extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T> createType(java.lang.String);
+  public static <B extends net.minecraft.network.FriendlyByteBuf> net.minecraft.network.codec.StreamCodec<B, net.minecraft.network.protocol.common.custom.CustomPacketPayload> codec(net.minecraft.network.protocol.common.custom.CustomPacketPayload$FallbackProvider<B>, java.util.List<net.minecraft.network.protocol.common.custom.CustomPacketPayload$TypeAndCodec<? super B, ?>>);
+}
+Compiled from "CustomPacketPayload.java"
+public final class net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> extends java.lang.Record {
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+}
+Compiled from "DiscardedPayload.java"
+public final class net.minecraft.network.protocol.common.custom.DiscardedPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public net.minecraft.network.protocol.common.custom.DiscardedPayload(net.minecraft.resources.Identifier);
+  public static <T extends net.minecraft.network.FriendlyByteBuf> net.minecraft.network.codec.StreamCodec<T, net.minecraft.network.protocol.common.custom.DiscardedPayload> codec(net.minecraft.resources.Identifier, int);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.minecraft.network.protocol.common.custom.DiscardedPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.common.custom.package-info {
+}
+Compiled from "CustomPacketPayload.java"
+public interface net.minecraft.network.protocol.common.custom.CustomPacketPayload$FallbackProvider<B extends net.minecraft.network.FriendlyByteBuf> {
+  public abstract net.minecraft.network.codec.StreamCodec<B, ? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> create(net.minecraft.resources.Identifier);
+}

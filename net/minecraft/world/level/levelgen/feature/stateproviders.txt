@@ -1,0 +1,161 @@
+Compiled from "CopyPropertiesProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider(net.minecraft.world.level.block.Block);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> source();
+}
+Compiled from "BlockStateProvider.java"
+public interface net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> TYPED_CODEC;
+  public static final com.mojang.serialization.Codec<com.mojang.datafixers.util.Either<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>> STATE_OR_PROVIDER_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>> CODEC;
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider of(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider of(net.minecraft.world.level.block.Block);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> holderOf(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> holderOf(net.minecraft.world.level.block.Block);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> codec();
+  public abstract net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public default net.minecraft.world.level.block.state.BlockState getOptionalState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+}
+Compiled from "BlockStateProviderTypes.java"
+public interface net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderTypes {
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>>);
+}
+Compiled from "NoiseBasedStateProvider.java"
+public abstract class net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  protected final long seed;
+  protected final net.minecraft.world.level.levelgen.synth.NormalNoise parameters;
+  protected final float scale;
+  protected final net.minecraft.world.level.levelgen.synth.Noise noise;
+  protected static <P extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider> com.mojang.datafixers.Products$P3<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<P>, java.lang.Long, net.minecraft.world.level.levelgen.synth.NormalNoise, java.lang.Float> noiseCodec(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<P>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider> codec();
+  protected net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider(long, net.minecraft.world.level.levelgen.synth.NormalNoise, float);
+  protected float getNoiseValue(net.minecraft.core.BlockPos, double);
+}
+Compiled from "DualNoiseProvider.java"
+public class net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider(net.minecraft.util.InclusiveRange<java.lang.Integer>, net.minecraft.world.level.levelgen.synth.NormalNoise, float, long, net.minecraft.world.level.levelgen.synth.NormalNoise, float, java.util.List<net.minecraft.world.level.block.state.BlockState>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.DualNoiseProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  protected float getSlowNoiseValue(net.minecraft.core.BlockPos);
+}
+Compiled from "RandomBlockProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.RandomBlockProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RandomBlockProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RandomBlockProvider(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RandomBlockProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState getOptionalState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> blocks();
+}
+Compiled from "RandomizedIntStateProvider.java"
+public class net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider, net.minecraft.world.level.block.state.properties.IntegerProperty, net.minecraft.util.valueproviders.IntProvider);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.lang.String, net.minecraft.util.valueproviders.IntProvider);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+}
+Compiled from "SimpleStateProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider(net.minecraft.world.level.block.state.BlockState);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.state.BlockState state();
+}
+Compiled from "NoiseThresholdProvider.java"
+public class net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider(long, net.minecraft.world.level.levelgen.synth.NormalNoise, float, float, float, net.minecraft.world.level.block.state.BlockState, java.util.List<net.minecraft.world.level.block.state.BlockState>, java.util.List<net.minecraft.world.level.block.state.BlockState>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.NoiseThresholdProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+}
+Compiled from "RotatedBlockProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.RotatedBlockProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RotatedBlockProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RotatedBlockProvider(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RotatedBlockProvider(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.Optional<net.minecraft.core.Direction>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RotatedBlockProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> state();
+  public java.util.Optional<net.minecraft.core.Direction> direction();
+}
+Compiled from "RuleBasedStateProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Rule extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Rule> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Rule(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate ifTrue();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> then();
+}
+Compiled from "WeightedStateProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider(net.minecraft.util.random.WeightedList<net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider(net.minecraft.util.random.WeightedList$Builder<net.minecraft.world.level.block.state.BlockState>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.random.WeightedList<net.minecraft.world.level.block.state.BlockState> weightedList();
+}
+Compiled from "NoiseProvider.java"
+public class net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseBasedStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider> CODEC;
+  protected final java.util.List<net.minecraft.world.level.block.state.BlockState> states;
+  protected static <P extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider> com.mojang.datafixers.Products$P4<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<P>, java.lang.Long, net.minecraft.world.level.levelgen.synth.NormalNoise, java.lang.Float, java.util.List<net.minecraft.world.level.block.state.BlockState>> noiseProviderCodec(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<P>);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider(long, net.minecraft.world.level.levelgen.synth.NormalNoise, float, java.util.List<net.minecraft.world.level.block.state.BlockState>);
+  public com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.feature.stateproviders.NoiseProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  protected net.minecraft.world.level.block.state.BlockState getRandomState(java.util.List<net.minecraft.world.level.block.state.BlockState>, net.minecraft.core.BlockPos, double);
+  protected net.minecraft.world.level.block.state.BlockState getRandomState(java.util.List<net.minecraft.world.level.block.state.BlockState>, float);
+}
+Compiled from "RuleBasedStateProvider.java"
+public final class net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider extends java.lang.Record implements net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider> CODEC;
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.List<net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Rule>);
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider ifTrueThenProvide(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.block.Block);
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider ifTrueThenProvide(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider> codec();
+  public net.minecraft.world.level.block.state.BlockState getState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState getOptionalState(net.minecraft.world.level.LevelAccessor, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder builder();
+  public static net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder builder(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> fallback();
+  public java.util.List<net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Rule> rules();
+}
+Compiled from "RuleBasedStateProvider.java"
+public class net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder {
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder ifTrueThenProvide(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder ifTrueThenProvide(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.block.Block);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider$Builder ifTrueThenProvide(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider build();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.feature.stateproviders.package-info {
+}

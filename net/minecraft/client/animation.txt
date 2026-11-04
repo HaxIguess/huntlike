@@ -1,0 +1,88 @@
+Compiled from "AnimationChannel.java"
+public interface net.minecraft.client.animation.AnimationChannel$Target {
+  public abstract void apply(net.minecraft.client.model.geom.ModelPart, org.joml.Vector3f);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.animation.package-info {
+}
+Compiled from "AnimationChannel.java"
+public class net.minecraft.client.animation.AnimationChannel$Targets {
+  public static final net.minecraft.client.animation.AnimationChannel$Target POSITION;
+  public static final net.minecraft.client.animation.AnimationChannel$Target ROTATION;
+  public static final net.minecraft.client.animation.AnimationChannel$Target SCALE;
+  public net.minecraft.client.animation.AnimationChannel$Targets();
+}
+Compiled from "AnimationChannel.java"
+public interface net.minecraft.client.animation.AnimationChannel$Interpolation {
+  public abstract org.joml.Vector3f apply(org.joml.Vector3f, float, net.minecraft.client.animation.Keyframe[], int, int, float);
+}
+Compiled from "Keyframe.java"
+public final class net.minecraft.client.animation.Keyframe extends java.lang.Record {
+  public net.minecraft.client.animation.Keyframe(float, org.joml.Vector3fc, net.minecraft.client.animation.AnimationChannel$Interpolation);
+  public net.minecraft.client.animation.Keyframe(float, org.joml.Vector3fc, org.joml.Vector3fc, net.minecraft.client.animation.AnimationChannel$Interpolation);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float timestamp();
+  public org.joml.Vector3fc preTarget();
+  public org.joml.Vector3fc postTarget();
+  public net.minecraft.client.animation.AnimationChannel$Interpolation interpolation();
+}
+Compiled from "KeyframeAnimation.java"
+public class net.minecraft.client.animation.KeyframeAnimation {
+  public void applyStatic();
+  public void applyWalk(float, float, float, float);
+  public void apply(net.minecraft.world.entity.AnimationState, float);
+  public void apply(net.minecraft.world.entity.AnimationState, float, float);
+  public void apply(long, float);
+}
+Compiled from "AnimationChannel.java"
+public final class net.minecraft.client.animation.AnimationChannel extends java.lang.Record {
+  public net.minecraft.client.animation.AnimationChannel(net.minecraft.client.animation.AnimationChannel$Target, net.minecraft.client.animation.Keyframe...);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.animation.AnimationChannel$Target target();
+  public net.minecraft.client.animation.Keyframe[] keyframes();
+}
+Compiled from "AnimationDefinition.java"
+public class net.minecraft.client.animation.AnimationDefinition$Builder {
+  public static net.minecraft.client.animation.AnimationDefinition$Builder withLength(float);
+  public net.minecraft.client.animation.AnimationDefinition$Builder looping();
+  public net.minecraft.client.animation.AnimationDefinition$Builder addAnimation(java.lang.String, net.minecraft.client.animation.AnimationChannel);
+  public net.minecraft.client.animation.AnimationDefinition build();
+}
+Compiled from "AnimationChannel.java"
+public class net.minecraft.client.animation.AnimationChannel$Interpolations {
+  public static final net.minecraft.client.animation.AnimationChannel$Interpolation LINEAR;
+  public static final net.minecraft.client.animation.AnimationChannel$Interpolation CATMULLROM;
+  public net.minecraft.client.animation.AnimationChannel$Interpolations();
+}
+Compiled from "AnimationDefinition.java"
+public final class net.minecraft.client.animation.AnimationDefinition extends java.lang.Record {
+  public net.minecraft.client.animation.AnimationDefinition(float, boolean, java.util.Map<java.lang.String, java.util.List<net.minecraft.client.animation.AnimationChannel>>);
+  public net.minecraft.client.animation.KeyframeAnimation bake(net.minecraft.client.model.geom.ModelPart);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float lengthInSeconds();
+  public boolean looping();
+  public java.util.Map<java.lang.String, java.util.List<net.minecraft.client.animation.AnimationChannel>> boneAnimations();
+}
+Compiled from "KeyframeAnimations.java"
+public class net.minecraft.client.animation.KeyframeAnimations {
+  public net.minecraft.client.animation.KeyframeAnimations();
+  public static org.joml.Vector3f posVec(float, float, float);
+  public static org.joml.Vector3f degreeVec(float, float, float);
+  public static org.joml.Vector3f scaleVec(double, double, double);
+}
+Compiled from "KeyframeAnimation.java"
+final class net.minecraft.client.animation.KeyframeAnimation$Entry extends java.lang.Record {
+  public void apply(float, float, org.joml.Vector3f);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.model.geom.ModelPart part();
+  public net.minecraft.client.animation.AnimationChannel$Target target();
+  public net.minecraft.client.animation.Keyframe[] keyframes();
+}

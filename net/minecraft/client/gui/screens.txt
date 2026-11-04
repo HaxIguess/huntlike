@@ -1,0 +1,606 @@
+Compiled from "InBedChatScreen.java"
+public class net.minecraft.client.gui.screens.InBedChatScreen extends net.minecraft.client.gui.screens.ChatScreen {
+  public net.minecraft.client.gui.screens.InBedChatScreen(java.lang.String, boolean);
+  protected void init();
+  public void onClose();
+  public void onPlayerWokeUp();
+}
+Compiled from "RecoverWorldDataScreen.java"
+public class net.minecraft.client.gui.screens.RecoverWorldDataScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.RecoverWorldDataScreen(net.minecraft.client.Minecraft, it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess);
+  protected void init();
+  protected void repositionElements();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public void onClose();
+}
+Compiled from "GenericWaitingScreen.java"
+public class net.minecraft.client.gui.screens.GenericWaitingScreen extends net.minecraft.client.gui.screens.Screen {
+  public static net.minecraft.client.gui.screens.GenericWaitingScreen createWaitingWithoutButton(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public static net.minecraft.client.gui.screens.GenericWaitingScreen createWaiting(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.lang.Runnable);
+  public static net.minecraft.client.gui.screens.GenericWaitingScreen createCompleted(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.lang.Runnable);
+  protected net.minecraft.client.gui.screens.GenericWaitingScreen(net.minecraft.network.chat.Component, boolean, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.lang.Runnable, int, boolean, boolean);
+  protected void init();
+  public void tick();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean shouldCloseOnEsc();
+  public void onClose();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+}
+Compiled from "PresetFlatWorldScreen.java"
+public class net.minecraft.client.gui.screens.PresetFlatWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.network.chat.Component UNKNOWN_PRESET;
+  public net.minecraft.client.gui.screens.PresetFlatWorldScreen(net.minecraft.client.gui.screens.CreateFlatWorldScreen);
+  public static net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings fromString(net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block>, net.minecraft.core.HolderGetter<net.minecraft.world.level.biome.Biome>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.structure.StructureSet>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature>, java.lang.String, net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings);
+  protected void init();
+  public boolean mouseScrolled(double, double, double, double);
+  public void resize(int, int);
+  public void onClose();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateButtonValidity(boolean);
+}
+Compiled from "ChatScreen.java"
+public class net.minecraft.client.gui.screens.ChatScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final double MOUSE_SCROLL_SPEED;
+  public static final int USAGE_BACKGROUND_COLOR;
+  protected net.minecraft.client.gui.components.EditBox input;
+  protected java.lang.String initial;
+  protected boolean isDraft;
+  protected net.minecraft.client.gui.screens.ChatScreen$ExitReason exitReason;
+  public net.minecraft.client.gui.screens.ChatScreen(java.lang.String, boolean);
+  public net.minecraft.client.gui.screens.ChatScreen(java.lang.String, boolean, boolean);
+  protected void init();
+  protected void setInitialFocus();
+  public void resize(int, int);
+  public void onClose();
+  public void removed();
+  protected boolean shouldDiscardDraft();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean mouseScrolled(double, double, double, double);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void insertText(java.lang.String, boolean);
+  public void moveInHistory(int);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean isPauseScreen();
+  public boolean isAllowedInPortal();
+  protected void updateNarrationState(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void handleChatInput(java.lang.String, boolean);
+  public java.lang.String normalizeChatMessage(java.lang.String);
+}
+Compiled from "ConfirmScreen.java"
+public class net.minecraft.client.gui.screens.ConfirmScreen extends net.minecraft.client.gui.screens.Screen {
+  protected final net.minecraft.network.chat.Component message;
+  protected final net.minecraft.client.gui.layouts.LinearLayout layout;
+  protected net.minecraft.network.chat.Component yesButtonComponent;
+  protected net.minecraft.network.chat.Component noButtonComponent;
+  protected net.minecraft.client.gui.components.Button yesButton;
+  protected net.minecraft.client.gui.components.Button noButton;
+  protected final it.unimi.dsi.fastutil.booleans.BooleanConsumer callback;
+  public net.minecraft.client.gui.screens.ConfirmScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.screens.ConfirmScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  protected void init();
+  protected void repositionElements();
+  protected void addAdditionalText();
+  protected net.minecraft.client.gui.layouts.LayoutElement addMessage();
+  protected void addButtons(net.minecraft.client.gui.layouts.LinearLayout);
+  public void setDelay(int);
+  public void tick();
+  public boolean shouldCloseOnEsc();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+}
+Compiled from "CreateFlatWorldScreen.java"
+abstract class net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry> {
+}
+Compiled from "MenuScreens.java"
+public interface net.minecraft.client.gui.screens.MenuScreens$ScreenConstructor<T extends net.minecraft.world.inventory.AbstractContainerMenu, U extends net.minecraft.client.gui.screens.Screen & net.minecraft.client.gui.screens.inventory.MenuAccess<T>> {
+  public default void fromPacket(net.minecraft.network.chat.Component, net.minecraft.world.inventory.MenuType<T>, net.minecraft.client.Minecraft, int);
+  public abstract U create(T, net.minecraft.world.entity.player.Inventory, net.minecraft.network.chat.Component);
+}
+Compiled from "CreateFlatWorldScreen.java"
+class net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry> {
+  public net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList(net.minecraft.client.gui.screens.CreateFlatWorldScreen);
+  public void setSelected(net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry);
+  public void resetRows();
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "LoadingDotsText.java"
+public class net.minecraft.client.gui.screens.LoadingDotsText {
+  public net.minecraft.client.gui.screens.LoadingDotsText();
+  public static java.lang.String get(long);
+}
+Compiled from "DisconnectedScreen.java"
+public class net.minecraft.client.gui.screens.DisconnectedScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.DisconnectedScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.screens.DisconnectedScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.screens.DisconnectedScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, net.minecraft.network.DisconnectionDetails);
+  public net.minecraft.client.gui.screens.DisconnectedScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, net.minecraft.network.DisconnectionDetails, net.minecraft.network.chat.Component);
+  protected void init();
+  protected void repositionElements();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public boolean shouldCloseOnEsc();
+}
+Compiled from "ChatScreen.java"
+public final class net.minecraft.client.gui.screens.ChatScreen$ExitReason extends java.lang.Enum<net.minecraft.client.gui.screens.ChatScreen$ExitReason> {
+  public static final net.minecraft.client.gui.screens.ChatScreen$ExitReason INTENTIONAL;
+  public static final net.minecraft.client.gui.screens.ChatScreen$ExitReason INTERRUPTED;
+  public static final net.minecraft.client.gui.screens.ChatScreen$ExitReason DONE;
+  public static net.minecraft.client.gui.screens.ChatScreen$ExitReason[] values();
+  public static net.minecraft.client.gui.screens.ChatScreen$ExitReason valueOf(java.lang.String);
+}
+Compiled from "MenuScreens.java"
+public class net.minecraft.client.gui.screens.MenuScreens {
+  public net.minecraft.client.gui.screens.MenuScreens();
+  public static <T extends net.minecraft.world.inventory.AbstractContainerMenu> void create(net.minecraft.world.inventory.MenuType<T>, net.minecraft.client.Minecraft, int, net.minecraft.network.chat.Component);
+  public static <M extends net.minecraft.world.inventory.AbstractContainerMenu, U extends net.minecraft.client.gui.screens.Screen & net.minecraft.client.gui.screens.inventory.MenuAccess<M>> void register(net.minecraft.world.inventory.MenuType<? extends M>, net.minecraft.client.gui.screens.MenuScreens$ScreenConstructor<M, U>);
+  public static boolean selfTest();
+}
+Compiled from "DatapackLoadFailureScreen.java"
+public class net.minecraft.client.gui.screens.DatapackLoadFailureScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.DatapackLoadFailureScreen(java.lang.Runnable, java.lang.Runnable);
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean shouldCloseOnEsc();
+}
+Compiled from "ConnectScreen.java"
+public class net.minecraft.client.gui.screens.ConnectScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.network.chat.Component ABORT_CONNECTION;
+  public static final net.minecraft.network.chat.Component UNKNOWN_HOST_MESSAGE;
+  public static void startConnecting(net.minecraft.client.gui.screens.Screen, net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.resolver.ServerAddress, net.minecraft.client.multiplayer.ServerData, boolean, net.minecraft.client.multiplayer.TransferState);
+  public void tick();
+  public boolean shouldCloseOnEsc();
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "Overlay.java"
+public abstract class net.minecraft.client.gui.screens.Overlay implements net.minecraft.client.gui.components.Renderable {
+  public net.minecraft.client.gui.screens.Overlay();
+  public boolean isPausing();
+  public void tick();
+}
+Compiled from "BanNoticeScreens.java"
+public class net.minecraft.client.gui.screens.BanNoticeScreens {
+  public static final net.minecraft.network.chat.Component NAME_BAN_TITLE;
+  public net.minecraft.client.gui.screens.BanNoticeScreens();
+  public static net.minecraft.client.gui.screens.ConfirmLinkScreen create(it.unimi.dsi.fastutil.booleans.BooleanConsumer, com.mojang.authlib.minecraft.BanDetails);
+  public static net.minecraft.client.gui.screens.ConfirmLinkScreen createSkinBan(java.lang.Runnable);
+  public static net.minecraft.client.gui.screens.ConfirmLinkScreen createNameBan(java.lang.String, java.lang.Runnable);
+}
+Compiled from "ConfirmLinkScreen.java"
+public class net.minecraft.client.gui.screens.ConfirmLinkScreen extends net.minecraft.client.gui.screens.ConfirmScreen {
+  public net.minecraft.client.gui.screens.ConfirmLinkScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, java.net.URI, boolean);
+  public net.minecraft.client.gui.screens.ConfirmLinkScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, java.net.URI, boolean);
+  public net.minecraft.client.gui.screens.ConfirmLinkScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.net.URI, net.minecraft.network.chat.Component, boolean);
+  protected static net.minecraft.network.chat.MutableComponent confirmMessage(boolean, java.lang.String);
+  protected static net.minecraft.network.chat.MutableComponent confirmMessage(boolean);
+  protected void addAdditionalText();
+  protected void addButtons(net.minecraft.client.gui.layouts.LinearLayout);
+  public void copyToClipboard();
+  public static void confirmLinkNow(net.minecraft.client.gui.screens.Screen, java.net.URI, boolean);
+  public static void confirmLinkNow(net.minecraft.client.gui.screens.Screen, java.net.URI);
+  public static net.minecraft.client.gui.components.Button$OnPress confirmLink(net.minecraft.client.gui.screens.Screen, java.net.URI, boolean);
+  public static net.minecraft.client.gui.components.Button$OnPress confirmLink(net.minecraft.client.gui.screens.Screen, java.net.URI);
+}
+Compiled from "CreateBuffetWorldScreen.java"
+class net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList$Entry> {
+  public void setSelected(net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList$Entry);
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "LevelLoadingScreen.java"
+public final class net.minecraft.client.gui.screens.LevelLoadingScreen$Reason extends java.lang.Enum<net.minecraft.client.gui.screens.LevelLoadingScreen$Reason> {
+  public static final net.minecraft.client.gui.screens.LevelLoadingScreen$Reason NETHER_PORTAL;
+  public static final net.minecraft.client.gui.screens.LevelLoadingScreen$Reason END_PORTAL;
+  public static final net.minecraft.client.gui.screens.LevelLoadingScreen$Reason OTHER;
+  public static net.minecraft.client.gui.screens.LevelLoadingScreen$Reason[] values();
+  public static net.minecraft.client.gui.screens.LevelLoadingScreen$Reason valueOf(java.lang.String);
+}
+Compiled from "FileFixerAbortedScreen.java"
+public class net.minecraft.client.gui.screens.FileFixerAbortedScreen extends net.minecraft.client.gui.screens.Screen {
+  protected final net.minecraft.client.gui.layouts.LinearLayout layout;
+  protected net.minecraft.client.gui.components.Button backButton;
+  protected net.minecraft.client.gui.components.Button reportBugButton;
+  protected final java.lang.Runnable callback;
+  public net.minecraft.client.gui.screens.FileFixerAbortedScreen(java.lang.Runnable, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  protected void init();
+  protected void repositionElements();
+  protected void addButtons(net.minecraft.client.gui.layouts.LinearLayout);
+  public boolean shouldCloseOnEsc();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+}
+Compiled from "ProgressScreen.java"
+public class net.minecraft.client.gui.screens.ProgressScreen extends net.minecraft.client.gui.screens.Screen implements net.minecraft.util.ProgressListener {
+  public net.minecraft.client.gui.screens.ProgressScreen(boolean);
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  public void progressStartNoAbort(net.minecraft.network.chat.Component);
+  public void progressStart(net.minecraft.network.chat.Component);
+  public void progressStage(net.minecraft.network.chat.Component);
+  public void progressStagePercentage(int);
+  public void stop();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "CreditsAndAttributionScreen.java"
+public class net.minecraft.client.gui.screens.CreditsAndAttributionScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.CreditsAndAttributionScreen(net.minecraft.client.gui.screens.Screen);
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+}
+Compiled from "CreateFlatWorldScreen.java"
+public class net.minecraft.client.gui.screens.CreateFlatWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  protected final net.minecraft.client.gui.screens.worldselection.CreateWorldScreen parent;
+  public net.minecraft.client.gui.screens.CreateFlatWorldScreen(net.minecraft.client.gui.screens.worldselection.CreateWorldScreen, java.util.function.Consumer<net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings>, net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings);
+  public net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings settings();
+  public void setConfig(net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings);
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+}
+Compiled from "DirectJoinServerScreen.java"
+public class net.minecraft.client.gui.screens.DirectJoinServerScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.DirectJoinServerScreen(net.minecraft.client.gui.screens.Screen, it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.client.multiplayer.ServerData);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  protected void init();
+  protected void setInitialFocus();
+  public void resize(int, int);
+  public void onClose();
+  public void removed();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "PresetFlatWorldScreen.java"
+class net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList$Entry> {
+  public net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList(net.minecraft.client.gui.screens.PresetFlatWorldScreen, net.minecraft.core.RegistryAccess, net.minecraft.world.flag.FeatureFlagSet);
+  public void setSelected(net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList$Entry);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "LevelLoadingScreen.java"
+public class net.minecraft.client.gui.screens.LevelLoadingScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.LevelLoadingScreen(net.minecraft.client.multiplayer.LevelLoadTracker, net.minecraft.client.gui.screens.LevelLoadingScreen$Reason);
+  public void update(net.minecraft.client.multiplayer.LevelLoadTracker, net.minecraft.client.gui.screens.LevelLoadingScreen$Reason);
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  protected void updateNarratedWidget(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void tick();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public static void extractChunksForRendering(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, net.minecraft.server.level.progress.ChunkLoadStatusView);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onClose();
+  public boolean isPauseScreen();
+}
+Compiled from "LoadingOverlay.java"
+class net.minecraft.client.gui.screens.LoadingOverlay$LogoTexture extends net.minecraft.client.renderer.texture.ReloadableTexture {
+  public net.minecraft.client.gui.screens.LoadingOverlay$LogoTexture();
+  public net.minecraft.client.renderer.texture.TextureContents loadContents(net.minecraft.server.packs.resources.ResourceManager) throws java.io.IOException;
+}
+Compiled from "CreateFlatWorldScreen.java"
+class net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$LayerEntry extends net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry {
+  public net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$LayerEntry(net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList, net.minecraft.world.level.levelgen.flat.FlatLayerInfo, int);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+}
+Compiled from "PresetFlatWorldScreen.java"
+public class net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList$Entry> {
+  public net.minecraft.client.gui.screens.PresetFlatWorldScreen$PresetsList$Entry(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorPreset>);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public net.minecraft.network.chat.Component getNarration();
+}
+Compiled from "BackupConfirmScreen.java"
+public interface net.minecraft.client.gui.screens.BackupConfirmScreen$Listener {
+  public abstract void proceed(boolean, boolean);
+}
+Compiled from "Screen.java"
+public final class net.minecraft.client.gui.screens.Screen$NarratableSearchResult extends java.lang.Record {
+  public net.minecraft.client.gui.screens.Screen$NarratableSearchResult(net.minecraft.client.gui.narration.NarratableEntry, int, net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.narration.NarratableEntry entry();
+  public int index();
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority priority();
+}
+Compiled from "CreateBuffetWorldScreen.java"
+public class net.minecraft.client.gui.screens.CreateBuffetWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.CreateBuffetWorldScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.gui.screens.worldselection.WorldCreationContext, java.util.function.Consumer<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public void onClose();
+  protected void init();
+  protected void repositionElements();
+}
+Compiled from "WorldOptionsScreen.java"
+final class net.minecraft.client.gui.screens.WorldOptionsScreen$DifficultyButtons extends java.lang.Record {
+  public static net.minecraft.client.gui.screens.WorldOptionsScreen$DifficultyButtons create(net.minecraft.client.Minecraft, net.minecraft.world.level.Level, net.minecraft.client.gui.screens.WorldOptionsScreen);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.layouts.LayoutElement layout();
+  public net.minecraft.client.gui.components.CycleButton<net.minecraft.world.Difficulty> difficultyButton();
+  public net.minecraft.client.gui.components.LockIconButton lockButton();
+  public net.minecraft.world.level.Level level();
+}
+Compiled from "BackupConfirmScreen.java"
+public class net.minecraft.client.gui.screens.BackupConfirmScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.network.chat.Component BACKUP_AND_JOIN;
+  protected final net.minecraft.client.gui.screens.BackupConfirmScreen$Listener onProceed;
+  protected int id;
+  public net.minecraft.client.gui.screens.BackupConfirmScreen(java.lang.Runnable, net.minecraft.client.gui.screens.BackupConfirmScreen$Listener, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, boolean);
+  public net.minecraft.client.gui.screens.BackupConfirmScreen(java.lang.Runnable, net.minecraft.client.gui.screens.BackupConfirmScreen$Listener, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, boolean);
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean shouldCloseOnEsc();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+}
+Compiled from "WinScreen.java"
+interface net.minecraft.client.gui.screens.WinScreen$CreditsReader {
+  public abstract void read(java.io.Reader) throws java.io.IOException;
+}
+Compiled from "PauseScreen.java"
+public class net.minecraft.client.gui.screens.PauseScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.PauseScreen(boolean);
+  public boolean showsPauseMenu();
+  public void added();
+  protected void init();
+  public void tick();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void removed();
+  public boolean rendersNowPlayingToast();
+}
+Compiled from "PrivacyConfirmLinkScreen.java"
+public class net.minecraft.client.gui.screens.PrivacyConfirmLinkScreen extends net.minecraft.client.gui.screens.ConfirmLinkScreen {
+  public net.minecraft.client.gui.screens.PrivacyConfirmLinkScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, java.net.URI);
+  protected void init();
+  protected void addAdditionalText();
+  public static void confirmLinkNow(net.minecraft.client.gui.screens.Screen, java.net.URI);
+}
+Compiled from "AccessibilityOnboardingScreen.java"
+public class net.minecraft.client.gui.screens.AccessibilityOnboardingScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.AccessibilityOnboardingScreen(net.minecraft.client.Options, java.lang.Runnable);
+  public void init();
+  protected void repositionElements();
+  protected void setInitialFocus();
+  public void onClose();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ManageServerScreen.java"
+public class net.minecraft.client.gui.screens.ManageServerScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.ManageServerScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.client.multiplayer.ServerData);
+  protected void init();
+  protected void setInitialFocus();
+  public void resize(int, int);
+  public void onClose();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "DeathScreen.java"
+public class net.minecraft.client.gui.screens.DeathScreen$TitleConfirmScreen extends net.minecraft.client.gui.screens.ConfirmScreen {
+  public net.minecraft.client.gui.screens.DeathScreen$TitleConfirmScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "LoadingOverlay.java"
+public class net.minecraft.client.gui.screens.LoadingOverlay extends net.minecraft.client.gui.screens.Overlay {
+  public static final net.minecraft.resources.Identifier MOJANG_STUDIOS_LOGO_LOCATION;
+  public static final long FADE_OUT_TIME;
+  public static final long FADE_IN_TIME;
+  public net.minecraft.client.gui.screens.LoadingOverlay(net.minecraft.client.Minecraft, net.minecraft.server.packs.resources.ReloadInstance, java.util.function.Consumer<java.util.Optional<java.lang.Throwable>>, boolean);
+  public static void registerTextures(net.minecraft.client.renderer.texture.TextureManager);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void tick();
+}
+Compiled from "AlertScreen.java"
+public class net.minecraft.client.gui.screens.AlertScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.AlertScreen(java.lang.Runnable, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.screens.AlertScreen(java.lang.Runnable, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, boolean);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean shouldCloseOnEsc();
+}
+Compiled from "CreateBuffetWorldScreen.java"
+class net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList$Entry> {
+  public net.minecraft.client.gui.screens.CreateBuffetWorldScreen$BiomeList$Entry(net.minecraft.core.Holder$Reference<net.minecraft.world.level.biome.Biome>);
+  public net.minecraft.network.chat.Component getNarration();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+}
+Compiled from "TitleScreen.java"
+public class net.minecraft.client.gui.screens.TitleScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.TitleScreen();
+  public net.minecraft.client.gui.screens.TitleScreen(boolean);
+  public net.minecraft.client.gui.screens.TitleScreen(boolean, net.minecraft.client.gui.components.LogoRenderer);
+  public void tick();
+  public static void registerTextures(net.minecraft.client.renderer.texture.TextureManager);
+  public boolean isPauseScreen();
+  public boolean shouldCloseOnEsc();
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void removed();
+  public void added();
+  public boolean canInterruptWithAnotherScreen();
+}
+Compiled from "GenericMessageScreen.java"
+public class net.minecraft.client.gui.screens.GenericMessageScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.GenericMessageScreen(net.minecraft.network.chat.Component);
+  protected void init();
+  protected void repositionElements();
+  public boolean shouldCloseOnEsc();
+  protected boolean shouldNarrateNavigation();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "FaviconTexture.java"
+public class net.minecraft.client.gui.screens.FaviconTexture implements java.lang.AutoCloseable {
+  public static net.minecraft.client.gui.screens.FaviconTexture forWorld(net.minecraft.client.renderer.texture.TextureManager, java.lang.String);
+  public static net.minecraft.client.gui.screens.FaviconTexture forServer(net.minecraft.client.renderer.texture.TextureManager, java.lang.String);
+  public void upload(com.mojang.blaze3d.platform.NativeImage);
+  public void clear();
+  public net.minecraft.resources.Identifier textureLocation();
+  public void close();
+  public boolean isClosed();
+}
+Compiled from "WorldOptionsScreen.java"
+public class net.minecraft.client.gui.screens.WorldOptionsScreen extends net.minecraft.client.gui.screens.Screen implements net.minecraft.client.gui.screens.options.HasGamemasterPermissionReaction,net.minecraft.client.gui.screens.options.HasDifficultyReaction {
+  public net.minecraft.client.gui.screens.WorldOptionsScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.world.level.Level);
+  protected void init();
+  protected boolean hasChanges();
+  protected void applyChanges(net.minecraft.client.server.IntegratedServer);
+  protected void repositionElements();
+  protected void extractMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onClose();
+  public void onGamemasterPermissionChanged(boolean);
+  public void updatePersonalGameModeButton(net.minecraft.world.level.GameType);
+  public void added();
+  public void onDifficultyChanged();
+  public void onDefaultGameModeChanged(net.minecraft.world.level.GameType);
+}
+Compiled from "Screen.java"
+public abstract class net.minecraft.client.gui.screens.Screen extends net.minecraft.client.gui.components.events.AbstractContainerEventHandler implements net.minecraft.client.gui.components.Renderable {
+  public static final net.minecraft.resources.Identifier MENU_BACKGROUND;
+  public static final net.minecraft.resources.Identifier HEADER_SEPARATOR;
+  public static final net.minecraft.resources.Identifier FOOTER_SEPARATOR;
+  public static final net.minecraft.resources.Identifier INWORLD_HEADER_SEPARATOR;
+  public static final net.minecraft.resources.Identifier INWORLD_FOOTER_SEPARATOR;
+  protected static final float FADE_IN_TIME;
+  protected final net.minecraft.network.chat.Component title;
+  protected final net.minecraft.client.Minecraft minecraft;
+  public int width;
+  public int height;
+  protected final net.minecraft.client.gui.Font font;
+  protected net.minecraft.client.gui.components.CycleButton<net.minecraft.client.NarratorStatus> narratorButton;
+  protected final java.util.concurrent.Executor screenExecutor;
+  protected net.minecraft.client.gui.screens.Screen(net.minecraft.network.chat.Component);
+  protected net.minecraft.client.gui.screens.Screen(net.minecraft.client.Minecraft, net.minecraft.client.gui.Font, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getTitle();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public final void extractRenderStateWithTooltipAndSubtitles(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  protected void setInitialFocus();
+  protected void setInitialFocus(net.minecraft.client.gui.components.events.GuiEventListener);
+  public void clearFocus();
+  public boolean isInputCaptured();
+  protected void changeFocus(net.minecraft.client.gui.ComponentPath);
+  public boolean shouldCloseOnEsc();
+  public void onClose();
+  protected <T extends net.minecraft.client.gui.components.events.GuiEventListener & net.minecraft.client.gui.components.Renderable & net.minecraft.client.gui.narration.NarratableEntry> T addRenderableWidget(T);
+  protected <T extends net.minecraft.client.gui.components.Renderable> T addRenderableOnly(T);
+  protected <T extends net.minecraft.client.gui.components.events.GuiEventListener & net.minecraft.client.gui.narration.NarratableEntry> T addWidget(T);
+  protected void removeWidget(net.minecraft.client.gui.components.events.GuiEventListener);
+  protected void clearWidgets();
+  public static java.util.List<net.minecraft.network.chat.Component> getTooltipFromItem(net.minecraft.client.Minecraft, net.minecraft.world.item.ItemStack);
+  protected void insertText(java.lang.String, boolean);
+  protected static void defaultHandleGameClickEvent(net.minecraft.network.chat.ClickEvent, net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen);
+  protected static void defaultHandleClickEvent(net.minecraft.network.chat.ClickEvent, net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen);
+  protected static boolean clickUrlAction(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen, java.net.URI);
+  protected static void clickCommandAction(net.minecraft.client.player.LocalPlayer, java.lang.String, net.minecraft.client.gui.screens.Screen);
+  public final void init(int, int);
+  protected void rebuildWidgets();
+  protected void fadeWidgets(float);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  protected void init();
+  public void tick();
+  public void removed();
+  public void added();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractBlurredBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void extractPanorama(net.minecraft.client.gui.GuiGraphicsExtractor, float);
+  protected void extractMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void extractMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  public static void extractMenuBackgroundTexture(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.resources.Identifier, int, int, float, float, int, int);
+  public void extractTransparentBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public boolean isPauseScreen();
+  public boolean isInGameUi();
+  public boolean isAllowedInPortal();
+  protected void repositionElements();
+  public void resize(int, int);
+  protected boolean isValidCharacterForName(java.lang.String, int, int);
+  public boolean isMouseOver(double, double);
+  public void onFilesDrop(java.util.List<java.nio.file.Path>);
+  public void scheduleNarration();
+  public void afterMouseMove();
+  public void afterMouseAction();
+  public void afterKeyboardAction();
+  public void handleDelayedNarration();
+  public void triggerImmediateNarration(boolean);
+  protected boolean shouldNarrateNavigation();
+  protected void updateNarrationState(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected void updateNarratedWidget(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected net.minecraft.network.chat.Component getUsageNarration();
+  public static net.minecraft.client.gui.screens.Screen$NarratableSearchResult findNarratableWidget(java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry>, net.minecraft.client.gui.narration.NarratableEntry);
+  public void updateNarratorStatus(boolean, net.minecraft.client.gui.narration.NarrationTrigger);
+  public net.minecraft.client.gui.Font getFont();
+  public boolean showsActiveEffects();
+  public boolean canInterruptWithAnotherScreen();
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+  public net.minecraft.sounds.Music getBackgroundMusic();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.package-info {
+}
+Compiled from "CreateFlatWorldScreen.java"
+class net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$HeaderEntry extends net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$Entry {
+  public net.minecraft.client.gui.screens.CreateFlatWorldScreen$DetailsList$HeaderEntry(net.minecraft.client.gui.Font);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+}
+Compiled from "DeathScreen.java"
+public class net.minecraft.client.gui.screens.DeathScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.DeathScreen(net.minecraft.network.chat.Component, boolean, net.minecraft.client.player.LocalPlayer);
+  protected void init();
+  public boolean shouldCloseOnEsc();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean isPauseScreen();
+  public boolean isAllowedInPortal();
+  public void tick();
+}
+Compiled from "NoticeWithLinkScreen.java"
+public class net.minecraft.client.gui.screens.NoticeWithLinkScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.NoticeWithLinkScreen(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.net.URI, java.lang.Runnable);
+  public static net.minecraft.client.gui.screens.Screen createWorldSymlinkWarningScreen(java.lang.Runnable);
+  public static net.minecraft.client.gui.screens.Screen createPackSymlinkWarningScreen(java.lang.Runnable);
+  protected void init();
+  protected void repositionElements();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public void onClose();
+}
+Compiled from "OutOfMemoryScreen.java"
+public class net.minecraft.client.gui.screens.OutOfMemoryScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.OutOfMemoryScreen();
+  protected void init();
+  protected void repositionElements();
+  public boolean shouldCloseOnEsc();
+}
+Compiled from "WinScreen.java"
+public class net.minecraft.client.gui.screens.WinScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.WinScreen(boolean, java.lang.Runnable);
+  public void tick();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean keyReleased(net.minecraft.client.input.KeyEvent);
+  public void onClose();
+  protected void init();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  public boolean isPauseScreen();
+  public boolean isAllowedInPortal();
+  public void removed();
+  public net.minecraft.sounds.Music getBackgroundMusic();
+}
+Compiled from "ChatScreen.java"
+public interface net.minecraft.client.gui.screens.ChatScreen$ChatConstructor<T extends net.minecraft.client.gui.screens.ChatScreen> {
+  public abstract T create(java.lang.String, boolean);
+}
+Compiled from "ErrorScreen.java"
+public class net.minecraft.client.gui.screens.ErrorScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.ErrorScreen(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean shouldCloseOnEsc();
+}

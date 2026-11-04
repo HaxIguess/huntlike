@@ -1,0 +1,106 @@
+Compiled from "PreeditEvent.java"
+public final class net.minecraft.client.input.PreeditEvent extends java.lang.Record {
+  public net.minecraft.client.input.PreeditEvent(java.lang.String, int, java.util.List<java.lang.String>, int);
+  public static net.minecraft.client.input.PreeditEvent fromSdlTextEditing(java.lang.String, int, int);
+  public net.minecraft.network.chat.MutableComponent toFormattedText(net.minecraft.network.chat.Style);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String fullText();
+  public int caretPosition();
+  public java.util.List<java.lang.String> blocks();
+  public int focusedBlock();
+}
+Compiled from "MouseButtonInfo.java"
+public final class net.minecraft.client.input.MouseButtonInfo extends java.lang.Record implements net.minecraft.client.input.InputWithModifiers {
+  public net.minecraft.client.input.MouseButtonInfo(int, int);
+  public int input();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int button();
+  public int modifiers();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.input.package-info {
+}
+Compiled from "MouseButtonInfo.java"
+public interface net.minecraft.client.input.MouseButtonInfo$MouseButton extends java.lang.annotation.Annotation {
+}
+Compiled from "MouseButtonEvent.java"
+public final class net.minecraft.client.input.MouseButtonEvent extends java.lang.Record implements net.minecraft.client.input.InputWithModifiers {
+  public net.minecraft.client.input.MouseButtonEvent(double, double, net.minecraft.client.input.MouseButtonInfo);
+  public int input();
+  public int button();
+  public int modifiers();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double x();
+  public double y();
+  public net.minecraft.client.input.MouseButtonInfo buttonInfo();
+}
+Compiled from "InputWithModifiers.java"
+public interface net.minecraft.client.input.InputWithModifiers$Modifiers extends java.lang.annotation.Annotation {
+}
+Compiled from "InputQuirks.java"
+public class net.minecraft.client.input.InputQuirks {
+  public static final boolean REPLACE_CTRL_KEY_WITH_CMD_KEY;
+  public static final int EDIT_SHORTCUT_KEY_MODIFIER;
+  public static final boolean SHIFT_INVERTS_SCROLL_AXIS;
+  public static final boolean EMULATE_RIGHT_CLICK_WITH_CTRL_KEY;
+  public static final boolean RESTORE_KEY_STATE_AFTER_MOUSE_GRAB;
+  public net.minecraft.client.input.InputQuirks();
+  public static boolean isQuitShortcutDown();
+  public static java.lang.String keyboardTranslationKey(java.lang.String);
+}
+Compiled from "CharacterEvent.java"
+public final class net.minecraft.client.input.CharacterEvent extends java.lang.Record {
+  public net.minecraft.client.input.CharacterEvent(int);
+  public java.lang.String codepointAsString();
+  public boolean isAllowedChatCharacter();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int codepoint();
+}
+Compiled from "MouseButtonInfo.java"
+public interface net.minecraft.client.input.MouseButtonInfo$Action extends java.lang.annotation.Annotation {
+}
+Compiled from "KeyEvent.java"
+public final class net.minecraft.client.input.KeyEvent extends java.lang.Record implements net.minecraft.client.input.InputWithModifiers {
+  public net.minecraft.client.input.KeyEvent(int, int, int);
+  public int input();
+  public int shortcutKey();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int key();
+  public int keycode();
+  public int modifiers();
+}
+Compiled from "KeyEvent.java"
+public interface net.minecraft.client.input.KeyEvent$Action extends java.lang.annotation.Annotation {
+}
+Compiled from "InputWithModifiers.java"
+public interface net.minecraft.client.input.InputWithModifiers {
+  public abstract int input();
+  public default int shortcutKey();
+  public abstract int modifiers();
+  public default boolean isSelection();
+  public default boolean isConfirmation();
+  public default boolean isEscape();
+  public default boolean isLeft();
+  public default boolean isRight();
+  public default boolean isUp();
+  public default boolean isDown();
+  public default boolean isCycleFocus();
+  public default boolean hasAltDown();
+  public default boolean hasShiftDown();
+  public default boolean hasControlDown();
+  public default boolean hasControlDownWithQuirk();
+  public default boolean isSelectAll();
+  public default boolean isCopy();
+  public default boolean isPaste();
+  public default boolean isCut();
+}

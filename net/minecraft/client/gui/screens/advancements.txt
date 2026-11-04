@@ -1,0 +1,105 @@
+Compiled from "AdvancementTabType.java"
+final class net.minecraft.client.gui.screens.advancements.AdvancementTabType$Sprites extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier first();
+  public net.minecraft.resources.Identifier middle();
+  public net.minecraft.resources.Identifier last();
+}
+Compiled from "AdvancementWidgetType.java"
+public final class net.minecraft.client.gui.screens.advancements.AdvancementWidgetType extends java.lang.Enum<net.minecraft.client.gui.screens.advancements.AdvancementWidgetType> {
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementWidgetType OBTAINED;
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementWidgetType UNOBTAINED;
+  public static net.minecraft.client.gui.screens.advancements.AdvancementWidgetType[] values();
+  public static net.minecraft.client.gui.screens.advancements.AdvancementWidgetType valueOf(java.lang.String);
+  public net.minecraft.resources.Identifier boxSprite();
+  public net.minecraft.resources.Identifier frameSprite(net.minecraft.advancements.AdvancementType);
+}
+Compiled from "AdvancementTab.java"
+public class net.minecraft.client.gui.screens.advancements.AdvancementTab {
+  public net.minecraft.client.gui.screens.advancements.AdvancementTab(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.advancements.AdvancementsScreen, net.minecraft.client.gui.screens.advancements.AdvancementTabType, int, net.minecraft.client.gui.screens.advancements.AdvancementWidget, net.minecraft.world.item.ItemStackTemplate, net.minecraft.network.chat.Component, net.minecraft.resources.Identifier);
+  public void copyPosition(net.minecraft.client.gui.screens.advancements.AdvancementTab);
+  public net.minecraft.client.gui.screens.advancements.AdvancementTabType getType();
+  public int getIndex();
+  public net.minecraft.advancements.AdvancementHolder getRootAdvancement();
+  public net.minecraft.network.chat.Component getTitle();
+  public void tick(int, int);
+  public void extractTab(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, boolean);
+  public void extractIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void extractTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean isMouseOver(int, int, double, double);
+  public static net.minecraft.client.gui.screens.advancements.AdvancementTab create(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.advancements.AdvancementsScreen, int, net.minecraft.advancements.AdvancementNode);
+  public void scroll(double, double);
+  public boolean canScrollHorizontally();
+  public boolean canScrollVertically();
+  public void addAdvancement(net.minecraft.advancements.AdvancementNode);
+  public net.minecraft.client.gui.screens.advancements.AdvancementWidget getWidget(net.minecraft.advancements.AdvancementHolder);
+  public net.minecraft.client.gui.screens.advancements.AdvancementsScreen getScreen();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.advancements.package-info {
+}
+Compiled from "AdvancementsScreen.java"
+public class net.minecraft.client.gui.screens.advancements.AdvancementsScreen extends net.minecraft.client.gui.screens.Screen implements net.minecraft.client.multiplayer.ClientAdvancements$Listener {
+  public static final int WINDOW_WIDTH;
+  public static final int WINDOW_HEIGHT;
+  public static final int WINDOW_INSIDE_WIDTH;
+  public static final int WINDOW_INSIDE_HEIGHT;
+  public static final int BACKGROUND_TILE_WIDTH;
+  public static final int BACKGROUND_TILE_HEIGHT;
+  public static final int BACKGROUND_TILE_COUNT_X;
+  public static final int BACKGROUND_TILE_COUNT_Y;
+  public net.minecraft.client.gui.screens.advancements.AdvancementsScreen(net.minecraft.client.multiplayer.ClientAdvancements);
+  public net.minecraft.client.gui.screens.advancements.AdvancementsScreen(net.minecraft.client.multiplayer.ClientAdvancements, net.minecraft.client.gui.screens.Screen);
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+  public void removed();
+  public void tick();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+  public boolean mouseScrolled(double, double, double, double);
+  public void extractWindow(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void onAdvancementsUpdated();
+  public void onSelectedTabChanged(net.minecraft.advancements.AdvancementHolder);
+  public void onAdvancementsCleared();
+  public net.minecraft.client.gui.screens.advancements.AdvancementWidget getAdvancementWidget(net.minecraft.advancements.AdvancementNode);
+}
+Compiled from "AdvancementWidget.java"
+public class net.minecraft.client.gui.screens.advancements.AdvancementWidget {
+  public static net.minecraft.client.gui.screens.advancements.AdvancementWidget createWidget(net.minecraft.client.Minecraft, net.minecraft.advancements.AdvancementNode);
+  public void extractConnectivity(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public int getWidth();
+  public void setProgress(net.minecraft.advancements.AdvancementProgress);
+  public void addChild(net.minecraft.client.gui.screens.advancements.AdvancementWidget);
+  public void extractHover(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float, int, int, int);
+  public boolean isMouseOver(int, int, int, int);
+  public void attachToParent(net.minecraft.client.gui.screens.advancements.AdvancementTab);
+  public int getY();
+  public int getX();
+  public net.minecraft.advancements.AdvancementHolder getAdvancement();
+  public net.minecraft.advancements.DisplayInfo getDisplay();
+}
+Compiled from "AdvancementTabType.java"
+public final class net.minecraft.client.gui.screens.advancements.AdvancementTabType extends java.lang.Enum<net.minecraft.client.gui.screens.advancements.AdvancementTabType> {
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementTabType ABOVE;
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementTabType BELOW;
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementTabType LEFT;
+  public static final net.minecraft.client.gui.screens.advancements.AdvancementTabType RIGHT;
+  public static net.minecraft.client.gui.screens.advancements.AdvancementTabType[] values();
+  public static net.minecraft.client.gui.screens.advancements.AdvancementTabType valueOf(java.lang.String);
+  public int getWidth();
+  public int getHeight();
+  public int getMax();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, int);
+  public void extractIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, net.minecraft.world.item.ItemStack);
+  public int getX(int);
+  public int getY(int);
+  public boolean isMouseOver(int, int, int, double, double);
+}

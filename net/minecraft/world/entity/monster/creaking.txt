@@ -1,0 +1,98 @@
+Compiled from "CreakingAi.java"
+public class net.minecraft.world.entity.monster.creaking.CreakingAi {
+  public net.minecraft.world.entity.monster.creaking.CreakingAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.monster.creaking.Creaking>> getActivities(net.minecraft.world.entity.monster.creaking.Creaking);
+  public static void updateActivity(net.minecraft.world.entity.monster.creaking.Creaking);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.creaking.package-info {
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$CreakingPathNavigation extends net.minecraft.world.entity.ai.navigation.GroundPathNavigation {
+  public net.minecraft.world.entity.monster.creaking.Creaking$CreakingPathNavigation(net.minecraft.world.entity.monster.creaking.Creaking, net.minecraft.world.entity.monster.creaking.Creaking, net.minecraft.world.level.Level);
+  public void tick();
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$CreakingMoveControl<T extends net.minecraft.world.entity.monster.creaking.Creaking> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.monster.creaking.Creaking$CreakingMoveControl(T);
+  public void tick();
+}
+Compiled from "Creaking.java"
+public class net.minecraft.world.entity.monster.creaking.Creaking extends net.minecraft.world.entity.monster.Monster {
+  public static final int ATTACK_INTERVAL;
+  public static final float SPEED_MULTIPLIER_WHEN_IDLING;
+  public static final int CREAKING_ORANGE;
+  public static final int CREAKING_GRAY;
+  public static final int INVULNERABILITY_ANIMATION_DURATION;
+  public static final int TWITCH_DEATH_DURATION;
+  public final net.minecraft.world.entity.AnimationState attackAnimationState;
+  public final net.minecraft.world.entity.AnimationState invulnerabilityAnimationState;
+  public final net.minecraft.world.entity.AnimationState deathAnimationState;
+  public net.minecraft.world.entity.monster.creaking.Creaking(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.creaking.Creaking>, net.minecraft.world.level.Level);
+  public void setTransient(net.minecraft.core.BlockPos);
+  public boolean isHeartBound();
+  protected net.minecraft.world.entity.ai.control.BodyRotationControl createBodyControl();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.creaking.Creaking> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean canMove();
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.player.Player blameSourceForDamage(net.minecraft.world.damagesource.DamageSource);
+  public boolean isPushable();
+  public void push(double, double, double);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.creaking.Creaking> getBrain();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void aiStep();
+  public void tick();
+  protected void tickDeath();
+  protected void updateWalkAnimation(float);
+  public void tearDown();
+  public void creakingDeathEffects(net.minecraft.world.damagesource.DamageSource);
+  public void handleEntityEvent(byte);
+  public boolean fireImmune();
+  public boolean canUsePortal(boolean);
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public boolean playerIsStuckInYou();
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void setHomePos(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos getHomePos();
+  public void setTearingDown();
+  public boolean isTearingDown();
+  public boolean hasGlowingEyes();
+  public void checkEyeBlink();
+  public void playAttackSound();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.entity.LivingEntity getTarget();
+  public void knockback(double, double, double, net.minecraft.world.damagesource.DamageSource, float, boolean);
+  public boolean checkCanMove();
+  public void activate(net.minecraft.world.entity.player.Player);
+  public void deactivate();
+  public void setIsActive(boolean);
+  public boolean isActive();
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$HomeNodeEvaluator extends net.minecraft.world.level.pathfinder.WalkNodeEvaluator {
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$CreakingLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public net.minecraft.world.entity.monster.creaking.Creaking$CreakingLookControl(net.minecraft.world.entity.monster.creaking.Creaking, net.minecraft.world.entity.monster.creaking.Creaking);
+  public void tick();
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$CreakingJumpControl extends net.minecraft.world.entity.ai.control.JumpControl {
+  public net.minecraft.world.entity.monster.creaking.Creaking$CreakingJumpControl(net.minecraft.world.entity.monster.creaking.Creaking, net.minecraft.world.entity.monster.creaking.Creaking);
+  public void tick();
+}
+Compiled from "Creaking.java"
+class net.minecraft.world.entity.monster.creaking.Creaking$CreakingBodyRotationControl extends net.minecraft.world.entity.ai.control.BodyRotationControl {
+  public net.minecraft.world.entity.monster.creaking.Creaking$CreakingBodyRotationControl(net.minecraft.world.entity.monster.creaking.Creaking, net.minecraft.world.entity.monster.creaking.Creaking);
+  public void clientTick();
+}

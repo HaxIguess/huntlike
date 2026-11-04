@@ -1,0 +1,146 @@
+Compiled from "CopperGolemAi.java"
+public class net.minecraft.world.entity.animal.golem.CopperGolemAi {
+  public net.minecraft.world.entity.animal.golem.CopperGolemAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.golem.CopperGolem>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.golem.CopperGolem);
+}
+Compiled from "CopperGolem.java"
+public class net.minecraft.world.entity.animal.golem.CopperGolem extends net.minecraft.world.entity.animal.golem.AbstractGolem implements net.minecraft.world.entity.ContainerUser,net.minecraft.world.entity.Shearable {
+  public static final net.minecraft.world.entity.EquipmentSlot EQUIPMENT_SLOT_ANTENNA;
+  public net.minecraft.world.entity.animal.golem.CopperGolem(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.golem.AbstractGolem>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.animal.golem.CopperGolemState getState();
+  public void setState(net.minecraft.world.entity.animal.golem.CopperGolemState);
+  public net.minecraft.world.level.block.WeatheringCopper$WeatherState getWeatherState();
+  public void setWeatherState(net.minecraft.world.level.block.WeatheringCopper$WeatherState);
+  public void setOpenedChestPos(net.minecraft.core.BlockPos);
+  public void clearOpenedChestPos();
+  public net.minecraft.world.entity.AnimationState getIdleAnimationState();
+  public net.minecraft.world.entity.AnimationState getInteractionGetItemAnimationState();
+  public net.minecraft.world.entity.AnimationState getInteractionGetNoItemAnimationState();
+  public net.minecraft.world.entity.AnimationState getInteractionDropItemAnimationState();
+  public net.minecraft.world.entity.AnimationState getInteractionDropNoItemAnimationState();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.golem.CopperGolem> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.golem.CopperGolem> getBrain();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void spawn(net.minecraft.world.level.block.WeatheringCopper$WeatherState);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public void playSpawnSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public boolean hasContainerOpen(net.minecraft.world.level.block.entity.ContainerOpenersCounter, net.minecraft.core.BlockPos);
+  public double getContainerInteractionRange();
+  public void shear(net.minecraft.server.level.ServerLevel, net.minecraft.sounds.SoundSource, net.minecraft.world.item.ItemStack);
+  public boolean readyForShearing();
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+  protected void actuallyHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+}
+Compiled from "CopperGolemOxidationLevels.java"
+public class net.minecraft.world.entity.animal.golem.CopperGolemOxidationLevels {
+  public net.minecraft.world.entity.animal.golem.CopperGolemOxidationLevels();
+  public static net.minecraft.world.entity.animal.golem.CopperGolemOxidationLevel getOxidationLevel(net.minecraft.world.level.block.WeatheringCopper$WeatherState);
+}
+Compiled from "IronGolem.java"
+public class net.minecraft.world.entity.animal.golem.IronGolem extends net.minecraft.world.entity.animal.golem.AbstractGolem implements net.minecraft.world.entity.NeutralMob {
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Byte> DATA_FLAGS_ID;
+  public net.minecraft.world.entity.animal.golem.IronGolem(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.golem.IronGolem>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected int decreaseAirSupply(int);
+  protected void doPush(net.minecraft.world.entity.Entity);
+  public void aiStep();
+  public boolean canSpawnSprintParticle();
+  public boolean canAttack(net.minecraft.world.entity.LivingEntity);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void startPersistentAngerTimer();
+  public void setPersistentAngerEndTime(long);
+  public long getPersistentAngerEndTime();
+  public void setPersistentAngerTarget(net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity>);
+  public net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> getPersistentAngerTarget();
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.Crackiness$Level getCrackiness();
+  public void handleEntityEvent(byte);
+  public int getAttackAnimationTick();
+  public void offerFlower(boolean);
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getOfferFlowerTick();
+  public boolean isPlayerCreated();
+  public void setPlayerCreated(boolean);
+  public void die(net.minecraft.world.damagesource.DamageSource);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+}
+Compiled from "SnowGolem.java"
+public class net.minecraft.world.entity.animal.golem.SnowGolem extends net.minecraft.world.entity.animal.golem.AbstractGolem implements net.minecraft.world.entity.monster.RangedAttackMob,net.minecraft.world.entity.Shearable {
+  public net.minecraft.world.entity.animal.golem.SnowGolem(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.golem.SnowGolem>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isSensitiveToWater();
+  public void aiStep();
+  public void performRangedAttack(net.minecraft.world.entity.LivingEntity, float);
+  public float rangedAttackUncertainty(net.minecraft.world.level.Level);
+  protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void shear(net.minecraft.server.level.ServerLevel, net.minecraft.sounds.SoundSource, net.minecraft.world.item.ItemStack);
+  public boolean readyForShearing();
+  public boolean hasPumpkin();
+  public void setPumpkin(boolean);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+}
+Compiled from "CopperGolemState.java"
+public final class net.minecraft.world.entity.animal.golem.CopperGolemState extends java.lang.Enum<net.minecraft.world.entity.animal.golem.CopperGolemState> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.golem.CopperGolemState IDLE;
+  public static final net.minecraft.world.entity.animal.golem.CopperGolemState GETTING_ITEM;
+  public static final net.minecraft.world.entity.animal.golem.CopperGolemState GETTING_NO_ITEM;
+  public static final net.minecraft.world.entity.animal.golem.CopperGolemState DROPPING_ITEM;
+  public static final net.minecraft.world.entity.animal.golem.CopperGolemState DROPPING_NO_ITEM;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.golem.CopperGolemState> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.golem.CopperGolemState> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.golem.CopperGolemState[] values();
+  public static net.minecraft.world.entity.animal.golem.CopperGolemState valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "AbstractGolem.java"
+public abstract class net.minecraft.world.entity.animal.golem.AbstractGolem extends net.minecraft.world.entity.PathfinderMob {
+  protected net.minecraft.world.entity.animal.golem.AbstractGolem(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.golem.AbstractGolem>, net.minecraft.world.level.Level);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public int getAmbientSoundInterval();
+  public boolean removeWhenFarAway(double);
+}
+Compiled from "CopperGolemOxidationLevel.java"
+public final class net.minecraft.world.entity.animal.golem.CopperGolemOxidationLevel extends java.lang.Record {
+  public net.minecraft.world.entity.animal.golem.CopperGolemOxidationLevel(net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent, net.minecraft.sounds.SoundEvent, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.sounds.SoundEvent spinHeadSound();
+  public net.minecraft.sounds.SoundEvent hurtSound();
+  public net.minecraft.sounds.SoundEvent deathSound();
+  public net.minecraft.sounds.SoundEvent stepSound();
+  public net.minecraft.resources.Identifier texture();
+  public net.minecraft.resources.Identifier eyeTexture();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.golem.package-info {
+}

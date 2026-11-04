@@ -1,0 +1,242 @@
+Compiled from "ReportType.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportType extends java.lang.Enum<net.minecraft.client.multiplayer.chat.report.ReportType> {
+  public static final net.minecraft.client.multiplayer.chat.report.ReportType CHAT;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportType SKIN;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportType USERNAME;
+  public static net.minecraft.client.multiplayer.chat.report.ReportType[] values();
+  public static net.minecraft.client.multiplayer.chat.report.ReportType valueOf(java.lang.String);
+  public java.lang.String backendName();
+}
+Compiled from "ReportEnvironment.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server$ThirdParty extends java.lang.Record implements net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server {
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server$ThirdParty(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String ip();
+}
+Compiled from "ChatReportContextBuilder.java"
+public class net.minecraft.client.multiplayer.chat.report.ChatReportContextBuilder {
+  public net.minecraft.client.multiplayer.chat.report.ChatReportContextBuilder(int);
+  public void collectAllContext(net.minecraft.client.multiplayer.chat.ChatLog, it.unimi.dsi.fastutil.ints.IntCollection, net.minecraft.client.multiplayer.chat.report.ChatReportContextBuilder$Handler);
+  public void trackContext(net.minecraft.network.chat.PlayerChatMessage);
+  public boolean acceptContext(net.minecraft.network.chat.PlayerChatMessage);
+  public boolean isActive();
+}
+Compiled from "SkinReport.java"
+public class net.minecraft.client.multiplayer.chat.report.SkinReport$Builder extends net.minecraft.client.multiplayer.chat.report.Report$Builder<net.minecraft.client.multiplayer.chat.report.SkinReport> {
+  public net.minecraft.client.multiplayer.chat.report.SkinReport$Builder(net.minecraft.client.multiplayer.chat.report.SkinReport, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public net.minecraft.client.multiplayer.chat.report.SkinReport$Builder(java.util.UUID, java.util.function.Supplier<net.minecraft.world.entity.player.PlayerSkin>, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public boolean hasContent();
+  public net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason checkBuildable();
+  public com.mojang.datafixers.util.Either<net.minecraft.client.multiplayer.chat.report.Report$Result, net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason> build(net.minecraft.client.multiplayer.chat.report.ReportingContext);
+}
+Compiled from "ChatReportContextBuilder.java"
+public interface net.minecraft.client.multiplayer.chat.report.ChatReportContextBuilder$Handler {
+  public abstract void accept(int, net.minecraft.client.multiplayer.chat.LoggedChatMessage$Player);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.multiplayer.chat.report.package-info {
+}
+Compiled from "AbuseReportSender.java"
+public interface net.minecraft.client.multiplayer.chat.report.AbuseReportSender {
+  public static net.minecraft.client.multiplayer.chat.report.AbuseReportSender create(net.minecraft.client.multiplayer.chat.report.ReportEnvironment, com.mojang.authlib.minecraft.UserApiService);
+  public abstract java.util.concurrent.CompletableFuture<com.mojang.datafixers.util.Unit> send(java.util.UUID, net.minecraft.client.multiplayer.chat.report.ReportType, com.mojang.authlib.minecraft.report.AbuseReport);
+  public abstract boolean isEnabled();
+  public default com.mojang.authlib.minecraft.report.AbuseReportLimits reportLimits();
+}
+Compiled from "ChatReport.java"
+public class net.minecraft.client.multiplayer.chat.report.ChatReport extends net.minecraft.client.multiplayer.chat.report.Report {
+  public void toggleReported(int, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public net.minecraft.client.multiplayer.chat.report.ChatReport copy();
+  public net.minecraft.client.gui.screens.Screen createScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext);
+  public net.minecraft.client.multiplayer.chat.report.Report copy();
+}
+Compiled from "ReportEnvironment.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportEnvironment extends java.lang.Record {
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment(java.lang.String, net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server);
+  public static net.minecraft.client.multiplayer.chat.report.ReportEnvironment local();
+  public static net.minecraft.client.multiplayer.chat.report.ReportEnvironment thirdParty(java.lang.String);
+  public static net.minecraft.client.multiplayer.chat.report.ReportEnvironment realm(com.mojang.realmsclient.dto.RealmsServer);
+  public static net.minecraft.client.multiplayer.chat.report.ReportEnvironment create(net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server);
+  public com.mojang.authlib.services.request.AbuseReportRequest$ClientInfo clientInfo();
+  public com.mojang.authlib.services.request.AbuseReportRequest$ThirdPartyServerInfo thirdPartyServerInfo();
+  public com.mojang.authlib.services.request.AbuseReportRequest$RealmInfo realmInfo();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String clientVersion();
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server server();
+}
+Compiled from "ChatReport.java"
+public class net.minecraft.client.multiplayer.chat.report.ChatReport$Builder extends net.minecraft.client.multiplayer.chat.report.Report$Builder<net.minecraft.client.multiplayer.chat.report.ChatReport> {
+  public net.minecraft.client.multiplayer.chat.report.ChatReport$Builder(net.minecraft.client.multiplayer.chat.report.ChatReport, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public net.minecraft.client.multiplayer.chat.report.ChatReport$Builder(java.util.UUID, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public it.unimi.dsi.fastutil.ints.IntSet reportedMessages();
+  public void toggleReported(int);
+  public boolean isReported(int);
+  public boolean hasContent();
+  public net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason checkBuildable();
+  public com.mojang.datafixers.util.Either<net.minecraft.client.multiplayer.chat.report.Report$Result, net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason> build(net.minecraft.client.multiplayer.chat.report.ReportingContext);
+  public net.minecraft.client.multiplayer.chat.report.ChatReport$Builder copy();
+}
+Compiled from "NameReport.java"
+public class net.minecraft.client.multiplayer.chat.report.NameReport extends net.minecraft.client.multiplayer.chat.report.Report {
+  public java.lang.String getReportedName();
+  public net.minecraft.client.multiplayer.chat.report.NameReport copy();
+  public net.minecraft.client.gui.screens.Screen createScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext);
+  public net.minecraft.client.multiplayer.chat.report.Report copy();
+}
+Compiled from "ReportReason.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportReason extends java.lang.Enum<net.minecraft.client.multiplayer.chat.report.ReportReason> {
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason I_WANT_TO_REPORT_THEM;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason HATE_SPEECH;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason HARASSMENT_OR_BULLYING;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason SELF_HARM_OR_SUICIDE;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason IMMINENT_HARM;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason DEFAMATION_IMPERSONATION_FALSE_INFORMATION;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason ALCOHOL_TOBACCO_DRUGS;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason CHILD_SEXUAL_EXPLOITATION_OR_ABUSE;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason TERRORISM_OR_VIOLENT_EXTREMISM;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason NON_CONSENSUAL_INTIMATE_IMAGERY;
+  public static final net.minecraft.client.multiplayer.chat.report.ReportReason SEXUALLY_INAPPROPRIATE;
+  public static net.minecraft.client.multiplayer.chat.report.ReportReason[] values();
+  public static net.minecraft.client.multiplayer.chat.report.ReportReason valueOf(java.lang.String);
+  public java.lang.String backendName();
+  public net.minecraft.network.chat.Component title();
+  public net.minecraft.network.chat.Component description();
+  public static java.util.List<net.minecraft.client.multiplayer.chat.report.ReportReason> getIncompatibleCategories(net.minecraft.client.multiplayer.chat.report.ReportType);
+}
+Compiled from "ReportEnvironment.java"
+public interface net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server {
+}
+Compiled from "SkinReport.java"
+public class net.minecraft.client.multiplayer.chat.report.SkinReport extends net.minecraft.client.multiplayer.chat.report.Report {
+  public java.util.function.Supplier<net.minecraft.world.entity.player.PlayerSkin> getSkinGetter();
+  public net.minecraft.client.multiplayer.chat.report.SkinReport copy();
+  public net.minecraft.client.gui.screens.Screen createScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext);
+  public net.minecraft.client.multiplayer.chat.report.Report copy();
+}
+Compiled from "ReportEnvironment.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server$Realm extends java.lang.Record implements net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server {
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server$Realm(com.mojang.realmsclient.dto.RealmsServer);
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment$Server$Realm(long, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long realmId();
+  public int slotId();
+}
+Compiled from "AbuseReportSender.java"
+public class net.minecraft.client.multiplayer.chat.report.AbuseReportSender$SendException extends net.minecraft.network.chat.ThrowingComponent {
+  public net.minecraft.client.multiplayer.chat.report.AbuseReportSender$SendException(net.minecraft.network.chat.Component, java.lang.Throwable);
+}
+Compiled from "Report.java"
+public abstract class net.minecraft.client.multiplayer.chat.report.Report {
+  protected final java.util.UUID reportId;
+  protected final java.time.Instant createdAt;
+  protected final java.util.UUID reportedProfileId;
+  protected java.lang.String comments;
+  protected net.minecraft.client.multiplayer.chat.report.ReportReason reason;
+  protected boolean attested;
+  public net.minecraft.client.multiplayer.chat.report.Report(java.util.UUID, java.time.Instant, java.util.UUID);
+  public boolean isReportedPlayer(java.util.UUID);
+  public abstract net.minecraft.client.multiplayer.chat.report.Report copy();
+  public abstract net.minecraft.client.gui.screens.Screen createScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext);
+}
+Compiled from "AbuseReportSender.java"
+public final class net.minecraft.client.multiplayer.chat.report.AbuseReportSender$Services extends java.lang.Record implements net.minecraft.client.multiplayer.chat.report.AbuseReportSender {
+  public net.minecraft.client.multiplayer.chat.report.AbuseReportSender$Services(net.minecraft.client.multiplayer.chat.report.ReportEnvironment, com.mojang.authlib.minecraft.UserApiService);
+  public java.util.concurrent.CompletableFuture<com.mojang.datafixers.util.Unit> send(java.util.UUID, net.minecraft.client.multiplayer.chat.report.ReportType, com.mojang.authlib.minecraft.report.AbuseReport);
+  public boolean isEnabled();
+  public com.mojang.authlib.minecraft.report.AbuseReportLimits reportLimits();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.multiplayer.chat.report.ReportEnvironment environment();
+  public com.mojang.authlib.minecraft.UserApiService userApiService();
+}
+Compiled from "Report.java"
+public final class net.minecraft.client.multiplayer.chat.report.Report$Result extends java.lang.Record {
+  public net.minecraft.client.multiplayer.chat.report.Report$Result(java.util.UUID, net.minecraft.client.multiplayer.chat.report.ReportType, com.mojang.authlib.minecraft.report.AbuseReport);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID id();
+  public net.minecraft.client.multiplayer.chat.report.ReportType reportType();
+  public com.mojang.authlib.minecraft.report.AbuseReport report();
+}
+Compiled from "Report.java"
+public final class net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason extends java.lang.Record {
+  public static final net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason NO_REASON;
+  public static final net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason NO_REPORTED_MESSAGES;
+  public static final net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason TOO_MANY_MESSAGES;
+  public static final net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason COMMENT_TOO_LONG;
+  public static final net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason NOT_ATTESTED;
+  public net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.Tooltip tooltip();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component message();
+}
+Compiled from "Report.java"
+public abstract class net.minecraft.client.multiplayer.chat.report.Report$Builder<R extends net.minecraft.client.multiplayer.chat.report.Report> {
+  protected final R report;
+  protected final com.mojang.authlib.minecraft.report.AbuseReportLimits limits;
+  protected net.minecraft.client.multiplayer.chat.report.Report$Builder(R, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public R report();
+  public java.util.UUID reportedProfileId();
+  public java.lang.String comments();
+  public boolean attested();
+  public void setComments(java.lang.String);
+  public net.minecraft.client.multiplayer.chat.report.ReportReason reason();
+  public void setReason(net.minecraft.client.multiplayer.chat.report.ReportReason);
+  public void setAttested(boolean);
+  public abstract boolean hasContent();
+  public net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason checkBuildable();
+  public abstract com.mojang.datafixers.util.Either<net.minecraft.client.multiplayer.chat.report.Report$Result, net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason> build(net.minecraft.client.multiplayer.chat.report.ReportingContext);
+}
+Compiled from "ChatReportContextBuilder.java"
+class net.minecraft.client.multiplayer.chat.report.ChatReportContextBuilder$Collector {
+}
+Compiled from "BanReason.java"
+public final class net.minecraft.client.multiplayer.chat.report.BanReason extends java.lang.Enum<net.minecraft.client.multiplayer.chat.report.BanReason> {
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason GENERIC_VIOLATION;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason FALSE_REPORTING;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason HATE_SPEECH;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason HATE_TERRORISM_NOTORIOUS_FIGURE;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason HARASSMENT_OR_BULLYING;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason DEFAMATION_IMPERSONATION_FALSE_INFORMATION;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason DRUGS;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason FRAUD;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason SPAM_OR_ADVERTISING;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason NUDITY_OR_PORNOGRAPHY;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason SEXUALLY_INAPPROPRIATE;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason EXTREME_VIOLENCE_OR_GORE;
+  public static final net.minecraft.client.multiplayer.chat.report.BanReason IMMINENT_HARM_TO_PERSON_OR_PROPERTY;
+  public static net.minecraft.client.multiplayer.chat.report.BanReason[] values();
+  public static net.minecraft.client.multiplayer.chat.report.BanReason valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component title();
+  public static net.minecraft.client.multiplayer.chat.report.BanReason byId(int);
+}
+Compiled from "NameReport.java"
+public class net.minecraft.client.multiplayer.chat.report.NameReport$Builder extends net.minecraft.client.multiplayer.chat.report.Report$Builder<net.minecraft.client.multiplayer.chat.report.NameReport> {
+  public net.minecraft.client.multiplayer.chat.report.NameReport$Builder(net.minecraft.client.multiplayer.chat.report.NameReport, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public net.minecraft.client.multiplayer.chat.report.NameReport$Builder(java.util.UUID, java.lang.String, com.mojang.authlib.minecraft.report.AbuseReportLimits);
+  public boolean hasContent();
+  public net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason checkBuildable();
+  public com.mojang.datafixers.util.Either<net.minecraft.client.multiplayer.chat.report.Report$Result, net.minecraft.client.multiplayer.chat.report.Report$CannotBuildReason> build(net.minecraft.client.multiplayer.chat.report.ReportingContext);
+}
+Compiled from "ReportingContext.java"
+public final class net.minecraft.client.multiplayer.chat.report.ReportingContext {
+  public net.minecraft.client.multiplayer.chat.report.ReportingContext(net.minecraft.client.multiplayer.chat.report.AbuseReportSender, net.minecraft.client.multiplayer.chat.report.ReportEnvironment, net.minecraft.client.multiplayer.chat.ChatLog);
+  public static net.minecraft.client.multiplayer.chat.report.ReportingContext create(net.minecraft.client.multiplayer.chat.report.ReportEnvironment, com.mojang.authlib.minecraft.UserApiService);
+  public void draftReportHandled(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen, java.lang.Runnable, boolean);
+  public net.minecraft.client.multiplayer.chat.report.AbuseReportSender sender();
+  public net.minecraft.client.multiplayer.chat.ChatLog chatLog();
+  public boolean matches(net.minecraft.client.multiplayer.chat.report.ReportEnvironment);
+  public void setReportDraft(net.minecraft.client.multiplayer.chat.report.Report);
+  public boolean hasDraftReport();
+  public boolean hasDraftReportFor(java.util.UUID);
+}

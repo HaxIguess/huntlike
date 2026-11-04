@@ -1,0 +1,425 @@
+Compiled from "DestructionQueue.java"
+public class com.mojang.renderpearl.backend.vulkan.DestructionQueue<T> implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.backend.vulkan.DestructionQueue(int, com.mojang.renderpearl.backend.vulkan.DestructionQueue$Destroyer<T>);
+  public void close();
+  public boolean rotate();
+  public void add(T);
+}
+Compiled from "VulkanInstance.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanInstance implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  protected com.mojang.renderpearl.backend.vulkan.VulkanInstance(int, boolean, boolean) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public org.lwjgl.vulkan.VkInstance vkInstance();
+  public void close();
+  public java.util.Set<java.lang.String> getEnabledExtensions();
+  public com.mojang.renderpearl.backend.vulkan.VulkanDebug debug();
+}
+Compiled from "VulkanPhysicalDevice.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanPhysicalDevice implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanPhysicalDevice(org.lwjgl.vulkan.VkPhysicalDevice) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public void close();
+  public java.lang.String deviceName();
+  public java.lang.String vendorName();
+  public org.lwjgl.vulkan.VkPhysicalDevice vkPhysicalDevice();
+  public org.lwjgl.vulkan.VkPhysicalDeviceProperties vkPhysicalDeviceProperties();
+  public org.lwjgl.vulkan.VkPhysicalDeviceVulkan11Properties vkPhysicalDeviceVulkan11Properties();
+  public org.lwjgl.vulkan.VkPhysicalDeviceDriverProperties vkPhysicalDeviceDriverProperties();
+  public org.lwjgl.vulkan.VkPhysicalDeviceMultiDrawPropertiesEXT vkPhysicalDeviceMultiDrawPropertiesEXT();
+  public boolean hasDeviceExtension(java.lang.String);
+  public java.util.Set<java.lang.String> getMissingExtensions(java.util.Collection<java.lang.String>);
+  public it.unimi.dsi.fastutil.ints.Int2IntMap queueFamilyCreateInfoMap();
+  public it.unimi.dsi.fastutil.ints.IntIntPair graphicsQueueFamilyAndIndex();
+  public it.unimi.dsi.fastutil.ints.IntIntPair computeQueueFamilyAndIndex();
+  public it.unimi.dsi.fastutil.ints.IntIntPair transferQueueFamilyAndIndex();
+  public java.lang.String driverInfo();
+  public com.mojang.renderpearl.api.device.DeviceType deviceType();
+}
+Compiled from "VulkanGpuTexture.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture extends com.mojang.renderpearl.backend.common.BaseGpuTexture implements com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture(com.mojang.renderpearl.backend.vulkan.VulkanDevice, int, java.lang.String, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public void destroy();
+  public void close();
+  public boolean isClosed();
+  public void addViews();
+  public void removeViews();
+  public long vkImage();
+}
+Compiled from "VulkanGpuSampler.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanGpuSampler implements com.mojang.renderpearl.api.textures.GpuSampler,com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuSampler(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public void destroy();
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.api.textures.AddressMode getAddressModeU();
+  public com.mojang.renderpearl.api.textures.AddressMode getAddressModeV();
+  public com.mojang.renderpearl.api.textures.FilterMode getMinFilter();
+  public com.mojang.renderpearl.api.textures.FilterMode getMagFilter();
+  public int getMaxAnisotropy();
+  public java.util.OptionalDouble getMaxLod();
+  public long vkSampler();
+}
+Compiled from "VulkanGpuTextureView.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanGpuTextureView extends com.mojang.renderpearl.backend.common.BaseGpuTextureView implements com.mojang.renderpearl.backend.vulkan.Destroyable {
+  protected com.mojang.renderpearl.backend.vulkan.VulkanGpuTextureView(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture, int, int);
+  public void destroy();
+  public void close();
+  public boolean isClosed();
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuTexture texture();
+  public long vkImageView();
+  public com.mojang.renderpearl.api.textures.GpuTexture texture();
+}
+Compiled from "VulkanGpuBuffer.java"
+public abstract class com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer extends com.mojang.renderpearl.backend.common.BaseGpuBuffer implements com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer(long, int, long);
+  public long vkBuffer();
+}
+Compiled from "VulkanDebug.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanDebug$Enabled implements com.mojang.renderpearl.backend.vulkan.VulkanDebug {
+  public static final int MESSAGE_TYPE_BITMASK;
+  public com.mojang.renderpearl.backend.vulkan.VulkanDebug$Enabled(int, boolean);
+  public void chainCreateInfo(org.lwjgl.vulkan.VkInstanceCreateInfo, org.lwjgl.system.MemoryStack);
+  public void setup(org.lwjgl.vulkan.VkInstance);
+  public void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.lang.String);
+  public void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.util.function.Supplier<java.lang.String>);
+  public void beginDebugGroup(org.lwjgl.vulkan.VkCommandBuffer, java.util.function.Supplier<java.lang.String>);
+  public void endDebugGroup(org.lwjgl.vulkan.VkCommandBuffer);
+  public void destroy(org.lwjgl.vulkan.VkInstance);
+  public boolean enabled();
+}
+Compiled from "VulkanDebug.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanDebug$Disabled implements com.mojang.renderpearl.backend.vulkan.VulkanDebug {
+  public com.mojang.renderpearl.backend.vulkan.VulkanDebug$Disabled();
+  public void chainCreateInfo(org.lwjgl.vulkan.VkInstanceCreateInfo, org.lwjgl.system.MemoryStack);
+  public void setup(org.lwjgl.vulkan.VkInstance);
+  public void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.lang.String);
+  public void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.util.function.Supplier<java.lang.String>);
+  public void beginDebugGroup(org.lwjgl.vulkan.VkCommandBuffer, java.util.function.Supplier<java.lang.String>);
+  public void endDebugGroup(org.lwjgl.vulkan.VkCommandBuffer);
+  public void destroy(org.lwjgl.vulkan.VkInstance);
+  public boolean enabled();
+}
+Compiled from "Destroyable.java"
+public interface com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public abstract void destroy();
+}
+Compiled from "VulkanQueue.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public void waitSemaphore(long, long, long);
+  public void executeCommands(org.lwjgl.vulkan.VkCommandBuffer);
+  public void signalSemaphore(long, long, long);
+  public void close();
+}
+Compiled from "VulkanDevice.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanDevice implements com.mojang.renderpearl.backend.api.GpuDeviceBackend {
+  public com.mojang.renderpearl.backend.vulkan.VulkanDevice(com.mojang.renderpearl.backend.vulkan.VulkanInstance, com.mojang.renderpearl.backend.vulkan.VulkanPhysicalDevice, com.mojang.renderpearl.backend.vulkan.init.FeatureSet, org.lwjgl.vulkan.VkDevice, long, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension);
+  public void close();
+  public com.mojang.renderpearl.api.device.DeviceInfo getDeviceInfo();
+  public com.mojang.renderpearl.backend.vulkan.VulkanInstance instance();
+  public org.lwjgl.vulkan.VkDevice vkDevice();
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue graphicsQueue();
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue computeQueue();
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue transferQueue();
+  public long vma();
+  public com.mojang.renderpearl.backend.api.GpuSurfaceBackend createSurface(long, java.util.function.BooleanSupplier);
+  public com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder createCommandEncoder();
+  public com.mojang.renderpearl.api.textures.GpuSampler createSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public com.mojang.renderpearl.api.textures.GpuTexture createTexture(java.lang.String, int, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public com.mojang.renderpearl.api.textures.GpuTextureView createTextureView(com.mojang.renderpearl.api.textures.GpuTexture, int, int);
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, long);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, java.nio.ByteBuffer);
+  public java.util.List<java.lang.String> getLastDebugMessages();
+  public boolean isDebuggingEnabled();
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$Pending compilePipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo);
+  public com.mojang.renderpearl.api.commands.GpuQueryPool createTimestampQueryPool(int);
+  public long getTimestampCalibrationOffset();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension checkpointExtension();
+  public com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier, int, long);
+  public com.mojang.renderpearl.backend.api.CommandEncoderBackend createCommandEncoder();
+}
+Compiled from "VulkanQueue.java"
+final class com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission$SemaphoreOp extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long vkSemaphore();
+  public long value();
+  public long stageMask();
+}
+Compiled from "VulkanTransientMemory.java"
+final class com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$TransferPair extends java.lang.Record implements com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public boolean suboptimal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$VulkanAllocation cpu();
+  public com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$VulkanAllocation gpu();
+}
+Compiled from "VulkanQueue.java"
+final class com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission$SubmitStage extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission$SubmitStage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission$SemaphoreOp> waits();
+  public java.util.List<org.lwjgl.vulkan.VkCommandBuffer> commandBuffers();
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission$SemaphoreOp> signals();
+}
+Compiled from "VulkanUtils.java"
+public final class com.mojang.renderpearl.backend.vulkan.VulkanUtils$DeviceUUID extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.VulkanUtils$DeviceUUID(int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int driverID();
+  public int vendorID();
+  public int deviceID();
+}
+Compiled from "VulkanTransientMemory.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory implements com.mojang.renderpearl.api.buffers.TransientMemory,com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public void destroy();
+  public void beginSubmit();
+  public void endSubmit();
+  public java.nio.ByteBuffer allocateCpu(long, long, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateStaging(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice allocateGpu(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateGpuMapped(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice upload(java.util.List<java.nio.ByteBuffer>, long, int, long, long, boolean);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadStaging(java.util.List<java.nio.ByteBuffer>, long, int);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadGpu(java.util.List<java.nio.ByteBuffer>, long, int);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUpload(java.util.List<java.nio.ByteBuffer>, long, int, boolean);
+}
+Compiled from "VulkanFeatureSets.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanFeatureSets {
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct VK10_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct VK11_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct VK12_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct SYNC2_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct DYNAMIC_RENDERING_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct VERTEX_ATTRIB_DIVISOR_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet REQUIRED_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct PORTABILITY_SUBSET_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet PORTABILITY_SUBSET_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct MULTI_DRAW_FEATURES_STRUCT;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet MULTI_DRAW_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet AMD_BUFFER_MARKER_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet NV_DIAGNOSTIC_CHECKPOINT_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet WIREFRAME_FEATURESET;
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet CALIBRATED_TIMESTAMP_FEATURESET;
+  public com.mojang.renderpearl.backend.vulkan.VulkanFeatureSets();
+  public static java.util.Set<com.mojang.renderpearl.backend.vulkan.init.FeatureSet> requiredFeatureSets();
+  public static java.util.Set<com.mojang.renderpearl.backend.vulkan.init.FeatureSet> requiredIfExtensionsAvailableFeatureSets();
+  public static java.util.Set<com.mojang.renderpearl.backend.vulkan.init.FeatureSet> optionalFeatureSets();
+  public static void bootstrap();
+}
+Compiled from "VulkanQueryPool.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanQueryPool implements com.mojang.renderpearl.api.commands.GpuQueryPool,com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueryPool(com.mojang.renderpearl.backend.vulkan.VulkanDevice, int);
+  public int size();
+  public java.util.OptionalLong getValue(int);
+  public java.util.OptionalLong[] getValues(int, int);
+  protected long vkQueryPool();
+  public void close();
+  public void destroy();
+}
+Compiled from "VulkanCommandEncoder.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder implements com.mojang.renderpearl.backend.api.CommandEncoderBackend,com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public static final int MAX_SUBMITS_IN_FLIGHT;
+  public com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder(com.mojang.renderpearl.backend.vulkan.VulkanDevice);
+  public void destroy();
+  public void queueForDestroy(com.mojang.renderpearl.backend.vulkan.Destroyable);
+  public org.lwjgl.vulkan.VkCommandBuffer allocateAndBeginTransientCommandBuffer();
+  public void waitSemaphore(long, long, long);
+  public void execute(org.lwjgl.vulkan.VkCommandBuffer);
+  public void signalSemaphore(long, long, long);
+  public static void memoryBarrier(org.lwjgl.vulkan.VkCommandBuffer, org.lwjgl.system.MemoryStack);
+  public void submit();
+  public com.mojang.renderpearl.api.buffers.TransientMemory transientMemory();
+  public com.mojang.renderpearl.backend.api.RenderPassBackend createRenderPass(com.mojang.renderpearl.api.commands.RenderPassDescriptor);
+  public void submitRenderPass();
+  public void clearDepthTextureUnsynced(org.lwjgl.system.MemoryStack, com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public void clearColorTexture(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc);
+  public void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double, int, int, int, int, int);
+  public void clearDepthTexture(com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public void writeToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, java.nio.ByteBuffer);
+  public void copyToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, java.nio.ByteBuffer, int, int, int, int, int, int);
+  public void copyBufferToTexture(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int, int, int, int, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int);
+  public void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int);
+  public void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int, int, int, int, int);
+  public void copyTextureToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int, int);
+  public com.mojang.renderpearl.api.commands.GpuFence createFence();
+  public void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+  public long getTimestampNow();
+}
+Compiled from "VulkanDebug.java"
+public interface com.mojang.renderpearl.backend.vulkan.VulkanDebug {
+  public static com.mojang.renderpearl.backend.vulkan.VulkanDebug create(int, boolean, java.util.Set<java.lang.String>, java.util.Set<java.lang.String>);
+  public abstract void chainCreateInfo(org.lwjgl.vulkan.VkInstanceCreateInfo, org.lwjgl.system.MemoryStack);
+  public abstract void setup(org.lwjgl.vulkan.VkInstance);
+  public abstract void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.lang.String);
+  public abstract void setObjectName(org.lwjgl.vulkan.VkDevice, int, long, java.util.function.Supplier<java.lang.String>);
+  public abstract void beginDebugGroup(org.lwjgl.vulkan.VkCommandBuffer, java.util.function.Supplier<java.lang.String>);
+  public abstract void endDebugGroup(org.lwjgl.vulkan.VkCommandBuffer);
+  public abstract void destroy(org.lwjgl.vulkan.VkInstance);
+  public abstract boolean enabled();
+}
+Compiled from "DestructionQueue.java"
+public interface com.mojang.renderpearl.backend.vulkan.DestructionQueue$Destroyer<T> {
+  public default void begin(int);
+  public abstract void destroy(T);
+  public default void end();
+}
+Compiled from "VulkanQueue.java"
+public final class com.mojang.renderpearl.backend.vulkan.VulkanQueue extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue(com.mojang.renderpearl.backend.vulkan.VulkanDevice, int, int);
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue(org.lwjgl.vulkan.VkQueue, int);
+  public com.mojang.renderpearl.backend.vulkan.VulkanQueue$Submission beginSubmit();
+  public void waitIdle();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.lwjgl.vulkan.VkQueue vkQueue();
+  public int queueFamilyIndex();
+}
+Compiled from "VulkanConst.java"
+public final class com.mojang.renderpearl.backend.vulkan.VulkanConst {
+  public com.mojang.renderpearl.backend.vulkan.VulkanConst();
+  public static int textureUsageToVk(int, com.mojang.renderpearl.api.GpuFormat);
+  public static int bufferUsageToVk(int);
+  public static int formatAspectMask(com.mojang.renderpearl.api.GpuFormat);
+  public static int toVk(com.mojang.renderpearl.api.textures.AddressMode);
+  public static int toVk(com.mojang.renderpearl.api.textures.FilterMode);
+  public static int toVk(com.mojang.renderpearl.api.GpuFormat);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.BlendFactor);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.BlendOp);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.CompareOp);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.PolygonMode);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.PrimitiveTopology);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.ColorTargetState);
+  public static int toVk(com.mojang.renderpearl.api.device.GpuSurface$PresentMode);
+  public static int toVk(com.mojang.renderpearl.api.pipeline.ShaderType);
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.vulkan.package-info {
+}
+Compiled from "VulkanGpuSurface.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface implements com.mojang.renderpearl.backend.api.GpuSurfaceBackend {
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuSurface(com.mojang.renderpearl.backend.vulkan.VulkanDevice, long);
+  public java.util.Collection<com.mojang.renderpearl.api.device.GpuSurface$PresentMode> supportedPresentModes();
+  public org.lwjgl.vulkan.VkSurfaceFormatKHR pickSwapchainSurfaceFormat(org.lwjgl.vulkan.VkSurfaceFormatKHR$Buffer);
+  public static void throwIfFailure(int, java.lang.String) throws com.mojang.renderpearl.api.device.SurfaceException;
+  public void close();
+  public void configure(com.mojang.renderpearl.api.device.GpuSurface$Configuration) throws com.mojang.renderpearl.api.device.SurfaceException;
+  public boolean isSuboptimal();
+  public void acquireNextTexture() throws com.mojang.renderpearl.api.device.SurfaceException;
+  public void blitFromTexture(com.mojang.renderpearl.backend.api.CommandEncoderBackend, com.mojang.renderpearl.api.textures.GpuTextureView);
+  public void present();
+}
+Compiled from "VulkanUtils.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanUtils {
+  public static final java.util.Set<com.mojang.renderpearl.backend.vulkan.VulkanUtils$DeviceUUID> KNOWN_PROBLEMATIC_DEVICES;
+  public com.mojang.renderpearl.backend.vulkan.VulkanUtils();
+  public static void throwIfFailure(int, java.lang.String, com.mojang.renderpearl.api.device.BackendCreationException$Reason) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public static void crashIfFailure(com.mojang.renderpearl.backend.vulkan.VulkanDevice, int, java.lang.String);
+  public static java.lang.String formatCheckpoints(java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints>);
+  public static java.lang.String pipelineStageToString(long);
+  public static java.lang.String resultToString(int);
+  public static boolean hasAllBits(int, int);
+  public static boolean hasAllBits(long, long);
+  public static boolean hasAnyBit(int, int);
+  public static boolean hasAnyBit(long, long);
+  public static boolean hasNoBit(int, int);
+  public static boolean hasNoBit(long, long);
+  public static org.lwjgl.vulkan.VkClearColorValue putArgb(org.lwjgl.vulkan.VkClearColorValue, org.joml.Vector4fc);
+  public static java.util.Set<java.lang.String> enumerateExtensions(org.lwjgl.vulkan.VkPhysicalDevice) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public static org.lwjgl.vulkan.VkPhysicalDeviceFeatures2 enumerateFeatures(org.lwjgl.vulkan.VkPhysicalDevice, java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature>, org.lwjgl.system.MemoryStack);
+}
+Compiled from "VulkanTransientMemory.java"
+class com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$TransientGpuBuffer extends com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer {
+  public com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$TransientGpuBuffer(com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory, long, int, int, long);
+  public void destroy();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(long, long, boolean, boolean);
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice(long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice();
+}
+Compiled from "VulkanCommandPool.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanCommandPool implements com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanCommandPool(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue);
+  public void destroy();
+  public void release();
+  public void reset();
+  public org.lwjgl.vulkan.VkCommandBuffer allocateBuffer();
+}
+Compiled from "VulkanRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.vulkan.VulkanRenderPipeline implements com.mojang.renderpearl.backend.api.BackendRenderPipeline,com.mojang.renderpearl.backend.vulkan.Destroyable {
+  public com.mojang.renderpearl.backend.vulkan.VulkanRenderPipeline(com.mojang.renderpearl.backend.vulkan.VulkanDevice, long, long, long, long, it.unimi.dsi.fastutil.longs.LongList, java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription>);
+  public boolean isClosed();
+  public void close();
+  public static com.mojang.renderpearl.backend.vulkan.VulkanRenderPipeline compile(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo);
+  public void destroy();
+  public com.mojang.renderpearl.backend.vulkan.VulkanDevice device();
+  public long withDepthPipeline();
+  public long withoutDepthPipeline();
+  public long pipelineLayout();
+  public java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription> uniforms();
+}
+Compiled from "VulkanGpuBuffer.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer$Direct extends com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer {
+  protected final com.mojang.renderpearl.backend.vulkan.VulkanDevice device;
+  public com.mojang.renderpearl.backend.vulkan.VulkanGpuBuffer$Direct(com.mojang.renderpearl.backend.vulkan.VulkanDevice, java.util.function.Supplier<java.lang.String>, int, long, boolean);
+  public void destroy();
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(long, long, boolean, boolean);
+}
+Compiled from "VulkanBackend.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanBackend implements com.mojang.renderpearl.api.device.GpuBackend {
+  public com.mojang.renderpearl.backend.vulkan.VulkanBackend();
+  public java.lang.String getName();
+  public void loadLibrary() throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public void unloadLibrary();
+  public static com.mojang.renderpearl.api.device.BackendCreationException checkBackendAvailable();
+  public long createWindow(java.lang.String, int, int, long);
+  public com.mojang.renderpearl.api.device.GpuDevice createDevice(com.mojang.renderpearl.api.device.GpuDebugOptions) throws com.mojang.renderpearl.api.device.BackendCreationException;
+}
+Compiled from "VulkanTransientMemory.java"
+final class com.mojang.renderpearl.backend.vulkan.VulkanTransientMemory$VulkanAllocation extends java.lang.Record implements com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long vkBuffer();
+  public long vmaAllocation();
+  public long hostPtr();
+  public long size();
+  public boolean suboptimal();
+}
+Compiled from "VulkanRenderPass.java"
+public class com.mojang.renderpearl.backend.vulkan.VulkanRenderPass implements com.mojang.renderpearl.backend.api.RenderPassBackend {
+  protected int pushedDebugGroups;
+  protected com.mojang.renderpearl.backend.vulkan.VulkanRenderPipeline pipeline;
+  protected final it.unimi.dsi.fastutil.objects.ReferenceList<java.lang.Object> uniforms;
+  public com.mojang.renderpearl.backend.vulkan.VulkanRenderPass(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanCommandEncoder, org.lwjgl.vulkan.VkCommandBuffer, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage, com.mojang.renderpearl.api.commands.RenderPass$RenderArea, int, int, boolean, java.util.function.Supplier<java.lang.String>);
+  public void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public void popDebugGroup();
+  public void setPipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline);
+  public void setUniform(int, java.lang.Object);
+  public void pushConstants(java.nio.ByteBuffer);
+  public void enableScissor(int, int, int, int);
+  public void disableScissor();
+  public void setVertexBuffer(int, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public void setIndexBuffer(com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType);
+  public void drawIndexed(int, int, int, int, int);
+  public void multiDrawIndexed(java.nio.IntBuffer, int, int, int);
+  public void multiDrawIndexed(org.lwjgl.PointerBuffer, java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public void drawIndexedIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public void draw(int, int, int, int);
+  public void multiDraw(java.nio.IntBuffer, int, int, int);
+  public void multiDraw(java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public void drawIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+  public java.util.function.Supplier<java.lang.String> getLabel();
+}

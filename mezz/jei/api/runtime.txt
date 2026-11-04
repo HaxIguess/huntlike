@@ -1,0 +1,152 @@
+Compiled from "IBookmarkManager.java"
+public interface mezz.jei.api.runtime.IBookmarkManager {
+  public abstract boolean contains(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public abstract boolean add(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public abstract boolean remove(mezz.jei.api.ingredients.ITypedIngredient<?>);
+}
+Compiled from "IBookmarkOverlay.java"
+public interface mezz.jei.api.runtime.IBookmarkOverlay {
+  public abstract java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredientUnderMouse();
+  public abstract <T> T getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public default net.minecraft.world.item.ItemStack getItemStackUnderMouse();
+}
+Compiled from "IClickableIngredient.java"
+public interface mezz.jei.api.runtime.IClickableIngredient<T> {
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<T> getTypedIngredient();
+  public default mezz.jei.api.ingredients.IIngredientType<T> getIngredientType();
+  public default T getIngredient();
+  public abstract net.minecraft.client.renderer.Rect2i getArea();
+}
+Compiled from "IEditModeConfig.java"
+public final class mezz.jei.api.runtime.IEditModeConfig$HideMode extends java.lang.Enum<mezz.jei.api.runtime.IEditModeConfig$HideMode> {
+  public static final mezz.jei.api.runtime.IEditModeConfig$HideMode SINGLE;
+  public static final mezz.jei.api.runtime.IEditModeConfig$HideMode WILDCARD;
+  public static mezz.jei.api.runtime.IEditModeConfig$HideMode[] values();
+  public static mezz.jei.api.runtime.IEditModeConfig$HideMode valueOf(java.lang.String);
+}
+Compiled from "IEditModeConfig.java"
+public interface mezz.jei.api.runtime.IEditModeConfig {
+  public abstract <V> boolean isIngredientHiddenUsingConfigFile(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract <V> java.util.Set<mezz.jei.api.runtime.IEditModeConfig$HideMode> getIngredientHiddenUsingConfigFile(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract <V> void hideIngredientUsingConfigFile(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.runtime.IEditModeConfig$HideMode);
+  public abstract <V> void showIngredientUsingConfigFile(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.runtime.IEditModeConfig$HideMode);
+}
+Compiled from "IIngredientFilter.java"
+public interface mezz.jei.api.runtime.IIngredientFilter {
+  public abstract void setFilterText(java.lang.String);
+  public abstract java.lang.String getFilterText();
+  public default java.util.List<net.minecraft.world.item.ItemStack> getFilteredItemStacks();
+  public abstract <T> java.util.List<T> getFilteredIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+}
+Compiled from "IIngredientListOverlay.java"
+public interface mezz.jei.api.runtime.IIngredientListOverlay {
+  public abstract java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredientUnderMouse();
+  public abstract <T> T getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public abstract boolean isListDisplayed();
+  public abstract boolean hasKeyboardFocus();
+  public abstract <T> java.util.List<T> getVisibleIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+}
+Compiled from "IIngredientManager.java"
+public interface mezz.jei.api.runtime.IIngredientManager$IIngredientListener {
+  public abstract <V> void onIngredientsAdded(mezz.jei.api.ingredients.IIngredientHelper<V>, java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>);
+  public abstract <V> void onIngredientsRemoved(mezz.jei.api.ingredients.IIngredientHelper<V>, java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>);
+}
+Compiled from "IIngredientManager.java"
+public interface mezz.jei.api.runtime.IIngredientManager {
+  public default java.util.Collection<net.minecraft.world.item.ItemStack> getAllItemStacks();
+  public abstract <V> java.util.Collection<V> getAllIngredients(mezz.jei.api.ingredients.IIngredientType<V>);
+  public abstract <V> java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>> getAllTypedIngredients(mezz.jei.api.ingredients.IIngredientType<V>);
+  public abstract <V> mezz.jei.api.ingredients.IIngredientHelper<V> getIngredientHelper(V);
+  public abstract <V> mezz.jei.api.ingredients.IIngredientHelper<V> getIngredientHelper(mezz.jei.api.ingredients.IIngredientType<V>);
+  public abstract <V> mezz.jei.api.ingredients.IIngredientRenderer<V> getIngredientRenderer(V);
+  public abstract <V> mezz.jei.api.ingredients.IIngredientRenderer<V> getIngredientRenderer(mezz.jei.api.ingredients.IIngredientType<V>);
+  public abstract <V> com.mojang.serialization.Codec<V> getIngredientCodec(mezz.jei.api.ingredients.IIngredientType<V>);
+  public abstract java.util.Collection<mezz.jei.api.ingredients.IIngredientType<?>> getRegisteredIngredientTypes();
+  public abstract java.util.Optional<mezz.jei.api.ingredients.IIngredientType<?>> getIngredientTypeForUid(java.lang.String);
+  public abstract <V> void addIngredientsAtRuntime(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>);
+  public abstract <V> void removeIngredientsAtRuntime(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>);
+  public abstract <V> mezz.jei.api.ingredients.IIngredientType<V> getIngredientType(V);
+  public abstract <V> java.util.Optional<mezz.jei.api.ingredients.IIngredientType<V>> getIngredientTypeChecked(V);
+  public abstract <B, I> java.util.Optional<mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, I>> getIngredientTypeWithSubtypesFromBase(B);
+  public abstract <V> java.util.Optional<mezz.jei.api.ingredients.IIngredientType<V>> getIngredientTypeChecked(java.lang.Class<? extends V>);
+  public abstract <V> java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<V>> createTypedIngredient(mezz.jei.api.ingredients.IIngredientType<V>, V, boolean);
+  public default <T> java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<T>> createTypedIngredient(T, boolean);
+  public default <V> java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<V>> createTypedIngredient(mezz.jei.api.ingredients.IIngredientType<V>, V);
+  public default <V> java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<V>> createTypedIngredient(V);
+  public abstract <V> mezz.jei.api.ingredients.ITypedIngredient<V> normalizeTypedIngredient(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract mezz.jei.api.gui.builder.IClickableIngredientFactory getClickableIngredientFactory();
+  public abstract <V> java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<V>> createClickableIngredient(mezz.jei.api.ingredients.IIngredientType<V>, V, net.minecraft.client.renderer.Rect2i, boolean);
+  public default <V> java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<V>> createClickableIngredient(V, net.minecraft.client.renderer.Rect2i, boolean);
+  public abstract java.util.Collection<java.lang.String> getIngredientAliases(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public abstract void registerIngredientListener(mezz.jei.api.runtime.IIngredientManager$IIngredientListener);
+}
+Compiled from "IIngredientVisibility.java"
+public interface mezz.jei.api.runtime.IIngredientVisibility$IListener {
+  public abstract <V> void onIngredientVisibilityChanged(mezz.jei.api.ingredients.ITypedIngredient<V>, boolean);
+  public default <V> void onIngredientsVisibilityChanged(java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>, boolean);
+  public default <V> void onIngredientsVisibilityChanged(java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>, java.util.Collection<mezz.jei.api.ingredients.subtypes.UidContext>, boolean);
+}
+Compiled from "IIngredientVisibility.java"
+public interface mezz.jei.api.runtime.IIngredientVisibility {
+  public abstract <V> void hideIngredients(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>, java.util.Collection<mezz.jei.api.ingredients.subtypes.UidContext>);
+  public abstract <V> void unhideIngredients(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>, java.util.Collection<mezz.jei.api.ingredients.subtypes.UidContext>);
+  public abstract <V> boolean isIngredientVisible(mezz.jei.api.ingredients.IIngredientType<V>, V);
+  public abstract <V> boolean isIngredientVisible(mezz.jei.api.ingredients.IIngredientType<V>, V, mezz.jei.api.ingredients.subtypes.UidContext);
+  public abstract <V> boolean isIngredientVisible(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract <V> boolean isIngredientVisible(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.ingredients.subtypes.UidContext);
+  public abstract void registerListener(mezz.jei.api.runtime.IIngredientVisibility$IListener);
+}
+Compiled from "IJeiFeatures.java"
+public interface mezz.jei.api.runtime.IJeiFeatures {
+  public default void disableJeiGui();
+  public abstract boolean isJeiGuiEnabled();
+  public abstract void disableInventoryEffectRendererGuiHandler();
+}
+Compiled from "IJeiKeyMapping.java"
+public interface mezz.jei.api.runtime.IJeiKeyMapping {
+  public abstract boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public abstract boolean isUnbound();
+  public abstract net.minecraft.network.chat.Component getTranslatedKeyMessage();
+}
+Compiled from "IJeiKeyMappings.java"
+public interface mezz.jei.api.runtime.IJeiKeyMappings {
+  public abstract mezz.jei.api.runtime.IJeiKeyMapping getShowRecipe();
+  public abstract mezz.jei.api.runtime.IJeiKeyMapping getShowUses();
+  public abstract mezz.jei.api.runtime.IJeiKeyMapping getBookmark();
+}
+Compiled from "IJeiRuntime.java"
+public interface mezz.jei.api.runtime.IJeiRuntime {
+  public abstract mezz.jei.api.recipe.IRecipeManager getRecipeManager();
+  public abstract mezz.jei.api.runtime.IRecipesGui getRecipesGui();
+  public abstract mezz.jei.api.runtime.IIngredientFilter getIngredientFilter();
+  public abstract mezz.jei.api.runtime.IIngredientListOverlay getIngredientListOverlay();
+  public abstract mezz.jei.api.runtime.IBookmarkOverlay getBookmarkOverlay();
+  public abstract mezz.jei.api.runtime.IBookmarkManager getBookmarkManager();
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.runtime.IJeiKeyMappings getKeyMappings();
+  public abstract mezz.jei.api.runtime.IScreenHelper getScreenHelper();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferManager getRecipeTransferManager();
+  public abstract mezz.jei.api.runtime.IEditModeConfig getEditModeConfig();
+  public abstract mezz.jei.api.runtime.config.IJeiConfigManager getConfigManager();
+}
+Compiled from "IRecipesGui.java"
+public interface mezz.jei.api.runtime.IRecipesGui {
+  public default <V> void show(mezz.jei.api.recipe.IFocus<V>);
+  public abstract void show(java.util.List<mezz.jei.api.recipe.IFocus<?>>);
+  public abstract void showTypes(java.util.List<mezz.jei.api.recipe.types.IRecipeType<?>>);
+  public abstract <T> void showRecipes(mezz.jei.api.recipe.category.IRecipeCategory<T>, java.util.List<T>, java.util.List<mezz.jei.api.recipe.IFocus<?>>);
+  public abstract <T> java.util.Optional<T> getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public abstract java.util.Optional<net.minecraft.client.gui.screens.Screen> getParentScreen();
+}
+Compiled from "IScreenHelper.java"
+public interface mezz.jei.api.runtime.IScreenHelper {
+  public abstract java.util.stream.Stream<mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(net.minecraft.client.gui.screens.Screen, double, double);
+  public abstract <T extends net.minecraft.client.gui.screens.Screen> java.util.Optional<mezz.jei.api.gui.handlers.IGuiProperties> getGuiProperties(T);
+  public abstract java.util.stream.Stream<mezz.jei.api.gui.handlers.IGuiClickableArea> getGuiClickableArea(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>, double, double);
+  public abstract java.util.stream.Stream<net.minecraft.client.renderer.Rect2i> getGuiExclusionAreas(net.minecraft.client.gui.screens.Screen);
+  public abstract <T extends net.minecraft.client.gui.screens.Screen> java.util.List<mezz.jei.api.gui.handlers.IGhostIngredientHandler<T>> getGhostIngredientHandlers(T);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.runtime.package-info {
+}

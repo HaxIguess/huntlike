@@ -1,0 +1,63 @@
+Compiled from "ICraftingGridHelper.java"
+public interface mezz.jei.api.gui.ingredient.ICraftingGridHelper {
+  public abstract java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder> createAndSetNamedIngredients(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<com.mojang.datafixers.util.Pair<java.lang.String, net.minecraft.world.item.crafting.Ingredient>>, int, int);
+  public abstract void createAndSetIngredients(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<net.minecraft.world.item.crafting.Ingredient>, int, int);
+  public abstract void createAndSetIngredientsFromDisplays(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<net.minecraft.world.item.crafting.display.SlotDisplay>, int, int);
+  public default java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder> createAndSetNamedInputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<com.mojang.datafixers.util.Pair<java.lang.String, java.util.List<net.minecraft.world.item.ItemStack>>>, int, int);
+  public abstract <T> java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder> createAndSetNamedInputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<com.mojang.datafixers.util.Pair<java.lang.String, java.util.List<T>>>, int, int);
+  public default java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder> createAndSetInputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<java.util.List<net.minecraft.world.item.ItemStack>>, int, int);
+  public abstract <T> java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder> createAndSetInputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<java.util.List<T>>, int, int);
+  public abstract <T> void setInputs(java.util.List<mezz.jei.api.gui.builder.IRecipeSlotBuilder>, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<java.util.List<T>>, int, int);
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder createAndSetOutputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.util.List<net.minecraft.world.item.ItemStack>);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder createAndSetOutputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract <T> mezz.jei.api.gui.builder.IRecipeSlotBuilder createAndSetOutputs(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<T>);
+}
+Compiled from "IRecipeSlotDrawable.java"
+public interface mezz.jei.api.gui.ingredient.IRecipeSlotDrawable extends mezz.jei.api.gui.ingredient.IRecipeSlotView {
+  public abstract void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public abstract void draw(net.minecraft.client.gui.GuiGraphicsExtractor, boolean);
+  public abstract void drawHoverOverlays(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public abstract java.util.List<net.minecraft.network.chat.Component> getTooltip();
+  public abstract void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public abstract void drawTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public abstract boolean isMouseOver(double, double);
+  public abstract void setPosition(int, int);
+  public abstract mezz.jei.api.gui.builder.IIngredientAcceptor<?> createDisplayOverrides();
+  public abstract void clearDisplayOverrides();
+  public abstract net.minecraft.client.renderer.Rect2i getAreaIncludingBackground();
+}
+Compiled from "IRecipeSlotDrawablesView.java"
+public interface mezz.jei.api.gui.ingredient.IRecipeSlotDrawablesView {
+  public abstract java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable> getSlots();
+  public default java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable> getSlots(mezz.jei.api.recipe.RecipeIngredientRole);
+  public default java.util.Optional<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable> findSlotByName(java.lang.String);
+}
+Compiled from "IRecipeSlotRichTooltipCallback.java"
+public interface mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback {
+  public abstract void onRichTooltip(mezz.jei.api.gui.ingredient.IRecipeSlotView, mezz.jei.api.gui.builder.ITooltipBuilder);
+}
+Compiled from "IRecipeSlotView.java"
+public interface mezz.jei.api.gui.ingredient.IRecipeSlotView {
+  public abstract java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredients();
+  public abstract java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredientsList();
+  public abstract java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getDisplayedIngredient();
+  public abstract java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getDisplayedIngredients();
+  public abstract java.util.Optional<net.minecraft.tags.TagKey<?>> getTagKey();
+  public abstract mezz.jei.api.recipe.RecipeIngredientRole getRole();
+  public abstract void drawHighlight(net.minecraft.client.gui.GuiGraphicsExtractor, int);
+  public default <T> java.util.stream.Stream<T> getIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+  public default java.util.stream.Stream<net.minecraft.world.item.ItemStack> getItemStacks();
+  public default boolean isEmpty();
+  public default java.util.Optional<net.minecraft.world.item.ItemStack> getDisplayedItemStack();
+  public default <T> java.util.Optional<T> getDisplayedIngredient(mezz.jei.api.ingredients.IIngredientType<T>);
+  public abstract java.util.Optional<java.lang.String> getSlotName();
+}
+Compiled from "IRecipeSlotsView.java"
+public interface mezz.jei.api.gui.ingredient.IRecipeSlotsView {
+  public abstract java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotView> getSlotViews();
+  public default java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotView> getSlotViews(mezz.jei.api.recipe.RecipeIngredientRole);
+  public default java.util.Optional<mezz.jei.api.gui.ingredient.IRecipeSlotView> findSlotByName(java.lang.String);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.ingredient.package-info {
+}

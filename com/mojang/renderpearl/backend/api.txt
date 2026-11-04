@@ -1,0 +1,175 @@
+Compiled from "GpuDeviceBackend.java"
+public interface com.mojang.renderpearl.backend.api.GpuDeviceBackend {
+  public abstract com.mojang.renderpearl.backend.api.GpuSurfaceBackend createSurface(long, java.util.function.BooleanSupplier);
+  public abstract com.mojang.renderpearl.backend.api.CommandEncoderBackend createCommandEncoder();
+  public abstract com.mojang.renderpearl.api.textures.GpuSampler createSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public abstract com.mojang.renderpearl.api.textures.GpuTexture createTexture(java.lang.String, int, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public abstract com.mojang.renderpearl.api.textures.GpuTextureView createTextureView(com.mojang.renderpearl.api.textures.GpuTexture, int, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, long);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, java.nio.ByteBuffer);
+  public abstract java.util.List<java.lang.String> getLastDebugMessages();
+  public abstract boolean isDebuggingEnabled();
+  public abstract com.mojang.renderpearl.backend.api.BackendRenderPipeline$Pending compilePipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo);
+  public abstract void close();
+  public abstract com.mojang.renderpearl.api.commands.GpuQueryPool createTimestampQueryPool(int);
+  public abstract long getTimestampCalibrationOffset();
+  public abstract com.mojang.renderpearl.api.device.DeviceInfo getDeviceInfo();
+}
+Compiled from "BackendRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$VertexBuffer extends java.lang.Record {
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$VertexBuffer(int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int bufferSlot();
+  public int stride();
+  public int stepRate();
+}
+Compiled from "RenderPassBackend.java"
+public interface com.mojang.renderpearl.backend.api.RenderPassBackend {
+  public abstract void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public abstract void popDebugGroup();
+  public abstract void setPipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline);
+  public abstract void setUniform(int, java.lang.Object);
+  public abstract void pushConstants(java.nio.ByteBuffer);
+  public abstract void enableScissor(int, int, int, int);
+  public abstract void disableScissor();
+  public abstract void setVertexBuffer(int, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void setIndexBuffer(com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType);
+  public abstract void drawIndexed(int, int, int, int, int);
+  public abstract void multiDrawIndexed(java.nio.IntBuffer, int, int, int);
+  public abstract void multiDrawIndexed(org.lwjgl.PointerBuffer, java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public abstract void drawIndexedIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public abstract void draw(int, int, int, int);
+  public abstract void multiDraw(java.nio.IntBuffer, int, int, int);
+  public abstract void multiDraw(java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public abstract void drawIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public abstract void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule$Reflection {
+  public abstract java.util.List<com.mojang.renderpearl.backend.api.SpvModule$Reflection$InterfaceVariable> inputs();
+  public abstract java.util.List<com.mojang.renderpearl.backend.api.SpvModule$Reflection$InterfaceVariable> outputs();
+  public abstract java.util.List<com.mojang.renderpearl.backend.api.SpvModule$Reflection$Descriptor> descriptors(int);
+  public abstract java.util.List<com.mojang.renderpearl.backend.api.SpvModule$Reflection$Descriptor> descriptors();
+  public abstract java.util.List<com.mojang.renderpearl.backend.api.SpvModule$Reflection$PushConstant> pushConstants();
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule$Reflection$InterfaceVariable {
+  public abstract java.lang.String name();
+  public abstract com.mojang.renderpearl.backend.api.SpvModule$Reflection$Type type();
+  public abstract int location();
+  public abstract void location(int);
+  public default boolean hasDecoration(int);
+  public abstract int decoration(int);
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule extends java.lang.AutoCloseable {
+  public abstract void close();
+  public abstract java.nio.ByteBuffer spv();
+  public abstract com.mojang.renderpearl.api.pipeline.ShaderType type();
+  public abstract com.mojang.renderpearl.backend.api.SpvModule$Reflection reflect() throws com.mojang.renderpearl.util.ShaderCompileException;
+  public abstract com.mojang.renderpearl.backend.api.SpvModule$Reflection getReflectionInfoIfAvailable();
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule$Reflection$PushConstant {
+  public abstract int size();
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule$Reflection$Type {
+  public abstract int baseType();
+  public abstract int dimensions();
+  public abstract int vectorSize();
+  public abstract int arrayDimensions();
+  public abstract int arrayLength(int);
+}
+Compiled from "BackendRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo extends java.lang.Record {
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo(java.lang.String, java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader>, java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$VertexBuffer>, java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$AttribBinding>, java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription>, int, com.mojang.renderpearl.api.pipeline.DepthStencilState, com.mojang.renderpearl.api.pipeline.PolygonMode, boolean, java.util.List<com.mojang.renderpearl.api.pipeline.ColorTargetState>, com.mojang.renderpearl.api.pipeline.PrimitiveTopology);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader> shaders();
+  public java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$VertexBuffer> vertexBuffers();
+  public java.util.List<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$AttribBinding> attribBindings();
+  public java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription> uniforms();
+  public int pushConstantsSize();
+  public com.mojang.renderpearl.api.pipeline.DepthStencilState depthStencilState();
+  public com.mojang.renderpearl.api.pipeline.PolygonMode polygonMode();
+  public boolean cull();
+  public java.util.List<com.mojang.renderpearl.api.pipeline.ColorTargetState> colorTargetStates();
+  public com.mojang.renderpearl.api.pipeline.PrimitiveTopology primitiveTopology();
+}
+Compiled from "BackendRenderPipeline.java"
+public interface com.mojang.renderpearl.backend.api.BackendRenderPipeline extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract boolean isClosed();
+}
+Compiled from "BackendRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader extends java.lang.Record {
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader(java.lang.String, java.lang.String, com.mojang.renderpearl.backend.api.SpvModule);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String entryPoint();
+  public com.mojang.renderpearl.backend.api.SpvModule module();
+}
+Compiled from "BackendRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$AttribBinding extends java.lang.Record {
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$AttribBinding(int, int, int, com.mojang.renderpearl.api.GpuFormat);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int bufferSlot();
+  public int location();
+  public int offset();
+  public com.mojang.renderpearl.api.GpuFormat format();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.api.package-info {
+}
+Compiled from "SpvModule.java"
+public interface com.mojang.renderpearl.backend.api.SpvModule$Reflection$Descriptor {
+  public abstract java.lang.String name();
+  public abstract com.mojang.renderpearl.backend.api.SpvModule$Reflection$Type type();
+  public abstract int resourceType();
+  public abstract int descriptorSetIndex();
+  public abstract void descriptorSetIndex(int);
+  public abstract int binding();
+  public abstract void binding(int);
+}
+Compiled from "GpuSurfaceBackend.java"
+public interface com.mojang.renderpearl.backend.api.GpuSurfaceBackend extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract void configure(com.mojang.renderpearl.api.device.GpuSurface$Configuration) throws com.mojang.renderpearl.api.device.SurfaceException;
+  public abstract boolean isSuboptimal();
+  public abstract void acquireNextTexture() throws com.mojang.renderpearl.api.device.SurfaceException;
+  public abstract void blitFromTexture(com.mojang.renderpearl.backend.api.CommandEncoderBackend, com.mojang.renderpearl.api.textures.GpuTextureView);
+  public abstract void present();
+  public abstract java.util.Collection<com.mojang.renderpearl.api.device.GpuSurface$PresentMode> supportedPresentModes();
+}
+Compiled from "CommandEncoderBackend.java"
+public interface com.mojang.renderpearl.backend.api.CommandEncoderBackend {
+  public abstract void submit();
+  public abstract com.mojang.renderpearl.api.buffers.TransientMemory transientMemory();
+  public abstract com.mojang.renderpearl.backend.api.RenderPassBackend createRenderPass(com.mojang.renderpearl.api.commands.RenderPassDescriptor);
+  public abstract void submitRenderPass();
+  public abstract void clearColorTexture(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc);
+  public abstract void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public abstract void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double, int, int, int, int, int);
+  public abstract void clearDepthTexture(com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public abstract void writeToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, java.nio.ByteBuffer);
+  public abstract void copyToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, java.nio.ByteBuffer, int, int, int, int, int, int);
+  public abstract void copyBufferToTexture(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int, int, int, int, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int);
+  public abstract void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int);
+  public abstract void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int, int, int, int, int);
+  public abstract void copyTextureToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int, int);
+  public abstract com.mojang.renderpearl.api.commands.GpuFence createFence();
+  public abstract void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+}
+Compiled from "BackendRenderPipeline.java"
+public interface com.mojang.renderpearl.backend.api.BackendRenderPipeline$Pending {
+  public static final com.mojang.renderpearl.backend.api.BackendRenderPipeline$Pending NULL;
+  public abstract com.mojang.renderpearl.backend.api.BackendRenderPipeline finishCompile();
+}

@@ -1,0 +1,90 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.gameevent.vibrations.package-info {
+}
+Compiled from "VibrationSystem.java"
+public class net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener implements net.minecraft.world.level.gameevent.GameEventListener {
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener(net.minecraft.world.level.gameevent.vibrations.VibrationSystem);
+  public net.minecraft.world.level.gameevent.PositionSource getListenerSource();
+  public int getListenerRadius();
+  public boolean handleGameEvent(net.minecraft.server.level.ServerLevel, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.phys.Vec3);
+  public void forceScheduleVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.phys.Vec3);
+  public static float distanceBetweenInBlocks(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+}
+Compiled from "VibrationSelector.java"
+public class net.minecraft.world.level.gameevent.vibrations.VibrationSelector {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.gameevent.vibrations.VibrationSelector> CODEC;
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSelector(java.util.Optional<net.minecraft.world.level.gameevent.vibrations.VibrationInfo>, long);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSelector();
+  public void addCandidate(net.minecraft.world.level.gameevent.vibrations.VibrationInfo, long);
+  public java.util.Optional<net.minecraft.world.level.gameevent.vibrations.VibrationInfo> chosenCandidate(long);
+  public void startOver();
+}
+Compiled from "VibrationSystem.java"
+public final class net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data> CODEC;
+  public static final java.lang.String NBT_TAG_KEY;
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSelector getSelectionStrategy();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationInfo getCurrentVibration();
+  public void setCurrentVibration(net.minecraft.world.level.gameevent.vibrations.VibrationInfo);
+  public int getTravelTimeInTicks();
+  public void setTravelTimeInTicks(int);
+  public void decrementTravelTime();
+  public boolean shouldReloadVibrationParticle();
+  public void setReloadVibrationParticle(boolean);
+}
+Compiled from "VibrationSystem.java"
+public interface net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User {
+  public abstract int getListenerRadius();
+  public abstract net.minecraft.world.level.gameevent.PositionSource getPositionSource();
+  public abstract boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public abstract void onReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, float);
+  public default net.minecraft.tags.TagKey<net.minecraft.world.level.gameevent.GameEvent> getListenableEvents();
+  public default boolean canTriggerAvoidVibration();
+  public default boolean requiresAdjacentChunksToBeTicking();
+  public default int calculateTravelTimeInTicks(float);
+  public default boolean isValidVibration(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public default void onDataChanged();
+}
+Compiled from "VibrationSystem.java"
+public interface net.minecraft.world.level.gameevent.vibrations.VibrationSystem {
+  public static final java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.level.gameevent.GameEvent>> RESONANCE_EVENTS;
+  public static final int NO_VIBRATION_FREQUENCY;
+  public static final java.util.function.ToIntFunction<net.minecraft.resources.ResourceKey<net.minecraft.world.level.gameevent.GameEvent>> VIBRATION_FREQUENCY_FOR_EVENT;
+  public abstract net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data getVibrationData();
+  public abstract net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User getVibrationUser();
+  public static int getGameEventFrequency(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>);
+  public static int getGameEventFrequency(net.minecraft.resources.ResourceKey<net.minecraft.world.level.gameevent.GameEvent>);
+  public static net.minecraft.resources.ResourceKey<net.minecraft.world.level.gameevent.GameEvent> getResonanceEventByFrequency(int);
+  public static int getRedstoneStrengthForDistance(float, int);
+}
+Compiled from "VibrationSelector.java"
+final class net.minecraft.world.level.gameevent.vibrations.VibrationSelector$VibrationEvent extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationInfo event();
+  public long tick();
+}
+Compiled from "VibrationSystem.java"
+public interface net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Ticker {
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data, net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User);
+}
+Compiled from "VibrationInfo.java"
+public final class net.minecraft.world.level.gameevent.vibrations.VibrationInfo extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.gameevent.vibrations.VibrationInfo> CODEC;
+  public net.minecraft.world.level.gameevent.vibrations.VibrationInfo(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, float, net.minecraft.world.phys.Vec3, java.util.UUID, java.util.UUID);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationInfo(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, float, net.minecraft.world.phys.Vec3, net.minecraft.world.entity.Entity);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationInfo(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, float, net.minecraft.world.phys.Vec3, java.util.UUID, java.util.UUID, net.minecraft.world.entity.Entity);
+  public java.util.Optional<net.minecraft.world.entity.Entity> getEntity(net.minecraft.server.level.ServerLevel);
+  public java.util.Optional<net.minecraft.world.entity.Entity> getProjectileOwner(net.minecraft.server.level.ServerLevel);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent> gameEvent();
+  public float distance();
+  public net.minecraft.world.phys.Vec3 pos();
+  public java.util.UUID uuid();
+  public java.util.UUID projectileOwnerUuid();
+  public net.minecraft.world.entity.Entity entity();
+}

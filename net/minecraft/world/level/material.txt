@@ -1,0 +1,318 @@
+Compiled from "WaterFluid.java"
+public class net.minecraft.world.level.material.WaterFluid$Flowing extends net.minecraft.world.level.material.WaterFluid {
+  public net.minecraft.world.level.material.WaterFluid$Flowing();
+  protected void createFluidStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState>);
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+}
+Compiled from "MapColor.java"
+public final class net.minecraft.world.level.material.MapColor$Brightness extends java.lang.Enum<net.minecraft.world.level.material.MapColor$Brightness> {
+  public static final net.minecraft.world.level.material.MapColor$Brightness LOW;
+  public static final net.minecraft.world.level.material.MapColor$Brightness NORMAL;
+  public static final net.minecraft.world.level.material.MapColor$Brightness HIGH;
+  public static final net.minecraft.world.level.material.MapColor$Brightness LOWEST;
+  public final int id;
+  public final int modifier;
+  public static net.minecraft.world.level.material.MapColor$Brightness[] values();
+  public static net.minecraft.world.level.material.MapColor$Brightness valueOf(java.lang.String);
+  public static net.minecraft.world.level.material.MapColor$Brightness byId(int);
+}
+Compiled from "FogType.java"
+public final class net.minecraft.world.level.material.FogType extends java.lang.Enum<net.minecraft.world.level.material.FogType> {
+  public static final net.minecraft.world.level.material.FogType LAVA;
+  public static final net.minecraft.world.level.material.FogType WATER;
+  public static final net.minecraft.world.level.material.FogType POWDER_SNOW;
+  public static final net.minecraft.world.level.material.FogType ATMOSPHERIC;
+  public static final net.minecraft.world.level.material.FogType NONE;
+  public static net.minecraft.world.level.material.FogType[] values();
+  public static net.minecraft.world.level.material.FogType valueOf(java.lang.String);
+}
+Compiled from "FluidIds.java"
+public class net.minecraft.world.level.material.FluidIds {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.material.Fluid> EMPTY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.material.Fluid> FLOWING_WATER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.material.Fluid> WATER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.material.Fluid> FLOWING_LAVA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.material.Fluid> LAVA;
+  public net.minecraft.world.level.material.FluidIds();
+}
+Compiled from "FluidState.java"
+public final class net.minecraft.world.level.material.FluidState extends net.minecraft.world.level.block.state.StateHolder<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState> implements net.minecraft.core.TypedInstance<net.minecraft.world.level.material.Fluid> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.material.FluidState> CODEC;
+  public static final int AMOUNT_MAX;
+  public static final int AMOUNT_FULL;
+  public net.minecraft.world.level.material.FluidState(net.minecraft.world.level.material.Fluid, net.minecraft.world.level.block.state.properties.Property<?>[], java.lang.Comparable<?>[]);
+  public net.minecraft.world.level.material.Fluid getType();
+  public boolean isSource();
+  public boolean isSourceOfType(net.minecraft.world.level.material.Fluid);
+  public boolean isEmpty();
+  public float getHeight(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public float getHeightForCamera(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public float getOwnHeight();
+  public boolean isFull();
+  public int getAmount();
+  public boolean shouldRenderBackwardUpFace(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void animateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean isRandomlyTicking();
+  public void randomTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public net.minecraft.world.phys.Vec3 getFlow(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock();
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+  public net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid> typeHolder();
+  public float getExplosionResistance();
+  public boolean canBeReplacedWith(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB getAABB(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+}
+Compiled from "FlowingFluid.java"
+public class net.minecraft.world.level.material.FlowingFluid$SpreadContext {
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public boolean isHole(net.minecraft.core.BlockPos);
+}
+Compiled from "MapColor.java"
+public class net.minecraft.world.level.material.MapColor {
+  public static final net.minecraft.world.level.material.MapColor NONE;
+  public static final net.minecraft.world.level.material.MapColor GRASS;
+  public static final net.minecraft.world.level.material.MapColor SAND;
+  public static final net.minecraft.world.level.material.MapColor WOOL;
+  public static final net.minecraft.world.level.material.MapColor FIRE;
+  public static final net.minecraft.world.level.material.MapColor ICE;
+  public static final net.minecraft.world.level.material.MapColor METAL;
+  public static final net.minecraft.world.level.material.MapColor PLANT;
+  public static final net.minecraft.world.level.material.MapColor SNOW;
+  public static final net.minecraft.world.level.material.MapColor CLAY;
+  public static final net.minecraft.world.level.material.MapColor DIRT;
+  public static final net.minecraft.world.level.material.MapColor STONE;
+  public static final net.minecraft.world.level.material.MapColor WATER;
+  public static final net.minecraft.world.level.material.MapColor WOOD;
+  public static final net.minecraft.world.level.material.MapColor QUARTZ;
+  public static final net.minecraft.world.level.material.MapColor COLOR_ORANGE;
+  public static final net.minecraft.world.level.material.MapColor COLOR_MAGENTA;
+  public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_BLUE;
+  public static final net.minecraft.world.level.material.MapColor COLOR_YELLOW;
+  public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_GREEN;
+  public static final net.minecraft.world.level.material.MapColor COLOR_PINK;
+  public static final net.minecraft.world.level.material.MapColor COLOR_GRAY;
+  public static final net.minecraft.world.level.material.MapColor COLOR_LIGHT_GRAY;
+  public static final net.minecraft.world.level.material.MapColor COLOR_CYAN;
+  public static final net.minecraft.world.level.material.MapColor COLOR_PURPLE;
+  public static final net.minecraft.world.level.material.MapColor COLOR_BLUE;
+  public static final net.minecraft.world.level.material.MapColor COLOR_BROWN;
+  public static final net.minecraft.world.level.material.MapColor COLOR_GREEN;
+  public static final net.minecraft.world.level.material.MapColor COLOR_RED;
+  public static final net.minecraft.world.level.material.MapColor COLOR_BLACK;
+  public static final net.minecraft.world.level.material.MapColor GOLD;
+  public static final net.minecraft.world.level.material.MapColor DIAMOND;
+  public static final net.minecraft.world.level.material.MapColor LAPIS;
+  public static final net.minecraft.world.level.material.MapColor EMERALD;
+  public static final net.minecraft.world.level.material.MapColor PODZOL;
+  public static final net.minecraft.world.level.material.MapColor NETHER;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_WHITE;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_ORANGE;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_MAGENTA;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_BLUE;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_YELLOW;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_GREEN;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_PINK;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_GRAY;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_LIGHT_GRAY;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_CYAN;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_PURPLE;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BLUE;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BROWN;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_GREEN;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_RED;
+  public static final net.minecraft.world.level.material.MapColor TERRACOTTA_BLACK;
+  public static final net.minecraft.world.level.material.MapColor CRIMSON_NYLIUM;
+  public static final net.minecraft.world.level.material.MapColor CRIMSON_STEM;
+  public static final net.minecraft.world.level.material.MapColor CRIMSON_HYPHAE;
+  public static final net.minecraft.world.level.material.MapColor WARPED_NYLIUM;
+  public static final net.minecraft.world.level.material.MapColor WARPED_STEM;
+  public static final net.minecraft.world.level.material.MapColor WARPED_HYPHAE;
+  public static final net.minecraft.world.level.material.MapColor WARPED_WART_BLOCK;
+  public static final net.minecraft.world.level.material.MapColor DEEPSLATE;
+  public static final net.minecraft.world.level.material.MapColor RAW_IRON;
+  public static final net.minecraft.world.level.material.MapColor GLOW_LICHEN;
+  public final int col;
+  public final int id;
+  public int calculateARGBColor(net.minecraft.world.level.material.MapColor$Brightness);
+  public static net.minecraft.world.level.material.MapColor byId(int);
+  public static int getColorFromPackedId(int);
+  public byte getPackedId(net.minecraft.world.level.material.MapColor$Brightness);
+}
+Compiled from "PushReaction.java"
+public final class net.minecraft.world.level.material.PushReaction extends java.lang.Enum<net.minecraft.world.level.material.PushReaction> {
+  public static final net.minecraft.world.level.material.PushReaction PUSH_PULL;
+  public static final net.minecraft.world.level.material.PushReaction PUSH;
+  public static final net.minecraft.world.level.material.PushReaction POPPED;
+  public static final net.minecraft.world.level.material.PushReaction IMMOVEABLE;
+  public static final net.minecraft.world.level.material.PushReaction IGNORE_ENTITY;
+  public static net.minecraft.world.level.material.PushReaction[] values();
+  public static net.minecraft.world.level.material.PushReaction valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.material.package-info {
+}
+Compiled from "EmptyFluid.java"
+public class net.minecraft.world.level.material.EmptyFluid extends net.minecraft.world.level.material.Fluid {
+  public net.minecraft.world.level.material.EmptyFluid();
+  public net.minecraft.world.item.Item getBucket();
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.Vec3 getFlow(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState);
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+  protected boolean isEmpty();
+  protected float getExplosionResistance();
+  public float getHeight(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public float getOwnHeight(net.minecraft.world.level.material.FluidState);
+  protected net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+  public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "WaterFluid.java"
+public class net.minecraft.world.level.material.WaterFluid$Source extends net.minecraft.world.level.material.WaterFluid {
+  public net.minecraft.world.level.material.WaterFluid$Source();
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+}
+Compiled from "Fluids.java"
+public class net.minecraft.world.level.material.Fluids {
+  public static final net.minecraft.world.level.material.Fluid EMPTY;
+  public static final net.minecraft.world.level.material.FlowingFluid FLOWING_WATER;
+  public static final net.minecraft.world.level.material.FlowingFluid WATER;
+  public static final net.minecraft.world.level.material.FlowingFluid FLOWING_LAVA;
+  public static final net.minecraft.world.level.material.FlowingFluid LAVA;
+  public net.minecraft.world.level.material.Fluids();
+}
+Compiled from "WaterFluid.java"
+public abstract class net.minecraft.world.level.material.WaterFluid extends net.minecraft.world.level.material.FlowingFluid {
+  public net.minecraft.world.level.material.WaterFluid();
+  public net.minecraft.world.level.material.Fluid getFlowing();
+  public net.minecraft.world.level.material.Fluid getSource();
+  public net.minecraft.world.item.Item getBucket();
+  public void animateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+  protected boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+  protected void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+  public int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+  public int getDropOff(net.minecraft.world.level.LevelReader);
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+  protected float getExplosionResistance();
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+}
+Compiled from "LavaFluid.java"
+public class net.minecraft.world.level.material.LavaFluid$Source extends net.minecraft.world.level.material.LavaFluid {
+  public net.minecraft.world.level.material.LavaFluid$Source();
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+}
+Compiled from "FlowingFluid.java"
+final class net.minecraft.world.level.material.FlowingFluid$BlockStatePairKey extends java.lang.Record {
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public net.minecraft.world.level.block.state.BlockState first();
+  public net.minecraft.world.level.block.state.BlockState second();
+  public net.minecraft.core.Direction direction();
+}
+Compiled from "FlowingFluid.java"
+public abstract class net.minecraft.world.level.material.FlowingFluid extends net.minecraft.world.level.material.Fluid {
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty FALLING;
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LEVEL;
+  public net.minecraft.world.level.material.FlowingFluid();
+  protected void createFluidStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState>);
+  public net.minecraft.world.phys.Vec3 getFlow(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState);
+  protected boolean isSolidFace(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected void spread(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+  protected net.minecraft.world.level.material.FluidState getNewLiquid(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public abstract net.minecraft.world.level.material.Fluid getFlowing();
+  public net.minecraft.world.level.material.FluidState getFlowing(int, boolean);
+  public abstract net.minecraft.world.level.material.Fluid getSource();
+  public net.minecraft.world.level.material.FluidState getSource(boolean);
+  protected abstract boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+  protected void spreadTo(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, net.minecraft.world.level.material.FluidState);
+  protected abstract void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected int getSlopeDistance(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, int, net.minecraft.core.Direction, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FlowingFluid$SpreadContext);
+  protected abstract int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+  protected java.util.Map<net.minecraft.core.Direction, net.minecraft.world.level.material.FluidState> getSpread(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected abstract int getDropOff(net.minecraft.world.level.LevelReader);
+  protected int getSpreadDelay(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.world.level.material.FluidState);
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+  protected static int getLegacyLevel(net.minecraft.world.level.material.FluidState);
+  public float getHeight(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public float getOwnHeight(net.minecraft.world.level.material.FluidState);
+  public abstract int getAmount(net.minecraft.world.level.material.FluidState);
+  public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "LavaFluid.java"
+public abstract class net.minecraft.world.level.material.LavaFluid extends net.minecraft.world.level.material.FlowingFluid {
+  public static final int LIGHT_EMISSION;
+  public static final float MIN_LEVEL_CUTOFF;
+  public net.minecraft.world.level.material.LavaFluid();
+  public net.minecraft.world.level.material.Fluid getFlowing();
+  public net.minecraft.world.level.material.Fluid getSource();
+  public net.minecraft.world.item.Item getBucket();
+  public void animateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+  public void randomTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+  protected void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+  public int getDropOff(net.minecraft.world.level.LevelReader);
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+  public int getSpreadDelay(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.world.level.material.FluidState);
+  protected boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+  protected void spreadTo(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, net.minecraft.world.level.material.FluidState);
+  protected boolean isRandomlyTicking();
+  protected float getExplosionResistance();
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+}
+Compiled from "LavaFluid.java"
+public class net.minecraft.world.level.material.LavaFluid$Flowing extends net.minecraft.world.level.material.LavaFluid {
+  public net.minecraft.world.level.material.LavaFluid$Flowing();
+  protected void createFluidStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState>);
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+}
+Compiled from "Fluid.java"
+public abstract class net.minecraft.world.level.material.Fluid {
+  public static final net.minecraft.core.IdMapper<net.minecraft.world.level.material.FluidState> FLUID_STATE_REGISTRY;
+  protected final net.minecraft.world.level.block.state.StateDefinition<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState> stateDefinition;
+  protected net.minecraft.world.level.material.Fluid();
+  protected void createFluidStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState>);
+  public net.minecraft.world.level.block.state.StateDefinition<net.minecraft.world.level.material.Fluid, net.minecraft.world.level.material.FluidState> getStateDefinition();
+  protected final void registerDefaultState(net.minecraft.world.level.material.FluidState);
+  public final net.minecraft.world.level.material.FluidState defaultFluidState();
+  public abstract net.minecraft.world.item.Item getBucket();
+  protected void animateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+  protected void randomTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+  protected net.minecraft.core.particles.ParticleOptions getDripParticle();
+  protected abstract boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+  protected abstract net.minecraft.world.phys.Vec3 getFlow(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState);
+  public abstract int getTickDelay(net.minecraft.world.level.LevelReader);
+  protected boolean isRandomlyTicking();
+  protected boolean isEmpty();
+  protected abstract float getExplosionResistance();
+  public abstract float getHeight(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public abstract float getOwnHeight(net.minecraft.world.level.material.FluidState);
+  protected abstract net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+  public abstract boolean isSource(net.minecraft.world.level.material.FluidState);
+  public abstract int getAmount(net.minecraft.world.level.material.FluidState);
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+  public boolean is(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+  public abstract net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB getAABB(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+  public net.minecraft.core.Holder$Reference<net.minecraft.world.level.material.Fluid> builtInRegistryHolder();
+}

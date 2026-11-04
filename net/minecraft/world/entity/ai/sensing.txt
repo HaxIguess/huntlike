@@ -1,0 +1,213 @@
+Compiled from "NearestVisibleLivingEntitySensor.java"
+public abstract class net.minecraft.world.entity.ai.sensing.NearestVisibleLivingEntitySensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.NearestVisibleLivingEntitySensor();
+  protected abstract boolean isMatchingEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  protected abstract net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> getMemoryToSet();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected java.util.Optional<net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities> getVisibleEntities(net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "AdultSensorAnyType.java"
+public class net.minecraft.world.entity.ai.sensing.AdultSensorAnyType extends net.minecraft.world.entity.ai.sensing.AdultSensor {
+  public net.minecraft.world.entity.ai.sensing.AdultSensorAnyType();
+  protected void setNearestVisibleAdult(net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities);
+}
+Compiled from "GolemSensor.java"
+public class net.minecraft.world.entity.ai.sensing.GolemSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.GolemSensor();
+  public net.minecraft.world.entity.ai.sensing.GolemSensor(int);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  public static void checkForNearbyGolem(net.minecraft.world.entity.LivingEntity);
+  public static void golemDetected(net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "VillagerBabiesSensor.java"
+public class net.minecraft.world.entity.ai.sensing.VillagerBabiesSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.VillagerBabiesSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "PlayerSensor.java"
+public class net.minecraft.world.entity.ai.sensing.PlayerSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.PlayerSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected double getFollowDistance(net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "IsInWaterSensor.java"
+public class net.minecraft.world.entity.ai.sensing.IsInWaterSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.IsInWaterSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "BreezeAttackEntitySensor.java"
+public class net.minecraft.world.entity.ai.sensing.BreezeAttackEntitySensor extends net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor<net.minecraft.world.entity.monster.breeze.Breeze> {
+  public net.minecraft.world.entity.ai.sensing.BreezeAttackEntitySensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "AxolotlAttackablesSensor.java"
+public class net.minecraft.world.entity.ai.sensing.AxolotlAttackablesSensor extends net.minecraft.world.entity.ai.sensing.NearestVisibleLivingEntitySensor {
+  public static final float TARGET_DETECTION_DISTANCE;
+  public net.minecraft.world.entity.ai.sensing.AxolotlAttackablesSensor();
+  protected boolean isMatchingEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  protected net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> getMemoryToSet();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+}
+Compiled from "VillagerHostilesSensor.java"
+public class net.minecraft.world.entity.ai.sensing.VillagerHostilesSensor extends net.minecraft.world.entity.ai.sensing.NearestVisibleLivingEntitySensor {
+  public net.minecraft.world.entity.ai.sensing.VillagerHostilesSensor();
+  protected boolean isMatchingEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  protected net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> getMemoryToSet();
+}
+Compiled from "FrogAttackablesSensor.java"
+public class net.minecraft.world.entity.ai.sensing.FrogAttackablesSensor extends net.minecraft.world.entity.ai.sensing.NearestVisibleLivingEntitySensor {
+  public static final float TARGET_DETECTION_DISTANCE;
+  public net.minecraft.world.entity.ai.sensing.FrogAttackablesSensor();
+  protected boolean isMatchingEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  protected net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> getMemoryToSet();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+}
+Compiled from "TemptingSensor.java"
+public class net.minecraft.world.entity.ai.sensing.TemptingSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.PathfinderMob> {
+  public net.minecraft.world.entity.ai.sensing.TemptingSensor(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public static net.minecraft.world.entity.ai.sensing.TemptingSensor forAnimal();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.PathfinderMob);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.sensing.package-info {
+}
+Compiled from "MobSensor.java"
+public class net.minecraft.world.entity.ai.sensing.MobSensor<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.sensing.Sensor<T> {
+  public net.minecraft.world.entity.ai.sensing.MobSensor(int, java.util.function.BiPredicate<T, net.minecraft.world.entity.LivingEntity>, java.util.function.Predicate<T>, net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean>, int);
+  protected void doTick(net.minecraft.server.level.ServerLevel, T);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  public void checkForMobsNearby(T);
+  public void mobDetected(T);
+  public void clearMemory(T);
+}
+Compiled from "DummySensor.java"
+public class net.minecraft.world.entity.ai.sensing.DummySensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.DummySensor();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+}
+Compiled from "NearestLivingEntitySensor.java"
+public class net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.sensing.Sensor<T> {
+  public net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor();
+  protected void doTick(net.minecraft.server.level.ServerLevel, T);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+}
+Compiled from "PiglinSpecificSensor.java"
+public class net.minecraft.world.entity.ai.sensing.PiglinSpecificSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.PiglinSpecificSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "SensorType.java"
+public class net.minecraft.world.entity.ai.sensing.SensorType<U extends net.minecraft.world.entity.ai.sensing.Sensor<?>> {
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.DummySensor> DUMMY;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.NearestItemSensor> NEAREST_ITEMS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor<net.minecraft.world.entity.LivingEntity>> NEAREST_LIVING_ENTITIES;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.PlayerSensor> NEAREST_PLAYERS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.NearestBedSensor> NEAREST_BED;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.HurtBySensor> HURT_BY;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.VillagerHostilesSensor> VILLAGER_HOSTILES;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.VillagerBabiesSensor> VILLAGER_BABIES;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.SecondaryPoiSensor> SECONDARY_POIS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.GolemSensor> GOLEM_DETECTED;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.MobSensor<net.minecraft.world.entity.animal.armadillo.Armadillo>> ARMADILLO_SCARE_DETECTED;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.PiglinSpecificSensor> PIGLIN_SPECIFIC_SENSOR;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.PiglinBruteSpecificSensor> PIGLIN_BRUTE_SPECIFIC_SENSOR;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.HoglinSpecificSensor> HOGLIN_SPECIFIC_SENSOR;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.AdultSensor> NEAREST_ADULT;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.AdultSensor> NEAREST_ADULT_ANY_TYPE;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.AxolotlAttackablesSensor> AXOLOTL_ATTACKABLES;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.TemptingSensor> FOOD_TEMPTATIONS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.TemptingSensor> FROG_TEMPTATIONS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.TemptingSensor> NAUTILUS_TEMPTATIONS;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.FrogAttackablesSensor> FROG_ATTACKABLES;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.IsInWaterSensor> IS_IN_WATER;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.WardenEntitySensor> WARDEN_ENTITY_SENSOR;
+  public static final net.minecraft.world.entity.ai.sensing.SensorType<net.minecraft.world.entity.ai.sensing.BreezeAttackEntitySensor> BREEZE_ATTACK_ENTITY_SENSOR;
+  public net.minecraft.world.entity.ai.sensing.SensorType(java.util.function.Supplier<U>);
+  public U create();
+}
+Compiled from "WardenEntitySensor.java"
+public class net.minecraft.world.entity.ai.sensing.WardenEntitySensor extends net.minecraft.world.entity.ai.sensing.NearestLivingEntitySensor<net.minecraft.world.entity.monster.warden.Warden> {
+  public net.minecraft.world.entity.ai.sensing.WardenEntitySensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.warden.Warden);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "HoglinSpecificSensor.java"
+public class net.minecraft.world.entity.ai.sensing.HoglinSpecificSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.monster.hoglin.Hoglin> {
+  public net.minecraft.world.entity.ai.sensing.HoglinSpecificSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.hoglin.Hoglin);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "NearestItemSensor.java"
+public class net.minecraft.world.entity.ai.sensing.NearestItemSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.Mob> {
+  public static final int MAX_DISTANCE_TO_WANTED_ITEM;
+  public net.minecraft.world.entity.ai.sensing.NearestItemSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Mob);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "PiglinBruteSpecificSensor.java"
+public class net.minecraft.world.entity.ai.sensing.PiglinBruteSpecificSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.PiglinBruteSpecificSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "NearestBedSensor.java"
+public class net.minecraft.world.entity.ai.sensing.NearestBedSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.Mob> {
+  public net.minecraft.world.entity.ai.sensing.NearestBedSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Mob);
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "Sensor.java"
+public abstract class net.minecraft.world.entity.ai.sensing.Sensor<E extends net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.Sensor(int);
+  public net.minecraft.world.entity.ai.sensing.Sensor();
+  public void randomlyDelayStart(net.minecraft.util.RandomSource);
+  public final void tick(net.minecraft.server.level.ServerLevel, E);
+  protected abstract void doTick(net.minecraft.server.level.ServerLevel, E);
+  public abstract java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  public static boolean isEntityTargetable(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  public static boolean isEntityAttackable(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  public static java.util.function.BiPredicate<net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity> wasEntityAttackableLastNTicks(net.minecraft.world.entity.LivingEntity, int);
+  public static boolean isEntityAttackableIgnoringLineOfSight(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.LivingEntity);
+  public static <T, U> java.util.function.BiPredicate<T, U> rememberPositives(int, java.util.function.BiPredicate<T, U>);
+}
+Compiled from "AdultSensor.java"
+public class net.minecraft.world.entity.ai.sensing.AdultSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.AdultSensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected void setNearestVisibleAdult(net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities);
+}
+Compiled from "Sensing.java"
+public class net.minecraft.world.entity.ai.sensing.Sensing {
+  public net.minecraft.world.entity.ai.sensing.Sensing(net.minecraft.world.entity.Mob);
+  public void tick();
+  public boolean hasLineOfSight(net.minecraft.world.entity.Entity);
+}
+Compiled from "HurtBySensor.java"
+public class net.minecraft.world.entity.ai.sensing.HurtBySensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.sensing.HurtBySensor();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "SecondaryPoiSensor.java"
+public class net.minecraft.world.entity.ai.sensing.SecondaryPoiSensor extends net.minecraft.world.entity.ai.sensing.Sensor<net.minecraft.world.entity.npc.villager.Villager> {
+  public net.minecraft.world.entity.ai.sensing.SecondaryPoiSensor();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.npc.villager.Villager);
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> requires();
+  protected void doTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+}

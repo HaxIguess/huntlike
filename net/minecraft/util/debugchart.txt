@@ -1,0 +1,62 @@
+Compiled from "LocalSampleLogger.java"
+public class net.minecraft.util.debugchart.LocalSampleLogger extends net.minecraft.util.debugchart.AbstractSampleLogger implements net.minecraft.util.debugchart.SampleStorage {
+  public static final int CAPACITY;
+  public net.minecraft.util.debugchart.LocalSampleLogger(int);
+  public net.minecraft.util.debugchart.LocalSampleLogger(int, long[]);
+  protected void useSample();
+  public int capacity();
+  public int size();
+  public long get(int);
+  public long get(int, int);
+  public void reset();
+}
+Compiled from "AbstractSampleLogger.java"
+public abstract class net.minecraft.util.debugchart.AbstractSampleLogger implements net.minecraft.util.debugchart.SampleLogger {
+  protected final long[] defaults;
+  protected final long[] sample;
+  protected net.minecraft.util.debugchart.AbstractSampleLogger(int, long[]);
+  public void logFullSample(long[]);
+  public void logSample(long);
+  public void logPartialSample(long, int);
+  protected abstract void useSample();
+  protected void resetSample();
+}
+Compiled from "SampleStorage.java"
+public interface net.minecraft.util.debugchart.SampleStorage {
+  public abstract int capacity();
+  public abstract int size();
+  public abstract long get(int);
+  public abstract long get(int, int);
+  public abstract void reset();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.debugchart.package-info {
+}
+Compiled from "RemoteSampleLogger.java"
+public class net.minecraft.util.debugchart.RemoteSampleLogger extends net.minecraft.util.debugchart.AbstractSampleLogger {
+  public net.minecraft.util.debugchart.RemoteSampleLogger(int, net.minecraft.util.debug.ServerDebugSubscribers, net.minecraft.util.debugchart.RemoteDebugSampleType);
+  public net.minecraft.util.debugchart.RemoteSampleLogger(int, net.minecraft.util.debug.ServerDebugSubscribers, net.minecraft.util.debugchart.RemoteDebugSampleType, long[]);
+  protected void useSample();
+}
+Compiled from "RemoteDebugSampleType.java"
+public final class net.minecraft.util.debugchart.RemoteDebugSampleType extends java.lang.Enum<net.minecraft.util.debugchart.RemoteDebugSampleType> {
+  public static final net.minecraft.util.debugchart.RemoteDebugSampleType TICK_TIME;
+  public static net.minecraft.util.debugchart.RemoteDebugSampleType[] values();
+  public static net.minecraft.util.debugchart.RemoteDebugSampleType valueOf(java.lang.String);
+  public net.minecraft.util.debug.DebugSubscription<?> subscription();
+}
+Compiled from "TpsDebugDimensions.java"
+public final class net.minecraft.util.debugchart.TpsDebugDimensions extends java.lang.Enum<net.minecraft.util.debugchart.TpsDebugDimensions> {
+  public static final net.minecraft.util.debugchart.TpsDebugDimensions FULL_TICK;
+  public static final net.minecraft.util.debugchart.TpsDebugDimensions TICK_SERVER_METHOD;
+  public static final net.minecraft.util.debugchart.TpsDebugDimensions SCHEDULED_TASKS;
+  public static final net.minecraft.util.debugchart.TpsDebugDimensions IDLE;
+  public static net.minecraft.util.debugchart.TpsDebugDimensions[] values();
+  public static net.minecraft.util.debugchart.TpsDebugDimensions valueOf(java.lang.String);
+}
+Compiled from "SampleLogger.java"
+public interface net.minecraft.util.debugchart.SampleLogger {
+  public abstract void logFullSample(long[]);
+  public abstract void logSample(long);
+  public abstract void logPartialSample(long, int);
+}

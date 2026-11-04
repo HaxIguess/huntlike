@@ -1,0 +1,42 @@
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.cookie.package-info {
+}
+Compiled from "ClientCookiePacketListener.java"
+public interface net.minecraft.network.protocol.cookie.ClientCookiePacketListener extends net.minecraft.network.ClientboundPacketListener {
+  public abstract void handleRequestCookie(net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket);
+}
+Compiled from "ClientboundCookieRequestPacket.java"
+public final class net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.cookie.ClientCookiePacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket(net.minecraft.resources.Identifier);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket> type();
+  public void handle(net.minecraft.network.protocol.cookie.ClientCookiePacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier key();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundCookieResponsePacket.java"
+public final class net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.cookie.ServerCookiePacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket(net.minecraft.resources.Identifier, byte[]);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket> type();
+  public void handle(net.minecraft.network.protocol.cookie.ServerCookiePacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier key();
+  public byte[] payload();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerCookiePacketListener.java"
+public interface net.minecraft.network.protocol.cookie.ServerCookiePacketListener extends net.minecraft.network.protocol.game.ServerPacketListener {
+  public abstract void handleCookieResponse(net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket);
+}
+Compiled from "CookiePacketTypes.java"
+public class net.minecraft.network.protocol.cookie.CookiePacketTypes {
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.cookie.ClientboundCookieRequestPacket> CLIENTBOUND_COOKIE_REQUEST;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.cookie.ServerboundCookieResponsePacket> SERVERBOUND_COOKIE_RESPONSE;
+  public net.minecraft.network.protocol.cookie.CookiePacketTypes();
+}

@@ -1,0 +1,91 @@
+Compiled from "ServerboundStatusRequestPacket.java"
+public class net.minecraft.network.protocol.status.ServerboundStatusRequestPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.status.ServerStatusPacketListener> {
+  public static final net.minecraft.network.protocol.status.ServerboundStatusRequestPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.status.ServerboundStatusRequestPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.status.ServerboundStatusRequestPacket> type();
+  public void handle(net.minecraft.network.protocol.status.ServerStatusPacketListener);
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerStatus.java"
+public final class net.minecraft.network.protocol.status.ServerStatus extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.network.protocol.status.ServerStatus> CODEC;
+  public net.minecraft.network.protocol.status.ServerStatus(net.minecraft.network.chat.Component, java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Players>, java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Version>, java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Favicon>, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component description();
+  public java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Players> players();
+  public java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Version> version();
+  public java.util.Optional<net.minecraft.network.protocol.status.ServerStatus$Favicon> favicon();
+  public boolean enforcesSecureChat();
+}
+Compiled from "ClientStatusPacketListener.java"
+public interface net.minecraft.network.protocol.status.ClientStatusPacketListener extends net.minecraft.network.ClientboundPacketListener,net.minecraft.network.protocol.ping.ClientPongPacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleStatusResponse(net.minecraft.network.protocol.status.ClientboundStatusResponsePacket);
+}
+Compiled from "ServerStatus.java"
+public final class net.minecraft.network.protocol.status.ServerStatus$Players extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.network.protocol.status.ServerStatus$Players> CODEC;
+  public net.minecraft.network.protocol.status.ServerStatus$Players(int, int, java.util.List<net.minecraft.server.players.NameAndId>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int max();
+  public int online();
+  public java.util.List<net.minecraft.server.players.NameAndId> sample();
+}
+Compiled from "ServerStatus.java"
+public final class net.minecraft.network.protocol.status.ServerStatus$Favicon extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.network.protocol.status.ServerStatus$Favicon> CODEC;
+  public net.minecraft.network.protocol.status.ServerStatus$Favicon(byte[]);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public byte[] iconBytes();
+}
+Compiled from "ClientboundStatusResponsePacket.java"
+public final class net.minecraft.network.protocol.status.ClientboundStatusResponsePacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.status.ClientStatusPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.status.ClientboundStatusResponsePacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.status.ClientboundStatusResponsePacket(net.minecraft.network.protocol.status.ServerStatus);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.status.ClientboundStatusResponsePacket> type();
+  public void handle(net.minecraft.network.protocol.status.ClientStatusPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.protocol.status.ServerStatus status();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerStatus.java"
+public final class net.minecraft.network.protocol.status.ServerStatus$Version extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.network.protocol.status.ServerStatus$Version> CODEC;
+  public net.minecraft.network.protocol.status.ServerStatus$Version(java.lang.String, int);
+  public static net.minecraft.network.protocol.status.ServerStatus$Version current();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public int protocol();
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.status.package-info {
+}
+Compiled from "StatusPacketTypes.java"
+public class net.minecraft.network.protocol.status.StatusPacketTypes {
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.status.ClientboundStatusResponsePacket> CLIENTBOUND_STATUS_RESPONSE;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.status.ServerboundStatusRequestPacket> SERVERBOUND_STATUS_REQUEST;
+  public net.minecraft.network.protocol.status.StatusPacketTypes();
+}
+Compiled from "ServerStatusPacketListener.java"
+public interface net.minecraft.network.protocol.status.ServerStatusPacketListener extends net.minecraft.network.protocol.game.ServerPacketListener,net.minecraft.network.protocol.ping.ServerPingPacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleStatusRequest(net.minecraft.network.protocol.status.ServerboundStatusRequestPacket);
+}
+Compiled from "StatusProtocols.java"
+public class net.minecraft.network.protocol.status.StatusProtocols {
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.status.ServerStatusPacketListener, io.netty.buffer.ByteBuf> SERVERBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.status.ServerStatusPacketListener> SERVERBOUND;
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.status.ClientStatusPacketListener, net.minecraft.network.FriendlyByteBuf> CLIENTBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.status.ClientStatusPacketListener> CLIENTBOUND;
+  public net.minecraft.network.protocol.status.StatusProtocols();
+}

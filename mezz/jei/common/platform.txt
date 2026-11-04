@@ -1,0 +1,169 @@
+Compiled from "IPlatformBrewingHelper.java"
+public interface mezz.jei.common.platform.IPlatformBrewingHelper {
+  public default void registerCategoryExtensions(mezz.jei.api.recipe.category.extensions.vanilla.brewing.IExtendableBrewingRecipeCategory, mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.util.List<mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe> getBrewingRecipes(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory, java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.BrewingRecipe>>, net.minecraft.util.context.ContextMap, mezz.jei.common.recipes.BrewingExtensionHelper);
+}
+Compiled from "IPlatformConfigHelper.java"
+public interface mezz.jei.common.platform.IPlatformConfigHelper {
+  public abstract java.nio.file.Path getModConfigDir();
+  public abstract java.util.Optional<net.minecraft.client.gui.screens.Screen> getConfigScreen();
+  public default java.nio.file.Path createJeiConfigDir();
+}
+Compiled from "IPlatformFluidHelperInternal.java"
+public interface mezz.jei.common.platform.IPlatformFluidHelperInternal<T> extends mezz.jei.api.helpers.IPlatformFluidHelper<T> {
+  public abstract java.util.Optional<net.minecraft.client.renderer.texture.TextureAtlasSprite> getStillFluidSprite(T);
+  public abstract net.minecraft.network.chat.Component getDisplayName(T);
+  public abstract int getColorTint(T);
+  public abstract long getAmount(T);
+  public abstract boolean isEmpty(T);
+  public abstract net.minecraft.core.component.DataComponentPatch getComponentsPatch(T);
+  public abstract java.util.List<net.minecraft.network.chat.Component> getTooltip(T, net.minecraft.world.entity.player.Player, net.minecraft.world.item.Item$TooltipContext, net.minecraft.world.item.TooltipFlag);
+  public abstract T copy(T);
+  public abstract T copyWithAmount(T, long);
+  public abstract T normalize(T);
+  public abstract java.util.Optional<T> getContainedFluid(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public abstract com.mojang.serialization.Codec<T> getCodec();
+  public abstract java.util.Optional<net.minecraft.world.item.crafting.display.DisplayContentsFactory<T>> getDisplayContentsFactoryForStacks();
+}
+Compiled from "IPlatformHelper.java"
+public interface mezz.jei.common.platform.IPlatformHelper {
+  public abstract mezz.jei.common.platform.IPlatformItemStackHelper getItemStackHelper();
+  public abstract mezz.jei.common.platform.IPlatformFluidHelperInternal<?> getFluidHelper();
+  public abstract mezz.jei.common.platform.IPlatformRenderHelper getRenderHelper();
+  public abstract mezz.jei.common.platform.IPlatformRecipeHelper getRecipeHelper();
+  public abstract mezz.jei.common.platform.IPlatformBrewingHelper getBrewingHelper();
+  public abstract mezz.jei.common.platform.IPlatformConfigHelper getConfigHelper();
+  public abstract mezz.jei.common.platform.IPlatformInputHelper getInputHelper();
+  public abstract mezz.jei.common.platform.IPlatformScreenHelper getScreenHelper();
+  public abstract mezz.jei.common.platform.IPlatformIngredientHelper getIngredientHelper();
+  public abstract mezz.jei.common.platform.IPlatformModHelper getModHelper();
+  public abstract mezz.jei.common.platform.IPlatformWorldHelper getWorldHelper();
+  public abstract mezz.jei.common.platform.ITestHelper getTestHelper();
+}
+Compiled from "IPlatformIngredientHelper.java"
+public interface mezz.jei.common.platform.IPlatformIngredientHelper {
+  public abstract float getCompostValue(net.minecraft.world.item.ItemStack);
+  public abstract net.minecraft.core.HolderSet<net.minecraft.world.item.Item> getSupportedItems(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+}
+Compiled from "IPlatformInputHelper.java"
+public interface mezz.jei.common.platform.IPlatformInputHelper {
+  public abstract boolean isActiveAndMatches(net.minecraft.client.KeyMapping, com.mojang.blaze3d.platform.InputConstants$Key, com.mojang.datafixers.util.Either<mezz.jei.common.input.MouseButtonEventData, net.minecraft.client.input.KeyEvent>);
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingCategoryBuilder createKeyMappingCategoryBuilder(net.minecraft.client.KeyMapping$Category);
+  public default net.minecraft.world.item.TooltipFlag getClientTooltipFlag(net.minecraft.world.item.TooltipFlag);
+  public default net.minecraft.world.item.TooltipFlag getSearchTooltipFlag(net.minecraft.world.item.TooltipFlag);
+}
+Compiled from "IPlatformItemStackHelper.java"
+public interface mezz.jei.common.platform.IPlatformItemStackHelper {
+  public abstract int getBurnTime(net.minecraft.world.item.ItemStack, net.minecraft.world.item.crafting.RecipeType<?>);
+  public abstract java.util.Optional<java.lang.String> getCreatorModId(net.minecraft.world.item.ItemStack);
+  public abstract java.util.List<net.minecraft.network.chat.Component> gatherTooltipLines(net.minecraft.world.item.ItemStack, net.minecraft.world.item.Item$TooltipContext, net.minecraft.world.entity.player.Player, net.minecraft.world.item.TooltipFlag);
+  public default net.minecraft.world.item.component.ItemAttributeModifiers getItemAttributeModifiers(net.minecraft.world.item.ItemStack);
+  public abstract boolean canEnchant(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, net.minecraft.world.item.ItemStack);
+}
+Compiled from "IPlatformModHelper.java"
+public interface mezz.jei.common.platform.IPlatformModHelper {
+  public abstract java.lang.String getModNameForModId(java.lang.String);
+  public abstract boolean isInDev();
+}
+Compiled from "IPlatformRecipeHelper.java"
+public final class mezz.jei.common.platform.IPlatformRecipeHelper$FireworkRocketRecipeData extends java.lang.Record {
+  public mezz.jei.common.platform.IPlatformRecipeHelper$FireworkRocketRecipeData(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStackTemplate);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.Ingredient shell();
+  public net.minecraft.world.item.crafting.Ingredient fuel();
+  public net.minecraft.world.item.crafting.Ingredient star();
+  public net.minecraft.world.item.ItemStackTemplate result();
+}
+Compiled from "IPlatformRecipeHelper.java"
+public final class mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarFadeRecipeData extends java.lang.Record {
+  public mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarFadeRecipeData(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStackTemplate);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.Ingredient target();
+  public net.minecraft.world.item.crafting.Ingredient dye();
+  public net.minecraft.world.item.ItemStackTemplate result();
+}
+Compiled from "IPlatformRecipeHelper.java"
+public final class mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarRecipeData extends java.lang.Record {
+  public mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarRecipeData(java.util.Map<net.minecraft.world.item.component.FireworkExplosion$Shape, net.minecraft.world.item.crafting.Ingredient>, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStackTemplate);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.world.item.component.FireworkExplosion$Shape, net.minecraft.world.item.crafting.Ingredient> shapes();
+  public net.minecraft.world.item.crafting.Ingredient trail();
+  public net.minecraft.world.item.crafting.Ingredient twinkle();
+  public net.minecraft.world.item.crafting.Ingredient fuel();
+  public net.minecraft.world.item.crafting.Ingredient dye();
+  public net.minecraft.world.item.ItemStackTemplate result();
+}
+Compiled from "IPlatformRecipeHelper.java"
+public final class mezz.jei.common.platform.IPlatformRecipeHelper$ShieldDecorationRecipeData extends java.lang.Record {
+  public mezz.jei.common.platform.IPlatformRecipeHelper$ShieldDecorationRecipeData(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStackTemplate);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.Ingredient banner();
+  public net.minecraft.world.item.crafting.Ingredient target();
+  public net.minecraft.world.item.ItemStackTemplate result();
+}
+Compiled from "IPlatformRecipeHelper.java"
+public interface mezz.jei.common.platform.IPlatformRecipeHelper {
+  public abstract net.minecraft.world.item.crafting.Ingredient getBase(net.minecraft.world.item.crafting.SmithingRecipe);
+  public abstract java.util.Optional<net.minecraft.world.item.crafting.Ingredient> getAddition(net.minecraft.world.item.crafting.SmithingRecipe);
+  public abstract java.util.Optional<net.minecraft.world.item.crafting.Ingredient> getTemplate(net.minecraft.world.item.crafting.SmithingRecipe);
+  public abstract mezz.jei.common.platform.IPlatformRecipeHelper$FireworkRocketRecipeData getFireworkRocketRecipeData(net.minecraft.world.item.crafting.FireworkRocketRecipe);
+  public abstract mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarRecipeData getFireworkStarRecipeData(net.minecraft.world.item.crafting.FireworkStarRecipe);
+  public abstract mezz.jei.common.platform.IPlatformRecipeHelper$FireworkStarFadeRecipeData getFireworkStarFadeRecipeData(net.minecraft.world.item.crafting.FireworkStarFadeRecipe);
+  public abstract mezz.jei.common.platform.IPlatformRecipeHelper$ShieldDecorationRecipeData getShieldDecorationRecipeData(net.minecraft.world.item.crafting.ShieldDecorationRecipe);
+  public abstract net.minecraft.world.item.ItemStack getGrindstoneResult(net.minecraft.world.inventory.GrindstoneMenu, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public abstract java.lang.String[] shrinkShapedRecipePattern(java.util.List<java.lang.String>);
+  public abstract boolean isItemEnchantable(net.minecraft.world.item.ItemStack, net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+}
+Compiled from "IPlatformRenderHelper.java"
+public interface mezz.jei.common.platform.IPlatformRenderHelper {
+  public abstract net.minecraft.client.gui.Font getFontRenderer(net.minecraft.client.Minecraft, net.minecraft.world.item.ItemStack);
+  public abstract boolean shouldRender(net.minecraft.world.effect.MobEffectInstance);
+  public abstract java.util.Optional<com.mojang.blaze3d.platform.NativeImage> getMainImage(net.minecraft.client.renderer.texture.TextureAtlasSprite);
+  public abstract void renderTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, java.util.List<com.mojang.datafixers.util.Either<net.minecraft.network.chat.FormattedText, net.minecraft.world.inventory.tooltip.TooltipComponent>>, int, int, net.minecraft.client.gui.Font, net.minecraft.world.item.ItemStack);
+  public abstract void renderTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, java.util.List<com.mojang.datafixers.util.Either<net.minecraft.network.chat.FormattedText, net.minecraft.world.inventory.tooltip.TooltipComponent>>, int, int, net.minecraft.client.gui.Font, net.minecraft.world.item.ItemStack, net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner);
+  public abstract net.minecraft.network.chat.Component getName(net.minecraft.tags.TagKey<?>);
+  public abstract net.minecraft.client.renderer.texture.TextureAtlasSprite getTextureAtlasSprite(net.minecraft.world.level.block.state.BlockState);
+  public abstract void blitSprite(net.minecraft.client.gui.GuiGraphicsExtractor, com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.renderer.texture.TextureAtlasSprite, int, int, int, int, int, int, int, int);
+  public abstract void blitNineSlicedSprite(net.minecraft.client.gui.GuiGraphicsExtractor, com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.renderer.texture.TextureAtlasSprite, net.minecraft.client.resources.metadata.gui.GuiSpriteScaling$NineSlice, int, int, int, int);
+  public abstract void blitTiledSprite(net.minecraft.client.gui.GuiGraphicsExtractor, com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.renderer.texture.TextureAtlasSprite, net.minecraft.client.resources.metadata.gui.GuiSpriteScaling$Tile, int, int, int, int, int);
+}
+Compiled from "IPlatformScreenHelper.java"
+public interface mezz.jei.common.platform.IPlatformScreenHelper {
+  public abstract java.util.Optional<net.minecraft.world.inventory.Slot> getHoveredSlot(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>);
+  public abstract int getLeftPos(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>);
+  public abstract int getTopPos(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>);
+  public abstract int getImageWidth(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>);
+  public abstract int getImageHeight(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>);
+  public abstract net.minecraft.resources.Identifier getSlotHighlightBackSprite();
+  public abstract net.minecraft.resources.Identifier getSlotHighlightFrontSprite();
+  public abstract mezz.jei.common.util.ImmutableRect2i getToastsArea();
+  public abstract java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton> getTabButtons(net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<?>);
+  public abstract <T extends net.minecraft.world.inventory.RecipeBookMenu> net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<?> getRecipeBookComponent(net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen<T>);
+  public abstract mezz.jei.common.util.ImmutableRect2i getBookArea(net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<?>);
+  public abstract boolean canLoseFocus(net.minecraft.client.gui.components.EditBox);
+}
+Compiled from "IPlatformWorldHelper.java"
+public interface mezz.jei.common.platform.IPlatformWorldHelper {
+  public abstract java.util.Optional<java.lang.String> getLevelId(net.minecraft.server.MinecraftServer);
+}
+Compiled from "ITestHelper.java"
+public interface mezz.jei.common.platform.ITestHelper {
+  public abstract java.lang.Throwable getReason(net.minecraft.gametest.framework.UnknownGameTestException);
+}
+Compiled from "Services.java"
+public class mezz.jei.common.platform.Services {
+  public static final mezz.jei.common.platform.IPlatformHelper PLATFORM;
+  public mezz.jei.common.platform.Services();
+  public static <T> T load(java.lang.Class<T>);
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.platform.package-info {
+}

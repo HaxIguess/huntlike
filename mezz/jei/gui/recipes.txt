@@ -1,0 +1,354 @@
+Compiled from "CraftingStations.java"
+final class mezz.jei.gui.recipes.CraftingStations$Layout extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int left();
+  public int top();
+  public int width();
+  public int height();
+  public int maxIngredientsPerColumn();
+}
+Compiled from "CraftingStations.java"
+public class mezz.jei.gui.recipes.CraftingStations implements mezz.jei.gui.input.IRecipeFocusSource {
+  public mezz.jei.gui.recipes.CraftingStations(mezz.jei.api.helpers.IGuiHelper);
+  public boolean isEmpty();
+  public int getWidth();
+  public void updateLayout(java.util.List<java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>>, mezz.jei.common.util.ImmutableRect2i, mezz.jei.common.util.ImmutableRect2i);
+  public java.util.Optional<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable> draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.Optional<mezz.jei.api.gui.inputs.RecipeSlotUnderMouse> getSlotUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+}
+Compiled from "IRecipeGuiLogic.java"
+public interface mezz.jei.gui.recipes.IRecipeGuiLogic {
+  public abstract java.lang.String getPageString();
+  public abstract boolean hasMultipleCategories();
+  public abstract boolean hasAllCategories();
+  public abstract boolean previousRecipeCategory();
+  public abstract int getRecipesPerPage();
+  public abstract boolean nextRecipeCategory();
+  public abstract void setRecipeCategory(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public abstract boolean hasMultiplePages();
+  public abstract void goToFirstPage();
+  public abstract boolean previousPage();
+  public abstract boolean nextPage();
+  public abstract void tick();
+  public abstract boolean showFocus(mezz.jei.api.recipe.IFocusGroup);
+  public abstract boolean showRecipes(mezz.jei.gui.recipes.lookups.IFocusedRecipes<?>, mezz.jei.api.recipe.IFocusGroup);
+  public abstract boolean back();
+  public abstract boolean forward();
+  public abstract void clearHistory();
+  public abstract boolean showAllRecipes();
+  public abstract boolean showCategories(java.util.List<mezz.jei.api.recipe.types.IRecipeType<?>>);
+  public abstract mezz.jei.api.recipe.category.IRecipeCategory<?> getSelectedRecipeCategory();
+  public abstract java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> getRecipeCategories();
+  public abstract java.util.stream.Stream<java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>> getCraftingStations();
+  public abstract java.util.List<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getVisibleRecipeLayoutsWithButtons(int, int, net.minecraft.world.inventory.AbstractContainerMenu, mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.gui.recipes.RecipesGui);
+}
+Compiled from "IRecipeLayoutWithButtons.java"
+public interface mezz.jei.gui.recipes.IRecipeLayoutWithButtons<R> {
+  public abstract void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public abstract void updateBounds(int, int);
+  public abstract int totalWidth();
+  public abstract mezz.jei.gui.input.IUserInputHandler createUserInputHandler();
+  public abstract void tick();
+  public abstract mezz.jei.api.gui.IRecipeLayoutDrawable<R> getRecipeLayout();
+  public abstract mezz.jei.gui.bookmarks.RecipeBookmark<?, ?> getRecipeBookmark();
+  public abstract void drawTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public abstract int getMissingCountHint();
+}
+Compiled from "IRecipeLogicStateListener.java"
+public interface mezz.jei.gui.recipes.IRecipeLogicStateListener {
+  public abstract void onStateChange();
+}
+Compiled from "InteractiveIngredientGridTooltipComponent.java"
+public final class mezz.jei.gui.recipes.InteractiveIngredientGridTooltipComponent extends mezz.jei.common.gui.IngredientGridTooltipComponent<mezz.jei.api.ingredients.ITypedIngredient<?>> {
+  public mezz.jei.gui.recipes.InteractiveIngredientGridTooltipComponent(mezz.jei.api.helpers.IGuiHelper, java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  protected void drawIngredient(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.ITypedIngredient<?>, int, int, int, boolean);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getTypedIngredientUnderMouse(double, double);
+  protected void drawIngredient(net.minecraft.client.gui.GuiGraphicsExtractor, java.lang.Object, int, int, int, boolean);
+}
+Compiled from "InteractiveIngredientTooltip.java"
+final class mezz.jei.gui.recipes.InteractiveIngredientTooltip implements mezz.jei.gui.input.IGuiInputLayer {
+  public boolean isMouseOver(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+  public void unfocus();
+}
+Compiled from "InteractiveIngredientTooltipController.java"
+final class mezz.jei.gui.recipes.InteractiveIngredientTooltipController implements mezz.jei.gui.input.IGuiInputLayer,mezz.jei.gui.input.IPinnedTooltipHolder {
+  public mezz.jei.gui.recipes.InteractiveIngredientTooltipController(mezz.jei.gui.recipes.RecipesGui, mezz.jei.gui.util.FocusUtil, mezz.jei.api.helpers.IGuiHelper, mezz.jei.api.runtime.IIngredientManager, mezz.jei.gui.recipes.RecipeSlotClickTargetFactory);
+  public boolean isVisible();
+  public void hide();
+  public boolean show(mezz.jei.api.gui.inputs.RecipeSlotUnderMouse, mezz.jei.gui.input.IMouseOverable, double, double);
+  public boolean isMouseOver(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+  public void unfocus();
+}
+Compiled from "NavigationHistory.java"
+final class mezz.jei.gui.recipes.NavigationHistory<T> {
+  public void record(T);
+  public java.util.Optional<T> goBack(T);
+  public java.util.Optional<T> goForward(T);
+  public void clear();
+}
+Compiled from "PinnedTooltipRenderer.java"
+public final class mezz.jei.gui.recipes.PinnedTooltipRenderer {
+  public mezz.jei.gui.recipes.PinnedTooltipRenderer(int, int);
+  public boolean isMouseOver(double, double);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.common.gui.JeiTooltip);
+}
+Compiled from "RecipeBookmarkButtonController.java"
+public class mezz.jei.gui.recipes.RecipeBookmarkButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.recipes.RecipeBookmarkButtonController(mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.gui.bookmarks.IBookmark);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void initState(mezz.jei.api.gui.buttons.IButtonState);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+  public void drawExtras(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.renderer.Rect2i, int, int, float);
+}
+Compiled from "RecipeCategoryIconUtil.java"
+public class mezz.jei.gui.recipes.RecipeCategoryIconUtil {
+  public mezz.jei.gui.recipes.RecipeCategoryIconUtil();
+  public static <T> mezz.jei.api.gui.drawable.IDrawable create(mezz.jei.api.recipe.category.IRecipeCategory<T>, mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.helpers.IGuiHelper);
+}
+Compiled from "RecipeCategoryTab.java"
+public class mezz.jei.gui.recipes.RecipeCategoryTab extends mezz.jei.gui.recipes.RecipeGuiTab {
+  public mezz.jei.gui.recipes.RecipeCategoryTab(mezz.jei.gui.recipes.IRecipeGuiLogic, mezz.jei.api.recipe.category.IRecipeCategory<?>, int, int, mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.helpers.IGuiHelper);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public void draw(boolean, net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean isSelected(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public mezz.jei.common.gui.JeiTooltip getTooltip();
+}
+Compiled from "RecipeCategoryTitle.java"
+public class mezz.jei.gui.recipes.RecipeCategoryTitle {
+  public static mezz.jei.gui.recipes.RecipeCategoryTitle create(mezz.jei.api.recipe.category.IRecipeCategory<?>, net.minecraft.client.gui.Font, mezz.jei.common.util.ImmutableRect2i);
+  public mezz.jei.gui.recipes.RecipeCategoryTitle();
+  public mezz.jei.gui.recipes.RecipeCategoryTitle(net.minecraft.util.FormattedCharSequence, net.minecraft.network.chat.Component, mezz.jei.common.util.ImmutableRect2i);
+  public boolean isMouseOver(double, double);
+  public void getTooltip(mezz.jei.common.gui.JeiTooltip);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font);
+}
+Compiled from "RecipeGuiLayouts.java"
+public class mezz.jei.gui.recipes.RecipeGuiLayouts {
+  public void updateLayout(mezz.jei.common.util.ImmutableRect2i, int);
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public void tick();
+  public void setRecipeLayoutsWithButtons(java.util.List<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>>);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.Optional<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getRecipeLayoutUnderMouse(double, double);
+  public boolean mouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+  public void mouseMoved(double, double);
+  public java.util.Optional<mezz.jei.api.gui.IRecipeLayoutDrawable<?>> draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void drawTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public int getWidth();
+}
+Compiled from "RecipeGuiLogic.java"
+public class mezz.jei.gui.recipes.RecipeGuiLogic implements mezz.jei.gui.recipes.IRecipeGuiLogic {
+  public mezz.jei.gui.recipes.RecipeGuiLogic(mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.runtime.IIngredientManager, mezz.jei.gui.overlay.bookmarks.history.LookupHistory, mezz.jei.common.transfer.RecipeTransferService, mezz.jei.gui.recipes.IRecipeLogicStateListener, mezz.jei.api.recipe.IFocusFactory, mezz.jei.gui.bookmarks.BookmarkFactory);
+  public void tick();
+  public boolean showFocus(mezz.jei.api.recipe.IFocusGroup);
+  public boolean showRecipes(mezz.jei.gui.recipes.lookups.IFocusedRecipes<?>, mezz.jei.api.recipe.IFocusGroup);
+  public boolean back();
+  public boolean forward();
+  public void clearHistory();
+  public boolean showAllRecipes();
+  public boolean showCategories(java.util.List<mezz.jei.api.recipe.types.IRecipeType<?>>);
+  public java.util.stream.Stream<java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>> getCraftingStations();
+  public mezz.jei.api.recipe.category.IRecipeCategory<?> getSelectedRecipeCategory();
+  public java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> getRecipeCategories();
+  public java.util.List<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getVisibleRecipeLayoutsWithButtons(int, int, net.minecraft.world.inventory.AbstractContainerMenu, mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.gui.recipes.RecipesGui);
+  public int getRecipesPerPage();
+  public boolean nextRecipeCategory();
+  public void setRecipeCategory(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public boolean hasMultiplePages();
+  public boolean previousRecipeCategory();
+  public void goToFirstPage();
+  public boolean nextPage();
+  public boolean previousPage();
+  public java.lang.String getPageString();
+  public boolean hasMultipleCategories();
+  public boolean hasAllCategories();
+}
+Compiled from "RecipeGuiSizing.java"
+final class mezz.jei.gui.recipes.RecipeGuiSizing$Size extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int ySize();
+  public int extraSpace();
+}
+Compiled from "RecipeGuiSizing.java"
+final class mezz.jei.gui.recipes.RecipeGuiSizing {
+}
+Compiled from "RecipeGuiTab.java"
+public abstract class mezz.jei.gui.recipes.RecipeGuiTab implements mezz.jei.gui.input.IUserInputHandler {
+  public static final int TAB_HEIGHT;
+  public static final int TAB_WIDTH;
+  protected final mezz.jei.common.util.ImmutableRect2i area;
+  public mezz.jei.gui.recipes.RecipeGuiTab(int, int);
+  public boolean isMouseOver(double, double);
+  public abstract boolean isSelected(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public void draw(boolean, net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public abstract mezz.jei.common.gui.JeiTooltip getTooltip();
+}
+Compiled from "RecipeGuiTabs.java"
+public class mezz.jei.gui.recipes.RecipeGuiTabs implements mezz.jei.gui.input.IPaged {
+  public mezz.jei.gui.recipes.RecipeGuiTabs(mezz.jei.gui.recipes.IRecipeGuiLogic, mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.helpers.IGuiHelper);
+  public void initLayout(mezz.jei.common.util.ImmutableRect2i);
+  public void draw(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public boolean nextPage();
+  public boolean hasNext();
+  public boolean previousPage();
+  public boolean hasPrevious();
+  public int getPageCount();
+  public int getPageNumber();
+}
+Compiled from "RecipeLayoutWithButtons.java"
+final class mezz.jei.gui.recipes.RecipeLayoutWithButtons$RecipeLayoutUserInputHandler<R> extends java.lang.Record implements mezz.jei.gui.input.IUserInputHandler {
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.api.gui.IRecipeLayoutDrawable<R> recipeLayout();
+}
+Compiled from "RecipeLayoutWithButtons.java"
+public final class mezz.jei.gui.recipes.RecipeLayoutWithButtons<R> implements mezz.jei.gui.recipes.IRecipeLayoutWithButtons<R> {
+  public static <T> mezz.jei.gui.recipes.IRecipeLayoutWithButtons<T> create(mezz.jei.api.gui.IRecipeLayoutDrawable<T>, mezz.jei.gui.bookmarks.RecipeBookmark<?, ?>, mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.gui.recipes.RecipesGui, mezz.jei.common.transfer.RecipeTransferService, java.util.List<mezz.jei.api.recipe.advanced.IRecipeButtonControllerFactory>);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateBounds(int, int);
+  public int totalWidth();
+  public mezz.jei.gui.input.IUserInputHandler createUserInputHandler();
+  public void tick();
+  public mezz.jei.api.gui.IRecipeLayoutDrawable<R> getRecipeLayout();
+  public mezz.jei.gui.bookmarks.RecipeBookmark<?, ?> getRecipeBookmark();
+  public void drawTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public int getMissingCountHint();
+}
+Compiled from "RecipeLayoutWithButtonsErrored.java"
+final class mezz.jei.gui.recipes.RecipeLayoutWithButtonsErrored$UserInputHandler<R> extends java.lang.Record implements mezz.jei.gui.input.IUserInputHandler {
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.api.gui.IRecipeLayoutDrawable<R> recipeLayout();
+}
+Compiled from "RecipeLayoutWithButtonsErrored.java"
+public final class mezz.jei.gui.recipes.RecipeLayoutWithButtonsErrored<R> implements mezz.jei.gui.recipes.IRecipeLayoutWithButtons<R> {
+  public mezz.jei.gui.recipes.RecipeLayoutWithButtonsErrored(mezz.jei.api.gui.IRecipeLayoutDrawable<R>);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateBounds(int, int);
+  public int totalWidth();
+  public mezz.jei.gui.input.IUserInputHandler createUserInputHandler();
+  public void tick();
+  public mezz.jei.api.gui.IRecipeLayoutDrawable<R> getRecipeLayout();
+  public mezz.jei.gui.bookmarks.RecipeBookmark<?, ?> getRecipeBookmark();
+  public void drawTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public int getMissingCountHint();
+}
+Compiled from "RecipeOptionButtons.java"
+public class mezz.jei.gui.recipes.RecipeOptionButtons {
+  public mezz.jei.gui.recipes.RecipeOptionButtons(java.lang.Runnable);
+  public void tick();
+  public void updateLayout(mezz.jei.common.util.ImmutableRect2i);
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public int getWidth();
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public void drawTooltips(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "RecipeSlotClickTargetFactory.java"
+public final class mezz.jei.gui.recipes.RecipeSlotClickTargetFactory {
+  public mezz.jei.gui.recipes.RecipeSlotClickTargetFactory(mezz.jei.api.recipe.IRecipeManager, java.util.function.BooleanSupplier);
+  public java.util.Optional<mezz.jei.gui.input.IClickableIngredientInternal<?>> create(mezz.jei.api.gui.IRecipeLayoutDrawable<?>, double, double);
+}
+Compiled from "RecipeSlotTooltipPositioner.java"
+final class mezz.jei.gui.recipes.RecipeSlotTooltipPositioner implements net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner {
+  public org.joml.Vector2ic positionTooltip(int, int, int, int, int, int);
+  public mezz.jei.common.util.ImmutableRect2i getTooltipArea();
+}
+Compiled from "RecipeSortStateButtonController.java"
+public class mezz.jei.gui.recipes.RecipeSortStateButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.recipes.RecipeSortStateButtonController(mezz.jei.common.config.RecipeSorterStage, mezz.jei.api.gui.drawable.IDrawable, mezz.jei.api.gui.drawable.IDrawable, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, java.lang.Runnable);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+}
+Compiled from "RecipeSortUtil.java"
+public class mezz.jei.gui.recipes.RecipeSortUtil {
+  public mezz.jei.gui.recipes.RecipeSortUtil();
+  public static java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> sortRecipeCategories(java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>>, mezz.jei.common.transfer.RecipeTransferService);
+  public static java.util.Comparator<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getComparator();
+}
+Compiled from "RecipeTransferButtonController.java"
+class mezz.jei.gui.recipes.RecipeTransferButtonController$PinnedTransferState {
+  public boolean shouldTransferMax();
+  public void onSuccessfulTransfer();
+}
+Compiled from "RecipeTransferButtonController.java"
+public class mezz.jei.gui.recipes.RecipeTransferButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.recipes.RecipeTransferButtonController(mezz.jei.api.gui.IRecipeLayoutDrawable<?>, mezz.jei.gui.recipes.RecipesGui, mezz.jei.common.transfer.RecipeTransferService);
+  public static mezz.jei.gui.recipes.RecipeTransferButtonController createForPinnedRecipe(mezz.jei.api.gui.IRecipeLayoutDrawable<?>, mezz.jei.common.transfer.RecipeTransferService);
+  public void initState(mezz.jei.api.gui.buttons.IButtonState);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void drawExtras(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.renderer.Rect2i, int, int, float);
+  public int getMissingCountHint();
+}
+Compiled from "RecipesGui.java"
+class mezz.jei.gui.recipes.RecipesGui$UserInputHandler implements mezz.jei.gui.input.IUserInputHandler {
+  public mezz.jei.gui.recipes.RecipesGui$UserInputHandler(mezz.jei.gui.recipes.RecipesGui);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+}
+Compiled from "RecipesGui.java"
+public class mezz.jei.gui.recipes.RecipesGui extends net.minecraft.client.gui.screens.Screen implements mezz.jei.api.runtime.IRecipesGui,mezz.jei.gui.input.IRecipeFocusSource {
+  public mezz.jei.gui.recipes.RecipesGui(mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.runtime.IIngredientManager, mezz.jei.common.transfer.RecipeTransferService, mezz.jei.common.input.IInternalKeyMappings, mezz.jei.api.recipe.IFocusFactory, mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.gui.overlay.bookmarks.history.LookupHistory, mezz.jei.api.helpers.IGuiHelper, mezz.jei.gui.bookmarks.BookmarkFactory, mezz.jei.gui.util.FocusUtil);
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public int getLeftSideExtraWidth();
+  public boolean isPauseScreen();
+  public boolean isInGameUi();
+  public void init();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void tick();
+  public boolean isMouseOver(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+  public void mouseMoved(double, double);
+  public mezz.jei.gui.input.IGuiInputLayer getForegroundInputLayer();
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean mouseScrolled(double, double, double, double);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean isOpen();
+  public void onClose();
+  public void show(java.util.List<mezz.jei.api.recipe.IFocus<?>>);
+  public void showTypes(java.util.List<mezz.jei.api.recipe.types.IRecipeType<?>>);
+  public <T> void showRecipes(mezz.jei.api.recipe.category.IRecipeCategory<T>, java.util.List<T>, java.util.List<mezz.jei.api.recipe.IFocus<?>>);
+  public <T> java.util.Optional<T> getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public java.util.Optional<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getRecipeLayoutUnderMouse(double, double);
+  public void back();
+  public void forward();
+  public net.minecraft.world.inventory.AbstractContainerMenu getParentContainerMenu();
+  public net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?> getParentContainerScreen();
+  public java.util.Optional<net.minecraft.client.gui.screens.Screen> getParentScreen();
+  public mezz.jei.api.gui.handlers.IGuiProperties getProperties();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.recipes.package-info {
+}

@@ -1,0 +1,40 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.storage.loot.providers.score.package-info {
+}
+Compiled from "ScoreboardNameProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider extends net.minecraft.world.level.storage.loot.LootContextUser {
+  public abstract net.minecraft.world.scores.ScoreHolder getScoreHolder(net.minecraft.world.level.storage.loot.LootContext);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider> codec();
+}
+Compiled from "ScoreboardNameProviders.java"
+public class net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProviders {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider> CODEC;
+  public net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProviders();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider>>);
+}
+Compiled from "FixedScoreboardNameProvider.java"
+public final class net.minecraft.world.level.storage.loot.providers.score.FixedScoreboardNameProvider extends java.lang.Record implements net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.loot.providers.score.FixedScoreboardNameProvider> MAP_CODEC;
+  public net.minecraft.world.level.storage.loot.providers.score.FixedScoreboardNameProvider(java.lang.String);
+  public static net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider forName(java.lang.String);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.loot.providers.score.FixedScoreboardNameProvider> codec();
+  public net.minecraft.world.scores.ScoreHolder getScoreHolder(net.minecraft.world.level.storage.loot.LootContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+}
+Compiled from "ContextScoreboardNameProvider.java"
+public final class net.minecraft.world.level.storage.loot.providers.score.ContextScoreboardNameProvider extends java.lang.Record implements net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.loot.providers.score.ContextScoreboardNameProvider> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.providers.score.ContextScoreboardNameProvider> INLINE_CODEC;
+  public net.minecraft.world.level.storage.loot.providers.score.ContextScoreboardNameProvider(net.minecraft.world.level.storage.loot.LootContext$EntityTarget);
+  public static net.minecraft.world.level.storage.loot.providers.score.ScoreboardNameProvider forTarget(net.minecraft.world.level.storage.loot.LootContext$EntityTarget);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.loot.providers.score.ContextScoreboardNameProvider> codec();
+  public net.minecraft.world.scores.ScoreHolder getScoreHolder(net.minecraft.world.level.storage.loot.LootContext);
+  public java.util.Set<net.minecraft.util.context.ContextKey<?>> getReferencedContextParams();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.storage.loot.LootContext$EntityTarget target();
+}

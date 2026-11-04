@@ -1,0 +1,78 @@
+Compiled from "DynamicRegistries.java"
+public final class net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption extends java.lang.Enum<net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption> {
+  public static final net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption SKIP_WHEN_EMPTY;
+  public static net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption[] values();
+  public static net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption valueOf(java.lang.String);
+}
+Compiled from "DynamicRegistries.java"
+public final class net.fabricmc.fabric.api.event.registry.DynamicRegistries {
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getAllDynamicRegistries();
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getWorldRegistries();
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getReloadableRegistries();
+  public static <T> void register(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>);
+  public static <T> void registerSynced(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>, net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption...);
+  public static <T> void registerSynced(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>, com.mojang.serialization.Codec<T>, net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption...);
+  public static <T> void registerReloadable(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>);
+}
+Compiled from "DynamicRegistrySetupCallback.java"
+public interface net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback> EVENT;
+  public abstract void onRegistrySetup(net.fabricmc.fabric.api.event.registry.DynamicRegistryView);
+}
+Compiled from "DynamicRegistryView.java"
+public interface net.fabricmc.fabric.api.event.registry.DynamicRegistryView {
+  public abstract net.minecraft.core.RegistryAccess asRegistryAccess();
+  public abstract java.util.stream.Stream<net.minecraft.core.Registry<?>> stream();
+  public abstract <T> java.util.Optional<net.minecraft.core.Registry<T>> getOptional(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public abstract <T> void registerEntryAdded(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>, net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback<T>);
+}
+Compiled from "FabricRegistry.java"
+public interface net.fabricmc.fabric.api.event.registry.FabricRegistry {
+  public default void addAlias(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+}
+Compiled from "FabricRegistryBuilder.java"
+public final class net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, R extends net.minecraft.core.WritableRegistry<T>> {
+  public static <T, R extends net.minecraft.core.WritableRegistry<T>> net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, R> from(R);
+  public static <T> net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, net.minecraft.core.MappedRegistry<T>> create(net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>);
+  public static <T> net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, net.minecraft.core.DefaultedMappedRegistry<T>> createDefaulted(net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>, net.minecraft.resources.Identifier);
+  public static <T> net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, net.minecraft.core.MappedRegistry<T>> create(java.lang.Class<T>, net.minecraft.resources.Identifier);
+  public static <T> net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, net.minecraft.core.DefaultedMappedRegistry<T>> createDefaulted(java.lang.Class<T>, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder<T, R> attribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+  public R buildAndRegister();
+}
+Compiled from "RegistryAttribute.java"
+public final class net.fabricmc.fabric.api.event.registry.RegistryAttribute extends java.lang.Enum<net.fabricmc.fabric.api.event.registry.RegistryAttribute> {
+  public static final net.fabricmc.fabric.api.event.registry.RegistryAttribute SYNCED;
+  public static final net.fabricmc.fabric.api.event.registry.RegistryAttribute MODDED;
+  public static final net.fabricmc.fabric.api.event.registry.RegistryAttribute OPTIONAL;
+  public static final net.fabricmc.fabric.api.event.registry.RegistryAttribute SAVE_DATA_VALIDATED;
+  public static net.fabricmc.fabric.api.event.registry.RegistryAttribute[] values();
+  public static net.fabricmc.fabric.api.event.registry.RegistryAttribute valueOf(java.lang.String);
+}
+Compiled from "RegistryAttributeHolder.java"
+public interface net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder {
+  public static net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder get(net.minecraft.resources.ResourceKey<?>);
+  public static net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder get(net.minecraft.core.Registry<?>);
+  public abstract net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder addAttribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+  public abstract boolean hasAttribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+}
+Compiled from "RegistryEntryAddedCallback.java"
+public interface net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback<T> {
+  public abstract void onEntryAdded(int, net.minecraft.resources.Identifier, T);
+  public static <T> net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback<T>> event(net.minecraft.core.Registry<T>);
+  public static <T> void allEntries(net.minecraft.core.Registry<T>, java.util.function.Consumer<net.minecraft.core.Holder$Reference<T>>);
+}
+Compiled from "RegistryIdRemapCallback.java"
+public interface net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback$RemapState<T> {
+  public abstract it.unimi.dsi.fastutil.ints.Int2IntMap getRawIdChangeMap();
+  public abstract net.minecraft.resources.Identifier getIdFromOld(int);
+  public abstract net.minecraft.resources.Identifier getIdFromNew(int);
+}
+Compiled from "RegistryIdRemapCallback.java"
+public interface net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback<T> {
+  public abstract void onRemap(net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback$RemapState<T>);
+  public static <T> net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback<T>> event(net.minecraft.core.Registry<T>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.event.registry.package-info {
+}

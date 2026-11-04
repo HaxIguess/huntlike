@@ -1,0 +1,665 @@
+Compiled from "LeapAtTargetGoal.java"
+public class net.minecraft.world.entity.ai.goal.LeapAtTargetGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.LeapAtTargetGoal(net.minecraft.world.entity.Mob, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+}
+Compiled from "OcelotAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.OcelotAttackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.OcelotAttackGoal(net.minecraft.world.entity.Mob);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "RemoveBlockGoal.java"
+public class net.minecraft.world.entity.ai.goal.RemoveBlockGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.ai.goal.RemoveBlockGoal(net.minecraft.world.level.block.Block, net.minecraft.world.entity.PathfinderMob, double, int);
+  public boolean canUse();
+  public void stop();
+  public void start();
+  public void playDestroyProgressSound(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public void playBreakSound(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public void tick();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "RangedBowAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.RangedBowAttackGoal<T extends net.minecraft.world.entity.monster.Monster & net.minecraft.world.entity.monster.RangedAttackMob> extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RangedBowAttackGoal(T, double, int, float);
+  public void setMinAttackInterval(int);
+  public boolean canUse();
+  protected boolean isHoldingBow();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "MoveTowardsTargetGoal.java"
+public class net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal(net.minecraft.world.entity.PathfinderMob, double, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public void start();
+}
+Compiled from "SitWhenOrderedToGoal.java"
+public class net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal(net.minecraft.world.entity.TamableAnimal);
+  public boolean canContinueToUse();
+  public boolean canUse();
+  public void start();
+  public void stop();
+}
+Compiled from "FollowOwnerGoal.java"
+public class net.minecraft.world.entity.ai.goal.FollowOwnerGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.FollowOwnerGoal(net.minecraft.world.entity.TamableAnimal, double, float, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "UseItemGoal.java"
+public class net.minecraft.world.entity.ai.goal.UseItemGoal<T extends net.minecraft.world.entity.Mob> extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.UseItemGoal(T, net.minecraft.world.item.ItemStack, net.minecraft.sounds.SoundEvent, java.util.function.Predicate<? super T>);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+}
+Compiled from "LandOnOwnersShoulderGoal.java"
+public class net.minecraft.world.entity.ai.goal.LandOnOwnersShoulderGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.LandOnOwnersShoulderGoal(net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity);
+  public boolean canUse();
+  public boolean isInterruptable();
+  public void start();
+  public void tick();
+}
+Compiled from "FleeSunGoal.java"
+public class net.minecraft.world.entity.ai.goal.FleeSunGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  public net.minecraft.world.entity.ai.goal.FleeSunGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public boolean canUse();
+  protected boolean setWantedPos();
+  public boolean canContinueToUse();
+  public void start();
+  protected net.minecraft.world.phys.Vec3 getHidePos();
+}
+Compiled from "FloatGoal.java"
+public class net.minecraft.world.entity.ai.goal.FloatGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid> fluid;
+  public net.minecraft.world.entity.ai.goal.FloatGoal(net.minecraft.world.entity.Mob);
+  public net.minecraft.world.entity.ai.goal.FloatGoal(net.minecraft.world.entity.Mob, net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+  public boolean canUse();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "ClimbOnTopOfPowderSnowGoal.java"
+public class net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.ClimbOnTopOfPowderSnowGoal(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  public boolean canUse();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "RandomSwimmingGoal.java"
+public class net.minecraft.world.entity.ai.goal.RandomSwimmingGoal extends net.minecraft.world.entity.ai.goal.RandomStrollGoal {
+  public net.minecraft.world.entity.ai.goal.RandomSwimmingGoal(net.minecraft.world.entity.PathfinderMob, double, int);
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "TradeWithPlayerGoal.java"
+public class net.minecraft.world.entity.ai.goal.TradeWithPlayerGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.TradeWithPlayerGoal(net.minecraft.world.entity.npc.villager.AbstractVillager);
+  public boolean canUse();
+  public void start();
+  public void stop();
+}
+Compiled from "LookAtTradingPlayerGoal.java"
+public class net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
+  public net.minecraft.world.entity.ai.goal.LookAtTradingPlayerGoal(net.minecraft.world.entity.npc.villager.AbstractVillager);
+  public boolean canUse();
+}
+Compiled from "ZombieAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.ZombieAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+  public net.minecraft.world.entity.ai.goal.ZombieAttackGoal(net.minecraft.world.entity.monster.zombie.Zombie, double, boolean);
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "WaterAvoidingRandomFlyingGoal.java"
+public class net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal extends net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal {
+  public net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal(net.minecraft.world.entity.PathfinderMob, double);
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "MeleeAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.MeleeAttackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  public net.minecraft.world.entity.ai.goal.MeleeAttackGoal(net.minecraft.world.entity.PathfinderMob, double, boolean);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+  protected void checkAndPerformAttack(net.minecraft.world.entity.LivingEntity);
+  protected void resetAttackCooldown();
+  protected boolean isTimeToAttack();
+  protected boolean canPerformAttack(net.minecraft.world.entity.LivingEntity);
+  protected int getTicksUntilNextAttack();
+  protected int getAttackInterval();
+}
+Compiled from "BegGoal.java"
+public class net.minecraft.world.entity.ai.goal.BegGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.BegGoal(net.minecraft.world.entity.animal.wolf.Wolf, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "StrollThroughVillageGoal.java"
+public class net.minecraft.world.entity.ai.goal.StrollThroughVillageGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.StrollThroughVillageGoal(net.minecraft.world.entity.PathfinderMob, int);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+}
+Compiled from "OpenDoorGoal.java"
+public class net.minecraft.world.entity.ai.goal.OpenDoorGoal extends net.minecraft.world.entity.ai.goal.DoorInteractGoal {
+  public net.minecraft.world.entity.ai.goal.OpenDoorGoal(net.minecraft.world.entity.Mob, boolean);
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "WaterAvoidingRandomStrollGoal.java"
+public class net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal extends net.minecraft.world.entity.ai.goal.RandomStrollGoal {
+  public static final float PROBABILITY;
+  protected final float probability;
+  public net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal(net.minecraft.world.entity.PathfinderMob, double, float);
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "LookAtPlayerGoal.java"
+public class net.minecraft.world.entity.ai.goal.LookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final float DEFAULT_PROBABILITY;
+  protected final net.minecraft.world.entity.Mob mob;
+  protected net.minecraft.world.entity.Entity lookAt;
+  protected final float lookDistance;
+  protected final float probability;
+  protected final java.lang.Class<? extends net.minecraft.world.entity.LivingEntity> lookAtType;
+  protected final net.minecraft.world.entity.ai.targeting.TargetingConditions lookAtContext;
+  public net.minecraft.world.entity.ai.goal.LookAtPlayerGoal(net.minecraft.world.entity.Mob, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float);
+  public net.minecraft.world.entity.ai.goal.LookAtPlayerGoal(net.minecraft.world.entity.Mob, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float, float);
+  public net.minecraft.world.entity.ai.goal.LookAtPlayerGoal(net.minecraft.world.entity.Mob, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float, float, boolean);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "RestrictSunGoal.java"
+public class net.minecraft.world.entity.ai.goal.RestrictSunGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RestrictSunGoal(net.minecraft.world.entity.PathfinderMob);
+  public boolean canUse();
+  public void start();
+  public void stop();
+}
+Compiled from "AvoidEntityGoal.java"
+public class net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  protected T toAvoid;
+  protected final float maxDist;
+  protected net.minecraft.world.level.pathfinder.Path path;
+  protected final net.minecraft.world.entity.ai.navigation.PathNavigation pathNav;
+  protected final java.lang.Class<T> avoidClass;
+  protected final java.util.function.Predicate<? super net.minecraft.world.entity.LivingEntity> avoidPredicate;
+  protected final java.util.function.Predicate<? super net.minecraft.world.entity.LivingEntity> predicateOnAvoidEntity;
+  public net.minecraft.world.entity.ai.goal.AvoidEntityGoal(net.minecraft.world.entity.PathfinderMob, java.lang.Class<T>, float, double, double);
+  public net.minecraft.world.entity.ai.goal.AvoidEntityGoal(net.minecraft.world.entity.PathfinderMob, java.lang.Class<T>, java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>, float, double, double, java.util.function.Predicate<? super net.minecraft.world.entity.LivingEntity>);
+  public net.minecraft.world.entity.ai.goal.AvoidEntityGoal(net.minecraft.world.entity.PathfinderMob, java.lang.Class<T>, float, double, double, java.util.function.Predicate<? super net.minecraft.world.entity.LivingEntity>);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "BreedGoal.java"
+public class net.minecraft.world.entity.ai.goal.BreedGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.animal.Animal animal;
+  protected final net.minecraft.server.level.ServerLevel level;
+  protected net.minecraft.world.entity.animal.Animal partner;
+  public net.minecraft.world.entity.ai.goal.BreedGoal(net.minecraft.world.entity.animal.Animal, double);
+  public net.minecraft.world.entity.ai.goal.BreedGoal(net.minecraft.world.entity.animal.Animal, double, java.lang.Class<? extends net.minecraft.world.entity.animal.Animal>);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public void tick();
+  protected void breed();
+}
+Compiled from "WrappedGoal.java"
+public class net.minecraft.world.entity.ai.goal.WrappedGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.WrappedGoal(int, net.minecraft.world.entity.ai.goal.Goal);
+  public boolean canBeReplacedBy(net.minecraft.world.entity.ai.goal.WrappedGoal);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public boolean isInterruptable();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  protected int adjustedTickDelay(int);
+  public void tick();
+  public void setFlags(java.util.EnumSet<net.minecraft.world.entity.ai.goal.Goal$Flag>);
+  public java.util.EnumSet<net.minecraft.world.entity.ai.goal.Goal$Flag> getFlags();
+  public boolean isRunning();
+  public int getPriority();
+  public net.minecraft.world.entity.ai.goal.Goal getGoal();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "FollowMobGoal.java"
+public class net.minecraft.world.entity.ai.goal.FollowMobGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.FollowMobGoal(net.minecraft.world.entity.Mob, double, float, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "FollowFlockLeaderGoal.java"
+public class net.minecraft.world.entity.ai.goal.FollowFlockLeaderGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.FollowFlockLeaderGoal(net.minecraft.world.entity.animal.fish.AbstractSchoolingFish);
+  protected int nextStartTick(net.minecraft.world.entity.animal.fish.AbstractSchoolingFish);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "FollowPlayerRiddenEntityGoal.java"
+public class net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal(net.minecraft.world.entity.PathfinderMob, java.lang.Class<? extends net.minecraft.world.entity.Entity>);
+  public boolean canUse();
+  public boolean isInterruptable();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "FollowParentGoal.java"
+public class net.minecraft.world.entity.ai.goal.FollowParentGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final int HORIZONTAL_SCAN_RANGE;
+  public static final int VERTICAL_SCAN_RANGE;
+  public static final int DONT_FOLLOW_IF_CLOSER_THAN;
+  public net.minecraft.world.entity.ai.goal.FollowParentGoal(net.minecraft.world.entity.animal.Animal, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "RangedCrossbowAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal<T extends net.minecraft.world.entity.monster.Monster & net.minecraft.world.entity.monster.RangedAttackMob & net.minecraft.world.entity.monster.CrossbowAttackMob> extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final net.minecraft.util.valueproviders.UniformInt PATHFINDING_DELAY_RANGE;
+  public net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal(T, double, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "CatLieOnBlockGoal.java"
+public class net.minecraft.world.entity.ai.goal.CatLieOnBlockGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.ai.goal.CatLieOnBlockGoal(net.minecraft.world.entity.animal.feline.Cat, double, int);
+  public boolean canUse();
+  public void start();
+  protected int nextStartTick(net.minecraft.world.entity.PathfinderMob);
+  public void stop();
+  public void tick();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "PathfindToRaidGoal.java"
+public class net.minecraft.world.entity.ai.goal.PathfindToRaidGoal<T extends net.minecraft.world.entity.raid.Raider> extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.PathfindToRaidGoal(T);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.goal.package-info {
+}
+Compiled from "FollowPlayerRiddenEntityGoal.java"
+final class net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal extends java.lang.Enum<net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal> {
+  public static final net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal GO_TO_ENTITY;
+  public static final net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal GO_IN_ENTITY_DIRECTION;
+  public static net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal[] values();
+  public static net.minecraft.world.entity.ai.goal.FollowPlayerRiddenEntityGoal$FollowEntityGoal valueOf(java.lang.String);
+}
+Compiled from "OfferFlowerGoal.java"
+public class net.minecraft.world.entity.ai.goal.OfferFlowerGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final int OFFER_TICKS;
+  public net.minecraft.world.entity.ai.goal.OfferFlowerGoal(net.minecraft.world.entity.animal.golem.IronGolem);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "RandomStrollGoal.java"
+public class net.minecraft.world.entity.ai.goal.RandomStrollGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final int DEFAULT_INTERVAL;
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  protected double wantedX;
+  protected double wantedY;
+  protected double wantedZ;
+  protected final double speedModifier;
+  protected int interval;
+  protected boolean forceTrigger;
+  public net.minecraft.world.entity.ai.goal.RandomStrollGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public net.minecraft.world.entity.ai.goal.RandomStrollGoal(net.minecraft.world.entity.PathfinderMob, double, int);
+  public net.minecraft.world.entity.ai.goal.RandomStrollGoal(net.minecraft.world.entity.PathfinderMob, double, int, boolean);
+  public boolean canUse();
+  protected net.minecraft.world.phys.Vec3 getPosition();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void trigger();
+  public void setInterval(int);
+}
+Compiled from "MoveThroughVillageGoal.java"
+public class net.minecraft.world.entity.ai.goal.MoveThroughVillageGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  public net.minecraft.world.entity.ai.goal.MoveThroughVillageGoal(net.minecraft.world.entity.PathfinderMob, double, boolean, int, java.util.function.BooleanSupplier);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+}
+Compiled from "RandomStandGoal.java"
+public class net.minecraft.world.entity.ai.goal.RandomStandGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RandomStandGoal(net.minecraft.world.entity.animal.equine.AbstractHorse);
+  public void start();
+  public boolean canContinueToUse();
+  public boolean canUse();
+  public boolean requiresUpdateEveryTick();
+}
+Compiled from "RunAroundLikeCrazyGoal.java"
+public class net.minecraft.world.entity.ai.goal.RunAroundLikeCrazyGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RunAroundLikeCrazyGoal(net.minecraft.world.entity.animal.equine.AbstractHorse, double);
+  public boolean canUse();
+  public void start();
+  public boolean canContinueToUse();
+  public void tick();
+}
+Compiled from "CatSitOnBlockGoal.java"
+public class net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.ai.goal.CatSitOnBlockGoal(net.minecraft.world.entity.animal.feline.Cat, double);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public void tick();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "LlamaFollowCaravanGoal.java"
+public class net.minecraft.world.entity.ai.goal.LlamaFollowCaravanGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public final net.minecraft.world.entity.animal.equine.Llama llama;
+  public net.minecraft.world.entity.ai.goal.LlamaFollowCaravanGoal(net.minecraft.world.entity.animal.equine.Llama, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public void tick();
+}
+Compiled from "PanicGoal.java"
+public class net.minecraft.world.entity.ai.goal.PanicGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public static final int WATER_CHECK_DISTANCE_VERTICAL;
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  protected final double speedModifier;
+  protected double posX;
+  protected double posY;
+  protected double posZ;
+  protected boolean isRunning;
+  public net.minecraft.world.entity.ai.goal.PanicGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public net.minecraft.world.entity.ai.goal.PanicGoal(net.minecraft.world.entity.PathfinderMob, double, net.minecraft.tags.TagKey<net.minecraft.world.damagesource.DamageType>);
+  public net.minecraft.world.entity.ai.goal.PanicGoal(net.minecraft.world.entity.PathfinderMob, double, java.util.function.Function<net.minecraft.world.entity.PathfinderMob, net.minecraft.tags.TagKey<net.minecraft.world.damagesource.DamageType>>);
+  public boolean canUse();
+  protected boolean shouldPanic();
+  protected boolean findRandomPosition();
+  public boolean isRunning();
+  public void start();
+  public void stop();
+  public boolean canContinueToUse();
+  protected net.minecraft.core.BlockPos lookForWater(net.minecraft.world.level.LevelReader, net.minecraft.world.entity.Entity, int);
+}
+Compiled from "TemptGoal.java"
+public class net.minecraft.world.entity.ai.goal.TemptGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.Mob mob;
+  protected final double speedModifier;
+  protected net.minecraft.world.entity.player.Player player;
+  public net.minecraft.world.entity.ai.goal.TemptGoal(net.minecraft.world.entity.PathfinderMob, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean);
+  public net.minecraft.world.entity.ai.goal.TemptGoal(net.minecraft.world.entity.PathfinderMob, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  protected boolean canScare();
+  public void start();
+  public void stop();
+  public void tick();
+  protected void stopNavigation();
+  protected void navigateTowards(net.minecraft.world.entity.player.Player);
+  public boolean isRunning();
+}
+Compiled from "InteractGoal.java"
+public class net.minecraft.world.entity.ai.goal.InteractGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
+  public net.minecraft.world.entity.ai.goal.InteractGoal(net.minecraft.world.entity.Mob, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float);
+  public net.minecraft.world.entity.ai.goal.InteractGoal(net.minecraft.world.entity.Mob, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float, float);
+}
+Compiled from "Goal.java"
+public abstract class net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.Goal();
+  public abstract boolean canUse();
+  public boolean canContinueToUse();
+  public boolean isInterruptable();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+  public void setFlags(java.util.EnumSet<net.minecraft.world.entity.ai.goal.Goal$Flag>);
+  public java.lang.String toString();
+  public java.util.EnumSet<net.minecraft.world.entity.ai.goal.Goal$Flag> getFlags();
+  protected int adjustedTickDelay(int);
+  protected static int reducedTickDelay(int);
+  protected static net.minecraft.server.level.ServerLevel getServerLevel(net.minecraft.world.entity.Entity);
+  protected static net.minecraft.server.level.ServerLevel getServerLevel(net.minecraft.world.level.Level);
+}
+Compiled from "DolphinJumpGoal.java"
+public class net.minecraft.world.entity.ai.goal.DolphinJumpGoal extends net.minecraft.world.entity.ai.goal.JumpGoal {
+  public net.minecraft.world.entity.ai.goal.DolphinJumpGoal(net.minecraft.world.entity.animal.dolphin.Dolphin, int);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public boolean isInterruptable();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "GolemRandomStrollInVillageGoal.java"
+public class net.minecraft.world.entity.ai.goal.GolemRandomStrollInVillageGoal extends net.minecraft.world.entity.ai.goal.RandomStrollGoal {
+  public net.minecraft.world.entity.ai.goal.GolemRandomStrollInVillageGoal(net.minecraft.world.entity.PathfinderMob, double);
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "DoorInteractGoal.java"
+public abstract class net.minecraft.world.entity.ai.goal.DoorInteractGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected net.minecraft.world.entity.Mob mob;
+  protected net.minecraft.core.BlockPos doorPos;
+  protected boolean hasDoor;
+  public net.minecraft.world.entity.ai.goal.DoorInteractGoal(net.minecraft.world.entity.Mob);
+  protected boolean isOpen();
+  protected void setOpen(boolean);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "EatBlockGoal.java"
+public class net.minecraft.world.entity.ai.goal.EatBlockGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.EatBlockGoal(net.minecraft.world.entity.Mob);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public boolean canContinueToUse();
+  public int getEatAnimationTick();
+  public void tick();
+}
+Compiled from "TemptGoal.java"
+public class net.minecraft.world.entity.ai.goal.TemptGoal$ForNonPathfinders extends net.minecraft.world.entity.ai.goal.TemptGoal {
+  public net.minecraft.world.entity.ai.goal.TemptGoal$ForNonPathfinders(net.minecraft.world.entity.Mob, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean, double);
+  protected void stopNavigation();
+  protected void navigateTowards(net.minecraft.world.entity.player.Player);
+}
+Compiled from "BreakDoorGoal.java"
+public class net.minecraft.world.entity.ai.goal.BreakDoorGoal extends net.minecraft.world.entity.ai.goal.DoorInteractGoal {
+  protected int breakTime;
+  protected int lastBreakProgress;
+  protected int doorBreakTime;
+  public net.minecraft.world.entity.ai.goal.BreakDoorGoal(net.minecraft.world.entity.Mob, java.util.function.Predicate<net.minecraft.world.Difficulty>);
+  public net.minecraft.world.entity.ai.goal.BreakDoorGoal(net.minecraft.world.entity.Mob, int, java.util.function.Predicate<net.minecraft.world.Difficulty>);
+  protected int getDoorBreakTime();
+  public boolean canUse();
+  public void start();
+  public boolean canContinueToUse();
+  public void stop();
+  public void tick();
+}
+Compiled from "JumpGoal.java"
+public abstract class net.minecraft.world.entity.ai.goal.JumpGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.JumpGoal();
+}
+Compiled from "RangedCrossbowAttackGoal.java"
+final class net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState extends java.lang.Enum<net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState> {
+  public static final net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState UNCHARGED;
+  public static final net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState CHARGING;
+  public static final net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState CHARGED;
+  public static final net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState READY_TO_ATTACK;
+  public static net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState[] values();
+  public static net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal$CrossbowState valueOf(java.lang.String);
+}
+Compiled from "SpearUseGoal.java"
+public class net.minecraft.world.entity.ai.goal.SpearUseGoal<T extends net.minecraft.world.entity.monster.Monster> extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.SpearUseGoal(T, double, double, float, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "GoalSelector.java"
+public class net.minecraft.world.entity.ai.goal.GoalSelector {
+  public net.minecraft.world.entity.ai.goal.GoalSelector();
+  public void addGoal(int, net.minecraft.world.entity.ai.goal.Goal);
+  public void removeAllGoals(java.util.function.Predicate<net.minecraft.world.entity.ai.goal.Goal>);
+  public void removeGoal(net.minecraft.world.entity.ai.goal.Goal);
+  public void tick();
+  public void tickRunningGoals(boolean);
+  public java.util.Set<net.minecraft.world.entity.ai.goal.WrappedGoal> getAvailableGoals();
+  public void disableControlFlag(net.minecraft.world.entity.ai.goal.Goal$Flag);
+  public void enableControlFlag(net.minecraft.world.entity.ai.goal.Goal$Flag);
+  public void setControlFlag(net.minecraft.world.entity.ai.goal.Goal$Flag, boolean);
+}
+Compiled from "MoveToBlockGoal.java"
+public abstract class net.minecraft.world.entity.ai.goal.MoveToBlockGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected final net.minecraft.world.entity.PathfinderMob mob;
+  public final double speedModifier;
+  protected int nextStartTick;
+  protected int tryTicks;
+  protected net.minecraft.core.BlockPos blockPos;
+  protected int verticalSearchStart;
+  public net.minecraft.world.entity.ai.goal.MoveToBlockGoal(net.minecraft.world.entity.PathfinderMob, double, int);
+  public net.minecraft.world.entity.ai.goal.MoveToBlockGoal(net.minecraft.world.entity.PathfinderMob, double, int, int);
+  public boolean canUse();
+  protected int nextStartTick(net.minecraft.world.entity.PathfinderMob);
+  public boolean canContinueToUse();
+  public void start();
+  protected void moveMobToBlock();
+  public double acceptedDistance();
+  protected net.minecraft.core.BlockPos getMoveToTarget();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+  public boolean shouldRecalculatePath();
+  protected boolean isReachedTarget();
+  protected boolean findNearestBlock();
+  protected abstract boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "Goal.java"
+public final class net.minecraft.world.entity.ai.goal.Goal$Flag extends java.lang.Enum<net.minecraft.world.entity.ai.goal.Goal$Flag> {
+  public static final net.minecraft.world.entity.ai.goal.Goal$Flag MOVE;
+  public static final net.minecraft.world.entity.ai.goal.Goal$Flag LOOK;
+  public static final net.minecraft.world.entity.ai.goal.Goal$Flag JUMP;
+  public static final net.minecraft.world.entity.ai.goal.Goal$Flag TARGET;
+  public static net.minecraft.world.entity.ai.goal.Goal$Flag[] values();
+  public static net.minecraft.world.entity.ai.goal.Goal$Flag valueOf(java.lang.String);
+}
+Compiled from "SwellGoal.java"
+public class net.minecraft.world.entity.ai.goal.SwellGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.SwellGoal(net.minecraft.world.entity.monster.Creeper);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "SpearUseGoal.java"
+public class net.minecraft.world.entity.ai.goal.SpearUseGoal$SpearUseState {
+  public net.minecraft.world.entity.ai.goal.SpearUseGoal$SpearUseState();
+  public boolean notEngagedYet();
+  public void startEngagement(int);
+  public boolean tickAndCheckEngagement();
+  public boolean tickAndCheckFleeing();
+}
+Compiled from "MoveBackToVillageGoal.java"
+public class net.minecraft.world.entity.ai.goal.MoveBackToVillageGoal extends net.minecraft.world.entity.ai.goal.RandomStrollGoal {
+  public net.minecraft.world.entity.ai.goal.MoveBackToVillageGoal(net.minecraft.world.entity.PathfinderMob, double, boolean);
+  public boolean canUse();
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "RangedAttackGoal.java"
+public class net.minecraft.world.entity.ai.goal.RangedAttackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RangedAttackGoal(net.minecraft.world.entity.monster.RangedAttackMob, double, int, float);
+  public net.minecraft.world.entity.ai.goal.RangedAttackGoal(net.minecraft.world.entity.monster.RangedAttackMob, double, int, int, float);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "TryFindLiquidGoal.java"
+public class net.minecraft.world.entity.ai.goal.TryFindLiquidGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.TryFindLiquidGoal(net.minecraft.world.entity.PathfinderMob, net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+  public boolean canUse();
+  public void start();
+}
+Compiled from "BreathAirGoal.java"
+public class net.minecraft.world.entity.ai.goal.BreathAirGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.BreathAirGoal(net.minecraft.world.entity.PathfinderMob);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public boolean isInterruptable();
+  public void start();
+  public void tick();
+}
+Compiled from "RandomLookAroundGoal.java"
+public class net.minecraft.world.entity.ai.goal.RandomLookAroundGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.RandomLookAroundGoal(net.minecraft.world.entity.Mob);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "MoveTowardsRestrictionGoal.java"
+public class net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.ai.goal.MoveTowardsRestrictionGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+}

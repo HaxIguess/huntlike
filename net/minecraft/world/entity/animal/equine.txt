@@ -1,0 +1,378 @@
+Compiled from "Horse.java"
+public class net.minecraft.world.entity.animal.equine.Horse$HorseGroupData extends net.minecraft.world.entity.AgeableMob$AgeableMobGroupData {
+  public final net.minecraft.world.entity.animal.equine.Variant variant;
+  public net.minecraft.world.entity.animal.equine.Horse$HorseGroupData(net.minecraft.world.entity.animal.equine.Variant);
+}
+Compiled from "Markings.java"
+public final class net.minecraft.world.entity.animal.equine.Markings extends java.lang.Enum<net.minecraft.world.entity.animal.equine.Markings> {
+  public static final net.minecraft.world.entity.animal.equine.Markings NONE;
+  public static final net.minecraft.world.entity.animal.equine.Markings WHITE;
+  public static final net.minecraft.world.entity.animal.equine.Markings WHITE_FIELD;
+  public static final net.minecraft.world.entity.animal.equine.Markings WHITE_DOTS;
+  public static final net.minecraft.world.entity.animal.equine.Markings BLACK_DOTS;
+  public static net.minecraft.world.entity.animal.equine.Markings[] values();
+  public static net.minecraft.world.entity.animal.equine.Markings valueOf(java.lang.String);
+  public int getId();
+  public static net.minecraft.world.entity.animal.equine.Markings byId(int);
+}
+Compiled from "AbstractHorse.java"
+public abstract class net.minecraft.world.entity.animal.equine.AbstractHorse extends net.minecraft.world.entity.animal.Animal implements net.minecraft.world.entity.PlayerRideableJumping,net.minecraft.world.entity.HasCustomInventoryScreen,net.minecraft.world.entity.OwnableEntity {
+  public static final int CHEST_SLOT_OFFSET;
+  public static final int INVENTORY_SLOT_OFFSET;
+  public static final double BREEDING_CROSS_FACTOR;
+  protected static final float BABY_SCALE;
+  public static final int INVENTORY_ROWS;
+  public int tailCounter;
+  public int sprintCounter;
+  protected net.minecraft.world.SimpleContainer inventory;
+  protected int temper;
+  protected float playerJumpPendingScale;
+  protected boolean allowStandSliding;
+  protected boolean canGallop;
+  protected int gallopSoundCounter;
+  protected net.minecraft.world.entity.animal.equine.AbstractHorse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.AbstractHorse>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void addBehaviourGoals();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected boolean getFlag(int);
+  protected void setFlag(int, boolean);
+  public boolean isTamed();
+  public net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> getOwnerReference();
+  public void setOwner(net.minecraft.world.entity.LivingEntity);
+  public void setTamed(boolean);
+  public void onElasticLeashPull();
+  public boolean supportQuadLeash();
+  public net.minecraft.world.phys.Vec3[] getQuadLeashOffsets();
+  public boolean isEating();
+  public boolean isStanding();
+  public boolean isBred();
+  public void setBred(boolean);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  public void equipBodyArmor(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  public int getTemper();
+  public void setTemper(int);
+  public int modifyTemper(int);
+  public boolean isPushable();
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+  public final int getInventorySize();
+  protected void createInventory();
+  protected net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> getEquipSound(net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack, net.minecraft.world.item.equipment.Equippable);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected boolean canPerformRearing();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void playGallopSound(net.minecraft.world.level.block.SoundType);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createBaseHorseAttributes();
+  public int getMaxSpawnClusterSize();
+  public int getMaxTemper();
+  protected float getSoundVolume();
+  public int getAmbientSoundInterval();
+  public void openCustomInventoryScreen(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.InteractionResult fedFood(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  protected boolean handleEating(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  protected void doPlayerRide(net.minecraft.world.entity.player.Player);
+  public boolean isImmobile();
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+  public void aiStep();
+  protected void followMommy(net.minecraft.server.level.ServerLevel);
+  public boolean canEatGrass();
+  public void tick();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void setEating(boolean);
+  public void setStanding(int);
+  public void clearStanding();
+  public net.minecraft.sounds.SoundEvent getAmbientStandSound();
+  public void standIfPossible();
+  public void makeMad();
+  public boolean tameWithName(net.minecraft.world.entity.player.Player);
+  protected void tickRidden(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.phys.Vec2 getRiddenRotation(net.minecraft.world.entity.LivingEntity);
+  protected void addPassenger(net.minecraft.world.entity.Entity);
+  protected net.minecraft.world.phys.Vec3 getRiddenInput(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected float getRiddenSpeed(net.minecraft.world.entity.player.Player);
+  protected void executeRidersJump(float, net.minecraft.world.phys.Vec3);
+  protected void playJumpSound();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  protected boolean canParent();
+  public boolean isMobControlled();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected void setOffspringAttributes(net.minecraft.world.entity.AgeableMob, net.minecraft.world.entity.animal.equine.AbstractHorse);
+  public static double createOffspringAttribute(double, double, double, double, net.minecraft.util.RandomSource);
+  public float getEatAnim(float);
+  public float getStandAnim(float);
+  public float getMouthAnim(float);
+  public void onPlayerJump(int);
+  public boolean canJump();
+  public void handleStartJump(int);
+  public void handleStopJump();
+  protected void spawnTamingParticles(boolean);
+  public void handleEntityEvent(byte);
+  protected void positionRider(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity$MoveFunction);
+  protected static float generateMaxHealth(java.util.function.IntUnaryOperator);
+  protected static double generateJumpStrength(java.util.function.DoubleSupplier);
+  protected static double generateSpeed(java.util.function.DoubleSupplier);
+  public boolean onClimbable();
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public net.minecraft.world.entity.LivingEntity getControllingPassenger();
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public boolean hasInventoryChanged(net.minecraft.world.Container);
+  public int getAmbientStandInterval();
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+  public int getInventoryColumns();
+}
+Compiled from "Variant.java"
+public final class net.minecraft.world.entity.animal.equine.Variant extends java.lang.Enum<net.minecraft.world.entity.animal.equine.Variant> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.equine.Variant WHITE;
+  public static final net.minecraft.world.entity.animal.equine.Variant CREAMY;
+  public static final net.minecraft.world.entity.animal.equine.Variant CHESTNUT;
+  public static final net.minecraft.world.entity.animal.equine.Variant BROWN;
+  public static final net.minecraft.world.entity.animal.equine.Variant BLACK;
+  public static final net.minecraft.world.entity.animal.equine.Variant GRAY;
+  public static final net.minecraft.world.entity.animal.equine.Variant DARK_BROWN;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.equine.Variant> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.equine.Variant> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.equine.Variant[] values();
+  public static net.minecraft.world.entity.animal.equine.Variant valueOf(java.lang.String);
+  public int getId();
+  public static net.minecraft.world.entity.animal.equine.Variant byId(int);
+  public java.lang.String getSerializedName();
+}
+Compiled from "ZombieHorse.java"
+public class net.minecraft.world.entity.animal.equine.ZombieHorse extends net.minecraft.world.entity.animal.equine.AbstractHorse {
+  public net.minecraft.world.entity.animal.equine.ZombieHorse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.ZombieHorse>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public boolean removeWhenFarAway(double);
+  public boolean isMobControlled();
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean canFallInLove();
+  protected void addBehaviourGoals();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  public boolean canBeLeashed();
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected net.minecraft.world.entity.EquipmentSlot sunProtectionSlot();
+  public net.minecraft.world.phys.Vec3[] getQuadLeashOffsets();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public float chargeSpeedModifier();
+  public boolean canAgeUp();
+}
+Compiled from "TraderLlama.java"
+public class net.minecraft.world.entity.animal.equine.TraderLlama$TraderLlamaDefendWanderingTraderGoal extends net.minecraft.world.entity.ai.goal.target.TargetGoal {
+  public net.minecraft.world.entity.animal.equine.TraderLlama$TraderLlamaDefendWanderingTraderGoal(net.minecraft.world.entity.animal.equine.Llama);
+  public boolean canUse();
+  public void start();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.equine.package-info {
+}
+Compiled from "Llama.java"
+class net.minecraft.world.entity.animal.equine.Llama$LlamaGroupData extends net.minecraft.world.entity.AgeableMob$AgeableMobGroupData {
+  public final net.minecraft.world.entity.animal.equine.Llama$Variant variant;
+}
+Compiled from "SkeletonTrapGoal.java"
+public class net.minecraft.world.entity.animal.equine.SkeletonTrapGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.equine.SkeletonTrapGoal(net.minecraft.world.entity.animal.equine.SkeletonHorse);
+  public boolean canUse();
+  public void tick();
+}
+Compiled from "Horse.java"
+public class net.minecraft.world.entity.animal.equine.Horse extends net.minecraft.world.entity.animal.equine.AbstractHorse {
+  public net.minecraft.world.entity.animal.equine.Horse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.Horse>, net.minecraft.world.level.Level);
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.animal.equine.Variant getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.world.entity.animal.equine.Markings getMarkings();
+  protected void playGallopSound(net.minecraft.world.level.block.SoundType);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected void hurtArmor(net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+}
+Compiled from "Llama.java"
+public final class net.minecraft.world.entity.animal.equine.Llama$Variant extends java.lang.Enum<net.minecraft.world.entity.animal.equine.Llama$Variant> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.equine.Llama$Variant CREAMY;
+  public static final net.minecraft.world.entity.animal.equine.Llama$Variant WHITE;
+  public static final net.minecraft.world.entity.animal.equine.Llama$Variant BROWN;
+  public static final net.minecraft.world.entity.animal.equine.Llama$Variant GRAY;
+  public static final net.minecraft.world.entity.animal.equine.Llama$Variant DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.equine.Llama$Variant> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.equine.Llama$Variant> LEGACY_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.equine.Llama$Variant> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.equine.Llama$Variant[] values();
+  public static net.minecraft.world.entity.animal.equine.Llama$Variant valueOf(java.lang.String);
+  public int getId();
+  public static net.minecraft.world.entity.animal.equine.Llama$Variant byId(int);
+  public java.lang.String getSerializedName();
+}
+Compiled from "Llama.java"
+class net.minecraft.world.entity.animal.equine.Llama$LlamaHurtByTargetGoal extends net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal {
+  public net.minecraft.world.entity.animal.equine.Llama$LlamaHurtByTargetGoal(net.minecraft.world.entity.animal.equine.Llama);
+  public boolean canContinueToUse();
+}
+Compiled from "SkeletonHorse.java"
+public class net.minecraft.world.entity.animal.equine.SkeletonHorse extends net.minecraft.world.entity.animal.equine.AbstractHorse {
+  public net.minecraft.world.entity.animal.equine.SkeletonHorse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.SkeletonHorse>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public static boolean checkSkeletonHorseSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+  protected void addBehaviourGoals();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  protected void playSwimSound(float);
+  protected void playJumpSound();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public void aiStep();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected float getWaterSlowDown();
+  public boolean isTrap();
+  public void setTrap(boolean);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  public boolean canAgeUp();
+}
+Compiled from "Llama.java"
+class net.minecraft.world.entity.animal.equine.Llama$LlamaAttackWolfGoal extends net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<net.minecraft.world.entity.animal.wolf.Wolf> {
+  public net.minecraft.world.entity.animal.equine.Llama$LlamaAttackWolfGoal(net.minecraft.world.entity.animal.equine.Llama);
+  protected double getFollowDistance();
+}
+Compiled from "Donkey.java"
+public class net.minecraft.world.entity.animal.equine.Donkey extends net.minecraft.world.entity.animal.equine.AbstractChestedHorse {
+  public net.minecraft.world.entity.animal.equine.Donkey(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.Donkey>, net.minecraft.world.level.Level);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  protected void playJumpSound();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "Mule.java"
+public class net.minecraft.world.entity.animal.equine.Mule extends net.minecraft.world.entity.animal.equine.AbstractChestedHorse {
+  public net.minecraft.world.entity.animal.equine.Mule(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.Mule>, net.minecraft.world.level.Level);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected void playJumpSound();
+  protected void playChestEquipsSound();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "AbstractChestedHorse.java"
+public abstract class net.minecraft.world.entity.animal.equine.AbstractChestedHorse extends net.minecraft.world.entity.animal.equine.AbstractHorse {
+  protected net.minecraft.world.entity.animal.equine.AbstractChestedHorse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.AbstractChestedHorse>, net.minecraft.world.level.Level);
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createBaseChestedHorseAttributes();
+  public boolean hasChest();
+  public void setChest(boolean);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public net.minecraft.world.phys.Vec3[] getQuadLeashOffsets();
+  protected void playChestEquipsSound();
+  public int getInventoryColumns();
+}
+Compiled from "AbstractHorse.java"
+class net.minecraft.world.entity.animal.equine.AbstractHorse$MountPanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+  public net.minecraft.world.entity.animal.equine.AbstractHorse$MountPanicGoal(net.minecraft.world.entity.animal.equine.AbstractHorse, double);
+  public boolean shouldPanic();
+}
+Compiled from "Llama.java"
+public class net.minecraft.world.entity.animal.equine.Llama extends net.minecraft.world.entity.animal.equine.AbstractChestedHorse implements net.minecraft.world.entity.monster.RangedAttackMob {
+  public net.minecraft.world.entity.animal.equine.Llama(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.Llama>, net.minecraft.world.level.Level);
+  public boolean isTraderLlama();
+  public int getStrength();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public net.minecraft.world.entity.animal.equine.Llama$Variant getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected boolean handleEating(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public boolean isImmobile();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected boolean canPerformRearing();
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void playChestEquipsSound();
+  public int getInventoryColumns();
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  public int getMaxTemper();
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  public net.minecraft.world.entity.animal.equine.Llama getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected net.minecraft.world.entity.animal.equine.Llama makeNewLlama();
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+  public void leaveCaravan();
+  public void joinCaravan(net.minecraft.world.entity.animal.equine.Llama);
+  public boolean hasCaravanTail();
+  public boolean inCaravan();
+  public net.minecraft.world.entity.animal.equine.Llama getCaravanHead();
+  protected double followLeashSpeed();
+  public boolean supportQuadLeash();
+  protected void followMommy(net.minecraft.server.level.ServerLevel);
+  public boolean canEatGrass();
+  public void performRangedAttack(net.minecraft.world.entity.LivingEntity, float);
+  public float rangedAttackUncertainty(net.minecraft.world.level.Level);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "TraderLlama.java"
+public class net.minecraft.world.entity.animal.equine.TraderLlama extends net.minecraft.world.entity.animal.equine.Llama {
+  public net.minecraft.world.entity.animal.equine.TraderLlama(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.TraderLlama>, net.minecraft.world.level.Level);
+  public boolean isTraderLlama();
+  protected net.minecraft.world.entity.animal.equine.Llama makeNewLlama();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void registerGoals();
+  public void setDespawnDelay(int);
+  protected void doPlayerRide(net.minecraft.world.entity.player.Player);
+  public void aiStep();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+}

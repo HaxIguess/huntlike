@@ -1,0 +1,30 @@
+Compiled from "AbstractRecipeCategory.java"
+public abstract class mezz.jei.api.recipe.category.AbstractRecipeCategory<T> implements mezz.jei.api.recipe.category.IRecipeCategory<T> {
+  public mezz.jei.api.recipe.category.AbstractRecipeCategory(mezz.jei.api.recipe.types.IRecipeType<T>, net.minecraft.network.chat.Component, mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public final mezz.jei.api.recipe.types.IRecipeType<T> getRecipeType();
+  public final net.minecraft.network.chat.Component getTitle();
+  public final mezz.jei.api.gui.drawable.IDrawable getIcon();
+  public final int getWidth();
+  public final int getHeight();
+}
+Compiled from "IRecipeCategory.java"
+public interface mezz.jei.api.recipe.category.IRecipeCategory<T> {
+  public abstract mezz.jei.api.recipe.types.IRecipeType<T> getRecipeType();
+  public abstract net.minecraft.network.chat.Component getTitle();
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public abstract mezz.jei.api.gui.drawable.IDrawable getIcon();
+  public abstract void setRecipe(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, T, mezz.jei.api.recipe.IFocusGroup);
+  public default void createRecipeExtras(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, T, mezz.jei.api.recipe.IFocusGroup);
+  public default void draw(T, mezz.jei.api.gui.ingredient.IRecipeSlotsView, net.minecraft.client.gui.GuiGraphicsExtractor, double, double);
+  public default void onDisplayedIngredientsUpdate(T, java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable>, mezz.jei.api.recipe.IFocusGroup);
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, T, mezz.jei.api.gui.ingredient.IRecipeSlotsView, double, double);
+  public default boolean isHandled(T);
+  public default net.minecraft.resources.Identifier getIdentifier(T);
+  public default net.minecraft.resources.Identifier getRegistryName(T);
+  public default com.mojang.serialization.Codec<T> getCodec(mezz.jei.api.helpers.ICodecHelper, mezz.jei.api.recipe.IRecipeManager);
+  public default boolean needsRecipeBorder();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.recipe.category.package-info {
+}

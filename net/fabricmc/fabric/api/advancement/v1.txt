@@ -1,0 +1,45 @@
+Compiled from "AdvancementEvents.java"
+public interface net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Loaded {
+  public abstract void onAdvancementsLoaded(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.core.Registry<net.minecraft.advancements.Advancement>, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "AdvancementEvents.java"
+public interface net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Modify {
+  public abstract void modifyAdvancement(net.minecraft.resources.Identifier, net.minecraft.advancements.Advancement$Builder, net.fabricmc.fabric.api.advancement.v1.AdvancementSource, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "AdvancementEvents.java"
+public interface net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Replace {
+  public abstract net.minecraft.advancements.Advancement replaceAdvancement(net.minecraft.resources.Identifier, net.minecraft.advancements.Advancement, net.fabricmc.fabric.api.advancement.v1.AdvancementSource, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "AdvancementEvents.java"
+public final class net.fabricmc.fabric.api.advancement.v1.AdvancementEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Replace> REPLACE;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Modify> MODIFY;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Loaded> ALL_LOADED;
+}
+Compiled from "AdvancementSource.java"
+public final class net.fabricmc.fabric.api.advancement.v1.AdvancementSource extends java.lang.Enum<net.fabricmc.fabric.api.advancement.v1.AdvancementSource> {
+  public static final net.fabricmc.fabric.api.advancement.v1.AdvancementSource VANILLA;
+  public static final net.fabricmc.fabric.api.advancement.v1.AdvancementSource MOD;
+  public static final net.fabricmc.fabric.api.advancement.v1.AdvancementSource DATA_PACK;
+  public static final net.fabricmc.fabric.api.advancement.v1.AdvancementSource REPLACED;
+  public static net.fabricmc.fabric.api.advancement.v1.AdvancementSource[] values();
+  public static net.fabricmc.fabric.api.advancement.v1.AdvancementSource valueOf(java.lang.String);
+  public boolean isBuiltin();
+}
+Compiled from "FabricAdvancementBuilder.java"
+public interface net.fabricmc.fabric.api.advancement.v1.FabricAdvancementBuilder {
+  public default java.util.Map<java.lang.String, net.minecraft.advancements.triggers.Criterion<?>> getCriteria();
+  public default net.minecraft.advancements.Advancement$Builder updateCriteria(java.util.Map<java.lang.String, net.minecraft.advancements.triggers.Criterion<?>>);
+  public default net.minecraft.advancements.Advancement$Builder removeCriterion(java.lang.String);
+  public default net.minecraft.advancements.Advancement$Builder requireCriterion(java.lang.String);
+  public default net.minecraft.advancements.Advancement$Builder requireCriteria(java.util.List<java.lang.String>);
+  public default net.minecraft.advancements.AdvancementRequirements getRequirements();
+  public default java.util.Optional<net.minecraft.resources.Identifier> getParent();
+  public default java.util.Optional<net.minecraft.advancements.DisplayInfo> getDisplay();
+  public default net.minecraft.advancements.AdvancementRewards getRewards();
+  public default boolean isSendsTelemetryEvent();
+  public static net.minecraft.advancements.Advancement$Builder copyOf(net.minecraft.advancements.Advancement);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.advancement.v1.package-info {
+}

@@ -1,0 +1,188 @@
+Compiled from "AbstractRecipeWidgetBuilder.java"
+public abstract class mezz.jei.common.gui.elements.AbstractRecipeWidgetBuilder<THIS extends mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<THIS>> implements mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<THIS>, mezz.jei.api.gui.widgets.IRecipeWidget {
+  protected mezz.jei.common.gui.elements.AbstractRecipeWidgetBuilder(int, int);
+  protected abstract THIS getThis();
+  public net.minecraft.client.gui.navigation.ScreenPosition getPosition();
+  public net.minecraft.client.gui.navigation.ScreenRectangle getScreenRectangle();
+  public THIS setPosition(int, int);
+  public THIS setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public THIS setTooltip(net.minecraft.network.chat.FormattedText);
+  public THIS setTooltip(java.util.Collection<? extends net.minecraft.network.chat.FormattedText>);
+  public THIS setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public THIS setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, double, double);
+  protected final boolean isMouseOver(double, double);
+  protected final boolean hasConfiguredTooltip();
+  protected final void addConfiguredTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "DrawableAnimated.java"
+public class mezz.jei.common.gui.elements.DrawableAnimated implements mezz.jei.api.gui.drawable.IDrawableAnimated {
+  public mezz.jei.common.gui.elements.DrawableAnimated(mezz.jei.api.gui.drawable.IDrawableStatic, int, mezz.jei.api.gui.drawable.IDrawableAnimated$StartDirection, boolean);
+  public mezz.jei.common.gui.elements.DrawableAnimated(mezz.jei.api.gui.drawable.IDrawableStatic, mezz.jei.api.gui.ITickTimer, mezz.jei.api.gui.drawable.IDrawableAnimated$StartDirection);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "DrawableBlank.java"
+public final class mezz.jei.common.gui.elements.DrawableBlank extends java.lang.Record implements mezz.jei.api.gui.drawable.IDrawableStatic,mezz.jei.api.gui.drawable.IDrawableAnimated,mezz.jei.api.gui.drawable.IScalableDrawable {
+  public static final mezz.jei.common.gui.elements.DrawableBlank EMPTY;
+  public mezz.jei.common.gui.elements.DrawableBlank(int, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+}
+Compiled from "DrawableCombined.java"
+public class mezz.jei.common.gui.elements.DrawableCombined implements mezz.jei.api.gui.drawable.IDrawableAnimated {
+  public mezz.jei.common.gui.elements.DrawableCombined(mezz.jei.api.gui.drawable.IDrawable...);
+  public mezz.jei.common.gui.elements.DrawableCombined(java.util.List<mezz.jei.api.gui.drawable.IDrawable>);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "DrawableIngredient.java"
+public class mezz.jei.common.gui.elements.DrawableIngredient<V> implements mezz.jei.api.gui.drawable.IDrawable {
+  public mezz.jei.common.gui.elements.DrawableIngredient(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.ingredients.IIngredientRenderer<V>);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "DrawableIngredientRenderer.java"
+public class mezz.jei.common.gui.elements.DrawableIngredientRenderer<T> implements mezz.jei.api.gui.drawable.IDrawable {
+  public mezz.jei.common.gui.elements.DrawableIngredientRenderer(mezz.jei.api.ingredients.IIngredientRenderer<T>, T);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "DrawableRecipeWidget.java"
+public class mezz.jei.common.gui.elements.DrawableRecipeWidget extends mezz.jei.common.gui.elements.AbstractRecipeWidgetBuilder<mezz.jei.api.gui.widgets.IDrawableWidget> implements mezz.jei.api.gui.widgets.IDrawableWidget {
+  public mezz.jei.common.gui.elements.DrawableRecipeWidget(mezz.jei.api.gui.drawable.IDrawable);
+  protected mezz.jei.api.gui.widgets.IDrawableWidget getThis();
+  public int getWidth();
+  public int getHeight();
+  public void drawWidget(net.minecraft.client.gui.GuiGraphicsExtractor, double, double);
+  protected mezz.jei.api.gui.widgets.IRecipeWidgetBuilder getThis();
+  public mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(java.util.Collection);
+  public mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(net.minecraft.network.chat.FormattedText);
+  public mezz.jei.api.gui.widgets.IDrawableWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.widgets.IDrawableWidget setPosition(int, int);
+}
+Compiled from "DrawableResource.java"
+public class mezz.jei.common.gui.elements.DrawableResource implements mezz.jei.api.gui.drawable.IDrawableStatic {
+  public mezz.jei.common.gui.elements.DrawableResource(net.minecraft.resources.Identifier, int, int, int, int, int, int, int, int, int, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, int, int);
+}
+Compiled from "DrawableSprite.java"
+public class mezz.jei.common.gui.elements.DrawableSprite implements mezz.jei.api.gui.drawable.IDrawableStatic {
+  public mezz.jei.common.gui.elements.DrawableSprite(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier);
+  public mezz.jei.common.gui.elements.DrawableSprite(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier, int, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, int, int);
+}
+Compiled from "DrawableText.java"
+public class mezz.jei.common.gui.elements.DrawableText implements mezz.jei.api.gui.drawable.IDrawable {
+  public mezz.jei.common.gui.elements.DrawableText(java.lang.String, int, int, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "DrawableWrappedText.java"
+public class mezz.jei.common.gui.elements.DrawableWrappedText implements mezz.jei.api.gui.drawable.IDrawable {
+  public mezz.jei.common.gui.elements.DrawableWrappedText(java.util.List<net.minecraft.network.chat.FormattedText>, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "HighResolutionDrawable.java"
+public class mezz.jei.common.gui.elements.HighResolutionDrawable implements mezz.jei.api.gui.drawable.IDrawable {
+  public mezz.jei.common.gui.elements.HighResolutionDrawable(mezz.jei.api.gui.drawable.IDrawable, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+}
+Compiled from "OffsetDrawable.java"
+public class mezz.jei.common.gui.elements.OffsetDrawable implements mezz.jei.api.gui.drawable.IDrawable, mezz.jei.api.gui.placement.IPlaceable<mezz.jei.common.gui.elements.OffsetDrawable> {
+  public static mezz.jei.api.gui.drawable.IDrawable create(mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public mezz.jei.common.gui.elements.OffsetDrawable(mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public int getWidth();
+  public int getHeight();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public mezz.jei.common.gui.elements.OffsetDrawable setPosition(int, int);
+  public mezz.jei.common.gui.elements.OffsetDrawable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "ScalableDrawable.java"
+public class mezz.jei.common.gui.elements.ScalableDrawable implements mezz.jei.api.gui.drawable.IScalableDrawable {
+  public mezz.jei.common.gui.elements.ScalableDrawable(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.common.util.ImmutableRect2i);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+}
+Compiled from "Scrollbar.java"
+public final class mezz.jei.common.gui.elements.Scrollbar$ScrollResult extends java.lang.Record {
+  public mezz.jei.common.gui.elements.Scrollbar$ScrollResult(boolean, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean handled();
+  public float scrollOffsetY();
+}
+Compiled from "Scrollbar.java"
+public final class mezz.jei.common.gui.elements.Scrollbar {
+  public static final int WIDTH;
+  public mezz.jei.common.gui.elements.Scrollbar(mezz.jei.common.util.ImmutableRect2i);
+  public void updateBounds(mezz.jei.common.util.ImmutableRect2i);
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public boolean isMouseOver(double, double);
+  public boolean isDragging();
+  public void stopDrag();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public mezz.jei.common.gui.elements.Scrollbar$ScrollResult startDrag(double, double, int, int, float);
+  public mezz.jei.common.gui.elements.Scrollbar$ScrollResult dragTo(double, int, int, float);
+}
+Compiled from "TextWidget.java"
+public class mezz.jei.common.gui.elements.TextWidget extends mezz.jei.common.gui.elements.AbstractRecipeWidgetBuilder<mezz.jei.api.gui.widgets.ITextWidget> implements mezz.jei.api.gui.widgets.ITextWidget {
+  public mezz.jei.common.gui.elements.TextWidget(java.util.List<net.minecraft.network.chat.FormattedText>, int, int, int, int);
+  public int getWidth();
+  public int getHeight();
+  protected mezz.jei.api.gui.widgets.ITextWidget getThis();
+  public mezz.jei.common.gui.elements.TextWidget setTextAlignment(mezz.jei.api.gui.placement.HorizontalAlignment);
+  public mezz.jei.common.gui.elements.TextWidget setTextAlignment(mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.widgets.ITextWidget setFont(net.minecraft.client.gui.Font);
+  public mezz.jei.api.gui.widgets.ITextWidget setColor(int);
+  public mezz.jei.api.gui.widgets.ITextWidget setLineSpacing(int);
+  public mezz.jei.api.gui.widgets.ITextWidget setShadow(boolean);
+  public void drawWidget(net.minecraft.client.gui.GuiGraphicsExtractor, double, double);
+  public void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, double, double);
+  protected mezz.jei.api.gui.widgets.IRecipeWidgetBuilder getThis();
+  public mezz.jei.api.gui.widgets.ITextWidget setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public mezz.jei.api.gui.widgets.ITextWidget setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public mezz.jei.api.gui.widgets.ITextWidget setTooltip(java.util.Collection);
+  public mezz.jei.api.gui.widgets.ITextWidget setTooltip(net.minecraft.network.chat.FormattedText);
+  public mezz.jei.api.gui.widgets.ITextWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.widgets.ITextWidget setPosition(int, int);
+  public mezz.jei.api.gui.widgets.ITextWidget setTextAlignment(mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.widgets.ITextWidget setTextAlignment(mezz.jei.api.gui.placement.HorizontalAlignment);
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.gui.elements.package-info {
+}

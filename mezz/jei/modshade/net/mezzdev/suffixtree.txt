@@ -1,0 +1,74 @@
+Compiled from "ISuffixTree.java"
+public interface mezz.jei.modshade.net.mezzdev.suffixtree.ISuffixTree<T> {
+  public abstract void put(java.lang.String, T);
+  public abstract void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public default java.util.Set<T> getSearchResults(java.lang.String);
+  public abstract void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public default java.util.Set<T> getAllElements();
+  public abstract java.lang.String statistics();
+}
+Compiled from "GeneralizedSuffixTree.java"
+public class mezz.jei.modshade.net.mezzdev.suffixtree.GeneralizedSuffixTree<T> implements mezz.jei.modshade.net.mezzdev.suffixtree.ISuffixTree<T> {
+  public mezz.jei.modshade.net.mezzdev.suffixtree.GeneralizedSuffixTree();
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public void put(java.lang.String, T);
+  public java.lang.String statistics();
+  public void printTree(java.io.PrintWriter, boolean);
+}
+Compiled from "Pair.java"
+public final class mezz.jei.modshade.net.mezzdev.suffixtree.Pair<A, B> extends java.lang.Record {
+  public mezz.jei.modshade.net.mezzdev.suffixtree.Pair(A, B);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public A first();
+  public B second();
+}
+Compiled from "FieldsAndMethodsAreNonnullByDefault.java"
+public interface mezz.jei.modshade.net.mezzdev.suffixtree.FieldsAndMethodsAreNonnullByDefault extends java.lang.annotation.Annotation {
+}
+Compiled from "SubString.java"
+public class mezz.jei.modshade.net.mezzdev.suffixtree.SubString implements java.lang.CharSequence {
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString(java.lang.String);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString(mezz.jei.modshade.net.mezzdev.suffixtree.SubString);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString(java.lang.String, int);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString(java.lang.String, int, int);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString subSequence(int);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString subSequence(int, int);
+  public boolean isEmpty();
+  public char charAt(int);
+  public int length();
+  public void set(mezz.jei.modshade.net.mezzdev.suffixtree.SubString);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString shorten(int);
+  public mezz.jei.modshade.net.mezzdev.suffixtree.SubString extend(char);
+  public boolean startsWith(mezz.jei.modshade.net.mezzdev.suffixtree.SubString);
+  public boolean startsWith(mezz.jei.modshade.net.mezzdev.suffixtree.SubString, int);
+  public java.lang.String toString();
+  public java.lang.String debugString();
+  public java.lang.CharSequence subSequence(int, int);
+}
+Compiled from "package-info.java"
+interface mezz.jei.modshade.net.mezzdev.suffixtree.package-info {
+}
+Compiled from "RootNode.java"
+public class mezz.jei.modshade.net.mezzdev.suffixtree.RootNode<T> extends mezz.jei.modshade.net.mezzdev.suffixtree.Node<T> {
+  public mezz.jei.modshade.net.mezzdev.suffixtree.RootNode();
+  protected boolean contains(T);
+  protected void addValue(T);
+  public void printTree(java.io.PrintWriter, boolean);
+  public java.lang.String nodeEdgeStats();
+  public java.util.IntSummaryStatistics nodeSizeStats();
+  public java.lang.String toString();
+  public void getData(java.util.function.Consumer);
+}
+Compiled from "Node.java"
+class mezz.jei.modshade.net.mezzdev.suffixtree.Node<T> extends mezz.jei.modshade.net.mezzdev.suffixtree.SubString {
+  public void getData(java.util.function.Consumer<java.util.Collection<T>>);
+  protected boolean contains(T);
+  protected void addValue(T);
+  public java.lang.String toString();
+  public java.util.IntSummaryStatistics nodeSizeStats();
+  public java.lang.String nodeEdgeStats();
+  public void printTree(java.io.PrintWriter, boolean);
+}

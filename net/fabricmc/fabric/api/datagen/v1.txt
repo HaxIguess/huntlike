@@ -1,0 +1,48 @@
+Compiled from "DataGeneratorEntrypoint.java"
+public interface net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint {
+  public abstract void onInitializeDataGenerator(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator);
+  public default java.lang.String getEffectiveModId();
+  public default void buildRegistry(net.minecraft.core.RegistrySetBuilder);
+  public default void buildReloadableRegistry(net.minecraft.core.RegistrySetBuilder);
+  public default void addJsonKeySortOrders(net.fabricmc.fabric.api.datagen.v1.JsonKeySortOrderCallback);
+}
+Compiled from "FabricDataGenerator.java"
+public interface net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack$Factory<T extends net.minecraft.data.DataProvider> {
+  public abstract T create(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput);
+}
+Compiled from "FabricDataGenerator.java"
+public interface net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack$RegistryDependentFactory<T extends net.minecraft.data.DataProvider> {
+  public abstract T create(net.fabricmc.fabric.api.datagen.v1.FabricPackOutput, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup$Provider>);
+}
+Compiled from "FabricDataGenerator.java"
+public final class net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack extends net.minecraft.data.DataGenerator$PackGenerator {
+  public <T extends net.minecraft.data.DataProvider> T addProvider(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack$Factory<T>);
+  public <T extends net.minecraft.data.DataProvider> T addProvider(net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack$RegistryDependentFactory<T>);
+}
+Compiled from "FabricDataGenerator.java"
+public final class net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator extends net.minecraft.data.DataGenerator$Cached {
+  public net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator(java.nio.file.Path, net.fabricmc.loader.api.ModContainer, boolean, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup$Provider>, java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup$Provider>);
+  public net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack createPack();
+  public net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator$Pack createBuiltinResourcePack(net.minecraft.resources.Identifier);
+  public net.fabricmc.loader.api.ModContainer getModContainer();
+  public java.lang.String getModId();
+  public boolean isStrictValidationEnabled();
+  public java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup$Provider> getRegistries();
+  public java.util.concurrent.CompletableFuture<net.minecraft.core.HolderLookup$Provider> getWorldRegistries();
+  public net.minecraft.data.DataGenerator$PackGenerator getVanillaPack(boolean);
+  public net.minecraft.data.DataGenerator$PackGenerator getBuiltinDatapack(boolean, java.lang.String);
+}
+Compiled from "FabricPackOutput.java"
+public final class net.fabricmc.fabric.api.datagen.v1.FabricPackOutput extends net.minecraft.data.PackOutput {
+  public net.fabricmc.fabric.api.datagen.v1.FabricPackOutput(net.fabricmc.loader.api.ModContainer, java.nio.file.Path, boolean);
+  public net.fabricmc.loader.api.ModContainer getModContainer();
+  public java.lang.String getModId();
+  public boolean isStrictValidationEnabled();
+}
+Compiled from "JsonKeySortOrderCallback.java"
+public interface net.fabricmc.fabric.api.datagen.v1.JsonKeySortOrderCallback {
+  public abstract void add(java.lang.String, int);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.datagen.v1.package-info {
+}

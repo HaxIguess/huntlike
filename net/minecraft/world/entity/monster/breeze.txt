@@ -1,0 +1,111 @@
+Compiled from "BreezeUtil.java"
+public class net.minecraft.world.entity.monster.breeze.BreezeUtil {
+  public net.minecraft.world.entity.monster.breeze.BreezeUtil();
+  public static net.minecraft.world.phys.Vec3 randomPointBehindTarget(net.minecraft.world.entity.LivingEntity, net.minecraft.util.RandomSource);
+  public static boolean hasLineOfSight(net.minecraft.world.entity.monster.breeze.Breeze, net.minecraft.world.phys.Vec3);
+}
+Compiled from "LongJump.java"
+public class net.minecraft.world.entity.monster.breeze.LongJump extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.monster.breeze.Breeze> {
+  public net.minecraft.world.entity.monster.breeze.LongJump();
+  public static boolean canRun(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "Slide.java"
+public class net.minecraft.world.entity.monster.breeze.Slide extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.monster.breeze.Breeze> {
+  public net.minecraft.world.entity.monster.breeze.Slide();
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "ShootWhenStuck.java"
+public class net.minecraft.world.entity.monster.breeze.ShootWhenStuck extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.monster.breeze.Breeze> {
+  public net.minecraft.world.entity.monster.breeze.ShootWhenStuck();
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "BreezeAi.java"
+public class net.minecraft.world.entity.monster.breeze.BreezeAi {
+  public static final float SPEED_MULTIPLIER_WHEN_SLIDING;
+  public static final float JUMP_CIRCLE_INNER_RADIUS;
+  public static final float JUMP_CIRCLE_MIDDLE_RADIUS;
+  public static final float JUMP_CIRCLE_OUTER_RADIUS;
+  public net.minecraft.world.entity.monster.breeze.BreezeAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.monster.breeze.Breeze>> getActivities(net.minecraft.world.entity.monster.breeze.Breeze);
+  public static void updateActivity(net.minecraft.world.entity.monster.breeze.Breeze);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.breeze.package-info {
+}
+Compiled from "Breeze.java"
+public class net.minecraft.world.entity.monster.breeze.Breeze extends net.minecraft.world.entity.monster.Monster {
+  public final net.minecraft.world.entity.AnimationState idle;
+  public final net.minecraft.world.entity.AnimationState slide;
+  public final net.minecraft.world.entity.AnimationState slideBack;
+  public final net.minecraft.world.entity.AnimationState longJump;
+  public final net.minecraft.world.entity.AnimationState shoot;
+  public final net.minecraft.world.entity.AnimationState inhale;
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.monster.breeze.Breeze(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.Monster>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.breeze.Breeze> getBrain();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.breeze.Breeze> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public void tick();
+  public net.minecraft.world.entity.monster.breeze.Breeze resetJumpTrail();
+  public void emitJumpTrailParticles();
+  public void emitGroundParticles(int);
+  public void playAmbientSound();
+  public void playWhirlSound();
+  public net.minecraft.world.entity.projectile.ProjectileDeflection deflection(net.minecraft.world.entity.projectile.Projectile);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  public java.util.Optional<net.minecraft.world.entity.LivingEntity> getHurtBy();
+  public boolean withinInnerCircleRange(net.minecraft.world.phys.Vec3);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public boolean canAttack(net.minecraft.world.entity.LivingEntity);
+  public int getMaxHeadYRot();
+  public int getHeadRotSpeed();
+  public double getFiringYPosition();
+  public boolean isInvulnerableTo(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  public double getFluidJumpThreshold();
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  public net.minecraft.world.entity.LivingEntity getTarget();
+  public void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+}
+Compiled from "BreezeAi.java"
+public class net.minecraft.world.entity.monster.breeze.BreezeAi$SlideToTargetSink extends net.minecraft.world.entity.ai.behavior.MoveToTargetSink {
+  public net.minecraft.world.entity.monster.breeze.BreezeAi$SlideToTargetSink(int, int);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Mob, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Mob, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "Shoot.java"
+public class net.minecraft.world.entity.monster.breeze.Shoot extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.monster.breeze.Breeze> {
+  public net.minecraft.world.entity.monster.breeze.Shoot();
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.monster.breeze.Breeze, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}

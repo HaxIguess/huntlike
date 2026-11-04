@@ -1,0 +1,61 @@
+Compiled from "BlockItemAccessor.java"
+public final class net.minecraft.server.commands.item.BlockItemAccessor extends java.lang.Record implements net.minecraft.server.commands.item.ItemAccessor<net.minecraft.core.BlockPos> {
+  public static final net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.item.ItemAccessor<?>> PROVIDER;
+  public net.minecraft.server.commands.item.BlockItemAccessor(net.minecraft.core.BlockPos);
+  public net.minecraft.world.item.slot.SlotCollection getSlots(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public void setItems(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource, net.minecraft.server.commands.item.ItemAccessor$SetterFunction<net.minecraft.core.BlockPos>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int getReplaceSuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<net.minecraft.core.BlockPos>, net.minecraft.world.item.ItemStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int getModifySuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<net.minecraft.core.BlockPos>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.world.Container getContainer(net.minecraft.commands.CommandSourceStack, net.minecraft.core.BlockPos, com.mojang.brigadier.exceptions.Dynamic3CommandExceptionType) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+}
+Compiled from "ItemAccessor.java"
+public interface net.minecraft.server.commands.item.ItemAccessor$SetterFunction<Target> {
+  public abstract int apply(Target, net.minecraft.world.item.slot.SlotCollection);
+}
+Compiled from "EntityItemAccessor.java"
+public final class net.minecraft.server.commands.item.EntityItemAccessor extends java.lang.Record implements net.minecraft.server.commands.item.ItemAccessor<net.minecraft.world.entity.Entity> {
+  public static final net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.item.ItemAccessor<?>> PROVIDER;
+  public net.minecraft.server.commands.item.EntityItemAccessor(java.util.Collection<? extends net.minecraft.world.entity.Entity>);
+  public net.minecraft.world.item.slot.SlotCollection getSlots(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource);
+  public void setItems(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource, net.minecraft.server.commands.item.ItemAccessor$SetterFunction<net.minecraft.world.entity.Entity>);
+  public int getReplaceSuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<net.minecraft.world.entity.Entity>, net.minecraft.world.item.ItemStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public int getModifySuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<net.minecraft.world.entity.Entity>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Collection<? extends net.minecraft.world.entity.Entity> entities();
+}
+Compiled from "ItemAccessor.java"
+public interface net.minecraft.server.commands.item.ItemAccessor<Target> {
+  public abstract void setItems(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource, net.minecraft.server.commands.item.ItemAccessor$SetterFunction<Target>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract net.minecraft.world.item.slot.SlotCollection getSlots(net.minecraft.commands.CommandSourceStack, net.minecraft.world.item.slot.SlotSource) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract int getReplaceSuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<Target>, net.minecraft.world.item.ItemStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract int getModifySuccess(net.minecraft.commands.CommandSourceStack, net.minecraft.server.commands.CommandResponseTracker<Target>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ItemCommands.java"
+public class net.minecraft.server.commands.item.ItemCommands {
+  public static final com.mojang.brigadier.exceptions.Dynamic3CommandExceptionType ERROR_TARGET_NOT_A_CONTAINER;
+  public static final com.mojang.brigadier.exceptions.Dynamic3CommandExceptionType ERROR_SOURCE_NOT_A_CONTAINER;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_TARGET_INAPPLICABLE_SLOT;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_TARGET_NO_CHANGES;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_TARGET_NO_CHANGES_KNOWN_ITEM;
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.item.ItemAccessor<?>>> ALL_PROVIDERS;
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider<net.minecraft.server.commands.item.ItemAccessor<?>>> TARGET_PROVIDERS;
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider<net.minecraft.server.commands.item.ItemAccessor<?>>> SOURCE_PROVIDERS;
+  public net.minecraft.server.commands.item.ItemCommands();
+  public static void register(com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack>, net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.world.item.ItemProvider replaceItemProvider(java.util.Collection<net.minecraft.world.item.ItemStack>);
+  public static net.minecraft.world.item.ItemProvider fillItemProvider(java.util.Collection<net.minecraft.world.item.ItemStack>);
+  public static net.minecraft.world.item.ItemProvider overrideItemProvider(java.util.Collection<net.minecraft.world.item.ItemStack>);
+}
+Compiled from "ItemCommands.java"
+interface net.minecraft.server.commands.item.ItemCommands$ItemDistributor {
+  public abstract net.minecraft.world.item.ItemProvider apply(java.util.Collection<net.minecraft.world.item.ItemStack>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.commands.item.package-info {
+}

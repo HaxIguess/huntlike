@@ -1,0 +1,73 @@
+Compiled from "BookmarkCodec.java"
+public final class mezz.jei.gui.bookmarks.BookmarkCodec {
+  public static com.mojang.serialization.MapCodec<mezz.jei.gui.bookmarks.IBookmark> create(mezz.jei.api.helpers.ICodecHelper, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.recipe.IRecipeManager, mezz.jei.common.transfer.RecipeTransferService, mezz.jei.gui.bookmarks.BookmarkFactory);
+}
+Compiled from "BookmarkFactory.java"
+public class mezz.jei.gui.bookmarks.BookmarkFactory {
+  public mezz.jei.gui.bookmarks.BookmarkFactory(mezz.jei.api.helpers.ICodecHelper, net.minecraft.core.RegistryAccess, mezz.jei.api.runtime.IIngredientManager);
+  public <T> mezz.jei.gui.bookmarks.IngredientBookmark<T> create(mezz.jei.api.ingredients.ITypedIngredient<T>);
+}
+Compiled from "BookmarkList.java"
+public class mezz.jei.gui.bookmarks.BookmarkList implements mezz.jei.gui.overlay.ingredients.IIngredientGridSource,mezz.jei.api.runtime.IBookmarkManager {
+  public mezz.jei.gui.bookmarks.BookmarkList(mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.recipe.IFocusFactory, mezz.jei.api.runtime.IIngredientManager, net.minecraft.core.RegistryAccess, mezz.jei.gui.config.IBookmarkConfig, mezz.jei.common.config.IClientConfig, mezz.jei.api.helpers.IGuiHelper, mezz.jei.api.helpers.ICodecHelper, mezz.jei.gui.bookmarks.BookmarkFactory, com.mojang.serialization.Codec<mezz.jei.gui.bookmarks.IBookmark>);
+  public boolean add(mezz.jei.gui.bookmarks.IBookmark);
+  public void moveBookmark(mezz.jei.gui.bookmarks.IBookmark, mezz.jei.gui.bookmarks.IBookmark, int);
+  public boolean contains(mezz.jei.gui.bookmarks.IBookmark);
+  public boolean contains(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public <T> boolean onElementBookmarked(mezz.jei.gui.overlay.elements.IElement<T>, mezz.jei.gui.input.UserInput, mezz.jei.gui.overlay.bookmarks.BookmarkOverlay);
+  public boolean add(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public void toggleBookmark(mezz.jei.gui.bookmarks.IBookmark);
+  public boolean remove(mezz.jei.gui.bookmarks.IBookmark);
+  public boolean remove(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public void setFromConfigFile(java.util.List<mezz.jei.gui.bookmarks.IBookmark>);
+  public java.util.List<mezz.jei.gui.overlay.elements.IElement<?>> getElements();
+  public boolean containsElement(mezz.jei.gui.overlay.elements.IElement<?>);
+  public <R> mezz.jei.gui.bookmarks.RecipeBookmark<R, ?> getMatchingBookmark(mezz.jei.api.recipe.types.IRecipeType<R>, R);
+  public boolean isEmpty();
+  public void addSourceListChangedListener(mezz.jei.gui.overlay.ingredients.IIngredientGridSource$SourceListChangedListener);
+}
+Compiled from "BookmarkType.java"
+public final class mezz.jei.gui.bookmarks.BookmarkType extends java.lang.Enum<mezz.jei.gui.bookmarks.BookmarkType> {
+  public static final mezz.jei.gui.bookmarks.BookmarkType INGREDIENT;
+  public static final mezz.jei.gui.bookmarks.BookmarkType RECIPE;
+  public static mezz.jei.gui.bookmarks.BookmarkType[] values();
+  public static mezz.jei.gui.bookmarks.BookmarkType valueOf(java.lang.String);
+}
+Compiled from "IBookmark.java"
+public interface mezz.jei.gui.bookmarks.IBookmark {
+  public abstract mezz.jei.gui.bookmarks.BookmarkType getType();
+  public abstract mezz.jei.gui.overlay.elements.IElement<?> getElement();
+  public abstract boolean isVisible();
+  public abstract void setVisible(boolean);
+}
+Compiled from "IngredientBookmark.java"
+public class mezz.jei.gui.bookmarks.IngredientBookmark<T> implements mezz.jei.gui.bookmarks.IBookmark {
+  public mezz.jei.gui.bookmarks.BookmarkType getType();
+  public mezz.jei.api.ingredients.ITypedIngredient<T> getIngredient();
+  public mezz.jei.gui.overlay.elements.IElement<?> getElement();
+  public boolean isVisible();
+  public void setVisible(boolean);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+  public java.lang.String toString();
+}
+Compiled from "RecipeBookmark.java"
+public class mezz.jei.gui.bookmarks.RecipeBookmark<R, I> implements mezz.jei.gui.bookmarks.IBookmark {
+  public static <T> mezz.jei.gui.bookmarks.RecipeBookmark<T, ?> create(mezz.jei.api.gui.IRecipeLayoutDrawable<T>, mezz.jei.api.runtime.IIngredientManager, mezz.jei.common.transfer.RecipeTransferService);
+  public mezz.jei.gui.bookmarks.RecipeBookmark(mezz.jei.api.recipe.category.IRecipeCategory<R>, R, net.minecraft.resources.Identifier, mezz.jei.api.ingredients.ITypedIngredient<I>, boolean, mezz.jei.common.transfer.RecipeTransferService);
+  public mezz.jei.gui.bookmarks.BookmarkType getType();
+  public mezz.jei.api.recipe.category.IRecipeCategory<R> getRecipeCategory();
+  public R getRecipe();
+  public mezz.jei.api.ingredients.ITypedIngredient<I> getDisplayIngredient();
+  public boolean isDisplayIsOutput();
+  public mezz.jei.gui.overlay.elements.IElement<?> getElement();
+  public boolean isVisible();
+  public void setVisible(boolean);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+  public java.lang.String toString();
+  public <T> boolean isRecipe(mezz.jei.api.recipe.types.IRecipeType<T>, T);
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.bookmarks.package-info {
+}

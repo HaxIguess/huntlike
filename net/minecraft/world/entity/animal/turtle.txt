@@ -1,0 +1,98 @@
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleGoHomeGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtleGoHomeGoal(net.minecraft.world.entity.animal.turtle.Turtle, double);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public boolean canContinueToUse();
+  public void tick();
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleLayEggGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtleLayEggGoal(net.minecraft.world.entity.animal.turtle.Turtle, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtlePathNavigation extends net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtlePathNavigation(net.minecraft.world.entity.animal.turtle.Turtle, net.minecraft.world.level.Level);
+  public boolean isStableDestination(net.minecraft.core.BlockPos);
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleTravelGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtleTravelGoal(net.minecraft.world.entity.animal.turtle.Turtle, double);
+  public boolean canUse();
+  public void start();
+  public void tick();
+  public boolean canContinueToUse();
+  public void stop();
+}
+Compiled from "Turtle.java"
+public class net.minecraft.world.entity.animal.turtle.Turtle extends net.minecraft.world.entity.animal.Animal {
+  public static final net.minecraft.world.entity.ai.targeting.TargetingConditions$Selector BABY_ON_LAND_SELECTOR;
+  public net.minecraft.world.entity.animal.turtle.Turtle(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.turtle.Turtle>, net.minecraft.world.level.Level);
+  public void setHomePos(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos getHomePos();
+  public boolean hasEgg();
+  public boolean isLayingEgg();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public static boolean checkTurtleSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.animal.turtle.Turtle>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean isPushedByFluid();
+  public int getAmbientSoundInterval();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected void playSwimSound(float);
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean canFallInLove();
+  protected float nextStep();
+  public float getAgeScale();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  public void aiStep();
+  protected void ageBoundaryReached();
+  protected void travelInWater(net.minecraft.world.phys.Vec3, double, boolean, double);
+  public boolean canBeLeashed();
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtlePanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtlePanicGoal(net.minecraft.world.entity.animal.turtle.Turtle, double);
+  public boolean canUse();
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleRandomStrollGoal extends net.minecraft.world.entity.ai.goal.RandomStrollGoal {
+  public boolean canUse();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.turtle.package-info {
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleMoveControl<T extends net.minecraft.world.entity.animal.turtle.Turtle> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtleMoveControl(T);
+  public void tick();
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleGoToWaterGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public boolean canContinueToUse();
+  public boolean canUse();
+  public boolean shouldRecalculatePath();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "Turtle.java"
+class net.minecraft.world.entity.animal.turtle.Turtle$TurtleBreedGoal extends net.minecraft.world.entity.ai.goal.BreedGoal {
+  public net.minecraft.world.entity.animal.turtle.Turtle$TurtleBreedGoal(net.minecraft.world.entity.animal.turtle.Turtle, double);
+  public boolean canUse();
+  protected void breed();
+}

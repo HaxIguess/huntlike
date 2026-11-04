@@ -1,0 +1,123 @@
+Compiled from "BasicRecipeTransferHandlerServer.java"
+final class mezz.jei.common.transfer.BasicRecipeTransferHandlerServer$RequiredTransfer extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.inventory.Slot recipeSlot();
+  public net.minecraft.world.inventory.Slot hint();
+  public net.minecraft.world.item.ItemStack stack();
+}
+Compiled from "BasicRecipeTransferHandlerServer.java"
+public final class mezz.jei.common.transfer.BasicRecipeTransferHandlerServer {
+  public static void setItems(net.minecraft.world.entity.player.Player, java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<net.minecraft.world.inventory.Slot>, java.util.List<net.minecraft.world.inventory.Slot>, boolean, boolean);
+  public static boolean setItemsWithResult(net.minecraft.world.entity.player.Player, java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<net.minecraft.world.inventory.Slot>, java.util.List<net.minecraft.world.inventory.Slot>, boolean, boolean);
+}
+Compiled from "RecipeTransferContext.java"
+public class mezz.jei.common.transfer.RecipeTransferContext<R, C extends net.minecraft.world.inventory.AbstractContainerMenu> implements mezz.jei.api.recipe.transfer.IRecipeTransferContext<R, C> {
+  public mezz.jei.common.transfer.RecipeTransferContext(int, R, mezz.jei.api.recipe.types.IRecipeType<R>, net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<C>, mezz.jei.api.gui.ingredient.IRecipeSlotsView, net.minecraft.world.entity.player.Player, boolean, mezz.jei.common.transfer.RecipeTransferLifecycleManager);
+  public static <R, C extends net.minecraft.world.inventory.AbstractContainerMenu> mezz.jei.common.transfer.RecipeTransferContext<R, C> copyWithRecipeSlots(mezz.jei.api.recipe.transfer.IRecipeTransferContext<R, C>, mezz.jei.api.gui.ingredient.IRecipeSlotsView);
+  public int getTransferId();
+  public void completeRecipeTransfer(mezz.jei.api.recipe.transfer.RecipeTransferResult);
+  public R getRecipe();
+  public mezz.jei.api.recipe.types.IRecipeType<R> getRecipeType();
+  public C getContainer();
+  public net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<C> getScreen();
+  public mezz.jei.api.gui.ingredient.IRecipeSlotsView getRecipeSlots();
+  public net.minecraft.world.entity.player.Player getPlayer();
+  public boolean isMaxTransfer();
+}
+Compiled from "RecipeTransferErrorInternal.java"
+public class mezz.jei.common.transfer.RecipeTransferErrorInternal implements mezz.jei.api.recipe.transfer.IRecipeTransferError {
+  public static final mezz.jei.common.transfer.RecipeTransferErrorInternal INSTANCE;
+  public mezz.jei.api.recipe.transfer.IRecipeTransferError$Type getType();
+}
+Compiled from "RecipeTransferLifecycleManager.java"
+public final class mezz.jei.common.transfer.RecipeTransferLifecycleManager {
+  public mezz.jei.common.transfer.RecipeTransferLifecycleManager(java.util.List<mezz.jei.api.recipe.transfer.IRecipeTransferListener>);
+  public int getNextTransferId();
+  public void beforeRecipeTransfer(mezz.jei.api.recipe.transfer.IRecipeTransferContext<?, ?>);
+  public void completeRecipeTransfer(mezz.jei.api.recipe.transfer.IRecipeTransferContext<?, ?>, mezz.jei.api.recipe.transfer.RecipeTransferResult);
+}
+Compiled from "RecipeTransferOperationsResult.java"
+public class mezz.jei.common.transfer.RecipeTransferOperationsResult {
+  public final java.util.List<mezz.jei.common.transfer.TransferOperation> results;
+  public final java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotView> missingItems;
+  public mezz.jei.common.transfer.RecipeTransferOperationsResult();
+}
+Compiled from "RecipeTransferService.java"
+public final class mezz.jei.common.transfer.RecipeTransferService {
+  public mezz.jei.common.transfer.RecipeTransferService(mezz.jei.api.recipe.transfer.IRecipeTransferManager);
+  public <C extends net.minecraft.world.inventory.AbstractContainerMenu> boolean transferRecipe(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<C>, mezz.jei.api.gui.IRecipeLayoutDrawable<?>, net.minecraft.world.entity.player.Player, boolean);
+  public <C extends net.minecraft.world.inventory.AbstractContainerMenu> java.util.Optional<mezz.jei.api.recipe.transfer.IRecipeTransferError> getTransferRecipeError(net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<C>, mezz.jei.api.gui.IRecipeLayoutDrawable<?>, net.minecraft.world.entity.player.Player);
+  public <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> boolean hasRecipeTransferHandler(C, mezz.jei.api.recipe.category.IRecipeCategory<R>);
+}
+Compiled from "RecipeTransferUtil.java"
+final class mezz.jei.common.transfer.RecipeTransferUtil$Assignment extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int requiredIndex();
+  public net.minecraft.world.inventory.Slot craftingSlot();
+  public net.minecraft.world.inventory.Slot sourceSlot();
+  public int count();
+}
+Compiled from "RecipeTransferUtil.java"
+final class mezz.jei.common.transfer.RecipeTransferUtil$AssignmentResult extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<mezz.jei.common.transfer.RecipeTransferUtil$Assignment> assignments();
+  public java.util.Set<java.lang.Integer> assignedIndexes();
+}
+Compiled from "RecipeTransferUtil.java"
+final class mezz.jei.common.transfer.RecipeTransferUtil$CandidateGroup extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Object uid();
+  public int requiredCount();
+  public java.util.List<mezz.jei.common.transfer.RecipeTransferUtil$CandidateSlot> candidates();
+  public int totalCount();
+}
+Compiled from "RecipeTransferUtil.java"
+final class mezz.jei.common.transfer.RecipeTransferUtil$CandidateSlot extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.inventory.Slot slot();
+  public net.minecraft.world.item.ItemStack stack();
+}
+Compiled from "RecipeTransferUtil.java"
+final class mezz.jei.common.transfer.RecipeTransferUtil$RequiredSlot extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+  public mezz.jei.api.gui.ingredient.IRecipeSlotView recipeSlotView();
+  public net.minecraft.world.inventory.Slot craftingSlot();
+  public java.util.List<mezz.jei.common.transfer.RecipeTransferUtil$CandidateGroup> candidateGroups();
+}
+Compiled from "RecipeTransferUtil.java"
+public final class mezz.jei.common.transfer.RecipeTransferUtil {
+  public static void addTransferRecipeTooltip(mezz.jei.api.recipe.transfer.IRecipeTransferError, mezz.jei.api.gui.builder.ITooltipBuilder);
+  public static boolean validateSlots(net.minecraft.world.entity.player.Player, java.util.Collection<mezz.jei.common.transfer.TransferOperation>, java.util.Collection<net.minecraft.world.inventory.Slot>, java.util.Collection<net.minecraft.world.inventory.Slot>);
+  public static mezz.jei.common.transfer.RecipeTransferOperationsResult getRecipeTransferOperations(mezz.jei.api.helpers.IStackHelper, java.util.Map<net.minecraft.world.inventory.Slot, net.minecraft.world.item.ItemStack>, java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotView>, java.util.List<net.minecraft.world.inventory.Slot>);
+}
+Compiled from "TransferOperation.java"
+public final class mezz.jei.common.transfer.TransferOperation extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, mezz.jei.common.transfer.TransferOperation> STREAM_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, mezz.jei.common.transfer.TransferOperation> COUNTED_STREAM_CODEC;
+  public mezz.jei.common.transfer.TransferOperation(int, int);
+  public mezz.jei.common.transfer.TransferOperation(int, int, int);
+  public net.minecraft.world.inventory.Slot inventorySlot(net.minecraft.world.inventory.AbstractContainerMenu);
+  public net.minecraft.world.inventory.Slot craftingSlot(net.minecraft.world.inventory.AbstractContainerMenu);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int inventorySlotId();
+  public int craftingSlotId();
+  public int count();
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.transfer.package-info {
+}

@@ -1,0 +1,153 @@
+Compiled from "AbstractConsecutiveExecutor.java"
+final class net.minecraft.util.thread.AbstractConsecutiveExecutor$Status extends java.lang.Enum<net.minecraft.util.thread.AbstractConsecutiveExecutor$Status> {
+  public static final net.minecraft.util.thread.AbstractConsecutiveExecutor$Status SLEEPING;
+  public static final net.minecraft.util.thread.AbstractConsecutiveExecutor$Status RUNNING;
+  public static final net.minecraft.util.thread.AbstractConsecutiveExecutor$Status CLOSED;
+  public static net.minecraft.util.thread.AbstractConsecutiveExecutor$Status[] values();
+  public static net.minecraft.util.thread.AbstractConsecutiveExecutor$Status valueOf(java.lang.String);
+}
+Compiled from "ParallelMapTransform.java"
+abstract class net.minecraft.util.thread.ParallelMapTransform$SplitterBase<K, U, V> {
+  public java.util.concurrent.CompletableFuture<java.util.Map<K, V>> scheduleTasks(java.util.Map<K, U>, java.util.concurrent.Executor);
+  protected abstract int batchSize(int);
+  protected abstract java.util.concurrent.CompletableFuture<?> scheduleBatch(net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>, int, int, java.util.concurrent.Executor);
+  protected abstract java.util.concurrent.CompletableFuture<java.util.Map<K, V>> scheduleFinalOperation(java.util.concurrent.CompletableFuture<?>, net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>);
+}
+Compiled from "StrictQueue.java"
+public final class net.minecraft.util.thread.StrictQueue$FixedPriorityQueue implements net.minecraft.util.thread.StrictQueue<net.minecraft.util.thread.StrictQueue$RunnableWithPriority> {
+  public net.minecraft.util.thread.StrictQueue$FixedPriorityQueue(int);
+  public java.lang.Runnable pop();
+  public boolean push(net.minecraft.util.thread.StrictQueue$RunnableWithPriority);
+  public boolean isEmpty();
+  public int size();
+  public boolean push(java.lang.Runnable);
+}
+Compiled from "StrictQueue.java"
+public final class net.minecraft.util.thread.StrictQueue$QueueStrictQueue implements net.minecraft.util.thread.StrictQueue<java.lang.Runnable> {
+  public net.minecraft.util.thread.StrictQueue$QueueStrictQueue(java.util.Queue<java.lang.Runnable>);
+  public java.lang.Runnable pop();
+  public boolean push(java.lang.Runnable);
+  public boolean isEmpty();
+  public int size();
+}
+Compiled from "ConsecutiveExecutor.java"
+public class net.minecraft.util.thread.ConsecutiveExecutor extends net.minecraft.util.thread.AbstractConsecutiveExecutor<java.lang.Runnable> {
+  public net.minecraft.util.thread.ConsecutiveExecutor(java.util.concurrent.Executor, java.lang.String);
+  public java.lang.Runnable wrapRunnable(java.lang.Runnable);
+}
+Compiled from "StrictQueue.java"
+public interface net.minecraft.util.thread.StrictQueue<T extends java.lang.Runnable> {
+  public abstract java.lang.Runnable pop();
+  public abstract boolean push(T);
+  public abstract boolean isEmpty();
+  public abstract int size();
+}
+Compiled from "ParallelMapTransform.java"
+class net.minecraft.util.thread.ParallelMapTransform$SingleTaskSplitter<K, U, V> extends net.minecraft.util.thread.ParallelMapTransform$SplitterBase<K, U, V> {
+  protected int batchSize(int);
+  protected java.util.concurrent.CompletableFuture<?> scheduleBatch(net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>, int, int, java.util.concurrent.Executor);
+  protected java.util.concurrent.CompletableFuture<java.util.Map<K, V>> scheduleFinalOperation(java.util.concurrent.CompletableFuture<?>, net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>);
+}
+Compiled from "ParallelMapTransform.java"
+class net.minecraft.util.thread.ParallelMapTransform$BatchedTaskSplitter<K, U, V> extends net.minecraft.util.thread.ParallelMapTransform$SplitterBase<K, U, V> {
+  protected java.util.concurrent.CompletableFuture<?> scheduleBatch(net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>, int, int, java.util.concurrent.Executor);
+  protected int batchSize(int);
+  protected java.util.concurrent.CompletableFuture<java.util.Map<K, V>> scheduleFinalOperation(java.util.concurrent.CompletableFuture<?>, net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.thread.package-info {
+}
+Compiled from "BlockableEventLoop.java"
+public abstract class net.minecraft.util.thread.BlockableEventLoop<R extends java.lang.Runnable> implements java.util.concurrent.Executor, net.minecraft.util.thread.TaskScheduler<R>, net.minecraft.util.profiling.metrics.ProfilerMeasured {
+  public static final long BLOCK_TIME_NANOS;
+  protected net.minecraft.util.thread.BlockableEventLoop(java.lang.String, boolean);
+  protected abstract boolean shouldRun(R);
+  public boolean isSameThread();
+  protected abstract java.lang.Thread getRunningThread();
+  protected boolean scheduleExecutables();
+  public int getPendingTasksCount();
+  public java.lang.String name();
+  public <V> java.util.concurrent.CompletableFuture<V> submit(java.util.function.Supplier<V>);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> submit(java.lang.Runnable);
+  public void executeBlocking(java.lang.Runnable);
+  public void schedule(R);
+  public void execute(java.lang.Runnable);
+  public void executeIfPossible(java.lang.Runnable);
+  protected void dropAllTasks();
+  protected void runAllTasks();
+  protected boolean shouldRunAllTasks();
+  protected boolean pollTask();
+  public void managedBlock(java.util.function.BooleanSupplier);
+  protected void waitForTasks();
+  protected void doRunTask(R);
+  public java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> profiledMetrics();
+  public static boolean isNonRecoverable(java.lang.Throwable);
+  public void delayCrash(net.minecraft.CrashReport);
+  public static synchronized void relayDelayCrash(net.minecraft.CrashReport);
+}
+Compiled from "PriorityConsecutiveExecutor.java"
+public class net.minecraft.util.thread.PriorityConsecutiveExecutor extends net.minecraft.util.thread.AbstractConsecutiveExecutor<net.minecraft.util.thread.StrictQueue$RunnableWithPriority> {
+  public net.minecraft.util.thread.PriorityConsecutiveExecutor(int, java.util.concurrent.Executor, java.lang.String);
+  public net.minecraft.util.thread.StrictQueue$RunnableWithPriority wrapRunnable(java.lang.Runnable);
+  public <Source> java.util.concurrent.CompletableFuture<Source> scheduleWithResult(int, java.util.function.Consumer<java.util.concurrent.CompletableFuture<Source>>);
+  public java.lang.Runnable wrapRunnable(java.lang.Runnable);
+}
+Compiled from "TaskScheduler.java"
+public interface net.minecraft.util.thread.TaskScheduler<R extends java.lang.Runnable> extends java.lang.AutoCloseable {
+  public abstract java.lang.String name();
+  public abstract void schedule(R);
+  public default void close();
+  public abstract R wrapRunnable(java.lang.Runnable);
+  public default <Source> java.util.concurrent.CompletableFuture<Source> scheduleWithResult(java.util.function.Consumer<java.util.concurrent.CompletableFuture<Source>>);
+  public static net.minecraft.util.thread.TaskScheduler<java.lang.Runnable> wrapExecutor(java.lang.String, java.util.concurrent.Executor);
+}
+Compiled from "ParallelMapTransform.java"
+final class net.minecraft.util.thread.ParallelMapTransform$Container<K, U, V> extends java.lang.Record {
+  public net.minecraft.util.thread.ParallelMapTransform$Container(java.util.function.BiFunction<K, U, V>, int);
+  public void put(int, K, U);
+  public void applyOperation(int);
+  public void copyOut(int, java.util.Map<K, V>);
+  public int size();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.BiFunction<K, U, V> operation();
+  public java.lang.Object[] keys();
+  public java.lang.Object[] values();
+}
+Compiled from "ReentrantBlockableEventLoop.java"
+public abstract class net.minecraft.util.thread.ReentrantBlockableEventLoop<R extends java.lang.Runnable> extends net.minecraft.util.thread.BlockableEventLoop<R> {
+  public net.minecraft.util.thread.ReentrantBlockableEventLoop(java.lang.String, boolean);
+  protected boolean scheduleExecutables();
+  protected boolean runningTask();
+  protected void doRunTask(R);
+}
+Compiled from "ParallelMapTransform.java"
+public class net.minecraft.util.thread.ParallelMapTransform {
+  public net.minecraft.util.thread.ParallelMapTransform();
+  public static <K, U, V> java.util.concurrent.CompletableFuture<java.util.Map<K, V>> schedule(java.util.Map<K, U>, java.util.function.BiFunction<K, U, V>, int, java.util.concurrent.Executor);
+  public static <K, U, V> java.util.concurrent.CompletableFuture<java.util.Map<K, V>> schedule(java.util.Map<K, U>, java.util.function.BiFunction<K, U, V>, java.util.concurrent.Executor);
+}
+Compiled from "StrictQueue.java"
+public final class net.minecraft.util.thread.StrictQueue$RunnableWithPriority extends java.lang.Record implements java.lang.Runnable {
+  public net.minecraft.util.thread.StrictQueue$RunnableWithPriority(int, java.lang.Runnable);
+  public void run();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int priority();
+  public java.lang.Runnable task();
+}
+Compiled from "AbstractConsecutiveExecutor.java"
+public abstract class net.minecraft.util.thread.AbstractConsecutiveExecutor<T extends java.lang.Runnable> implements java.lang.Runnable, net.minecraft.util.thread.TaskScheduler<T>, net.minecraft.util.profiling.metrics.ProfilerMeasured {
+  public net.minecraft.util.thread.AbstractConsecutiveExecutor(net.minecraft.util.thread.StrictQueue<T>, java.util.concurrent.Executor, java.lang.String);
+  public void close();
+  public void run();
+  public void runAll();
+  public void schedule(T);
+  public int size();
+  public boolean hasWork();
+  public java.lang.String toString();
+  public java.lang.String name();
+  public java.util.List<net.minecraft.util.profiling.metrics.MetricSampler> profiledMetrics();
+}

@@ -1,0 +1,185 @@
+Compiled from "Villager.java"
+public class net.minecraft.world.entity.npc.villager.Villager extends net.minecraft.world.entity.npc.villager.AbstractVillager implements net.minecraft.world.entity.npc.villager.VillagerDataHolder,net.minecraft.world.entity.ReputationEventHandler {
+  public static final int BREEDING_FOOD_THRESHOLD;
+  public static final float SPEED_MODIFIER;
+  public static final java.util.Map<net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos>, java.util.function.BiPredicate<net.minecraft.world.entity.npc.villager.Villager, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>> POI_MEMORIES;
+  public net.minecraft.world.entity.npc.villager.Villager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.npc.villager.Villager>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.npc.villager.Villager> getBrain();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.npc.villager.Villager> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public void refreshBrain(net.minecraft.server.level.ServerLevel);
+  protected void ageBoundaryReached();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void setTradingPlayer(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public boolean canRestock();
+  public void restock();
+  public boolean shouldRestock(net.minecraft.server.level.ServerLevel);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public static net.minecraft.world.entity.npc.villager.VillagerData createDefaultVillagerData();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void postDataManipulated();
+  public boolean removeWhenFarAway(double);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public void playWorkSound();
+  public void setVillagerData(net.minecraft.world.entity.npc.villager.VillagerData);
+  public boolean getVillagerDataFinalized();
+  public void setVillagerDataFinalized(boolean);
+  public net.minecraft.world.entity.npc.villager.VillagerData getVillagerData();
+  protected void rewardTradeXp(net.minecraft.world.item.trading.MerchantOffer);
+  public void setLastHurtByMob(net.minecraft.world.entity.LivingEntity);
+  public void die(net.minecraft.world.damagesource.DamageSource);
+  public void releasePoi(net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos>);
+  public boolean canBreed();
+  public int getPlayerReputation(net.minecraft.world.entity.player.Player);
+  public void eatAndDigestFood();
+  public void setOffers(net.minecraft.world.item.trading.MerchantOffers);
+  protected net.minecraft.network.chat.Component getTypeName();
+  public void handleEntityEvent(byte);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.entity.npc.villager.Villager getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  public boolean hasExcessFood();
+  public boolean wantsMoreFood();
+  public boolean hasFarmSeeds();
+  protected void updateTrades(net.minecraft.server.level.ServerLevel);
+  public void gossip(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.npc.villager.Villager, long);
+  public void spawnGolemIfNeeded(net.minecraft.server.level.ServerLevel, long, int);
+  public boolean wantsToSpawnGolem(long);
+  public void onReputationEventFrom(net.minecraft.world.entity.ai.village.ReputationEventType, net.minecraft.world.entity.Entity);
+  public int getVillagerXp();
+  public void setVillagerXp(int);
+  public net.minecraft.world.entity.ai.gossip.GossipContainer getGossips();
+  public void setGossips(net.minecraft.world.entity.ai.gossip.GossipContainer);
+  public void stopSleeping();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "VillagerProfession.java"
+public final class net.minecraft.world.entity.npc.villager.VillagerProfession extends java.lang.Record {
+  public static final java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> ALL_ACQUIRABLE_JOBS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> NONE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> ARMORER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> BUTCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> CARTOGRAPHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> CLERIC;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> FARMER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> FISHERMAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> FLETCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> LEATHERWORKER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> LIBRARIAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> MASON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> NITWIT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> SHEPHERD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> TOOLSMITH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession> WEAPONSMITH;
+  public net.minecraft.world.entity.npc.villager.VillagerProfession(net.minecraft.network.chat.Component, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, com.google.common.collect.ImmutableSet<net.minecraft.world.item.Item>, com.google.common.collect.ImmutableSet<net.minecraft.world.level.block.Block>, net.minecraft.sounds.SoundEvent, it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.resources.ResourceKey<net.minecraft.world.item.trading.TradeSet>>);
+  public static net.minecraft.world.entity.npc.villager.VillagerProfession bootstrap(net.minecraft.core.Registry<net.minecraft.world.entity.npc.villager.VillagerProfession>);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.item.trading.TradeSet> getTrades(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component name();
+  public java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> heldJobSite();
+  public java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> acquirableJobSite();
+  public com.google.common.collect.ImmutableSet<net.minecraft.world.item.Item> requestedItems();
+  public com.google.common.collect.ImmutableSet<net.minecraft.world.level.block.Block> secondaryPoi();
+  public net.minecraft.sounds.SoundEvent workSound();
+  public it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.resources.ResourceKey<net.minecraft.world.item.trading.TradeSet>> tradeSetsByLevel();
+}
+Compiled from "VillagerType.java"
+public final class net.minecraft.world.entity.npc.villager.VillagerType {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> DESERT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> JUNGLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> PLAINS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> SAVANNA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> SNOW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> SWAMP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> TAIGA;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType>> STREAM_CODEC;
+  public static final java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>, net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType>> BY_BIOME;
+  public net.minecraft.world.entity.npc.villager.VillagerType();
+  public static net.minecraft.world.entity.npc.villager.VillagerType bootstrap(net.minecraft.core.Registry<net.minecraft.world.entity.npc.villager.VillagerType>);
+  public static net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> byBiome(net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>);
+}
+Compiled from "AbstractVillager.java"
+public abstract class net.minecraft.world.entity.npc.villager.AbstractVillager extends net.minecraft.world.entity.AgeableMob implements net.minecraft.world.entity.npc.Npc,net.minecraft.world.item.trading.Merchant,net.minecraft.world.entity.npc.InventoryCarrier {
+  protected net.minecraft.world.item.trading.MerchantOffers offers;
+  public net.minecraft.world.entity.npc.villager.AbstractVillager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.npc.villager.AbstractVillager>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public int getUnhappyCounter();
+  public void setUnhappyCounter(int);
+  public int getVillagerXp();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void setTradingPlayer(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.entity.player.Player getTradingPlayer();
+  public boolean isTrading();
+  public net.minecraft.world.item.trading.MerchantOffers getOffers();
+  public void overrideOffers(net.minecraft.world.item.trading.MerchantOffers);
+  public void overrideXp(int);
+  public void notifyTrade(net.minecraft.world.item.trading.MerchantOffer);
+  protected abstract void rewardTradeXp(net.minecraft.world.item.trading.MerchantOffer);
+  public boolean showProgressBar();
+  public void notifyTradeUpdated(net.minecraft.world.item.ItemStack);
+  public net.minecraft.sounds.SoundEvent getNotifyTradeSound();
+  protected net.minecraft.sounds.SoundEvent getTradeUpdatedSound(boolean);
+  public void playCelebrateSound();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.Entity teleport(net.minecraft.world.level.portal.TeleportTransition);
+  protected void stopTrading();
+  public void die(net.minecraft.world.damagesource.DamageSource);
+  protected void addParticlesAroundSelf(net.minecraft.core.particles.ParticleOptions);
+  public boolean canBeLeashed();
+  public net.minecraft.world.SimpleContainer getInventory();
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  protected abstract void updateTrades(net.minecraft.server.level.ServerLevel);
+  protected void addOffersFromTradeSet(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.trading.MerchantOffers, net.minecraft.resources.ResourceKey<net.minecraft.world.item.trading.TradeSet>);
+  public net.minecraft.world.phys.Vec3 getRopeHoldPosition(float);
+  public boolean isClientSide();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.npc.villager.package-info {
+}
+Compiled from "VillagerDataHolder.java"
+public interface net.minecraft.world.entity.npc.villager.VillagerDataHolder {
+  public abstract net.minecraft.world.entity.npc.villager.VillagerData getVillagerData();
+  public abstract void setVillagerData(net.minecraft.world.entity.npc.villager.VillagerData);
+  public abstract boolean getVillagerDataFinalized();
+  public abstract void setVillagerDataFinalized(boolean);
+  public default void finalizeVillagerType(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.core.BlockPos);
+}
+Compiled from "VillagerData.java"
+public final class net.minecraft.world.entity.npc.villager.VillagerData extends java.lang.Record {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType> DEFAULT_TYPE;
+  public static final int MIN_VILLAGER_LEVEL;
+  public static final int MAX_VILLAGER_LEVEL;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.npc.villager.VillagerData> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.entity.npc.villager.VillagerData> STREAM_CODEC;
+  public net.minecraft.world.entity.npc.villager.VillagerData(net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType>, net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerProfession>, int);
+  public net.minecraft.world.entity.npc.villager.VillagerData withType(net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType>);
+  public net.minecraft.world.entity.npc.villager.VillagerData withType(net.minecraft.core.HolderGetter$Provider, net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerType>);
+  public net.minecraft.world.entity.npc.villager.VillagerData withProfession(net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerProfession>);
+  public net.minecraft.world.entity.npc.villager.VillagerData withProfession(net.minecraft.core.HolderGetter$Provider, net.minecraft.resources.ResourceKey<net.minecraft.world.entity.npc.villager.VillagerProfession>);
+  public net.minecraft.world.entity.npc.villager.VillagerData withLevel(int);
+  public static int getMinXpPerLevel(int);
+  public static int getMaxXpPerLevel(int);
+  public static boolean canLevelUp(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType> type();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerProfession> profession();
+  public int level();
+}

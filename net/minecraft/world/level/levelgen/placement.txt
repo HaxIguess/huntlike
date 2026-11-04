@@ -1,0 +1,283 @@
+Compiled from "PlacementFilter.java"
+public interface net.minecraft.world.level.levelgen.placement.PlacementFilter extends net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public default void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public abstract boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.placement.PlacementFilter> codec();
+}
+Compiled from "NoiseThresholdCountPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.RepeatingPlacement {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement(double, int, int);
+  public static net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement of(double, int, int);
+  public int count(net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.NoiseThresholdCountPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double noiseLevel();
+  public int belowNoise();
+  public int aboveNoise();
+}
+Compiled from "InSquarePlacement.java"
+public class net.minecraft.world.level.levelgen.placement.InSquarePlacement implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.InSquarePlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.InSquarePlacement();
+  public static net.minecraft.world.level.levelgen.placement.InSquarePlacement spread();
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.InSquarePlacement> codec();
+}
+Compiled from "PlacementModifier.java"
+public interface net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.placement.PlacementModifier> CODEC;
+  public abstract void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.placement.PlacementModifier> codec();
+}
+Compiled from "CaveSurface.java"
+public final class net.minecraft.world.level.levelgen.placement.CaveSurface extends java.lang.Enum<net.minecraft.world.level.levelgen.placement.CaveSurface> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.placement.CaveSurface CEILING;
+  public static final net.minecraft.world.level.levelgen.placement.CaveSurface FLOOR;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.placement.CaveSurface> CODEC;
+  public static net.minecraft.world.level.levelgen.placement.CaveSurface[] values();
+  public static net.minecraft.world.level.levelgen.placement.CaveSurface valueOf(java.lang.String);
+  public net.minecraft.core.Direction getDirection();
+  public int getY();
+  public java.lang.String getSerializedName();
+}
+Compiled from "PlacementModifierTypes.java"
+public interface net.minecraft.world.level.levelgen.placement.PlacementModifierTypes {
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.placement.PlacementModifier> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.placement.PlacementModifier>>);
+}
+Compiled from "CountPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.CountPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.RepeatingPlacement {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.CountPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.CountPlacement(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.CountPlacement of(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.CountPlacement of(int);
+  public int count(net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.CountPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.valueproviders.IntProvider count();
+}
+Compiled from "OffsetPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.OffsetPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.OffsetPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.OffsetPlacement(net.minecraft.util.valueproviders.IntProvider, net.minecraft.util.valueproviders.IntProvider, net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement of(net.minecraft.util.valueproviders.IntProvider, net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement ofTriangle(int, int);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement vertical(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement horizontal(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement of(int, int, int);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement of(net.minecraft.core.Direction);
+  public static net.minecraft.world.level.levelgen.placement.OffsetPlacement above();
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.OffsetPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.valueproviders.IntProvider x();
+  public net.minecraft.util.valueproviders.IntProvider y();
+  public net.minecraft.util.valueproviders.IntProvider z();
+}
+Compiled from "SurfaceRelativeThresholdFilter.java"
+public final class net.minecraft.world.level.levelgen.placement.SurfaceRelativeThresholdFilter extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.SurfaceRelativeThresholdFilter> CODEC;
+  public net.minecraft.world.level.levelgen.placement.SurfaceRelativeThresholdFilter(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public static net.minecraft.world.level.levelgen.placement.SurfaceRelativeThresholdFilter of(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.SurfaceRelativeThresholdFilter> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.Heightmap$Types heightmap();
+  public int minInclusive();
+  public int maxInclusive();
+}
+Compiled from "NoiseBasedCountPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.RepeatingPlacement {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement(int, double, double);
+  public static net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement of(int, double, double);
+  public int count(net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int noiseToCountRatio();
+  public double noiseFactor();
+  public double noiseOffset();
+}
+Compiled from "RarityFilter.java"
+public final class net.minecraft.world.level.levelgen.placement.RarityFilter extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RarityFilter> CODEC;
+  public net.minecraft.world.level.levelgen.placement.RarityFilter(int);
+  public static net.minecraft.world.level.levelgen.placement.RarityFilter onAverageOnceEvery(int);
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RarityFilter> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int chance();
+}
+Compiled from "EnvironmentScanPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement(net.minecraft.core.Direction, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, int);
+  public static net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement scanningFor(net.minecraft.core.Direction, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, int);
+  public static net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement scanningFor(net.minecraft.core.Direction, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, int);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Direction directionOfSearch();
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate targetCondition();
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate allowedSearchCondition();
+  public int maxSteps();
+}
+Compiled from "SurfaceWaterDepthFilter.java"
+public final class net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter> CODEC;
+  public net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter(int);
+  public static net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter forMaxDepth(int);
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int maxWaterDepth();
+}
+Compiled from "HeightmapPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.HeightmapPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.HeightmapPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.HeightmapPlacement(net.minecraft.world.level.levelgen.Heightmap$Types);
+  public static net.minecraft.world.level.levelgen.placement.HeightmapPlacement onHeightmap(net.minecraft.world.level.levelgen.Heightmap$Types);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.HeightmapPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.Heightmap$Types heightmap();
+}
+Compiled from "BlockPredicateFilter.java"
+public final class net.minecraft.world.level.levelgen.placement.BlockPredicateFilter extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.BlockPredicateFilter> CODEC;
+  public net.minecraft.world.level.levelgen.placement.BlockPredicateFilter(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public static net.minecraft.world.level.levelgen.placement.BlockPredicateFilter forPredicate(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.BlockPredicateFilter> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate predicate();
+}
+Compiled from "RepeatingPlacement.java"
+public interface net.minecraft.world.level.levelgen.placement.RepeatingPlacement extends net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public abstract int count(net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public default void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.placement.RepeatingPlacement> codec();
+}
+Compiled from "PlacedFeature.java"
+public final class net.minecraft.world.level.levelgen.placement.PlacedFeature extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.placement.PlacedFeature> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>> LIST_CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>>> LIST_OF_LISTS_CODEC;
+  public net.minecraft.world.level.levelgen.placement.PlacedFeature(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature>, java.util.List<net.minecraft.world.level.levelgen.placement.PlacementModifier>);
+  public boolean place(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature>> getFeatures();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.Feature> feature();
+  public java.util.List<net.minecraft.world.level.levelgen.placement.PlacementModifier> placement();
+}
+Compiled from "HeightRangePlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.HeightRangePlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.HeightRangePlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.HeightRangePlacement(net.minecraft.world.level.levelgen.heightproviders.HeightProvider);
+  public static net.minecraft.world.level.levelgen.placement.HeightRangePlacement of(net.minecraft.world.level.levelgen.heightproviders.HeightProvider);
+  public static net.minecraft.world.level.levelgen.placement.HeightRangePlacement uniform(net.minecraft.world.level.levelgen.VerticalAnchor, net.minecraft.world.level.levelgen.VerticalAnchor);
+  public static net.minecraft.world.level.levelgen.placement.HeightRangePlacement triangle(net.minecraft.world.level.levelgen.VerticalAnchor, net.minecraft.world.level.levelgen.VerticalAnchor);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.HeightRangePlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.heightproviders.HeightProvider height();
+}
+Compiled from "FixedPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.FixedPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.FixedPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.FixedPlacement(java.util.List<net.minecraft.core.BlockPos>);
+  public static net.minecraft.world.level.levelgen.placement.FixedPlacement of(net.minecraft.core.BlockPos...);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.FixedPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.core.BlockPos> positions();
+}
+Compiled from "FeaturePlacer.java"
+public class net.minecraft.world.level.levelgen.placement.FeaturePlacer {
+  public net.minecraft.world.level.levelgen.placement.FeaturePlacer(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.chunk.ChunkGenerator);
+  public boolean place(net.minecraft.world.level.levelgen.placement.PlacedFeature, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public boolean placeWithBiomeCheck(net.minecraft.world.level.levelgen.placement.PlacedFeature, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.placement.package-info {
+}
+Compiled from "RandomChancePlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.RandomChancePlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RandomChancePlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.RandomChancePlacement(float);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RandomChancePlacement> codec();
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float chance();
+}
+Compiled from "BiomeFilter.java"
+public class net.minecraft.world.level.levelgen.placement.BiomeFilter implements net.minecraft.world.level.levelgen.placement.PlacementFilter {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.BiomeFilter> CODEC;
+  public static net.minecraft.world.level.levelgen.placement.BiomeFilter biome();
+  public boolean shouldPlace(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.BiomeFilter> codec();
+}
+Compiled from "PlacementContext.java"
+public class net.minecraft.world.level.levelgen.placement.PlacementContext extends net.minecraft.world.level.levelgen.WorldGenerationContext {
+  public net.minecraft.world.level.levelgen.placement.PlacementContext(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.chunk.ChunkGenerator, java.util.Optional<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public int getHeight(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public int getMinY();
+  public net.minecraft.world.level.WorldGenLevel getLevel();
+  public java.util.Optional<net.minecraft.world.level.levelgen.placement.PlacedFeature> topFeature();
+  public net.minecraft.world.level.chunk.ChunkGenerator generator();
+}
+Compiled from "CountOnEveryLayerPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement of(net.minecraft.util.valueproviders.IntProvider);
+  public static net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement of(int);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.valueproviders.IntProvider count();
+}
+Compiled from "RandomlySelectedPlacement.java"
+public final class net.minecraft.world.level.levelgen.placement.RandomlySelectedPlacement extends java.lang.Record implements net.minecraft.world.level.levelgen.placement.PlacementModifier {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RandomlySelectedPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.placement.RandomlySelectedPlacement(net.minecraft.world.level.levelgen.placement.PlacementModifier...);
+  public net.minecraft.world.level.levelgen.placement.RandomlySelectedPlacement(java.util.List<net.minecraft.world.level.levelgen.placement.PlacementModifier>);
+  public void modify(net.minecraft.world.level.levelgen.placement.PlacementContext, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.placement.RandomlySelectedPlacement> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.levelgen.placement.PlacementModifier> placements();
+}

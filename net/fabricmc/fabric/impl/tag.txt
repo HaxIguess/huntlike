@@ -1,0 +1,61 @@
+Compiled from "MappedRegistryExtension.java"
+public interface net.fabricmc.fabric.impl.tag.MappedRegistryExtension {
+  public abstract void fabric_applyPendingTagAliases();
+  public abstract void fabric_refreshTags();
+}
+Compiled from "TagAliasEnabledRegistryLookup.java"
+public interface net.fabricmc.fabric.impl.tag.TagAliasEnabledRegistryLookup {
+  public abstract void fabric_loadTagAliases(java.util.Map<net.minecraft.tags.TagKey<?>, java.util.Set<net.minecraft.tags.TagKey<?>>>);
+}
+Compiled from "TagAliasGroup.java"
+public final class net.fabricmc.fabric.impl.tag.TagAliasGroup<T> extends java.lang.Record {
+  public net.fabricmc.fabric.impl.tag.TagAliasGroup(java.util.List<net.minecraft.tags.TagKey<T>>);
+  public static <T> com.mojang.serialization.Codec<net.fabricmc.fabric.impl.tag.TagAliasGroup<T>> codec(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.tags.TagKey<T>> tags();
+}
+Compiled from "TagAliasLoader.java"
+public final class net.fabricmc.fabric.impl.tag.TagAliasLoader$Data extends java.lang.Record {
+  protected net.fabricmc.fabric.impl.tag.TagAliasLoader$Data(net.minecraft.resources.Identifier, net.fabricmc.fabric.impl.tag.TagAliasGroup<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier groupId();
+  public net.fabricmc.fabric.impl.tag.TagAliasGroup<?> group();
+}
+Compiled from "TagAliasLoader.java"
+public final class net.fabricmc.fabric.impl.tag.TagAliasLoader extends net.fabricmc.fabric.api.resource.v1.reloader.SimpleReloadListener<java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.fabricmc.fabric.impl.tag.TagAliasLoader$Data>>> {
+  public static final net.minecraft.resources.Identifier ID;
+  public net.fabricmc.fabric.impl.tag.TagAliasLoader();
+  protected java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.fabricmc.fabric.impl.tag.TagAliasLoader$Data>> prepare(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState);
+  protected void apply(java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.fabricmc.fabric.impl.tag.TagAliasLoader$Data>>, net.minecraft.server.packs.resources.PreparableReloadListener$SharedState);
+  public static <T> void applyToDynamicRegistries(net.minecraft.core.LayeredRegistryAccess<T>, T);
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.PreparableReloadListener$SharedState);
+  protected java.lang.Object prepare(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState);
+}
+Compiled from "TagFileHooks.java"
+public interface net.fabricmc.fabric.impl.tag.TagFileHooks {
+  public abstract void fabric_setRemove(java.util.List<net.minecraft.tags.TagEntry>);
+}
+Compiled from "TagInit.java"
+public final class net.fabricmc.fabric.impl.tag.TagInit implements net.fabricmc.api.ModInitializer {
+  public net.fabricmc.fabric.impl.tag.TagInit();
+  public void onInitialize();
+}
+Compiled from "TagRemovalInternals.java"
+public class net.fabricmc.fabric.impl.tag.TagRemovalInternals {
+  public static final java.lang.ScopedValue<net.minecraft.resources.Identifier> TAG_ID_SCOPED_VALUE;
+  public net.fabricmc.fabric.impl.tag.TagRemovalInternals();
+  public static com.mojang.serialization.Codec<net.minecraft.tags.TagFile> modifyTagFileCodec(com.mojang.serialization.Codec<net.minecraft.tags.TagFile>);
+  public static void addTagSource(net.minecraft.resources.Identifier, java.lang.String);
+  public static void addRemoveEntry(net.minecraft.resources.Identifier, net.minecraft.tags.TagLoader$EntryWithSource);
+  public static boolean isEntryRemove(net.minecraft.tags.TagLoader$EntryWithSource);
+  public static java.util.List<net.minecraft.tags.TagLoader$EntryWithSource> mergeAddedAndRemovedEntries(net.minecraft.resources.Identifier, java.util.List<net.minecraft.tags.TagLoader$EntryWithSource>);
+  public static void removeTagRemovalReference(net.minecraft.resources.Identifier);
+  public static void removeTagRemovalReferences();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.tag.package-info {
+}

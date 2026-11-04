@@ -1,0 +1,110 @@
+Compiled from "EnderDragonPart.java"
+public class net.minecraft.world.entity.boss.enderdragon.EnderDragonPart extends net.minecraft.world.entity.Entity {
+  public final net.minecraft.world.entity.boss.enderdragon.EnderDragon parentMob;
+  public final java.lang.String name;
+  public net.minecraft.world.entity.boss.enderdragon.EnderDragonPart(net.minecraft.world.entity.boss.enderdragon.EnderDragon, java.lang.String, float, float);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public boolean isPickable();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  public final boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean is(net.minecraft.world.entity.Entity);
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public net.minecraft.world.entity.EntityDimensions getDimensions(net.minecraft.world.entity.Pose);
+  public boolean shouldBeSaved();
+}
+Compiled from "EnderDragon.java"
+public class net.minecraft.world.entity.boss.enderdragon.EnderDragon extends net.minecraft.world.entity.Mob implements net.minecraft.world.entity.monster.Enemy {
+  public static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> DATA_PHASE;
+  public final net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory flightHistory;
+  public final net.minecraft.world.entity.boss.enderdragon.EnderDragonPart head;
+  public float oFlapTime;
+  public float flapTime;
+  public boolean inWall;
+  public int dragonDeathTime;
+  public float yRotA;
+  public net.minecraft.world.entity.boss.enderdragon.EndCrystal nearestCrystal;
+  public net.minecraft.world.entity.boss.enderdragon.EnderDragon(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.boss.enderdragon.EnderDragon>, net.minecraft.world.level.Level);
+  public void setDragonFight(net.minecraft.world.level.dimension.end.EnderDragonFight);
+  public void setFightOrigin(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos getFightOrigin();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean isFlapping();
+  public void onFlap();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void aiStep();
+  public boolean hurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.boss.enderdragon.EnderDragonPart, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void reallyHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void handleKillingBlow();
+  public void knockback(double, double, double, net.minecraft.world.damagesource.DamageSource, float, boolean);
+  public void kill(net.minecraft.server.level.ServerLevel);
+  protected void tickDeath();
+  public int findClosestNode();
+  public int findClosestNode(double, double, double);
+  public net.minecraft.world.level.pathfinder.Path findPath(int, int, net.minecraft.world.level.pathfinder.Node);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void checkDespawn();
+  public net.minecraft.world.entity.boss.enderdragon.EnderDragonPart[] getSubEntities();
+  public boolean isPickable();
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected float getSoundVolume();
+  public net.minecraft.world.phys.Vec3 getHeadLookVector(float);
+  public void onCrystalDestroyed(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.boss.enderdragon.EndCrystal, net.minecraft.core.BlockPos, net.minecraft.world.damagesource.DamageSource);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public net.minecraft.world.entity.boss.enderdragon.phases.EnderDragonPhaseManager getPhaseManager();
+  public net.minecraft.world.level.dimension.end.EnderDragonFight getDragonFight();
+  public boolean addEffect(net.minecraft.world.effect.MobEffectInstance, net.minecraft.world.entity.Entity);
+  protected boolean canRide(net.minecraft.world.entity.Entity);
+  public boolean canUsePortal(boolean);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public boolean canAttack(net.minecraft.world.entity.LivingEntity);
+  protected float sanitizeScale(float);
+  public net.minecraft.world.entity.MoveSimulationType getMoveSimulationType();
+}
+Compiled from "EndCrystal.java"
+public class net.minecraft.world.entity.boss.enderdragon.EndCrystal extends net.minecraft.world.entity.Entity {
+  public int time;
+  public net.minecraft.world.entity.boss.enderdragon.EndCrystal(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.boss.enderdragon.EndCrystal>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.boss.enderdragon.EndCrystal(net.minecraft.world.level.Level, double, double, double);
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void tick();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isPickable();
+  public final boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public final boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void kill(net.minecraft.server.level.ServerLevel);
+  public void setBeamTarget(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos getBeamTarget();
+  public void setShowBottom(boolean);
+  public boolean showsBottom();
+  public boolean shouldRenderAtSqrDistance(double);
+  public net.minecraft.world.item.ItemStack getPickResult();
+}
+Compiled from "DragonFlightHistory.java"
+public class net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory {
+  public static final int LENGTH;
+  public net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory();
+  public void copyFrom(net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory);
+  public void record(double, float);
+  public net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory$Sample get(int);
+  public net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory$Sample get(int, float);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.boss.enderdragon.package-info {
+}
+Compiled from "DragonFlightHistory.java"
+public final class net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory$Sample extends java.lang.Record {
+  public net.minecraft.world.entity.boss.enderdragon.DragonFlightHistory$Sample(double, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double y();
+  public float yRot();
+}

@@ -1,0 +1,263 @@
+Compiled from "OffsetDoubleList.java"
+public class net.minecraft.world.phys.shapes.OffsetDoubleList extends it.unimi.dsi.fastutil.doubles.AbstractDoubleList {
+  public net.minecraft.world.phys.shapes.OffsetDoubleList(it.unimi.dsi.fastutil.doubles.DoubleList, double);
+  public double getDouble(int);
+  public int size();
+}
+Compiled from "DiscreteVoxelShape.java"
+public interface net.minecraft.world.phys.shapes.DiscreteVoxelShape$IntLineConsumer {
+  public abstract void consume(int, int, int, int, int, int);
+}
+Compiled from "PositionCollisionContext.java"
+public class net.minecraft.world.phys.shapes.PositionCollisionContext implements net.minecraft.world.phys.shapes.CollisionContext {
+  public net.minecraft.world.phys.shapes.PositionCollisionContext(double);
+  public boolean isDescending();
+  public boolean isAbove(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.BlockPos, boolean);
+  public boolean isHoldingItem(net.minecraft.world.item.Item);
+  public boolean alwaysCollideWithFluid();
+  public boolean canStandOnFluid(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.material.FluidState);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.CollisionGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.phys.shapes.package-info {
+}
+Compiled from "BitSetDiscreteVoxelShape.java"
+public final class net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape extends net.minecraft.world.phys.shapes.DiscreteVoxelShape {
+  public net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape(int, int, int);
+  public static net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape withFilledBounds(int, int, int, int, int, int, int, int, int);
+  public net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape(net.minecraft.world.phys.shapes.DiscreteVoxelShape);
+  public boolean isFull(int, int, int);
+  public void fill(int, int, int);
+  public boolean isEmpty();
+  public int firstFull(net.minecraft.core.Direction$Axis);
+  public int lastFull(net.minecraft.core.Direction$Axis);
+  public static net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape join(net.minecraft.world.phys.shapes.DiscreteVoxelShape, net.minecraft.world.phys.shapes.DiscreteVoxelShape, net.minecraft.world.phys.shapes.IndexMerger, net.minecraft.world.phys.shapes.IndexMerger, net.minecraft.world.phys.shapes.IndexMerger, net.minecraft.world.phys.shapes.BooleanOp);
+  public boolean isInterior(int, int, int);
+}
+Compiled from "DiscreteVoxelShape.java"
+public interface net.minecraft.world.phys.shapes.DiscreteVoxelShape$IntFaceConsumer {
+  public abstract void consume(net.minecraft.core.Direction, int, int, int);
+}
+Compiled from "CubePointRange.java"
+public class net.minecraft.world.phys.shapes.CubePointRange extends it.unimi.dsi.fastutil.doubles.AbstractDoubleList {
+  public net.minecraft.world.phys.shapes.CubePointRange(int);
+  public double getDouble(int);
+  public int size();
+}
+Compiled from "BooleanOp.java"
+public interface net.minecraft.world.phys.shapes.BooleanOp {
+  public static final net.minecraft.world.phys.shapes.BooleanOp FALSE;
+  public static final net.minecraft.world.phys.shapes.BooleanOp NOT_OR;
+  public static final net.minecraft.world.phys.shapes.BooleanOp ONLY_SECOND;
+  public static final net.minecraft.world.phys.shapes.BooleanOp NOT_FIRST;
+  public static final net.minecraft.world.phys.shapes.BooleanOp ONLY_FIRST;
+  public static final net.minecraft.world.phys.shapes.BooleanOp NOT_SECOND;
+  public static final net.minecraft.world.phys.shapes.BooleanOp NOT_SAME;
+  public static final net.minecraft.world.phys.shapes.BooleanOp NOT_AND;
+  public static final net.minecraft.world.phys.shapes.BooleanOp AND;
+  public static final net.minecraft.world.phys.shapes.BooleanOp SAME;
+  public static final net.minecraft.world.phys.shapes.BooleanOp SECOND;
+  public static final net.minecraft.world.phys.shapes.BooleanOp CAUSES;
+  public static final net.minecraft.world.phys.shapes.BooleanOp FIRST;
+  public static final net.minecraft.world.phys.shapes.BooleanOp CAUSED_BY;
+  public static final net.minecraft.world.phys.shapes.BooleanOp OR;
+  public static final net.minecraft.world.phys.shapes.BooleanOp TRUE;
+  public abstract boolean apply(boolean, boolean);
+}
+Compiled from "CollisionContext.java"
+public interface net.minecraft.world.phys.shapes.CollisionContext {
+  public static net.minecraft.world.phys.shapes.CollisionContext empty();
+  public static net.minecraft.world.phys.shapes.CollisionContext emptyWithFluidCollisions();
+  public static net.minecraft.world.phys.shapes.CollisionContext of(net.minecraft.world.entity.Entity);
+  public static net.minecraft.world.phys.shapes.CollisionContext of(net.minecraft.world.entity.Entity, boolean);
+  public static net.minecraft.world.phys.shapes.CollisionContext positionContext(double);
+  public static net.minecraft.world.phys.shapes.CollisionContext placementContext(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.phys.shapes.CollisionContext withPosition(net.minecraft.world.entity.Entity, double);
+  public abstract boolean isDescending();
+  public abstract boolean isAbove(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.BlockPos, boolean);
+  public abstract boolean isHoldingItem(net.minecraft.world.item.Item);
+  public abstract boolean alwaysCollideWithFluid();
+  public abstract boolean canStandOnFluid(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.material.FluidState);
+  public abstract net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.CollisionGetter, net.minecraft.core.BlockPos);
+  public default boolean isPlacement();
+}
+Compiled from "IndexMerger.java"
+public interface net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer {
+  public abstract boolean merge(int, int, int);
+}
+Compiled from "NonOverlappingMerger.java"
+public class net.minecraft.world.phys.shapes.NonOverlappingMerger extends it.unimi.dsi.fastutil.doubles.AbstractDoubleList implements net.minecraft.world.phys.shapes.IndexMerger {
+  protected net.minecraft.world.phys.shapes.NonOverlappingMerger(it.unimi.dsi.fastutil.doubles.DoubleList, it.unimi.dsi.fastutil.doubles.DoubleList, boolean);
+  public int size();
+  public boolean forMergedIndexes(net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer);
+  public double getDouble(int);
+  public it.unimi.dsi.fastutil.doubles.DoubleList getList();
+}
+Compiled from "DiscreteVoxelShape.java"
+public abstract class net.minecraft.world.phys.shapes.DiscreteVoxelShape {
+  protected final int xSize;
+  protected final int ySize;
+  protected final int zSize;
+  protected net.minecraft.world.phys.shapes.DiscreteVoxelShape(int, int, int);
+  public net.minecraft.world.phys.shapes.DiscreteVoxelShape rotate(com.mojang.math.OctahedralGroup);
+  public boolean isFullWide(net.minecraft.core.AxisCycle, int, int, int);
+  public boolean isFullWide(int, int, int);
+  public boolean isFull(net.minecraft.core.AxisCycle, int, int, int);
+  public abstract boolean isFull(int, int, int);
+  public abstract void fill(int, int, int);
+  public boolean isEmpty();
+  public abstract int firstFull(net.minecraft.core.Direction$Axis);
+  public abstract int lastFull(net.minecraft.core.Direction$Axis);
+  public int firstFull(net.minecraft.core.Direction$Axis, int, int);
+  public int lastFull(net.minecraft.core.Direction$Axis, int, int);
+  public int getSize(net.minecraft.core.Direction$Axis);
+  public int getXSize();
+  public int getYSize();
+  public int getZSize();
+  public void forAllEdges(net.minecraft.world.phys.shapes.DiscreteVoxelShape$IntLineConsumer, boolean);
+  public void forAllBoxes(net.minecraft.world.phys.shapes.DiscreteVoxelShape$IntLineConsumer, boolean);
+  public void forAllFaces(net.minecraft.world.phys.shapes.DiscreteVoxelShape$IntFaceConsumer);
+}
+Compiled from "EntityCollisionContext.java"
+public class net.minecraft.world.phys.shapes.EntityCollisionContext$Empty extends net.minecraft.world.phys.shapes.EntityCollisionContext {
+  protected static final net.minecraft.world.phys.shapes.CollisionContext WITHOUT_FLUID_COLLISIONS;
+  protected static final net.minecraft.world.phys.shapes.CollisionContext WITH_FLUID_COLLISIONS;
+  public net.minecraft.world.phys.shapes.EntityCollisionContext$Empty(boolean);
+  public boolean isAbove(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.BlockPos, boolean);
+}
+Compiled from "DiscreteCubeMerger.java"
+public final class net.minecraft.world.phys.shapes.DiscreteCubeMerger implements net.minecraft.world.phys.shapes.IndexMerger {
+  public boolean forMergedIndexes(net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer);
+  public int size();
+  public it.unimi.dsi.fastutil.doubles.DoubleList getList();
+}
+Compiled from "VoxelShape.java"
+public abstract class net.minecraft.world.phys.shapes.VoxelShape {
+  protected final net.minecraft.world.phys.shapes.DiscreteVoxelShape shape;
+  protected net.minecraft.world.phys.shapes.VoxelShape(net.minecraft.world.phys.shapes.DiscreteVoxelShape);
+  public double min(net.minecraft.core.Direction$Axis);
+  public double max(net.minecraft.core.Direction$Axis);
+  public net.minecraft.world.phys.AABB bounds();
+  public net.minecraft.world.phys.shapes.VoxelShape singleEncompassing();
+  protected double get(net.minecraft.core.Direction$Axis, int);
+  public abstract it.unimi.dsi.fastutil.doubles.DoubleList getCoords(net.minecraft.core.Direction$Axis);
+  public boolean isEmpty();
+  public net.minecraft.world.phys.shapes.VoxelShape move(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.shapes.VoxelShape move(net.minecraft.core.Vec3i);
+  public net.minecraft.world.phys.shapes.VoxelShape move(double, double, double);
+  public net.minecraft.world.phys.shapes.VoxelShape optimize();
+  public void forAllEdges(net.minecraft.world.phys.shapes.Shapes$DoubleLineConsumer);
+  public void forAllBoxes(net.minecraft.world.phys.shapes.Shapes$DoubleLineConsumer);
+  public java.util.List<net.minecraft.world.phys.AABB> toAabbs();
+  public double min(net.minecraft.core.Direction$Axis, double, double);
+  public double max(net.minecraft.core.Direction$Axis, double, double);
+  protected int findIndex(net.minecraft.core.Direction$Axis, double);
+  public net.minecraft.world.phys.BlockHitResult clip(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.core.BlockPos);
+  public java.util.Optional<net.minecraft.world.phys.Vec3> closestPointTo(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.shapes.VoxelShape getFaceShape(net.minecraft.core.Direction);
+  protected boolean isCubeLike();
+  public double collide(net.minecraft.core.Direction$Axis, net.minecraft.world.phys.AABB, double);
+  protected double collideX(net.minecraft.core.AxisCycle, net.minecraft.world.phys.AABB, double);
+  public boolean equals(java.lang.Object);
+  public java.lang.String toString();
+}
+Compiled from "ArrayVoxelShape.java"
+public class net.minecraft.world.phys.shapes.ArrayVoxelShape extends net.minecraft.world.phys.shapes.VoxelShape {
+  public it.unimi.dsi.fastutil.doubles.DoubleList getCoords(net.minecraft.core.Direction$Axis);
+}
+Compiled from "IdenticalMerger.java"
+public class net.minecraft.world.phys.shapes.IdenticalMerger implements net.minecraft.world.phys.shapes.IndexMerger {
+  public net.minecraft.world.phys.shapes.IdenticalMerger(it.unimi.dsi.fastutil.doubles.DoubleList);
+  public boolean forMergedIndexes(net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer);
+  public int size();
+  public it.unimi.dsi.fastutil.doubles.DoubleList getList();
+}
+Compiled from "MinecartCollisionContext.java"
+public class net.minecraft.world.phys.shapes.MinecartCollisionContext extends net.minecraft.world.phys.shapes.EntityCollisionContext {
+  protected net.minecraft.world.phys.shapes.MinecartCollisionContext(net.minecraft.world.entity.vehicle.minecart.AbstractMinecart, boolean);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.CollisionGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "EntityCollisionContext.java"
+public class net.minecraft.world.phys.shapes.EntityCollisionContext implements net.minecraft.world.phys.shapes.CollisionContext {
+  protected net.minecraft.world.phys.shapes.EntityCollisionContext(boolean, boolean, double, net.minecraft.world.item.ItemStack, boolean, net.minecraft.world.entity.Entity);
+  protected net.minecraft.world.phys.shapes.EntityCollisionContext(net.minecraft.world.entity.Entity, boolean, boolean);
+  public boolean isHoldingItem(net.minecraft.world.item.Item);
+  public boolean alwaysCollideWithFluid();
+  public boolean canStandOnFluid(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.material.FluidState);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.CollisionGetter, net.minecraft.core.BlockPos);
+  public boolean isDescending();
+  public boolean isAbove(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.BlockPos, boolean);
+  public net.minecraft.world.entity.Entity getEntity();
+  public boolean isPlacement();
+}
+Compiled from "SliceShape.java"
+public class net.minecraft.world.phys.shapes.SliceShape extends net.minecraft.world.phys.shapes.VoxelShape {
+  public net.minecraft.world.phys.shapes.SliceShape(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.Direction$Axis, int);
+  public it.unimi.dsi.fastutil.doubles.DoubleList getCoords(net.minecraft.core.Direction$Axis);
+}
+Compiled from "CubeVoxelShape.java"
+public final class net.minecraft.world.phys.shapes.CubeVoxelShape extends net.minecraft.world.phys.shapes.VoxelShape {
+  public net.minecraft.world.phys.shapes.CubeVoxelShape(net.minecraft.world.phys.shapes.DiscreteVoxelShape);
+  public it.unimi.dsi.fastutil.doubles.DoubleList getCoords(net.minecraft.core.Direction$Axis);
+  protected int findIndex(net.minecraft.core.Direction$Axis, double);
+}
+Compiled from "SubShape.java"
+public final class net.minecraft.world.phys.shapes.SubShape extends net.minecraft.world.phys.shapes.DiscreteVoxelShape {
+  public boolean isFull(int, int, int);
+  public void fill(int, int, int);
+  public int firstFull(net.minecraft.core.Direction$Axis);
+  public int lastFull(net.minecraft.core.Direction$Axis);
+}
+Compiled from "Shapes.java"
+public interface net.minecraft.world.phys.shapes.Shapes$DoubleLineConsumer {
+  public abstract void consume(double, double, double, double, double, double);
+}
+Compiled from "IndirectMerger.java"
+public class net.minecraft.world.phys.shapes.IndirectMerger implements net.minecraft.world.phys.shapes.IndexMerger {
+  public net.minecraft.world.phys.shapes.IndirectMerger(it.unimi.dsi.fastutil.doubles.DoubleList, it.unimi.dsi.fastutil.doubles.DoubleList, boolean, boolean);
+  public boolean forMergedIndexes(net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer);
+  public int size();
+  public it.unimi.dsi.fastutil.doubles.DoubleList getList();
+}
+Compiled from "IndexMerger.java"
+public interface net.minecraft.world.phys.shapes.IndexMerger {
+  public abstract it.unimi.dsi.fastutil.doubles.DoubleList getList();
+  public abstract boolean forMergedIndexes(net.minecraft.world.phys.shapes.IndexMerger$IndexConsumer);
+  public abstract int size();
+}
+Compiled from "Shapes.java"
+public final class net.minecraft.world.phys.shapes.Shapes {
+  public static final double EPSILON;
+  public static final double BIG_EPSILON;
+  public static final net.minecraft.world.phys.shapes.VoxelShape INFINITY;
+  public net.minecraft.world.phys.shapes.Shapes();
+  public static net.minecraft.world.phys.shapes.VoxelShape empty();
+  public static net.minecraft.world.phys.shapes.VoxelShape block();
+  public static net.minecraft.world.phys.shapes.VoxelShape box(double, double, double, double, double, double);
+  public static net.minecraft.world.phys.shapes.VoxelShape create(double, double, double, double, double, double);
+  public static net.minecraft.world.phys.shapes.VoxelShape create(net.minecraft.world.phys.AABB);
+  public static net.minecraft.world.phys.shapes.VoxelShape or(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape);
+  public static net.minecraft.world.phys.shapes.VoxelShape or(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape...);
+  public static net.minecraft.world.phys.shapes.VoxelShape join(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.BooleanOp);
+  public static net.minecraft.world.phys.shapes.VoxelShape joinUnoptimized(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.BooleanOp);
+  public static boolean joinIsNotEmpty(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.BooleanOp);
+  public static double collide(net.minecraft.core.Direction$Axis, net.minecraft.world.phys.AABB, java.lang.Iterable<net.minecraft.world.phys.shapes.VoxelShape>, double);
+  public static boolean blockOccludes(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.Direction);
+  public static boolean mergedFaceOccludes(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.core.Direction);
+  public static boolean faceShapeOccludes(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape);
+  public static net.minecraft.world.phys.shapes.VoxelShape rotate(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup);
+  public static net.minecraft.world.phys.shapes.VoxelShape rotate(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup, net.minecraft.world.phys.Vec3);
+  public static boolean equal(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.core.Direction$Axis, net.minecraft.world.phys.shapes.VoxelShape> rotateHorizontalAxis(net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.core.Direction$Axis, net.minecraft.world.phys.shapes.VoxelShape> rotateHorizontalAxis(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.Vec3);
+  public static java.util.Map<net.minecraft.core.Direction$Axis, net.minecraft.world.phys.shapes.VoxelShape> rotateAllAxis(net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.core.Direction$Axis, net.minecraft.world.phys.shapes.VoxelShape> rotateAllAxis(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.Vec3);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateHorizontal(net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateHorizontal(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateHorizontal(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup, net.minecraft.world.phys.Vec3);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateAll(net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateAll(net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.Vec3);
+  public static java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape> rotateAll(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup, net.minecraft.world.phys.Vec3);
+  public static java.util.Map<net.minecraft.world.level.block.state.properties.AttachFace, java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape>> rotateAttachFace(net.minecraft.world.phys.shapes.VoxelShape);
+  public static java.util.Map<net.minecraft.world.level.block.state.properties.AttachFace, java.util.Map<net.minecraft.core.Direction, net.minecraft.world.phys.shapes.VoxelShape>> rotateAttachFace(net.minecraft.world.phys.shapes.VoxelShape, com.mojang.math.OctahedralGroup);
+}

@@ -1,0 +1,90 @@
+Compiled from "BiomeModificationContextImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl$AttributesContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$AttributesContext {
+  public void addAll(net.minecraft.world.attribute.EnvironmentAttributeMap);
+  public <T> void set(net.minecraft.world.attribute.EnvironmentAttribute<T>, T);
+  public <T, M> void setModifier(net.minecraft.world.attribute.EnvironmentAttribute<T>, net.minecraft.world.attribute.modifier.AttributeModifier<T, M>, M);
+}
+Compiled from "BiomeModificationContextImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl$EffectsContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$EffectsContext {
+  public void setFogColor(int);
+  public void setWaterColor(int);
+  public void setWaterFogColor(int);
+  public void setSkyColor(int);
+  public void setFoliageColorOverride(java.util.Optional<java.lang.Integer>);
+  public void setDryFoliageColorOverride(java.util.Optional<java.lang.Integer>);
+  public void setGrassColorOverride(java.util.Optional<java.lang.Integer>);
+  public void setGrassColorModifier(net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier);
+  public void setMusicVolume(float);
+}
+Compiled from "BiomeModificationContextImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl$GenerationSettingsContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$GenerationSettingsContext {
+  public void freeze();
+  public boolean removeFeature(net.minecraft.world.level.levelgen.GenerationStep$Decoration, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public void addFeature(net.minecraft.world.level.levelgen.GenerationStep$Decoration, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public void addCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver>);
+  public boolean removeCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver>);
+}
+Compiled from "BiomeModificationContextImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl$SpawnSettingsContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$MobSpawnSettingsContext {
+  public void freeze();
+  public void setCreatureGenerationProbability(float);
+  public java.util.List<net.minecraft.util.random.Weighted<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData>> getMobs(net.minecraft.world.entity.MobCategory);
+  public void addSpawn(net.minecraft.world.entity.MobCategory, net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData, int);
+  public boolean removeSpawns(java.util.function.BiPredicate<net.minecraft.world.entity.MobCategory, net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData>);
+  public void addMobCharge(net.minecraft.world.entity.EntityType<?>, double, double);
+  public void clearMobCharge(net.minecraft.world.entity.EntityType<?>);
+}
+Compiled from "BiomeModificationContextImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl$WeatherContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$WeatherContext {
+  public void setPrecipitation(boolean);
+  public void setTemperature(float);
+  public void setTemperatureModifier(net.minecraft.world.level.biome.Biome$TemperatureModifier);
+  public void setDownfall(float);
+}
+Compiled from "BiomeModificationContextImpl.java"
+public class net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeModificationContext {
+  public net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl(net.minecraft.core.RegistryAccess, net.minecraft.world.level.biome.Biome);
+  public net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$WeatherContext getWeather();
+  public net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$AttributesContext getAttributes();
+  public net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$EffectsContext getEffects();
+  public net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$GenerationSettingsContext getGenerationSettings();
+  public net.fabricmc.fabric.api.biome.v1.BiomeModificationContext$MobSpawnSettingsContext getMobSpawnSettings();
+}
+Compiled from "BiomeModificationImpl.java"
+class net.fabricmc.fabric.impl.biome.modification.BiomeModificationImpl$ModifierRecord {
+  public java.lang.String toString();
+  public void apply(net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext, net.fabricmc.fabric.impl.biome.modification.BiomeModificationContextImpl);
+  public void setOrder(int);
+}
+Compiled from "BiomeModificationImpl.java"
+public class net.fabricmc.fabric.impl.biome.modification.BiomeModificationImpl {
+  public static final net.fabricmc.fabric.impl.biome.modification.BiomeModificationImpl INSTANCE;
+  public void addModifier(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.biome.v1.ModificationPhase, java.util.function.Predicate<net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext>, java.util.function.BiConsumer<net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext, net.fabricmc.fabric.api.biome.v1.BiomeModificationContext>);
+  public void addModifier(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.biome.v1.ModificationPhase, java.util.function.Predicate<net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext>, java.util.function.Consumer<net.fabricmc.fabric.api.biome.v1.BiomeModificationContext>);
+  public void finalizeWorldGen(net.minecraft.core.RegistryAccess);
+}
+Compiled from "BiomeModificationMarker.java"
+public interface net.fabricmc.fabric.impl.biome.modification.BiomeModificationMarker {
+  public abstract void fabric_markModified();
+}
+Compiled from "BiomeSelectionContextImpl.java"
+public class net.fabricmc.fabric.impl.biome.modification.BiomeSelectionContextImpl implements net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext {
+  public net.fabricmc.fabric.impl.biome.modification.BiomeSelectionContextImpl(net.minecraft.core.RegistryAccess, net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>, net.minecraft.world.level.biome.Biome);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> getBiomeKey();
+  public net.minecraft.world.level.biome.Biome getBiome();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getBiomeHolder();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.feature.Feature>> getFeatureKey(net.minecraft.world.level.levelgen.feature.Feature);
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature>> getPlacedFeatureKey(net.minecraft.world.level.levelgen.placement.PlacedFeature);
+  public boolean validForStructure(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.structure.Structure>);
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.structure.Structure>> getStructureKey(net.minecraft.world.level.levelgen.structure.Structure);
+  public boolean canGenerateIn(net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>);
+  public boolean hasTag(net.minecraft.tags.TagKey<net.minecraft.world.level.biome.Biome>);
+}
+Compiled from "BuiltInResourceKeys.java"
+public final class net.fabricmc.fabric.impl.biome.modification.BuiltInResourceKeys {
+  public static boolean isBuiltinBiome(net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>);
+  public static net.minecraft.core.HolderGetter<net.minecraft.world.level.biome.Biome> biomeHolderGetter();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.biome.modification.package-info {
+}

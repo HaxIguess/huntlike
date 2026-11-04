@@ -1,0 +1,305 @@
+Compiled from "PackOutput.java"
+public final class net.minecraft.data.PackOutput$Target extends java.lang.Enum<net.minecraft.data.PackOutput$Target> {
+  public static final net.minecraft.data.PackOutput$Target DATA_PACK;
+  public static final net.minecraft.data.PackOutput$Target RESOURCE_PACK;
+  public static final net.minecraft.data.PackOutput$Target REPORTS;
+  public static net.minecraft.data.PackOutput$Target[] values();
+  public static net.minecraft.data.PackOutput$Target valueOf(java.lang.String);
+}
+Compiled from "BlockFamilies.java"
+public class net.minecraft.data.BlockFamilies {
+  public static final net.minecraft.data.BlockFamily ACACIA_PLANKS;
+  public static final net.minecraft.data.BlockFamily CHERRY_PLANKS;
+  public static final net.minecraft.data.BlockFamily BIRCH_PLANKS;
+  public static final net.minecraft.data.BlockFamily CRIMSON_PLANKS;
+  public static final net.minecraft.data.BlockFamily JUNGLE_PLANKS;
+  public static final net.minecraft.data.BlockFamily OAK_PLANKS;
+  public static final net.minecraft.data.BlockFamily DARK_OAK_PLANKS;
+  public static final net.minecraft.data.BlockFamily PALE_OAK_PLANKS;
+  public static final net.minecraft.data.BlockFamily POPLAR_PLANKS;
+  public static final net.minecraft.data.BlockFamily SPRUCE_PLANKS;
+  public static final net.minecraft.data.BlockFamily WARPED_PLANKS;
+  public static final net.minecraft.data.BlockFamily MANGROVE_PLANKS;
+  public static final net.minecraft.data.BlockFamily BAMBOO_PLANKS;
+  public static final net.minecraft.data.BlockFamily BAMBOO_MOSAIC;
+  public static final net.minecraft.data.BlockFamily MUD_BRICKS;
+  public static final net.minecraft.data.BlockFamily ANDESITE;
+  public static final net.minecraft.data.BlockFamily POLISHED_ANDESITE;
+  public static final net.minecraft.data.BlockFamily BLACKSTONE;
+  public static final net.minecraft.data.BlockFamily POLISHED_BLACKSTONE;
+  public static final net.minecraft.data.BlockFamily POLISHED_BLACKSTONE_BRICKS;
+  public static final net.minecraft.data.BlockFamily BRICKS;
+  public static final net.minecraft.data.BlockFamily END_STONE;
+  public static final net.minecraft.data.BlockFamily END_STONE_BRICKS;
+  public static final net.minecraft.data.BlockFamily MOSSY_STONE_BRICKS;
+  public static final net.minecraft.world.level.block.WeatheringCopperCollection<net.minecraft.data.BlockFamily> CUT_COPPER;
+  public static final net.minecraft.world.level.block.WeatheringCopperCollection<net.minecraft.data.BlockFamily> COPPER_BLOCK;
+  public static final net.minecraft.data.BlockFamily COBBLESTONE;
+  public static final net.minecraft.data.BlockFamily MOSSY_COBBLESTONE;
+  public static final net.minecraft.data.BlockFamily DIORITE;
+  public static final net.minecraft.data.BlockFamily POLISHED_DIORITE;
+  public static final net.minecraft.data.BlockFamily GRANITE;
+  public static final net.minecraft.data.BlockFamily SULFUR;
+  public static final net.minecraft.data.BlockFamily POLISHED_SULFUR;
+  public static final net.minecraft.data.BlockFamily SULFUR_BRICKS;
+  public static final net.minecraft.data.BlockFamily CINNABAR;
+  public static final net.minecraft.data.BlockFamily POLISHED_CINNABAR;
+  public static final net.minecraft.data.BlockFamily CINNABAR_BRICKS;
+  public static final net.minecraft.data.BlockFamily POLISHED_GRANITE;
+  public static final net.minecraft.data.BlockFamily TUFF;
+  public static final net.minecraft.data.BlockFamily POLISHED_TUFF;
+  public static final net.minecraft.data.BlockFamily TUFF_BRICKS;
+  public static final net.minecraft.data.BlockFamily RESIN_BRICKS;
+  public static final net.minecraft.data.BlockFamily NETHER_BRICKS;
+  public static final net.minecraft.data.BlockFamily RED_NETHER_BRICKS;
+  public static final net.minecraft.data.BlockFamily PRISMARINE;
+  public static final net.minecraft.data.BlockFamily PRISMARINE_BRICKS;
+  public static final net.minecraft.data.BlockFamily DARK_PRISMARINE;
+  public static final net.minecraft.data.BlockFamily PURPUR;
+  public static final net.minecraft.data.BlockFamily QUARTZ;
+  public static final net.minecraft.data.BlockFamily SMOOTH_QUARTZ;
+  public static final net.minecraft.data.BlockFamily SANDSTONE;
+  public static final net.minecraft.data.BlockFamily CUT_SANDSTONE;
+  public static final net.minecraft.data.BlockFamily SMOOTH_SANDSTONE;
+  public static final net.minecraft.data.BlockFamily RED_SANDSTONE;
+  public static final net.minecraft.data.BlockFamily CUT_RED_SANDSTONE;
+  public static final net.minecraft.data.BlockFamily SMOOTH_RED_SANDSTONE;
+  public static final net.minecraft.data.BlockFamily STONE;
+  public static final net.minecraft.data.BlockFamily STONE_BRICK;
+  public static final net.minecraft.data.BlockFamily DEEPSLATE;
+  public static final net.minecraft.data.BlockFamily COBBLED_DEEPSLATE;
+  public static final net.minecraft.data.BlockFamily POLISHED_DEEPSLATE;
+  public static final net.minecraft.data.BlockFamily DEEPSLATE_BRICKS;
+  public static final net.minecraft.data.BlockFamily DEEPSLATE_TILES;
+  public static final net.minecraft.world.level.block.ColorCollection<net.minecraft.data.BlockFamily> WOOL;
+  public static final net.minecraft.world.level.block.ColorCollection<net.minecraft.data.BlockFamily> CONCRETE;
+  public net.minecraft.data.BlockFamilies();
+  public static net.minecraft.data.BlockFamily$Builder familyBuilder(net.minecraft.world.level.block.Block);
+  public static java.util.stream.Stream<net.minecraft.data.BlockFamily> getAllFamilies();
+  public static net.minecraft.data.BlockFamily getFamily(net.minecraft.world.level.block.Block);
+}
+Compiled from "DataProvider.java"
+public interface net.minecraft.data.DataProvider {
+  public static final java.util.function.ToIntFunction<java.lang.String> FIXED_ORDER_FIELDS;
+  public static final java.util.Comparator<java.lang.String> KEY_COMPARATOR;
+  public static final org.slf4j.Logger LOGGER;
+  public abstract java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public abstract java.lang.String getName();
+  public static <T> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput, com.mojang.serialization.Codec<T>, net.minecraft.data.PackOutput$PathProvider, java.util.Map<net.minecraft.resources.Identifier, T>);
+  public static <T, E> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput, com.mojang.serialization.Codec<E>, java.util.function.Function<T, java.nio.file.Path>, java.util.Map<T, E>);
+  public static <T, E> java.util.concurrent.CompletableFuture<?> saveAll(net.minecraft.data.CachedOutput, java.util.function.Function<E, com.google.gson.JsonElement>, java.util.function.Function<T, java.nio.file.Path>, java.util.Map<T, E>);
+  public static <T> java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput, net.minecraft.core.HolderLookup$Provider, com.mojang.serialization.Codec<T>, T, java.nio.file.Path);
+  public static <T> java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput, com.mojang.serialization.Codec<T>, T, java.nio.file.Path);
+  public static java.util.concurrent.CompletableFuture<?> saveStable(net.minecraft.data.CachedOutput, com.google.gson.JsonElement, java.nio.file.Path);
+}
+Compiled from "BlockFamily.java"
+public class net.minecraft.data.BlockFamily {
+  public net.minecraft.world.level.block.Block getBaseBlock();
+  public java.util.Map<net.minecraft.data.BlockFamily$Variant, net.minecraft.world.level.block.Block> getVariants();
+  public net.minecraft.world.level.block.Block get(net.minecraft.data.BlockFamily$Variant);
+  public boolean shouldGenerateModel();
+  public boolean shouldGenerateCraftingRecipe();
+  public boolean shouldGenerateSmeltingRecipe();
+  public boolean shouldGenerateStonecutterRecipe();
+  public java.util.Optional<java.lang.String> getRecipeGroupPrefix();
+  public java.util.Optional<java.lang.String> getRecipeUnlockedBy();
+}
+Compiled from "HashCache.java"
+final class net.minecraft.data.HashCache$ProviderCacheBuilder extends java.lang.Record {
+  public net.minecraft.data.HashCache$ProviderCacheBuilder(java.lang.String);
+  public void put(java.nio.file.Path, com.google.common.hash.HashCode);
+  public net.minecraft.data.HashCache$ProviderCache build();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String version();
+  public java.util.concurrent.ConcurrentMap<java.nio.file.Path, com.google.common.hash.HashCode> data();
+}
+Compiled from "HashCache.java"
+final class net.minecraft.data.HashCache$ProviderCache extends java.lang.Record {
+  public com.google.common.hash.HashCode get(java.nio.file.Path);
+  public int count();
+  public static net.minecraft.data.HashCache$ProviderCache load(java.nio.file.Path, java.nio.file.Path) throws java.io.IOException;
+  public void save(java.nio.file.Path, java.nio.file.Path, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String version();
+  public com.google.common.collect.ImmutableMap<java.nio.file.Path, com.google.common.hash.HashCode> data();
+}
+Compiled from "PackOutput.java"
+public class net.minecraft.data.PackOutput$PathProvider {
+  public java.nio.file.Path file(net.minecraft.resources.Identifier, java.lang.String);
+  public java.nio.file.Path json(net.minecraft.resources.Identifier);
+  public java.nio.file.Path json(net.minecraft.resources.ResourceKey<?>);
+}
+Compiled from "AtlasIds.java"
+public class net.minecraft.data.AtlasIds {
+  public static final net.minecraft.resources.Identifier BANNER_PATTERNS;
+  public static final net.minecraft.resources.Identifier BLOCKS;
+  public static final net.minecraft.resources.Identifier ITEMS;
+  public static final net.minecraft.resources.Identifier CHESTS;
+  public static final net.minecraft.resources.Identifier DECORATED_POT;
+  public static final net.minecraft.resources.Identifier GUI;
+  public static final net.minecraft.resources.Identifier MAP_DECORATIONS;
+  public static final net.minecraft.resources.Identifier PAINTINGS;
+  public static final net.minecraft.resources.Identifier PARTICLES;
+  public static final net.minecraft.resources.Identifier SHIELD_PATTERNS;
+  public static final net.minecraft.resources.Identifier SHULKER_BOXES;
+  public static final net.minecraft.resources.Identifier CELESTIALS;
+  public net.minecraft.data.AtlasIds();
+}
+Compiled from "BlockFamily.java"
+public class net.minecraft.data.BlockFamily$Builder {
+  public net.minecraft.data.BlockFamily$Builder(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily getFamily();
+  public net.minecraft.data.BlockFamily$Builder button(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder carpet(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder chiseled(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder mosaic(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder cracked(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder tiles(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder pillar(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder cut(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder door(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder customFence(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder fence(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder customFenceGate(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder fenceGate(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder sign(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder customHangingSign(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder hangingSign(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder log(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder strippedLog(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder slab(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder stairs(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder pressurePlate(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder polished(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder trapdoor(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder wall(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder cobbled(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder bricks(net.minecraft.world.level.block.Block);
+  public net.minecraft.data.BlockFamily$Builder dontGenerateModel();
+  public net.minecraft.data.BlockFamily$Builder dontGenerateCraftingRecipe();
+  public net.minecraft.data.BlockFamily$Builder dontGenerateSmeltingRecipe();
+  public net.minecraft.data.BlockFamily$Builder generateStonecutterRecipe();
+  public net.minecraft.data.BlockFamily$Builder recipeGroupPrefix(java.lang.String);
+  public net.minecraft.data.BlockFamily$Builder recipeUnlockedBy(java.lang.String);
+}
+Compiled from "BlockFamily.java"
+public class net.minecraft.data.BlockFamily$Variant extends java.lang.Enum<net.minecraft.data.BlockFamily$Variant> {
+  public static final net.minecraft.data.BlockFamily$Variant BUTTON;
+  public static final net.minecraft.data.BlockFamily$Variant CARPET;
+  public static final net.minecraft.data.BlockFamily$Variant CHISELED;
+  public static final net.minecraft.data.BlockFamily$Variant CRACKED;
+  public static final net.minecraft.data.BlockFamily$Variant CUT;
+  public static final net.minecraft.data.BlockFamily$Variant DOOR;
+  public static final net.minecraft.data.BlockFamily$Variant CUSTOM_FENCE;
+  public static final net.minecraft.data.BlockFamily$Variant FENCE;
+  public static final net.minecraft.data.BlockFamily$Variant CUSTOM_FENCE_GATE;
+  public static final net.minecraft.data.BlockFamily$Variant FENCE_GATE;
+  public static final net.minecraft.data.BlockFamily$Variant CUSTOM_HANGING_SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant HANGING_SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant LOG;
+  public static final net.minecraft.data.BlockFamily$Variant STRIPPED_LOG;
+  public static final net.minecraft.data.BlockFamily$Variant MOSAIC;
+  public static final net.minecraft.data.BlockFamily$Variant SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant SLAB;
+  public static final net.minecraft.data.BlockFamily$Variant STAIRS;
+  public static final net.minecraft.data.BlockFamily$Variant PRESSURE_PLATE;
+  public static final net.minecraft.data.BlockFamily$Variant POLISHED;
+  public static final net.minecraft.data.BlockFamily$Variant TRAPDOOR;
+  public static final net.minecraft.data.BlockFamily$Variant WALL;
+  public static final net.minecraft.data.BlockFamily$Variant WALL_SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant CUSTOM_WALL_HANGING_SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant WALL_HANGING_SIGN;
+  public static final net.minecraft.data.BlockFamily$Variant BRICKS;
+  public static final net.minecraft.data.BlockFamily$Variant COBBLED;
+  public static final net.minecraft.data.BlockFamily$Variant TILES;
+  public static final net.minecraft.data.BlockFamily$Variant PILLAR;
+  public static net.minecraft.data.BlockFamily$Variant[] values();
+  public static net.minecraft.data.BlockFamily$Variant valueOf(java.lang.String);
+  public java.lang.String getRecipeGroup();
+  public java.lang.String getPrefixedRecipeGroup(java.lang.String);
+  public net.minecraft.data.BlockFamily$Variant getBaseVariantForCrafting();
+}
+Compiled from "HashCache.java"
+class net.minecraft.data.HashCache$CacheUpdater implements net.minecraft.data.CachedOutput {
+  public void writeIfNeeded(java.nio.file.Path, byte[], com.google.common.hash.HashCode) throws java.io.IOException;
+  public net.minecraft.data.HashCache$UpdateResult close();
+}
+Compiled from "HashCache.java"
+public final class net.minecraft.data.HashCache$UpdateResult extends java.lang.Record {
+  public net.minecraft.data.HashCache$UpdateResult(java.lang.String, net.minecraft.data.HashCache$ProviderCache, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String providerId();
+  public net.minecraft.data.HashCache$ProviderCache cache();
+  public int writes();
+}
+Compiled from "DataGenerator.java"
+public abstract class net.minecraft.data.DataGenerator {
+  protected final net.minecraft.data.PackOutput vanillaPackOutput;
+  protected final java.util.Set<java.lang.String> allProviderIds;
+  protected final java.util.Map<java.lang.String, net.minecraft.data.DataProvider> providersToRun;
+  public net.minecraft.data.DataGenerator(java.nio.file.Path);
+  public abstract void run() throws java.io.IOException;
+  public net.minecraft.data.DataGenerator$PackGenerator getVanillaPack(boolean);
+  public net.minecraft.data.DataGenerator$PackGenerator getBuiltinDatapack(boolean, java.lang.String);
+}
+Compiled from "DataGenerator.java"
+public class net.minecraft.data.DataGenerator$Uncached extends net.minecraft.data.DataGenerator {
+  public net.minecraft.data.DataGenerator$Uncached(java.nio.file.Path);
+  public void run() throws java.io.IOException;
+}
+Compiled from "DataGenerator.java"
+public class net.minecraft.data.DataGenerator$PackGenerator {
+  public <T extends net.minecraft.data.DataProvider> T addProvider(net.minecraft.data.DataProvider$Factory<T>);
+}
+Compiled from "DataGenerator.java"
+public class net.minecraft.data.DataGenerator$Cached extends net.minecraft.data.DataGenerator {
+  public net.minecraft.data.DataGenerator$Cached(java.nio.file.Path, net.minecraft.WorldVersion, boolean);
+  public void run() throws java.io.IOException;
+}
+Compiled from "Main.java"
+public class net.minecraft.data.Main {
+  public net.minecraft.data.Main();
+  public static void main(java.lang.String[]) throws java.io.IOException;
+  public static void addServerConverters(net.minecraft.data.DataGenerator, java.util.Collection<java.nio.file.Path>, boolean, boolean);
+  public static void addServerDefinitionProviders(net.minecraft.data.DataGenerator, boolean, boolean);
+}
+Compiled from "CachedOutput.java"
+public interface net.minecraft.data.CachedOutput {
+  public static final net.minecraft.data.CachedOutput NO_CACHE;
+  public abstract void writeIfNeeded(java.nio.file.Path, byte[], com.google.common.hash.HashCode) throws java.io.IOException;
+}
+Compiled from "HashCache.java"
+public class net.minecraft.data.HashCache {
+  public net.minecraft.data.HashCache(java.nio.file.Path, java.util.Collection<java.lang.String>, net.minecraft.WorldVersion) throws java.io.IOException;
+  public boolean shouldRunInThisVersion(java.lang.String);
+  public java.util.concurrent.CompletableFuture<net.minecraft.data.HashCache$UpdateResult> generateUpdate(java.lang.String, net.minecraft.data.HashCache$UpdateFunction);
+  public void applyUpdate(net.minecraft.data.HashCache$UpdateResult);
+  public void purgeStaleAndWrite() throws java.io.IOException;
+}
+Compiled from "HashCache.java"
+public interface net.minecraft.data.HashCache$UpdateFunction {
+  public abstract java.util.concurrent.CompletableFuture<?> update(net.minecraft.data.CachedOutput);
+}
+Compiled from "PackOutput.java"
+public class net.minecraft.data.PackOutput {
+  public net.minecraft.data.PackOutput(java.nio.file.Path);
+  public java.nio.file.Path getOutputFolder();
+  public java.nio.file.Path getOutputFolder(net.minecraft.data.PackOutput$Target);
+  public net.minecraft.data.PackOutput$PathProvider createPathProvider(net.minecraft.data.PackOutput$Target, java.lang.String);
+  public net.minecraft.data.PackOutput$PathProvider createRegistryElementsPathProvider(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+  public net.minecraft.data.PackOutput$PathProvider createRegistryTagsPathProvider(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+  public net.minecraft.data.PackOutput$PathProvider createRegistryComponentPathProvider(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+}
+Compiled from "DataProvider.java"
+public interface net.minecraft.data.DataProvider$Factory<T extends net.minecraft.data.DataProvider> {
+  public abstract T create(net.minecraft.data.PackOutput);
+}
+Compiled from "package-info.java"
+interface net.minecraft.data.package-info {
+}

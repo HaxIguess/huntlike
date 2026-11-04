@@ -1,0 +1,86 @@
+Compiled from "IRecipeTransferContext.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferContext<R, C extends net.minecraft.world.inventory.AbstractContainerMenu> {
+  public abstract int getTransferId();
+  public abstract void completeRecipeTransfer(mezz.jei.api.recipe.transfer.RecipeTransferResult);
+  public abstract R getRecipe();
+  public abstract mezz.jei.api.recipe.types.IRecipeType<R> getRecipeType();
+  public abstract C getContainer();
+  public abstract net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<C> getScreen();
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotsView getRecipeSlots();
+  public abstract net.minecraft.world.entity.player.Player getPlayer();
+  public abstract boolean isMaxTransfer();
+}
+Compiled from "IRecipeTransferError.java"
+public final class mezz.jei.api.recipe.transfer.IRecipeTransferError$Type extends java.lang.Enum<mezz.jei.api.recipe.transfer.IRecipeTransferError$Type> {
+  public static final mezz.jei.api.recipe.transfer.IRecipeTransferError$Type INTERNAL;
+  public static final mezz.jei.api.recipe.transfer.IRecipeTransferError$Type USER_FACING;
+  public static final mezz.jei.api.recipe.transfer.IRecipeTransferError$Type COSMETIC;
+  public final boolean allowsTransfer;
+  public static mezz.jei.api.recipe.transfer.IRecipeTransferError$Type[] values();
+  public static mezz.jei.api.recipe.transfer.IRecipeTransferError$Type valueOf(java.lang.String);
+}
+Compiled from "IRecipeTransferError.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferError {
+  public static final int DEFAULT_BUTTON_HIGHLIGHT_COLOR;
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError$Type getType();
+  public default int getButtonHighlightColor();
+  public default void showError(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, mezz.jei.api.gui.ingredient.IRecipeSlotsView, int, int);
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public default int getMissingCountHint();
+}
+Compiled from "IRecipeTransferHandler.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferHandler<C extends net.minecraft.world.inventory.AbstractContainerMenu, R> {
+  public abstract java.lang.Class<? extends C> getContainerClass();
+  public abstract java.util.Optional<net.minecraft.world.inventory.MenuType<C>> getMenuType();
+  public abstract mezz.jei.api.recipe.types.IRecipeType<R> getRecipeType();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError transferRecipe(C, R, mezz.jei.api.gui.ingredient.IRecipeSlotsView, net.minecraft.world.entity.player.Player, boolean, boolean);
+  public default mezz.jei.api.recipe.transfer.IRecipeTransferError transferRecipe(mezz.jei.api.recipe.transfer.IRecipeTransferContext<R, C>, boolean);
+}
+Compiled from "IRecipeTransferHandlerHelper.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferHandlerHelper {
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError createInternalError();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError createUserErrorWithTooltip(net.minecraft.network.chat.Component);
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError createUserErrorForMissingSlots(net.minecraft.network.chat.Component, java.util.Collection<mezz.jei.api.gui.ingredient.IRecipeSlotView>);
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> mezz.jei.api.recipe.transfer.IRecipeTransferInfo<C, R> createBasicRecipeTransferInfo(java.lang.Class<? extends C>, net.minecraft.world.inventory.MenuType<C>, mezz.jei.api.recipe.types.IRecipeType<R>, int, int, int, int);
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> mezz.jei.api.recipe.transfer.IRecipeTransferHandler<C, R> createUnregisteredRecipeTransferHandler(mezz.jei.api.recipe.transfer.IRecipeTransferInfo<C, R>);
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotsView createRecipeSlotsView(java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotView>);
+  public abstract boolean recipeTransferHasServerSupport();
+  public abstract java.util.Map<java.lang.Integer, net.minecraft.world.item.crafting.display.SlotDisplay> getGuiSlotIndexToIngredientMap(net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CraftingRecipe>);
+}
+Compiled from "IRecipeTransferInfo.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferInfo<C extends net.minecraft.world.inventory.AbstractContainerMenu, R> {
+  public abstract java.lang.Class<? extends C> getContainerClass();
+  public abstract java.util.Optional<net.minecraft.world.inventory.MenuType<C>> getMenuType();
+  public abstract mezz.jei.api.recipe.types.IRecipeType<R> getRecipeType();
+  public abstract boolean canHandle(C, R);
+  public default mezz.jei.api.recipe.transfer.IRecipeTransferError getHandlingError(C, R);
+  public abstract java.util.List<net.minecraft.world.inventory.Slot> getRecipeSlots(C, R);
+  public abstract java.util.List<net.minecraft.world.inventory.Slot> getInventorySlots(C, R);
+  public default boolean requireCompleteSets(C, R);
+}
+Compiled from "IRecipeTransferListener.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferListener {
+  public default void beforeRecipeTransfer(mezz.jei.api.recipe.transfer.IRecipeTransferContext<?, ?>);
+  public default void afterRecipeTransfer(mezz.jei.api.recipe.transfer.IRecipeTransferContext<?, ?>, mezz.jei.api.recipe.transfer.RecipeTransferResult);
+}
+Compiled from "IRecipeTransferManager.java"
+public interface mezz.jei.api.recipe.transfer.IRecipeTransferManager {
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> java.util.Optional<mezz.jei.api.recipe.transfer.IRecipeTransferHandler<C, R>> getRecipeTransferHandler(C, mezz.jei.api.recipe.category.IRecipeCategory<R>);
+  public abstract java.util.List<mezz.jei.api.recipe.transfer.IRecipeTransferListener> getRecipeTransferListeners();
+}
+Compiled from "IUniversalRecipeTransferHandler.java"
+public interface mezz.jei.api.recipe.transfer.IUniversalRecipeTransferHandler<C extends net.minecraft.world.inventory.AbstractContainerMenu> {
+  public abstract java.lang.Class<? extends C> getContainerClass();
+  public abstract java.util.Optional<net.minecraft.world.inventory.MenuType<C>> getMenuType();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferError transferRecipe(C, java.lang.Object, mezz.jei.api.gui.ingredient.IRecipeSlotsView, net.minecraft.world.entity.player.Player, boolean, boolean);
+}
+Compiled from "RecipeTransferResult.java"
+public final class mezz.jei.api.recipe.transfer.RecipeTransferResult extends java.lang.Enum<mezz.jei.api.recipe.transfer.RecipeTransferResult> {
+  public static final mezz.jei.api.recipe.transfer.RecipeTransferResult SUCCESS;
+  public static final mezz.jei.api.recipe.transfer.RecipeTransferResult REJECTED;
+  public static mezz.jei.api.recipe.transfer.RecipeTransferResult[] values();
+  public static mezz.jei.api.recipe.transfer.RecipeTransferResult valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.recipe.transfer.package-info {
+}

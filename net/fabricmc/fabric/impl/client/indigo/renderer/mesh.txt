@@ -1,0 +1,191 @@
+Compiled from "EncodingFormat.java"
+public final class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.EncodingFormat {
+  public static final int HEADER_STRIDE;
+  public static final int VERTEX_STRIDE;
+  public static final int QUAD_STRIDE;
+  public static final int QUAD_STRIDE_BYTES;
+  public static final int TOTAL_STRIDE;
+}
+Compiled from "ItemGlintRenderType.java"
+final class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType extends java.lang.Enum<net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType> {
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType CUTOUT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType TRANSLUCENT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType CUTOUT_BLOCK;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType TRANSLUCENT_BLOCK;
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType[] values();
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintRenderType valueOf(java.lang.String);
+}
+Compiled from "ItemGlintSpecialRenderType.java"
+final class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType extends java.lang.Enum<net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType> {
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType CUTOUT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType TRANSLUCENT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType CUTOUT_BLOCK;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType TRANSLUCENT_BLOCK;
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType[] values();
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemGlintSpecialRenderType valueOf(java.lang.String);
+}
+Compiled from "ItemRenderType.java"
+final class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType extends java.lang.Enum<net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType> {
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType CUTOUT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType TRANSLUCENT;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType CUTOUT_BLOCK;
+  public static final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType TRANSLUCENT_BLOCK;
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType[] values();
+  public static net.fabricmc.fabric.impl.client.indigo.renderer.mesh.ItemRenderType valueOf(java.lang.String);
+}
+Compiled from "MeshImpl.java"
+public class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MeshImpl extends net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MeshViewImpl implements net.fabricmc.fabric.api.client.renderer.v1.mesh.Mesh {
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MeshImpl(int[]);
+}
+Compiled from "MeshViewImpl.java"
+public class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MeshViewImpl implements net.fabricmc.fabric.api.client.renderer.v1.mesh.MeshView {
+  public int size();
+  public void forEach(java.util.function.Consumer<? super net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView>);
+  public void outputTo(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter);
+}
+Compiled from "MutableMeshImpl.java"
+public class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableMeshImpl extends net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MeshViewImpl implements net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableMesh {
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableMeshImpl();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emitter();
+  public void forEachMutable(java.util.function.Consumer<? super net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView>);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.Mesh immutableCopy();
+  public void clear();
+}
+Compiled from "MutableQuadViewImpl.java"
+public abstract class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl extends net.fabricmc.fabric.impl.client.indigo.renderer.mesh.QuadViewImpl implements net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter {
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl();
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl pos(int, float, float, float);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl translate(float, float, float);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl color(int, int);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl uv(int, float, float);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl lightmap(int, int);
+  protected final void normalFlags(int);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl normal(int, float, float, float);
+  public final void populateMissingNormals();
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl nominalFace(net.minecraft.core.Direction);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl cullFace(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl emissive(boolean);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl shadeDirectionOverride(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl animated(boolean);
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl tintIndex(int);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl tag(int);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl clear();
+  public void pushTransform(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadTransform);
+  public void popTransform();
+  protected abstract void emitDirectly();
+  public final void transformAndEmit();
+  public final net.fabricmc.fabric.impl.client.indigo.renderer.mesh.MutableQuadViewImpl emit();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emit();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter clear();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter tag(int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter tintIndex(int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter animated(boolean);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter shadeDirectionOverride(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emissive(boolean);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter cullFace(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter nominalFace(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter normal(int, float, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter lightmap(int, int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter uv(int, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter color(int, int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter translate(float, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter pos(int, float, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView clear();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tag(int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tintIndex(int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView animated(boolean);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeDirectionOverride(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView emissive(boolean);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView cullFace(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView nominalFace(net.minecraft.core.Direction);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, float, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView lightmap(int, int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView color(int, int);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView translate(float, float, float);
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, float, float, float);
+}
+Compiled from "QuadViewImpl.java"
+public class net.fabricmc.fabric.impl.client.indigo.renderer.mesh.QuadViewImpl implements net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView {
+  protected net.minecraft.core.Direction nominalFace;
+  protected boolean isGeometryInvalid;
+  protected final org.joml.Vector3f faceNormal;
+  protected int[] data;
+  protected int baseIndex;
+  public net.fabricmc.fabric.impl.client.indigo.renderer.mesh.QuadViewImpl();
+  public final void load();
+  protected final void computeGeometry();
+  public final int geometryFlags();
+  public final float x(int);
+  public final float y(int);
+  public final float z(int);
+  public final float posByIndex(int, int);
+  public final org.joml.Vector3f copyPos(int, org.joml.Vector3f);
+  public final int color(int);
+  public final float u(int);
+  public final float v(int);
+  public final org.joml.Vector2f copyUv(int, org.joml.Vector2f);
+  public final int lightmap(int);
+  public final int normalFlags();
+  public final boolean hasNormal(int);
+  public final boolean hasVertexNormals();
+  public final boolean hasAllVertexNormals();
+  protected final int normalIndex(int);
+  public final float normalX(int);
+  public final float normalY(int);
+  public final float normalZ(int);
+  public final org.joml.Vector3f copyNormal(int, org.joml.Vector3f);
+  public final int packedFaceNormal();
+  public final org.joml.Vector3fc faceNormal();
+  public final net.minecraft.core.Direction lightFace();
+  public final net.minecraft.core.Direction nominalFace();
+  public final net.minecraft.core.Direction cullFace();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas atlas();
+  public net.minecraft.client.renderer.chunk.ChunkSectionLayer chunkLayer();
+  public net.minecraft.client.renderer.rendertype.RenderType itemRenderType();
+  public net.minecraft.client.renderer.rendertype.RenderType itemGlintRenderType();
+  public net.minecraft.client.renderer.rendertype.RenderType itemGlintSpecialRenderType();
+  public boolean emissive();
+  public net.minecraft.core.Direction shadeDirectionOverride();
+  public net.fabricmc.fabric.api.util.TriState ambientOcclusion();
+  public net.minecraft.client.renderer.item.ItemStackRenderState$FoilType foilType();
+  public net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode shadeMode();
+  public boolean animated();
+  public final int tintIndex();
+  public final int tag();
+  public final void buffer(int, com.mojang.blaze3d.vertex.VertexConsumer);
+  public final void buffer(int, com.mojang.blaze3d.vertex.PoseStack$Pose, com.mojang.blaze3d.vertex.VertexConsumer);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.client.indigo.renderer.mesh.package-info {
+}

@@ -1,0 +1,40 @@
+Compiled from "ClientConnectionHelper.java"
+public final class mezz.jei.common.network.ClientConnectionHelper {
+  public static java.lang.String getServerBrand();
+  public static boolean hasServerBrand(java.lang.String);
+  public static net.minecraft.client.multiplayer.ClientPacketListener getConnectedClientPacketListener();
+}
+Compiled from "ClientPacketContext.java"
+public final class mezz.jei.common.network.ClientPacketContext extends java.lang.Record {
+  public mezz.jei.common.network.ClientPacketContext(net.minecraft.client.player.LocalPlayer, mezz.jei.common.network.IConnectionToServer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.player.LocalPlayer player();
+  public mezz.jei.common.network.IConnectionToServer connection();
+}
+Compiled from "IConnectionToClient.java"
+public interface mezz.jei.common.network.IConnectionToClient {
+  public abstract <T extends mezz.jei.common.network.packets.PlayToClientPacket<T>> void sendPacketToClient(T, net.minecraft.server.level.ServerPlayer);
+}
+Compiled from "IConnectionToServer.java"
+public interface mezz.jei.common.network.IConnectionToServer {
+  public abstract boolean isJeiOnServer();
+  public abstract boolean isSameModLoader();
+  public abstract boolean canSendPacket(net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<?>);
+  public abstract <T extends mezz.jei.common.network.packets.PlayToServerPacket<T>> void sendPacketToServer(T);
+  public abstract void onRuntimeStopped();
+}
+Compiled from "ServerPacketContext.java"
+public final class mezz.jei.common.network.ServerPacketContext extends java.lang.Record {
+  public mezz.jei.common.network.ServerPacketContext(net.minecraft.server.level.ServerPlayer, mezz.jei.common.config.IServerConfig, mezz.jei.common.network.IConnectionToClient);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.level.ServerPlayer player();
+  public mezz.jei.common.config.IServerConfig serverConfig();
+  public mezz.jei.common.network.IConnectionToClient connection();
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.network.package-info {
+}

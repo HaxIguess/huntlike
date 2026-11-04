@@ -1,0 +1,108 @@
+Compiled from "DynamicRegistriesImpl.java"
+public final class net.fabricmc.fabric.impl.registry.sync.DynamicRegistriesImpl {
+  public static final java.util.Set<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> FABRIC_DYNAMIC_REGISTRY_KEYS;
+  public static final java.util.Set<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> SKIP_EMPTY_SYNC_REGISTRIES;
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getAllDynamicRegistries();
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getWorldRegistries();
+  public static java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> getReloadableRegistries();
+  public static <T> void register(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>);
+  public static <T> void addSyncedRegistry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>, net.fabricmc.fabric.api.event.registry.DynamicRegistries$SyncOption...);
+  public static <T> void registerReloadable(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>);
+}
+Compiled from "DynamicRegistryViewImpl.java"
+public final class net.fabricmc.fabric.impl.registry.sync.DynamicRegistryViewImpl implements net.fabricmc.fabric.api.event.registry.DynamicRegistryView {
+  public net.fabricmc.fabric.impl.registry.sync.DynamicRegistryViewImpl(java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.core.Registry<?>>);
+  public net.minecraft.core.RegistryAccess asRegistryAccess();
+  public java.util.stream.Stream<net.minecraft.core.Registry<?>> stream();
+  public <T> java.util.Optional<net.minecraft.core.Registry<T>> getOptional(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public <T> void registerEntryAdded(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>, net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback<T>);
+}
+Compiled from "FabricRegistryInit.java"
+public class net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit implements net.fabricmc.api.ModInitializer {
+  public net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit();
+  public void onInitialize();
+}
+Compiled from "ListenableRegistry.java"
+public interface net.fabricmc.fabric.impl.registry.sync.ListenableRegistry<T> {
+  public abstract net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback<T>> fabric_getAddObjectEvent();
+  public abstract net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback<T>> fabric_getRemapEvent();
+  public static <T> net.fabricmc.fabric.impl.registry.sync.ListenableRegistry<T> get(net.minecraft.core.Registry<T>);
+}
+Compiled from "RegistryAttributeImpl.java"
+public final class net.fabricmc.fabric.impl.registry.sync.RegistryAttributeImpl implements net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder {
+  public static net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder getHolder(net.minecraft.resources.ResourceKey<?>);
+  public net.fabricmc.fabric.api.event.registry.RegistryAttributeHolder addAttribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+  public void removeAttribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+  public boolean hasAttribute(net.fabricmc.fabric.api.event.registry.RegistryAttribute);
+  public java.util.EnumSet<net.fabricmc.fabric.api.event.registry.RegistryAttribute> getAttributes();
+}
+Compiled from "RegistryMapSerializer.java"
+public class net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer {
+  public static final int VERSION;
+  public net.fabricmc.fabric.impl.registry.sync.RegistryMapSerializer();
+  public static java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>> fromNbt(net.minecraft.nbt.CompoundTag);
+  public static net.minecraft.nbt.CompoundTag toNbt(java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>>);
+}
+Compiled from "RegistrySyncManager.java"
+public final class net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager$SyncConfigurationTask extends java.lang.Record implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type KEY;
+  public net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager$SyncConfigurationTask(net.minecraft.server.network.ServerConfigurationPacketListenerImpl, java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>>);
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.network.ServerConfigurationPacketListenerImpl handler();
+  public java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>> map();
+}
+Compiled from "RegistrySyncManager.java"
+public final class net.fabricmc.fabric.impl.registry.sync.RegistrySyncManager {
+  public static final boolean DEBUG;
+  public static boolean postBootstrap;
+  public static void configureClient(net.minecraft.server.network.ServerConfigurationPacketListenerImpl, net.minecraft.server.MinecraftServer);
+  public static java.util.Map<net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>> createAndPopulateRegistryMap();
+  public static void bootstrapRegistries();
+}
+Compiled from "RemapException.java"
+public class net.fabricmc.fabric.impl.registry.sync.RemapException extends java.lang.Exception {
+  public net.fabricmc.fabric.impl.registry.sync.RemapException(java.lang.String);
+  public net.fabricmc.fabric.impl.registry.sync.RemapException(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getComponent();
+}
+Compiled from "RemapStateImpl.java"
+public class net.fabricmc.fabric.impl.registry.sync.RemapStateImpl<T> implements net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback$RemapState<T> {
+  public net.fabricmc.fabric.impl.registry.sync.RemapStateImpl(net.minecraft.core.Registry<T>, it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.resources.Identifier>, it.unimi.dsi.fastutil.ints.Int2IntMap);
+  public it.unimi.dsi.fastutil.ints.Int2IntMap getRawIdChangeMap();
+  public net.minecraft.resources.Identifier getIdFromOld(int);
+  public net.minecraft.resources.Identifier getIdFromNew(int);
+}
+Compiled from "RemappableRegistry.java"
+public final class net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode extends java.lang.Enum<net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode> {
+  public static final net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode AUTHORITATIVE;
+  public static final net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode REMOTE;
+  public static net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode[] values();
+  public static net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode valueOf(java.lang.String);
+}
+Compiled from "RemappableRegistry.java"
+public interface net.fabricmc.fabric.impl.registry.sync.RemappableRegistry {
+  public abstract void remap(it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.resources.Identifier>, net.fabricmc.fabric.impl.registry.sync.RemappableRegistry$RemapMode) throws net.fabricmc.fabric.impl.registry.sync.RemapException;
+  public abstract void unmap() throws net.fabricmc.fabric.impl.registry.sync.RemapException;
+}
+Compiled from "RemovableIdMapper.java"
+public interface net.fabricmc.fabric.impl.registry.sync.RemovableIdMapper<T> {
+  public abstract void fabric_clear();
+  public abstract void fabric_remove(T);
+  public abstract void fabric_removeId(int);
+  public abstract void fabric_remapId(int, int);
+  public abstract void fabric_remapIds(it.unimi.dsi.fastutil.ints.Int2IntMap);
+}
+Compiled from "SyncCompletePayload.java"
+public class net.fabricmc.fabric.impl.registry.sync.SyncCompletePayload implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.fabricmc.fabric.impl.registry.sync.SyncCompletePayload INSTANCE;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.registry.sync.SyncCompletePayload> ID;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.fabricmc.fabric.impl.registry.sync.SyncCompletePayload> CODEC;
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.registry.sync.package-info {
+}

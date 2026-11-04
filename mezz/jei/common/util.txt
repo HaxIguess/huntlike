@@ -1,0 +1,316 @@
+Compiled from "ChatUtil.java"
+public final class mezz.jei.common.util.ChatUtil {
+  public static void writeChatMessage(net.minecraft.world.entity.player.Player, java.lang.String, net.minecraft.ChatFormatting);
+  public static void writeChatMessage(net.minecraft.world.entity.player.Player, net.minecraft.network.chat.Component);
+}
+Compiled from "DeduplicatingRunner.java"
+public class mezz.jei.common.util.DeduplicatingRunner {
+  public mezz.jei.common.util.DeduplicatingRunner(java.time.Duration);
+  public mezz.jei.common.util.DeduplicatingRunner(java.time.Duration, mezz.jei.common.util.IDelayedExecutor);
+  public synchronized void run(java.lang.Runnable);
+}
+Compiled from "DelayedExecutor.java"
+final class mezz.jei.common.util.DelayedExecutor$ScheduledTask implements java.lang.Runnable {
+  public void run();
+  public java.lang.Runnable command();
+  public void setFuture(java.util.concurrent.Future<?>);
+  public boolean cancel();
+}
+Compiled from "DelayedExecutor.java"
+final class mezz.jei.common.util.DelayedExecutor$TrackedFuture<T> implements mezz.jei.common.util.DelegatedFuture<T> {
+  public java.util.concurrent.Future<T> getDelegate();
+  public boolean cancel(boolean);
+}
+Compiled from "DelayedExecutor.java"
+public final class mezz.jei.common.util.DelayedExecutor implements mezz.jei.common.util.IDelayedExecutor {
+  public mezz.jei.common.util.DelayedExecutor(java.time.Duration);
+  public mezz.jei.common.util.DelayedExecutor(java.time.Duration, java.util.concurrent.ScheduledExecutorService);
+  public java.util.concurrent.Future<?> schedule(java.lang.Runnable, java.time.Duration);
+  public void shutdown();
+}
+Compiled from "DelegatedFuture.java"
+public interface mezz.jei.common.util.DelegatedFuture<T> extends java.util.concurrent.Future<T> {
+  public abstract java.util.concurrent.Future<T> getDelegate();
+  public default boolean cancel(boolean);
+  public default boolean isCancelled();
+  public default boolean isDone();
+  public default T get() throws java.lang.InterruptedException, java.util.concurrent.ExecutionException;
+  public default T get(long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException, java.util.concurrent.ExecutionException, java.util.concurrent.TimeoutException;
+  public default T resultNow();
+  public default java.lang.Throwable exceptionNow();
+  public default java.util.concurrent.Future$State state();
+}
+Compiled from "ErrorUtil.java"
+public final class mezz.jei.common.util.ErrorUtil {
+  public static <T> java.lang.String getIngredientInfo(T, mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.runtime.IIngredientManager);
+  public static java.lang.String getItemStackInfo(net.minecraft.world.item.ItemStack);
+  public static void checkNotEmpty(net.minecraft.world.item.ItemStack, java.lang.String);
+  public static <T> void checkNotEmpty(T[], java.lang.String);
+  public static void checkNotEmpty(java.util.Collection<?>, java.lang.String);
+  public static <T> void checkNotNull(T, java.lang.String);
+  public static void checkNotNull(java.util.Collection<?>, java.lang.String);
+  public static void assertMainThread();
+  public static <T> void validateRecipes(mezz.jei.api.recipe.types.IRecipeType<T>, java.lang.Iterable<? extends T>);
+  public static <T> net.minecraft.CrashReport createIngredientCrashReport(java.lang.Throwable, java.lang.String, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.ITypedIngredient<T>);
+  public static <T> net.minecraft.CrashReport createIngredientCrashReport(java.lang.Throwable, java.lang.String, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientType<T>, T);
+  public static <T> void logIngredientCrash(java.lang.Throwable, java.lang.String, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientType<T>, T);
+  public static <T> java.lang.String getRecipeInfo(mezz.jei.api.gui.IRecipeLayoutDrawable<T>);
+  public static <T> java.lang.String getRecipeInfo(mezz.jei.api.recipe.category.IRecipeCategory<T>, T);
+}
+Compiled from "ExpandNewLineTextAcceptor.java"
+public class mezz.jei.common.util.ExpandNewLineTextAcceptor implements net.minecraft.network.chat.FormattedText$StyledContentConsumer<java.lang.Void> {
+  public mezz.jei.common.util.ExpandNewLineTextAcceptor();
+  public java.util.Optional<java.lang.Void> accept(net.minecraft.network.chat.Style, java.lang.String);
+  public void addLinesTo(java.util.List<net.minecraft.network.chat.FormattedText>);
+}
+Compiled from "IDelayedExecutor.java"
+public interface mezz.jei.common.util.IDelayedExecutor {
+  public abstract java.util.concurrent.Future<?> schedule(java.lang.Runnable, java.time.Duration);
+}
+Compiled from "ImmutablePoint2i.java"
+public final class mezz.jei.common.util.ImmutablePoint2i extends java.lang.Record {
+  public static final mezz.jei.common.util.ImmutablePoint2i ORIGIN;
+  public mezz.jei.common.util.ImmutablePoint2i(int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+}
+Compiled from "ImmutableRect2i.java"
+public final class mezz.jei.common.util.ImmutableRect2i extends java.lang.Record {
+  public static final mezz.jei.common.util.ImmutableRect2i EMPTY;
+  public mezz.jei.common.util.ImmutableRect2i(net.minecraft.client.renderer.Rect2i);
+  public mezz.jei.common.util.ImmutableRect2i(int, int, int, int);
+  public int getX();
+  public int getY();
+  public int getWidth();
+  public int getHeight();
+  public mezz.jei.common.util.ImmutableSize2i getSize();
+  public boolean isEmpty();
+  public boolean contains(mezz.jei.common.util.ImmutablePoint2i);
+  public boolean contains(double, double);
+  public boolean intersects(mezz.jei.common.util.ImmutableRect2i);
+  public mezz.jei.common.util.ImmutableRect2i moveRight(int);
+  public mezz.jei.common.util.ImmutableRect2i moveLeft(int);
+  public mezz.jei.common.util.ImmutableRect2i moveDown(int);
+  public mezz.jei.common.util.ImmutableRect2i moveUp(int);
+  public mezz.jei.common.util.ImmutableRect2i insetBy(int);
+  public mezz.jei.common.util.ImmutableRect2i expandBy(int);
+  public mezz.jei.common.util.ImmutableRect2i cropRight(int);
+  public mezz.jei.common.util.ImmutableRect2i cropLeft(int);
+  public mezz.jei.common.util.ImmutableRect2i cropBottom(int);
+  public mezz.jei.common.util.ImmutableRect2i cropTop(int);
+  public mezz.jei.common.util.ImmutableRect2i keepTop(int);
+  public mezz.jei.common.util.ImmutableRect2i keepBottom(int);
+  public mezz.jei.common.util.ImmutableRect2i keepRight(int);
+  public mezz.jei.common.util.ImmutableRect2i keepLeft(int);
+  public mezz.jei.common.util.ImmutableRect2i addOffset(int, int);
+  public mezz.jei.common.util.ImmutableRect2i setPosition(int, int);
+  public mezz.jei.common.util.ImmutableRect2i matchWidthAndX(mezz.jei.common.util.ImmutableRect2i);
+  public net.minecraft.client.renderer.Rect2i toMutable();
+  public net.minecraft.client.gui.navigation.ScreenRectangle toScreenRectangle();
+  public mezz.jei.common.util.ImmutablePoint2i getPosition();
+  public net.minecraft.client.gui.navigation.ScreenPosition getScreenPosition();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+  public int width();
+  public int height();
+}
+Compiled from "ImmutableSize2i.java"
+public final class mezz.jei.common.util.ImmutableSize2i extends java.lang.Record {
+  public static final mezz.jei.common.util.ImmutableSize2i EMPTY;
+  public mezz.jei.common.util.ImmutableSize2i(int, int);
+  public int getArea();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+}
+Compiled from "LimitedLogger.java"
+public class mezz.jei.common.util.LimitedLogger {
+  public mezz.jei.common.util.LimitedLogger(org.apache.logging.log4j.Logger, java.time.Duration);
+  public void log(org.apache.logging.log4j.Level, java.lang.String, java.lang.String, java.lang.Object...);
+  public void log(org.apache.logging.log4j.Level, java.lang.String, java.util.function.Consumer<org.apache.logging.log4j.Logger>);
+}
+Compiled from "LoggedTimer.java"
+public final class mezz.jei.common.util.LoggedTimer {
+  public mezz.jei.common.util.LoggedTimer();
+  public void start(java.lang.String);
+  public void stop();
+}
+Compiled from "MathUtil.java"
+public final class mezz.jei.common.util.MathUtil {
+  public static int divideCeil(int, int);
+  public static boolean intersects(java.util.Collection<mezz.jei.common.util.ImmutableRect2i>, mezz.jei.common.util.ImmutableRect2i);
+  public static boolean contains(mezz.jei.common.util.ImmutableRect2i, double, double);
+  public static boolean contains(net.minecraft.client.renderer.Rect2i, double, double);
+  public static boolean contains(net.minecraft.client.gui.navigation.ScreenRectangle, double, double);
+  public static mezz.jei.common.util.ImmutableRect2i union(mezz.jei.common.util.ImmutableRect2i, mezz.jei.common.util.ImmutableRect2i);
+  public static mezz.jei.common.util.ImmutableRect2i centerTextArea(mezz.jei.common.util.ImmutableRect2i, net.minecraft.client.gui.Font, java.lang.String);
+  public static mezz.jei.common.util.ImmutableRect2i centerTextArea(mezz.jei.common.util.ImmutableRect2i, net.minecraft.client.gui.Font, net.minecraft.util.FormattedCharSequence);
+  public static mezz.jei.common.util.ImmutableRect2i centerArea(mezz.jei.common.util.ImmutableRect2i, int, int);
+  public static double distance(net.minecraft.world.phys.Vec2, net.minecraft.world.phys.Vec2);
+}
+Compiled from "MinecraftLocaleSupplier.java"
+public class mezz.jei.common.util.MinecraftLocaleSupplier implements java.util.function.Supplier<java.util.Locale> {
+  public mezz.jei.common.util.MinecraftLocaleSupplier();
+  public java.util.Locale get();
+  public java.lang.Object get();
+}
+Compiled from "NavigationVisibility.java"
+public final class mezz.jei.common.util.NavigationVisibility extends java.lang.Enum<mezz.jei.common.util.NavigationVisibility> {
+  public static final mezz.jei.common.util.NavigationVisibility ENABLED;
+  public static final mezz.jei.common.util.NavigationVisibility AUTO_HIDE;
+  public static final mezz.jei.common.util.NavigationVisibility DISABLED;
+  public static mezz.jei.common.util.NavigationVisibility[] values();
+  public static mezz.jei.common.util.NavigationVisibility valueOf(java.lang.String);
+}
+Compiled from "Pair.java"
+public final class mezz.jei.common.util.Pair<A, B> extends java.lang.Record {
+  public mezz.jei.common.util.Pair(A, B);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public A first();
+  public B second();
+}
+Compiled from "PathUtil.java"
+public class mezz.jei.common.util.PathUtil {
+  public mezz.jei.common.util.PathUtil();
+  public static java.lang.String sanitizePathName(java.lang.String);
+  public static java.lang.String sanitizePathNameLegacy(java.lang.String);
+  public static void writeUsingTempFile(java.nio.file.Path, java.lang.Iterable<? extends java.lang.CharSequence>) throws java.io.IOException;
+  public static void moveAtomicReplace(java.nio.file.Path, java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "PlaceableUtil.java"
+public final class mezz.jei.common.util.PlaceableUtil {
+  public static <T extends mezz.jei.api.gui.placement.IPlaceable<T>> T setPosition(mezz.jei.api.gui.placement.IPlaceable<T>, int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+}
+Compiled from "RectDebugger.java"
+final class mezz.jei.common.util.RectDebugger$Rect extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.common.util.ImmutableRect2i rect();
+  public int color();
+}
+Compiled from "RectDebugger.java"
+public final class mezz.jei.common.util.RectDebugger {
+  public static final mezz.jei.common.util.RectDebugger INSTANCE;
+  public void add(mezz.jei.common.util.ImmutableRect2i, int, java.lang.String);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+}
+Compiled from "ReflectionUtil.java"
+public final class mezz.jei.common.util.ReflectionUtil {
+  public mezz.jei.common.util.ReflectionUtil();
+  public <T> java.util.stream.Stream<T> getFieldWithClass(java.lang.Object, java.lang.Class<? extends T>);
+}
+Compiled from "RegistryUtil.java"
+public class mezz.jei.common.util.RegistryUtil {
+  public mezz.jei.common.util.RegistryUtil();
+  public static <T> net.minecraft.core.Registry<T> getRegistry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static net.minecraft.core.RegistryAccess getRegistryAccess();
+  public static net.minecraft.core.HolderLookup$Provider getRegistryProvider();
+  public static void setRegistryAccess(net.minecraft.core.RegistryAccess);
+  public static void setRegistryProvider(net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "SafeIngredientUtil.java"
+public final class mezz.jei.common.util.SafeIngredientUtil {
+  public static <T> void getRichTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.ITypedIngredient<T>);
+  public static <T> void getRichTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.ITypedIngredient<T>, net.minecraft.world.item.TooltipFlag);
+  public static <T> java.util.List<net.minecraft.network.chat.Component> getPlainTooltipForSearch(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.ITypedIngredient<T>, net.minecraft.world.item.TooltipFlag);
+  public static <T> void renderBatch(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.ingredients.IIngredientRenderer<T>, java.util.List<mezz.jei.api.ingredients.rendering.BatchRenderElement<T>>);
+  public static <T> void render(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.ITypedIngredient<T>, int, int);
+  public static <T> void render(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.ingredients.rendering.BatchRenderElement<T>);
+  public static <T> void render(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.IIngredientType<T>, T, int, int);
+}
+Compiled from "ServerCommandUtil.java"
+public final class mezz.jei.common.util.ServerCommandUtil {
+  public static boolean hasPermissionForCheatMode(net.minecraft.server.level.ServerPlayer, mezz.jei.common.config.IServerConfig);
+  public static void executeGive(mezz.jei.common.network.ServerPacketContext, net.minecraft.world.item.ItemStack, mezz.jei.common.config.GiveMode);
+  public static void setHotbarSlot(mezz.jei.common.network.ServerPacketContext, net.minecraft.world.item.ItemStack, int);
+  public static void mousePickupItemStack(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public static boolean canStack(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+}
+Compiled from "ServerConfigPathUtil.java"
+public final class mezz.jei.common.util.ServerConfigPathUtil {
+  public static java.util.Optional<java.nio.file.Path> getWorldPath(java.nio.file.Path);
+  public static java.nio.file.Path getRealmsServerPath(java.lang.String);
+  public static java.nio.file.Path getServerPath(java.lang.String, java.lang.String);
+  public static java.nio.file.Path getServerPath(java.lang.String, java.lang.String, boolean);
+  public static java.nio.file.Path getServerDirPath();
+  public static java.nio.file.Path getServerPath(java.nio.file.Path, java.lang.String, java.lang.String);
+  public static java.nio.file.Path getServerPath(java.nio.file.Path, java.lang.String, java.lang.String, boolean);
+}
+Compiled from "StackHelper.java"
+public class mezz.jei.common.util.StackHelper implements mezz.jei.api.helpers.IStackHelper {
+  public mezz.jei.common.util.StackHelper(mezz.jei.api.ingredients.subtypes.ISubtypeManager);
+  public boolean isEquivalent(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, mezz.jei.api.ingredients.subtypes.UidContext);
+  public java.lang.Object getUidForStack(net.minecraft.world.item.ItemStack, mezz.jei.api.ingredients.subtypes.UidContext);
+  public java.lang.Object getUidForStack(mezz.jei.api.ingredients.ITypedIngredient<net.minecraft.world.item.ItemStack>, mezz.jei.api.ingredients.subtypes.UidContext);
+  public boolean hasSubtypes(net.minecraft.world.item.ItemStack);
+}
+Compiled from "StringUtil.java"
+public final class mezz.jei.common.util.StringUtil {
+  public static net.minecraft.network.chat.Component stripStyling(net.minecraft.network.chat.Component);
+  public static java.lang.String removeChatFormatting(java.lang.String);
+  public static net.minecraft.network.chat.FormattedText truncateStringToWidth(net.minecraft.network.chat.FormattedText, int, net.minecraft.client.gui.Font);
+  public static net.minecraft.network.chat.Style getStyleAtEnd(net.minecraft.network.chat.FormattedText);
+  public static mezz.jei.common.util.Pair<java.util.List<net.minecraft.network.chat.FormattedText>, java.lang.Boolean> splitLines(net.minecraft.client.gui.Font, java.util.List<net.minecraft.network.chat.FormattedText>, int, int);
+  public static java.util.List<net.minecraft.network.chat.FormattedText> expandNewlines(net.minecraft.network.chat.Component...);
+  public static java.lang.String intsToString(java.util.Collection<java.lang.Integer>);
+  public static void drawCenteredStringWithShadow(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font, java.lang.String, mezz.jei.common.util.ImmutableRect2i, int);
+  public static void drawCenteredStringWithShadow(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font, net.minecraft.util.FormattedCharSequence, mezz.jei.common.util.ImmutableRect2i, int);
+}
+Compiled from "TagUtil.java"
+public class mezz.jei.common.util.TagUtil {
+  public mezz.jei.common.util.TagUtil();
+  public static <VALUE, STACK> java.util.Optional<net.minecraft.tags.TagKey<?>> getTagEquivalent(java.util.Collection<STACK>, java.util.function.Function<STACK, VALUE>, java.util.function.Supplier<java.util.stream.Stream<net.minecraft.core.HolderSet$Named<VALUE>>>);
+}
+Compiled from "TextHistory.java"
+public final class mezz.jei.common.util.TextHistory$Direction extends java.lang.Enum<mezz.jei.common.util.TextHistory$Direction> {
+  public static final mezz.jei.common.util.TextHistory$Direction NEXT;
+  public static final mezz.jei.common.util.TextHistory$Direction PREVIOUS;
+  public static mezz.jei.common.util.TextHistory$Direction[] values();
+  public static mezz.jei.common.util.TextHistory$Direction valueOf(java.lang.String);
+}
+Compiled from "TextHistory.java"
+public class mezz.jei.common.util.TextHistory {
+  public mezz.jei.common.util.TextHistory();
+  public boolean add(java.lang.String);
+  public java.util.Optional<java.lang.String> get(mezz.jei.common.util.TextHistory$Direction, java.lang.String);
+  public java.util.Optional<java.lang.String> getPrevious(java.lang.String);
+  public java.util.Optional<java.lang.String> getNext(java.lang.String);
+}
+Compiled from "TickTimer.java"
+public class mezz.jei.common.util.TickTimer implements mezz.jei.api.gui.ITickTimer {
+  public mezz.jei.common.util.TickTimer(int, int, boolean);
+  public int getValue();
+  public int getMaxValue();
+  public static int getValue(long, long, int, int, boolean);
+}
+Compiled from "TimeUtil.java"
+public class mezz.jei.common.util.TimeUtil {
+  public mezz.jei.common.util.TimeUtil();
+  public static java.lang.String toHumanString(java.time.Duration);
+}
+Compiled from "Translator.java"
+public final class mezz.jei.common.util.Translator {
+  public static java.lang.String translateToLocal(java.lang.String);
+  public static java.lang.String translateToLocalFormatted(java.lang.String, java.lang.Object...);
+  public static java.lang.String toLowercaseWithLocale(java.lang.String);
+  public static void setLocaleSupplier(java.util.function.Supplier<java.util.Locale>);
+}
+Compiled from "WeakConsumer.java"
+public class mezz.jei.common.util.WeakConsumer<T> implements java.util.function.Consumer<T> {
+  public mezz.jei.common.util.WeakConsumer(java.util.function.Consumer<T>);
+  public void accept(T);
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.util.package-info {
+}

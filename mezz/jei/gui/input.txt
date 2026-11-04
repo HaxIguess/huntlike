@@ -1,0 +1,195 @@
+Compiled from "ClickableIngredientInternal.java"
+public class mezz.jei.gui.input.ClickableIngredientInternal<V> implements mezz.jei.gui.input.IClickableIngredientInternal<V> {
+  public mezz.jei.gui.input.ClickableIngredientInternal(mezz.jei.gui.overlay.elements.IElement<V>, mezz.jei.gui.input.IMouseOverable, boolean, boolean);
+  public mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public mezz.jei.gui.overlay.elements.IElement<V> getElement();
+  public boolean isMouseOver(double, double);
+  public boolean canClickToFocus();
+  public net.minecraft.world.item.ItemStack getCheatItemStack(mezz.jei.api.runtime.IIngredientManager);
+}
+Compiled from "ClientInputHandler.java"
+public class mezz.jei.gui.input.ClientInputHandler {
+  public mezz.jei.gui.input.ClientInputHandler(java.util.List<mezz.jei.gui.input.ICharTypedHandler>, mezz.jei.gui.input.handlers.ChatLinkInputHandler, mezz.jei.gui.input.handlers.UserInputRouter, mezz.jei.gui.input.handlers.DragRouter, mezz.jei.common.input.IInternalKeyMappings, mezz.jei.api.runtime.IScreenHelper);
+  public void onInitGui();
+  public boolean onKeyboardKeyPressedPre(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public boolean onKeyboardKeyPressedPost(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public boolean onKeyboardCharTypedPre(net.minecraft.client.gui.screens.Screen, net.minecraft.client.input.CharacterEvent);
+  public void onKeyboardCharTypedPost(net.minecraft.client.gui.screens.Screen, net.minecraft.client.input.CharacterEvent);
+  public boolean onGuiMouseClicked(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public boolean onGuiMouseReleased(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public boolean onGuiMouseScroll(double, double, double, double);
+  public boolean onGuiMouseDragged(net.minecraft.client.gui.screens.Screen, net.minecraft.client.input.MouseButtonEvent, double, double);
+}
+Compiled from "CombinedRecipeFocusSource.java"
+public class mezz.jei.gui.input.CombinedRecipeFocusSource {
+  public mezz.jei.gui.input.CombinedRecipeFocusSource(mezz.jei.gui.input.IRecipeFocusSource...);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+}
+Compiled from "DelegatingClickableIngredientInternal.java"
+public class mezz.jei.gui.input.DelegatingClickableIngredientInternal<T> implements mezz.jei.gui.input.IClickableIngredientInternal<T> {
+  public mezz.jei.gui.input.DelegatingClickableIngredientInternal(mezz.jei.gui.input.IClickableIngredientInternal<T>);
+  public mezz.jei.api.ingredients.ITypedIngredient<T> getTypedIngredient();
+  public mezz.jei.gui.overlay.elements.IElement<T> getElement();
+  public boolean isMouseOver(double, double);
+  public net.minecraft.world.item.ItemStack getCheatItemStack(mezz.jei.api.runtime.IIngredientManager);
+  public boolean canClickToFocus();
+  public void show(mezz.jei.api.runtime.IRecipesGui, mezz.jei.gui.util.FocusUtil, java.util.List<mezz.jei.api.recipe.RecipeIngredientRole>);
+}
+Compiled from "DraggableIngredientInternal.java"
+public class mezz.jei.gui.input.DraggableIngredientInternal<V> implements mezz.jei.gui.input.IDraggableIngredientInternal<V> {
+  public mezz.jei.gui.input.DraggableIngredientInternal(mezz.jei.gui.overlay.elements.IElement<V>, mezz.jei.common.util.ImmutableRect2i);
+  public mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public mezz.jei.gui.overlay.elements.IElement<V> getElement();
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+}
+Compiled from "GuiContainerWrapper.java"
+public class mezz.jei.gui.input.GuiContainerWrapper implements mezz.jei.gui.input.IRecipeFocusSource {
+  public mezz.jei.gui.input.GuiContainerWrapper(mezz.jei.api.runtime.IScreenHelper);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+}
+Compiled from "GuiTextFieldFilter.java"
+public class mezz.jei.gui.input.GuiTextFieldFilter extends net.minecraft.client.gui.components.EditBox implements mezz.jei.gui.overlay.ISearchField {
+  public mezz.jei.gui.input.GuiTextFieldFilter(java.util.function.BooleanSupplier);
+  public void updateBounds(mezz.jei.common.util.ImmutableRect2i);
+  public void setValue(java.lang.String);
+  public java.util.Optional<java.lang.String> getHistory(mezz.jei.common.util.TextHistory$Direction);
+  public boolean isMouseOver(double, double);
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public void setFocused(boolean);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractBackgroundRenderState(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void extractForegroundRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ICharTypedHandler.java"
+public interface mezz.jei.gui.input.ICharTypedHandler {
+  public abstract boolean hasKeyboardFocus();
+  public abstract boolean onCharTyped(net.minecraft.client.input.CharacterEvent);
+}
+Compiled from "IClickableIngredientInternal.java"
+public interface mezz.jei.gui.input.IClickableIngredientInternal<T> {
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<T> getTypedIngredient();
+  public abstract mezz.jei.gui.overlay.elements.IElement<T> getElement();
+  public abstract boolean isMouseOver(double, double);
+  public abstract net.minecraft.world.item.ItemStack getCheatItemStack(mezz.jei.api.runtime.IIngredientManager);
+  public abstract boolean canClickToFocus();
+  public default void show(mezz.jei.api.runtime.IRecipesGui, mezz.jei.gui.util.FocusUtil, java.util.List<mezz.jei.api.recipe.RecipeIngredientRole>);
+}
+Compiled from "IDragHandler.java"
+public interface mezz.jei.gui.input.IDragHandler {
+  public abstract java.util.Optional<mezz.jei.gui.input.IDragHandler> handleDragStart(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public abstract boolean handleDragComplete(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public default void handleDragCanceled();
+}
+Compiled from "IDraggableIngredientInternal.java"
+public interface mezz.jei.gui.input.IDraggableIngredientInternal<T> {
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<T> getTypedIngredient();
+  public abstract mezz.jei.gui.overlay.elements.IElement<T> getElement();
+  public abstract mezz.jei.common.util.ImmutableRect2i getArea();
+}
+Compiled from "IGuiInputLayer.java"
+public interface mezz.jei.gui.input.IGuiInputLayer extends mezz.jei.gui.input.IUserInputHandler,mezz.jei.gui.input.IMouseOverable {
+  public default void update(double, double);
+  public abstract void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "IMouseOverable.java"
+public interface mezz.jei.gui.input.IMouseOverable {
+  public abstract boolean isMouseOver(double, double);
+}
+Compiled from "IPaged.java"
+public interface mezz.jei.gui.input.IPaged {
+  public abstract boolean nextPage();
+  public abstract boolean previousPage();
+  public abstract boolean hasNext();
+  public abstract boolean hasPrevious();
+  public abstract int getPageCount();
+  public abstract int getPageNumber();
+}
+Compiled from "IPinnedTooltipHolder.java"
+public interface mezz.jei.gui.input.IPinnedTooltipHolder {
+  public abstract void hide();
+}
+Compiled from "IRecipeFocusSource.java"
+public interface mezz.jei.gui.input.IRecipeFocusSource {
+  public abstract java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public abstract java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+}
+Compiled from "IUserInputHandler.java"
+public interface mezz.jei.gui.input.IUserInputHandler {
+  public abstract java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+  public default void unfocus();
+  public default java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseScrolled(double, double, double, double);
+  public default java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleMouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+}
+Compiled from "InputType.java"
+public final class mezz.jei.gui.input.InputType extends java.lang.Enum<mezz.jei.gui.input.InputType> {
+  public static final mezz.jei.gui.input.InputType SIMULATE;
+  public static final mezz.jei.gui.input.InputType EXECUTE;
+  public static final mezz.jei.gui.input.InputType IMMEDIATE;
+  public static mezz.jei.gui.input.InputType[] values();
+  public static mezz.jei.gui.input.InputType valueOf(java.lang.String);
+}
+Compiled from "KeyUserInput.java"
+public class mezz.jei.gui.input.KeyUserInput extends mezz.jei.gui.input.UserInput {
+  public mezz.jei.gui.input.KeyUserInput(net.minecraft.client.input.KeyEvent, mezz.jei.gui.input.InputType);
+  public com.mojang.blaze3d.platform.InputConstants$Key getKey();
+  public double getMouseX();
+  public double getMouseY();
+  public mezz.jei.gui.input.InputType getInputType();
+  public int getModifiers();
+  public net.minecraft.client.input.InputWithModifiers getInputWithModifiers();
+  public boolean isSimulate();
+  public boolean isAllowedChatCharacter();
+  public com.mojang.datafixers.util.Either<mezz.jei.common.input.MouseButtonEventData, net.minecraft.client.input.KeyEvent> getEvent();
+  public java.lang.String toString();
+}
+Compiled from "MouseUserInput.java"
+public class mezz.jei.gui.input.MouseUserInput extends mezz.jei.gui.input.UserInput {
+  public mezz.jei.gui.input.MouseUserInput(net.minecraft.client.input.MouseButtonEvent, boolean, mezz.jei.gui.input.InputType);
+  public com.mojang.blaze3d.platform.InputConstants$Key getKey();
+  public double getMouseX();
+  public double getMouseY();
+  public mezz.jei.gui.input.InputType getInputType();
+  public int getModifiers();
+  public net.minecraft.client.input.InputWithModifiers getInputWithModifiers();
+  public boolean isSimulate();
+  public boolean isAllowedChatCharacter();
+  public com.mojang.datafixers.util.Either<mezz.jei.common.input.MouseButtonEventData, net.minecraft.client.input.KeyEvent> getEvent();
+  public java.lang.String toString();
+}
+Compiled from "MouseUtil.java"
+public final class mezz.jei.gui.input.MouseUtil {
+  public mezz.jei.gui.input.MouseUtil();
+  public static double getX();
+  public static double getY();
+}
+Compiled from "PinnedTooltipManager.java"
+public final class mezz.jei.gui.input.PinnedTooltipManager {
+  public static void opened(mezz.jei.gui.input.IPinnedTooltipHolder);
+  public static void closed(mezz.jei.gui.input.IPinnedTooltipHolder);
+  public static void draw(mezz.jei.gui.input.IPinnedTooltipHolder, java.lang.Runnable);
+  public static boolean shouldSuppressExternalTooltip();
+  public static boolean matchesInput(com.mojang.blaze3d.platform.InputConstants$Key, mezz.jei.common.input.keys.IJeiKeyMappingWithExtraModifiers, mezz.jei.common.input.keys.IJeiKeyMappingInternal);
+}
+Compiled from "UserInput.java"
+public interface mezz.jei.gui.input.UserInput$MouseClickable {
+  public abstract boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+}
+Compiled from "UserInput.java"
+public abstract class mezz.jei.gui.input.UserInput implements mezz.jei.api.gui.inputs.IJeiUserInput {
+  public mezz.jei.gui.input.UserInput();
+  public static mezz.jei.gui.input.UserInput fromVanilla(net.minecraft.client.input.KeyEvent, mezz.jei.gui.input.InputType);
+  public static java.util.Optional<mezz.jei.gui.input.UserInput> fromVanilla(net.minecraft.client.input.MouseButtonEvent, boolean, mezz.jei.gui.input.InputType);
+  public abstract double getMouseX();
+  public abstract double getMouseY();
+  public abstract mezz.jei.gui.input.InputType getInputType();
+  public abstract boolean isAllowedChatCharacter();
+  public final boolean is(mezz.jei.api.runtime.IJeiKeyMapping);
+  public final boolean is(net.minecraft.client.KeyMapping);
+  public abstract com.mojang.datafixers.util.Either<mezz.jei.common.input.MouseButtonEventData, net.minecraft.client.input.KeyEvent> getEvent();
+  public final boolean ifMouseEvent(mezz.jei.gui.input.UserInput$MouseClickable);
+  public final boolean callVanilla(org.apache.commons.lang3.function.ToBooleanBiFunction<java.lang.Double, java.lang.Double>, mezz.jei.gui.input.UserInput$MouseClickable, java.util.function.Function<net.minecraft.client.input.KeyEvent, java.lang.Boolean>);
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.input.package-info {
+}

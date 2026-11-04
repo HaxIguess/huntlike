@@ -1,0 +1,45 @@
+Compiled from "LevelLoadListener.java"
+public interface net.minecraft.server.level.progress.LevelLoadListener {
+  public static net.minecraft.server.level.progress.LevelLoadListener compose(net.minecraft.server.level.progress.LevelLoadListener, net.minecraft.server.level.progress.LevelLoadListener);
+  public abstract void start(net.minecraft.server.level.progress.LevelLoadListener$Stage, int);
+  public abstract void update(net.minecraft.server.level.progress.LevelLoadListener$Stage, int, int);
+  public abstract void finish(net.minecraft.server.level.progress.LevelLoadListener$Stage);
+  public abstract void updateFocus(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.ChunkPos);
+}
+Compiled from "LevelLoadProgressTracker.java"
+public class net.minecraft.server.level.progress.LevelLoadProgressTracker implements net.minecraft.server.level.progress.LevelLoadListener {
+  public net.minecraft.server.level.progress.LevelLoadProgressTracker(boolean);
+  public void start(net.minecraft.server.level.progress.LevelLoadListener$Stage, int);
+  public void update(net.minecraft.server.level.progress.LevelLoadListener$Stage, int, int);
+  public void finish(net.minecraft.server.level.progress.LevelLoadListener$Stage);
+  public float get();
+  public void updateFocus(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.ChunkPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.level.progress.package-info {
+}
+Compiled from "LoggingLevelLoadListener.java"
+public class net.minecraft.server.level.progress.LoggingLevelLoadListener implements net.minecraft.server.level.progress.LevelLoadListener {
+  public net.minecraft.server.level.progress.LoggingLevelLoadListener(boolean);
+  public static net.minecraft.server.level.progress.LoggingLevelLoadListener forDedicatedServer();
+  public static net.minecraft.server.level.progress.LoggingLevelLoadListener forSingleplayer();
+  public void start(net.minecraft.server.level.progress.LevelLoadListener$Stage, int);
+  public void update(net.minecraft.server.level.progress.LevelLoadListener$Stage, int, int);
+  public void finish(net.minecraft.server.level.progress.LevelLoadListener$Stage);
+  public void updateFocus(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.ChunkPos);
+}
+Compiled from "ChunkLoadStatusView.java"
+public interface net.minecraft.server.level.progress.ChunkLoadStatusView {
+  public abstract void moveTo(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.ChunkPos);
+  public abstract net.minecraft.world.level.chunk.status.ChunkStatus get(int, int);
+  public abstract int radius();
+}
+Compiled from "LevelLoadListener.java"
+public final class net.minecraft.server.level.progress.LevelLoadListener$Stage extends java.lang.Enum<net.minecraft.server.level.progress.LevelLoadListener$Stage> {
+  public static final net.minecraft.server.level.progress.LevelLoadListener$Stage START_SERVER;
+  public static final net.minecraft.server.level.progress.LevelLoadListener$Stage PREPARE_GLOBAL_SPAWN;
+  public static final net.minecraft.server.level.progress.LevelLoadListener$Stage LOAD_INITIAL_CHUNKS;
+  public static final net.minecraft.server.level.progress.LevelLoadListener$Stage LOAD_PLAYER_CHUNKS;
+  public static net.minecraft.server.level.progress.LevelLoadListener$Stage[] values();
+  public static net.minecraft.server.level.progress.LevelLoadListener$Stage valueOf(java.lang.String);
+}

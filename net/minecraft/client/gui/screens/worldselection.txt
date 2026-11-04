@@ -1,0 +1,401 @@
+Compiled from "SwitchGrid.java"
+public class net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder {
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder(int);
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$SwitchBuilder addSwitch(net.minecraft.network.chat.Component, java.util.function.BooleanSupplier, java.util.function.Consumer<java.lang.Boolean>);
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder withPaddingLeft(int);
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder withRowSpacing(int);
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid build();
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder withInfoUnderneath(int, boolean);
+}
+Compiled from "WorldOpenFlows.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldOpenFlows {
+  public net.minecraft.client.gui.screens.worldselection.WorldOpenFlows(net.minecraft.client.Minecraft, net.minecraft.world.level.storage.LevelStorageSource);
+  public void createFreshLevel(java.lang.String, net.minecraft.world.level.LevelSettings, net.minecraft.world.level.levelgen.WorldOptions, java.util.function.Function<net.minecraft.core.HolderLookup$Provider, net.minecraft.world.level.levelgen.WorldDimensions>, net.minecraft.client.gui.screens.Screen);
+  public void createLevelFromExistingSettings(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.ReloadableServerResources, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>);
+  public net.minecraft.server.WorldStem loadWorldStem(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.serialization.Dynamic<?>, boolean, net.minecraft.server.packs.repository.PackRepository) throws java.lang.Exception;
+  public com.mojang.datafixers.util.Pair<net.minecraft.world.level.LevelSettings, net.minecraft.client.gui.screens.worldselection.WorldCreationContext> recreateWorldData(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess) throws java.lang.Exception;
+  public static void confirmWorldCreation(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.worldselection.CreateWorldScreen, com.mojang.serialization.Lifecycle, java.lang.Runnable, boolean);
+  public void openWorld(java.lang.String, java.lang.Runnable);
+}
+Compiled from "SwitchGrid.java"
+class net.minecraft.client.gui.screens.worldselection.SwitchGrid {
+  public net.minecraft.client.gui.layouts.Layout layout();
+  public void refreshStates();
+  public static net.minecraft.client.gui.screens.worldselection.SwitchGrid$Builder builder(int);
+}
+Compiled from "PresetEditor.java"
+public interface net.minecraft.client.gui.screens.worldselection.PresetEditor {
+  public static final java.util.Map<java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.presets.WorldPreset>>, net.minecraft.client.gui.screens.worldselection.PresetEditor> EDITORS;
+  public abstract net.minecraft.client.gui.screens.Screen createEditScreen(net.minecraft.client.gui.screens.worldselection.CreateWorldScreen, net.minecraft.client.gui.screens.worldselection.WorldCreationContext);
+  public static net.minecraft.client.gui.screens.worldselection.WorldCreationContext$DimensionsUpdater flatWorldConfigurator(net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings);
+}
+Compiled from "FileFixerProgressScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.FileFixerProgressScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.worldselection.FileFixerProgressScreen(net.minecraft.util.worldupdate.UpgradeProgress);
+  protected void init();
+  public boolean shouldCloseOnEsc();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "CreateWorldScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.CreateWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.resources.Identifier TAB_HEADER_BACKGROUND;
+  public static void openFresh(net.minecraft.client.Minecraft, java.lang.Runnable);
+  public static void openFresh(net.minecraft.client.Minecraft, java.lang.Runnable, net.minecraft.client.gui.screens.worldselection.CreateWorldCallback);
+  public static void testWorld(net.minecraft.client.Minecraft, java.lang.Runnable);
+  public static net.minecraft.client.gui.screens.worldselection.CreateWorldScreen createFromExisting(net.minecraft.client.Minecraft, java.lang.Runnable, net.minecraft.world.level.LevelSettings, net.minecraft.client.gui.screens.worldselection.WorldCreationContext, java.nio.file.Path);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState getUiState();
+  protected void init();
+  protected void setInitialFocus();
+  public void repositionElements();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void onClose();
+  public void popScreen();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public static java.nio.file.Path createTempDataPackDirFromExistingWorld(java.nio.file.Path, net.minecraft.client.Minecraft);
+}
+Compiled from "SwitchGrid.java"
+final class net.minecraft.client.gui.screens.worldselection.SwitchGrid$LabeledSwitch extends java.lang.Record {
+  public void refreshState();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.components.CycleButton<java.lang.Boolean> button();
+  public java.util.function.BooleanSupplier stateSupplier();
+  public java.util.function.BooleanSupplier isActiveCondition();
+}
+Compiled from "SwitchGrid.java"
+final class net.minecraft.client.gui.screens.worldselection.SwitchGrid$InfoUnderneathSettings extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int maxInfoRows();
+  public boolean alwaysMaxHeight();
+}
+Compiled from "WorldSelectionList.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry extends net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry implements net.minecraft.client.gui.components.SelectableEntry {
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry(net.minecraft.client.gui.screens.worldselection.WorldSelectionList, net.minecraft.client.gui.screens.worldselection.WorldSelectionList, net.minecraft.world.level.storage.LevelSummary);
+  public net.minecraft.network.chat.Component getNarration();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean canInteract();
+  public void joinWorld();
+  public void deleteWorld();
+  public void doDeleteWorld();
+  public void editWorld();
+  public void recreateWorld();
+  public void close();
+  public java.lang.String getLevelName();
+  public net.minecraft.world.level.storage.LevelSummary getLevelSummary();
+}
+Compiled from "InitialWorldCreationOptions.java"
+public final class net.minecraft.client.gui.screens.worldselection.InitialWorldCreationOptions extends java.lang.Record {
+  public net.minecraft.client.gui.screens.worldselection.InitialWorldCreationOptions(net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode, net.minecraft.world.level.gamerules.GameRuleMap, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorPreset>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode selectedGameMode();
+  public net.minecraft.world.level.gamerules.GameRuleMap gameRuleOverwrites();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorPreset> flatLevelPreset();
+}
+Compiled from "AbstractGameRulesScreen.java"
+public abstract class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry extends net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry<net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry> {
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry(java.util.List<net.minecraft.util.FormattedCharSequence>);
+}
+Compiled from "WorldCreationGameRulesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldCreationGameRulesScreen extends net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen {
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationGameRulesScreen(net.minecraft.world.level.gamerules.GameRules, java.util.function.Consumer<java.util.Optional<net.minecraft.world.level.gamerules.GameRules>>);
+  protected void initContent();
+  protected void onDone();
+  public void onClose();
+}
+Compiled from "DataPackReloadCookie.java"
+public final class net.minecraft.client.gui.screens.worldselection.DataPackReloadCookie extends java.lang.Record {
+  public net.minecraft.client.gui.screens.worldselection.DataPackReloadCookie(net.minecraft.world.level.levelgen.WorldGenSettings, net.minecraft.world.level.WorldDataConfiguration);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.WorldGenSettings worldGenSettings();
+  public net.minecraft.world.level.WorldDataConfiguration dataConfiguration();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.worldselection.package-info {
+}
+Compiled from "WorldSelectionList.java"
+public abstract class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry> implements java.lang.AutoCloseable {
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry();
+  public void close();
+  public net.minecraft.world.level.storage.LevelSummary getLevelSummary();
+}
+Compiled from "ConfirmExperimentalFeaturesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen(java.util.Collection<net.minecraft.server.packs.repository.Pack>, it.unimi.dsi.fastutil.booleans.BooleanConsumer);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+}
+Compiled from "WorldSelectionList.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$NoWorldsEntry extends net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry {
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$NoWorldsEntry(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public net.minecraft.network.chat.Component getNarration();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+}
+Compiled from "AbstractGameRulesScreen.java"
+public abstract class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$GameRuleEntry extends net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry {
+  protected final java.util.List<net.minecraft.client.gui.components.AbstractWidget> children;
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$GameRuleEntry(java.util.List<net.minecraft.util.FormattedCharSequence>, net.minecraft.network.chat.Component);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  public java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry> narratables();
+  protected void extractLabel(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+}
+Compiled from "SelectWorldScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.SelectWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.world.level.levelgen.WorldOptions TEST_OPTIONS;
+  protected final net.minecraft.client.gui.screens.Screen lastScreen;
+  protected net.minecraft.client.gui.components.EditBox searchBox;
+  public net.minecraft.client.gui.screens.worldselection.SelectWorldScreen(net.minecraft.client.gui.screens.Screen);
+  protected void init();
+  protected void repositionElements();
+  protected void setInitialFocus();
+  public void onClose();
+  public void updateButtonStatus(net.minecraft.world.level.storage.LevelSummary);
+  public void removed();
+}
+Compiled from "WorldSelectionList.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType extends java.lang.Enum<net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType> {
+  public static final net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType SINGLEPLAYER;
+  public static final net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType UPLOAD_WORLD;
+  public static net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType[] values();
+  public static net.minecraft.client.gui.screens.worldselection.WorldSelectionList$EntryType valueOf(java.lang.String);
+}
+Compiled from "AbstractGameRulesScreen.java"
+public abstract class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen extends net.minecraft.client.gui.screens.Screen {
+  protected static final net.minecraft.network.chat.Component TITLE;
+  protected final net.minecraft.client.gui.layouts.HeaderAndFooterLayout layout;
+  protected final net.minecraft.world.level.gamerules.GameRules gameRules;
+  protected net.minecraft.client.gui.components.EditBox searchBox;
+  protected net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleList ruleList;
+  protected net.minecraft.client.gui.components.Button doneButton;
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen(net.minecraft.world.level.gamerules.GameRules, java.util.function.Consumer<java.util.Optional<net.minecraft.world.level.gamerules.GameRules>>);
+  protected void createAndConfigureSearchBox(net.minecraft.client.gui.layouts.LinearLayout);
+  protected void init();
+  protected abstract void initContent();
+  protected abstract void onDone();
+  protected void repositionElements();
+  protected void setInitialFocus();
+  protected void closeAndDiscardChanges();
+  protected void closeAndApplyChanges();
+  protected void filterGameRules(java.lang.String);
+}
+Compiled from "WorldCreationContextMapper.java"
+public interface net.minecraft.client.gui.screens.worldselection.WorldCreationContextMapper {
+  public abstract net.minecraft.client.gui.screens.worldselection.WorldCreationContext apply(net.minecraft.server.ReloadableServerResources, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.client.gui.screens.worldselection.DataPackReloadCookie);
+}
+Compiled from "CreateWorldScreen.java"
+class net.minecraft.client.gui.screens.worldselection.CreateWorldScreen$MoreTab extends net.minecraft.client.gui.components.tabs.GridLayoutTab {
+}
+Compiled from "WorldSelectionList.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder {
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder width(int);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder height(int);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder filter(java.lang.String);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder oldList(net.minecraft.client.gui.screens.worldselection.WorldSelectionList);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder onEntrySelect(java.util.function.Consumer<net.minecraft.world.level.storage.LevelSummary>);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder onEntryInteract(java.util.function.Consumer<net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry>);
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Builder uploadWorld();
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList build();
+}
+Compiled from "WorldCreationContext.java"
+public interface net.minecraft.client.gui.screens.worldselection.WorldCreationContext$OptionsModifier extends java.util.function.UnaryOperator<net.minecraft.world.level.levelgen.WorldOptions> {
+}
+Compiled from "WorldCreationContext.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldCreationContext extends java.lang.Record {
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext(net.minecraft.world.level.levelgen.WorldGenSettings, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.server.ReloadableServerResources, net.minecraft.world.level.WorldDataConfiguration);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext(net.minecraft.world.level.levelgen.WorldOptions, net.minecraft.world.level.levelgen.WorldDimensions, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.server.ReloadableServerResources, net.minecraft.world.level.WorldDataConfiguration, net.minecraft.client.gui.screens.worldselection.InitialWorldCreationOptions);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext(net.minecraft.world.level.levelgen.WorldOptions, net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.levelgen.WorldDimensions, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.server.ReloadableServerResources, net.minecraft.world.level.WorldDataConfiguration, net.minecraft.client.gui.screens.worldselection.InitialWorldCreationOptions);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext withSettings(net.minecraft.world.level.levelgen.WorldOptions, net.minecraft.world.level.levelgen.WorldDimensions);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext withOptions(net.minecraft.client.gui.screens.worldselection.WorldCreationContext$OptionsModifier);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext withDimensions(net.minecraft.client.gui.screens.worldselection.WorldCreationContext$DimensionsUpdater);
+  public net.minecraft.core.RegistryAccess$Frozen worldgenLoadContext();
+  public void validate();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.WorldOptions options();
+  public net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem> datapackDimensions();
+  public net.minecraft.world.level.levelgen.WorldDimensions selectedDimensions();
+  public net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> worldgenRegistries();
+  public net.minecraft.server.ReloadableServerResources dataPackResources();
+  public net.minecraft.world.level.WorldDataConfiguration dataConfiguration();
+  public net.minecraft.client.gui.screens.worldselection.InitialWorldCreationOptions initialWorldCreationOptions();
+}
+Compiled from "AbstractGameRulesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleList extends net.minecraft.client.gui.components.ContainerObjectSelectionList<net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry> {
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleList(net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen, net.minecraft.world.level.gamerules.GameRules);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "AbstractGameRulesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry extends net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$GameRuleEntry {
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$IntegerRuleEntry(net.minecraft.network.chat.Component, java.util.List<net.minecraft.util.FormattedCharSequence>, java.lang.String, net.minecraft.world.level.gamerules.GameRule<java.lang.Integer>);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+}
+Compiled from "WorldCreationUiState.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry extends java.lang.Record {
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.presets.WorldPreset>);
+  public net.minecraft.network.chat.Component describePreset();
+  public boolean isAmplified();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.presets.WorldPreset> preset();
+}
+Compiled from "ConfirmExperimentalFeaturesScreen.java"
+class net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen$PackList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen$PackListEntry> {
+  public net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen$PackList(net.minecraft.client.Minecraft, java.util.Collection<net.minecraft.server.packs.repository.Pack>);
+  public int getRowWidth();
+}
+Compiled from "CreateWorldCallback.java"
+public interface net.minecraft.client.gui.screens.worldselection.CreateWorldCallback {
+  public abstract boolean create(net.minecraft.client.gui.screens.worldselection.CreateWorldScreen, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>, java.nio.file.Path);
+}
+Compiled from "ConfirmExperimentalFeaturesScreen.java"
+class net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen extends net.minecraft.client.gui.screens.Screen {
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+}
+Compiled from "AbstractGameRulesScreen.java"
+interface net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$EntryFactory<T> {
+  public abstract net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry create(net.minecraft.network.chat.Component, java.util.List<net.minecraft.util.FormattedCharSequence>, java.lang.String, net.minecraft.world.level.gamerules.GameRule<T>);
+}
+Compiled from "EditWorldScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.EditWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public static net.minecraft.client.gui.screens.worldselection.EditWorldScreen create(net.minecraft.client.Minecraft, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, it.unimi.dsi.fastutil.booleans.BooleanConsumer) throws java.io.IOException;
+  protected void setInitialFocus();
+  protected void init();
+  protected void repositionElements();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void onClose();
+  public static java.util.concurrent.CompletableFuture<java.lang.Boolean> conditionallyMakeBackupAndShowToast(boolean, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess);
+  public static java.util.concurrent.CompletableFuture<java.lang.Boolean> makeBackupAndShowToast(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ExperimentsScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.ExperimentsScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.worldselection.ExperimentsScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.server.packs.repository.PackRepository, java.util.function.Consumer<net.minecraft.server.packs.repository.PackRepository>);
+  protected void init();
+  protected void repositionElements();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public void onClose();
+}
+Compiled from "WorldCreationUiState.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldCreationUiState {
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState(java.nio.file.Path, net.minecraft.client.gui.screens.worldselection.WorldCreationContext, java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.presets.WorldPreset>>, java.util.OptionalLong);
+  public void addListener(java.util.function.Consumer<net.minecraft.client.gui.screens.worldselection.WorldCreationUiState>);
+  public void onChanged();
+  public void setName(java.lang.String);
+  public java.lang.String getName();
+  public java.lang.String getTargetFolder();
+  public void setGameMode(net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode getGameMode();
+  public void setDifficulty(net.minecraft.world.Difficulty);
+  public net.minecraft.world.Difficulty getDifficulty();
+  public boolean isHardcore();
+  public void setAllowCommands(boolean);
+  public boolean isAllowCommands();
+  public void setSeed(java.lang.String);
+  public java.lang.String getSeed();
+  public void setGenerateStructures(boolean);
+  public boolean isGenerateStructures();
+  public void setBonusChest(boolean);
+  public boolean isBonusChest();
+  public void setSettings(net.minecraft.client.gui.screens.worldselection.WorldCreationContext);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationContext getSettings();
+  public void updateDimensions(net.minecraft.client.gui.screens.worldselection.WorldCreationContext$DimensionsUpdater);
+  protected boolean tryUpdateDataConfiguration(net.minecraft.world.level.WorldDataConfiguration);
+  public boolean isDebug();
+  public void setWorldType(net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry);
+  public net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry getWorldType();
+  public net.minecraft.client.gui.screens.worldselection.PresetEditor getPresetEditor();
+  public java.util.List<net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry> getNormalPresetList();
+  public java.util.List<net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$WorldTypeEntry> getAltPresetList();
+  public void setGameRules(net.minecraft.world.level.gamerules.GameRules);
+  public net.minecraft.world.level.gamerules.GameRules getGameRules();
+}
+Compiled from "CreateWorldScreen.java"
+class net.minecraft.client.gui.screens.worldselection.CreateWorldScreen$GameTab extends net.minecraft.client.gui.components.tabs.GridLayoutTab {
+}
+Compiled from "AbstractGameRulesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry extends net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$GameRuleEntry {
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$BooleanRuleEntry(net.minecraft.network.chat.Component, java.util.List<net.minecraft.util.FormattedCharSequence>, java.lang.String, net.minecraft.world.level.gamerules.GameRule<java.lang.Boolean>);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+}
+Compiled from "AbstractGameRulesScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry extends net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$RuleEntry {
+  public net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen$CategoryRuleEntry(net.minecraft.client.gui.screens.worldselection.AbstractGameRulesScreen, net.minecraft.network.chat.Component);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  public java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry> narratables();
+}
+Compiled from "WorldSelectionList.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldSelectionList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry> {
+  public static final java.time.format.DateTimeFormatter DATE_FORMAT;
+  protected void clearEntries();
+  public void reloadWorldList();
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateFilter(java.lang.String);
+  public int getRowWidth();
+  public void setSelected(net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry);
+  public java.util.Optional<net.minecraft.client.gui.screens.worldselection.WorldSelectionList$WorldListEntry> getSelectedOpt();
+  public void returnToScreen();
+  public net.minecraft.client.gui.screens.Screen getScreen();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "WorldSelectionList.java"
+public class net.minecraft.client.gui.screens.worldselection.WorldSelectionList$LoadingHeader extends net.minecraft.client.gui.screens.worldselection.WorldSelectionList$Entry {
+  public net.minecraft.client.gui.screens.worldselection.WorldSelectionList$LoadingHeader(net.minecraft.client.Minecraft);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+}
+Compiled from "WorldCreationUiState.java"
+public final class net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode extends java.lang.Enum<net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode> {
+  public static final net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode SURVIVAL;
+  public static final net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode HARDCORE;
+  public static final net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode CREATIVE;
+  public static final net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode DEBUG;
+  public final net.minecraft.world.level.GameType gameType;
+  public final net.minecraft.network.chat.Component displayName;
+  public static net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode[] values();
+  public static net.minecraft.client.gui.screens.worldselection.WorldCreationUiState$SelectedGameMode valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component getInfo();
+}
+Compiled from "OptimizeWorldScreen.java"
+public class net.minecraft.client.gui.screens.worldselection.OptimizeWorldScreen extends net.minecraft.client.gui.screens.Screen {
+  public static net.minecraft.client.gui.screens.worldselection.OptimizeWorldScreen create(net.minecraft.client.Minecraft, it.unimi.dsi.fastutil.booleans.BooleanConsumer, com.mojang.datafixers.DataFixer, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, boolean);
+  protected void init();
+  public void tick();
+  public boolean shouldCloseOnEsc();
+  public void onClose();
+  public void removed();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "SwitchGrid.java"
+public class net.minecraft.client.gui.screens.worldselection.SwitchGrid$SwitchBuilder {
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$SwitchBuilder withIsActiveCondition(java.util.function.BooleanSupplier);
+  public net.minecraft.client.gui.screens.worldselection.SwitchGrid$SwitchBuilder withInfo(net.minecraft.network.chat.Component);
+}
+Compiled from "WorldCreationContext.java"
+public interface net.minecraft.client.gui.screens.worldselection.WorldCreationContext$DimensionsUpdater extends java.util.function.BiFunction<net.minecraft.core.RegistryAccess$Frozen, net.minecraft.world.level.levelgen.WorldDimensions, net.minecraft.world.level.levelgen.WorldDimensions> {
+}
+Compiled from "ConfirmExperimentalFeaturesScreen.java"
+class net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen$PackListEntry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.worldselection.ConfirmExperimentalFeaturesScreen$DetailsScreen$PackListEntry> {
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+}
+Compiled from "CreateWorldScreen.java"
+class net.minecraft.client.gui.screens.worldselection.CreateWorldScreen$WorldTab extends net.minecraft.client.gui.components.tabs.GridLayoutTab {
+}

@@ -1,0 +1,288 @@
+Compiled from "Atom.java"
+public final class net.minecraft.util.parsing.packrat.Atom<T> extends java.lang.Record {
+  public net.minecraft.util.parsing.packrat.Atom(java.lang.String);
+  public java.lang.String toString();
+  public static <T> net.minecraft.util.parsing.packrat.Atom<T> of(java.lang.String);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+}
+Compiled from "ParseState.java"
+public interface net.minecraft.util.parsing.packrat.ParseState<S> {
+  public abstract net.minecraft.util.parsing.packrat.Scope scope();
+  public abstract net.minecraft.util.parsing.packrat.ErrorCollector<S> errorCollector();
+  public default <T> java.util.Optional<T> parseTopRule(net.minecraft.util.parsing.packrat.NamedRule<S, T>);
+  public abstract <T> T parse(net.minecraft.util.parsing.packrat.NamedRule<S, T>);
+  public abstract S input();
+  public abstract int mark();
+  public abstract void restore(int);
+  public abstract net.minecraft.util.parsing.packrat.Control acquireControl();
+  public abstract void releaseControl();
+  public abstract net.minecraft.util.parsing.packrat.ParseState<S> silent();
+}
+Compiled from "SuggestionSupplier.java"
+public interface net.minecraft.util.parsing.packrat.SuggestionSupplier<S> {
+  public abstract java.util.stream.Stream<java.lang.String> possibleValues(net.minecraft.util.parsing.packrat.ParseState<S>);
+  public static <S> net.minecraft.util.parsing.packrat.SuggestionSupplier<S> empty();
+}
+Compiled from "Scope.java"
+public final class net.minecraft.util.parsing.packrat.Scope {
+  public net.minecraft.util.parsing.packrat.Scope();
+  public int valueIndexForAny(net.minecraft.util.parsing.packrat.Atom<?>...);
+  public void pushFrame();
+  public void popFrame();
+  public void splitFrame();
+  public void clearFrameValues();
+  public void mergeFrame();
+  public <T> void put(net.minecraft.util.parsing.packrat.Atom<T>, T);
+  public <T> T get(net.minecraft.util.parsing.packrat.Atom<T>);
+  public <T> T getOrThrow(net.minecraft.util.parsing.packrat.Atom<T>);
+  public <T> T getOrDefault(net.minecraft.util.parsing.packrat.Atom<T>, T);
+  public final <T> T getAny(net.minecraft.util.parsing.packrat.Atom<? extends T>...);
+  public final <T> T getAnyOrThrow(net.minecraft.util.parsing.packrat.Atom<? extends T>...);
+  public java.lang.String toString();
+  public java.util.Map<net.minecraft.util.parsing.packrat.Atom<?>, ?> lastFrame();
+  public boolean hasOnlySingleFrame();
+}
+Compiled from "Rule.java"
+public interface net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T> {
+  public abstract T run(net.minecraft.util.parsing.packrat.ParseState<S>);
+}
+Compiled from "Dictionary.java"
+public class net.minecraft.util.parsing.packrat.Dictionary<S> {
+  public net.minecraft.util.parsing.packrat.Dictionary();
+  public <T> net.minecraft.util.parsing.packrat.NamedRule<S, T> put(net.minecraft.util.parsing.packrat.Atom<T>, net.minecraft.util.parsing.packrat.Rule<S, T>);
+  public <T> net.minecraft.util.parsing.packrat.NamedRule<S, T> putComplex(net.minecraft.util.parsing.packrat.Atom<T>, net.minecraft.util.parsing.packrat.Term<S>, net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T>);
+  public <T> net.minecraft.util.parsing.packrat.NamedRule<S, T> put(net.minecraft.util.parsing.packrat.Atom<T>, net.minecraft.util.parsing.packrat.Term<S>, net.minecraft.util.parsing.packrat.Rule$SimpleRuleAction<S, T>);
+  public void checkAllBound();
+  public <T> net.minecraft.util.parsing.packrat.NamedRule<S, T> getOrThrow(net.minecraft.util.parsing.packrat.Atom<T>);
+  public <T> net.minecraft.util.parsing.packrat.NamedRule<S, T> forward(net.minecraft.util.parsing.packrat.Atom<T>);
+  public <T> net.minecraft.util.parsing.packrat.Term<S> named(net.minecraft.util.parsing.packrat.Atom<T>);
+  public <T> net.minecraft.util.parsing.packrat.Term<S> namedWithAlias(net.minecraft.util.parsing.packrat.Atom<T>, net.minecraft.util.parsing.packrat.Atom<T>);
+}
+Compiled from "NamedRule.java"
+public interface net.minecraft.util.parsing.packrat.NamedRule<S, T> {
+  public abstract net.minecraft.util.parsing.packrat.Atom<T> name();
+  public abstract net.minecraft.util.parsing.packrat.Rule<S, T> value();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.parsing.packrat.package-info {
+}
+Compiled from "CachedParseState.java"
+final class net.minecraft.util.parsing.packrat.CachedParseState$CacheEntry<T> extends java.lang.Record {
+  public static final net.minecraft.util.parsing.packrat.CachedParseState$CacheEntry<?> NEGATIVE;
+  public static <T> net.minecraft.util.parsing.packrat.CachedParseState$CacheEntry<T> negativeEntry();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+  public int markAfterParse();
+}
+Compiled from "DelayedException.java"
+public interface net.minecraft.util.parsing.packrat.DelayedException<T extends java.lang.Exception> {
+  public abstract T create(java.lang.String, int);
+  public static net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException> create(com.mojang.brigadier.exceptions.SimpleCommandExceptionType);
+  public static net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException> create(com.mojang.brigadier.exceptions.DynamicCommandExceptionType, java.lang.String);
+}
+Compiled from "CachedParseState.java"
+class net.minecraft.util.parsing.packrat.CachedParseState$PositionCache {
+  public static final int ENTRY_STRIDE;
+  public int findKeyIndex(net.minecraft.util.parsing.packrat.Atom<?>);
+  public int allocateNewEntry(net.minecraft.util.parsing.packrat.Atom<?>);
+  public <T> net.minecraft.util.parsing.packrat.CachedParseState$CacheEntry<T> getValue(int);
+  public void setValue(int, net.minecraft.util.parsing.packrat.CachedParseState$CacheEntry<?>);
+}
+Compiled from "Control.java"
+public interface net.minecraft.util.parsing.packrat.Control {
+  public static final net.minecraft.util.parsing.packrat.Control UNBOUND;
+  public abstract void cut();
+  public abstract boolean hasCut();
+}
+Compiled from "Term.java"
+public interface net.minecraft.util.parsing.packrat.Term<S> {
+  public abstract boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> marker(net.minecraft.util.parsing.packrat.Atom<T>, T);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> sequence(net.minecraft.util.parsing.packrat.Term<S>...);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> alternative(net.minecraft.util.parsing.packrat.Term<S>...);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> optional(net.minecraft.util.parsing.packrat.Term<S>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeated(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeated(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, int);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeatedWithTrailingSeparator(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, net.minecraft.util.parsing.packrat.Term<S>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeatedWithTrailingSeparator(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, net.minecraft.util.parsing.packrat.Term<S>, int);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeatedWithoutTrailingSeparator(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, net.minecraft.util.parsing.packrat.Term<S>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Term<S> repeatedWithoutTrailingSeparator(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, net.minecraft.util.parsing.packrat.Term<S>, int);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> positiveLookahead(net.minecraft.util.parsing.packrat.Term<S>);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> negativeLookahead(net.minecraft.util.parsing.packrat.Term<S>);
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> cut();
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> empty();
+  public static <S> net.minecraft.util.parsing.packrat.Term<S> fail(java.lang.Object);
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$Repeated<S, T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$Repeated(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, int);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.NamedRule<S, T> element();
+  public net.minecraft.util.parsing.packrat.Atom<java.util.List<T>> listName();
+  public int minRepetitions();
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$Alternative<S> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$Alternative(net.minecraft.util.parsing.packrat.Term<S>[]);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Term<S>[] elements();
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$LookAhead<S> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$LookAhead(net.minecraft.util.parsing.packrat.Term<S>, boolean);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Term<S> term();
+  public boolean positive();
+}
+Compiled from "ErrorCollector.java"
+public class net.minecraft.util.parsing.packrat.ErrorCollector$Nop<S> implements net.minecraft.util.parsing.packrat.ErrorCollector<S> {
+  public net.minecraft.util.parsing.packrat.ErrorCollector$Nop();
+  public void store(int, net.minecraft.util.parsing.packrat.SuggestionSupplier<S>, java.lang.Object);
+  public void finish(int);
+}
+Compiled from "ErrorCollector.java"
+public class net.minecraft.util.parsing.packrat.ErrorCollector$LongestOnly<S> implements net.minecraft.util.parsing.packrat.ErrorCollector<S> {
+  public net.minecraft.util.parsing.packrat.ErrorCollector$LongestOnly();
+  public void finish(int);
+  public void store(int, net.minecraft.util.parsing.packrat.SuggestionSupplier<S>, java.lang.Object);
+  public java.util.List<net.minecraft.util.parsing.packrat.ErrorEntry<S>> entries();
+  public int cursor();
+}
+Compiled from "CachedParseState.java"
+class net.minecraft.util.parsing.packrat.CachedParseState$SimpleControl implements net.minecraft.util.parsing.packrat.Control {
+  public void cut();
+  public boolean hasCut();
+  public void reset();
+}
+Compiled from "CachedParseState.java"
+public abstract class net.minecraft.util.parsing.packrat.CachedParseState<S> implements net.minecraft.util.parsing.packrat.ParseState<S> {
+  protected net.minecraft.util.parsing.packrat.CachedParseState(net.minecraft.util.parsing.packrat.ErrorCollector<S>);
+  public net.minecraft.util.parsing.packrat.Scope scope();
+  public net.minecraft.util.parsing.packrat.ErrorCollector<S> errorCollector();
+  public <T> T parse(net.minecraft.util.parsing.packrat.NamedRule<S, T>);
+  public net.minecraft.util.parsing.packrat.Control acquireControl();
+  public void releaseControl();
+  public net.minecraft.util.parsing.packrat.ParseState<S> silent();
+}
+Compiled from "ErrorEntry.java"
+public final class net.minecraft.util.parsing.packrat.ErrorEntry<S> extends java.lang.Record {
+  public net.minecraft.util.parsing.packrat.ErrorEntry(int, net.minecraft.util.parsing.packrat.SuggestionSupplier<S>, java.lang.Object);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int cursor();
+  public net.minecraft.util.parsing.packrat.SuggestionSupplier<S> suggestions();
+  public java.lang.Object reason();
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$RepeatedWithSeparator<S, T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$RepeatedWithSeparator(net.minecraft.util.parsing.packrat.NamedRule<S, T>, net.minecraft.util.parsing.packrat.Atom<java.util.List<T>>, net.minecraft.util.parsing.packrat.Term<S>, int, boolean);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.NamedRule<S, T> element();
+  public net.minecraft.util.parsing.packrat.Atom<java.util.List<T>> listName();
+  public net.minecraft.util.parsing.packrat.Term<S> separator();
+  public int minRepetitions();
+  public boolean allowTrailingSeparator();
+}
+Compiled from "CachedParseState.java"
+class net.minecraft.util.parsing.packrat.CachedParseState$Silent implements net.minecraft.util.parsing.packrat.ParseState<S> {
+  public net.minecraft.util.parsing.packrat.ErrorCollector<S> errorCollector();
+  public net.minecraft.util.parsing.packrat.Scope scope();
+  public <T> T parse(net.minecraft.util.parsing.packrat.NamedRule<S, T>);
+  public S input();
+  public int mark();
+  public void restore(int);
+  public net.minecraft.util.parsing.packrat.Control acquireControl();
+  public void releaseControl();
+  public net.minecraft.util.parsing.packrat.ParseState<S> silent();
+}
+Compiled from "Rule.java"
+public interface net.minecraft.util.parsing.packrat.Rule<S, T> {
+  public abstract T parse(net.minecraft.util.parsing.packrat.ParseState<S>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Rule<S, T> fromTerm(net.minecraft.util.parsing.packrat.Term<S>, net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T>);
+  public static <S, T> net.minecraft.util.parsing.packrat.Rule<S, T> fromTerm(net.minecraft.util.parsing.packrat.Term<S>, net.minecraft.util.parsing.packrat.Rule$SimpleRuleAction<S, T>);
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$Marker<S, T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$Marker(net.minecraft.util.parsing.packrat.Atom<T>, T);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Atom<T> name();
+  public T value();
+}
+Compiled from "Dictionary.java"
+final class net.minecraft.util.parsing.packrat.Dictionary$Reference<S, T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Dictionary$Entry<S, T> ruleToParse();
+  public net.minecraft.util.parsing.packrat.Atom<T> nameToStore();
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$Maybe<S> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$Maybe(net.minecraft.util.parsing.packrat.Term<S>);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Term<S> term();
+}
+Compiled from "Dictionary.java"
+class net.minecraft.util.parsing.packrat.Dictionary$Entry<S, T> implements net.minecraft.util.parsing.packrat.NamedRule<S, T>, java.util.function.Supplier<java.lang.String> {
+  public net.minecraft.util.parsing.packrat.Atom<T> name();
+  public net.minecraft.util.parsing.packrat.Rule<S, T> value();
+  public java.lang.String get();
+  public java.lang.Object get();
+}
+Compiled from "Rule.java"
+public interface net.minecraft.util.parsing.packrat.Rule$SimpleRuleAction<S, T> extends net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T> {
+  public abstract T run(net.minecraft.util.parsing.packrat.Scope);
+  public default T run(net.minecraft.util.parsing.packrat.ParseState<S>);
+}
+Compiled from "Term.java"
+public final class net.minecraft.util.parsing.packrat.Term$Sequence<S> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Term<S> {
+  public net.minecraft.util.parsing.packrat.Term$Sequence(net.minecraft.util.parsing.packrat.Term<S>[]);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<S>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Term<S>[] elements();
+}
+Compiled from "ErrorCollector.java"
+public interface net.minecraft.util.parsing.packrat.ErrorCollector<S> {
+  public abstract void store(int, net.minecraft.util.parsing.packrat.SuggestionSupplier<S>, java.lang.Object);
+  public default void store(int, java.lang.Object);
+  public abstract void finish(int);
+}
+Compiled from "Rule.java"
+public final class net.minecraft.util.parsing.packrat.Rule$WrappedTerm<S, T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.Rule<S, T> {
+  public net.minecraft.util.parsing.packrat.Rule$WrappedTerm(net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T>, net.minecraft.util.parsing.packrat.Term<S>);
+  public T parse(net.minecraft.util.parsing.packrat.ParseState<S>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Rule$RuleAction<S, T> action();
+  public net.minecraft.util.parsing.packrat.Term<S> child();
+}
+Compiled from "ErrorCollector.java"
+class net.minecraft.util.parsing.packrat.ErrorCollector$LongestOnly$MutableErrorEntry<S> {
+}

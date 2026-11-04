@@ -1,0 +1,227 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.illager.package-info {
+}
+Compiled from "Evoker.java"
+class net.minecraft.world.entity.monster.illager.Evoker$EvokerAttackSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal {
+  protected int getCastingTime();
+  protected int getCastingInterval();
+  protected void performSpellCasting();
+  protected net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+}
+Compiled from "Evoker.java"
+class net.minecraft.world.entity.monster.illager.Evoker$EvokerCastingSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterCastingSpellGoal {
+  public void tick();
+}
+Compiled from "AbstractIllager.java"
+public class net.minecraft.world.entity.monster.illager.AbstractIllager$RaiderOpenDoorGoal extends net.minecraft.world.entity.ai.goal.OpenDoorGoal {
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$RaiderOpenDoorGoal(net.minecraft.world.entity.monster.illager.AbstractIllager, net.minecraft.world.entity.raid.Raider);
+  public boolean canUse();
+}
+Compiled from "Vindicator.java"
+class net.minecraft.world.entity.monster.illager.Vindicator$VindicatorJohnnyAttackGoal extends net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.monster.illager.Vindicator$VindicatorJohnnyAttackGoal(net.minecraft.world.entity.monster.illager.Vindicator);
+  public boolean canUse();
+  public void start();
+}
+Compiled from "Illusioner.java"
+class net.minecraft.world.entity.monster.illager.Illusioner$IllusionerBlindnessSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal {
+  public boolean canUse();
+  public void start();
+  protected int getCastingTime();
+  protected int getCastingInterval();
+  protected void performSpellCasting();
+  protected net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+}
+Compiled from "SpellcasterIllager.java"
+public class net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterCastingSpellGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterCastingSpellGoal(net.minecraft.world.entity.monster.illager.SpellcasterIllager);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "SpellcasterIllager.java"
+public abstract class net.minecraft.world.entity.monster.illager.SpellcasterIllager extends net.minecraft.world.entity.monster.illager.AbstractIllager {
+  protected int spellCastingTickCount;
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.SpellcasterIllager>, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose getArmPose();
+  public boolean isCastingSpell();
+  public void setIsCastingSpell(net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell);
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getCurrentSpell();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  protected int getSpellCastingTime();
+  protected abstract net.minecraft.sounds.SoundEvent getCastingSoundEvent();
+}
+Compiled from "Vindicator.java"
+public class net.minecraft.world.entity.monster.illager.Vindicator extends net.minecraft.world.entity.monster.illager.AbstractIllager {
+  public net.minecraft.world.entity.monster.illager.Vindicator(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.Vindicator>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose getArmPose();
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.sounds.SoundEvent getCelebrateSound();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected void populateDefaultEquipmentSlots(net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  public void setCustomName(net.minecraft.network.chat.Component);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  public void applyRaidBuffs(net.minecraft.server.level.ServerLevel, int, boolean);
+}
+Compiled from "Evoker.java"
+class net.minecraft.world.entity.monster.illager.Evoker$EvokerSummonSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal {
+  public boolean canUse();
+  protected int getCastingTime();
+  protected int getCastingInterval();
+  protected void performSpellCasting();
+  protected net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+}
+Compiled from "SpellcasterIllager.java"
+public final class net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell extends java.lang.Enum<net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell> {
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell NONE;
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell SUMMON_VEX;
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell FANGS;
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell WOLOLO;
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell DISAPPEAR;
+  public static final net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell BLINDNESS;
+  public static net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell[] values();
+  public static net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell valueOf(java.lang.String);
+  public static net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell byId(int);
+}
+Compiled from "Pillager.java"
+public class net.minecraft.world.entity.monster.illager.Pillager extends net.minecraft.world.entity.monster.illager.AbstractIllager implements net.minecraft.world.entity.monster.CrossbowAttackMob,net.minecraft.world.entity.npc.InventoryCarrier {
+  public net.minecraft.world.entity.monster.illager.Pillager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.Pillager>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean canUseNonMeleeWeapon(net.minecraft.world.item.ItemStack);
+  public boolean isChargingCrossbow();
+  public void setChargingCrossbow(boolean);
+  public void onCrossbowAttackPerformed();
+  public net.minecraft.tags.TagKey<net.minecraft.world.item.Item> getPreferredWeaponType();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose getArmPose();
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  public int getMaxSpawnClusterSize();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected void populateDefaultEquipmentSlots(net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  protected void enchantSpawnedWeapon(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  public void performRangedAttack(net.minecraft.world.entity.LivingEntity, float);
+  public net.minecraft.world.SimpleContainer getInventory();
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public void applyRaidBuffs(net.minecraft.server.level.ServerLevel, int, boolean);
+  public net.minecraft.sounds.SoundEvent getCelebrateSound();
+}
+Compiled from "Evoker.java"
+public class net.minecraft.world.entity.monster.illager.Evoker$EvokerWololoSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal {
+  public net.minecraft.world.entity.monster.illager.Evoker$EvokerWololoSpellGoal(net.minecraft.world.entity.monster.illager.Evoker);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  protected void performSpellCasting();
+  protected int getCastWarmupTime();
+  protected int getCastingTime();
+  protected int getCastingInterval();
+  protected net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+  public void tick();
+  public void start();
+}
+Compiled from "AbstractIllager.java"
+public abstract class net.minecraft.world.entity.monster.illager.AbstractIllager extends net.minecraft.world.entity.raid.Raider {
+  protected net.minecraft.world.entity.monster.illager.AbstractIllager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.AbstractIllager>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose getArmPose();
+  public boolean canAttack(net.minecraft.world.entity.LivingEntity);
+  protected boolean considersEntityAsAlly(net.minecraft.world.entity.Entity);
+}
+Compiled from "SpellcasterIllager.java"
+public abstract class net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  protected int attackWarmupDelay;
+  protected int nextAttackTickCount;
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal(net.minecraft.world.entity.monster.illager.SpellcasterIllager);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void tick();
+  protected abstract void performSpellCasting();
+  protected int getCastWarmupTime();
+  protected abstract int getCastingTime();
+  protected abstract int getCastingInterval();
+  protected abstract net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected abstract net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+}
+Compiled from "Evoker.java"
+public class net.minecraft.world.entity.monster.illager.Evoker extends net.minecraft.world.entity.monster.illager.SpellcasterIllager {
+  public net.minecraft.world.entity.monster.illager.Evoker(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.Evoker>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.sounds.SoundEvent getCelebrateSound();
+  protected boolean considersEntityAsAlly(net.minecraft.world.entity.Entity);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getCastingSoundEvent();
+  public void applyRaidBuffs(net.minecraft.server.level.ServerLevel, int, boolean);
+}
+Compiled from "Vindicator.java"
+class net.minecraft.world.entity.monster.illager.Vindicator$VindicatorBreakDoorGoal extends net.minecraft.world.entity.ai.goal.BreakDoorGoal {
+  public net.minecraft.world.entity.monster.illager.Vindicator$VindicatorBreakDoorGoal(net.minecraft.world.entity.Mob);
+  public boolean canContinueToUse();
+  public boolean canUse();
+  public void start();
+}
+Compiled from "Illusioner.java"
+public class net.minecraft.world.entity.monster.illager.Illusioner extends net.minecraft.world.entity.monster.illager.SpellcasterIllager implements net.minecraft.world.entity.monster.RangedAttackMob {
+  public static final int ILLUSION_SPREAD;
+  public net.minecraft.world.entity.monster.illager.Illusioner(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.illager.Illusioner>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public void aiStep();
+  public net.minecraft.sounds.SoundEvent getCelebrateSound();
+  public net.minecraft.world.phys.Vec3[] getIllusionOffsets(float);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getCastingSoundEvent();
+  public void applyRaidBuffs(net.minecraft.server.level.ServerLevel, int, boolean);
+  public void performRangedAttack(net.minecraft.world.entity.LivingEntity, float);
+  public net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose getArmPose();
+}
+Compiled from "AbstractIllager.java"
+public final class net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose extends java.lang.Enum<net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose> {
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose CROSSED;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose ATTACKING;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose SPELLCASTING;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose BOW_AND_ARROW;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose CROSSBOW_HOLD;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose CROSSBOW_CHARGE;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose CELEBRATING;
+  public static final net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose NEUTRAL;
+  public static net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose[] values();
+  public static net.minecraft.world.entity.monster.illager.AbstractIllager$IllagerArmPose valueOf(java.lang.String);
+}
+Compiled from "Illusioner.java"
+class net.minecraft.world.entity.monster.illager.Illusioner$IllusionerMirrorSpellGoal extends net.minecraft.world.entity.monster.illager.SpellcasterIllager$SpellcasterUseSpellGoal {
+  public boolean canUse();
+  protected int getCastingTime();
+  protected int getCastingInterval();
+  protected void performSpellCasting();
+  protected net.minecraft.sounds.SoundEvent getSpellPrepareSound();
+  protected net.minecraft.world.entity.monster.illager.SpellcasterIllager$IllagerSpell getSpell();
+}

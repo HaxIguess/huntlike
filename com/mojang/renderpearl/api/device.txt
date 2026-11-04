@@ -1,0 +1,177 @@
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.api.device.package-info {
+}
+Compiled from "GpuDevice.java"
+public interface com.mojang.renderpearl.api.device.GpuDevice {
+  public abstract com.mojang.renderpearl.api.device.GpuSurface createSurface(long, java.util.function.BooleanSupplier);
+  public abstract com.mojang.renderpearl.api.commands.CommandEncoder createCommandEncoder();
+  public abstract com.mojang.renderpearl.api.textures.GpuSampler createSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public abstract com.mojang.renderpearl.api.textures.GpuTexture createTexture(java.util.function.Supplier<java.lang.String>, int, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public abstract com.mojang.renderpearl.api.textures.GpuTexture createTexture(java.lang.String, int, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public abstract com.mojang.renderpearl.api.textures.GpuTextureView createTextureView(com.mojang.renderpearl.api.textures.GpuTexture);
+  public abstract com.mojang.renderpearl.api.textures.GpuTextureView createTextureView(com.mojang.renderpearl.api.textures.GpuTexture, int, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, long);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, java.nio.ByteBuffer);
+  public abstract java.util.List<java.lang.String> getLastDebugMessages();
+  public abstract boolean isDebuggingEnabled();
+  public abstract java.util.concurrent.CompletableFuture<com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline$Pending> compilePipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.ShaderSource, java.util.concurrent.Executor);
+  public abstract void close();
+  public abstract com.mojang.renderpearl.api.commands.GpuQueryPool createTimestampQueryPool(int);
+  public abstract com.mojang.renderpearl.api.device.DeviceInfo getDeviceInfo();
+}
+Compiled from "DeviceInfo.java"
+public final class com.mojang.renderpearl.api.device.DeviceInfo extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.DeviceInfo(java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.String, float, com.mojang.renderpearl.api.device.DeviceLimits, com.mojang.renderpearl.api.device.DeviceFeatures, java.util.Set<java.lang.String>, com.mojang.renderpearl.api.device.HintsAndWorkarounds, com.mojang.renderpearl.api.device.DeviceType);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String vendorName();
+  public java.lang.String driverInfo();
+  public boolean isZZeroToOne();
+  public java.lang.String backendName();
+  public float timestampPeriod();
+  public com.mojang.renderpearl.api.device.DeviceLimits limits();
+  public com.mojang.renderpearl.api.device.DeviceFeatures features();
+  public java.util.Set<java.lang.String> underlyingExtensions();
+  public com.mojang.renderpearl.api.device.HintsAndWorkarounds hintsAndWorkarounds();
+  public com.mojang.renderpearl.api.device.DeviceType type();
+}
+Compiled from "BackendCreationException.java"
+public final class com.mojang.renderpearl.api.device.BackendCreationException$Reason extends java.lang.Enum<com.mojang.renderpearl.api.device.BackendCreationException$Reason> {
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason PLATFORM_ERROR;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_LOADER_MISSING;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_INSTANCE_CREATION_FAILED;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_NO_DEVICE;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_KNOWN_PROBLEMATIC;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_DEVICE_VERSION_TOO_LOW;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_NO_GRAPHICS_QUEUE;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_MISSING_EXTENSION;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason VULKAN_MISSING_FEATURE;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason OPENGL_MISSING;
+  public static final com.mojang.renderpearl.api.device.BackendCreationException$Reason OTHER;
+  public static com.mojang.renderpearl.api.device.BackendCreationException$Reason[] values();
+  public static com.mojang.renderpearl.api.device.BackendCreationException$Reason valueOf(java.lang.String);
+  public java.lang.String displayName();
+}
+Compiled from "DeviceFeatures.java"
+public final class com.mojang.renderpearl.api.device.DeviceFeatures extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.DeviceFeatures(boolean, boolean, boolean, boolean, boolean, boolean, boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean wireframeFillMode();
+  public boolean shaderDrawParameters();
+  public boolean multiDrawDirectInterleaved();
+  public boolean multiDrawDirectSeparate();
+  public boolean multiDrawIndirect();
+  public boolean drawIndirect();
+  public boolean nonZeroFirstInstance();
+  public boolean persistentMapping();
+}
+Compiled from "GpuSurface.java"
+public final class com.mojang.renderpearl.api.device.GpuSurface$PresentMode extends java.lang.Enum<com.mojang.renderpearl.api.device.GpuSurface$PresentMode> {
+  public static final com.mojang.renderpearl.api.device.GpuSurface$PresentMode IMMEDIATE;
+  public static final com.mojang.renderpearl.api.device.GpuSurface$PresentMode MAILBOX;
+  public static final com.mojang.renderpearl.api.device.GpuSurface$PresentMode FIFO;
+  public static final com.mojang.renderpearl.api.device.GpuSurface$PresentMode FIFO_RELAXED;
+  public static com.mojang.renderpearl.api.device.GpuSurface$PresentMode[] values();
+  public static com.mojang.renderpearl.api.device.GpuSurface$PresentMode valueOf(java.lang.String);
+  public static com.mojang.renderpearl.api.device.GpuSurface$PresentMode getSupportedVsyncMode(java.util.Collection<com.mojang.renderpearl.api.device.GpuSurface$PresentMode>, boolean);
+}
+Compiled from "GpuDeviceLossException.java"
+public class com.mojang.renderpearl.api.device.GpuDeviceLossException extends java.lang.RuntimeException {
+  public com.mojang.renderpearl.api.device.GpuDeviceLossException(java.lang.String);
+}
+Compiled from "SurfaceException.java"
+public class com.mojang.renderpearl.api.device.SurfaceException extends java.lang.Exception {
+  public com.mojang.renderpearl.api.device.SurfaceException(java.lang.String);
+  public com.mojang.renderpearl.api.device.SurfaceException(java.lang.Throwable);
+}
+Compiled from "GpuOutOfMemoryException.java"
+public class com.mojang.renderpearl.api.device.GpuOutOfMemoryException extends java.lang.RuntimeException {
+  public com.mojang.renderpearl.api.device.GpuOutOfMemoryException(java.lang.String);
+}
+Compiled from "GpuBackend.java"
+public interface com.mojang.renderpearl.api.device.GpuBackend {
+  public abstract java.lang.String getName();
+  public abstract void loadLibrary() throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public abstract void unloadLibrary();
+  public abstract long createWindow(java.lang.String, int, int, long);
+  public abstract com.mojang.renderpearl.api.device.GpuDevice createDevice(com.mojang.renderpearl.api.device.GpuDebugOptions) throws com.mojang.renderpearl.api.device.BackendCreationException;
+}
+Compiled from "GpuSurface.java"
+public interface com.mojang.renderpearl.api.device.GpuSurface extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract void configure(com.mojang.renderpearl.api.device.GpuSurface$Configuration) throws com.mojang.renderpearl.api.device.SurfaceException;
+  public abstract java.util.Optional<com.mojang.renderpearl.api.device.GpuSurface$Configuration> currentConfiguration();
+  public abstract java.util.Collection<com.mojang.renderpearl.api.device.GpuSurface$PresentMode> supportedPresentModes();
+  public abstract boolean isSuboptimal();
+  public abstract boolean isAcquired();
+  public abstract void acquireNextTexture() throws com.mojang.renderpearl.api.device.SurfaceException;
+  public abstract void blitFromTexture(com.mojang.renderpearl.api.commands.CommandEncoder, com.mojang.renderpearl.api.textures.GpuTextureView);
+  public abstract void present();
+}
+Compiled from "DeviceType.java"
+public final class com.mojang.renderpearl.api.device.DeviceType extends java.lang.Enum<com.mojang.renderpearl.api.device.DeviceType> {
+  public static final com.mojang.renderpearl.api.device.DeviceType OTHER;
+  public static final com.mojang.renderpearl.api.device.DeviceType INTEGRATED;
+  public static final com.mojang.renderpearl.api.device.DeviceType DISCRETE;
+  public static final com.mojang.renderpearl.api.device.DeviceType VIRTUAL;
+  public static final com.mojang.renderpearl.api.device.DeviceType CPU;
+  public static com.mojang.renderpearl.api.device.DeviceType[] values();
+  public static com.mojang.renderpearl.api.device.DeviceType valueOf(java.lang.String);
+}
+Compiled from "BackendCreationException.java"
+public class com.mojang.renderpearl.api.device.BackendCreationException extends java.lang.Exception {
+  public com.mojang.renderpearl.api.device.BackendCreationException(java.lang.String, com.mojang.renderpearl.api.device.BackendCreationException$Reason, java.util.List<java.lang.String>);
+  public com.mojang.renderpearl.api.device.BackendCreationException(java.lang.String, com.mojang.renderpearl.api.device.BackendCreationException$Reason);
+  public com.mojang.renderpearl.api.device.BackendCreationException$Reason getReason();
+  public java.util.List<java.lang.String> getMissingCapabilities();
+}
+Compiled from "DeviceLimits.java"
+public final class com.mojang.renderpearl.api.device.DeviceLimits extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.DeviceLimits(int, int, int, long, int, int, int);
+  public int maxTextureSizeForFormat(com.mojang.renderpearl.api.GpuFormat);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int maxAnisotropy();
+  public int minUniformOffsetAlignment();
+  public int maxTextureSize();
+  public long maxMemoryAllocationSize();
+  public int maxMultiDrawDirectInterleavedDrawCount();
+  public int maxColorAttachments();
+  public int maxDrawIndirectDrawCount();
+}
+Compiled from "GpuDebugOptions.java"
+public final class com.mojang.renderpearl.api.device.GpuDebugOptions extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.GpuDebugOptions(int, boolean, boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int logLevel();
+  public boolean synchronousLogs();
+  public boolean useLabels();
+  public boolean useValidationLayers();
+}
+Compiled from "GpuSurface.java"
+public final class com.mojang.renderpearl.api.device.GpuSurface$Configuration extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.GpuSurface$Configuration(int, int, com.mojang.renderpearl.api.device.GpuSurface$PresentMode);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public com.mojang.renderpearl.api.device.GpuSurface$PresentMode presentMode();
+}
+Compiled from "HintsAndWorkarounds.java"
+public final class com.mojang.renderpearl.api.device.HintsAndWorkarounds extends java.lang.Record {
+  public com.mojang.renderpearl.api.device.HintsAndWorkarounds(boolean, boolean, boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean writeToBufferIsSlow();
+  public boolean anisotropyHasKnownIssues();
+  public boolean isExplicitDepthRequired();
+  public boolean multiDrawIndirectHasKnownIssues();
+}

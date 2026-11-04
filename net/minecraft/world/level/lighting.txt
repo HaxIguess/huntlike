@@ -1,0 +1,272 @@
+Compiled from "SkyLightSectionStorage.java"
+public class net.minecraft.world.level.lighting.SkyLightSectionStorage extends net.minecraft.world.level.lighting.LayerLightSectionStorage<net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap> {
+  protected net.minecraft.world.level.lighting.SkyLightSectionStorage(net.minecraft.world.level.chunk.LightChunkGetter);
+  protected int getLightValue(long);
+  protected int getLightValue(long, boolean);
+  protected void onNodeAdded(long);
+  protected void onNodeRemoved(long);
+  protected net.minecraft.world.level.chunk.DataLayer createDataLayer(long);
+  protected boolean hasLightDataAtOrBelow(int);
+  protected boolean isAboveData(long);
+  protected int getTopSectionY(long);
+  protected int getBottomSectionY();
+}
+Compiled from "DataLayerStorageMap.java"
+public abstract class net.minecraft.world.level.lighting.DataLayerStorageMap<M extends net.minecraft.world.level.lighting.DataLayerStorageMap<M>> {
+  protected final it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap<net.minecraft.world.level.chunk.DataLayer> map;
+  protected net.minecraft.world.level.lighting.DataLayerStorageMap(it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap<net.minecraft.world.level.chunk.DataLayer>);
+  public abstract M copy();
+  public net.minecraft.world.level.chunk.DataLayer copyDataLayer(long);
+  public boolean hasLayer(long);
+  public net.minecraft.world.level.chunk.DataLayer getLayer(long);
+  public net.minecraft.world.level.chunk.DataLayer removeLayer(long);
+  public void setLayer(long, net.minecraft.world.level.chunk.DataLayer);
+  public void clearCache();
+  public void disableCache();
+}
+Compiled from "LayerLightSectionStorage.java"
+public class net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionState {
+  public static final byte EMPTY;
+  protected net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionState();
+  public static byte hasData(byte, boolean);
+  public static byte neighborCount(byte, int);
+  public static boolean hasData(byte);
+  public static int neighborCount(byte);
+  public static net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType type(byte);
+}
+Compiled from "BlockLightSectionStorage.java"
+public class net.minecraft.world.level.lighting.BlockLightSectionStorage extends net.minecraft.world.level.lighting.LayerLightSectionStorage<net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap> {
+  protected net.minecraft.world.level.lighting.BlockLightSectionStorage(net.minecraft.world.level.chunk.LightChunkGetter);
+  protected int getLightValue(long);
+}
+Compiled from "LeveledPriorityQueue.java"
+public class net.minecraft.world.level.lighting.LeveledPriorityQueue {
+  public net.minecraft.world.level.lighting.LeveledPriorityQueue(int, int);
+  public long removeFirstLong();
+  public boolean isEmpty();
+  public void dequeue(long, int, int);
+  public void enqueue(long, int);
+}
+Compiled from "LightEngine.java"
+public abstract class net.minecraft.world.level.lighting.LightEngine<M extends net.minecraft.world.level.lighting.DataLayerStorageMap<M>, S extends net.minecraft.world.level.lighting.LayerLightSectionStorage<M>> implements net.minecraft.world.level.lighting.LayerLightEventListener {
+  public static final int MAX_LEVEL;
+  protected static final int MIN_OPACITY;
+  protected static final long PULL_LIGHT_IN_ENTRY;
+  protected static final net.minecraft.core.Direction[] PROPAGATION_DIRECTIONS;
+  protected final net.minecraft.world.level.chunk.LightChunkGetter chunkSource;
+  protected final S storage;
+  protected net.minecraft.world.level.lighting.LightEngine(net.minecraft.world.level.chunk.LightChunkGetter, S);
+  public static boolean hasDifferentLightProperties(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState);
+  public static int getLightDampeningInto(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, int);
+  public static net.minecraft.world.phys.shapes.VoxelShape getOcclusionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction);
+  protected static boolean isEmptyShape(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.level.block.state.BlockState getState(net.minecraft.core.BlockPos);
+  protected int getOpacity(net.minecraft.world.level.block.state.BlockState);
+  protected boolean shapeOccludes(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction);
+  protected net.minecraft.world.level.chunk.LightChunk getChunk(int, int);
+  public void checkBlock(net.minecraft.core.BlockPos);
+  public void queueSectionData(long, net.minecraft.world.level.chunk.DataLayer);
+  public void retainData(net.minecraft.world.level.ChunkPos, boolean);
+  public void updateSectionStatus(net.minecraft.core.SectionPos, boolean);
+  public void setLightEnabled(net.minecraft.world.level.ChunkPos, boolean);
+  public int runLightUpdates();
+  protected void enqueueDecrease(long, long);
+  protected void enqueueIncrease(long, long);
+  public boolean hasLightWork();
+  public net.minecraft.world.level.chunk.DataLayer getDataLayerData(net.minecraft.core.SectionPos);
+  public int getLightValue(net.minecraft.core.BlockPos);
+  public java.lang.String getDebugData(long);
+  public net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType getDebugSectionType(long);
+  protected abstract void checkNode(long);
+  protected abstract void propagateIncrease(long, long, int);
+  protected abstract void propagateDecrease(long, long);
+}
+Compiled from "ChunkSkyLightSources.java"
+public class net.minecraft.world.level.lighting.ChunkSkyLightSources {
+  public static final int NEGATIVE_INFINITY;
+  public net.minecraft.world.level.lighting.ChunkSkyLightSources(net.minecraft.world.level.LevelHeightAccessor);
+  public void fillFrom(net.minecraft.world.level.chunk.ChunkAccess);
+  public boolean update(net.minecraft.world.level.BlockGetter, int, int, int);
+  public int getLowestSourceY(int, int);
+  public int getHighestLowestSourceY();
+}
+Compiled from "LayerLightEventListener.java"
+public final class net.minecraft.world.level.lighting.LayerLightEventListener$DummyLightLayerEventListener extends java.lang.Enum<net.minecraft.world.level.lighting.LayerLightEventListener$DummyLightLayerEventListener> implements net.minecraft.world.level.lighting.LayerLightEventListener {
+  public static final net.minecraft.world.level.lighting.LayerLightEventListener$DummyLightLayerEventListener INSTANCE;
+  public static net.minecraft.world.level.lighting.LayerLightEventListener$DummyLightLayerEventListener[] values();
+  public static net.minecraft.world.level.lighting.LayerLightEventListener$DummyLightLayerEventListener valueOf(java.lang.String);
+  public net.minecraft.world.level.chunk.DataLayer getDataLayerData(net.minecraft.core.SectionPos);
+  public int getLightValue(net.minecraft.core.BlockPos);
+  public void checkBlock(net.minecraft.core.BlockPos);
+  public boolean hasLightWork();
+  public int runLightUpdates();
+  public void updateSectionStatus(net.minecraft.core.SectionPos, boolean);
+  public void setLightEnabled(net.minecraft.world.level.ChunkPos, boolean);
+  public void propagateLightSources(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "LightEventListener.java"
+public interface net.minecraft.world.level.lighting.LightEventListener {
+  public abstract void checkBlock(net.minecraft.core.BlockPos);
+  public abstract boolean hasLightWork();
+  public abstract int runLightUpdates();
+  public default void updateSectionStatus(net.minecraft.core.BlockPos, boolean);
+  public abstract void updateSectionStatus(net.minecraft.core.SectionPos, boolean);
+  public abstract void setLightEnabled(net.minecraft.world.level.ChunkPos, boolean);
+  public abstract void propagateLightSources(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "SkyLightEngine.java"
+public final class net.minecraft.world.level.lighting.SkyLightEngine extends net.minecraft.world.level.lighting.LightEngine<net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap, net.minecraft.world.level.lighting.SkyLightSectionStorage> {
+  public net.minecraft.world.level.lighting.SkyLightEngine(net.minecraft.world.level.chunk.LightChunkGetter);
+  protected void checkNode(long);
+  protected void propagateIncrease(long, long, int);
+  protected void propagateDecrease(long, long);
+  public void setLightEnabled(net.minecraft.world.level.ChunkPos, boolean);
+  public void propagateLightSources(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "DynamicGraphMinFixedPoint.java"
+public abstract class net.minecraft.world.level.lighting.DynamicGraphMinFixedPoint {
+  public static final long SOURCE;
+  protected final int levelCount;
+  protected net.minecraft.world.level.lighting.DynamicGraphMinFixedPoint(int, int, int);
+  protected void removeFromQueue(long);
+  public void removeIf(java.util.function.LongPredicate);
+  protected void checkNode(long);
+  protected void checkEdge(long, long, int, boolean);
+  protected final void checkNeighbor(long, long, int, boolean);
+  protected final boolean hasWork();
+  protected final int runUpdates(int);
+  public int getQueueSize();
+  protected boolean isSource(long);
+  protected abstract int getComputedLevel(long, long, int);
+  protected abstract void checkNeighborsAfterUpdate(long, int, boolean);
+  protected abstract int getLevel(long);
+  protected abstract void setLevel(long, int);
+  protected abstract int computeLevelFromNeighbor(long, long, int);
+}
+Compiled from "BlockLightSectionStorage.java"
+public final class net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap extends net.minecraft.world.level.lighting.DataLayerStorageMap<net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap> {
+  public net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap(it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap<net.minecraft.world.level.chunk.DataLayer>);
+  public net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap copy();
+  public net.minecraft.world.level.lighting.DataLayerStorageMap copy();
+}
+Compiled from "LayerLightEventListener.java"
+public interface net.minecraft.world.level.lighting.LayerLightEventListener extends net.minecraft.world.level.lighting.LightEventListener {
+  public abstract net.minecraft.world.level.chunk.DataLayer getDataLayerData(net.minecraft.core.SectionPos);
+  public abstract int getLightValue(net.minecraft.core.BlockPos);
+}
+Compiled from "LightEngine.java"
+public class net.minecraft.world.level.lighting.LightEngine$QueueEntry {
+  public net.minecraft.world.level.lighting.LightEngine$QueueEntry();
+  public static long decreaseSkipOneDirection(int, net.minecraft.core.Direction);
+  public static long decreaseAllDirections(int);
+  public static long increaseLightFromEmission(int, boolean);
+  public static long increaseSkipOneDirection(int, boolean, net.minecraft.core.Direction);
+  public static long increaseOnlyOneDirection(int, boolean, net.minecraft.core.Direction);
+  public static long increaseSkySourceInDirections(boolean, boolean, boolean, boolean, boolean);
+  public static int getFromLevel(long);
+  public static boolean isFromEmptyShape(long);
+  public static boolean isIncreaseFromEmission(long);
+  public static boolean shouldPropagateInDirection(long, net.minecraft.core.Direction);
+}
+Compiled from "SpatialLongSet.java"
+public class net.minecraft.world.level.lighting.SpatialLongSet extends it.unimi.dsi.fastutil.longs.LongLinkedOpenHashSet {
+  public net.minecraft.world.level.lighting.SpatialLongSet(int, float);
+  public boolean add(long);
+  public boolean rem(long);
+  public long removeFirstLong();
+  public int size();
+  public boolean isEmpty();
+}
+Compiled from "SkyLightSectionStorage.java"
+public final class net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap extends net.minecraft.world.level.lighting.DataLayerStorageMap<net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap> {
+  public net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap(it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap<net.minecraft.world.level.chunk.DataLayer>, it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap, int);
+  public net.minecraft.world.level.lighting.SkyLightSectionStorage$SkyDataLayerStorageMap copy();
+  public net.minecraft.world.level.lighting.DataLayerStorageMap copy();
+}
+Compiled from "LayerLightSectionStorage.java"
+public abstract class net.minecraft.world.level.lighting.LayerLightSectionStorage<M extends net.minecraft.world.level.lighting.DataLayerStorageMap<M>> {
+  protected final net.minecraft.world.level.chunk.LightChunkGetter chunkSource;
+  protected final it.unimi.dsi.fastutil.longs.Long2ByteMap sectionStates;
+  protected volatile M visibleSectionData;
+  protected final M updatingSectionData;
+  protected final it.unimi.dsi.fastutil.longs.LongSet changedSections;
+  protected final it.unimi.dsi.fastutil.longs.LongSet sectionsAffectedByLightUpdates;
+  protected final it.unimi.dsi.fastutil.longs.Long2ObjectMap<net.minecraft.world.level.chunk.DataLayer> queuedSections;
+  protected volatile boolean hasInconsistencies;
+  protected net.minecraft.world.level.lighting.LayerLightSectionStorage(net.minecraft.world.level.LightLayer, net.minecraft.world.level.chunk.LightChunkGetter, M);
+  protected boolean storingLightForSection(long);
+  protected net.minecraft.world.level.chunk.DataLayer getDataLayer(long, boolean);
+  protected net.minecraft.world.level.chunk.DataLayer getDataLayer(M, long);
+  protected net.minecraft.world.level.chunk.DataLayer getDataLayerToWrite(long);
+  public net.minecraft.world.level.chunk.DataLayer getDataLayerData(long);
+  protected abstract int getLightValue(long);
+  protected int getStoredLevel(long);
+  protected void setStoredLevel(long, int);
+  protected void markSectionAndNeighborsAsAffected(long);
+  protected net.minecraft.world.level.chunk.DataLayer createDataLayer(long);
+  protected boolean hasInconsistencies();
+  protected void markNewInconsistencies(net.minecraft.world.level.lighting.LightEngine<M, ?>);
+  protected void onNodeAdded(long);
+  protected void onNodeRemoved(long);
+  protected void setLightEnabled(long, boolean);
+  protected boolean lightOnInSection(long);
+  protected boolean lightOnInColumn(long);
+  public void retainData(long, boolean);
+  protected void queueSectionData(long, net.minecraft.world.level.chunk.DataLayer);
+  protected void updateSectionStatus(long, boolean);
+  protected void putSectionState(long, byte);
+  protected void swapSectionMap();
+  public net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType getDebugSectionType(long);
+}
+Compiled from "SpatialLongSet.java"
+class net.minecraft.world.level.lighting.SpatialLongSet$InternalMap extends it.unimi.dsi.fastutil.longs.Long2LongLinkedOpenHashMap {
+  public net.minecraft.world.level.lighting.SpatialLongSet$InternalMap(int, float);
+  public boolean addBit(long);
+  public boolean removeBit(long);
+  public long removeFirstBit();
+  protected void rehash(int);
+}
+Compiled from "LayerLightSectionStorage.java"
+public final class net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType extends java.lang.Enum<net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType> {
+  public static final net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType EMPTY;
+  public static final net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType LIGHT_ONLY;
+  public static final net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType LIGHT_AND_DATA;
+  public static net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType[] values();
+  public static net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType valueOf(java.lang.String);
+  public java.lang.String display();
+}
+Compiled from "BlockLightEngine.java"
+public final class net.minecraft.world.level.lighting.BlockLightEngine extends net.minecraft.world.level.lighting.LightEngine<net.minecraft.world.level.lighting.BlockLightSectionStorage$BlockDataLayerStorageMap, net.minecraft.world.level.lighting.BlockLightSectionStorage> {
+  public net.minecraft.world.level.lighting.BlockLightEngine(net.minecraft.world.level.chunk.LightChunkGetter);
+  public net.minecraft.world.level.lighting.BlockLightEngine(net.minecraft.world.level.chunk.LightChunkGetter, net.minecraft.world.level.lighting.BlockLightSectionStorage);
+  protected void checkNode(long);
+  protected void propagateIncrease(long, long, int);
+  protected void propagateDecrease(long, long);
+  public void propagateLightSources(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "LevelLightEngine.java"
+public class net.minecraft.world.level.lighting.LevelLightEngine implements net.minecraft.world.level.lighting.LightEventListener {
+  public static final int LIGHT_SECTION_PADDING;
+  public static final net.minecraft.world.level.lighting.LevelLightEngine EMPTY;
+  protected final net.minecraft.world.level.LevelHeightAccessor levelHeightAccessor;
+  public net.minecraft.world.level.lighting.LevelLightEngine(net.minecraft.world.level.chunk.LightChunkGetter, boolean, boolean);
+  public void checkBlock(net.minecraft.core.BlockPos);
+  public boolean hasLightWork();
+  public int runLightUpdates();
+  public void updateSectionStatus(net.minecraft.core.SectionPos, boolean);
+  public void setLightEnabled(net.minecraft.world.level.ChunkPos, boolean);
+  public void propagateLightSources(net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.level.lighting.LayerLightEventListener getLayerListener(net.minecraft.world.level.LightLayer);
+  public java.lang.String getDebugData(net.minecraft.world.level.LightLayer, net.minecraft.core.SectionPos);
+  public net.minecraft.world.level.lighting.LayerLightSectionStorage$SectionType getDebugSectionType(net.minecraft.world.level.LightLayer, net.minecraft.core.SectionPos);
+  public void queueSectionData(net.minecraft.world.level.LightLayer, net.minecraft.core.SectionPos, net.minecraft.world.level.chunk.DataLayer);
+  public void retainData(net.minecraft.world.level.ChunkPos, boolean);
+  public int getRawBrightness(net.minecraft.core.BlockPos, int);
+  public boolean lightOnInColumn(long);
+  public int getLightSectionCount();
+  public int getMinLightSection();
+  public int getMaxLightSection();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.lighting.package-info {
+}

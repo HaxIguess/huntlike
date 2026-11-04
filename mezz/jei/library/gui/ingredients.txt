@@ -1,0 +1,83 @@
+Compiled from "CycleTicker.java"
+public class mezz.jei.library.gui.ingredients.CycleTicker implements mezz.jei.library.gui.ingredients.ICycler {
+  public static mezz.jei.library.gui.ingredients.CycleTicker createWithRandomOffset();
+  public <T> java.util.Optional<T> getCycled(java.util.List<T>);
+  public boolean tick();
+}
+Compiled from "CycleTimer.java"
+public class mezz.jei.library.gui.ingredients.CycleTimer implements mezz.jei.library.gui.ingredients.ICycler {
+  public static mezz.jei.library.gui.ingredients.CycleTimer create(int);
+  public static mezz.jei.library.gui.ingredients.CycleTimer createWithRandomOffset();
+  public <T> java.util.Optional<T> getCycled(java.util.List<T>);
+}
+Compiled from "ICycler.java"
+public interface mezz.jei.library.gui.ingredients.ICycler {
+  public abstract <T> java.util.Optional<T> getCycled(java.util.List<T>);
+}
+Compiled from "RecipeSlot.java"
+public class mezz.jei.library.gui.ingredients.RecipeSlot implements mezz.jei.api.gui.ingredient.IRecipeSlotView,mezz.jei.api.gui.ingredient.IRecipeSlotDrawable {
+  public mezz.jei.library.gui.ingredients.RecipeSlot(mezz.jei.library.ingredients.IIngredientManagerInternal, mezz.jei.api.recipe.RecipeIngredientRole, mezz.jei.common.util.ImmutableRect2i, mezz.jei.library.gui.ingredients.ICycler, java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback>, java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, mezz.jei.api.recipe.IFocusGroup, mezz.jei.common.gui.elements.OffsetDrawable, mezz.jei.api.gui.drawable.IDrawable, java.lang.String, mezz.jei.library.gui.ingredients.RendererOverrides, net.minecraft.util.context.ContextMap);
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredients();
+  public java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredientsList();
+  public boolean isEmpty();
+  public java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getDisplayedIngredient();
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getDisplayedIngredients();
+  public java.util.Optional<java.lang.String> getSlotName();
+  public mezz.jei.api.recipe.RecipeIngredientRole getRole();
+  public void drawHighlight(net.minecraft.client.gui.GuiGraphicsExtractor, int);
+  public java.util.Optional<net.minecraft.tags.TagKey<?>> getTagKey();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, boolean);
+  public void drawHoverOverlays(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public java.util.List<net.minecraft.network.chat.Component> getTooltip();
+  public void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void drawTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean isMouseOver(double, double);
+  public void setPosition(int, int);
+  public void clearDisplayOverrides();
+  public mezz.jei.api.gui.builder.IIngredientAcceptor<?> createDisplayOverrides();
+  public void setDisplayOverridesChangedListener(java.lang.Runnable);
+  public net.minecraft.client.renderer.Rect2i getAreaIncludingBackground();
+  public java.lang.String toString();
+}
+Compiled from "RecipeSlotIngredients.java"
+public final class mezz.jei.library.gui.ingredients.RecipeSlotIngredients {
+  public mezz.jei.library.gui.ingredients.RecipeSlotIngredients(mezz.jei.library.ingredients.IIngredientManagerInternal, net.minecraft.util.context.ContextMap, mezz.jei.api.recipe.RecipeIngredientRole, java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, mezz.jei.api.recipe.IFocusGroup, java.lang.Runnable);
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredients();
+  public java.util.Optional<net.minecraft.tags.TagKey<?>> getSingleDisplayGroupTagKey(java.util.function.Supplier<java.util.Optional<net.minecraft.tags.TagKey<?>>>);
+  public static java.util.Optional<net.minecraft.tags.TagKey<?>> getSingleDisplayGroupTagKey(java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, java.util.function.Supplier<java.util.Optional<net.minecraft.tags.TagKey<?>>>);
+  public java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>> getAllIngredientsList();
+  public boolean isEmpty();
+  public java.util.Optional<mezz.jei.library.ingredients.SlotIngredient<?>> getDisplayedIngredient(mezz.jei.library.gui.ingredients.ICycler);
+  public java.util.Optional<mezz.jei.library.ingredients.SlotIngredient<?>> getFirstDisplayedIngredient();
+  public java.util.stream.Stream<mezz.jei.library.ingredients.SlotIngredient<?>> getVisibleSlotIngredientsInDisplayGroup(mezz.jei.library.ingredients.SlotIngredient<?>);
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getCandidateIngredientsInDisplayGroup(mezz.jei.library.ingredients.SlotIngredient<?>);
+  public java.util.Optional<net.minecraft.tags.TagKey<?>> getDisplayGroupTagKey(mezz.jei.library.ingredients.SlotIngredient<?>, java.util.function.Supplier<java.util.Optional<net.minecraft.tags.TagKey<?>>>);
+  public java.util.stream.Stream<mezz.jei.library.ingredients.SlotIngredient<?>> getVisibleSlotIngredients();
+  public static java.util.stream.Stream<mezz.jei.library.ingredients.SlotIngredient<?>> getVisibleSlotIngredients(java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, mezz.jei.library.ingredients.IIngredientManagerInternal, java.util.function.Predicate<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getVisibleTypedIngredients();
+  public java.util.stream.Stream<mezz.jei.api.ingredients.ITypedIngredient<?>> getVisibleTypedIngredientsInDisplayGroup(mezz.jei.library.ingredients.SlotIngredient<?>);
+  public void clearDisplayOverrides();
+  public boolean hasDisplayOverrides();
+  public mezz.jei.api.gui.builder.IIngredientAcceptor<?> createDisplayOverrides();
+  public static java.util.List<mezz.jei.library.ingredients.SlotIngredient<?>> calculateDisplayIngredients(java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, mezz.jei.library.ingredients.IIngredientManagerInternal, mezz.jei.api.recipe.IFocusGroup, mezz.jei.api.recipe.RecipeIngredientRole, java.util.function.Predicate<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  public static java.util.List<mezz.jei.library.ingredients.SlotIngredient<?>> filterVisibleIngredients(java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, java.util.function.Predicate<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  public static <T> java.util.List<mezz.jei.library.ingredients.SlotIngredient<?>> getDisplayGroupIngredients(java.util.List<? extends mezz.jei.library.ingredients.SlotIngredient<?>>, mezz.jei.library.ingredients.SlotIngredient<T>);
+}
+Compiled from "RendererOverrides.java"
+public class mezz.jei.library.gui.ingredients.RendererOverrides {
+  public mezz.jei.library.gui.ingredients.RendererOverrides();
+  public <T> void addOverride(mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.ingredients.IIngredientRenderer<T>);
+  public <T> java.util.Optional<mezz.jei.api.ingredients.IIngredientRenderer<T>> getIngredientRenderer(mezz.jei.api.ingredients.IIngredientType<T>);
+  public int getIngredientWidth();
+  public int getIngredientHeight();
+}
+Compiled from "TagContentTooltipComponent.java"
+public class mezz.jei.library.gui.ingredients.TagContentTooltipComponent extends mezz.jei.common.gui.IngredientGridTooltipComponent<mezz.jei.api.ingredients.ITypedIngredient<?>> {
+  public mezz.jei.library.gui.ingredients.TagContentTooltipComponent(mezz.jei.api.runtime.IIngredientManager, java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  protected void drawIngredient(net.minecraft.client.gui.GuiGraphicsExtractor, mezz.jei.api.ingredients.ITypedIngredient<?>, int, int, int, boolean);
+  protected void drawIngredient(net.minecraft.client.gui.GuiGraphicsExtractor, java.lang.Object, int, int, int, boolean);
+}
+Compiled from "package-info.java"
+interface mezz.jei.library.gui.ingredients.package-info {
+}

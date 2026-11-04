@@ -1,0 +1,60 @@
+Compiled from "MangroveRootPlacement.java"
+public final class net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacement extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacement(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>, net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, int, int, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> canGrowThrough();
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> muddyRootsIn();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> muddyRootsProvider();
+  public int maxRootWidth();
+  public int maxRootLength();
+  public float randomSkewChance();
+}
+Compiled from "RootPlacerType.java"
+public class net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType<P extends net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer> {
+  public static final net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType<net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer> MANGROVE_ROOT_PLACER;
+  public net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType(com.mojang.serialization.MapCodec<P>);
+  public com.mojang.serialization.MapCodec<P> codec();
+}
+Compiled from "MangroveRootPlacer.java"
+public class net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer extends net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer {
+  public static final int ROOT_WIDTH_LIMIT;
+  public static final int ROOT_LENGTH_LIMIT;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer> CODEC;
+  public net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacer(net.minecraft.util.valueproviders.IntProvider, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.Optional<net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement>, net.minecraft.world.level.levelgen.feature.rootplacers.MangroveRootPlacement);
+  public boolean placeRoots(net.minecraft.world.level.WorldGenLevel, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.feature.TreeFeature);
+  protected java.util.List<net.minecraft.core.BlockPos> potentialRootPositions(net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos);
+  protected boolean canPlaceRoot(net.minecraft.world.level.LevelSimulatedReader, net.minecraft.core.BlockPos);
+  protected void placeRoot(net.minecraft.world.level.WorldGenLevel, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.feature.TreeFeature);
+  protected net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType<?> type();
+}
+Compiled from "AboveRootPlacement.java"
+public final class net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement> CODEC;
+  public net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> aboveRootProvider();
+  public float aboveRootPlacementChance();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.feature.rootplacers.package-info {
+}
+Compiled from "RootPlacer.java"
+public abstract class net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer> CODEC;
+  protected final net.minecraft.util.valueproviders.IntProvider trunkOffsetY;
+  protected final net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> rootProvider;
+  protected final java.util.Optional<net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement> aboveRootPlacement;
+  protected static <P extends net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer> com.mojang.datafixers.Products$P3<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<P>, net.minecraft.util.valueproviders.IntProvider, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.Optional<net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement>> rootPlacerParts(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<P>);
+  public net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacer(net.minecraft.util.valueproviders.IntProvider, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.Optional<net.minecraft.world.level.levelgen.feature.rootplacers.AboveRootPlacement>);
+  protected abstract net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType<?> type();
+  public abstract boolean placeRoots(net.minecraft.world.level.WorldGenLevel, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.feature.TreeFeature);
+  protected boolean canPlaceRoot(net.minecraft.world.level.LevelSimulatedReader, net.minecraft.core.BlockPos);
+  protected void placeRoot(net.minecraft.world.level.WorldGenLevel, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.feature.TreeFeature);
+  protected net.minecraft.world.level.block.state.BlockState getPotentiallyWaterloggedState(net.minecraft.world.level.LevelSimulatedReader, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.core.BlockPos getTrunkOrigin(net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+}

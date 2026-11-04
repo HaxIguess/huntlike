@@ -1,0 +1,184 @@
+Compiled from "PotionIngredient.java"
+public final class net.minecraft.world.item.crafting.PotionIngredient extends java.lang.Record implements java.util.function.Predicate<net.minecraft.world.item.ItemStack> {
+  private final net.minecraft.world.item.crafting.Ingredient ingredient;
+
+  private final java.util.Optional<net.minecraft.core.component.predicates.PotionsPredicate> potions;
+
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.crafting.PotionIngredient> MAP_CODEC;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.crafting.PotionIngredient> STREAM_CODEC;
+
+  public net.minecraft.world.item.crafting.PotionIngredient(net.minecraft.world.item.crafting.Ingredient, java.util.Optional<net.minecraft.core.component.predicates.PotionsPredicate>);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field potions:Ljava/util/Optional;
+        14: return
+
+  public boolean test(net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+         4: aload_1
+         5: invokevirtual #17                 // Method net/minecraft/world/item/crafting/Ingredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+         8: ifne          13
+        11: iconst_0
+        12: ireturn
+        13: aload_0
+        14: getfield      #13                 // Field potions:Ljava/util/Optional;
+        17: invokevirtual #23                 // Method java/util/Optional.isEmpty:()Z
+        20: ifne          40
+        23: aload_0
+        24: getfield      #13                 // Field potions:Ljava/util/Optional;
+        27: invokevirtual #29                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        30: checkcast     #33                 // class net/minecraft/core/component/predicates/PotionsPredicate
+        33: aload_1
+        34: invokevirtual #35                 // Method net/minecraft/core/component/predicates/PotionsPredicate.matches:(Lnet/minecraft/core/component/DataComponentGetter;)Z
+        37: ifeq          44
+        40: iconst_1
+        41: goto          45
+        44: iconst_0
+        45: ireturn
+
+  public static net.minecraft.world.item.crafting.PotionIngredient of(net.minecraft.world.item.Item, net.minecraft.core.component.predicates.PotionsPredicate);
+    Code:
+         0: new           #8                  // class net/minecraft/world/item/crafting/PotionIngredient
+         3: dup
+         4: aload_0
+         5: invokestatic  #39                 // Method net/minecraft/world/item/crafting/Ingredient.of:(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/item/crafting/Ingredient;
+         8: aload_1
+         9: invokestatic  #43                 // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+        12: invokespecial #46                 // Method "<init>":(Lnet/minecraft/world/item/crafting/Ingredient;Ljava/util/Optional;)V
+        15: areturn
+
+  public static net.minecraft.world.item.crafting.PotionIngredient of(net.minecraft.world.item.Item);
+    Code:
+         0: new           #8                  // class net/minecraft/world/item/crafting/PotionIngredient
+         3: dup
+         4: aload_0
+         5: invokestatic  #39                 // Method net/minecraft/world/item/crafting/Ingredient.of:(Lnet/minecraft/world/level/ItemLike;)Lnet/minecraft/world/item/crafting/Ingredient;
+         8: invokestatic  #49                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        11: invokespecial #46                 // Method "<init>":(Lnet/minecraft/world/item/crafting/Ingredient;Ljava/util/Optional;)V
+        14: areturn
+
+  public static boolean isPotionInput(net.minecraft.world.item.ItemStack, net.minecraft.world.item.crafting.RecipeAccess);
+    Code:
+         0: aload_1
+         1: getstatic     #53                 // Field net/minecraft/world/item/crafting/RecipePropertySet.BREWING_INPUTS:Lnet/minecraft/resources/ResourceKey;
+         4: invokeinterface #59,  2           // InterfaceMethod net/minecraft/world/item/crafting/RecipeAccess.propertySet:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/crafting/RecipePropertySet;
+         9: astore_2
+        10: aload_2
+        11: aload_0
+        12: invokevirtual #65                 // Method net/minecraft/world/item/crafting/RecipePropertySet.test:(Lnet/minecraft/world/item/ItemStack;)Z
+        15: ifne          28
+        18: aload_0
+        19: getstatic     #66                 // Field net/minecraft/tags/ItemTags.BREWING_POTION_INPUTS:Lnet/minecraft/tags/TagKey;
+        22: invokevirtual #72                 // Method net/minecraft/world/item/ItemStack.is:(Lnet/minecraft/tags/TagKey;)Z
+        25: ifeq          32
+        28: iconst_1
+        29: goto          33
+        32: iconst_0
+        33: ireturn
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #79,  0             // InvokeDynamic #0:toString:(Lnet/minecraft/world/item/crafting/PotionIngredient;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #83,  0             // InvokeDynamic #0:hashCode:(Lnet/minecraft/world/item/crafting/PotionIngredient;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #87,  0             // InvokeDynamic #0:equals:(Lnet/minecraft/world/item/crafting/PotionIngredient;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public net.minecraft.world.item.crafting.Ingredient ingredient();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+         4: areturn
+
+  public java.util.Optional<net.minecraft.core.component.predicates.PotionsPredicate> potions();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field potions:Ljava/util/Optional;
+         4: areturn
+
+  public boolean test(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #73                 // class net/minecraft/world/item/ItemStack
+         5: invokevirtual #78                 // Method test:(Lnet/minecraft/world/item/ItemStack;)Z
+         8: ireturn
+
+  private static java.util.Optional lambda$static$4(net.minecraft.world.item.crafting.PotionIngredient);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field potions:Ljava/util/Optional;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.Ingredient lambda$static$3(net.minecraft.world.item.crafting.PotionIngredient);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+         4: areturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$0(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+         0: aload_0
+         1: getstatic     #91                 // Field net/minecraft/world/item/crafting/Ingredient.CODEC:Lcom/mojang/serialization/Codec;
+         4: ldc           #95                 // String item
+         6: invokeinterface #97,  2           // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        11: invokedynamic #103,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+        16: invokevirtual #107                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        19: getstatic     #113                // Field net/minecraft/core/component/predicates/PotionsPredicate.CODEC:Lcom/mojang/serialization/Codec;
+        22: ldc           #114                // String potion_contents
+        24: invokeinterface #116,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        29: invokedynamic #119,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+        34: invokevirtual #107                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        37: invokevirtual #120                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P2;
+        40: aload_0
+        41: invokedynamic #126,  0            // InvokeDynamic #3:apply:()Ljava/util/function/BiFunction;
+        46: invokevirtual #129                // Method com/mojang/datafixers/Products$P2.apply:(Lcom/mojang/datafixers/kinds/Applicative;Ljava/util/function/BiFunction;)Lcom/mojang/datafixers/kinds/App;
+        49: areturn
+
+  private static java.util.Optional lambda$static$2(net.minecraft.world.item.crafting.PotionIngredient);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field potions:Ljava/util/Optional;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.Ingredient lambda$static$1(net.minecraft.world.item.crafting.PotionIngredient);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field ingredient:Lnet/minecraft/world/item/crafting/Ingredient;
+         4: areturn
+
+  static {};
+    Code:
+         0: invokedynamic #134,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+         5: invokestatic  #135                // Method com/mojang/serialization/codecs/RecordCodecBuilder.mapCodec:(Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
+         8: putstatic     #141                // Field MAP_CODEC:Lcom/mojang/serialization/MapCodec;
+        11: getstatic     #145                // Field net/minecraft/world/item/crafting/Ingredient.CONTENTS_STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        14: invokedynamic #149,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+        19: getstatic     #150                // Field net/minecraft/core/component/predicates/PotionsPredicate.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        22: invokestatic  #153                // InterfaceMethod net/minecraft/network/codec/ByteBufCodecs.optional:(Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/network/codec/StreamCodec;
+        25: invokedynamic #159,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+        30: invokedynamic #126,  0            // InvokeDynamic #3:apply:()Ljava/util/function/BiFunction;
+        35: invokestatic  #160                // InterfaceMethod net/minecraft/network/codec/StreamCodec.composite:(Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Ljava/util/function/BiFunction;)Lnet/minecraft/network/codec/StreamCodec;
+        38: putstatic     #166                // Field STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        41: return
+}

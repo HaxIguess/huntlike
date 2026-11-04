@@ -1,0 +1,81 @@
+Compiled from "ModifyContent.java"
+public class net.minecraft.util.filefix.operations.ModifyContent implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.ModifyContent(net.minecraft.util.filefix.access.FileAccessProvider, net.minecraft.util.filefix.operations.ModifyContent$FixFunction);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+}
+Compiled from "GroupMove.java"
+public final class net.minecraft.util.filefix.operations.GroupMove extends java.lang.Record implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.GroupMove(java.util.Map<java.lang.String, java.lang.String>, java.util.List<net.minecraft.util.filefix.operations.Move>);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.String, java.lang.String> fromTo();
+  public java.util.List<net.minecraft.util.filefix.operations.Move> fixers();
+}
+Compiled from "Move.java"
+public final class net.minecraft.util.filefix.operations.Move extends java.lang.Record implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.Move(java.lang.String, java.lang.String);
+  public net.minecraft.util.filefix.operations.Move relative(java.lang.String, java.lang.String);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String from();
+  public java.lang.String to();
+}
+Compiled from "FileFixOperations.java"
+public class net.minecraft.util.filefix.operations.FileFixOperations {
+  public net.minecraft.util.filefix.operations.FileFixOperations();
+  public static net.minecraft.util.filefix.operations.Move moveSimple(java.lang.String);
+  public static net.minecraft.util.filefix.operations.Move move(java.lang.String, java.lang.String);
+  public static net.minecraft.util.filefix.operations.RegexMove moveRegex(java.lang.String, java.lang.String);
+  public static net.minecraft.util.filefix.operations.DeleteFileOrEmptyDirectory delete(java.lang.String);
+  public static net.minecraft.util.filefix.operations.ApplyInFolders applyInFolders(net.minecraft.util.filefix.access.FileRelation, java.util.List<net.minecraft.util.filefix.operations.FileFixOperation>);
+  public static net.minecraft.util.filefix.operations.GroupMove groupMove(java.util.Map<java.lang.String, java.lang.String>, java.util.List<net.minecraft.util.filefix.operations.Move>);
+}
+Compiled from "ModifyContent.java"
+public interface net.minecraft.util.filefix.operations.ModifyContent$FileAccessFunction {
+  public abstract net.minecraft.util.filefix.operations.ModifyContent$FixFunction make(net.minecraft.util.filefix.access.FileAccessProvider);
+}
+Compiled from "ApplyInFolders.java"
+public final class net.minecraft.util.filefix.operations.ApplyInFolders extends java.lang.Record implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.ApplyInFolders(net.minecraft.util.filefix.access.FileRelation, java.util.List<net.minecraft.util.filefix.operations.FileFixOperation>);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.filefix.access.FileRelation folders();
+  public java.util.List<net.minecraft.util.filefix.operations.FileFixOperation> fileFixOperations();
+}
+Compiled from "DeleteFileOrEmptyDirectory.java"
+public final class net.minecraft.util.filefix.operations.DeleteFileOrEmptyDirectory extends java.lang.Record implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.DeleteFileOrEmptyDirectory(java.lang.String);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String target();
+}
+Compiled from "FileFixOperation.java"
+public interface net.minecraft.util.filefix.operations.FileFixOperation {
+  public abstract void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+}
+Compiled from "ModifyContent.java"
+public interface net.minecraft.util.filefix.operations.ModifyContent$FixFunction {
+  public abstract void run(net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+}
+Compiled from "RegexMove.java"
+public final class net.minecraft.util.filefix.operations.RegexMove extends java.lang.Record implements net.minecraft.util.filefix.operations.FileFixOperation {
+  public net.minecraft.util.filefix.operations.RegexMove(java.lang.String, java.lang.String);
+  public net.minecraft.util.filefix.operations.RegexMove(java.util.regex.Pattern, java.lang.String);
+  public void fix(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.regex.Pattern fromPattern();
+  public java.lang.String toReplacement();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.filefix.operations.package-info {
+}

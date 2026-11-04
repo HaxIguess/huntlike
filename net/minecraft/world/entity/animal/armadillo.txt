@@ -1,0 +1,90 @@
+Compiled from "Armadillo.java"
+public abstract class net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState extends java.lang.Enum<net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState IDLE;
+  public static final net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState ROLLING;
+  public static final net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState SCARED;
+  public static final net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState UNROLLING;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState[] values();
+  public static net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public abstract boolean shouldHideInShell(long);
+  public boolean isThreatened();
+  public int animationDuration();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.armadillo.package-info {
+}
+Compiled from "ArmadilloAi.java"
+public class net.minecraft.world.entity.animal.armadillo.ArmadilloAi$ArmadilloBallUp extends net.minecraft.world.entity.ai.behavior.Behavior<net.minecraft.world.entity.animal.armadillo.Armadillo> {
+  public net.minecraft.world.entity.animal.armadillo.ArmadilloAi$ArmadilloBallUp();
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo, long);
+  protected boolean checkExtraStartConditions(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  protected boolean canStillUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void stop(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void tick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "Armadillo.java"
+public class net.minecraft.world.entity.animal.armadillo.Armadillo extends net.minecraft.world.entity.animal.Animal {
+  public static final float BABY_SCALE;
+  public static final float MAX_HEAD_ROTATION_EXTENT;
+  public static final int SCARE_CHECK_INTERVAL;
+  public final net.minecraft.world.entity.AnimationState rollOutAnimationState;
+  public final net.minecraft.world.entity.AnimationState rollUpAnimationState;
+  public final net.minecraft.world.entity.AnimationState peekAnimationState;
+  public net.minecraft.world.entity.animal.armadillo.Armadillo(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean isScared();
+  public boolean shouldHideInShell();
+  public boolean shouldSwitchToScaredState();
+  public net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState getState();
+  public void switchToState(net.minecraft.world.entity.animal.armadillo.Armadillo$ArmadilloState);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.armadillo.Armadillo> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.armadillo.Armadillo> getBrain();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public float getAgeScale();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public void handleEntityEvent(byte);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public static boolean checkArmadilloSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.animal.armadillo.Armadillo>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean isScaredBy(net.minecraft.world.entity.LivingEntity);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void rollUp();
+  public void rollOut();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void actuallyHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean brushOffScute(net.minecraft.world.entity.Entity, net.minecraft.world.item.ItemStack);
+  public boolean canStayRolledUp();
+  public boolean canFallInLove();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected void playEatingSound();
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getMaxHeadYRot();
+  protected net.minecraft.world.entity.ai.control.BodyRotationControl createBodyControl();
+}
+Compiled from "ArmadilloAi.java"
+public class net.minecraft.world.entity.animal.armadillo.ArmadilloAi$ArmadilloPanic extends net.minecraft.world.entity.ai.behavior.AnimalPanic<net.minecraft.world.entity.animal.armadillo.Armadillo> {
+  public net.minecraft.world.entity.animal.armadillo.ArmadilloAi$ArmadilloPanic(float);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.armadillo.Armadillo, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.PathfinderMob, long);
+  protected void start(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, long);
+}
+Compiled from "ArmadilloAi.java"
+public class net.minecraft.world.entity.animal.armadillo.ArmadilloAi {
+  public net.minecraft.world.entity.animal.armadillo.ArmadilloAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.armadillo.Armadillo>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.armadillo.Armadillo);
+}

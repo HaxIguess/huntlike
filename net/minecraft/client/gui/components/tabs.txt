@@ -1,0 +1,98 @@
+Compiled from "Tab.java"
+public interface net.minecraft.client.gui.components.tabs.Tab {
+  public abstract net.minecraft.network.chat.Component getTabTitle();
+  public abstract net.minecraft.network.chat.Component getTabExtraNarration();
+  public abstract void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public abstract void doLayout(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public abstract net.minecraft.client.gui.layouts.Layout getLayout();
+}
+Compiled from "TabManager.java"
+public class net.minecraft.client.gui.components.tabs.TabManager {
+  public net.minecraft.client.gui.components.tabs.TabManager(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>, java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public net.minecraft.client.gui.components.tabs.TabManager(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>, java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>, java.util.function.Consumer<net.minecraft.client.gui.components.tabs.Tab>, java.util.function.Consumer<net.minecraft.client.gui.components.tabs.Tab>);
+  public void setTabArea(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void setCurrentTab(net.minecraft.client.gui.components.tabs.Tab, boolean);
+  public void setCurrentTab(net.minecraft.client.gui.components.tabs.Tab, boolean, boolean);
+  public net.minecraft.client.gui.components.tabs.Tab getCurrentTab();
+}
+Compiled from "TabNavigationBar.java"
+public class net.minecraft.client.gui.components.tabs.TabNavigationBar extends net.minecraft.client.gui.components.AbstractContainerWidget {
+  protected final net.minecraft.client.gui.layouts.FrameLayout layout;
+  protected final com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.tabs.Tab> tabs;
+  protected final com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.TabButton> tabButtons;
+  protected net.minecraft.client.gui.components.tabs.TabNavigationBar(int, int, int, int, net.minecraft.client.gui.components.tabs.TabManager, com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.TabButton>, com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.tabs.Tab>);
+  protected int contentHeight();
+  public static net.minecraft.client.gui.components.tabs.TabNavigationBar$Builder builder(net.minecraft.client.gui.components.tabs.TabManager, int, int, int, int);
+  public void arrangeElements(int);
+  public boolean isMouseOver(double, double);
+  public void setFocused(boolean);
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  public java.util.List<net.minecraft.client.gui.components.tabs.Tab> getTabs();
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected void narrateListElementPosition(net.minecraft.client.gui.narration.NarrationElementOutput, net.minecraft.client.gui.components.TabButton);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+  public void selectTab(int, boolean);
+  public void setTabActiveState(int, boolean);
+  public void setTabTooltip(int, net.minecraft.client.gui.components.Tooltip);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+}
+Compiled from "MenuTabBar.java"
+public class net.minecraft.client.gui.components.tabs.MenuTabBar$Builder extends net.minecraft.client.gui.components.tabs.TabNavigationBar$Builder {
+  public net.minecraft.client.gui.components.tabs.MenuTabBar$Builder addTab(net.minecraft.client.gui.components.tabs.Tab);
+  public net.minecraft.client.gui.components.tabs.MenuTabBar$Builder addTabs(net.minecraft.client.gui.components.tabs.Tab...);
+  public net.minecraft.client.gui.components.tabs.MenuTabBar build();
+  public net.minecraft.client.gui.components.tabs.TabNavigationBar build();
+}
+Compiled from "TabNavigationBar.java"
+public class net.minecraft.client.gui.components.tabs.TabNavigationBar$Builder {
+  protected final int x;
+  protected final int y;
+  protected final int width;
+  protected final int height;
+  protected final net.minecraft.client.gui.components.tabs.TabManager tabManager;
+  protected final java.util.List<net.minecraft.client.gui.components.TabButton> tabButtons;
+  protected final java.util.List<net.minecraft.client.gui.components.tabs.Tab> tabs;
+  protected net.minecraft.client.gui.components.tabs.TabNavigationBar$Builder(net.minecraft.client.gui.components.tabs.TabManager, int, int, int, int);
+  public net.minecraft.client.gui.components.tabs.TabNavigationBar$Builder addTab(net.minecraft.client.gui.components.TabButton, net.minecraft.client.gui.components.tabs.Tab);
+  public net.minecraft.client.gui.components.tabs.TabNavigationBar build();
+}
+Compiled from "LoadingTab.java"
+public class net.minecraft.client.gui.components.tabs.LoadingTab implements net.minecraft.client.gui.components.tabs.Tab {
+  protected final net.minecraft.client.gui.layouts.LinearLayout layout;
+  public net.minecraft.client.gui.components.tabs.LoadingTab(net.minecraft.client.gui.Font, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getTabTitle();
+  public net.minecraft.network.chat.Component getTabExtraNarration();
+  public void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public void doLayout(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.layouts.Layout getLayout();
+}
+Compiled from "MenuTabBar.java"
+public class net.minecraft.client.gui.components.tabs.MenuTabBar extends net.minecraft.client.gui.components.tabs.TabNavigationBar {
+  public net.minecraft.client.gui.components.tabs.MenuTabBar(int, int, int, int, net.minecraft.client.gui.components.tabs.TabManager, com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.TabButton>, com.google.common.collect.ImmutableList<net.minecraft.client.gui.components.tabs.Tab>);
+  public static net.minecraft.client.gui.components.tabs.MenuTabBar$Builder builder(net.minecraft.client.gui.components.tabs.TabManager, int);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void arrangeElements(int);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.components.tabs.package-info {
+}
+Compiled from "GridLayoutTab.java"
+public class net.minecraft.client.gui.components.tabs.GridLayoutTab implements net.minecraft.client.gui.components.tabs.Tab {
+  protected final net.minecraft.client.gui.layouts.GridLayout layout;
+  public net.minecraft.client.gui.components.tabs.GridLayoutTab(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getTabTitle();
+  public net.minecraft.network.chat.Component getTabExtraNarration();
+  public void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public void doLayout(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.layouts.Layout getLayout();
+}
+Compiled from "MenuTabBar.java"
+public class net.minecraft.client.gui.components.tabs.MenuTabBar$MenuTabButton extends net.minecraft.client.gui.components.TabButton {
+  public net.minecraft.client.gui.components.tabs.MenuTabBar$MenuTabButton(net.minecraft.client.gui.components.tabs.TabManager, net.minecraft.client.gui.components.tabs.Tab, int, int);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void renderMenuBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+}

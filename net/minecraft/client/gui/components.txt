@@ -1,0 +1,1377 @@
+Compiled from "ResettableOptionWidget.java"
+public interface net.minecraft.client.gui.components.ResettableOptionWidget {
+  public abstract void resetValue();
+}
+Compiled from "AbstractSelectionList.java"
+public abstract class net.minecraft.client.gui.components.AbstractSelectionList<E extends net.minecraft.client.gui.components.AbstractSelectionList$Entry<E>> extends net.minecraft.client.gui.components.AbstractContainerWidget {
+  public static final net.minecraft.resources.Identifier INWORLD_MENU_LIST_BACKGROUND;
+  protected final net.minecraft.client.Minecraft minecraft;
+  protected final int defaultEntryHeight;
+  protected boolean centerListVertically;
+  public net.minecraft.client.gui.components.AbstractSelectionList(net.minecraft.client.Minecraft, int, int, int, int);
+  public E getSelected();
+  public void setSelected(E);
+  public E getFocused();
+  public final java.util.List<E> children();
+  protected void sort(java.util.Comparator<E>);
+  protected void swap(int, int);
+  protected void clearEntries();
+  protected void clearEntriesExcept(E);
+  public void replaceEntries(java.util.Collection<E>);
+  public int getNextY();
+  protected int addEntry(E);
+  protected int addEntry(E, int);
+  protected void addEntryToTop(E);
+  protected void addEntryToTop(E, int);
+  protected void removeEntryFromTop(E);
+  protected int getItemCount();
+  protected boolean entriesCanBeSelected();
+  protected final E getEntryAtPosition(double, double);
+  public void updateSize(int, net.minecraft.client.gui.layouts.HeaderAndFooterLayout);
+  public void updateSizeAndPosition(int, int, int);
+  public void updateSizeAndPosition(int, int, int, int);
+  protected int contentHeight();
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractListSeparators(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void extractListBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void enableScissor(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void scrollToEntry(E);
+  protected void centerScrollOn(E);
+  public void setScrollAmount(double);
+  protected int scrollBarX();
+  public java.util.Optional<net.minecraft.client.gui.components.events.GuiEventListener> getChildAt(double, double);
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  protected E nextEntry(net.minecraft.client.gui.navigation.ScreenDirection);
+  protected E nextEntry(net.minecraft.client.gui.navigation.ScreenDirection, java.util.function.Predicate<E>);
+  protected E nextEntry(net.minecraft.client.gui.navigation.ScreenDirection, java.util.function.Predicate<E>, E);
+  protected void extractListItems(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractItem(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float, E);
+  protected void extractSelection(net.minecraft.client.gui.GuiGraphicsExtractor, E, int);
+  public int getRowLeft();
+  public int getRowRight();
+  public int getRowTop(int);
+  public int getRowBottom(int);
+  public int getRowWidth();
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  protected void removeEntries(java.util.List<E>);
+  protected void removeEntry(E);
+  protected E getHovered();
+  protected void narrateListElementPosition(net.minecraft.client.gui.narration.NarrationElementOutput, E);
+  public net.minecraft.client.gui.components.events.GuiEventListener getFocused();
+}
+Compiled from "ScrollableLayout.java"
+class net.minecraft.client.gui.components.ScrollableLayout$Container extends net.minecraft.client.gui.components.AbstractContainerWidget {
+  public net.minecraft.client.gui.components.ScrollableLayout$Container(net.minecraft.client.gui.components.ScrollableLayout, net.minecraft.client.Minecraft, int, int, net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings);
+  public void refreshChildren();
+  protected int contentHeight();
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getBorderForArrowNavigation(net.minecraft.client.gui.navigation.ScreenDirection);
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  public void setX(int);
+  public void setY(int);
+  public void setScrollAmount(double);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  public java.util.Collection<? extends net.minecraft.client.gui.narration.NarratableEntry> getNarratables();
+}
+Compiled from "ChatComponent.java"
+class net.minecraft.client.gui.components.ChatComponent$DrawingBackgroundGraphicsAccess implements net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess {
+  public net.minecraft.client.gui.components.ChatComponent$DrawingBackgroundGraphicsAccess(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void updatePose(java.util.function.Consumer<org.joml.Matrix3x2f>);
+  public void fill(int, int, int, int, int);
+  public boolean handleMessage(int, float, net.minecraft.util.FormattedCharSequence);
+  public void handleTag(int, int, int, int, float, net.minecraft.client.multiplayer.chat.GuiMessageTag);
+  public void handleTagIcon(int, int, boolean, net.minecraft.client.multiplayer.chat.GuiMessageTag, net.minecraft.client.multiplayer.chat.GuiMessageTag$Icon);
+}
+Compiled from "ImageWidget.java"
+class net.minecraft.client.gui.components.ImageWidget$Sprite extends net.minecraft.client.gui.components.ImageWidget {
+  public net.minecraft.client.gui.components.ImageWidget$Sprite(int, int, int, int, net.minecraft.resources.Identifier);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateResource(net.minecraft.resources.Identifier);
+}
+Compiled from "Checkbox.java"
+public interface net.minecraft.client.gui.components.Checkbox$OnValueChange {
+  public static final net.minecraft.client.gui.components.Checkbox$OnValueChange NOP;
+  public abstract void onValueChange(net.minecraft.client.gui.components.Checkbox, boolean);
+}
+Compiled from "Button.java"
+public interface net.minecraft.client.gui.components.Button$OnPress {
+  public abstract void onPress(net.minecraft.client.gui.components.Button);
+}
+Compiled from "AbstractScrollArea.java"
+public abstract class net.minecraft.client.gui.components.AbstractScrollArea extends net.minecraft.client.gui.components.AbstractWidget {
+  public static final int SCROLLBAR_WIDTH;
+  public net.minecraft.client.gui.components.AbstractScrollArea(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings);
+  public boolean mouseScrolled(double, double, double, double);
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public void onRelease(net.minecraft.client.input.MouseButtonEvent);
+  public double scrollAmount();
+  public void setScrollAmount(double);
+  public boolean updateScrolling(net.minecraft.client.input.MouseButtonEvent);
+  protected boolean isOverScrollbar(double, double);
+  public void refreshScrollAmount();
+  public int maxScrollAmount();
+  protected boolean scrollable();
+  public int scrollbarWidth();
+  protected int scrollerHeight();
+  protected int scrollBarX();
+  public int scrollBarY();
+  protected void extractScrollbar(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  protected abstract int contentHeight();
+  protected double scrollRate();
+  public static net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings defaultSettings(int);
+}
+Compiled from "LerpingBossEvent.java"
+public class net.minecraft.client.gui.components.LerpingBossEvent extends net.minecraft.world.BossEvent {
+  protected float targetPercent;
+  protected long setTime;
+  public net.minecraft.client.gui.components.LerpingBossEvent(java.util.UUID, net.minecraft.network.chat.Component, float, net.minecraft.world.BossEvent$BossBarColor, net.minecraft.world.BossEvent$BossBarOverlay, boolean, boolean, boolean);
+  public void setProgress(float);
+  public float getProgress();
+}
+Compiled from "ScrollableLayout.java"
+public class net.minecraft.client.gui.components.ScrollableLayout implements net.minecraft.client.gui.layouts.Layout {
+  public net.minecraft.client.gui.components.ScrollableLayout(net.minecraft.client.Minecraft, net.minecraft.client.gui.layouts.Layout, int);
+  public net.minecraft.client.gui.components.ScrollableLayout(net.minecraft.client.Minecraft, net.minecraft.client.gui.layouts.Layout, int, net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy);
+  public void setScrollbarSpacing(int);
+  public void setMinWidth(int);
+  public void setMinHeight(int);
+  public void setMaxHeight(int);
+  public void arrangeElements();
+  public void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.layouts.LayoutElement>);
+  public void removeChildren();
+  public void setX(int);
+  public void setY(int);
+  public int getX();
+  public int getY();
+  public int getWidth();
+  public int getHeight();
+  public double getScrollAmount();
+}
+Compiled from "TabOrderedElement.java"
+public interface net.minecraft.client.gui.components.TabOrderedElement {
+  public default int getTabOrderGroup();
+}
+Compiled from "ComponentRenderUtils.java"
+public class net.minecraft.client.gui.components.ComponentRenderUtils {
+  public net.minecraft.client.gui.components.ComponentRenderUtils();
+  public static java.util.List<net.minecraft.util.FormattedCharSequence> wrapComponents(net.minecraft.network.chat.FormattedText, int, net.minecraft.client.gui.Font);
+  public static net.minecraft.util.FormattedCharSequence clipText(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font, int);
+}
+Compiled from "MultiLineEditBox.java"
+public class net.minecraft.client.gui.components.MultiLineEditBox extends net.minecraft.client.gui.components.AbstractTextAreaWidget {
+  public void setCharacterLimit(int);
+  public void setLineLimit(int);
+  public void setValueListener(java.util.function.Consumer<java.lang.String>);
+  public void setValue(java.lang.String);
+  public void setValue(java.lang.String, boolean);
+  public java.lang.String getValue();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  protected void onDrag(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean charTyped(net.minecraft.client.input.CharacterEvent);
+  public boolean capturesInput();
+  public boolean preeditUpdated(net.minecraft.client.input.PreeditEvent);
+  protected void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractDecorations(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public int getInnerHeight();
+  public void setFocused(boolean);
+  public static net.minecraft.client.gui.components.MultiLineEditBox$Builder builder();
+}
+Compiled from "SubtitleOverlay.java"
+final class net.minecraft.client.gui.components.SubtitleOverlay$SoundPlayedAt extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.phys.Vec3 location();
+  public long time();
+}
+Compiled from "OptionsList.java"
+public class net.minecraft.client.gui.components.OptionsList extends net.minecraft.client.gui.components.ContainerObjectSelectionList<net.minecraft.client.gui.components.OptionsList$AbstractEntry> {
+  public net.minecraft.client.gui.components.OptionsList(net.minecraft.client.Minecraft, int, net.minecraft.client.gui.screens.options.OptionsSubScreen);
+  public void addBig(net.minecraft.client.OptionInstance<?>);
+  public void addBig(net.minecraft.client.gui.components.AbstractWidget);
+  public void addSmall(net.minecraft.client.OptionInstance<?>...);
+  public void addSmall(java.util.List<net.minecraft.client.gui.components.AbstractWidget>);
+  public void addSmall(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.gui.components.AbstractWidget);
+  public void addSmall(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.OptionInstance<?>, net.minecraft.client.gui.components.AbstractWidget);
+  public void addHeader(net.minecraft.network.chat.Component);
+  public int getRowWidth();
+  public net.minecraft.client.gui.components.AbstractWidget findOption(net.minecraft.client.OptionInstance<?>);
+  public void applyUnsavedChanges();
+  public void resetOption(net.minecraft.client.OptionInstance<?>);
+}
+Compiled from "Checkbox.java"
+public class net.minecraft.client.gui.components.Checkbox extends net.minecraft.client.gui.components.AbstractButton {
+  public int adjustWidth(int, net.minecraft.client.gui.Font);
+  public static net.minecraft.client.gui.components.Checkbox$Builder builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public static int getBoxSize(net.minecraft.client.gui.Font);
+  public void onPress(net.minecraft.client.input.InputWithModifiers);
+  public boolean selected();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ChatComponent.java"
+interface net.minecraft.client.gui.components.ChatComponent$AlphaCalculator {
+  public static final net.minecraft.client.gui.components.ChatComponent$AlphaCalculator FULLY_VISIBLE;
+  public static net.minecraft.client.gui.components.ChatComponent$AlphaCalculator timeBased(int);
+  public abstract float calculate(net.minecraft.client.multiplayer.chat.GuiMessage$Line);
+}
+Compiled from "SplashRenderer.java"
+public class net.minecraft.client.gui.components.SplashRenderer {
+  public static final net.minecraft.client.gui.components.SplashRenderer CHRISTMAS;
+  public static final net.minecraft.client.gui.components.SplashRenderer NEW_YEAR;
+  public static final net.minecraft.client.gui.components.SplashRenderer HALLOWEEN;
+  public net.minecraft.client.gui.components.SplashRenderer(net.minecraft.network.chat.Component);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, net.minecraft.client.gui.Font, float);
+}
+Compiled from "RealmsButton.java"
+public class net.minecraft.client.gui.components.RealmsButton extends net.minecraft.client.gui.components.Button {
+  public net.minecraft.client.gui.components.RealmsButton(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress);
+  protected void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ContainerObjectSelectionList.java"
+public abstract class net.minecraft.client.gui.components.ContainerObjectSelectionList<E extends net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry<E>> extends net.minecraft.client.gui.components.AbstractSelectionList<E> {
+  public net.minecraft.client.gui.components.ContainerObjectSelectionList(net.minecraft.client.Minecraft, int, int, int, int);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  protected boolean entriesCanBeSelected();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "Button.java"
+public class net.minecraft.client.gui.components.Button$Plain extends net.minecraft.client.gui.components.Button {
+  protected net.minecraft.client.gui.components.Button$Plain(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.client.gui.components.Button$CreateNarration);
+  protected void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "SpriteIconButton.java"
+public class net.minecraft.client.gui.components.SpriteIconButton$Builder {
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder width(int);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder size(int, int);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder sprite(net.minecraft.resources.Identifier, int, int);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder sprite(net.minecraft.client.gui.components.WidgetSprites, int, int);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder spriteOffset(int, int);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder tooltip(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder withTootip();
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder narration(net.minecraft.client.gui.components.Button$CreateNarration);
+  public net.minecraft.client.gui.components.SpriteIconButton$Builder switchToLoadingAfterPress();
+  public net.minecraft.client.gui.components.SpriteIconButton build();
+}
+Compiled from "AbstractScrollArea.java"
+public final class net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings extends java.lang.Record {
+  public static final net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings NO_SCROLL;
+  public net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, int, int, int, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier scrollerSprite();
+  public net.minecraft.resources.Identifier disabledScrollerSprite();
+  public net.minecraft.resources.Identifier backgroundSprite();
+  public int scrollbarWidth();
+  public int scrollbarMinHeight();
+  public int scrollRate();
+  public boolean resizingScrollbar();
+}
+Compiled from "AbstractTextAreaWidget.java"
+public abstract class net.minecraft.client.gui.components.AbstractTextAreaWidget extends net.minecraft.client.gui.components.AbstractScrollArea {
+  public static final int DEFAULT_TOTAL_PADDING;
+  public net.minecraft.client.gui.components.AbstractTextAreaWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings);
+  public net.minecraft.client.gui.components.AbstractTextAreaWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings, boolean, boolean);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractDecorations(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected int innerPadding();
+  protected int totalInnerPadding();
+  public boolean isMouseOver(double, double);
+  protected int scrollBarX();
+  protected int contentHeight();
+  protected void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  protected void extractBorder(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  protected boolean withinContentAreaTopBottom(int, int);
+  protected abstract int getInnerHeight();
+  protected abstract void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected int getInnerLeft();
+  protected int getInnerTop();
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+}
+Compiled from "FriendsButton.java"
+public class net.minecraft.client.gui.components.FriendsButton extends net.minecraft.client.gui.components.SpriteIconButton$CenteredIcon {
+  public net.minecraft.client.gui.components.FriendsButton(int, net.minecraft.client.gui.components.Button$OnPress, boolean);
+  public void refreshIncomingRequestCount();
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "LoadingDotsWidget.java"
+public class net.minecraft.client.gui.components.LoadingDotsWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.components.LoadingDotsWidget(net.minecraft.client.gui.Font, net.minecraft.network.chat.Component);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public boolean isActive();
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+}
+Compiled from "PopupScreen.java"
+public class net.minecraft.client.gui.components.PopupScreen$Builder {
+  public net.minecraft.client.gui.components.PopupScreen$Builder(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.PopupScreen$Builder setWidth(int);
+  public net.minecraft.client.gui.components.PopupScreen$Builder setImage(net.minecraft.resources.Identifier);
+  public net.minecraft.client.gui.components.PopupScreen$Builder addMessage(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.PopupScreen$Builder addButton(net.minecraft.network.chat.Component, java.util.function.Consumer<net.minecraft.client.gui.components.PopupScreen>);
+  public net.minecraft.client.gui.components.PopupScreen$Builder onClose(java.lang.Runnable);
+  public net.minecraft.client.gui.components.PopupScreen build();
+}
+Compiled from "PopupScreen.java"
+public class net.minecraft.client.gui.components.PopupScreen extends net.minecraft.client.gui.screens.Screen {
+  public void added();
+  protected void init();
+  protected void repositionElements();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public void onClose();
+}
+Compiled from "Button.java"
+public abstract class net.minecraft.client.gui.components.Button extends net.minecraft.client.gui.components.AbstractButton {
+  public static final int SMALL_WIDTH;
+  public static final int DEFAULT_WIDTH;
+  public static final int BIG_WIDTH;
+  public static final int DEFAULT_HEIGHT;
+  public static final int DEFAULT_SPACING;
+  protected static final net.minecraft.client.gui.components.Button$CreateNarration DEFAULT_NARRATION;
+  protected final net.minecraft.client.gui.components.Button$OnPress onPress;
+  protected final net.minecraft.client.gui.components.Button$CreateNarration createNarration;
+  public static net.minecraft.client.gui.components.Button$Builder builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress);
+  protected net.minecraft.client.gui.components.Button(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.client.gui.components.Button$CreateNarration);
+  public void onPress(net.minecraft.client.input.InputWithModifiers);
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "ChatComponent.java"
+public class net.minecraft.client.gui.components.ChatComponent$State {
+  public net.minecraft.client.gui.components.ChatComponent$State(java.util.List<net.minecraft.client.multiplayer.chat.GuiMessage>, java.util.List<java.lang.String>, java.util.List<net.minecraft.client.gui.components.ChatComponent$DelayedMessageDeletion>);
+}
+Compiled from "AbstractOptionSliderButton.java"
+public abstract class net.minecraft.client.gui.components.AbstractOptionSliderButton extends net.minecraft.client.gui.components.AbstractSliderButton {
+  protected final net.minecraft.client.Options options;
+  protected net.minecraft.client.gui.components.AbstractOptionSliderButton(net.minecraft.client.Options, int, int, int, int, double);
+}
+Compiled from "TextCursorUtils.java"
+public class net.minecraft.client.gui.components.TextCursorUtils {
+  public static final int CURSOR_INSERT_WIDTH;
+  public net.minecraft.client.gui.components.TextCursorUtils();
+  public static void extractInsertCursor(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int);
+  public static void extractAppendCursor(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font, int, int, int, boolean);
+  public static boolean isCursorVisible(long);
+}
+Compiled from "WidgetTooltipHolder.java"
+public class net.minecraft.client.gui.components.WidgetTooltipHolder {
+  public net.minecraft.client.gui.components.WidgetTooltipHolder();
+  public void setDelay(java.time.Duration);
+  public void set(net.minecraft.client.gui.components.Tooltip);
+  public net.minecraft.client.gui.components.Tooltip get();
+  public void refreshTooltipForNextRenderPass(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, boolean, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "CommandSuggestions.java"
+public class net.minecraft.client.gui.components.CommandSuggestions$SuggestionsList {
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean mouseClicked(int, int);
+  public boolean mouseScrolled(double);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void cycle(int);
+  public void select(int);
+  public void useSuggestion();
+}
+Compiled from "CycleButton.java"
+public class net.minecraft.client.gui.components.CycleButton<T> extends net.minecraft.client.gui.components.AbstractButton implements net.minecraft.client.gui.components.ResettableOptionWidget {
+  public static final java.util.function.BooleanSupplier DEFAULT_ALT_LIST_SELECTOR;
+  protected void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onPress(net.minecraft.client.input.InputWithModifiers);
+  public boolean mouseScrolled(double, double, double, double);
+  public void setValue(T);
+  public void resetValue();
+  public T getValue();
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public net.minecraft.network.chat.MutableComponent createDefaultNarrationMessage();
+  public static <T> net.minecraft.client.gui.components.CycleButton$Builder<T> builder(java.util.function.Function<T, net.minecraft.network.chat.Component>, java.util.function.Supplier<T>);
+  public static <T> net.minecraft.client.gui.components.CycleButton$Builder<T> builder(java.util.function.Function<T, net.minecraft.network.chat.Component>, T);
+  public static net.minecraft.client.gui.components.CycleButton$Builder<java.lang.Boolean> booleanBuilder(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, boolean);
+  public static net.minecraft.client.gui.components.CycleButton$Builder<java.lang.Boolean> onOffBuilder(boolean);
+}
+Compiled from "PlayerFaceExtractor.java"
+public class net.minecraft.client.gui.components.PlayerFaceExtractor {
+  public static final int SKIN_HEAD_U;
+  public static final int SKIN_HEAD_V;
+  public static final int SKIN_HEAD_WIDTH;
+  public static final int SKIN_HEAD_HEIGHT;
+  public static final int SKIN_HAT_U;
+  public static final int SKIN_HAT_V;
+  public static final int SKIN_HAT_WIDTH;
+  public static final int SKIN_HAT_HEIGHT;
+  public static final int SKIN_TEX_WIDTH;
+  public static final int SKIN_TEX_HEIGHT;
+  public net.minecraft.client.gui.components.PlayerFaceExtractor();
+  public static void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.world.item.component.ResolvableProfile, int, int, int);
+  public static void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.world.entity.player.PlayerSkin, int, int, int);
+  public static void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.world.entity.player.PlayerSkin, int, int, int, int);
+  public static void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.resources.Identifier, int, int, int, boolean, boolean, int);
+}
+Compiled from "BossHealthOverlay.java"
+public class net.minecraft.client.gui.components.BossHealthOverlay {
+  public net.minecraft.client.gui.components.BossHealthOverlay(net.minecraft.client.Minecraft);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void update(net.minecraft.network.protocol.game.ClientboundBossEventPacket);
+  public void reset();
+  public boolean shouldPlayMusic();
+  public boolean shouldDarkenScreen();
+  public boolean shouldCreateWorldFog();
+}
+Compiled from "PopupScreen.java"
+final class net.minecraft.client.gui.components.PopupScreen$ButtonOption extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component message();
+  public java.util.function.Consumer<net.minecraft.client.gui.components.PopupScreen> action();
+}
+Compiled from "MultiLineLabel.java"
+public final class net.minecraft.client.gui.components.MultiLineLabel$TextAndWidth extends java.lang.Record {
+  public net.minecraft.client.gui.components.MultiLineLabel$TextAndWidth(net.minecraft.util.FormattedCharSequence, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.FormattedCharSequence text();
+  public int width();
+}
+Compiled from "ContainerObjectSelectionList.java"
+public abstract class net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry<E extends net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry<E>> extends net.minecraft.client.gui.components.AbstractSelectionList$Entry<E> implements net.minecraft.client.gui.components.events.ContainerEventHandler {
+  public net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry();
+  public boolean isDragging();
+  public void setDragging(boolean);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  public net.minecraft.client.gui.components.events.GuiEventListener getFocused();
+  public net.minecraft.client.gui.ComponentPath focusPathAtIndex(net.minecraft.client.gui.navigation.FocusNavigationEvent, int);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public abstract java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry> narratables();
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+  public void visitWidgets(java.util.function.Consumer);
+  public int getHeight();
+  public int getWidth();
+  public int getY();
+  public int getX();
+  public int getContentRight();
+  public int getContentXMiddle();
+  public int getContentWidth();
+  public int getContentBottom();
+  public int getContentYMiddle();
+  public int getContentHeight();
+  public int getContentY();
+  public int getContentX();
+  public void setHeight(int);
+  public void setWidth(int);
+  public void setY(int);
+  public void setX(int);
+  public boolean isMouseOver(double, double);
+  public boolean isFocused();
+  public void setFocused(boolean);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.components.package-info {
+}
+Compiled from "PlayerTabOverlay.java"
+final class net.minecraft.client.gui.components.PlayerTabOverlay$ScoreDisplayEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component name();
+  public int score();
+  public net.minecraft.network.chat.Component formattedScore();
+  public int scoreWidth();
+}
+Compiled from "MultilineTextField.java"
+public final class net.minecraft.client.gui.components.MultilineTextField$StringView extends java.lang.Record {
+  protected net.minecraft.client.gui.components.MultilineTextField$StringView(int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int beginIndex();
+  public int endIndex();
+}
+Compiled from "CycleButton.java"
+public interface net.minecraft.client.gui.components.CycleButton$SpriteSupplier<T> {
+  public abstract net.minecraft.resources.Identifier apply(net.minecraft.client.gui.components.CycleButton<T>, T);
+}
+Compiled from "MultiLineTextWidget.java"
+public class net.minecraft.client.gui.components.MultiLineTextWidget extends net.minecraft.client.gui.components.AbstractStringWidget {
+  public net.minecraft.client.gui.components.MultiLineTextWidget(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public net.minecraft.client.gui.components.MultiLineTextWidget(int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public net.minecraft.client.gui.components.MultiLineTextWidget setMaxWidth(int);
+  public net.minecraft.client.gui.components.MultiLineTextWidget setMaxRows(int);
+  public net.minecraft.client.gui.components.MultiLineTextWidget setCentered(boolean);
+  public int getWidth();
+  public int getHeight();
+  public void visitLines(net.minecraft.client.gui.ActiveTextCollector);
+  protected int getTextX();
+  protected int getTextY();
+}
+Compiled from "MultilineTextField.java"
+public class net.minecraft.client.gui.components.MultilineTextField {
+  public static final int NO_LIMIT;
+  public net.minecraft.client.gui.components.MultilineTextField(net.minecraft.client.gui.Font, int);
+  public int characterLimit();
+  public void setCharacterLimit(int);
+  public void setLineLimit(int);
+  public boolean hasCharacterLimit();
+  public boolean hasLineLimit();
+  public void setValueListener(java.util.function.Consumer<java.lang.String>);
+  public void setCursorListener(java.lang.Runnable);
+  public void setValue(java.lang.String);
+  public void setValue(java.lang.String, boolean);
+  public java.lang.String value();
+  public void insertText(java.lang.String);
+  public void deleteText(int);
+  public int cursor();
+  public void setSelecting(boolean);
+  public net.minecraft.client.gui.components.MultilineTextField$StringView getSelected();
+  public int getLineCount();
+  public int getLineAtCursor();
+  public net.minecraft.client.gui.components.MultilineTextField$StringView getLineView(int);
+  public void seekCursor(net.minecraft.client.gui.components.Whence, int);
+  public void seekCursorLine(int);
+  public void seekCursorToPoint(double, double);
+  public void selectWordAtCursor();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public java.lang.Iterable<net.minecraft.client.gui.components.MultilineTextField$StringView> iterateLines();
+  public boolean hasSelection();
+  public java.lang.String getSelectedText();
+  public net.minecraft.client.gui.components.MultilineTextField$StringView getPreviousWord();
+  public net.minecraft.client.gui.components.MultilineTextField$StringView getNextWord();
+}
+Compiled from "SubtitleOverlay.java"
+public class net.minecraft.client.gui.components.SubtitleOverlay implements net.minecraft.client.sounds.SoundEventListener {
+  public net.minecraft.client.gui.components.SubtitleOverlay(net.minecraft.client.Minecraft);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void onPlaySound(net.minecraft.client.resources.sounds.SoundInstance, net.minecraft.client.sounds.WeighedSoundEvents, float);
+}
+Compiled from "AbstractSliderButton.java"
+public abstract class net.minecraft.client.gui.components.AbstractSliderButton extends net.minecraft.client.gui.components.AbstractWidget$WithInactiveMessage {
+  protected static final int TEXT_MARGIN;
+  public static final int DEFAULT_HEIGHT;
+  protected static final int HANDLE_WIDTH;
+  protected double value;
+  protected boolean canChangeValue;
+  public net.minecraft.client.gui.components.AbstractSliderButton(int, int, int, int, net.minecraft.network.chat.Component, double);
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void handleCursor(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void setFocused(boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  protected void setValue(double);
+  protected void onDrag(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public void onRelease(net.minecraft.client.input.MouseButtonEvent);
+  protected abstract void updateMessage();
+  protected abstract void applyValue();
+}
+Compiled from "AbstractWidget.java"
+public abstract class net.minecraft.client.gui.components.AbstractWidget$WithInactiveMessage extends net.minecraft.client.gui.components.AbstractWidget {
+  public static net.minecraft.network.chat.Component defaultInactiveMessage(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.AbstractWidget$WithInactiveMessage(int, int, int, int, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getMessage();
+  public void setMessage(net.minecraft.network.chat.Component);
+}
+Compiled from "LockIconButton.java"
+public class net.minecraft.client.gui.components.LockIconButton extends net.minecraft.client.gui.components.Button {
+  public net.minecraft.client.gui.components.LockIconButton(int, int, net.minecraft.client.gui.components.Button$OnPress);
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public boolean isLocked();
+  public void setLocked(boolean);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ChatComponent.java"
+class net.minecraft.client.gui.components.ChatComponent$ClickableTextOnlyGraphicsAccess implements net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess {
+  public net.minecraft.client.gui.components.ChatComponent$ClickableTextOnlyGraphicsAccess(net.minecraft.client.gui.ActiveTextCollector);
+  public void updatePose(java.util.function.Consumer<org.joml.Matrix3x2f>);
+  public void fill(int, int, int, int, int);
+  public boolean handleMessage(int, float, net.minecraft.util.FormattedCharSequence);
+  public void handleTag(int, int, int, int, float, net.minecraft.client.multiplayer.chat.GuiMessageTag);
+  public void handleTagIcon(int, int, boolean, net.minecraft.client.multiplayer.chat.GuiMessageTag, net.minecraft.client.multiplayer.chat.GuiMessageTag$Icon);
+}
+Compiled from "Checkbox.java"
+public class net.minecraft.client.gui.components.Checkbox$Builder {
+  public net.minecraft.client.gui.components.Checkbox$Builder pos(int, int);
+  public net.minecraft.client.gui.components.Checkbox$Builder onValueChange(net.minecraft.client.gui.components.Checkbox$OnValueChange);
+  public net.minecraft.client.gui.components.Checkbox$Builder selected(boolean);
+  public net.minecraft.client.gui.components.Checkbox$Builder selected(net.minecraft.client.OptionInstance<java.lang.Boolean>);
+  public net.minecraft.client.gui.components.Checkbox$Builder tooltip(net.minecraft.client.gui.components.Tooltip);
+  public net.minecraft.client.gui.components.Checkbox$Builder maxWidth(int);
+  public net.minecraft.client.gui.components.Checkbox build();
+}
+Compiled from "ChatComponent.java"
+public interface net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess {
+  public abstract void updatePose(java.util.function.Consumer<org.joml.Matrix3x2f>);
+  public abstract void fill(int, int, int, int, int);
+  public abstract boolean handleMessage(int, float, net.minecraft.util.FormattedCharSequence);
+  public abstract void handleTag(int, int, int, int, float, net.minecraft.client.multiplayer.chat.GuiMessageTag);
+  public abstract void handleTagIcon(int, int, boolean, net.minecraft.client.multiplayer.chat.GuiMessageTag, net.minecraft.client.multiplayer.chat.GuiMessageTag$Icon);
+}
+Compiled from "StringWidget.java"
+public class net.minecraft.client.gui.components.StringWidget extends net.minecraft.client.gui.components.AbstractStringWidget {
+  public net.minecraft.client.gui.components.StringWidget(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public net.minecraft.client.gui.components.StringWidget(int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public net.minecraft.client.gui.components.StringWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public void setMessage(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.StringWidget setMaxWidth(int);
+  public net.minecraft.client.gui.components.StringWidget setMaxWidth(int, net.minecraft.client.gui.components.StringWidget$TextOverflow);
+  public int getWidth();
+  public void visitLines(net.minecraft.client.gui.ActiveTextCollector);
+}
+Compiled from "TabButton.java"
+public abstract class net.minecraft.client.gui.components.TabButton extends net.minecraft.client.gui.components.AbstractWidget$WithInactiveMessage {
+  public net.minecraft.client.gui.components.TabButton(net.minecraft.client.gui.components.tabs.TabManager, net.minecraft.client.gui.components.tabs.Tab, int, int);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public net.minecraft.client.gui.components.tabs.Tab tab();
+  public boolean isSelected();
+}
+Compiled from "CycleButton.java"
+public interface net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> {
+  public abstract java.util.List<T> getSelectedList();
+  public abstract java.util.List<T> getDefaultList();
+  public static <T> net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> create(java.util.Collection<T>);
+  public static <T> net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> create(java.util.function.BooleanSupplier, java.util.List<T>, java.util.List<T>);
+}
+Compiled from "LogoRenderer.java"
+public class net.minecraft.client.gui.components.LogoRenderer {
+  public static final net.minecraft.resources.Identifier MINECRAFT_LOGO;
+  public static final net.minecraft.resources.Identifier EASTER_EGG_LOGO;
+  public static final net.minecraft.resources.Identifier MINECRAFT_EDITION;
+  public static final int LOGO_WIDTH;
+  public static final int LOGO_HEIGHT;
+  public static final int DEFAULT_HEIGHT_OFFSET;
+  public net.minecraft.client.gui.components.LogoRenderer(boolean);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, float);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, float, int);
+  public boolean keepLogoThroughFade();
+}
+Compiled from "SubtitleOverlay.java"
+class net.minecraft.client.gui.components.SubtitleOverlay$Subtitle {
+  public net.minecraft.client.gui.components.SubtitleOverlay$Subtitle(net.minecraft.network.chat.Component, float, net.minecraft.world.phys.Vec3, boolean);
+  public net.minecraft.network.chat.Component getText();
+  public net.minecraft.client.gui.components.SubtitleOverlay$SoundPlayedAt getBestSubtitleCandidate(net.minecraft.world.phys.Vec3);
+  public void refresh(net.minecraft.world.phys.Vec3);
+  public boolean isAudibleFrom(net.minecraft.world.phys.Vec3);
+  public void purgeOldInstances(double);
+  public boolean isStillActive();
+}
+Compiled from "ChatComponent.java"
+public final class net.minecraft.client.gui.components.ChatComponent$DisplayMode extends java.lang.Enum<net.minecraft.client.gui.components.ChatComponent$DisplayMode> {
+  public static final net.minecraft.client.gui.components.ChatComponent$DisplayMode BACKGROUND;
+  public static final net.minecraft.client.gui.components.ChatComponent$DisplayMode FOREGROUND;
+  public static final net.minecraft.client.gui.components.ChatComponent$DisplayMode FOREGROUND_RESTRICTED;
+  public final boolean foreground;
+  public final boolean showRestrictedPrompt;
+  public static net.minecraft.client.gui.components.ChatComponent$DisplayMode[] values();
+  public static net.minecraft.client.gui.components.ChatComponent$DisplayMode valueOf(java.lang.String);
+}
+Compiled from "AbstractContainerWidget.java"
+public abstract class net.minecraft.client.gui.components.AbstractContainerWidget extends net.minecraft.client.gui.components.AbstractScrollArea implements net.minecraft.client.gui.components.events.ContainerEventHandler {
+  public net.minecraft.client.gui.components.AbstractContainerWidget(int, int, int, int, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.AbstractContainerWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.AbstractScrollArea$ScrollbarSettings);
+  public final boolean isDragging();
+  public final void setDragging(boolean);
+  public net.minecraft.client.gui.components.events.GuiEventListener getFocused();
+  public void setFocused(net.minecraft.client.gui.components.events.GuiEventListener);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean isFocused();
+  public void setFocused(boolean);
+}
+Compiled from "LockIconButton.java"
+final class net.minecraft.client.gui.components.LockIconButton$Icon extends java.lang.Enum<net.minecraft.client.gui.components.LockIconButton$Icon> {
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon LOCKED;
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon LOCKED_HOVER;
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon LOCKED_DISABLED;
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon UNLOCKED;
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon UNLOCKED_HOVER;
+  public static final net.minecraft.client.gui.components.LockIconButton$Icon UNLOCKED_DISABLED;
+  public static net.minecraft.client.gui.components.LockIconButton$Icon[] values();
+  public static net.minecraft.client.gui.components.LockIconButton$Icon valueOf(java.lang.String);
+}
+Compiled from "PlayerFaceWidget.java"
+public class net.minecraft.client.gui.components.PlayerFaceWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.components.PlayerFaceWidget(int, net.minecraft.world.item.component.ResolvableProfile);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "ItemDisplayWidget.java"
+public class net.minecraft.client.gui.components.ItemDisplayWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.components.ItemDisplayWidget(net.minecraft.client.Minecraft, int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.world.item.ItemStack, boolean, boolean);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "DebugScreenOverlay.java"
+public class net.minecraft.client.gui.components.DebugScreenOverlay {
+  public net.minecraft.client.gui.components.DebugScreenOverlay(net.minecraft.client.Minecraft);
+  public void clearChunkCache();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public boolean showDebugScreen();
+  public boolean showProfilerChart();
+  public boolean showNetworkCharts();
+  public boolean showFpsCharts();
+  public boolean showLightmapTexture();
+  public void toggleNetworkCharts();
+  public void toggleFpsCharts();
+  public void toggleLightmapTexture();
+  public void toggleProfilerChart();
+  public void logFrameDuration(long);
+  public net.minecraft.util.debugchart.LocalSampleLogger getTickTimeLogger();
+  public net.minecraft.util.debugchart.LocalSampleLogger getPingLogger();
+  public net.minecraft.util.debugchart.LocalSampleLogger getBandwidthLogger();
+  public net.minecraft.client.gui.components.debugchart.ProfilerPieChart getProfilerPieChart();
+  public void logRemoteSample(long[], net.minecraft.util.debugchart.RemoteDebugSampleType);
+  public void reset();
+}
+Compiled from "FocusableTextWidget.java"
+public class net.minecraft.client.gui.components.FocusableTextWidget$Builder {
+  public net.minecraft.client.gui.components.FocusableTextWidget$Builder maxWidth(int);
+  public net.minecraft.client.gui.components.FocusableTextWidget$Builder textWidth(int);
+  public net.minecraft.client.gui.components.FocusableTextWidget$Builder alwaysShowBorder(boolean);
+  public net.minecraft.client.gui.components.FocusableTextWidget$Builder backgroundFill(net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill);
+  public net.minecraft.client.gui.components.FocusableTextWidget build();
+}
+Compiled from "CycleButton.java"
+public interface net.minecraft.client.gui.components.CycleButton$OnValueChange<T> {
+  public abstract void onValueChange(net.minecraft.client.gui.components.CycleButton<T>, T);
+}
+Compiled from "SelectableEntry.java"
+public interface net.minecraft.client.gui.components.SelectableEntry {
+  public default boolean mouseOverIcon(int, int, int);
+  public default boolean mouseOverLeftHalf(int, int, int);
+  public default boolean mouseOverRightHalf(int, int, int);
+  public default boolean mouseOverTopRightQuarter(int, int, int);
+  public default boolean mouseOverBottomRightQuarter(int, int, int);
+  public default boolean mouseOverTopLeftQuarter(int, int, int);
+  public default boolean mouseOverBottomLeftQuarter(int, int, int);
+}
+Compiled from "ImageButton.java"
+public class net.minecraft.client.gui.components.ImageButton extends net.minecraft.client.gui.components.Button {
+  protected final net.minecraft.client.gui.components.WidgetSprites sprites;
+  public net.minecraft.client.gui.components.ImageButton(int, int, int, int, net.minecraft.client.gui.components.WidgetSprites, net.minecraft.client.gui.components.Button$OnPress);
+  public net.minecraft.client.gui.components.ImageButton(int, int, net.minecraft.client.gui.components.WidgetSprites, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.ImageButton(int, int, int, int, net.minecraft.client.gui.components.WidgetSprites, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.network.chat.Component);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "ScrollableLayout.java"
+public final class net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy extends java.lang.Enum<net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy> {
+  public static final net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy RIGHT;
+  public static final net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy BOTH;
+  public static net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy[] values();
+  public static net.minecraft.client.gui.components.ScrollableLayout$ReserveStrategy valueOf(java.lang.String);
+}
+Compiled from "AbstractWidget.java"
+public abstract class net.minecraft.client.gui.components.AbstractWidget implements net.minecraft.client.gui.layouts.LayoutElement,net.minecraft.client.gui.components.Renderable,net.minecraft.client.gui.components.events.GuiEventListener,net.minecraft.client.gui.narration.NarratableEntry {
+  protected int width;
+  protected int height;
+  protected net.minecraft.network.chat.Component message;
+  protected boolean isHovered;
+  public boolean active;
+  public boolean visible;
+  protected float alpha;
+  public net.minecraft.client.gui.components.AbstractWidget(int, int, int, int, net.minecraft.network.chat.Component);
+  public int getHeight();
+  public final void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractTooltipForNextRenderPass(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  protected void handleCursor(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void setTooltip(net.minecraft.client.gui.components.Tooltip);
+  public void setTooltipDelay(java.time.Duration);
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public static net.minecraft.network.chat.MutableComponent wrapDefaultNarrationMessage(net.minecraft.network.chat.Component);
+  protected abstract void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractScrollingStringOverContents(net.minecraft.client.gui.ActiveTextCollector, net.minecraft.network.chat.Component, int);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void onRelease(net.minecraft.client.input.MouseButtonEvent);
+  protected void onDrag(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+  protected boolean isValidClickButton(net.minecraft.client.input.MouseButtonInfo);
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public boolean isMouseOver(double, double);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public static void playButtonClickSound(net.minecraft.client.sounds.SoundManager);
+  public int getWidth();
+  public void setWidth(int);
+  public void setHeight(int);
+  public void setAlpha(float);
+  public float getAlpha();
+  public void setMessage(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getMessage();
+  public boolean isFocused();
+  public boolean isHovered();
+  public boolean isHoveredOrFocused();
+  public boolean isActive();
+  public void setFocused(boolean);
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  public final void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected abstract void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected void defaultButtonNarrationText(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public int getX();
+  public void setX(int);
+  public int getY();
+  public void setY(int);
+  public int getRight();
+  public int getBottom();
+  public void visitWidgets(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public void setSize(int, int);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+  public void setRectangle(int, int, int, int);
+  public int getTabOrderGroup();
+  public void setTabOrderGroup(int);
+}
+Compiled from "EditBox.java"
+public interface net.minecraft.client.gui.components.EditBox$TextFormatter {
+  public abstract net.minecraft.util.FormattedCharSequence format(java.lang.String, int);
+}
+Compiled from "ObjectSelectionList.java"
+public abstract class net.minecraft.client.gui.components.ObjectSelectionList<E extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<E>> extends net.minecraft.client.gui.components.AbstractSelectionList<E> {
+  public net.minecraft.client.gui.components.ObjectSelectionList(net.minecraft.client.Minecraft, int, int, int, int);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "MultiLineEditBox.java"
+public class net.minecraft.client.gui.components.MultiLineEditBox$Builder {
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder();
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setX(int);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setY(int);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setPlaceholder(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setTextColor(int);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setTextShadow(boolean);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setCursorColor(int);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setShowBackground(boolean);
+  public net.minecraft.client.gui.components.MultiLineEditBox$Builder setShowDecorations(boolean);
+  public net.minecraft.client.gui.components.MultiLineEditBox build(net.minecraft.client.gui.Font, int, int, net.minecraft.network.chat.Component);
+}
+Compiled from "CommandSuggestions.java"
+public class net.minecraft.client.gui.components.CommandSuggestions {
+  public static final net.minecraft.network.chat.Style USAGE_FORMAT;
+  public static final int LINE_HEIGHT;
+  public static final int USAGE_OFFSET_FROM_BOTTOM;
+  public net.minecraft.client.gui.components.CommandSuggestions(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen, net.minecraft.client.gui.components.EditBox, net.minecraft.client.gui.Font, boolean, boolean, int, int, boolean, int);
+  public void setAllowSuggestions(boolean);
+  public void setAllowHiding(boolean);
+  public void setRestrictions(boolean, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean mouseScrolled(double);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent);
+  public void showSuggestions(boolean);
+  public boolean isVisible();
+  public net.minecraft.network.chat.Component getUsageNarration();
+  public void hide();
+  public void updateCommandInfo();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean extractSuggestions(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void extractUsage(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  public boolean hasAllowedInput();
+}
+Compiled from "Button.java"
+public class net.minecraft.client.gui.components.Button$Builder {
+  public net.minecraft.client.gui.components.Button$Builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress);
+  public net.minecraft.client.gui.components.Button$Builder pos(int, int);
+  public net.minecraft.client.gui.components.Button$Builder width(int);
+  public net.minecraft.client.gui.components.Button$Builder size(int, int);
+  public net.minecraft.client.gui.components.Button$Builder bounds(int, int, int, int);
+  public net.minecraft.client.gui.components.Button$Builder tooltip(net.minecraft.client.gui.components.Tooltip);
+  public net.minecraft.client.gui.components.Button$Builder createNarration(net.minecraft.client.gui.components.Button$CreateNarration);
+  public net.minecraft.client.gui.components.Button build();
+}
+Compiled from "ChatComponent.java"
+class net.minecraft.client.gui.components.ChatComponent$DrawingFocusedGraphicsAccess implements net.minecraft.client.gui.components.ChatComponent$ChatGraphicsAccess, java.util.function.Consumer<net.minecraft.network.chat.Style> {
+  public net.minecraft.client.gui.components.ChatComponent$DrawingFocusedGraphicsAccess(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font, int, int, boolean);
+  public void updatePose(java.util.function.Consumer<org.joml.Matrix3x2f>);
+  public void fill(int, int, int, int, int);
+  public void accept(net.minecraft.network.chat.Style);
+  public boolean handleMessage(int, float, net.minecraft.util.FormattedCharSequence);
+  public void handleTag(int, int, int, int, float, net.minecraft.client.multiplayer.chat.GuiMessageTag);
+  public void handleTagIcon(int, int, boolean, net.minecraft.client.multiplayer.chat.GuiMessageTag, net.minecraft.client.multiplayer.chat.GuiMessageTag$Icon);
+  public void accept(java.lang.Object);
+}
+Compiled from "AbstractButton.java"
+public abstract class net.minecraft.client.gui.components.AbstractButton extends net.minecraft.client.gui.components.AbstractWidget$WithInactiveMessage {
+  protected static final int TEXT_MARGIN;
+  public net.minecraft.client.gui.components.AbstractButton(int, int, int, int, net.minecraft.network.chat.Component);
+  public abstract void onPress(net.minecraft.client.input.InputWithModifiers);
+  protected final void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected abstract void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractDefaultLabel(net.minecraft.client.gui.ActiveTextCollector);
+  protected final void extractDefaultSprite(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void setOverrideRenderHighlightedSprite(java.util.function.Supplier<java.lang.Boolean>);
+}
+Compiled from "ChatComponent.java"
+public abstract class net.minecraft.client.gui.components.ChatComponent$ChatMethod extends java.lang.Enum<net.minecraft.client.gui.components.ChatComponent$ChatMethod> {
+  public static final net.minecraft.client.gui.components.ChatComponent$ChatMethod MESSAGE;
+  public static final net.minecraft.client.gui.components.ChatComponent$ChatMethod COMMAND;
+  public static net.minecraft.client.gui.components.ChatComponent$ChatMethod[] values();
+  public static net.minecraft.client.gui.components.ChatComponent$ChatMethod valueOf(java.lang.String);
+  public java.lang.String prefix();
+  public abstract boolean isDraftRestorable(net.minecraft.client.gui.components.ChatComponent$Draft);
+}
+Compiled from "Button.java"
+public interface net.minecraft.client.gui.components.Button$CreateNarration {
+  public abstract net.minecraft.network.chat.MutableComponent createNarrationMessage(java.util.function.Supplier<net.minecraft.network.chat.MutableComponent>);
+}
+Compiled from "StringWidget.java"
+public final class net.minecraft.client.gui.components.StringWidget$TextOverflow extends java.lang.Enum<net.minecraft.client.gui.components.StringWidget$TextOverflow> {
+  public static final net.minecraft.client.gui.components.StringWidget$TextOverflow CLAMPED;
+  public static final net.minecraft.client.gui.components.StringWidget$TextOverflow SCROLLING;
+  public static net.minecraft.client.gui.components.StringWidget$TextOverflow[] values();
+  public static net.minecraft.client.gui.components.StringWidget$TextOverflow valueOf(java.lang.String);
+}
+Compiled from "ImageWidget.java"
+class net.minecraft.client.gui.components.ImageWidget$Texture extends net.minecraft.client.gui.components.ImageWidget {
+  public net.minecraft.client.gui.components.ImageWidget$Texture(int, int, int, int, net.minecraft.resources.Identifier, int, int);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void updateResource(net.minecraft.resources.Identifier);
+}
+Compiled from "ChatComponent.java"
+interface net.minecraft.client.gui.components.ChatComponent$LineConsumer {
+  public abstract void accept(net.minecraft.client.multiplayer.chat.GuiMessage$Line, int, float);
+}
+Compiled from "SpriteIconButton.java"
+public class net.minecraft.client.gui.components.SpriteIconButton$CenteredIcon extends net.minecraft.client.gui.components.SpriteIconButton {
+  protected net.minecraft.client.gui.components.SpriteIconButton$CenteredIcon(int, int, net.minecraft.network.chat.Component, int, int, int, int, net.minecraft.client.gui.components.WidgetSprites, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$CreateNarration, boolean);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "PlayerTabOverlay.java"
+class net.minecraft.client.gui.components.PlayerTabOverlay$HealthState {
+  public net.minecraft.client.gui.components.PlayerTabOverlay$HealthState(int);
+  public void update(int, long);
+  public int displayedValue();
+  public boolean isBlinking(long);
+}
+Compiled from "CycleButton.java"
+public class net.minecraft.client.gui.components.CycleButton$Builder<T> {
+  public net.minecraft.client.gui.components.CycleButton$Builder(java.util.function.Function<T, net.minecraft.network.chat.Component>, java.util.function.Supplier<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withValues(java.util.Collection<T>);
+  public final net.minecraft.client.gui.components.CycleButton$Builder<T> withValues(T...);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withValues(java.util.List<T>, java.util.List<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withValues(java.util.function.BooleanSupplier, java.util.List<T>, java.util.List<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withValues(net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withTooltip(net.minecraft.client.OptionInstance$TooltipSupplier<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withCustomNarration(java.util.function.Function<net.minecraft.client.gui.components.CycleButton<T>, net.minecraft.network.chat.MutableComponent>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> withSprite(net.minecraft.client.gui.components.CycleButton$SpriteSupplier<T>);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> displayState(net.minecraft.client.gui.components.CycleButton$DisplayState);
+  public net.minecraft.client.gui.components.CycleButton$Builder<T> displayOnlyValue();
+  public net.minecraft.client.gui.components.CycleButton<T> create(net.minecraft.network.chat.Component, net.minecraft.client.gui.components.CycleButton$OnValueChange<T>);
+  public net.minecraft.client.gui.components.CycleButton<T> create(int, int, int, int, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.CycleButton<T> create(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.CycleButton$OnValueChange<T>);
+}
+Compiled from "AbstractSelectionList.java"
+public abstract class net.minecraft.client.gui.components.AbstractSelectionList$Entry<E extends net.minecraft.client.gui.components.AbstractSelectionList$Entry<E>> implements net.minecraft.client.gui.layouts.LayoutElement, net.minecraft.client.gui.components.events.GuiEventListener {
+  public static final int CONTENT_PADDING;
+  protected net.minecraft.client.gui.components.AbstractSelectionList$Entry();
+  public void setFocused(boolean);
+  public boolean isFocused();
+  public abstract void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean isMouseOver(double, double);
+  public void setX(int);
+  public void setY(int);
+  public void setWidth(int);
+  public void setHeight(int);
+  public int getContentX();
+  public int getContentY();
+  public int getContentHeight();
+  public int getContentYMiddle();
+  public int getContentBottom();
+  public int getContentWidth();
+  public int getContentXMiddle();
+  public int getContentRight();
+  public int getX();
+  public int getY();
+  public int getWidth();
+  public int getHeight();
+  public void visitWidgets(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+}
+Compiled from "ChatComponent.java"
+final class net.minecraft.client.gui.components.ChatComponent$DelayedMessageDeletion extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.MessageSignature signature();
+  public int deletableAfter();
+}
+Compiled from "OptionsList.java"
+public class net.minecraft.client.gui.components.OptionsList$Entry extends net.minecraft.client.gui.components.OptionsList$AbstractEntry {
+  public static net.minecraft.client.gui.components.OptionsList$Entry big(net.minecraft.client.Options, net.minecraft.client.OptionInstance<?>, net.minecraft.client.gui.screens.Screen);
+  public static net.minecraft.client.gui.components.OptionsList$Entry big(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.gui.screens.Screen);
+  public static net.minecraft.client.gui.components.OptionsList$Entry small(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.gui.screens.Screen);
+  public static net.minecraft.client.gui.components.OptionsList$Entry small(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.OptionInstance<?>, net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.gui.screens.Screen);
+  public static net.minecraft.client.gui.components.OptionsList$Entry small(net.minecraft.client.Options, net.minecraft.client.OptionInstance<?>, net.minecraft.client.OptionInstance<?>, net.minecraft.client.gui.screens.options.OptionsSubScreen);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  public java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry> narratables();
+  public net.minecraft.client.gui.components.AbstractWidget findOption(net.minecraft.client.OptionInstance<?>);
+}
+Compiled from "FocusableTextWidget.java"
+public final class net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill extends java.lang.Enum<net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill> {
+  public static final net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill ALWAYS;
+  public static final net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill ON_FOCUS;
+  public static final net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill NEVER;
+  public static net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill[] values();
+  public static net.minecraft.client.gui.components.FocusableTextWidget$BackgroundFill valueOf(java.lang.String);
+}
+Compiled from "SpriteIconButton.java"
+public class net.minecraft.client.gui.components.SpriteIconButton$TextAndIcon extends net.minecraft.client.gui.components.SpriteIconButton {
+  protected net.minecraft.client.gui.components.SpriteIconButton$TextAndIcon(int, int, net.minecraft.network.chat.Component, int, int, int, int, net.minecraft.client.gui.components.WidgetSprites, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$CreateNarration, boolean);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "CommonButtons.java"
+public class net.minecraft.client.gui.components.CommonButtons {
+  public net.minecraft.client.gui.components.CommonButtons();
+  public static net.minecraft.client.gui.components.SpriteIconButton language(int, net.minecraft.client.gui.components.Button$OnPress, boolean);
+  public static net.minecraft.client.gui.components.SpriteIconButton accessibility(int, net.minecraft.client.gui.components.Button$OnPress, boolean);
+  public static net.minecraft.client.gui.components.FriendsButton friends(int, net.minecraft.client.gui.components.Button$OnPress, boolean);
+}
+Compiled from "ChatComponent.java"
+public class net.minecraft.client.gui.components.ChatComponent {
+  public static final int MESSAGE_BOTTOM_TO_MESSAGE_TOP;
+  public static final net.minecraft.resources.Identifier QUEUE_EXPAND_ID;
+  public static final net.minecraft.resources.Identifier GO_TO_RESTRICTIONS_SCREEN;
+  public net.minecraft.client.gui.components.ChatComponent(net.minecraft.client.Minecraft);
+  public void tick();
+  public void setVisibleMessageFilter(java.util.function.Predicate<net.minecraft.client.multiplayer.chat.GuiMessage>);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.gui.Font, int, int, int, net.minecraft.client.gui.components.ChatComponent$DisplayMode, boolean);
+  public void captureClickableText(net.minecraft.client.gui.ActiveTextCollector, int, int, net.minecraft.client.gui.components.ChatComponent$DisplayMode);
+  public void clearMessages(boolean);
+  public void addClientSystemMessage(net.minecraft.network.chat.Component);
+  public void addServerSystemMessage(net.minecraft.network.chat.Component);
+  public void addPlayerMessage(net.minecraft.network.chat.Component, net.minecraft.network.chat.MessageSignature, net.minecraft.client.multiplayer.chat.GuiMessageTag);
+  public void deleteMessage(net.minecraft.network.chat.MessageSignature);
+  public void rescaleChat();
+  public net.minecraft.util.ArrayListDeque<java.lang.String> getRecentChat();
+  public void addRecentChat(java.lang.String);
+  public void resetChatScroll();
+  public void scrollChat(int);
+  public boolean isChatFocused();
+  public static int getWidth(double);
+  public static int getHeight(double);
+  public static double defaultUnfocusedPct();
+  public int getLinesPerPage();
+  public void saveAsDraft(java.lang.String);
+  public void discardDraft();
+  public <T extends net.minecraft.client.gui.screens.ChatScreen> T createScreen(net.minecraft.client.gui.components.ChatComponent$ChatMethod, net.minecraft.client.gui.screens.ChatScreen$ChatConstructor<T>);
+  public void openScreen(net.minecraft.client.gui.components.ChatComponent$ChatMethod, net.minecraft.client.gui.screens.ChatScreen$ChatConstructor<?>);
+  public void preserveCurrentChatScreen();
+  public net.minecraft.client.gui.screens.ChatScreen restoreChatScreen();
+  public net.minecraft.client.gui.components.ChatComponent$State storeState();
+  public void restoreState(net.minecraft.client.gui.components.ChatComponent$State);
+}
+Compiled from "Whence.java"
+public final class net.minecraft.client.gui.components.Whence extends java.lang.Enum<net.minecraft.client.gui.components.Whence> {
+  public static final net.minecraft.client.gui.components.Whence ABSOLUTE;
+  public static final net.minecraft.client.gui.components.Whence RELATIVE;
+  public static final net.minecraft.client.gui.components.Whence END;
+  public static net.minecraft.client.gui.components.Whence[] values();
+  public static net.minecraft.client.gui.components.Whence valueOf(java.lang.String);
+}
+Compiled from "PlainTextButton.java"
+public class net.minecraft.client.gui.components.PlainTextButton extends net.minecraft.client.gui.components.Button {
+  public net.minecraft.client.gui.components.PlainTextButton(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.client.gui.Font);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "OptionsList.java"
+public final class net.minecraft.client.gui.components.OptionsList$OptionInstanceWidget extends java.lang.Record {
+  public net.minecraft.client.gui.components.OptionsList$OptionInstanceWidget(net.minecraft.client.gui.components.AbstractWidget);
+  public net.minecraft.client.gui.components.OptionsList$OptionInstanceWidget(net.minecraft.client.gui.components.AbstractWidget, net.minecraft.client.OptionInstance<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.components.AbstractWidget widget();
+  public net.minecraft.client.OptionInstance<?> optionInstance();
+}
+Compiled from "AbstractStringWidget.java"
+public abstract class net.minecraft.client.gui.components.AbstractStringWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.components.AbstractStringWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public abstract void visitLines(net.minecraft.client.gui.ActiveTextCollector);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  protected final net.minecraft.client.gui.Font getFont();
+  public void setMessage(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.AbstractStringWidget setComponentClickHandler(java.util.function.Consumer<net.minecraft.network.chat.Style>);
+  protected boolean handleStyleClick(net.minecraft.network.chat.Style);
+}
+Compiled from "FocusableTextWidget.java"
+public class net.minecraft.client.gui.components.FocusableTextWidget extends net.minecraft.client.gui.components.MultiLineTextWidget {
+  public static final int DEFAULT_PADDING;
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void setNarrateMessage(boolean);
+  public void setUsageNarration(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected int getTextX();
+  protected int getTextY();
+  public net.minecraft.client.gui.components.MultiLineTextWidget setMaxWidth(int);
+  public int getWidth();
+  public int getHeight();
+  public int getPadding();
+  public void updateWidth();
+  public void updateHeight();
+  public void setMessage(net.minecraft.network.chat.Component);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public static net.minecraft.client.gui.components.FocusableTextWidget$Builder builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public static net.minecraft.client.gui.components.FocusableTextWidget$Builder builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.Font, int);
+}
+Compiled from "OptionsList.java"
+public abstract class net.minecraft.client.gui.components.OptionsList$AbstractEntry extends net.minecraft.client.gui.components.ContainerObjectSelectionList$Entry<net.minecraft.client.gui.components.OptionsList$AbstractEntry> {
+  protected net.minecraft.client.gui.components.OptionsList$AbstractEntry();
+}
+Compiled from "PlayerSkinWidget.java"
+public class net.minecraft.client.gui.components.PlayerSkinWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.components.PlayerSkinWidget(int, int, net.minecraft.client.model.geom.EntityModelSet, java.util.function.Supplier<net.minecraft.world.entity.player.PlayerSkin>);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void onDrag(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+}
+Compiled from "ChatComponent.java"
+public final class net.minecraft.client.gui.components.ChatComponent$Draft extends java.lang.Record {
+  public net.minecraft.client.gui.components.ChatComponent$Draft(java.lang.String, net.minecraft.client.gui.components.ChatComponent$ChatMethod);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String text();
+  public net.minecraft.client.gui.components.ChatComponent$ChatMethod chatMethod();
+}
+Compiled from "SpriteIconButton.java"
+public abstract class net.minecraft.client.gui.components.SpriteIconButton extends net.minecraft.client.gui.components.Button {
+  protected final net.minecraft.client.gui.components.WidgetSprites sprite;
+  protected final int spriteWidth;
+  protected final int spriteHeight;
+  protected final int spriteOffsetX;
+  protected final int spriteOffsetY;
+  public void setLoading(boolean);
+  public void setLoading(boolean, net.minecraft.client.gui.components.Tooltip);
+  public boolean isActive();
+  public void onPress(net.minecraft.client.input.InputWithModifiers);
+  protected void extractSprite(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  protected boolean extractLoadingStateIfLoading(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public static net.minecraft.client.gui.components.SpriteIconButton$Builder builder(net.minecraft.network.chat.Component, net.minecraft.client.gui.components.Button$OnPress, boolean);
+}
+Compiled from "AbstractSelectionList.java"
+class net.minecraft.client.gui.components.AbstractSelectionList$TrackedList extends java.util.AbstractList<E> {
+  public E get(int);
+  public int size();
+  public E set(int, E);
+  public void add(int, E);
+  public E remove(int);
+  public java.lang.Object remove(int);
+  public void add(int, java.lang.Object);
+  public java.lang.Object set(int, java.lang.Object);
+  public java.lang.Object get(int);
+}
+Compiled from "OptionsList.java"
+public class net.minecraft.client.gui.components.OptionsList$HeaderEntry extends net.minecraft.client.gui.components.OptionsList$AbstractEntry {
+  protected net.minecraft.client.gui.components.OptionsList$HeaderEntry(net.minecraft.client.gui.screens.Screen, net.minecraft.network.chat.Component, int);
+  public java.util.List<? extends net.minecraft.client.gui.narration.NarratableEntry> narratables();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+}
+Compiled from "MultiLineTextWidget.java"
+final class net.minecraft.client.gui.components.MultiLineTextWidget$CacheKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component message();
+  public int maxWidth();
+  public java.util.OptionalInt maxRows();
+}
+Compiled from "IMEPreeditOverlay.java"
+public class net.minecraft.client.gui.components.IMEPreeditOverlay implements net.minecraft.client.gui.components.Renderable {
+  public net.minecraft.client.gui.components.IMEPreeditOverlay(net.minecraft.client.input.PreeditEvent, net.minecraft.client.gui.Font, int);
+  public void updateInputPosition(int, int);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "PlayerTabOverlay.java"
+public class net.minecraft.client.gui.components.PlayerTabOverlay {
+  public static final int MAX_ROWS_PER_COL;
+  public net.minecraft.client.gui.components.PlayerTabOverlay(net.minecraft.client.Minecraft, net.minecraft.client.gui.Hud);
+  public net.minecraft.network.chat.Component getNameForDisplay(net.minecraft.client.multiplayer.PlayerInfo);
+  public void setVisible(boolean);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, net.minecraft.world.scores.Scoreboard, net.minecraft.world.scores.Objective);
+  protected void extractPingIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, net.minecraft.client.multiplayer.PlayerInfo);
+  public void setFooter(net.minecraft.network.chat.Component);
+  public void setHeader(net.minecraft.network.chat.Component);
+  public void reset();
+}
+Compiled from "ImageWidget.java"
+public abstract class net.minecraft.client.gui.components.ImageWidget extends net.minecraft.client.gui.components.AbstractWidget {
+  public static net.minecraft.client.gui.components.ImageWidget texture(int, int, net.minecraft.resources.Identifier, int, int);
+  public static net.minecraft.client.gui.components.ImageWidget sprite(int, int, net.minecraft.resources.Identifier);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public boolean isActive();
+  public abstract void updateResource(net.minecraft.resources.Identifier);
+  public net.minecraft.client.gui.ComponentPath nextFocusPath(net.minecraft.client.gui.navigation.FocusNavigationEvent);
+}
+Compiled from "Tooltip.java"
+public class net.minecraft.client.gui.components.Tooltip implements net.minecraft.client.gui.narration.NarrationSupplier {
+  public static net.minecraft.client.gui.components.Tooltip create(net.minecraft.network.chat.Component);
+  public static net.minecraft.client.gui.components.Tooltip create(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public static net.minecraft.client.gui.components.Tooltip create(net.minecraft.network.chat.Component, java.util.Optional<net.minecraft.world.inventory.tooltip.TooltipComponent>, net.minecraft.resources.Identifier);
+  public java.util.Optional<net.minecraft.world.inventory.tooltip.TooltipComponent> component();
+  public net.minecraft.resources.Identifier style();
+  public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public java.util.List<net.minecraft.util.FormattedCharSequence> toCharSequence(net.minecraft.client.Minecraft);
+  public static java.util.List<net.minecraft.util.FormattedCharSequence> splitTooltip(net.minecraft.client.Minecraft, net.minecraft.network.chat.Component);
+}
+Compiled from "EditBox.java"
+public class net.minecraft.client.gui.components.EditBox extends net.minecraft.client.gui.components.AbstractWidget {
+  public static final int BACKWARDS;
+  public static final int FORWARDS;
+  public static final int DEFAULT_TEXT_COLOR;
+  public static final net.minecraft.network.chat.Style DEFAULT_HINT_STYLE;
+  public static final net.minecraft.network.chat.Style SEARCH_HINT_STYLE;
+  public net.minecraft.client.gui.components.EditBox(net.minecraft.client.gui.Font, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.EditBox(net.minecraft.client.gui.Font, int, int, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.EditBox(net.minecraft.client.gui.Font, int, int, int, int, net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.EditBox(net.minecraft.client.gui.Font, int, int, int, int, net.minecraft.client.gui.components.EditBox, net.minecraft.network.chat.Component);
+  public void setResponder(java.util.function.Consumer<java.lang.String>);
+  public void addFormatter(net.minecraft.client.gui.components.EditBox$TextFormatter);
+  protected net.minecraft.network.chat.MutableComponent createNarrationMessage();
+  public void setValue(java.lang.String);
+  public java.lang.String getValue();
+  public java.lang.String getHighlighted();
+  public void setX(int);
+  public void setY(int);
+  public void insertText(java.lang.String);
+  public void deleteWords(int);
+  public void deleteChars(int);
+  public void deleteCharsToPos(int);
+  public int getWordPosition(int);
+  public void moveCursor(int, boolean);
+  public void moveCursorTo(int, boolean);
+  public void setCursorPosition(int);
+  public void moveCursorToStart(boolean);
+  public void moveCursorToEnd(boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean canConsumeInput();
+  public boolean capturesInput();
+  public boolean charTyped(net.minecraft.client.input.CharacterEvent);
+  public boolean preeditUpdated(net.minecraft.client.input.PreeditEvent);
+  public void onClick(net.minecraft.client.input.MouseButtonEvent, boolean);
+  protected void onDrag(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public void playDownSound(net.minecraft.client.sounds.SoundManager);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void setMaxLength(int);
+  public int getCursorPosition();
+  public boolean isBordered();
+  public void setBordered(boolean);
+  public void setTextColor(int);
+  public void setTextColorUneditable(int);
+  public void setFocused(boolean);
+  public void setEditable(boolean);
+  public void setCentered(boolean);
+  public void setTextShadow(boolean);
+  public void setInvertHighlightedTextColor(boolean);
+  public int getInnerWidth();
+  public void setHighlightPos(int);
+  public void setCanLoseFocus(boolean);
+  public boolean isVisible();
+  public void setVisible(boolean);
+  public void setSuggestion(java.lang.String);
+  public int getScreenX(int);
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void setHint(net.minecraft.network.chat.Component);
+}
+Compiled from "WidgetSprites.java"
+public final class net.minecraft.client.gui.components.WidgetSprites extends java.lang.Record {
+  public net.minecraft.client.gui.components.WidgetSprites(net.minecraft.resources.Identifier);
+  public net.minecraft.client.gui.components.WidgetSprites(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public net.minecraft.client.gui.components.WidgetSprites(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public net.minecraft.client.gui.components.WidgetSprites(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public net.minecraft.resources.Identifier get(boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier enabled();
+  public net.minecraft.resources.Identifier disabled();
+  public net.minecraft.resources.Identifier enabledFocused();
+  public net.minecraft.resources.Identifier disabledFocused();
+}
+Compiled from "CycleButton.java"
+public final class net.minecraft.client.gui.components.CycleButton$DisplayState extends java.lang.Enum<net.minecraft.client.gui.components.CycleButton$DisplayState> {
+  public static final net.minecraft.client.gui.components.CycleButton$DisplayState NAME_AND_VALUE;
+  public static final net.minecraft.client.gui.components.CycleButton$DisplayState VALUE;
+  public static final net.minecraft.client.gui.components.CycleButton$DisplayState HIDE;
+  public static net.minecraft.client.gui.components.CycleButton$DisplayState[] values();
+  public static net.minecraft.client.gui.components.CycleButton$DisplayState valueOf(java.lang.String);
+}
+Compiled from "ObjectSelectionList.java"
+public abstract class net.minecraft.client.gui.components.ObjectSelectionList$Entry<E extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<E>> extends net.minecraft.client.gui.components.AbstractSelectionList$Entry<E> implements net.minecraft.client.gui.narration.NarrationSupplier {
+  public net.minecraft.client.gui.components.ObjectSelectionList$Entry();
+  public abstract net.minecraft.network.chat.Component getNarration();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getRectangle();
+  public void visitWidgets(java.util.function.Consumer);
+  public int getHeight();
+  public int getWidth();
+  public int getY();
+  public int getX();
+  public int getContentRight();
+  public int getContentXMiddle();
+  public int getContentWidth();
+  public int getContentBottom();
+  public int getContentYMiddle();
+  public int getContentHeight();
+  public int getContentY();
+  public int getContentX();
+  public void setHeight(int);
+  public void setWidth(int);
+  public void setY(int);
+  public void setX(int);
+  public boolean isMouseOver(double, double);
+  public boolean isFocused();
+  public void setFocused(boolean);
+}
+Compiled from "MultiLineLabel.java"
+public interface net.minecraft.client.gui.components.MultiLineLabel {
+  public static final net.minecraft.client.gui.components.MultiLineLabel EMPTY;
+  public static net.minecraft.client.gui.components.MultiLineLabel create(net.minecraft.client.gui.Font, net.minecraft.network.chat.Component...);
+  public static net.minecraft.client.gui.components.MultiLineLabel create(net.minecraft.client.gui.Font, int, net.minecraft.network.chat.Component...);
+  public static net.minecraft.client.gui.components.MultiLineLabel create(net.minecraft.client.gui.Font, net.minecraft.network.chat.Component, int);
+  public static net.minecraft.client.gui.components.MultiLineLabel create(net.minecraft.client.gui.Font, int, int, net.minecraft.network.chat.Component...);
+  public abstract int visitLines(net.minecraft.client.gui.TextAlignment, int, int, int, net.minecraft.client.gui.ActiveTextCollector);
+  public abstract int getLineCount();
+  public abstract int getWidth();
+}
+Compiled from "FittingMultiLineTextWidget.java"
+public class net.minecraft.client.gui.components.FittingMultiLineTextWidget extends net.minecraft.client.gui.components.AbstractTextAreaWidget {
+  public net.minecraft.client.gui.components.FittingMultiLineTextWidget(int, int, int, int, net.minecraft.network.chat.Component, net.minecraft.client.gui.Font);
+  public void setWidth(int);
+  protected int getInnerHeight();
+  public void minimizeHeight();
+  protected void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public boolean showingScrollBar();
+  protected void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void setMessage(net.minecraft.network.chat.Component);
+}
+Compiled from "Renderable.java"
+public interface net.minecraft.client.gui.components.Renderable {
+  public abstract void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}

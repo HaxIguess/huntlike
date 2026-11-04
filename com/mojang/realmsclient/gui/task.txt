@@ -1,0 +1,47 @@
+Compiled from "DataFetcher.java"
+public class com.mojang.realmsclient.gui.task.DataFetcher$Task<T> {
+  public void reset();
+}
+Compiled from "DataFetcher.java"
+final class com.mojang.realmsclient.gui.task.DataFetcher$SuccessfulComputationResult<T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+  public long time();
+}
+Compiled from "RepeatedDelayStrategy.java"
+public interface com.mojang.realmsclient.gui.task.RepeatedDelayStrategy {
+  public static final com.mojang.realmsclient.gui.task.RepeatedDelayStrategy CONSTANT;
+  public abstract long delayCyclesAfterSuccess();
+  public abstract long delayCyclesAfterFailure();
+  public static com.mojang.realmsclient.gui.task.RepeatedDelayStrategy exponentialBackoff(int);
+}
+Compiled from "DataFetcher.java"
+class com.mojang.realmsclient.gui.task.DataFetcher$SubscribedTask<T> {
+}
+Compiled from "DataFetcher.java"
+public class com.mojang.realmsclient.gui.task.DataFetcher$Subscription {
+  public com.mojang.realmsclient.gui.task.DataFetcher$Subscription(com.mojang.realmsclient.gui.task.DataFetcher);
+  public <T> void subscribe(com.mojang.realmsclient.gui.task.DataFetcher$Task<T>, java.util.function.Consumer<T>);
+  public void forceUpdate();
+  public void tick();
+  public void reset();
+}
+Compiled from "DataFetcher.java"
+final class com.mojang.realmsclient.gui.task.DataFetcher$ComputationResult<T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.datafixers.util.Either<T, java.lang.Exception> value();
+  public long time();
+}
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.gui.task.package-info {
+}
+Compiled from "DataFetcher.java"
+public class com.mojang.realmsclient.gui.task.DataFetcher {
+  public com.mojang.realmsclient.gui.task.DataFetcher(java.util.concurrent.Executor, java.util.concurrent.TimeUnit, net.minecraft.util.TimeSource);
+  public <T> com.mojang.realmsclient.gui.task.DataFetcher$Task<T> createTask(java.lang.String, java.util.concurrent.Callable<T>, java.time.Duration, com.mojang.realmsclient.gui.task.RepeatedDelayStrategy);
+  public com.mojang.realmsclient.gui.task.DataFetcher$Subscription createSubscription();
+}

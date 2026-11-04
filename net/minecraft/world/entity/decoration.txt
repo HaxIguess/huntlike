@@ -1,0 +1,276 @@
+Compiled from "ItemFrame.java"
+public class net.minecraft.world.entity.decoration.ItemFrame extends net.minecraft.world.entity.decoration.HangingEntity {
+  public static final int NUM_ROTATIONS;
+  public net.minecraft.world.entity.decoration.ItemFrame(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.ItemFrame>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.decoration.ItemFrame(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public net.minecraft.world.entity.decoration.ItemFrame(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.ItemFrame>, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void setDirection(net.minecraft.core.Direction);
+  protected final void recalculateBoundingBox();
+  protected net.minecraft.world.phys.AABB calculateBoundingBox(net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected net.minecraft.world.phys.AABB getPopBox();
+  public boolean survives();
+  public void move(net.minecraft.world.entity.MoverType, net.minecraft.world.phys.Vec3);
+  public void push(double, double, double);
+  protected void onKilled();
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.sounds.SoundEvent getRemoveItemSound();
+  public boolean shouldRenderAtSqrDistance(double);
+  public void dropItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public net.minecraft.sounds.SoundEvent getBreakSound();
+  public void playPlacementSound();
+  public net.minecraft.sounds.SoundEvent getPlaceSound();
+  public net.minecraft.world.item.ItemStack getItem();
+  public net.minecraft.world.level.saveddata.maps.MapId getFramedMapId(net.minecraft.world.item.ItemStack);
+  public boolean hasFramedMap();
+  public void setItem(net.minecraft.world.item.ItemStack);
+  public void setItem(net.minecraft.world.item.ItemStack, boolean);
+  public net.minecraft.sounds.SoundEvent getAddItemSound();
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public int getRotation();
+  public void setRotation(int);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public net.minecraft.sounds.SoundEvent getRotateItemSound();
+  public int getAnalogOutput();
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected net.minecraft.world.item.ItemStack getFrameItemStack();
+  public float getVisualRotationYInDegrees();
+}
+Compiled from "GlowItemFrame.java"
+public class net.minecraft.world.entity.decoration.GlowItemFrame extends net.minecraft.world.entity.decoration.ItemFrame {
+  public net.minecraft.world.entity.decoration.GlowItemFrame(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.ItemFrame>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.decoration.GlowItemFrame(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public net.minecraft.sounds.SoundEvent getRemoveItemSound();
+  public net.minecraft.sounds.SoundEvent getBreakSound();
+  public net.minecraft.sounds.SoundEvent getPlaceSound();
+  public net.minecraft.sounds.SoundEvent getAddItemSound();
+  public net.minecraft.sounds.SoundEvent getRotateItemSound();
+  protected net.minecraft.world.item.ItemStack getFrameItemStack();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.decoration.package-info {
+}
+Compiled from "HangingEntity.java"
+public abstract class net.minecraft.world.entity.decoration.HangingEntity extends net.minecraft.world.entity.decoration.BlockAttachedEntity {
+  protected net.minecraft.world.entity.decoration.HangingEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.HangingEntity>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.decoration.HangingEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.HangingEntity>, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public net.minecraft.core.Direction getDirection();
+  protected void setDirectionRaw(net.minecraft.core.Direction);
+  protected void setDirection(net.minecraft.core.Direction);
+  protected void recalculateBoundingBox();
+  protected abstract net.minecraft.world.phys.AABB calculateBoundingBox(net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public boolean survives();
+  protected net.minecraft.world.phys.AABB calculateSupportBox();
+  protected boolean canCoexist(boolean);
+  protected boolean hasLevelCollision(net.minecraft.world.phys.AABB);
+  protected net.minecraft.world.phys.AABB getPopBox();
+  public abstract void playPlacementSound();
+  public net.minecraft.world.entity.item.ItemEntity spawnAtLocation(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, float);
+  public float rotate(net.minecraft.world.level.block.Rotation);
+  public float mirror(net.minecraft.world.level.block.Mirror);
+}
+Compiled from "ArmorStand.java"
+public final class net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose extends java.lang.Record {
+  public static final net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose> CODEC;
+  public net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose(net.minecraft.core.Rotations, net.minecraft.core.Rotations, net.minecraft.core.Rotations, net.minecraft.core.Rotations, net.minecraft.core.Rotations, net.minecraft.core.Rotations);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Rotations head();
+  public net.minecraft.core.Rotations body();
+  public net.minecraft.core.Rotations leftArm();
+  public net.minecraft.core.Rotations rightArm();
+  public net.minecraft.core.Rotations leftLeg();
+  public net.minecraft.core.Rotations rightLeg();
+}
+Compiled from "Cushion.java"
+public class net.minecraft.world.entity.decoration.Cushion extends net.minecraft.world.entity.decoration.BlockAttachedEntity {
+  public net.minecraft.world.entity.decoration.Cushion(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.decoration.Cushion>, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.DyeColor getColor();
+  public void setColor(net.minecraft.world.item.DyeColor);
+  public void dropItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  protected void removePassenger(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected void tickAtCheckInterval();
+  public void destroyIfInFire(net.minecraft.server.level.ServerLevel);
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+  public void setPos(double, double, double);
+  public static boolean canBePlacedAt(net.minecraft.world.level.Level, net.minecraft.world.phys.AABB);
+  public static boolean wouldSurviveAt(net.minecraft.world.level.Level, net.minecraft.world.phys.AABB);
+  public boolean survives();
+  protected void recalculateBoundingBox();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+}
+Compiled from "ArmorStand.java"
+public class net.minecraft.world.entity.decoration.ArmorStand extends net.minecraft.world.entity.LivingEntity {
+  public static final int WOBBLE_TIME;
+  public static final net.minecraft.core.Rotations DEFAULT_HEAD_POSE;
+  public static final net.minecraft.core.Rotations DEFAULT_BODY_POSE;
+  public static final net.minecraft.core.Rotations DEFAULT_LEFT_ARM_POSE;
+  public static final net.minecraft.core.Rotations DEFAULT_RIGHT_ARM_POSE;
+  public static final net.minecraft.core.Rotations DEFAULT_LEFT_LEG_POSE;
+  public static final net.minecraft.core.Rotations DEFAULT_RIGHT_LEG_POSE;
+  public static final int DISABLE_TAKING_OFFSET;
+  public static final int DISABLE_PUTTING_OFFSET;
+  public static final int CLIENT_FLAG_SMALL;
+  public static final int CLIENT_FLAG_SHOW_ARMS;
+  public static final int CLIENT_FLAG_NO_BASEPLATE;
+  public static final int CLIENT_FLAG_MARKER;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Byte> DATA_CLIENT_FLAGS;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_HEAD_POSE;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_BODY_POSE;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_LEFT_ARM_POSE;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_RIGHT_ARM_POSE;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_LEFT_LEG_POSE;
+  public static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.core.Rotations> DATA_RIGHT_LEG_POSE;
+  public long lastHit;
+  public net.minecraft.world.entity.decoration.ArmorStand(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.ArmorStand>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.decoration.ArmorStand(net.minecraft.world.level.Level, double, double, double);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public void refreshDimensions();
+  public boolean isEffectiveAi();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isPushable();
+  protected void doPush(net.minecraft.world.entity.Entity);
+  protected void pushEntities();
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void handleEntityEvent(byte);
+  public boolean shouldRenderAtSqrDistance(double);
+  protected void tickHeadTurn(float);
+  public void travel(net.minecraft.world.phys.Vec3);
+  public void setYBodyRot(float);
+  public void setYHeadRot(float);
+  protected void updateInvisibilityStatus();
+  public void setInvisible(boolean);
+  public boolean isBaby();
+  public void kill(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public boolean ignoreExplosion(net.minecraft.world.level.Explosion);
+  public net.minecraft.world.level.material.PushReaction getPistonPushReaction();
+  public boolean isIgnoringBlockTriggers();
+  public boolean isSmall();
+  public void setShowArms(boolean);
+  public boolean showArms();
+  public void setNoBasePlate(boolean);
+  public boolean showBasePlate();
+  public boolean isMarker();
+  public void setHeadPose(net.minecraft.core.Rotations);
+  public void setBodyPose(net.minecraft.core.Rotations);
+  public void setLeftArmPose(net.minecraft.core.Rotations);
+  public void setRightArmPose(net.minecraft.core.Rotations);
+  public void setLeftLegPose(net.minecraft.core.Rotations);
+  public void setRightLegPose(net.minecraft.core.Rotations);
+  public net.minecraft.core.Rotations getHeadPose();
+  public net.minecraft.core.Rotations getBodyPose();
+  public net.minecraft.core.Rotations getLeftArmPose();
+  public net.minecraft.core.Rotations getRightArmPose();
+  public net.minecraft.core.Rotations getLeftLegPose();
+  public net.minecraft.core.Rotations getRightLegPose();
+  public boolean isPickable();
+  public boolean skipAttackInteraction(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.HumanoidArm getMainArm();
+  public net.minecraft.world.entity.LivingEntity$Fallsounds getFallSounds();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+  public boolean isAffectedByPotions();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public boolean attackable();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public net.minecraft.world.phys.Vec3 getLightProbePosition(float);
+  public net.minecraft.world.item.ItemStack getPickResult();
+  public boolean canBeSeenByAnyone();
+  public void setArmorStandPose(net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose);
+  public net.minecraft.world.entity.decoration.ArmorStand$ArmorStandPose getArmorStandPose();
+}
+Compiled from "LeashFenceKnotEntity.java"
+public class net.minecraft.world.entity.decoration.LeashFenceKnotEntity extends net.minecraft.world.entity.decoration.BlockAttachedEntity {
+  public static final double OFFSET_Y;
+  public net.minecraft.world.entity.decoration.LeashFenceKnotEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.LeashFenceKnotEntity>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.decoration.LeashFenceKnotEntity(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void recalculateBoundingBox();
+  public boolean shouldRenderAtSqrDistance(double);
+  public void dropItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public void notifyLeasheeRemoved(net.minecraft.world.entity.Leashable);
+  public boolean survives();
+  public static net.minecraft.world.entity.decoration.LeashFenceKnotEntity getOrCreateKnot(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public static java.util.Optional<net.minecraft.world.entity.decoration.LeashFenceKnotEntity> getKnot(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public static net.minecraft.world.entity.decoration.LeashFenceKnotEntity createKnot(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public void playPlacementSound();
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public net.minecraft.world.phys.Vec3 getRopeHoldPosition(float);
+  public net.minecraft.world.item.ItemStack getPickResult();
+}
+Compiled from "Mannequin.java"
+public class net.minecraft.world.entity.decoration.Mannequin extends net.minecraft.world.entity.Avatar {
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<net.minecraft.world.item.component.ResolvableProfile> DATA_PROFILE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.Pose> POSE_CODEC;
+  public static final net.minecraft.world.item.component.ResolvableProfile DEFAULT_PROFILE;
+  protected static net.minecraft.world.entity.EntityType$EntityFactory<net.minecraft.world.entity.decoration.Mannequin> constructor;
+  public net.minecraft.world.entity.decoration.Mannequin(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.decoration.Mannequin>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.decoration.Mannequin(net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.decoration.Mannequin create(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.decoration.Mannequin>, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public net.minecraft.world.item.component.ResolvableProfile getProfile();
+  protected net.minecraft.network.chat.Component getDescription();
+  protected boolean isImmobile();
+  public boolean isEffectiveAi();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+}
+Compiled from "BlockAttachedEntity.java"
+public abstract class net.minecraft.world.entity.decoration.BlockAttachedEntity extends net.minecraft.world.entity.Entity {
+  public static final java.lang.String TAG_BLOCK_POS;
+  protected net.minecraft.core.BlockPos pos;
+  protected net.minecraft.world.entity.decoration.BlockAttachedEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.BlockAttachedEntity>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.decoration.BlockAttachedEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.decoration.BlockAttachedEntity>, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  protected abstract void recalculateBoundingBox();
+  public void tick();
+  protected void tickAtCheckInterval();
+  public abstract boolean survives();
+  public boolean isPickable();
+  public boolean skipAttackInteraction(net.minecraft.world.entity.Entity);
+  public void kill(net.minecraft.server.level.ServerLevel);
+  public void kill(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected void onKilled();
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean ignoreExplosion(net.minecraft.world.level.Explosion);
+  public void move(net.minecraft.world.entity.MoverType, net.minecraft.world.phys.Vec3);
+  public void push(double, double, double);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public abstract void dropItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected boolean repositionEntityAfterLoad();
+  public void setPos(double, double, double);
+  public net.minecraft.core.BlockPos getPos();
+  public void thunderHit(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LightningBolt);
+  public void refreshDimensions();
+}

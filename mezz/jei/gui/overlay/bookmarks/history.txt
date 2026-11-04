@@ -1,0 +1,56 @@
+Compiled from "ILookupHistoryOverlay.java"
+public interface mezz.jei.gui.overlay.bookmarks.history.ILookupHistoryOverlay {
+  public abstract boolean isDisplayedOnThisSide();
+  public abstract int getDisplayHeight();
+  public abstract void close();
+  public abstract void updateBounds(mezz.jei.common.util.ImmutableRect2i, java.util.Set<mezz.jei.common.util.ImmutableRect2i>, mezz.jei.common.util.ImmutablePoint2i);
+  public abstract void updateLayout();
+}
+Compiled from "LookupHistory.java"
+public class mezz.jei.gui.overlay.bookmarks.history.LookupHistory implements mezz.jei.gui.overlay.ingredients.IIngredientGridSource {
+  public mezz.jei.gui.overlay.bookmarks.history.LookupHistory(mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.runtime.IIngredientManager, net.minecraft.core.RegistryAccess, mezz.jei.api.helpers.ICodecHelper, mezz.jei.api.runtime.config.IJeiConfigValue<java.lang.Integer>, mezz.jei.gui.config.ILookupHistoryConfig, com.mojang.serialization.Codec<mezz.jei.gui.bookmarks.IBookmark>);
+  public void add(mezz.jei.gui.bookmarks.IBookmark);
+  public java.util.List<mezz.jei.gui.overlay.elements.IElement<?>> getElements();
+  public boolean containsElement(mezz.jei.gui.overlay.elements.IElement<?>);
+  public void addSourceListChangedListener(mezz.jei.gui.overlay.ingredients.IIngredientGridSource$SourceListChangedListener);
+}
+Compiled from "LookupHistoryButtonController.java"
+public class mezz.jei.gui.overlay.bookmarks.history.LookupHistoryButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.overlay.bookmarks.history.LookupHistoryButtonController(mezz.jei.common.config.IClientConfig);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+}
+Compiled from "LookupHistoryOverlay.java"
+final class mezz.jei.gui.overlay.bookmarks.history.LookupHistoryOverlay$LineSegment extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x1();
+  public int x2();
+}
+Compiled from "LookupHistoryOverlay.java"
+public class mezz.jei.gui.overlay.bookmarks.history.LookupHistoryOverlay implements mezz.jei.gui.input.IRecipeFocusSource,mezz.jei.gui.overlay.bookmarks.history.ILookupHistoryOverlay {
+  public static final int SLOT_HEIGHT;
+  public mezz.jei.gui.overlay.bookmarks.history.LookupHistoryOverlay(mezz.jei.api.runtime.IIngredientManager, mezz.jei.gui.overlay.ingredients.IIngredientGridSource, mezz.jei.common.input.IInternalKeyMappings, mezz.jei.common.config.IIngredientGridConfig, mezz.jei.common.config.IIngredientFilterConfig, mezz.jei.common.gui.elements.ScalableDrawable, mezz.jei.common.gui.elements.ScalableDrawable, mezz.jei.common.gui.elements.ScalableDrawable, mezz.jei.common.config.IClientConfig, mezz.jei.common.config.HistoryDisplaySide, mezz.jei.common.config.IClientToggleState, mezz.jei.api.runtime.IScreenHelper, mezz.jei.common.network.IConnectionToServer, mezz.jei.api.helpers.IColorHelper);
+  public boolean isListDisplayed();
+  public boolean isDisplayedOnThisSide();
+  public mezz.jei.gui.overlay.ingredients.IIngredientGridSource getLookupHistory();
+  public int getDisplayHeight();
+  public static int getDisplayHeight(int, boolean);
+  public void updateBounds(mezz.jei.common.util.ImmutableRect2i, java.util.Set<mezz.jei.common.util.ImmutableRect2i>, mezz.jei.common.util.ImmutablePoint2i);
+  public void updateLayout();
+  public void draw(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void drawBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void drawTooltips(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void tick();
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public void close();
+  public void drawOnForeground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+  public mezz.jei.gui.input.IDragHandler createDragHandler();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.overlay.bookmarks.history.package-info {
+}

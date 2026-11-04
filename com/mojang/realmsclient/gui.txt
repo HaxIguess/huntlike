@@ -1,0 +1,84 @@
+Compiled from "RealmsNewsManager.java"
+public class com.mojang.realmsclient.gui.RealmsNewsManager {
+  public com.mojang.realmsclient.gui.RealmsNewsManager(com.mojang.realmsclient.util.RealmsPersistence);
+  public boolean hasUnreadNews();
+  public java.net.URI newsLink();
+  public void updateUnreadNews(com.mojang.realmsclient.dto.RealmsNews);
+}
+Compiled from "RealmsWorldSlotButton.java"
+public class com.mojang.realmsclient.gui.RealmsWorldSlotButton$State {
+  public final boolean empty;
+  public final boolean minigame;
+  public final com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action action;
+  public final boolean hardcore;
+  public final boolean activeSlot;
+  public com.mojang.realmsclient.gui.RealmsWorldSlotButton$State(com.mojang.realmsclient.dto.RealmsServer, int);
+}
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.gui.package-info {
+}
+Compiled from "RealmsWorldSlotButton.java"
+public class com.mojang.realmsclient.gui.RealmsWorldSlotButton extends net.minecraft.client.gui.components.Button {
+  public static final net.minecraft.resources.Identifier EMPTY_SLOT_LOCATION;
+  public static final net.minecraft.resources.Identifier DEFAULT_WORLD_SLOT_1;
+  public static final net.minecraft.resources.Identifier DEFAULT_WORLD_SLOT_2;
+  public static final net.minecraft.resources.Identifier DEFAULT_WORLD_SLOT_3;
+  public com.mojang.realmsclient.gui.RealmsWorldSlotButton(com.mojang.realmsclient.gui.screens.configuration.RealmsConfigureWorldScreen, int, int, int, int, int, com.mojang.realmsclient.dto.RealmsServer, net.minecraft.client.gui.components.Button$OnPress);
+  public com.mojang.realmsclient.gui.RealmsWorldSlotButton$State getState();
+  public com.mojang.realmsclient.gui.RealmsWorldSlotButton$State setServerData(com.mojang.realmsclient.dto.RealmsServer);
+  public boolean isActive();
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void extractTooltipForNextRenderPass(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void updateSlotState(com.mojang.realmsclient.dto.RealmsServer);
+}
+Compiled from "RealmsDataFetcher.java"
+public class com.mojang.realmsclient.gui.RealmsDataFetcher {
+  public final com.mojang.realmsclient.gui.task.DataFetcher dataFetcher;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<java.util.List<com.mojang.realmsclient.dto.RealmsNotification>> notificationsTask;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<com.mojang.realmsclient.gui.RealmsDataFetcher$ServerListData> serverListUpdateTask;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<java.lang.Integer> pendingInvitesTask;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<java.lang.Boolean> trialAvailabilityTask;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<com.mojang.realmsclient.dto.RealmsNews> newsTask;
+  public final com.mojang.realmsclient.gui.task.DataFetcher$Task<com.mojang.realmsclient.dto.RealmsServerPlayerLists> onlinePlayersTask;
+  public final com.mojang.realmsclient.gui.RealmsNewsManager newsManager;
+  public com.mojang.realmsclient.gui.RealmsDataFetcher(com.mojang.realmsclient.client.RealmsClient);
+  public java.util.List<com.mojang.realmsclient.gui.task.DataFetcher$Task<?>> getTasks();
+}
+Compiled from "RealmsDataFetcher.java"
+public final class com.mojang.realmsclient.gui.RealmsDataFetcher$ServerListData extends java.lang.Record {
+  public com.mojang.realmsclient.gui.RealmsDataFetcher$ServerListData(java.util.List<com.mojang.realmsclient.dto.RealmsServer>, java.util.List<com.mojang.realmsclient.dto.RealmsServer>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<com.mojang.realmsclient.dto.RealmsServer> serverList();
+  public java.util.List<com.mojang.realmsclient.dto.RealmsServer> availableSnapshotServers();
+}
+Compiled from "RealmsHeader.java"
+public final class com.mojang.realmsclient.gui.RealmsHeader {
+  public com.mojang.realmsclient.gui.RealmsHeader(net.minecraft.client.gui.screens.Screen, java.lang.Runnable);
+  public net.minecraft.client.gui.layouts.Layout createLayout(net.minecraft.client.gui.components.ImageWidget, int, int);
+  public void setPendingInvites(int);
+  public void setNews(java.net.URI, boolean);
+  public void setJoinRealmButtonActive(boolean);
+}
+Compiled from "RealmsHeader.java"
+class com.mojang.realmsclient.gui.RealmsHeader$NotificationButton extends net.minecraft.client.gui.components.SpriteIconButton$CenteredIcon {
+  public com.mojang.realmsclient.gui.RealmsHeader$NotificationButton(net.minecraft.network.chat.Component, net.minecraft.resources.Identifier, net.minecraft.client.gui.components.Button$OnPress, net.minecraft.network.chat.Component);
+  public void setNotificationCount(int);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "RealmsServerList.java"
+public class com.mojang.realmsclient.gui.RealmsServerList implements java.lang.Iterable<com.mojang.realmsclient.dto.RealmsServer> {
+  public com.mojang.realmsclient.gui.RealmsServerList(net.minecraft.client.Minecraft);
+  public void updateServersList(java.util.List<com.mojang.realmsclient.dto.RealmsServer>);
+  public void removeItem(com.mojang.realmsclient.dto.RealmsServer);
+  public java.util.Iterator<com.mojang.realmsclient.dto.RealmsServer> iterator();
+  public boolean isEmpty();
+}
+Compiled from "RealmsWorldSlotButton.java"
+public final class com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action extends java.lang.Enum<com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action> {
+  public static final com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action NOTHING;
+  public static final com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action SWITCH_SLOT;
+  public static com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action[] values();
+  public static com.mojang.realmsclient.gui.RealmsWorldSlotButton$Action valueOf(java.lang.String);
+}

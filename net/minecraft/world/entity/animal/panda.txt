@@ -1,0 +1,151 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.panda.package-info {
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaAvoidGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaAvoidGoal(net.minecraft.world.entity.animal.panda.Panda, java.lang.Class<T>, float, double, double);
+  public boolean canUse();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaSitGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaSitGoal(net.minecraft.world.entity.animal.panda.Panda);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+  public void start();
+  public void stop();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaBreedGoal extends net.minecraft.world.entity.ai.goal.BreedGoal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaBreedGoal(net.minecraft.world.entity.animal.panda.Panda, double);
+  public boolean canUse();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaPanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaPanicGoal(net.minecraft.world.entity.animal.panda.Panda, double);
+  public boolean canContinueToUse();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaLookAtPlayerGoal extends net.minecraft.world.entity.ai.goal.LookAtPlayerGoal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaLookAtPlayerGoal(net.minecraft.world.entity.animal.panda.Panda, java.lang.Class<? extends net.minecraft.world.entity.LivingEntity>, float);
+  public void setTarget(net.minecraft.world.entity.LivingEntity);
+  public boolean canContinueToUse();
+  public boolean canUse();
+  public void tick();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaHurtByTargetGoal extends net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaHurtByTargetGoal(net.minecraft.world.entity.animal.panda.Panda, java.lang.Class<?>...);
+  public boolean canContinueToUse();
+  protected void alertOther(net.minecraft.world.entity.Mob, net.minecraft.world.entity.LivingEntity);
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaSneezeGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaSneezeGoal(net.minecraft.world.entity.animal.panda.Panda);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaRollGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaRollGoal(net.minecraft.world.entity.animal.panda.Panda);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public boolean isInterruptable();
+}
+Compiled from "Panda.java"
+public class net.minecraft.world.entity.animal.panda.Panda extends net.minecraft.world.entity.animal.Animal {
+  public static final int TOTAL_ROLL_STEPS;
+  public int rollCounter;
+  public net.minecraft.world.entity.animal.panda.Panda(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.panda.Panda>, net.minecraft.world.level.Level);
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  public int getUnhappyCounter();
+  public void setUnhappyCounter(int);
+  public boolean isSneezing();
+  public boolean isSitting();
+  public void sit(boolean);
+  public boolean isOnBack();
+  public void setOnBack(boolean);
+  public boolean isEating();
+  public void eat(boolean);
+  public void sneeze(boolean);
+  public int getSneezeCounter();
+  public void setSneezeCounter(int);
+  public net.minecraft.world.entity.animal.panda.Panda$Gene getMainGene();
+  public void setMainGene(net.minecraft.world.entity.animal.panda.Panda$Gene);
+  public net.minecraft.world.entity.animal.panda.Panda$Gene getHiddenGene();
+  public void setHiddenGene(net.minecraft.world.entity.animal.panda.Panda$Gene);
+  public boolean isRolling();
+  public void roll(boolean);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.animal.panda.Panda$Gene getVariant();
+  public boolean isLazy();
+  public boolean isWorried();
+  public boolean isPlayful();
+  public boolean isBrown();
+  public boolean isWeak();
+  public boolean isAggressive();
+  public boolean canBeLeashed();
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public void playAttackSound();
+  public void tick();
+  public boolean isScared();
+  public float getSitAmount(float);
+  public float getLieOnBackAmount(float);
+  public float getRollAmount(float);
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public void setGeneFromParents(net.minecraft.world.entity.animal.panda.Panda, net.minecraft.world.entity.animal.panda.Panda);
+  public void setAttributes();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  public boolean canPerformAction();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaMoveControl<T extends net.minecraft.world.entity.animal.panda.Panda> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaMoveControl(T);
+  public void tick();
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaLieOnBackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaLieOnBackGoal(net.minecraft.world.entity.animal.panda.Panda);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+}
+Compiled from "Panda.java"
+public final class net.minecraft.world.entity.animal.panda.Panda$Gene extends java.lang.Enum<net.minecraft.world.entity.animal.panda.Panda$Gene> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene NORMAL;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene LAZY;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene WORRIED;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene PLAYFUL;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene BROWN;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene WEAK;
+  public static final net.minecraft.world.entity.animal.panda.Panda$Gene AGGRESSIVE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.panda.Panda$Gene> CODEC;
+  public static net.minecraft.world.entity.animal.panda.Panda$Gene[] values();
+  public static net.minecraft.world.entity.animal.panda.Panda$Gene valueOf(java.lang.String);
+  public int getId();
+  public java.lang.String getSerializedName();
+  public boolean isRecessive();
+  public static net.minecraft.world.entity.animal.panda.Panda$Gene byId(int);
+  public static net.minecraft.world.entity.animal.panda.Panda$Gene getRandom(net.minecraft.util.RandomSource);
+}
+Compiled from "Panda.java"
+class net.minecraft.world.entity.animal.panda.Panda$PandaAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+  public net.minecraft.world.entity.animal.panda.Panda$PandaAttackGoal(net.minecraft.world.entity.animal.panda.Panda, double, boolean);
+  public boolean canUse();
+}

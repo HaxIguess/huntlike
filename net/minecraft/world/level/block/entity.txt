@@ -1,0 +1,1574 @@
+Compiled from "SpawnerBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SpawnerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.Spawner {
+  public net.minecraft.world.level.block.entity.SpawnerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public static void clientTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.SpawnerBlockEntity);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.SpawnerBlockEntity);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean triggerEvent(int, int);
+  public void setEntityId(net.minecraft.world.entity.EntityType<?>, net.minecraft.util.RandomSource);
+  public void setEntityData(net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.entity.EntityType<?>>, net.minecraft.util.RandomSource);
+  public net.minecraft.world.level.BaseSpawner getSpawner();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BrewingStandBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BrewingStandBlockEntity extends net.minecraft.world.level.block.entity.BaseContainerBlockEntity implements net.minecraft.world.WorldlyContainer {
+  public static final int DATA_BREW_TIME;
+  public static final int DATA_FUEL_USES;
+  public static final int DATA_TOTAL_BREW_TIME;
+  public static final int DATA_TOTAL_FUEL_USES;
+  public static final int NUM_DATA_VALUES;
+  public static final int BREWING_TIME_SECONDS;
+  protected final net.minecraft.world.inventory.ContainerData dataAccess;
+  public net.minecraft.world.level.block.entity.BrewingStandBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  public int getContainerSize();
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  protected int getUses(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.component.BrewingFuel);
+  protected float getSpeedMultiplier(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.component.BrewingFuel);
+  public static void serverTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BrewingStandBlockEntity);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public int[] getSlotsForFace(net.minecraft.core.Direction);
+  public boolean canPlaceItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public boolean canTakeItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "BaseContainerBlockEntity.java"
+public abstract class net.minecraft.world.level.block.entity.BaseContainerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Container,net.minecraft.world.MenuProvider,net.minecraft.world.Nameable {
+  protected net.minecraft.world.level.block.entity.BaseContainerBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.chat.Component getName();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.network.chat.Component getCustomName();
+  protected abstract net.minecraft.network.chat.Component getDefaultName();
+  public boolean canOpen(net.minecraft.world.entity.player.Player);
+  public static void sendChestLockedNotifications(net.minecraft.world.phys.Vec3, net.minecraft.world.entity.player.Player, net.minecraft.network.chat.Component);
+  public boolean isLocked();
+  protected abstract net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected abstract void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void clearContent();
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  protected abstract net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  protected net.minecraft.world.level.storage.loot.LootContext getLootContext(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "HopperBlockEntity.java"
+public class net.minecraft.world.level.block.entity.HopperBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity implements net.minecraft.world.level.block.entity.Hopper {
+  public static final int MOVE_ITEM_SPEED;
+  public static final int HOPPER_CONTAINER_SIZE;
+  public net.minecraft.world.level.block.entity.HopperBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public int getContainerSize();
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public void setBlockState(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  public static void pushItemsTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.HopperBlockEntity);
+  public static boolean suckInItems(net.minecraft.world.level.Level, net.minecraft.world.level.block.entity.Hopper);
+  public static boolean addItem(net.minecraft.world.Container, net.minecraft.world.entity.item.ItemEntity);
+  public static net.minecraft.world.item.ItemStack addItem(net.minecraft.world.Container, net.minecraft.world.Container, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public static java.util.List<net.minecraft.world.entity.item.ItemEntity> getItemsAtAndAbove(net.minecraft.world.level.Level, net.minecraft.world.level.block.entity.Hopper);
+  public static net.minecraft.world.Container getContainerAt(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public double getLevelX();
+  public double getLevelY();
+  public double getLevelZ();
+  public boolean isGridAligned();
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public static void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.entity.Entity, net.minecraft.world.level.block.entity.HopperBlockEntity);
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "ShelfBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ShelfBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.ListBackedContainer,net.minecraft.world.entity.ItemOwner {
+  public static final int MAX_ITEMS;
+  public net.minecraft.world.level.block.entity.ShelfBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack swapItemNoUpdate(int, net.minecraft.world.item.ItemStack);
+  public void setChanged(net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent>);
+  public void setChanged();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.level.Level level();
+  public net.minecraft.world.phys.Vec3 position();
+  public float getVisualRotationYInDegrees();
+  public boolean getAlignItemsToBottom();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "ConduitBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ConduitBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public int tickCount;
+  public net.minecraft.world.level.block.entity.ConduitBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public static void clientTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.ConduitBlockEntity);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.ConduitBlockEntity);
+  public boolean isActive();
+  public boolean isHunting();
+  public float getActiveRotation(float);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BannerPatternLayers.java"
+public final class net.minecraft.world.level.block.entity.BannerPatternLayers$Layer extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.BannerPatternLayers$Layer> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.BannerPatternLayers$Layer> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Layer(net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern>, net.minecraft.world.item.DyeColor);
+  public net.minecraft.network.chat.MutableComponent description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern> pattern();
+  public net.minecraft.world.item.DyeColor color();
+}
+Compiled from "CampfireBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CampfireBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Clearable {
+  public net.minecraft.world.level.block.entity.CampfireBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void cookTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.CampfireBlockEntity, net.minecraft.world.item.crafting.RecipeManager$CachedCheck<net.minecraft.world.item.crafting.SingleRecipeInput, net.minecraft.world.item.crafting.CampfireCookingRecipe>);
+  public static void cooldownTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.CampfireBlockEntity);
+  public static void particleTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.CampfireBlockEntity);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean placeFood(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+  public void clearContent();
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BrushableBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BrushableBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.BrushableBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean brush(long, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.core.Direction, net.minecraft.world.item.ItemStack);
+  public void checkReset(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, long);
+  public net.minecraft.core.Direction getHitDirection();
+  public net.minecraft.world.item.ItemStack getItem();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BlockEntityTypes.java"
+public class net.minecraft.world.level.block.entity.BlockEntityTypes {
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.FurnaceBlockEntity> FURNACE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ChestBlockEntity> CHEST;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TrappedChestBlockEntity> TRAPPED_CHEST;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.EnderChestBlockEntity> ENDER_CHEST;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.JukeboxBlockEntity> JUKEBOX;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.DispenserBlockEntity> DISPENSER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.DropperBlockEntity> DROPPER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SignBlockEntity> SIGN;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.HangingSignBlockEntity> HANGING_SIGN;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SpawnerBlockEntity> MOB_SPAWNER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CreakingHeartBlockEntity> CREAKING_HEART;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.piston.PistonMovingBlockEntity> PISTON;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BrewingStandBlockEntity> BREWING_STAND;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.EnchantingTableBlockEntity> ENCHANTING_TABLE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TheEndPortalBlockEntity> END_PORTAL;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BeaconBlockEntity> BEACON;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SkullBlockEntity> SKULL;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.DaylightDetectorBlockEntity> DAYLIGHT_DETECTOR;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.HopperBlockEntity> HOPPER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ComparatorBlockEntity> COMPARATOR;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BannerBlockEntity> BANNER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.StructureBlockEntity> STRUCTURE_BLOCK;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity> END_GATEWAY;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CommandBlockEntity> COMMAND_BLOCK;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity> SHULKER_BOX;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ConduitBlockEntity> CONDUIT;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BarrelBlockEntity> BARREL;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SmokerBlockEntity> SMOKER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity> BLAST_FURNACE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.LecternBlockEntity> LECTERN;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BellBlockEntity> BELL;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.JigsawBlockEntity> JIGSAW;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CampfireBlockEntity> CAMPFIRE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BeehiveBlockEntity> BEEHIVE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SculkSensorBlockEntity> SCULK_SENSOR;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity> CALIBRATED_SCULK_SENSOR;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SculkCatalystBlockEntity> SCULK_CATALYST;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.SculkShriekerBlockEntity> SCULK_SHRIEKER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity> CHISELED_BOOKSHELF;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.ShelfBlockEntity> SHELF;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.BrushableBlockEntity> BRUSHABLE_BLOCK;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.DecoratedPotBlockEntity> DECORATED_POT;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CrafterBlockEntity> CRAFTER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TrialSpawnerBlockEntity> TRIAL_SPAWNER;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.vault.VaultBlockEntity> VAULT;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TestBlockEntity> TEST_BLOCK;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.TestInstanceBlockEntity> TEST_INSTANCE_BLOCK;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.CopperGolemStatueBlockEntity> COPPER_GOLEM_STATUE;
+  public static final net.minecraft.world.level.block.entity.BlockEntityType<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity> POTENT_SULFUR;
+  public net.minecraft.world.level.block.entity.BlockEntityTypes();
+}
+Compiled from "SignBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SignBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.SignBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.SignBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<? extends net.minecraft.world.level.block.entity.SignBlockEntity>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.SignTextSlot getSlotPlayerIsFacing(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.level.block.entity.SignText getText(net.minecraft.world.level.block.entity.SignTextSlot);
+  public int getTextLineHeight();
+  public int getMaxTextLineWidth();
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public void updateSignText(net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.entity.SignTextSlot, java.util.List<net.minecraft.server.network.FilteredText>);
+  public boolean updateText(java.util.function.UnaryOperator<net.minecraft.world.level.block.entity.SignText>, net.minecraft.world.level.block.entity.SignTextSlot);
+  public void setText(net.minecraft.world.level.block.entity.SignText, net.minecraft.world.level.block.entity.SignTextSlot);
+  public boolean canExecuteClickCommands(net.minecraft.world.level.block.entity.SignTextSlot, net.minecraft.world.entity.player.Player);
+  public boolean executeClickCommandsIfPresent(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Player, net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.SignTextSlot);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public void setAllowedPlayerEditor(java.util.UUID);
+  public java.util.UUID getPlayerWhoMayEdit();
+  public boolean isWaxed();
+  public boolean setWaxed(boolean);
+  public boolean playerIsTooFarAwayToEdit(java.util.UUID);
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.SignBlockEntity);
+  public net.minecraft.sounds.SoundEvent getSignInteractionFailedSoundEvent();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "LecternBlockEntity.java"
+public class net.minecraft.world.level.block.entity.LecternBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Clearable,net.minecraft.world.MenuProvider {
+  public static final int DATA_PAGE;
+  public static final int NUM_DATA;
+  public static final int SLOT_BOOK;
+  public static final int NUM_SLOTS;
+  public net.minecraft.world.level.block.entity.LecternBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.item.ItemStack getBook();
+  public boolean hasBook();
+  public void setBook(net.minecraft.world.item.ItemStack);
+  public void setBook(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public int getPage();
+  public int getRedstoneSignal();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public void clearContent();
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public net.minecraft.network.chat.Component getDisplayName();
+}
+Compiled from "SculkCatalystBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SculkCatalystBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.gameevent.GameEventListener$Provider<net.minecraft.world.level.block.entity.SculkCatalystBlockEntity$CatalystListener> {
+  public net.minecraft.world.level.block.entity.SculkCatalystBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.SculkCatalystBlockEntity);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.level.block.entity.SculkCatalystBlockEntity$CatalystListener getListener();
+  public net.minecraft.world.level.gameevent.GameEventListener getListener();
+}
+Compiled from "PotentSulfurBlockEntity.java"
+public class net.minecraft.world.level.block.entity.PotentSulfurBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public static final float EFFECT_RANGE;
+  public static final int PARTICLE_FREQUENCY_TICKS;
+  public static final int SOUND_FREQUENCY_TICKS;
+  public int waitingCountdown;
+  public long eruptionTick;
+  public static net.minecraft.world.level.block.entity.BlockEntityTicker<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity> SERVER_NAUSEA_EFFECT_TICKER;
+  public static net.minecraft.world.level.block.entity.BlockEntityTicker<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity> CLIENT_NOXIOUS_GAS_TICKER;
+  public static java.util.function.Function<net.minecraft.sounds.SoundEvent, net.minecraft.world.level.block.entity.BlockEntityTicker<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity>> CLIENT_GEYSER_PLUME_TICKER;
+  public static net.minecraft.world.level.block.entity.BlockEntityTicker<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity> SERVER_WAITING_COUNTDOWN_TICKER;
+  public static final long GEYSER_SALT;
+  public static net.minecraft.world.level.block.entity.BlockEntityTicker<net.minecraft.world.level.block.entity.PotentSulfurBlockEntity> LAUNCH_ENTITY_TICKER;
+  public net.minecraft.world.level.block.entity.PotentSulfurBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public void setLevel(net.minecraft.world.level.Level);
+  public void resetCountdown();
+  public static net.minecraft.util.RandomSource geyserPositional(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public static boolean canBeReachedByNoxiousGas(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.phys.Vec3);
+}
+Compiled from "TickingBlockEntity.java"
+public interface net.minecraft.world.level.block.entity.TickingBlockEntity {
+  public abstract void tick();
+  public abstract boolean isRemoved();
+  public abstract net.minecraft.core.BlockPos getPos();
+  public abstract java.lang.String getType();
+}
+Compiled from "BeaconBeamOwner.java"
+public interface net.minecraft.world.level.block.entity.BeaconBeamOwner {
+  public abstract java.util.List<net.minecraft.world.level.block.entity.BeaconBeamOwner$Section> getBeamSections();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.block.entity.package-info {
+}
+Compiled from "CopperGolemStatueBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CopperGolemStatueBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.CopperGolemStatueBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void createStatue(net.minecraft.world.entity.animal.golem.CopperGolem);
+  public net.minecraft.world.entity.animal.golem.CopperGolem removeStatue(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.world.item.ItemStack getItem(net.minecraft.world.item.ItemStack, net.minecraft.world.level.block.CopperGolemStatueBlock$Pose);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "JigsawBlockEntity.java"
+public class net.minecraft.world.level.block.entity.JigsawBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public static final com.mojang.serialization.Codec<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool>> POOL_CODEC;
+  public static final net.minecraft.resources.Identifier EMPTY_ID;
+  public static final java.lang.String TARGET;
+  public static final java.lang.String POOL;
+  public static final java.lang.String JOINT;
+  public static final java.lang.String PLACEMENT_PRIORITY;
+  public static final java.lang.String SELECTION_PRIORITY;
+  public static final java.lang.String NAME;
+  public static final java.lang.String FINAL_STATE;
+  public static final java.lang.String DEFAULT_FINAL_STATE;
+  public net.minecraft.world.level.block.entity.JigsawBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.resources.Identifier getName();
+  public net.minecraft.resources.Identifier getTarget();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool> getPool();
+  public java.lang.String getFinalState();
+  public net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType getJoint();
+  public int getPlacementPriority();
+  public int getSelectionPriority();
+  public void setName(net.minecraft.resources.Identifier);
+  public void setTarget(net.minecraft.resources.Identifier);
+  public void setPool(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool>);
+  public void setFinalState(java.lang.String);
+  public void setJoint(net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType);
+  public void setPlacementPriority(int);
+  public void setSelectionPriority(int);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public void generate(net.minecraft.server.level.ServerLevel, int, boolean);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "TestInstanceBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TestInstanceBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.BoundingBoxRenderable,net.minecraft.world.level.block.entity.BeaconBeamOwner {
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void set(net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data);
+  public static java.util.Optional<net.minecraft.core.Vec3i> getStructureSize(net.minecraft.server.level.ServerLevel, net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.GameTestInstance>);
+  public net.minecraft.world.level.levelgen.structure.BoundingBox getStructureBoundingBox();
+  public net.minecraft.world.level.levelgen.structure.BoundingBox getTestBoundingBox();
+  public net.minecraft.world.phys.AABB getStructureBounds();
+  public net.minecraft.world.phys.AABB getTestBounds();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.GameTestInstance>> test();
+  public net.minecraft.network.chat.Component getTestName();
+  public boolean ignoreEntities();
+  public net.minecraft.core.Vec3i getSize();
+  public net.minecraft.world.level.block.Rotation getRotation();
+  public java.util.Optional<net.minecraft.network.chat.Component> errorMessage();
+  public void setErrorMessage(net.minecraft.network.chat.Component);
+  public void setSuccess();
+  public void setRunning();
+  public void setChanged();
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode renderMode();
+  public net.minecraft.core.BlockPos getStructurePos();
+  public static net.minecraft.core.BlockPos getStructurePos(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox getRenderableBox();
+  public java.util.List<net.minecraft.world.level.block.entity.BeaconBeamOwner$Section> getBeamSections();
+  public void resetTest(java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public java.util.Optional<net.minecraft.resources.Identifier> saveTest(java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public boolean exportTest(java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public static boolean export(net.minecraft.server.level.ServerLevel, net.minecraft.resources.Identifier, java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public void runTest(java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public boolean placeStructure();
+  public net.minecraft.core.BlockPos getStartCorner();
+  public void encaseStructure();
+  public void removeBarriers();
+  public void processStructureBoundary(java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public void markError(net.minecraft.core.BlockPos, net.minecraft.network.chat.Component);
+  public void clearErrorMarkers();
+  public java.util.List<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$ErrorMarker> getErrorMarkers();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BeehiveBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BeehiveBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public static final int MAX_OCCUPANTS;
+  public static final int MIN_OCCUPATION_TICKS_NECTARLESS;
+  public net.minecraft.world.level.block.entity.BeehiveBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void setChanged();
+  public boolean isFireNearby();
+  public boolean isEmpty();
+  public boolean isFull();
+  public void emptyAllLivingFromHive(net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus);
+  public int getOccupantCount();
+  public static int getHoneyLevel(net.minecraft.world.level.block.state.BlockState);
+  public boolean isSedated();
+  public void addOccupant(net.minecraft.world.entity.animal.bee.Bee);
+  public void storeBee(net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BeehiveBlockEntity);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+}
+Compiled from "RandomizableContainerBlockEntity.java"
+public abstract class net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity extends net.minecraft.world.level.block.entity.BaseContainerBlockEntity implements net.minecraft.world.RandomizableContainer {
+  protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> lootTable;
+  protected long lootTableSeed;
+  protected net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getLootTable();
+  public void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public long getLootTableSeed();
+  public void setLootTableSeed(long);
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean canOpen(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+}
+Compiled from "JigsawBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType extends java.lang.Enum<net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType ROLLABLE;
+  public static final net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType ALIGNED;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType> CODEC;
+  public static net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType[] values();
+  public static net.minecraft.world.level.block.entity.JigsawBlockEntity$JointType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public net.minecraft.network.chat.Component getTranslatedName();
+}
+Compiled from "DropperBlockEntity.java"
+public class net.minecraft.world.level.block.entity.DropperBlockEntity extends net.minecraft.world.level.block.entity.DispenserBlockEntity {
+  public net.minecraft.world.level.block.entity.DropperBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+}
+Compiled from "DecoratedPotPattern.java"
+public final class net.minecraft.world.level.block.entity.DecoratedPotPattern extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.DecoratedPotPattern> CODEC;
+  public net.minecraft.world.level.block.entity.DecoratedPotPattern(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier assetId();
+}
+Compiled from "CalibratedSculkSensorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity extends net.minecraft.world.level.block.entity.SculkSensorBlockEntity {
+  public net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User createVibrationUser();
+}
+Compiled from "TheEndGatewayBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity extends net.minecraft.world.level.block.entity.TheEndPortalBlockEntity {
+  public net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public static void beamAnimationTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity);
+  public static void portalTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity);
+  public boolean isSpawning();
+  public boolean isCoolingDown();
+  public float getSpawnPercent(float);
+  public float getCooldownPercent(float);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public static void triggerCooldown(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity);
+  public boolean triggerEvent(int, int);
+  public net.minecraft.world.phys.Vec3 getPortalPosition(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public boolean shouldRenderFace(net.minecraft.core.Direction);
+  public int getParticleAmount();
+  public void setExitPosition(net.minecraft.core.BlockPos, boolean);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "TestInstanceBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status extends java.lang.Enum<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status CLEARED;
+  public static final net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status RUNNING;
+  public static final net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status FINISHED;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status> STREAM_CODEC;
+  public static net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status[] values();
+  public static net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public static net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status byIndex(int);
+}
+Compiled from "AbstractFurnaceBlockEntity.java"
+public abstract class net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity extends net.minecraft.world.level.block.entity.BaseContainerBlockEntity implements net.minecraft.world.WorldlyContainer,net.minecraft.world.inventory.StackedContentsCompatible,net.minecraft.world.inventory.RecipeCraftingHolder {
+  protected static final int SLOT_INPUT;
+  protected static final int SLOT_FUEL;
+  protected static final int SLOT_RESULT;
+  public static final int DATA_LIT_TIME;
+  public static final int DATA_LIT_DURATION;
+  public static final int DATA_COOKING_PROGRESS;
+  public static final int DATA_COOKING_TOTAL_TIME;
+  public static final int NUM_DATA_VALUES;
+  public static final int BURN_TIME_STANDARD;
+  public static final int BURN_COOL_SPEED;
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> items;
+  protected final net.minecraft.world.inventory.ContainerData dataAccess;
+  protected net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.item.crafting.RecipeType<? extends net.minecraft.world.item.crafting.AbstractCookingRecipe>);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public static void serverTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity);
+  protected int getBurnDuration(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  protected float getSpeedMultiplier(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  public int[] getSlotsForFace(net.minecraft.core.Direction);
+  public boolean canPlaceItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public boolean canTakeItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public int getContainerSize();
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public void setRecipeUsed(net.minecraft.world.item.crafting.RecipeHolder<?>);
+  public net.minecraft.world.item.crafting.RecipeHolder<?> getRecipeUsed();
+  public void awardUsedRecipes(net.minecraft.world.entity.player.Player, java.util.List<net.minecraft.world.item.ItemStack>);
+  public void awardUsedRecipesAndPopExperience(net.minecraft.server.level.ServerPlayer);
+  public java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>> getRecipesToAwardAndPopExperience(net.minecraft.server.level.ServerLevel, net.minecraft.world.phys.Vec3);
+  public void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "BlockEntity.java"
+final class net.minecraft.world.level.block.entity.BlockEntity$BlockEntityPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.entity.BlockEntity blockEntity();
+}
+Compiled from "JukeboxBlockEntity.java"
+public class net.minecraft.world.level.block.entity.JukeboxBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.ticks.ContainerSingleItem$BlockContainerSingleItem {
+  public static final java.lang.String SONG_ITEM_TAG_ID;
+  public static final java.lang.String TICKS_SINCE_SONG_STARTED_TAG_ID;
+  public net.minecraft.world.level.block.entity.JukeboxBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.item.JukeboxSongPlayer getSongPlayer();
+  public void onSongChanged();
+  public void popOutTheItem();
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.JukeboxBlockEntity);
+  public int getComparatorOutput();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.item.ItemStack getTheItem();
+  public net.minecraft.world.item.ItemStack splitTheItem(int);
+  public void setTheItem(net.minecraft.world.item.ItemStack);
+  public void setRemoved();
+  public int getMaxStackSize();
+  public net.minecraft.world.level.block.entity.BlockEntity getContainerBlockEntity();
+  public boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public boolean canTakeItem(net.minecraft.world.Container, int, net.minecraft.world.item.ItemStack);
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void setSongItemWithoutPlaying(net.minecraft.world.item.ItemStack);
+  public void tryForcePlaySong();
+}
+Compiled from "BeaconBeamOwner.java"
+public class net.minecraft.world.level.block.entity.BeaconBeamOwner$Section {
+  public net.minecraft.world.level.block.entity.BeaconBeamOwner$Section(int);
+  public void increaseHeight();
+  public int getColor();
+  public int getHeight();
+}
+Compiled from "TrialSpawnerBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TrialSpawnerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.trialspawner.TrialSpawner$StateAccessor,net.minecraft.world.level.Spawner {
+  public net.minecraft.world.level.block.entity.TrialSpawnerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public void setEntityId(net.minecraft.world.entity.EntityType<?>, net.minecraft.util.RandomSource);
+  public void setEntityData(net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.entity.EntityType<?>>, net.minecraft.util.RandomSource);
+  public net.minecraft.world.level.block.entity.trialspawner.TrialSpawner getTrialSpawner();
+  public net.minecraft.world.level.block.entity.trialspawner.TrialSpawnerState getState();
+  public void setState(net.minecraft.world.level.Level, net.minecraft.world.level.block.entity.trialspawner.TrialSpawnerState);
+  public void markUpdated();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BannerPatternLayers.java"
+public final class net.minecraft.world.level.block.entity.BannerPatternLayers extends java.lang.Record implements net.minecraft.world.item.component.TooltipProvider {
+  public static final net.minecraft.world.level.block.entity.BannerPatternLayers EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.BannerPatternLayers> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.BannerPatternLayers> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.BannerPatternLayers(java.util.List<net.minecraft.world.level.block.entity.BannerPatternLayers$Layer>);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers removeLast();
+  public void addToTooltip(net.minecraft.world.item.Item$TooltipContext, java.util.function.Consumer<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag, net.minecraft.core.component.DataComponentGetter);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.block.entity.BannerPatternLayers$Layer> layers();
+}
+Compiled from "TestBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TestBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.TestBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean isPowered();
+  public void setPowered(boolean);
+  public net.minecraft.world.level.block.state.properties.TestBlockMode getMode();
+  public void setMode(net.minecraft.world.level.block.state.properties.TestBlockMode);
+  public void reset();
+  public void trigger();
+  public void log();
+  public boolean hasTriggered();
+  public java.lang.String getMessage();
+  public void setMessage(java.lang.String);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "EnchantingTableBlockEntity.java"
+public class net.minecraft.world.level.block.entity.EnchantingTableBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Nameable {
+  public int time;
+  public float flip;
+  public float oFlip;
+  public float flipT;
+  public float flipA;
+  public float open;
+  public float oOpen;
+  public float rot;
+  public float oRot;
+  public float tRot;
+  public net.minecraft.world.level.block.entity.EnchantingTableBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public static void bookAnimationTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.EnchantingTableBlockEntity);
+  public net.minecraft.network.chat.Component getName();
+  public void setCustomName(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getCustomName();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+}
+Compiled from "BlockEntityTypeIds.java"
+public class net.minecraft.world.level.block.entity.BlockEntityTypeIds {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> FURNACE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> TRAPPED_CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> ENDER_CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> JUKEBOX;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> DISPENSER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> DROPPER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SIGN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> HANGING_SIGN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> MOB_SPAWNER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CREAKING_HEART;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> PISTON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BREWING_STAND;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> ENCHANTING_TABLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> END_PORTAL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BEACON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SKULL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> DAYLIGHT_DETECTOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> HOPPER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> COMPARATOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BANNER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> STRUCTURE_BLOCK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> END_GATEWAY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> COMMAND_BLOCK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SHULKER_BOX;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CONDUIT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BARREL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SMOKER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BLAST_FURNACE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> LECTERN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BELL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> JIGSAW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CAMPFIRE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BEEHIVE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SCULK_SENSOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CALIBRATED_SCULK_SENSOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SCULK_CATALYST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SCULK_SHRIEKER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CHISELED_BOOKSHELF;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> SHELF;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> BRUSHABLE_BLOCK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> DECORATED_POT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> CRAFTER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> TRIAL_SPAWNER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> VAULT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> TEST_BLOCK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> TEST_INSTANCE_BLOCK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> COPPER_GOLEM_STATUE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BlockEntityType<?>> POTENT_SULFUR;
+  public net.minecraft.world.level.block.entity.BlockEntityTypeIds();
+}
+Compiled from "BeehiveBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant>> LIST_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant(net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.entity.EntityType<?>>, int, int);
+  public static net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant of(net.minecraft.world.entity.Entity);
+  public static net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant create(int);
+  public net.minecraft.world.entity.Entity createEntity(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.entity.EntityType<?>> entityData();
+  public int ticksInHive();
+  public int minTicksInHive();
+}
+Compiled from "TheEndPortalBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TheEndPortalBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  protected net.minecraft.world.level.block.entity.TheEndPortalBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.TheEndPortalBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean shouldRenderFace(net.minecraft.core.Direction);
+}
+Compiled from "ComparatorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ComparatorBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.ComparatorBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public int getOutputSignal();
+  public void setOutputSignal(int);
+}
+Compiled from "DecoratedPotPatterns.java"
+public class net.minecraft.world.level.block.entity.DecoratedPotPatterns {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> ANGLER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> ARCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> ARMS_UP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> BLADE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> BREWER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> BURN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> DANGER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> EXPLORER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> FLOW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> FRIEND;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> GUSTER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> HEART;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> HEARTBREAK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> HOWL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> MINER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> MOURNER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> PLENTY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> PRIZE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> SCRAPE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> SHEAF;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> SHELTER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> SKULL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.DecoratedPotPattern> SNORT;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.block.entity.DecoratedPotPattern>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.level.block.entity.DecoratedPotPattern>> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.DecoratedPotPatterns();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.block.entity.DecoratedPotPattern>);
+}
+Compiled from "BoundingBoxRenderable.java"
+public final class net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode extends java.lang.Enum<net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode> {
+  public static final net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode NONE;
+  public static final net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode BOX;
+  public static final net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode BOX_AND_INVISIBLE_BLOCKS;
+  public static net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode[] values();
+  public static net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode valueOf(java.lang.String);
+}
+Compiled from "CommandBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.CommandBlockEntity$Mode extends java.lang.Enum<net.minecraft.world.level.block.entity.CommandBlockEntity$Mode> {
+  public static final net.minecraft.world.level.block.entity.CommandBlockEntity$Mode SEQUENCE;
+  public static final net.minecraft.world.level.block.entity.CommandBlockEntity$Mode AUTO;
+  public static final net.minecraft.world.level.block.entity.CommandBlockEntity$Mode REDSTONE;
+  public static net.minecraft.world.level.block.entity.CommandBlockEntity$Mode[] values();
+  public static net.minecraft.world.level.block.entity.CommandBlockEntity$Mode valueOf(java.lang.String);
+}
+Compiled from "SculkSensorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SculkSensorBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.gameevent.GameEventListener$Provider<net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener>, net.minecraft.world.level.gameevent.vibrations.VibrationSystem {
+  protected net.minecraft.world.level.block.entity.SculkSensorBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.SculkSensorBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User createVibrationUser();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data getVibrationData();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User getVibrationUser();
+  public int getLastVibrationFrequency();
+  public void setLastVibrationFrequency(int);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener getListener();
+  public net.minecraft.world.level.gameevent.GameEventListener getListener();
+}
+Compiled from "ChestBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ChestBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity implements net.minecraft.world.level.block.entity.LidBlockEntity {
+  protected net.minecraft.world.level.block.entity.ChestBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.ChestBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getContainerSize();
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public static void lidAnimateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.ChestBlockEntity);
+  public boolean triggerEvent(int, int);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public java.util.List<net.minecraft.world.entity.ContainerUser> getEntitiesWithContainerOpen();
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public float getOpenNess(float);
+  public static int getOpenCount(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public static void swapContents(net.minecraft.world.level.block.entity.ChestBlockEntity, net.minecraft.world.level.block.entity.ChestBlockEntity);
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public void recheckOpen();
+  protected void signalOpenCount(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int, int);
+}
+Compiled from "BannerPatterns.java"
+public class net.minecraft.world.level.block.entity.BannerPatterns {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> BASE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> SQUARE_BOTTOM_LEFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> SQUARE_BOTTOM_RIGHT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> SQUARE_TOP_LEFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> SQUARE_TOP_RIGHT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_BOTTOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_TOP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_LEFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_RIGHT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_CENTER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_MIDDLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_DOWNRIGHT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_DOWNLEFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRIPE_SMALL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> CROSS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> STRAIGHT_CROSS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> TRIANGLE_BOTTOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> TRIANGLE_TOP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> TRIANGLES_BOTTOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> TRIANGLES_TOP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> DIAGONAL_LEFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> DIAGONAL_RIGHT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> DIAGONAL_LEFT_MIRROR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> DIAGONAL_RIGHT_MIRROR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> CIRCLE_MIDDLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> RHOMBUS_MIDDLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> HALF_VERTICAL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> HALF_HORIZONTAL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> HALF_VERTICAL_MIRROR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> HALF_HORIZONTAL_MIRROR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> BORDER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> CURLY_BORDER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> GRADIENT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> GRADIENT_UP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> BRICKS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> GLOBE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> CREEPER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> SKULL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> FLOWER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> MOJANG;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> PIGLIN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> FLOW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern> GUSTER;
+  public net.minecraft.world.level.block.entity.BannerPatterns();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.block.entity.BannerPattern>);
+  public static void register(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.block.entity.BannerPattern>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern>);
+}
+Compiled from "CrafterBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CrafterBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity implements net.minecraft.world.inventory.CraftingContainer {
+  public static final int CONTAINER_WIDTH;
+  public static final int CONTAINER_HEIGHT;
+  public static final int CONTAINER_SIZE;
+  public static final int SLOT_DISABLED;
+  public static final int SLOT_ENABLED;
+  public static final int DATA_TRIGGERED;
+  public static final int NUM_DATA;
+  protected final net.minecraft.world.inventory.ContainerData containerData;
+  public net.minecraft.world.level.block.entity.CrafterBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public void setSlotState(int, boolean);
+  public boolean isSlotDisabled(int);
+  public boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public int getContainerSize();
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public int getWidth();
+  public int getHeight();
+  public void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public void setTriggered(boolean);
+  public boolean isTriggered();
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.CrafterBlockEntity);
+  public void setCraftingTicksRemaining(int);
+  public int getRedstoneSignal();
+  public java.util.List getItems();
+}
+Compiled from "FurnaceBlockEntity.java"
+public class net.minecraft.world.level.block.entity.FurnaceBlockEntity extends net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity {
+  public net.minecraft.world.level.block.entity.FurnaceBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "BannerPattern.java"
+public final class net.minecraft.world.level.block.entity.BannerPattern extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.BannerPattern> DIRECT_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.BannerPattern> DIRECT_STREAM_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern>> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.BannerPattern(net.minecraft.resources.Identifier, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier assetId();
+  public java.lang.String translationKey();
+}
+Compiled from "PotDecorations.java"
+public final class net.minecraft.world.level.block.entity.PotDecorations extends java.lang.Record implements net.minecraft.world.item.component.TooltipProvider {
+  public static final net.minecraft.world.level.block.entity.PotDecorations EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.PotDecorations> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.PotDecorations> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.PotDecorations(java.util.Optional<net.minecraft.world.item.ItemStackTemplate>, java.util.Optional<net.minecraft.world.item.ItemStackTemplate>, java.util.Optional<net.minecraft.world.item.ItemStackTemplate>, java.util.Optional<net.minecraft.world.item.ItemStackTemplate>);
+  public static net.minecraft.world.level.block.entity.PotDecorations allBrick(net.minecraft.core.HolderGetter<net.minecraft.world.item.Item>);
+  public void addToTooltip(net.minecraft.world.item.Item$TooltipContext, java.util.function.Consumer<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag, net.minecraft.core.component.DataComponentGetter);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.world.item.ItemStackTemplate> back();
+  public java.util.Optional<net.minecraft.world.item.ItemStackTemplate> left();
+  public java.util.Optional<net.minecraft.world.item.ItemStackTemplate> right();
+  public java.util.Optional<net.minecraft.world.item.ItemStackTemplate> front();
+}
+Compiled from "BlastFurnaceBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity extends net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity {
+  public net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "BlockEntityType.java"
+public interface net.minecraft.world.level.block.entity.BlockEntityType$BlockEntitySupplier<T extends net.minecraft.world.level.block.entity.BlockEntity> {
+  public abstract T create(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "SkullBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SkullBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.SkullBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public static void animation(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.SkullBlockEntity);
+  public float getAnimation(float);
+  public net.minecraft.world.item.component.ResolvableProfile getOwnerProfile();
+  public net.minecraft.resources.Identifier getNoteBlockSound();
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BannerBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BannerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.Nameable {
+  public static final int MAX_PATTERNS;
+  public net.minecraft.world.level.block.entity.BannerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.BannerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.item.DyeColor);
+  public net.minecraft.network.chat.Component getName();
+  public net.minecraft.network.chat.Component getCustomName();
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers getPatterns();
+  public net.minecraft.world.item.ItemStack getItem();
+  public net.minecraft.world.item.DyeColor getBaseColor();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "CalibratedSculkSensorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity$VibrationUser extends net.minecraft.world.level.block.entity.SculkSensorBlockEntity$VibrationUser {
+  public net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity$VibrationUser(net.minecraft.world.level.block.entity.CalibratedSculkSensorBlockEntity, net.minecraft.core.BlockPos);
+  public int getListenerRadius();
+  public boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+}
+Compiled from "DecoratedPotBlockEntity.java"
+public class net.minecraft.world.level.block.entity.DecoratedPotBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.ticks.ContainerSingleItem$BlockContainerSingleItem,net.minecraft.world.RandomizableContainer {
+  public static final java.lang.String TAG_SHERDS;
+  public static final java.lang.String TAG_ITEM;
+  public static final int EVENT_POT_WOBBLES;
+  public long wobbleStartedAtTick;
+  public net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle lastWobbleStyle;
+  protected net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> lootTable;
+  protected long lootTableSeed;
+  public net.minecraft.world.level.block.entity.DecoratedPotBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.core.Direction getDirection();
+  public net.minecraft.world.level.block.entity.PotDecorations getDecorations();
+  public static net.minecraft.world.item.ItemStackTemplate createDecoratedPotTemplate(net.minecraft.world.level.block.entity.PotDecorations);
+  public static net.minecraft.world.item.ItemStack createDecoratedPotInstance(net.minecraft.world.level.block.entity.PotDecorations);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getLootTable();
+  public void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public long getLootTableSeed();
+  public void setLootTableSeed(long);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.item.ItemStack getTheItem();
+  public net.minecraft.world.item.ItemStack splitTheItem(int);
+  public void setTheItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.level.block.entity.BlockEntity getContainerBlockEntity();
+  public void wobble(net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle);
+  public boolean triggerEvent(int, int);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BellBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BellBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public int ticks;
+  public boolean shaking;
+  public net.minecraft.core.Direction clickDirection;
+  public net.minecraft.world.level.block.entity.BellBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean triggerEvent(int, int);
+  public static void clientTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BellBlockEntity);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BellBlockEntity);
+  public void onHit(net.minecraft.core.Direction);
+}
+Compiled from "StructureBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType extends java.lang.Enum<net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType> {
+  public static final net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType UPDATE_DATA;
+  public static final net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType SAVE_AREA;
+  public static final net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType LOAD_AREA;
+  public static final net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType SCAN_AREA;
+  public static net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType[] values();
+  public static net.minecraft.world.level.block.entity.StructureBlockEntity$UpdateType valueOf(java.lang.String);
+}
+Compiled from "CreakingHeartBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CreakingHeartBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public static final int CREAKING_ROAMING_RADIUS;
+  public net.minecraft.world.level.block.entity.CreakingHeartBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void serverTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.CreakingHeartBlockEntity);
+  public void setCreakingInfo(net.minecraft.world.entity.monster.creaking.Creaking);
+  public void setCreakingInfo(java.util.UUID);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public void creakingHurt();
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void removeProtector(net.minecraft.world.damagesource.DamageSource);
+  public boolean isProtector(net.minecraft.world.entity.monster.creaking.Creaking);
+  public int getAnalogOutputSignal();
+  public int computeAnalogOutputSignal();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "ChestLidController.java"
+public class net.minecraft.world.level.block.entity.ChestLidController {
+  public net.minecraft.world.level.block.entity.ChestLidController();
+  public void tickLid();
+  public float getOpenness(float);
+  public void shouldBeOpen(boolean);
+}
+Compiled from "BeehiveBlockEntity.java"
+class net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeData {
+  public boolean tick();
+  public net.minecraft.world.level.block.entity.BeehiveBlockEntity$Occupant toOccupant();
+  public boolean hasNectar();
+}
+Compiled from "SignText.java"
+public class net.minecraft.world.level.block.entity.SignText {
+  public static final int LINES;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.SignText> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.SignText> STREAM_CODEC;
+  public static final net.minecraft.world.item.component.TooltipProvider$Getter<net.minecraft.world.level.block.entity.SignText> FRONT_TEXT;
+  public static final net.minecraft.world.item.component.TooltipProvider$Getter<net.minecraft.world.level.block.entity.SignText> BACK_TEXT;
+  public static final net.minecraft.world.level.block.entity.SignText EMPTY;
+  public net.minecraft.world.level.block.entity.SignText(java.util.List<net.minecraft.network.chat.Component>, java.util.List<net.minecraft.network.chat.Component>, net.minecraft.world.item.DyeColor, boolean);
+  public boolean hasGlowingText();
+  public net.minecraft.world.level.block.entity.SignText withGlowingText(boolean);
+  public net.minecraft.world.item.DyeColor getColor();
+  public net.minecraft.world.level.block.entity.SignText withColor(net.minecraft.world.item.DyeColor);
+  public boolean hasMessage(boolean);
+  public java.util.List<net.minecraft.network.chat.Component> getMessages(boolean);
+  public net.minecraft.util.FormattedCharSequence[] getRenderMessages(boolean, java.util.function.Function<net.minecraft.network.chat.Component, net.minecraft.util.FormattedCharSequence>);
+  public boolean hasAnyClickCommands(boolean);
+  public boolean hasEditableText(boolean);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public net.minecraft.world.level.block.entity.SignText$Mutable asMutable();
+  public static net.minecraft.world.item.component.TooltipProvider$Getter<net.minecraft.world.level.block.entity.SignText> createTooltip(net.minecraft.network.chat.Component);
+}
+Compiled from "BarrelBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BarrelBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity {
+  public net.minecraft.world.level.block.entity.BarrelBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public int getContainerSize();
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public java.util.List<net.minecraft.world.entity.ContainerUser> getEntitiesWithContainerOpen();
+  public void recheckOpen();
+}
+Compiled from "ShulkerBoxBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity implements net.minecraft.world.WorldlyContainer {
+  public static final int COLUMNS;
+  public static final int ROWS;
+  public static final int CONTAINER_SIZE;
+  public static final int EVENT_SET_OPEN_COUNT;
+  public static final int OPENING_TICK_LENGTH;
+  public static final float MAX_LID_HEIGHT;
+  public static final float MAX_LID_ROTATION;
+  public net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity(net.minecraft.world.item.DyeColor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity);
+  public net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus getAnimationStatus();
+  public net.minecraft.world.phys.AABB getBoundingBox(net.minecraft.world.level.block.state.BlockState);
+  public int getContainerSize();
+  public boolean triggerEvent(int, int);
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public void loadFromTag(net.minecraft.world.level.storage.ValueInput);
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public int[] getSlotsForFace(net.minecraft.core.Direction);
+  public boolean canPlaceItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public boolean canTakeItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public float getProgress(float);
+  public net.minecraft.world.item.DyeColor getColor();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public boolean isClosed();
+}
+Compiled from "ListBackedContainer.java"
+public interface net.minecraft.world.level.block.entity.ListBackedContainer extends net.minecraft.world.Container {
+  public abstract net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  public default int count();
+  public default int getContainerSize();
+  public default void clearContent();
+  public default boolean isEmpty();
+  public default net.minecraft.world.item.ItemStack getItem(int);
+  public default net.minecraft.world.item.ItemStack removeItem(int, int);
+  public default net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public default boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public default boolean acceptsItemType(net.minecraft.world.item.ItemStack);
+  public default void setItem(int, net.minecraft.world.item.ItemStack);
+  public default void setItemNoUpdate(int, net.minecraft.world.item.ItemStack);
+}
+Compiled from "HangingSignBlockEntity.java"
+public class net.minecraft.world.level.block.entity.HangingSignBlockEntity extends net.minecraft.world.level.block.entity.SignBlockEntity {
+  public net.minecraft.world.level.block.entity.HangingSignBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getTextLineHeight();
+  public int getMaxTextLineWidth();
+  public net.minecraft.sounds.SoundEvent getSignInteractionFailedSoundEvent();
+}
+Compiled from "ShulkerBoxBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus extends java.lang.Enum<net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus> {
+  public static final net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus CLOSED;
+  public static final net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus OPENING;
+  public static final net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus OPENED;
+  public static final net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus CLOSING;
+  public static net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus[] values();
+  public static net.minecraft.world.level.block.entity.ShulkerBoxBlockEntity$AnimationStatus valueOf(java.lang.String);
+}
+Compiled from "TestInstanceBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.TestInstanceBlockEntity$ErrorMarker extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$ErrorMarker> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$ErrorMarker>> LIST_CODEC;
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$ErrorMarker(net.minecraft.core.BlockPos, net.minecraft.network.chat.Component);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+  public net.minecraft.network.chat.Component text();
+}
+Compiled from "SculkShriekerBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SculkShriekerBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.gameevent.GameEventListener$Provider<net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener>, net.minecraft.world.level.gameevent.vibrations.VibrationSystem {
+  public net.minecraft.world.level.block.entity.SculkShriekerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data getVibrationData();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User getVibrationUser();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public static net.minecraft.server.level.ServerPlayer tryGetPlayer(net.minecraft.world.entity.Entity);
+  public void tryShriek(net.minecraft.server.level.ServerLevel, net.minecraft.server.level.ServerPlayer);
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void tryRespond(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Listener getListener();
+  public net.minecraft.world.level.gameevent.GameEventListener getListener();
+}
+Compiled from "BlockEntity.java"
+public abstract class net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.util.debug.DebugValueSource, net.minecraft.core.TypedInstance<net.minecraft.world.level.block.entity.BlockEntityType<?>>, net.fabricmc.fabric.api.blockgetter.v2.RenderDataBlockEntity, net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
+  protected net.minecraft.world.level.Level level;
+  protected final net.minecraft.core.BlockPos worldPosition;
+  protected boolean remove;
+  public net.minecraft.world.level.block.entity.BlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean isValidBlockState(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.core.BlockPos getPosFromTag(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.level.Level getLevel();
+  public void setLevel(net.minecraft.world.level.Level);
+  public boolean hasLevel();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public final void loadWithComponents(net.minecraft.world.level.storage.ValueInput);
+  public final void loadCustomOnly(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public final net.minecraft.nbt.CompoundTag saveWithFullMetadata(net.minecraft.core.HolderLookup$Provider);
+  public void saveWithFullMetadata(net.minecraft.world.level.storage.ValueOutput);
+  public void saveWithId(net.minecraft.world.level.storage.ValueOutput);
+  public final net.minecraft.nbt.CompoundTag saveWithoutMetadata(net.minecraft.core.HolderLookup$Provider);
+  public void saveWithoutMetadata(net.minecraft.world.level.storage.ValueOutput);
+  public final net.minecraft.nbt.CompoundTag saveCustomOnly(net.minecraft.core.HolderLookup$Provider);
+  public void saveCustomOnly(net.minecraft.world.level.storage.ValueOutput);
+  public static void addEntityType(net.minecraft.world.level.storage.ValueOutput, net.minecraft.world.level.block.entity.BlockEntityType<?>);
+  public static net.minecraft.world.level.block.entity.BlockEntity loadStatic(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.nbt.CompoundTag, net.minecraft.core.HolderLookup$Provider);
+  public void setChanged();
+  protected static void setChanged(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.core.BlockPos getBlockPos();
+  public net.minecraft.world.level.block.state.BlockState getBlockState();
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean isRemoved();
+  public void setRemoved();
+  public void clearRemoved();
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean triggerEvent(int, int);
+  public void fillCrashReportCategory(net.minecraft.CrashReportCategory);
+  public java.lang.String getNameForReporting();
+  public net.minecraft.world.level.block.entity.BlockEntityType<?> getType();
+  public net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BlockEntityType<?>> typeHolder();
+  public void setBlockState(net.minecraft.world.level.block.state.BlockState);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  public final void applyComponentsFromItemStack(net.minecraft.world.item.ItemStack);
+  public final void applyComponents(net.minecraft.core.component.DataComponentMap, net.minecraft.core.component.DataComponentPatch);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public final net.minecraft.core.component.DataComponentMap collectComponents();
+  public net.minecraft.core.component.DataComponentMap components();
+  public void setComponents(net.minecraft.core.component.DataComponentMap);
+  public static net.minecraft.network.chat.Component parseCustomNameSafe(net.minecraft.world.level.storage.ValueInput, java.lang.String);
+  public net.minecraft.util.ProblemReporter$PathElement problemPath();
+  public void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+}
+Compiled from "BeehiveBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus extends java.lang.Enum<net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus> {
+  public static final net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus HONEY_DELIVERED;
+  public static final net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus BEE_RELEASED;
+  public static final net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus EMERGENCY;
+  public static net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus[] values();
+  public static net.minecraft.world.level.block.entity.BeehiveBlockEntity$BeeReleaseStatus valueOf(java.lang.String);
+}
+Compiled from "ChiseledBookShelfBlockEntity.java"
+public class net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.ListBackedContainer {
+  public static final int MAX_BOOKS_IN_STORAGE;
+  public net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public int getMaxStackSize();
+  public boolean acceptsItemType(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean canTakeItem(net.minecraft.world.Container, int, net.minecraft.world.item.ItemStack);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public int getLastInteractedSlot();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+}
+Compiled from "DecoratedPotBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle extends java.lang.Enum<net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle> {
+  public static final net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle POSITIVE;
+  public static final net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle NEGATIVE;
+  public final int duration;
+  public static net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle[] values();
+  public static net.minecraft.world.level.block.entity.DecoratedPotBlockEntity$WobbleStyle valueOf(java.lang.String);
+}
+Compiled from "SculkSensorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SculkSensorBlockEntity$VibrationUser implements net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User {
+  public static final int LISTENER_RANGE;
+  protected final net.minecraft.core.BlockPos blockPos;
+  public net.minecraft.world.level.block.entity.SculkSensorBlockEntity$VibrationUser(net.minecraft.world.level.block.entity.SculkSensorBlockEntity, net.minecraft.core.BlockPos);
+  public int getListenerRadius();
+  public net.minecraft.world.level.gameevent.PositionSource getPositionSource();
+  public boolean canTriggerAvoidVibration();
+  public boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public void onReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, float);
+  public void onDataChanged();
+  public boolean requiresAdjacentChunksToBeTicking();
+}
+Compiled from "SculkCatalystBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SculkCatalystBlockEntity$CatalystListener implements net.minecraft.world.level.gameevent.GameEventListener {
+  public static final int PULSE_TICKS;
+  public net.minecraft.world.level.block.entity.SculkCatalystBlockEntity$CatalystListener(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.gameevent.PositionSource);
+  public net.minecraft.world.level.gameevent.PositionSource getListenerSource();
+  public int getListenerRadius();
+  public net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode getDeliveryMode();
+  public boolean handleGameEvent(net.minecraft.server.level.ServerLevel, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.level.block.SculkSpreader getSculkSpreader();
+}
+Compiled from "DaylightDetectorBlockEntity.java"
+public class net.minecraft.world.level.block.entity.DaylightDetectorBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.DaylightDetectorBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "StructureBlockEntity.java"
+public class net.minecraft.world.level.block.entity.StructureBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.BoundingBoxRenderable {
+  public static final int MAX_OFFSET_PER_AXIS;
+  public static final int MAX_SIZE_PER_AXIS;
+  public static final java.lang.String AUTHOR_TAG;
+  public net.minecraft.world.level.block.entity.StructureBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean usedBy(net.minecraft.world.entity.player.Player);
+  public java.lang.String getStructureName();
+  public boolean hasStructureName();
+  public void setStructureName(java.lang.String);
+  public void setStructureName(net.minecraft.resources.Identifier);
+  public void createdBy(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.core.BlockPos getStructurePos();
+  public void setStructurePos(net.minecraft.core.BlockPos);
+  public net.minecraft.core.Vec3i getStructureSize();
+  public void setStructureSize(net.minecraft.core.Vec3i);
+  public net.minecraft.world.level.block.Mirror getMirror();
+  public void setMirror(net.minecraft.world.level.block.Mirror);
+  public net.minecraft.world.level.block.Rotation getRotation();
+  public void setRotation(net.minecraft.world.level.block.Rotation);
+  public java.lang.String getMetaData();
+  public void setMetaData(java.lang.String);
+  public net.minecraft.world.level.block.state.properties.StructureMode getMode();
+  public void setMode(net.minecraft.world.level.block.state.properties.StructureMode);
+  public boolean isIgnoreEntities();
+  public boolean isStrict();
+  public void setIgnoreEntities(boolean);
+  public void setStrict(boolean);
+  public float getIntegrity();
+  public void setIntegrity(float);
+  public long getSeed();
+  public void setSeed(long);
+  public boolean detectSize();
+  public boolean saveStructure();
+  public boolean saveStructure(boolean);
+  public static boolean saveStructure(net.minecraft.server.level.ServerLevel, net.minecraft.resources.Identifier, net.minecraft.core.BlockPos, net.minecraft.core.Vec3i, boolean, java.lang.String, boolean, java.util.List<net.minecraft.world.level.block.Block>);
+  public static net.minecraft.util.RandomSource createRandom(long);
+  public boolean placeStructureIfSameSize(net.minecraft.server.level.ServerLevel);
+  public boolean loadStructureInfo(net.minecraft.server.level.ServerLevel);
+  public void placeStructure(net.minecraft.server.level.ServerLevel);
+  public void unloadStructure();
+  public boolean isStructureLoadable();
+  public boolean isPowered();
+  public void setPowered(boolean);
+  public boolean getShowAir();
+  public void setShowAir(boolean);
+  public boolean getShowBoundingBox();
+  public void setShowBoundingBox(boolean);
+  public net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode renderMode();
+  public net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox getRenderableBox();
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "BeaconBlockEntity.java"
+public class net.minecraft.world.level.block.entity.BeaconBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.MenuProvider,net.minecraft.world.Nameable,net.minecraft.world.level.block.entity.BeaconBeamOwner {
+  public static final java.util.List<java.util.List<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>>> BEACON_EFFECTS;
+  public static final int DATA_LEVELS;
+  public static final int DATA_PRIMARY;
+  public static final int DATA_SECONDARY;
+  public static final int NUM_DATA_VALUES;
+  public net.minecraft.world.level.block.entity.BeaconBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BeaconBlockEntity);
+  public void setRemoved();
+  public static boolean validateEffects(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>, net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>, int);
+  public static void playSound(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.sounds.SoundEvent);
+  public java.util.List<net.minecraft.world.level.block.entity.BeaconBeamOwner$Section> getBeamSections();
+  public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket();
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public void setCustomName(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getCustomName();
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.network.chat.Component getName();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+  public void setLevel(net.minecraft.world.level.Level);
+  public net.minecraft.network.protocol.Packet getUpdatePacket();
+}
+Compiled from "TestInstanceBlockEntity.java"
+public final class net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data> STREAM_CODEC;
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data(java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.GameTestInstance>>, net.minecraft.core.Vec3i, net.minecraft.world.level.block.Rotation, boolean, net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status, java.util.Optional<net.minecraft.network.chat.Component>);
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data withSize(net.minecraft.core.Vec3i);
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data withStatus(net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status);
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Data withError(net.minecraft.network.chat.Component);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.GameTestInstance>> test();
+  public net.minecraft.core.Vec3i size();
+  public net.minecraft.world.level.block.Rotation rotation();
+  public boolean ignoreEntities();
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity$Status status();
+  public java.util.Optional<net.minecraft.network.chat.Component> errorMessage();
+}
+Compiled from "BoundingBoxRenderable.java"
+public interface net.minecraft.world.level.block.entity.BoundingBoxRenderable {
+  public abstract net.minecraft.world.level.block.entity.BoundingBoxRenderable$Mode renderMode();
+  public abstract net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox getRenderableBox();
+}
+Compiled from "SignText.java"
+public class net.minecraft.world.level.block.entity.SignText$Mutable {
+  public net.minecraft.world.level.block.entity.SignText asImmutable();
+  public net.minecraft.world.level.block.entity.SignText$Mutable setLine(int, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public net.minecraft.world.level.block.entity.SignText$Mutable setLine(int, net.minecraft.network.chat.Component);
+  public net.minecraft.world.level.block.entity.SignText$Mutable modifyLine(int, java.util.function.UnaryOperator<net.minecraft.network.chat.Component>);
+  public net.minecraft.world.level.block.entity.SignText$Mutable modifyLines(java.util.function.UnaryOperator<net.minecraft.network.chat.Component>);
+  public net.minecraft.world.level.block.entity.SignText$Mutable setColor(net.minecraft.world.item.DyeColor);
+  public net.minecraft.world.level.block.entity.SignText$Mutable setTextGlowing(boolean);
+}
+Compiled from "BellBlockEntity.java"
+interface net.minecraft.world.level.block.entity.BellBlockEntity$ResonationEndAction {
+  public abstract void run(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, java.util.List<net.minecraft.world.entity.LivingEntity>);
+}
+Compiled from "BlockEntityTicker.java"
+public interface net.minecraft.world.level.block.entity.BlockEntityTicker<T extends net.minecraft.world.level.block.entity.BlockEntity> {
+  public abstract void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, T);
+  public default net.minecraft.world.level.block.entity.BlockEntityTicker<T> andThen(net.minecraft.world.level.block.entity.BlockEntityTicker<? super T>);
+}
+Compiled from "EnderChestBlockEntity.java"
+public class net.minecraft.world.level.block.entity.EnderChestBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity implements net.minecraft.world.level.block.entity.LidBlockEntity {
+  public net.minecraft.world.level.block.entity.EnderChestBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static void lidAnimateTick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.EnderChestBlockEntity);
+  public boolean triggerEvent(int, int);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void recheckOpen();
+  public float getOpenNess(float);
+}
+Compiled from "BoundingBoxRenderable.java"
+public final class net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox extends java.lang.Record {
+  public net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox(net.minecraft.core.BlockPos, net.minecraft.core.Vec3i);
+  public static net.minecraft.world.level.block.entity.BoundingBoxRenderable$RenderableBox fromCorners(int, int, int, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos localPos();
+  public net.minecraft.core.Vec3i size();
+}
+Compiled from "SmokerBlockEntity.java"
+public class net.minecraft.world.level.block.entity.SmokerBlockEntity extends net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity {
+  public net.minecraft.world.level.block.entity.SmokerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "SculkShriekerBlockEntity.java"
+class net.minecraft.world.level.block.entity.SculkShriekerBlockEntity$VibrationUser implements net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User {
+  public net.minecraft.world.level.block.entity.SculkShriekerBlockEntity$VibrationUser(net.minecraft.world.level.block.entity.SculkShriekerBlockEntity);
+  public int getListenerRadius();
+  public net.minecraft.world.level.gameevent.PositionSource getPositionSource();
+  public net.minecraft.tags.TagKey<net.minecraft.world.level.gameevent.GameEvent> getListenableEvents();
+  public boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public void onReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, float);
+  public void onDataChanged();
+  public boolean requiresAdjacentChunksToBeTicking();
+}
+Compiled from "CommandBlockEntity.java"
+public class net.minecraft.world.level.block.entity.CommandBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public net.minecraft.world.level.block.entity.CommandBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.level.BaseCommandBlock getCommandBlock();
+  public void setPowered(boolean);
+  public boolean isPowered();
+  public boolean isAutomatic();
+  public void setAutomatic(boolean);
+  public void onModeSwitch();
+  public boolean wasConditionMet();
+  public boolean markConditionMet();
+  public net.minecraft.world.level.block.entity.CommandBlockEntity$Mode getMode();
+  public boolean isConditional();
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected void collectImplicitComponents(net.minecraft.core.component.DataComponentMap$Builder);
+  public void removeComponentsFromTag(net.minecraft.world.level.storage.ValueOutput);
+}
+Compiled from "TrappedChestBlockEntity.java"
+public class net.minecraft.world.level.block.entity.TrappedChestBlockEntity extends net.minecraft.world.level.block.entity.ChestBlockEntity {
+  public net.minecraft.world.level.block.entity.TrappedChestBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void signalOpenCount(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int, int);
+}
+Compiled from "Hopper.java"
+public interface net.minecraft.world.level.block.entity.Hopper extends net.minecraft.world.Container {
+  public static final net.minecraft.world.phys.AABB SUCK_AABB;
+  public default net.minecraft.world.phys.AABB getSuckAabb();
+  public abstract double getLevelX();
+  public abstract double getLevelY();
+  public abstract double getLevelZ();
+  public abstract boolean isGridAligned();
+}
+Compiled from "ContainerOpenersCounter.java"
+public abstract class net.minecraft.world.level.block.entity.ContainerOpenersCounter {
+  public net.minecraft.world.level.block.entity.ContainerOpenersCounter();
+  protected abstract void onOpen(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected abstract void onClose(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected abstract void openerCountChanged(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int, int);
+  public abstract boolean isOwnContainer(net.minecraft.world.entity.player.Player);
+  public void incrementOpeners(net.minecraft.world.entity.LivingEntity, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, double);
+  public void decrementOpeners(net.minecraft.world.entity.LivingEntity, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public java.util.List<net.minecraft.world.entity.ContainerUser> getEntitiesWithContainerOpen(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public void recheckOpeners(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getOpenerCount();
+}
+Compiled from "LidBlockEntity.java"
+public interface net.minecraft.world.level.block.entity.LidBlockEntity {
+  public abstract float getOpenNess(float);
+}
+Compiled from "BannerPatternLayers.java"
+public class net.minecraft.world.level.block.entity.BannerPatternLayers$Builder {
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Builder();
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Builder addIfRegistered(net.minecraft.core.HolderGetter<net.minecraft.world.level.block.entity.BannerPattern>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.entity.BannerPattern>, net.minecraft.world.item.DyeColor);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Builder add(net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern>, net.minecraft.world.item.DyeColor);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Builder add(net.minecraft.world.level.block.entity.BannerPatternLayers$Layer);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers$Builder addAll(net.minecraft.world.level.block.entity.BannerPatternLayers);
+  public net.minecraft.world.level.block.entity.BannerPatternLayers build();
+}
+Compiled from "BlockEntityType.java"
+public class net.minecraft.world.level.block.entity.BlockEntityType<T extends net.minecraft.world.level.block.entity.BlockEntity> implements net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityType {
+  public net.minecraft.world.level.block.entity.BlockEntityType(net.minecraft.world.level.block.entity.BlockEntityType$BlockEntitySupplier<? extends T>, java.util.Set<net.minecraft.world.level.block.Block>);
+  public T create(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean isValid(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.core.Holder$Reference<net.minecraft.world.level.block.entity.BlockEntityType<?>> builtInRegistryHolder();
+  public T getBlockEntity(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public boolean onlyOpCanSetNbt();
+}
+Compiled from "SignTextSlot.java"
+public final class net.minecraft.world.level.block.entity.SignTextSlot extends java.lang.Enum<net.minecraft.world.level.block.entity.SignTextSlot> {
+  public static final net.minecraft.world.level.block.entity.SignTextSlot BACK;
+  public static final net.minecraft.world.level.block.entity.SignTextSlot FRONT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.block.entity.SignTextSlot> STREAM_CODEC;
+  public static net.minecraft.world.level.block.entity.SignTextSlot[] values();
+  public static net.minecraft.world.level.block.entity.SignTextSlot valueOf(java.lang.String);
+}
+Compiled from "DispenserBlockEntity.java"
+public class net.minecraft.world.level.block.entity.DispenserBlockEntity extends net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity {
+  public static final int CONTAINER_SIZE;
+  protected net.minecraft.world.level.block.entity.DispenserBlockEntity(net.minecraft.world.level.block.entity.BlockEntityType<?>, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.entity.DispenserBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public int getContainerSize();
+  public int getRandomSlot(net.minecraft.util.RandomSource);
+  public net.minecraft.world.item.ItemStack insertItem(net.minecraft.world.item.ItemStack);
+  protected net.minecraft.network.chat.Component getDefaultName();
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  protected net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  protected void setItems(net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  protected net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}

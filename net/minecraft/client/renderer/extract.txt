@@ -1,0 +1,40 @@
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.extract.package-info {
+}
+Compiled from "TransientBlock.java"
+public final class net.minecraft.client.renderer.extract.TransientBlock extends java.lang.Record {
+  public static double DEFAULT_TIME_TO_LIVE;
+  public net.minecraft.client.renderer.extract.TransientBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, double, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+  public net.minecraft.world.level.block.state.BlockState state();
+  public double timeToLive();
+  public long createTimeNs();
+}
+Compiled from "LevelExtractor.java"
+public class net.minecraft.client.renderer.extract.LevelExtractor implements net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+  public final net.minecraft.client.renderer.debug.DebugRenderer debugRenderer;
+  public final net.minecraft.client.renderer.debug.GameTestBlockHighlightRenderer gameTestBlockHighlightRenderer;
+  public net.minecraft.client.renderer.extract.LevelExtractor(net.minecraft.client.Minecraft, net.minecraft.client.renderer.state.level.LevelRenderState, net.minecraft.client.renderer.LevelRenderer);
+  public void extract(net.minecraft.client.DeltaTracker, net.minecraft.client.Camera, float);
+  public boolean isEntityVisible(net.minecraft.world.entity.Entity, net.minecraft.client.renderer.culling.Frustum, double, double, double, float, long);
+  public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager);
+  public void setLevel(net.minecraft.client.multiplayer.ClientLevel);
+  public void allChanged();
+  public void resetSampler();
+  public void blockChanged(net.minecraft.core.BlockPos, int);
+  public void setBlocksDirty(int, int, int, int, int, int);
+  public void setBlockDirty(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState);
+  public void setSectionDirtyWithNeighbors(int, int, int);
+  public void setSectionRangeDirty(int, int, int, int, int, int);
+  public void setSectionDirty(int, int, int);
+  public void queueTransientBlock(net.minecraft.client.renderer.extract.TransientBlock);
+  public net.minecraft.gizmos.Gizmos$TemporaryCollection collectPerFrameMainThreadGizmos();
+  public int countRenderedSections();
+  public java.lang.String sectionStatistics();
+  public java.lang.String entityStatistics();
+  public double totalSections();
+  public double lastViewDistance();
+}

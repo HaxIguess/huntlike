@@ -1,0 +1,101 @@
+Compiled from "ScreenPosition.java"
+public final class net.minecraft.client.gui.navigation.ScreenPosition extends java.lang.Record {
+  public net.minecraft.client.gui.navigation.ScreenPosition(int, int);
+  public static net.minecraft.client.gui.navigation.ScreenPosition of(net.minecraft.client.gui.navigation.ScreenAxis, int, int);
+  public net.minecraft.client.gui.navigation.ScreenPosition step(net.minecraft.client.gui.navigation.ScreenDirection);
+  public int getCoordinate(net.minecraft.client.gui.navigation.ScreenAxis);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+}
+Compiled from "FocusNavigationEvent.java"
+public interface net.minecraft.client.gui.navigation.FocusNavigationEvent {
+  public abstract net.minecraft.client.gui.navigation.ScreenDirection getVerticalDirectionForInitialFocus();
+}
+Compiled from "ScreenAxis.java"
+public final class net.minecraft.client.gui.navigation.ScreenAxis extends java.lang.Enum<net.minecraft.client.gui.navigation.ScreenAxis> {
+  public static final net.minecraft.client.gui.navigation.ScreenAxis HORIZONTAL;
+  public static final net.minecraft.client.gui.navigation.ScreenAxis VERTICAL;
+  public static net.minecraft.client.gui.navigation.ScreenAxis[] values();
+  public static net.minecraft.client.gui.navigation.ScreenAxis valueOf(java.lang.String);
+  public net.minecraft.client.gui.navigation.ScreenAxis orthogonal();
+  public net.minecraft.client.gui.navigation.ScreenDirection getPositive();
+  public net.minecraft.client.gui.navigation.ScreenDirection getNegative();
+  public net.minecraft.client.gui.navigation.ScreenDirection getDirection(boolean);
+}
+Compiled from "ScreenRectangle.java"
+public final class net.minecraft.client.gui.navigation.ScreenRectangle extends java.lang.Record {
+  public net.minecraft.client.gui.navigation.ScreenRectangle(int, int, int, int);
+  public net.minecraft.client.gui.navigation.ScreenRectangle(net.minecraft.client.gui.navigation.ScreenPosition, int, int);
+  public static net.minecraft.client.gui.navigation.ScreenRectangle empty();
+  public static net.minecraft.client.gui.navigation.ScreenRectangle of(net.minecraft.client.gui.navigation.ScreenAxis, int, int, int, int);
+  public net.minecraft.client.gui.navigation.ScreenRectangle step(net.minecraft.client.gui.navigation.ScreenDirection);
+  public int getLength(net.minecraft.client.gui.navigation.ScreenAxis);
+  public int getBoundInDirection(net.minecraft.client.gui.navigation.ScreenDirection);
+  public net.minecraft.client.gui.navigation.ScreenRectangle getBorder(net.minecraft.client.gui.navigation.ScreenDirection);
+  public boolean overlaps(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public boolean overlapsInAxis(net.minecraft.client.gui.navigation.ScreenRectangle, net.minecraft.client.gui.navigation.ScreenAxis);
+  public int getCenterInAxis(net.minecraft.client.gui.navigation.ScreenAxis);
+  public net.minecraft.client.gui.navigation.ScreenRectangle intersection(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public boolean intersects(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public boolean encompasses(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public int top();
+  public int bottom();
+  public int left();
+  public int right();
+  public boolean containsPoint(int, int);
+  public net.minecraft.client.gui.navigation.ScreenRectangle transformAxisAligned(org.joml.Matrix3x2fc);
+  public net.minecraft.client.gui.navigation.ScreenRectangle transformMaxBounds(org.joml.Matrix3x2fc);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.navigation.ScreenPosition position();
+  public int width();
+  public int height();
+}
+Compiled from "FocusNavigationEvent.java"
+public final class net.minecraft.client.gui.navigation.FocusNavigationEvent$ArrowNavigation extends java.lang.Record implements net.minecraft.client.gui.navigation.FocusNavigationEvent {
+  public net.minecraft.client.gui.navigation.FocusNavigationEvent$ArrowNavigation(net.minecraft.client.gui.navigation.ScreenDirection);
+  public net.minecraft.client.gui.navigation.FocusNavigationEvent$ArrowNavigation(net.minecraft.client.gui.navigation.ScreenDirection, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.navigation.ScreenDirection getVerticalDirectionForInitialFocus();
+  public net.minecraft.client.gui.navigation.FocusNavigationEvent$ArrowNavigation with(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.navigation.ScreenDirection direction();
+  public net.minecraft.client.gui.navigation.ScreenRectangle previousFocus();
+}
+Compiled from "ScreenDirection.java"
+public final class net.minecraft.client.gui.navigation.ScreenDirection extends java.lang.Enum<net.minecraft.client.gui.navigation.ScreenDirection> {
+  public static final net.minecraft.client.gui.navigation.ScreenDirection UP;
+  public static final net.minecraft.client.gui.navigation.ScreenDirection DOWN;
+  public static final net.minecraft.client.gui.navigation.ScreenDirection LEFT;
+  public static final net.minecraft.client.gui.navigation.ScreenDirection RIGHT;
+  public static net.minecraft.client.gui.navigation.ScreenDirection[] values();
+  public static net.minecraft.client.gui.navigation.ScreenDirection valueOf(java.lang.String);
+  public net.minecraft.client.gui.navigation.ScreenAxis getAxis();
+  public net.minecraft.client.gui.navigation.ScreenDirection getOpposite();
+  public boolean isPositive();
+  public boolean isAfter(int, int);
+  public boolean isBefore(int, int);
+  public it.unimi.dsi.fastutil.ints.IntComparator coordinateValueComparator();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.navigation.package-info {
+}
+Compiled from "FocusNavigationEvent.java"
+public final class net.minecraft.client.gui.navigation.FocusNavigationEvent$TabNavigation extends java.lang.Record implements net.minecraft.client.gui.navigation.FocusNavigationEvent {
+  public net.minecraft.client.gui.navigation.FocusNavigationEvent$TabNavigation(boolean);
+  public net.minecraft.client.gui.navigation.ScreenDirection getVerticalDirectionForInitialFocus();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean forward();
+}
+Compiled from "FocusNavigationEvent.java"
+public class net.minecraft.client.gui.navigation.FocusNavigationEvent$InitialFocus implements net.minecraft.client.gui.navigation.FocusNavigationEvent {
+  public net.minecraft.client.gui.navigation.FocusNavigationEvent$InitialFocus();
+  public net.minecraft.client.gui.navigation.ScreenDirection getVerticalDirectionForInitialFocus();
+}

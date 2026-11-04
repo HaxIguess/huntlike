@@ -1,0 +1,63 @@
+Compiled from "IJeiAnvilRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiAnvilRecipe {
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getLeftInputs();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getRightInputs();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getOutputs();
+  public abstract net.minecraft.resources.Identifier getUid();
+}
+Compiled from "IJeiBrewingRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe {
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getPotionInputs();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getIngredients();
+  public abstract net.minecraft.world.item.ItemStack getPotionOutput();
+  public abstract int getBrewingSteps();
+  public abstract net.minecraft.resources.Identifier getUid();
+}
+Compiled from "IJeiCompostingRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiCompostingRecipe {
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getInputs();
+  public abstract float getChance();
+  public abstract net.minecraft.resources.Identifier getUid();
+}
+Compiled from "IJeiFuelingRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiFuelingRecipe {
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getInputs();
+  public abstract int getBurnTime();
+}
+Compiled from "IJeiGrindstoneRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiGrindstoneRecipe {
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getTopInputs();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getBottomInputs();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getOutputs();
+  public abstract int getMinXpReward();
+  public abstract int getMaxXpReward();
+  public abstract net.minecraft.resources.Identifier getUid();
+  public abstract boolean isOutputRenderOnly();
+}
+Compiled from "IJeiIngredientInfoRecipe.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiIngredientInfoRecipe {
+  public abstract java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredients();
+  public abstract java.util.List<net.minecraft.network.chat.FormattedText> getDescription();
+}
+Compiled from "IJeiShapedRecipeBuilder.java"
+public interface mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder {
+  public abstract mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder define(java.lang.Character, net.minecraft.world.item.crafting.Ingredient);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder define(java.lang.Character, net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder pattern(java.lang.String);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder group(java.lang.String);
+  public abstract net.minecraft.world.item.crafting.CraftingRecipe build();
+}
+Compiled from "IVanillaRecipeFactory.java"
+public interface mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory {
+  public abstract mezz.jei.api.recipe.vanilla.IJeiAnvilRecipe createAnvilRecipe(net.minecraft.world.item.ItemStack, java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiAnvilRecipe createAnvilRecipe(java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiGrindstoneRecipe createGrindstoneRecipe(java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, int, int, net.minecraft.resources.Identifier);
+  public default net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.SmeltingRecipe> createSmeltingRecipe(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.ItemStack, int, float, net.minecraft.resources.Identifier);
+  public abstract net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.SmeltingRecipe> createSmeltingRecipe(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.display.SlotDisplay, net.minecraft.world.item.ItemStack, int, float, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe createBrewingRecipe(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe createBrewingRecipe(java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.recipe.vanilla.IJeiShapedRecipeBuilder createShapedRecipeBuilder(net.minecraft.world.item.crafting.CraftingBookCategory, net.minecraft.world.item.crafting.display.SlotDisplay);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.recipe.vanilla.package-info {
+}

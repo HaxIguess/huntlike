@@ -1,0 +1,71 @@
+Compiled from "EventLogDirectory.java"
+public class net.minecraft.util.eventlog.EventLogDirectory {
+  public static net.minecraft.util.eventlog.EventLogDirectory open(java.nio.file.Path, java.lang.String) throws java.io.IOException;
+  public net.minecraft.util.eventlog.EventLogDirectory$FileList listFiles() throws java.io.IOException;
+  public net.minecraft.util.eventlog.EventLogDirectory$RawFile createNewFile(java.time.LocalDate) throws java.io.IOException;
+}
+Compiled from "JsonEventLog.java"
+public class net.minecraft.util.eventlog.JsonEventLog<T> implements java.io.Closeable {
+  public net.minecraft.util.eventlog.JsonEventLog(com.mojang.serialization.Codec<T>, java.nio.channels.FileChannel);
+  public static <T> net.minecraft.util.eventlog.JsonEventLog<T> open(com.mojang.serialization.Codec<T>, java.nio.file.Path) throws java.io.IOException;
+  public void write(T) throws java.io.IOException;
+  public net.minecraft.util.eventlog.JsonEventLogReader<T> openReader() throws java.io.IOException;
+  public void close() throws java.io.IOException;
+}
+Compiled from "JsonEventLogReader.java"
+public interface net.minecraft.util.eventlog.JsonEventLogReader<T> extends java.io.Closeable {
+  public static <T> net.minecraft.util.eventlog.JsonEventLogReader<T> create(com.mojang.serialization.Codec<T>, java.io.Reader);
+  public abstract T next() throws java.io.IOException;
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.eventlog.package-info {
+}
+Compiled from "EventLogDirectory.java"
+public interface net.minecraft.util.eventlog.EventLogDirectory$File {
+  public abstract java.nio.file.Path path();
+  public abstract net.minecraft.util.eventlog.EventLogDirectory$FileId id();
+  public abstract java.io.Reader openReader() throws java.io.IOException;
+  public abstract net.minecraft.util.eventlog.EventLogDirectory$CompressedFile compress() throws java.io.IOException;
+}
+Compiled from "EventLogDirectory.java"
+public final class net.minecraft.util.eventlog.EventLogDirectory$RawFile extends java.lang.Record implements net.minecraft.util.eventlog.EventLogDirectory$File {
+  public net.minecraft.util.eventlog.EventLogDirectory$RawFile(java.nio.file.Path, net.minecraft.util.eventlog.EventLogDirectory$FileId);
+  public java.nio.channels.FileChannel openChannel() throws java.io.IOException;
+  public java.io.Reader openReader() throws java.io.IOException;
+  public net.minecraft.util.eventlog.EventLogDirectory$CompressedFile compress() throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path path();
+  public net.minecraft.util.eventlog.EventLogDirectory$FileId id();
+}
+Compiled from "EventLogDirectory.java"
+public class net.minecraft.util.eventlog.EventLogDirectory$FileList implements java.lang.Iterable<net.minecraft.util.eventlog.EventLogDirectory$File> {
+  public net.minecraft.util.eventlog.EventLogDirectory$FileList prune(java.time.LocalDate, int);
+  public net.minecraft.util.eventlog.EventLogDirectory$FileList compressAll();
+  public java.util.Iterator<net.minecraft.util.eventlog.EventLogDirectory$File> iterator();
+  public java.util.stream.Stream<net.minecraft.util.eventlog.EventLogDirectory$File> stream();
+  public java.util.Set<net.minecraft.util.eventlog.EventLogDirectory$FileId> ids();
+}
+Compiled from "EventLogDirectory.java"
+public final class net.minecraft.util.eventlog.EventLogDirectory$CompressedFile extends java.lang.Record implements net.minecraft.util.eventlog.EventLogDirectory$File {
+  public net.minecraft.util.eventlog.EventLogDirectory$CompressedFile(java.nio.file.Path, net.minecraft.util.eventlog.EventLogDirectory$FileId);
+  public java.io.Reader openReader() throws java.io.IOException;
+  public net.minecraft.util.eventlog.EventLogDirectory$CompressedFile compress();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path path();
+  public net.minecraft.util.eventlog.EventLogDirectory$FileId id();
+}
+Compiled from "EventLogDirectory.java"
+public final class net.minecraft.util.eventlog.EventLogDirectory$FileId extends java.lang.Record {
+  public net.minecraft.util.eventlog.EventLogDirectory$FileId(java.time.LocalDate, int);
+  public static net.minecraft.util.eventlog.EventLogDirectory$FileId parse(java.lang.String);
+  public java.lang.String toString();
+  public java.lang.String toFileName(java.lang.String);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.time.LocalDate date();
+  public int index();
+}

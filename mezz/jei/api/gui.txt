@@ -1,0 +1,28 @@
+Compiled from "IRecipeLayoutDrawable.java"
+public interface mezz.jei.api.gui.IRecipeLayoutDrawable<R> {
+  public abstract void setPosition(int, int);
+  public abstract void drawRecipe(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public abstract void drawOverlays(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public abstract boolean isMouseOver(double, double);
+  public default java.util.Optional<net.minecraft.world.item.ItemStack> getItemStackUnderMouse(int, int);
+  public abstract <T> java.util.Optional<T> getIngredientUnderMouse(int, int, mezz.jei.api.ingredients.IIngredientType<T>);
+  public abstract java.util.Optional<mezz.jei.api.gui.inputs.RecipeSlotUnderMouse> getSlotUnderMouse(double, double);
+  public abstract net.minecraft.client.renderer.Rect2i getRect();
+  public abstract net.minecraft.client.renderer.Rect2i getRectWithBorder();
+  public default net.minecraft.client.renderer.Rect2i getRecipeTransferButtonArea();
+  public default net.minecraft.client.renderer.Rect2i getRecipeBookmarkButtonArea();
+  public abstract net.minecraft.client.renderer.Rect2i getSideButtonArea(int);
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotsView getRecipeSlotsView();
+  public abstract mezz.jei.api.recipe.category.IRecipeCategory<R> getRecipeCategory();
+  public abstract R getRecipe();
+  public abstract mezz.jei.api.gui.inputs.IJeiInputHandler getInputHandler();
+  public abstract void tick();
+}
+Compiled from "ITickTimer.java"
+public interface mezz.jei.api.gui.ITickTimer {
+  public abstract int getValue();
+  public abstract int getMaxValue();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.package-info {
+}

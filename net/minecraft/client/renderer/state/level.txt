@@ -1,0 +1,304 @@
+Compiled from "FirstPersonHandsAndItemsRenderState.java"
+public class net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.world.InteractionHand attackHand;
+  public float viewXRot;
+  public float viewYRot;
+  public float xBob;
+  public float yBob;
+  public boolean isScoping;
+  public int useItemRemainingTicks;
+  public int mainHandUseDuration;
+  public int offHandUseDuration;
+  public int mainHandChargeDuration;
+  public int offHandChargeDuration;
+  public float mainHandSwapScale;
+  public float offHandSwapScale;
+  public net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection handRenderSelection;
+  public net.minecraft.world.item.ItemStack mainHandItem;
+  public net.minecraft.world.item.ItemStack offHandItem;
+  public float mainHandHeight;
+  public float oldMainHandHeight;
+  public float offHandHeight;
+  public float oldOffHandHeight;
+  public final net.minecraft.client.renderer.item.ItemStackRenderState mainHandRenderState;
+  public final net.minecraft.client.renderer.item.ItemStackRenderState offHandRenderState;
+  public final net.minecraft.client.renderer.state.MapRenderState mainHandMapRenderState;
+  public final net.minecraft.client.renderer.state.MapRenderState offHandMapRenderState;
+  public boolean hasMainHandMapData;
+  public boolean hasOffHandMapData;
+  public net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState();
+}
+Compiled from "PlayerRenderState.java"
+public final class net.minecraft.client.renderer.state.level.PlayerRenderState$BlockOverlay extends java.lang.Record {
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$BlockOverlay(net.minecraft.resources.Identifier, float, float, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier atlasLocation();
+  public float u0();
+  public float v0();
+  public float u1();
+  public float v1();
+}
+Compiled from "ParticleGroupRenderState.java"
+public interface net.minecraft.client.renderer.state.level.ParticleGroupRenderState {
+  public abstract void submit(net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState);
+  public default void clear();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.state.level.package-info {
+}
+Compiled from "PlayerRenderState.java"
+public class net.minecraft.client.renderer.state.level.PlayerRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public boolean hasPlayer;
+  public net.minecraft.client.renderer.entity.state.AvatarRenderState avatarRenderState;
+  public final net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState firstPersonHandsAndItems;
+  public float portalEffectIntensity;
+  public float nauseaEffectIntensity;
+  public float spinningEffectAngle;
+  public boolean isEyeInWater;
+  public boolean isOnFire;
+  public boolean isUnderWater;
+  public double eyePositionY;
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$BlockOverlay blockOverlay;
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$WaterOverlay waterOverlay;
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$ItemActivationRenderState itemActivation;
+  public net.minecraft.client.renderer.state.level.PlayerRenderState();
+  public void reset();
+}
+Compiled from "ChunkLoadingRenderState.java"
+public class net.minecraft.client.renderer.state.level.ChunkLoadingRenderState {
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet addedEmptySections;
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet removedEmptySections;
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet addedLoadedChunks;
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet removedLoadedChunks;
+  public it.unimi.dsi.fastutil.longs.LongOpenHashSet loadedExpectedChunks;
+  public net.minecraft.client.renderer.state.level.ChunkLoadingRenderState();
+  public void reset();
+}
+Compiled from "CameraEntityRenderState.java"
+public class net.minecraft.client.renderer.state.level.CameraEntityRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public float hurtTime;
+  public int hurtDuration;
+  public float deathTime;
+  public boolean isSleeping;
+  public boolean isLiving;
+  public boolean isPlayer;
+  public boolean isDeadOrDying;
+  public boolean doesMobEffectBlockSky;
+  public float hurtDir;
+  public float backwardsInterpolatedWalkDistance;
+  public float bob;
+  public net.minecraft.client.renderer.state.level.CameraEntityRenderState();
+}
+Compiled from "SkyRenderState.java"
+public class net.minecraft.client.renderer.state.level.SkyRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.world.level.dimension.DimensionType$Skybox skybox;
+  public boolean shouldRenderDarkDisc;
+  public float sunAngle;
+  public float moonAngle;
+  public float starAngle;
+  public float rainBrightness;
+  public float starBrightness;
+  public org.joml.Vector4fc sunriseAndSunsetColor;
+  public net.minecraft.world.level.MoonPhase moonPhase;
+  public org.joml.Vector3fc skyColor;
+  public float endFlashIntensity;
+  public float endFlashXAngle;
+  public float endFlashYAngle;
+  public net.minecraft.client.renderer.state.level.SkyRenderState();
+  public void reset();
+}
+Compiled from "FirstPersonHandsAndItemsRenderState.java"
+public final class net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection extends java.lang.Enum<net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection> {
+  public static final net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection RENDER_BOTH_HANDS;
+  public static final net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection RENDER_MAIN_HAND_ONLY;
+  public static final net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection RENDER_OFF_HAND_ONLY;
+  public final boolean renderMainHand;
+  public final boolean renderOffHand;
+  public static net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection[] values();
+  public static net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection valueOf(java.lang.String);
+  public static net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection onlyForHand(net.minecraft.world.InteractionHand);
+}
+Compiled from "CameraRenderState.java"
+public class net.minecraft.client.renderer.state.level.CameraRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.core.BlockPos blockPos;
+  public net.minecraft.world.phys.Vec3 pos;
+  public float xRot;
+  public float yRot;
+  public boolean initialized;
+  public boolean isPanoramicMode;
+  public boolean isFrustumCaptured;
+  public boolean isFirstPerson;
+  public boolean smartCull;
+  public org.joml.Quaternionf orientation;
+  public float cameraEntityPartialTicks;
+  public net.minecraft.client.renderer.culling.Frustum cullFrustum;
+  public net.minecraft.world.level.material.FogType fogType;
+  public net.minecraft.client.renderer.fog.FogData fogData;
+  public float hudFov;
+  public float depthFar;
+  public org.joml.Matrix4f projectionMatrix;
+  public org.joml.Matrix4f viewRotationMatrix;
+  public net.minecraft.client.renderer.state.level.CameraEntityRenderState entityRenderState;
+  public net.minecraft.client.renderer.state.level.CameraRenderState();
+}
+Compiled from "TransientBlockRenderState.java"
+public final class net.minecraft.client.renderer.state.level.TransientBlockRenderState$Removal extends java.lang.Record {
+  public net.minecraft.client.renderer.state.level.TransientBlockRenderState$Removal(long, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long sectionNode();
+  public long compileTaskStartTimeNs();
+}
+Compiled from "WorldBorderRenderState.java"
+public final class net.minecraft.client.renderer.state.level.WorldBorderRenderState$DistancePerDirection extends java.lang.Record {
+  public net.minecraft.client.renderer.state.level.WorldBorderRenderState$DistancePerDirection(net.minecraft.core.Direction, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Direction direction();
+  public double distance();
+}
+Compiled from "LevelRenderState.java"
+public class net.minecraft.client.renderer.state.level.LevelRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.client.renderer.state.level.CameraRenderState cameraRenderState;
+  public final net.minecraft.client.renderer.state.level.PlayerRenderState playerRenderState;
+  public final java.util.List<net.minecraft.client.renderer.state.level.SectionUpdateRenderState> sectionUpdateRenderStates;
+  public final java.util.List<net.minecraft.client.renderer.entity.state.EntityRenderState> entityRenderStates;
+  public final java.util.List<net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState> blockEntityRenderStates;
+  public net.minecraft.client.renderer.state.level.BlockOutlineRenderState blockOutlineRenderState;
+  public final java.util.List<net.minecraft.client.renderer.state.level.BlockBreakingRenderState> blockBreakingRenderStates;
+  public final net.minecraft.client.renderer.state.level.WeatherRenderState weatherRenderState;
+  public final net.minecraft.client.renderer.state.level.WorldBorderRenderState worldBorderRenderState;
+  public final net.minecraft.client.renderer.state.level.SkyRenderState skyRenderState;
+  public final net.minecraft.client.renderer.state.level.ParticlesRenderState particlesRenderState;
+  public long gameTime;
+  public float worldPartialTicks;
+  public int lastEntityRenderStateCount;
+  public int cloudColor;
+  public float cloudHeight;
+  public boolean render3dCrosshair;
+  public boolean renderWireframeTerrain;
+  public boolean shouldUseMultiDrawIndirectForTerrain;
+  public java.lang.Runnable playerCompiledSectionCallback;
+  public net.minecraft.client.renderer.state.level.ChunkLoadingRenderState chunkLoadingRenderState;
+  public boolean shouldResetChunkLayerSampler;
+  public boolean shouldShowEntityOutlines;
+  public boolean shouldResetSkyRenderer;
+  public net.minecraft.client.renderer.state.level.LevelRenderState();
+  public void reset();
+}
+Compiled from "BlockBreakingRenderState.java"
+public final class net.minecraft.client.renderer.state.level.BlockBreakingRenderState extends java.lang.Record implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.client.renderer.state.level.BlockBreakingRenderState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos blockPos();
+  public net.minecraft.world.level.block.state.BlockState blockState();
+  public int progress();
+}
+Compiled from "BlockOutlineRenderState.java"
+public final class net.minecraft.client.renderer.state.level.BlockOutlineRenderState extends java.lang.Record implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.client.renderer.state.level.BlockOutlineRenderState(net.minecraft.core.BlockPos, boolean, boolean, net.minecraft.world.phys.shapes.VoxelShape);
+  public net.minecraft.client.renderer.state.level.BlockOutlineRenderState(net.minecraft.core.BlockPos, boolean, boolean, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+  public boolean isTranslucent();
+  public boolean highContrast();
+  public net.minecraft.world.phys.shapes.VoxelShape shape();
+  public net.minecraft.world.phys.shapes.VoxelShape collisionShape();
+  public net.minecraft.world.phys.shapes.VoxelShape occlusionShape();
+  public net.minecraft.world.phys.shapes.VoxelShape interactionShape();
+}
+Compiled from "WeatherRenderState.java"
+public class net.minecraft.client.renderer.state.level.WeatherRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public final java.util.List<net.minecraft.client.renderer.WeatherEffectRenderer$ColumnInstance> rainColumns;
+  public final java.util.List<net.minecraft.client.renderer.WeatherEffectRenderer$ColumnInstance> snowColumns;
+  public float intensity;
+  public int radius;
+  public net.minecraft.client.renderer.state.level.WeatherRenderState();
+  public void reset();
+}
+Compiled from "QuadParticleRenderState.java"
+public interface net.minecraft.client.renderer.state.level.QuadParticleRenderState$ParticleConsumer {
+  public abstract void consume(float, float, float, float, float, float, float, float, float, float, float, float, int, int);
+}
+Compiled from "PlayerRenderState.java"
+public class net.minecraft.client.renderer.state.level.PlayerRenderState$ItemActivationRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public final net.minecraft.world.item.ItemStack item;
+  public final int ticks;
+  public final float offX;
+  public final float offY;
+  public final net.minecraft.client.renderer.item.ItemStackRenderState itemState;
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$ItemActivationRenderState(net.minecraft.world.item.ItemStack, int, float, float);
+}
+Compiled from "TransientBlockRenderState.java"
+public class net.minecraft.client.renderer.state.level.TransientBlockRenderState {
+  public net.minecraft.client.renderer.block.MovingBlockRenderState movingBlockRenderState;
+  public long createTimeNs;
+  public long liveUntilMs;
+  public net.minecraft.client.renderer.state.level.TransientBlockRenderState();
+}
+Compiled from "QuadParticleRenderState.java"
+public class net.minecraft.client.renderer.state.level.QuadParticleRenderState implements net.minecraft.client.renderer.state.level.ParticleGroupRenderState {
+  public net.minecraft.client.renderer.state.level.QuadParticleRenderState();
+  public void add(net.minecraft.client.particle.SingleQuadParticle$Layer, float, float, float, float, float, float, float, float, float, float, float, float, int, int);
+  public void clear();
+  public boolean isEmpty();
+  public void buildLayer(net.minecraft.client.particle.SingleQuadParticle$Layer, com.mojang.blaze3d.vertex.VertexConsumer);
+  public java.util.Set<net.minecraft.client.particle.SingleQuadParticle$Layer> layers();
+  protected void renderRotatedQuad(com.mojang.blaze3d.vertex.VertexConsumer, float, float, float, float, float, float, float, float, float, float, float, float, int, int);
+  public void submit(net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState);
+}
+Compiled from "WorldBorderRenderState.java"
+public class net.minecraft.client.renderer.state.level.WorldBorderRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public double minX;
+  public double maxX;
+  public double minZ;
+  public double maxZ;
+  public int tint;
+  public double alpha;
+  public net.minecraft.client.renderer.state.level.WorldBorderRenderState();
+  public java.util.List<net.minecraft.client.renderer.state.level.WorldBorderRenderState$DistancePerDirection> closestBorder(double, double);
+  public void reset();
+}
+Compiled from "SectionUpdateRenderState.java"
+public final class net.minecraft.client.renderer.state.level.SectionUpdateRenderState extends java.lang.Record {
+  public net.minecraft.client.renderer.state.level.SectionUpdateRenderState(long, boolean, net.minecraft.client.renderer.chunk.RenderSectionRegion);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long sectionNode();
+  public boolean playerChanged();
+  public net.minecraft.client.renderer.chunk.RenderSectionRegion region();
+}
+Compiled from "ParticlesRenderState.java"
+public class net.minecraft.client.renderer.state.level.ParticlesRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public final java.util.List<net.minecraft.client.renderer.state.level.ParticleGroupRenderState> particles;
+  public net.minecraft.client.renderer.state.level.ParticlesRenderState();
+  public void reset();
+  public void add(net.minecraft.client.renderer.state.level.ParticleGroupRenderState);
+  public void submit(net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState);
+}
+Compiled from "QuadParticleRenderState.java"
+class net.minecraft.client.renderer.state.level.QuadParticleRenderState$Storage {
+  public void add(float, float, float, float, float, float, float, float, float, float, float, float, int, int);
+  public void forEachParticle(net.minecraft.client.renderer.state.level.QuadParticleRenderState$ParticleConsumer);
+  public void clear();
+  public int count();
+}
+Compiled from "PlayerRenderState.java"
+public final class net.minecraft.client.renderer.state.level.PlayerRenderState$WaterOverlay extends java.lang.Record {
+  public net.minecraft.client.renderer.state.level.PlayerRenderState$WaterOverlay(int, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int color();
+  public float uOffset();
+  public float vOffset();
+}

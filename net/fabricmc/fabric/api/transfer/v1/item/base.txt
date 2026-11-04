@@ -1,0 +1,34 @@
+Compiled from "SingleItemStorage.java"
+public abstract class net.fabricmc.fabric.api.transfer.v1.item.base.SingleItemStorage extends net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> {
+  public net.fabricmc.fabric.api.transfer.v1.item.base.SingleItemStorage();
+  protected final net.fabricmc.fabric.api.transfer.v1.item.ItemVariant getBlankVariant();
+  public void readValue(net.minecraft.world.level.storage.ValueInput);
+  public void writeValue(net.minecraft.world.level.storage.ValueOutput);
+  protected net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant getBlankVariant();
+}
+Compiled from "SingleStackStorage.java"
+public abstract class net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage extends net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant<net.minecraft.world.item.ItemStack> implements net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> {
+  public net.fabricmc.fabric.api.transfer.v1.item.base.SingleStackStorage();
+  protected abstract net.minecraft.world.item.ItemStack getStack();
+  protected abstract void setStack(net.minecraft.world.item.ItemStack);
+  protected boolean canInsert(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant);
+  protected boolean canExtract(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant);
+  protected int getCapacity(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant);
+  public boolean isResourceBlank();
+  public net.fabricmc.fabric.api.transfer.v1.item.ItemVariant getResource();
+  public long getAmount();
+  public long getCapacity();
+  public long insert(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public long extract(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  protected net.minecraft.world.item.ItemStack createSnapshot();
+  protected void readSnapshot(net.minecraft.world.item.ItemStack);
+  public java.lang.String toString();
+  protected void readSnapshot(java.lang.Object);
+  protected java.lang.Object createSnapshot();
+  public long extract(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public long insert(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public java.lang.Object getResource();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.item.base.package-info {
+}

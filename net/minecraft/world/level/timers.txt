@@ -1,0 +1,83 @@
+Compiled from "TimerCallbacks.java"
+public class net.minecraft.world.level.timers.TimerCallbacks<C> {
+  public static final net.minecraft.world.level.timers.TimerCallbacks<net.minecraft.server.MinecraftServer> SERVER_CALLBACKS;
+  public net.minecraft.world.level.timers.TimerCallbacks();
+  public net.minecraft.world.level.timers.TimerCallbacks<C> register(net.minecraft.resources.Identifier, com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.timers.TimerCallback<C>>);
+  public com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerCallback<C>> codec();
+}
+Compiled from "FunctionTagCallback.java"
+public final class net.minecraft.world.level.timers.FunctionTagCallback extends java.lang.Record implements net.minecraft.world.level.timers.TimerCallback<net.minecraft.server.MinecraftServer> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.timers.FunctionTagCallback> CODEC;
+  public net.minecraft.world.level.timers.FunctionTagCallback(net.minecraft.resources.Identifier);
+  public void handle(net.minecraft.server.MinecraftServer, net.minecraft.world.level.timers.TimerQueue<net.minecraft.server.MinecraftServer>, long);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.timers.FunctionTagCallback> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier tagId();
+  public void handle(java.lang.Object, net.minecraft.world.level.timers.TimerQueue, long);
+}
+Compiled from "TimerQueue.java"
+public final class net.minecraft.world.level.timers.TimerQueue$Event$Packed<T> extends java.lang.Record {
+  public net.minecraft.world.level.timers.TimerQueue$Event$Packed(long, java.lang.String, net.minecraft.world.level.timers.TimerCallback<T>);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerQueue$Event$Packed<T>> codec(com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerCallback<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long triggerTime();
+  public java.lang.String id();
+  public net.minecraft.world.level.timers.TimerCallback<T> callback();
+}
+Compiled from "TimerQueue.java"
+public final class net.minecraft.world.level.timers.TimerQueue$Packed<T> extends java.lang.Record {
+  public net.minecraft.world.level.timers.TimerQueue$Packed(java.util.List<net.minecraft.world.level.timers.TimerQueue$Event$Packed<T>>);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerQueue$Packed<T>> codec(com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerCallback<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.timers.TimerQueue$Event$Packed<T>> events();
+}
+Compiled from "TimerQueue.java"
+public final class net.minecraft.world.level.timers.TimerQueue$Event<T> extends java.lang.Record {
+  public net.minecraft.world.level.timers.TimerQueue$Event(long, com.google.common.primitives.UnsignedLong, java.lang.String, net.minecraft.world.level.timers.TimerCallback<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long triggerTime();
+  public com.google.common.primitives.UnsignedLong sequentialId();
+  public java.lang.String id();
+  public net.minecraft.world.level.timers.TimerCallback<T> callback();
+}
+Compiled from "FunctionCallback.java"
+public final class net.minecraft.world.level.timers.FunctionCallback extends java.lang.Record implements net.minecraft.world.level.timers.TimerCallback<net.minecraft.server.MinecraftServer> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.timers.FunctionCallback> CODEC;
+  public net.minecraft.world.level.timers.FunctionCallback(net.minecraft.resources.Identifier);
+  public void handle(net.minecraft.server.MinecraftServer, net.minecraft.world.level.timers.TimerQueue<net.minecraft.server.MinecraftServer>, long);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.timers.FunctionCallback> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier functionId();
+  public void handle(java.lang.Object, net.minecraft.world.level.timers.TimerQueue, long);
+}
+Compiled from "TimerQueue.java"
+public class net.minecraft.world.level.timers.TimerQueue<T> extends net.minecraft.world.level.saveddata.SavedData {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerQueue<net.minecraft.server.MinecraftServer>> CODEC;
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.level.timers.TimerQueue<net.minecraft.server.MinecraftServer>> TYPE;
+  protected static <T> com.mojang.serialization.Codec<net.minecraft.world.level.timers.TimerQueue<T>> codec(net.minecraft.world.level.timers.TimerCallbacks<T>);
+  public net.minecraft.world.level.timers.TimerQueue(net.minecraft.world.level.timers.TimerQueue$Packed<T>);
+  public net.minecraft.world.level.timers.TimerQueue();
+  public void tick(T, long);
+  public void schedule(java.lang.String, long, net.minecraft.world.level.timers.TimerCallback<T>);
+  public int remove(java.lang.String);
+  public java.util.Set<java.lang.String> getEventsIds();
+  protected net.minecraft.world.level.timers.TimerQueue$Packed<T> pack();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.timers.package-info {
+}
+Compiled from "TimerCallback.java"
+public interface net.minecraft.world.level.timers.TimerCallback<T> {
+  public abstract void handle(T, net.minecraft.world.level.timers.TimerQueue<T>, long);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.timers.TimerCallback<T>> codec();
+}

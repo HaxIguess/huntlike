@@ -1,0 +1,108 @@
+Compiled from "JoinMultiplayerScreen.java"
+public class net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen extends net.minecraft.client.gui.screens.Screen {
+  protected net.minecraft.client.gui.screens.multiplayer.ServerSelectionList serverSelectionList;
+  public net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen(net.minecraft.client.gui.screens.Screen);
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+  public void tick();
+  public void removed();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void join(net.minecraft.client.multiplayer.ServerData);
+  protected void onSelectedChange();
+  public net.minecraft.client.multiplayer.ServerStatusPinger getPinger();
+  public net.minecraft.client.multiplayer.ServerList getServers();
+}
+Compiled from "ServerReconfigScreen.java"
+public class net.minecraft.client.gui.screens.multiplayer.ServerReconfigScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.multiplayer.ServerReconfigScreen(net.minecraft.network.chat.Component, net.minecraft.network.Connection);
+  public boolean shouldCloseOnEsc();
+  protected void init();
+  protected void repositionElements();
+  public void tick();
+}
+Compiled from "ServerSelectionList.java"
+public class net.minecraft.client.gui.screens.multiplayer.ServerSelectionList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.multiplayer.ServerSelectionList(net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen, net.minecraft.client.Minecraft, int, int, int, int);
+  public void setSelected(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry);
+  public void updateOnlineServers(net.minecraft.client.multiplayer.ServerList);
+  public void updateNetworkServers(java.util.List<net.minecraft.client.server.LanServer>);
+  public int getRowWidth();
+  public void removed();
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "CodeOfConductScreen.java"
+public class net.minecraft.client.gui.screens.multiplayer.CodeOfConductScreen extends net.minecraft.client.gui.screens.multiplayer.WarningScreen {
+  public net.minecraft.client.gui.screens.multiplayer.CodeOfConductScreen(net.minecraft.client.multiplayer.ServerData, net.minecraft.client.gui.screens.Screen, java.lang.String, it.unimi.dsi.fastutil.booleans.BooleanConsumer);
+  protected net.minecraft.client.gui.layouts.Layout addFooterButtons();
+  public boolean shouldCloseOnEsc();
+  public void tick();
+}
+Compiled from "WarningScreen.java"
+public abstract class net.minecraft.client.gui.screens.multiplayer.WarningScreen extends net.minecraft.client.gui.screens.Screen {
+  protected net.minecraft.client.gui.components.Checkbox stopShowing;
+  protected net.minecraft.client.gui.screens.multiplayer.WarningScreen(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  protected net.minecraft.client.gui.screens.multiplayer.WarningScreen(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  protected abstract net.minecraft.client.gui.layouts.Layout addFooterButtons();
+  protected void init();
+  protected void repositionElements();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+}
+Compiled from "ServerSelectionList.java"
+public abstract class net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry> implements java.lang.AutoCloseable {
+  public net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry();
+  public void close();
+  protected abstract boolean matches(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry);
+  public abstract void join();
+}
+Compiled from "RestrictionsScreen.java"
+public class net.minecraft.client.gui.screens.multiplayer.RestrictionsScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.multiplayer.RestrictionsScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.ChatAbilities);
+  protected void init();
+  public void onClose();
+  protected void repositionElements();
+}
+Compiled from "ServerSelectionList.java"
+public class net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$OnlineServerEntry extends net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry implements net.minecraft.client.gui.components.SelectableEntry {
+  protected net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$OnlineServerEntry(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList, net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen, net.minecraft.client.multiplayer.ServerData);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public void updateServerList();
+  protected void extractIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, net.minecraft.resources.Identifier);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void join();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public net.minecraft.client.multiplayer.ServerData getServerData();
+  public net.minecraft.network.chat.Component getNarration();
+  public void close();
+  protected boolean matches(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.multiplayer.package-info {
+}
+Compiled from "SafetyScreen.java"
+public class net.minecraft.client.gui.screens.multiplayer.SafetyScreen extends net.minecraft.client.gui.screens.multiplayer.WarningScreen {
+  public net.minecraft.client.gui.screens.multiplayer.SafetyScreen(net.minecraft.client.gui.screens.Screen);
+  protected net.minecraft.client.gui.layouts.Layout addFooterButtons();
+  public void onClose();
+}
+Compiled from "ServerSelectionList.java"
+public class net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$NetworkServerEntry extends net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry {
+  protected final net.minecraft.client.Minecraft minecraft;
+  protected final net.minecraft.client.server.LanServer serverData;
+  protected net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$NetworkServerEntry(net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen, net.minecraft.client.server.LanServer);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void join();
+  public net.minecraft.network.chat.Component getNarration();
+  public net.minecraft.network.chat.Component getServerNarration();
+  protected boolean matches(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry);
+}
+Compiled from "ServerSelectionList.java"
+public class net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$LANHeader extends net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry {
+  public net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$LANHeader();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+  protected boolean matches(net.minecraft.client.gui.screens.multiplayer.ServerSelectionList$Entry);
+  public void join();
+}

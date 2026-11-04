@@ -1,0 +1,166 @@
+Compiled from "ComponentPredicateParser.java"
+class net.minecraft.commands.arguments.item.ComponentPredicateParser$TagLookupRule<T, C, P> extends net.minecraft.util.parsing.packrat.commands.ResourceLookupRule<net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P>, T> {
+  protected T validateElement(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws java.lang.Exception;
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> possibleResources();
+}
+Compiled from "ComponentPredicateParser.java"
+class net.minecraft.commands.arguments.item.ComponentPredicateParser$PredicateLookupRule<T, C, P> extends net.minecraft.util.parsing.packrat.commands.ResourceLookupRule<net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P>, P> {
+  protected P validateElement(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws java.lang.Exception;
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> possibleResources();
+}
+Compiled from "ItemPredicateArgument.java"
+public interface net.minecraft.commands.arguments.item.ItemPredicateArgument$Result extends java.util.function.Predicate<net.minecraft.world.item.ItemStack> {
+}
+Compiled from "ItemInput.java"
+public final class net.minecraft.commands.arguments.item.ItemInput extends java.lang.Record {
+  public net.minecraft.commands.arguments.item.ItemInput(net.minecraft.core.Holder<net.minecraft.world.item.Item>, net.minecraft.core.component.DataComponentPatch);
+  public net.minecraft.world.item.ItemStack createItemStack(int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.item.Item> item();
+  public net.minecraft.core.component.DataComponentPatch components();
+}
+Compiled from "FunctionArgument.java"
+public interface net.minecraft.commands.arguments.item.FunctionArgument$Result {
+  public abstract java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> create(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract com.mojang.datafixers.util.Pair<net.minecraft.resources.Identifier, com.mojang.datafixers.util.Either<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>, java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>>>> unwrap(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract com.mojang.datafixers.util.Pair<net.minecraft.resources.Identifier, java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>>> unwrapToCollection(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ItemParser.java"
+class net.minecraft.commands.arguments.item.ItemParser$State {
+  public void parse() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.component.DataComponentType<?> readComponentType(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "FunctionArgument.java"
+public class net.minecraft.commands.arguments.item.FunctionArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.item.FunctionArgument$Result> {
+  public net.minecraft.commands.arguments.item.FunctionArgument();
+  public static net.minecraft.commands.arguments.item.FunctionArgument functions();
+  public net.minecraft.commands.arguments.item.FunctionArgument$Result parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> getFunctions(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static com.mojang.datafixers.util.Pair<net.minecraft.resources.Identifier, com.mojang.datafixers.util.Either<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>, java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>>>> getFunctionOrTag(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static com.mojang.datafixers.util.Pair<net.minecraft.resources.Identifier, java.util.Collection<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>>> getFunctionCollection(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ItemParser.java"
+class net.minecraft.commands.arguments.item.ItemParser$SuggestionsVisitor implements net.minecraft.commands.arguments.item.ItemParser$Visitor {
+  public void visitSuggestions(java.util.function.Function<com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions>>);
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> resolveSuggestions(com.mojang.brigadier.suggestion.SuggestionsBuilder, com.mojang.brigadier.StringReader);
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.item.package-info {
+}
+Compiled from "ItemPredicateArgument.java"
+public class net.minecraft.commands.arguments.item.ItemPredicateArgument extends net.minecraft.util.parsing.packrat.commands.ParserBasedArgument<net.minecraft.commands.arguments.item.ItemPredicateArgument$Result> {
+  public net.minecraft.commands.arguments.item.ItemPredicateArgument(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.item.ItemPredicateArgument itemPredicate(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.item.ItemPredicateArgument$Result getItemPredicate(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public java.util.Collection<java.lang.String> getExamples();
+}
+Compiled from "ComponentPredicateParser.java"
+class net.minecraft.commands.arguments.item.ComponentPredicateParser$ElementLookupRule<T, C, P> extends net.minecraft.util.parsing.packrat.commands.ResourceLookupRule<net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P>, T> {
+  protected T validateElement(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws java.lang.Exception;
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> possibleResources();
+}
+Compiled from "ComponentPredicateParser.java"
+public class net.minecraft.commands.arguments.item.ComponentPredicateParser {
+  public net.minecraft.commands.arguments.item.ComponentPredicateParser();
+  public static <T, C, P> net.minecraft.util.parsing.packrat.commands.Grammar<java.util.List<T>> createGrammar(net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P>);
+}
+Compiled from "ComponentPredicateParser.java"
+class net.minecraft.commands.arguments.item.ComponentPredicateParser$ComponentLookupRule<T, C, P> extends net.minecraft.util.parsing.packrat.commands.ResourceLookupRule<net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P>, C> {
+  protected C validateElement(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws java.lang.Exception;
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> possibleResources();
+}
+Compiled from "ComponentPredicateParser.java"
+public interface net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<T, C, P> {
+  public abstract T forElementType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> listElementTypes();
+  public abstract T forTagType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> listTagTypes();
+  public abstract C lookupComponentType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> listComponentTypes();
+  public abstract T createComponentTest(com.mojang.brigadier.ImmutableStringReader, C, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract T createComponentTest(com.mojang.brigadier.ImmutableStringReader, C);
+  public abstract P lookupPredicateType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> listPredicateTypes();
+  public abstract T createPredicateTest(com.mojang.brigadier.ImmutableStringReader, P, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract T negate(T);
+  public abstract T anyOf(java.util.List<T>);
+}
+Compiled from "ItemPredicateArgument.java"
+final class net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper extends java.lang.Record {
+  public static <T> net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper create(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier, net.minecraft.core.component.DataComponentType<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> decode(com.mojang.brigadier.ImmutableStringReader, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> presenceChecker();
+  public com.mojang.serialization.Decoder<? extends java.util.function.Predicate<net.minecraft.world.item.ItemStack>> valueChecker();
+}
+Compiled from "ItemParser.java"
+public class net.minecraft.commands.arguments.item.ItemParser {
+  public static final char SYNTAX_START_COMPONENTS;
+  public static final char SYNTAX_END_COMPONENTS;
+  public static final char SYNTAX_COMPONENT_SEPARATOR;
+  public static final char SYNTAX_COMPONENT_ASSIGNMENT;
+  public static final char SYNTAX_REMOVED_COMPONENT;
+  public net.minecraft.commands.arguments.item.ItemParser(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.commands.arguments.item.ItemInput parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public void parse(com.mojang.brigadier.StringReader, net.minecraft.commands.arguments.item.ItemParser$Visitor) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> fillSuggestions(com.mojang.brigadier.suggestion.SuggestionsBuilder);
+}
+Compiled from "ItemPredicateArgument.java"
+class net.minecraft.commands.arguments.item.ItemPredicateArgument$Context implements net.minecraft.commands.arguments.item.ComponentPredicateParser$Context<java.util.function.Predicate<net.minecraft.world.item.ItemStack>, net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper, net.minecraft.commands.arguments.item.ItemPredicateArgument$PredicateWrapper> {
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> forElementType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> forTagType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper lookupComponentType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> createComponentTest(com.mojang.brigadier.ImmutableStringReader, net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> createComponentTest(com.mojang.brigadier.ImmutableStringReader, net.minecraft.commands.arguments.item.ItemPredicateArgument$ComponentWrapper);
+  public net.minecraft.commands.arguments.item.ItemPredicateArgument$PredicateWrapper lookupPredicateType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> createPredicateTest(com.mojang.brigadier.ImmutableStringReader, net.minecraft.commands.arguments.item.ItemPredicateArgument$PredicateWrapper, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> listElementTypes();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> listTagTypes();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> listComponentTypes();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> listPredicateTypes();
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> negate(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> anyOf(java.util.List<java.util.function.Predicate<net.minecraft.world.item.ItemStack>>);
+  public java.lang.Object anyOf(java.util.List);
+  public java.lang.Object negate(java.lang.Object);
+  public java.lang.Object createPredicateTest(com.mojang.brigadier.ImmutableStringReader, java.lang.Object, com.mojang.serialization.Dynamic) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object lookupPredicateType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object createComponentTest(com.mojang.brigadier.ImmutableStringReader, java.lang.Object);
+  public java.lang.Object createComponentTest(com.mojang.brigadier.ImmutableStringReader, java.lang.Object, com.mojang.serialization.Dynamic) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object lookupComponentType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object forTagType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.Object forElementType(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ItemParser.java"
+public interface net.minecraft.commands.arguments.item.ItemParser$Visitor {
+  public default void visitItem(net.minecraft.core.Holder<net.minecraft.world.item.Item>);
+  public default <T> void visitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public default <T> void visitRemovedComponent(net.minecraft.core.component.DataComponentType<T>);
+  public default void visitSuggestions(java.util.function.Function<com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions>>);
+}
+Compiled from "ItemArgument.java"
+public class net.minecraft.commands.arguments.item.ItemArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.item.ItemInput> {
+  public net.minecraft.commands.arguments.item.ItemArgument(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.item.ItemArgument item(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.arguments.item.ItemInput parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static <S> net.minecraft.commands.arguments.item.ItemInput getItem(com.mojang.brigadier.context.CommandContext<S>, java.lang.String);
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ItemPredicateArgument.java"
+final class net.minecraft.commands.arguments.item.ItemPredicateArgument$PredicateWrapper extends java.lang.Record {
+  public net.minecraft.commands.arguments.item.ItemPredicateArgument$PredicateWrapper(net.minecraft.core.Holder$Reference<net.minecraft.core.component.predicates.DataComponentPredicate$Type<?>>);
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> decode(com.mojang.brigadier.ImmutableStringReader, com.mojang.serialization.Dynamic<?>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public com.mojang.serialization.Decoder<? extends java.util.function.Predicate<net.minecraft.world.item.ItemStack>> type();
+}

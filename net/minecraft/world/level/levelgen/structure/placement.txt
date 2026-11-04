@@ -1,0 +1,98 @@
+Compiled from "RandomSpreadType.java"
+public final class net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType extends java.lang.Enum<net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType LINEAR;
+  public static final net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType TRIANGULAR;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType> CODEC;
+  public static net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType[] values();
+  public static net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public int evaluate(net.minecraft.util.RandomSource, int);
+}
+Compiled from "DimensionOriginStructurePlacement.java"
+public class net.minecraft.world.level.levelgen.structure.placement.DimensionOriginStructurePlacement implements net.minecraft.world.level.levelgen.structure.placement.StructurePlacement {
+  public static final net.minecraft.world.level.levelgen.structure.placement.DimensionOriginStructurePlacement INSTANCE;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.DimensionOriginStructurePlacement> CODEC;
+  public boolean isStructureChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.DimensionOriginStructurePlacement> codec();
+}
+Compiled from "ConcentricRingsStructurePlacement.java"
+public class net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement extends net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement> CODEC;
+  public net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement(net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod, float, int, java.util.Optional<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone>, int, int, int, net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>);
+  public net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement(int, int, int, net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>);
+  public int distance();
+  public int spread();
+  public int count();
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome> preferredBiomes();
+  protected boolean isPlacementChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement> codec();
+}
+Compiled from "StructurePlacements.java"
+public interface net.minecraft.world.level.levelgen.structure.placement.StructurePlacements {
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.structure.placement.StructurePlacement> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.structure.placement.StructurePlacement>>);
+}
+Compiled from "RandomSpreadStructurePlacement.java"
+public class net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement extends net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement> CODEC;
+  public net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement(net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod, float, int, java.util.Optional<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone>, int, int, net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType);
+  public net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement(int, int, net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType, int);
+  public int spacing();
+  public int separation();
+  public net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType spreadType();
+  public net.minecraft.world.level.ChunkPos getPotentialStructureChunk(long, int, int);
+  protected boolean isPlacementChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement> codec();
+}
+Compiled from "AbstractSpreadingStructurePlacement.java"
+public abstract class net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement implements net.minecraft.world.level.levelgen.structure.placement.StructurePlacement {
+  protected static <S extends net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement> com.mojang.datafixers.Products$P5<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<S>, net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod, java.lang.Float, java.lang.Integer, java.util.Optional<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone>> placementCodec(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<S>);
+  protected net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement(net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod, float, int, java.util.Optional<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement> codec();
+  public net.minecraft.core.Vec3i locateOffset();
+  protected net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod frequencyReductionMethod();
+  protected float frequency();
+  protected int salt();
+  protected java.util.Optional<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone> exclusionZone();
+  public boolean isStructureChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  public boolean applyAdditionalChunkRestrictions(int, int, long);
+  public boolean applyInteractionsWithOtherStructures(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  protected abstract boolean isPlacementChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+}
+Compiled from "AbstractSpreadingStructurePlacement.java"
+public interface net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReducer {
+  public abstract boolean shouldGenerate(long, int, int, int, float);
+}
+Compiled from "AbstractSpreadingStructurePlacement.java"
+public final class net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod extends java.lang.Enum<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod DEFAULT;
+  public static final net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod LEGACY_TYPE_1;
+  public static final net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod LEGACY_TYPE_2;
+  public static final net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod LEGACY_TYPE_3;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod> CODEC;
+  public static net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod[] values();
+  public static net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$FrequencyReductionMethod valueOf(java.lang.String);
+  public boolean shouldGenerate(long, int, int, int, float);
+  public java.lang.String getSerializedName();
+}
+Compiled from "AbstractSpreadingStructurePlacement.java"
+public final class net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone> CODEC;
+  public net.minecraft.world.level.levelgen.structure.placement.AbstractSpreadingStructurePlacement$ExclusionZone(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.StructureSet>, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.StructureSet> otherSet();
+  public int chunkCount();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.structure.placement.package-info {
+}
+Compiled from "StructurePlacement.java"
+public interface net.minecraft.world.level.levelgen.structure.placement.StructurePlacement {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.structure.placement.StructurePlacement> CODEC;
+  public abstract boolean isStructureChunk(net.minecraft.world.level.chunk.ChunkGeneratorStructureState, int, int);
+  public default boolean applyAdditionalChunkRestrictions(int, int, long);
+  public default net.minecraft.core.BlockPos getLocatePos(net.minecraft.world.level.ChunkPos);
+  public default net.minecraft.core.Vec3i locateOffset();
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.structure.placement.StructurePlacement> codec();
+}

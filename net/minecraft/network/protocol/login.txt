@@ -1,0 +1,146 @@
+Compiled from "ClientboundCustomQueryPacket.java"
+public final class net.minecraft.network.protocol.login.ClientboundCustomQueryPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ClientLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ClientboundCustomQueryPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ClientboundCustomQueryPacket(int, net.minecraft.network.protocol.login.custom.CustomQueryPayload);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundCustomQueryPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int transactionId();
+  public net.minecraft.network.protocol.login.custom.CustomQueryPayload payload();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "LoginPacketTypes.java"
+public class net.minecraft.network.protocol.login.LoginPacketTypes {
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundCustomQueryPacket> CLIENTBOUND_CUSTOM_QUERY;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket> CLIENTBOUND_LOGIN_FINISHED;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundHelloPacket> CLIENTBOUND_HELLO;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket> CLIENTBOUND_LOGIN_COMPRESSION;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket> CLIENTBOUND_LOGIN_DISCONNECT;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket> SERVERBOUND_CUSTOM_QUERY_ANSWER;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundHelloPacket> SERVERBOUND_HELLO;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundKeyPacket> SERVERBOUND_KEY;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket> SERVERBOUND_LOGIN_ACKNOWLEDGED;
+  public net.minecraft.network.protocol.login.LoginPacketTypes();
+}
+Compiled from "ServerboundCustomQueryAnswerPacket.java"
+public final class net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ServerLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket(int, net.minecraft.network.protocol.login.custom.CustomQueryAnswerPayload);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ServerLoginPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int transactionId();
+  public net.minecraft.network.protocol.login.custom.CustomQueryAnswerPayload payload();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundHelloPacket.java"
+public class net.minecraft.network.protocol.login.ClientboundHelloPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ClientLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ClientboundHelloPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ClientboundHelloPacket(java.lang.String, byte[], byte[], boolean);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundHelloPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public java.lang.String getServerId();
+  public java.security.PublicKey getPublicKey() throws net.minecraft.util.CryptException;
+  public byte[] getChallenge();
+  public boolean shouldAuthenticate();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundHelloPacket.java"
+public final class net.minecraft.network.protocol.login.ServerboundHelloPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ServerLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ServerboundHelloPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ServerboundHelloPacket(java.lang.String, java.util.UUID);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundHelloPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ServerLoginPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.UUID profileId();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundLoginAcknowledgedPacket.java"
+public class net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ServerLoginPacketListener> {
+  public static final net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ServerLoginPacketListener);
+  public boolean isTerminal();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundLoginFinishedPacket.java"
+public final class net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ClientLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket(com.mojang.authlib.GameProfile, java.util.UUID);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public boolean isTerminal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.authlib.GameProfile gameProfile();
+  public java.util.UUID sessionId();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundKeyPacket.java"
+public class net.minecraft.network.protocol.login.ServerboundKeyPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ServerLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ServerboundKeyPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ServerboundKeyPacket(javax.crypto.SecretKey, java.security.PublicKey, byte[]) throws net.minecraft.util.CryptException;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ServerboundKeyPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ServerLoginPacketListener);
+  public javax.crypto.SecretKey getSecretKey(java.security.PrivateKey) throws net.minecraft.util.CryptException;
+  public boolean isChallengeValid(byte[], java.security.PrivateKey);
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundLoginDisconnectPacket.java"
+public final class net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ClientLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket(net.minecraft.network.chat.Component);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component reason();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundLoginCompressionPacket.java"
+public class net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.login.ClientLoginPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket(int);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket> type();
+  public void handle(net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public int getCompressionThreshold();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.login.package-info {
+}
+Compiled from "ClientLoginPacketListener.java"
+public interface net.minecraft.network.protocol.login.ClientLoginPacketListener extends net.minecraft.network.protocol.cookie.ClientCookiePacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleHello(net.minecraft.network.protocol.login.ClientboundHelloPacket);
+  public abstract void handleLoginFinished(net.minecraft.network.protocol.login.ClientboundLoginFinishedPacket);
+  public abstract void handleDisconnect(net.minecraft.network.protocol.login.ClientboundLoginDisconnectPacket);
+  public abstract void handleCompression(net.minecraft.network.protocol.login.ClientboundLoginCompressionPacket);
+  public abstract void handleCustomQuery(net.minecraft.network.protocol.login.ClientboundCustomQueryPacket);
+}
+Compiled from "LoginProtocols.java"
+public class net.minecraft.network.protocol.login.LoginProtocols {
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.login.ServerLoginPacketListener, net.minecraft.network.FriendlyByteBuf> SERVERBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.login.ServerLoginPacketListener> SERVERBOUND;
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.login.ClientLoginPacketListener, net.minecraft.network.FriendlyByteBuf> CLIENTBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.login.ClientLoginPacketListener> CLIENTBOUND;
+  public net.minecraft.network.protocol.login.LoginProtocols();
+}
+Compiled from "ServerLoginPacketListener.java"
+public interface net.minecraft.network.protocol.login.ServerLoginPacketListener extends net.minecraft.network.protocol.cookie.ServerCookiePacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleHello(net.minecraft.network.protocol.login.ServerboundHelloPacket);
+  public abstract void handleKey(net.minecraft.network.protocol.login.ServerboundKeyPacket);
+  public abstract void handleCustomQueryPacket(net.minecraft.network.protocol.login.ServerboundCustomQueryAnswerPacket);
+  public abstract void handleLoginAcknowledgement(net.minecraft.network.protocol.login.ServerboundLoginAcknowledgedPacket);
+}

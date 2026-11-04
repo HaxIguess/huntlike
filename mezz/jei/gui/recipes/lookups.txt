@@ -1,0 +1,79 @@
+Compiled from "FocusedRecipes.java"
+public class mezz.jei.gui.recipes.lookups.FocusedRecipes<T> implements mezz.jei.gui.recipes.lookups.IFocusedRecipes<T> {
+  public static <T> mezz.jei.gui.recipes.lookups.IFocusedRecipes<T> create(mezz.jei.api.recipe.IFocusGroup, mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.recipe.category.IRecipeCategory<T>);
+  public mezz.jei.api.recipe.category.IRecipeCategory<T> getRecipeCategory();
+  public java.util.List<T> getRecipes();
+}
+Compiled from "IFocusedRecipes.java"
+public interface mezz.jei.gui.recipes.lookups.IFocusedRecipes<T> {
+  public abstract mezz.jei.api.recipe.category.IRecipeCategory<T> getRecipeCategory();
+  public abstract java.util.List<T> getRecipes();
+}
+Compiled from "ILookupState.java"
+public interface mezz.jei.gui.recipes.lookups.ILookupState {
+  public abstract java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> getRecipeCategories();
+  public abstract boolean moveToRecipeCategory(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public abstract int getRecipesPerPage();
+  public abstract void setRecipesPerPage(int);
+  public abstract int getRecipeIndex();
+  public abstract mezz.jei.api.recipe.IFocusGroup getFocuses();
+  public abstract mezz.jei.gui.recipes.lookups.IFocusedRecipes<?> getFocusedRecipes();
+  public abstract boolean nextRecipeCategory();
+  public abstract boolean previousRecipeCategory();
+  public abstract void goToFirstPage();
+  public abstract boolean nextPage();
+  public abstract boolean previousPage();
+  public abstract int pageCount();
+  public default java.util.List<mezz.jei.gui.recipes.IRecipeLayoutWithButtons<?>> getVisible(mezz.jei.gui.recipes.layouts.IRecipeLayoutList);
+}
+Compiled from "IngredientLookupState.java"
+public class mezz.jei.gui.recipes.lookups.IngredientLookupState implements mezz.jei.gui.recipes.lookups.ILookupState {
+  public static mezz.jei.gui.recipes.lookups.ILookupState create(mezz.jei.api.recipe.IRecipeManager, mezz.jei.api.recipe.IFocusGroup, java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>>, mezz.jei.common.transfer.RecipeTransferService);
+  public mezz.jei.api.recipe.IFocusGroup getFocuses();
+  public java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> getRecipeCategories();
+  public int getRecipeCategoryIndex();
+  public boolean moveToRecipeCategory(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public boolean nextRecipeCategory();
+  public boolean previousRecipeCategory();
+  public void goToFirstPage();
+  public boolean nextPage();
+  public boolean previousPage();
+  public int recipeCount();
+  public int pageCount();
+  public int getRecipeIndex();
+  public int getRecipesPerPage();
+  public void setRecipesPerPage(int);
+  public mezz.jei.gui.recipes.lookups.IFocusedRecipes<?> getFocusedRecipes();
+}
+Compiled from "SingleCategoryLookupState.java"
+public class mezz.jei.gui.recipes.lookups.SingleCategoryLookupState implements mezz.jei.gui.recipes.lookups.ILookupState {
+  public mezz.jei.gui.recipes.lookups.SingleCategoryLookupState(mezz.jei.gui.recipes.lookups.IFocusedRecipes<?>, mezz.jei.api.recipe.IFocusGroup);
+  public java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>> getRecipeCategories();
+  public boolean moveToRecipeCategory(mezz.jei.api.recipe.category.IRecipeCategory<?>);
+  public int getRecipesPerPage();
+  public void setRecipesPerPage(int);
+  public int getRecipeIndex();
+  public mezz.jei.api.recipe.IFocusGroup getFocuses();
+  public mezz.jei.gui.recipes.lookups.IFocusedRecipes<?> getFocusedRecipes();
+  public boolean nextRecipeCategory();
+  public boolean previousRecipeCategory();
+  public void goToFirstPage();
+  public boolean nextPage();
+  public boolean previousPage();
+  public int recipeCount();
+  public int pageCount();
+}
+Compiled from "StaticFocusedRecipes.java"
+public final class mezz.jei.gui.recipes.lookups.StaticFocusedRecipes<T> extends java.lang.Record implements mezz.jei.gui.recipes.lookups.IFocusedRecipes<T> {
+  public mezz.jei.gui.recipes.lookups.StaticFocusedRecipes(mezz.jei.api.recipe.category.IRecipeCategory<T>, java.util.List<T>);
+  public mezz.jei.api.recipe.category.IRecipeCategory<T> getRecipeCategory();
+  public java.util.List<T> getRecipes();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.api.recipe.category.IRecipeCategory<T> recipeCategory();
+  public java.util.List<T> recipes();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.recipes.lookups.package-info {
+}

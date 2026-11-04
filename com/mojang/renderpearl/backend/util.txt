@@ -1,0 +1,44 @@
+Compiled from "TransientBlockAllocator.java"
+public class com.mojang.renderpearl.backend.util.TransientBlockAllocator<T extends com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block> implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.backend.util.TransientBlockAllocator(long, long, com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator<T>);
+  public com.mojang.renderpearl.backend.util.TransientBlockAllocator(long, long, com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator<T>, java.util.function.Consumer<T>);
+  public void close();
+  public long blockSize();
+  public java.lang.Runnable rotate();
+  public boolean canAllocateInBlock(long, long);
+  public boolean canAllocateInCurrentBlock(long, long);
+  public com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocation<T> allocate(long, long, long, long);
+}
+Compiled from "TransientBlockAllocator.java"
+public final class com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocation<T> extends java.lang.Record {
+  public com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocation(T, long, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T block();
+  public long offset();
+  public long size();
+}
+Compiled from "TransientBlockAllocator.java"
+public final class com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$CpuBlock extends java.lang.Record implements com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$CpuBlock(long);
+  public boolean suboptimal();
+  public static com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator<com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$CpuBlock> memalloc();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long address();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.util.package-info {
+}
+Compiled from "TransientBlockAllocator.java"
+public interface com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator<T extends com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block> {
+  public abstract T alloc(long);
+  public abstract void free(T);
+  public static <T extends com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block> com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator<T> create(java.util.function.LongFunction<T>, java.util.function.Consumer<T>);
+}
+Compiled from "TransientBlockAllocator.java"
+public interface com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public abstract boolean suboptimal();
+}

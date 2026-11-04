@@ -1,0 +1,61 @@
+Compiled from "ElementPrefixParser.java"
+public final class mezz.jei.gui.search.ElementPrefixParser$TokenInfo extends java.lang.Record {
+  public mezz.jei.gui.search.ElementPrefixParser$TokenInfo(java.lang.String, mezz.jei.common.search.PrefixInfo<mezz.jei.gui.ingredients.IListElementInfo<?>, mezz.jei.gui.ingredients.IListElement<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String token();
+  public mezz.jei.common.search.PrefixInfo<mezz.jei.gui.ingredients.IListElementInfo<?>, mezz.jei.gui.ingredients.IListElement<?>> prefixInfo();
+}
+Compiled from "ElementPrefixParser.java"
+public class mezz.jei.gui.search.ElementPrefixParser {
+  public mezz.jei.gui.search.ElementPrefixParser(mezz.jei.api.runtime.IIngredientManager, mezz.jei.common.config.IIngredientFilterConfig, mezz.jei.api.helpers.IColorHelper, mezz.jei.api.search.ISearchStorageBuilderFactory);
+  public java.util.Collection<mezz.jei.common.search.PrefixInfo<mezz.jei.gui.ingredients.IListElementInfo<?>, mezz.jei.gui.ingredients.IListElement<?>>> allPrefixInfos();
+  public mezz.jei.common.search.PrefixInfo<mezz.jei.gui.ingredients.IListElementInfo<?>, mezz.jei.gui.ingredients.IListElement<?>> getNoPrefix();
+  public java.util.Optional<mezz.jei.gui.search.ElementPrefixParser$TokenInfo> parseToken(java.lang.String);
+}
+Compiled from "ElementSearch.java"
+public class mezz.jei.gui.search.ElementSearch implements mezz.jei.gui.search.IElementSearch {
+  public mezz.jei.gui.search.ElementSearch(mezz.jei.gui.search.ElementPrefixParser, java.util.Collection<mezz.jei.gui.ingredients.IListElementInfo<?>>, mezz.jei.api.runtime.IIngredientManager);
+  public java.util.Set<mezz.jei.gui.ingredients.IListElement<?>> getSearchResults(mezz.jei.gui.search.ElementPrefixParser$TokenInfo);
+  public <T> void add(mezz.jei.gui.ingredients.IListElementInfo<T>, mezz.jei.api.runtime.IIngredientManager);
+  public <T> mezz.jei.gui.ingredients.IListElement<T> findElement(mezz.jei.api.ingredients.ITypedIngredient<T>, mezz.jei.api.ingredients.IIngredientHelper<T>);
+  public java.util.Collection<mezz.jei.gui.ingredients.IListElement<?>> getAllIngredients();
+  public void logStatistics();
+}
+Compiled from "ElementSearchLowMem.java"
+public class mezz.jei.gui.search.ElementSearchLowMem implements mezz.jei.gui.search.IElementSearch {
+  public mezz.jei.gui.search.ElementSearchLowMem(mezz.jei.common.search.PrefixInfo<mezz.jei.gui.ingredients.IListElementInfo<?>, mezz.jei.gui.ingredients.IListElement<?>>, java.util.Collection<mezz.jei.gui.ingredients.IListElementInfo<?>>);
+  public java.util.Set<mezz.jei.gui.ingredients.IListElement<?>> getSearchResults(mezz.jei.gui.search.ElementPrefixParser$TokenInfo);
+  public <T> void add(mezz.jei.gui.ingredients.IListElementInfo<T>, mezz.jei.api.runtime.IIngredientManager);
+  public java.util.List<mezz.jei.gui.ingredients.IListElement<?>> getAllIngredients();
+  public <T> mezz.jei.gui.ingredients.IListElement<T> findElement(mezz.jei.api.ingredients.ITypedIngredient<T>, mezz.jei.api.ingredients.IIngredientHelper<T>);
+  public void logStatistics();
+  public java.util.Collection getAllIngredients();
+}
+Compiled from "IElementSearch.java"
+public interface mezz.jei.gui.search.IElementSearch {
+  public abstract <T> void add(mezz.jei.gui.ingredients.IListElementInfo<T>, mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.util.Collection<mezz.jei.gui.ingredients.IListElement<?>> getAllIngredients();
+  public abstract java.util.Set<mezz.jei.gui.ingredients.IListElement<?>> getSearchResults(mezz.jei.gui.search.ElementPrefixParser$TokenInfo);
+  public abstract <T> mezz.jei.gui.ingredients.IListElement<T> findElement(mezz.jei.api.ingredients.ITypedIngredient<T>, mezz.jei.api.ingredients.IIngredientHelper<T>);
+  public abstract void logStatistics();
+}
+Compiled from "SearchTokenizer.java"
+public class mezz.jei.gui.search.SearchTokenizer {
+  public mezz.jei.gui.search.SearchTokenizer();
+  public java.util.List<mezz.jei.gui.search.Token> tokenize(java.lang.String);
+}
+Compiled from "Token.java"
+public final class mezz.jei.gui.search.Token extends java.lang.Record {
+  public mezz.jei.gui.search.Token(java.lang.String, boolean);
+  public boolean isEmpty();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String text();
+  public boolean exclusion();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.search.package-info {
+}

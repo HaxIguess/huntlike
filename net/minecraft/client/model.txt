@@ -1,0 +1,144 @@
+Compiled from "Model.java"
+public class net.minecraft.client.model.Model$Simple extends net.minecraft.client.model.Model<net.minecraft.util.Unit> {
+  public net.minecraft.client.model.Model$Simple(net.minecraft.client.model.geom.ModelPart, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType>);
+  public void setupAnim(net.minecraft.util.Unit);
+  public void setupAnim(java.lang.Object);
+}
+Compiled from "BabyModelTransform.java"
+public final class net.minecraft.client.model.BabyModelTransform extends java.lang.Record implements net.minecraft.client.model.geom.builders.MeshTransformer {
+  public net.minecraft.client.model.BabyModelTransform(java.util.Set<java.lang.String>);
+  public net.minecraft.client.model.BabyModelTransform(boolean, float, float, java.util.Set<java.lang.String>);
+  public net.minecraft.client.model.BabyModelTransform(boolean, float, float, float, float, float, java.util.Set<java.lang.String>);
+  public net.minecraft.client.model.geom.builders.MeshDefinition apply(net.minecraft.client.model.geom.builders.MeshDefinition);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean scaleHead();
+  public float babyYHeadOffset();
+  public float babyZHeadOffset();
+  public float babyHeadScale();
+  public float babyBodyScale();
+  public float bodyYOffset();
+  public java.util.Set<java.lang.String> headParts();
+}
+Compiled from "VillagerLikeModel.java"
+public interface net.minecraft.client.model.VillagerLikeModel<T extends net.minecraft.client.renderer.entity.state.EntityRenderState> {
+  public abstract void translateToArms(T, com.mojang.blaze3d.vertex.PoseStack);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.model.package-info {
+}
+Compiled from "Model.java"
+public abstract class net.minecraft.client.model.Model<S> implements net.fabricmc.fabric.api.client.rendering.v1.FabricModel<S> {
+  protected final net.minecraft.client.model.geom.ModelPart root;
+  protected final java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType> renderType;
+  public net.minecraft.client.model.Model(net.minecraft.client.model.geom.ModelPart, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType>);
+  public final java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType> renderType();
+  public final net.minecraft.client.renderer.rendertype.RenderType renderType(net.minecraft.resources.Identifier);
+  public final void renderToBuffer(com.mojang.blaze3d.vertex.PoseStack, com.mojang.blaze3d.vertex.VertexConsumer, int, int, int);
+  public final net.minecraft.client.model.geom.ModelPart root();
+  public final java.util.List<net.minecraft.client.model.geom.ModelPart> allParts();
+  public void setupAnim(S);
+  public final void resetPose();
+}
+Compiled from "ArmedModel.java"
+public interface net.minecraft.client.model.ArmedModel<T extends net.minecraft.client.renderer.entity.state.EntityRenderState> {
+  public abstract void translateToHand(T, net.minecraft.world.entity.HumanoidArm, com.mojang.blaze3d.vertex.PoseStack);
+}
+Compiled from "HumanoidModel.java"
+public class net.minecraft.client.model.HumanoidModel<T extends net.minecraft.client.renderer.entity.state.HumanoidRenderState> extends net.minecraft.client.model.EntityModel<T> implements net.minecraft.client.model.ArmedModel<T>, net.minecraft.client.model.HeadedModel {
+  public static final net.minecraft.client.model.geom.builders.MeshTransformer BABY_TRANSFORMER;
+  public static final float OVERLAY_SCALE;
+  public static final float HAT_OVERLAY_SCALE;
+  public static final float LEGGINGS_OVERLAY_SCALE;
+  public static final float TOOT_HORN_XROT_BASE;
+  public static final float TOOT_HORN_YROT_BASE;
+  protected static final java.util.Map<net.minecraft.world.entity.EquipmentSlot, java.util.Set<java.lang.String>> ADULT_ARMOR_PARTS_PER_SLOT;
+  protected static final java.util.Map<net.minecraft.world.entity.EquipmentSlot, java.util.Set<java.lang.String>> BABY_ARMOR_PARTS_PER_SLOT;
+  public final net.minecraft.client.model.geom.ModelPart head;
+  public final net.minecraft.client.model.geom.ModelPart hat;
+  public final net.minecraft.client.model.geom.ModelPart body;
+  public final net.minecraft.client.model.geom.ModelPart rightArm;
+  public final net.minecraft.client.model.geom.ModelPart leftArm;
+  public final net.minecraft.client.model.geom.ModelPart rightLeg;
+  public final net.minecraft.client.model.geom.ModelPart leftLeg;
+  public net.minecraft.client.model.HumanoidModel(net.minecraft.client.model.geom.ModelPart);
+  public net.minecraft.client.model.HumanoidModel(net.minecraft.client.model.geom.ModelPart, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType>);
+  public static net.minecraft.client.model.geom.builders.MeshDefinition createMesh(net.minecraft.client.model.geom.builders.CubeDeformation, float);
+  public static net.minecraft.client.renderer.entity.ArmorModelSet<net.minecraft.client.model.geom.builders.MeshDefinition> createArmorMeshSet(net.minecraft.client.model.geom.builders.CubeDeformation, net.minecraft.client.model.geom.builders.CubeDeformation);
+  public static net.minecraft.client.renderer.entity.ArmorModelSet<net.minecraft.client.model.geom.builders.MeshDefinition> createBabyArmorMeshSet(net.minecraft.client.model.geom.builders.CubeDeformation, net.minecraft.client.model.geom.builders.CubeDeformation, net.minecraft.client.model.geom.PartPose);
+  protected static net.minecraft.client.renderer.entity.ArmorModelSet<net.minecraft.client.model.geom.builders.MeshDefinition> createArmorMeshSet(java.util.function.Function<net.minecraft.client.model.geom.builders.CubeDeformation, net.minecraft.client.model.geom.builders.MeshDefinition>, java.util.Map<net.minecraft.world.entity.EquipmentSlot, java.util.Set<java.lang.String>>, net.minecraft.client.model.geom.builders.CubeDeformation, net.minecraft.client.model.geom.builders.CubeDeformation);
+  public void setupAnim(T);
+  protected void setupSwimAnimation(T, float, float);
+  protected void setupAttackAnimation(T);
+  public void translateToHand(net.minecraft.client.renderer.entity.state.HumanoidRenderState, net.minecraft.world.entity.HumanoidArm, com.mojang.blaze3d.vertex.PoseStack);
+  public net.minecraft.client.model.geom.ModelPart getArm(net.minecraft.world.entity.HumanoidArm);
+  public net.minecraft.client.model.geom.ModelPart getHead();
+  public void setupAnim(java.lang.Object);
+  public void translateToHand(net.minecraft.client.renderer.entity.state.EntityRenderState, net.minecraft.world.entity.HumanoidArm, com.mojang.blaze3d.vertex.PoseStack);
+}
+Compiled from "HumanoidModel.java"
+public class net.minecraft.client.model.HumanoidModel$ArmPose extends java.lang.Enum<net.minecraft.client.model.HumanoidModel$ArmPose> {
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose EMPTY;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose ITEM;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose BLOCK;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose BOW_AND_ARROW;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose THROW_TRIDENT;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose CROSSBOW_CHARGE;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose CROSSBOW_HOLD;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose SPYGLASS;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose TOOT_HORN;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose BRUSH;
+  public static final net.minecraft.client.model.HumanoidModel$ArmPose SPEAR;
+  public static net.minecraft.client.model.HumanoidModel$ArmPose[] values();
+  public static net.minecraft.client.model.HumanoidModel$ArmPose valueOf(java.lang.String);
+  public boolean isTwoHanded();
+  public boolean affectsOffhandPose();
+  public <S extends net.minecraft.client.renderer.entity.state.ArmedEntityRenderState> void animateUseItem(S, com.mojang.blaze3d.vertex.PoseStack, float, net.minecraft.world.entity.HumanoidArm, net.minecraft.world.item.ItemStack);
+}
+Compiled from "HeadedModel.java"
+public interface net.minecraft.client.model.HeadedModel {
+  public abstract net.minecraft.client.model.geom.ModelPart getHead();
+  public default void translateToHead(com.mojang.blaze3d.vertex.PoseStack);
+}
+Compiled from "AdultAndBabyModelPair.java"
+public final class net.minecraft.client.model.AdultAndBabyModelPair<T extends net.minecraft.client.model.Model<?>> extends java.lang.Record {
+  public net.minecraft.client.model.AdultAndBabyModelPair(T, T);
+  public T getModel(boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T adultModel();
+  public T babyModel();
+}
+Compiled from "AnimationUtils.java"
+public class net.minecraft.client.model.AnimationUtils {
+  public net.minecraft.client.model.AnimationUtils();
+  public static void animateCrossbowHold(net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, boolean);
+  public static void animateCrossbowCharge(net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, float, float, boolean);
+  public static void swingWeaponDown(net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, net.minecraft.world.entity.HumanoidArm, float, float);
+  public static void bobModelPart(net.minecraft.client.model.geom.ModelPart, float, float);
+  public static void bobArms(net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, float);
+  public static <T extends net.minecraft.client.renderer.entity.state.UndeadRenderState> void animateZombieArms(net.minecraft.client.model.geom.ModelPart, net.minecraft.client.model.geom.ModelPart, boolean, T);
+}
+Compiled from "EntityModel.java"
+public abstract class net.minecraft.client.model.EntityModel<T extends net.minecraft.client.renderer.entity.state.EntityRenderState> extends net.minecraft.client.model.Model<T> {
+  public static final float MODEL_Y_OFFSET;
+  protected net.minecraft.client.model.EntityModel(net.minecraft.client.model.geom.ModelPart);
+  protected net.minecraft.client.model.EntityModel(net.minecraft.client.model.geom.ModelPart, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType>);
+}
+Compiled from "QuadrupedModel.java"
+public class net.minecraft.client.model.QuadrupedModel<T extends net.minecraft.client.renderer.entity.state.LivingEntityRenderState> extends net.minecraft.client.model.EntityModel<T> {
+  protected final net.minecraft.client.model.geom.ModelPart head;
+  protected final net.minecraft.client.model.geom.ModelPart body;
+  protected final net.minecraft.client.model.geom.ModelPart rightHindLeg;
+  protected final net.minecraft.client.model.geom.ModelPart leftHindLeg;
+  protected final net.minecraft.client.model.geom.ModelPart rightFrontLeg;
+  protected final net.minecraft.client.model.geom.ModelPart leftFrontLeg;
+  protected net.minecraft.client.model.QuadrupedModel(net.minecraft.client.model.geom.ModelPart);
+  protected net.minecraft.client.model.QuadrupedModel(net.minecraft.client.model.geom.ModelPart, java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.client.renderer.rendertype.RenderType>);
+  public static net.minecraft.client.model.geom.builders.MeshDefinition createBodyMesh(int, boolean, boolean, net.minecraft.client.model.geom.builders.CubeDeformation);
+  public static void createLegs(net.minecraft.client.model.geom.builders.PartDefinition, boolean, boolean, int, net.minecraft.client.model.geom.builders.CubeDeformation);
+  public void setupAnim(T);
+  public void setupAnim(java.lang.Object);
+}

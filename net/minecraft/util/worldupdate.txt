@@ -1,0 +1,158 @@
+Compiled from "RegionStorageUpgrader.java"
+public class net.minecraft.util.worldupdate.RegionStorageUpgrader {
+  protected java.util.concurrent.CompletableFuture<java.lang.Void> previousWriteFuture;
+  protected final net.minecraft.util.datafix.DataFixTypes dataFixType;
+  protected final int defaultVersion;
+  protected net.minecraft.util.worldupdate.RegionStorageUpgrader(com.mojang.datafixers.DataFixer, net.minecraft.util.datafix.DataFixTypes, java.lang.String, java.lang.String, int, boolean, net.minecraft.util.worldupdate.UpgradeProgress, int, net.minecraft.nbt.CompoundTag, it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.util.worldupdate.RegionStorageUpgrader$TagModifier>);
+  public void init(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess);
+  public void upgrade();
+  protected final net.minecraft.world.level.chunk.storage.SimpleRegionStorage createStorage(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path);
+  public int fileAmount();
+  protected boolean tryProcessOnePosition(net.minecraft.world.level.chunk.storage.SimpleRegionStorage, net.minecraft.world.level.ChunkPos);
+  protected net.minecraft.nbt.CompoundTag upgradeTag(net.minecraft.world.level.chunk.storage.SimpleRegionStorage, net.minecraft.nbt.CompoundTag, int);
+  protected static java.nio.file.Path resolveRecreateDirectory(java.nio.file.Path);
+}
+Compiled from "FileToUpgrade.java"
+public final class net.minecraft.util.worldupdate.FileToUpgrade extends java.lang.Record {
+  public net.minecraft.util.worldupdate.FileToUpgrade(net.minecraft.world.level.chunk.storage.RegionFile, java.util.List<net.minecraft.world.level.ChunkPos>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.storage.RegionFile file();
+  public java.util.List<net.minecraft.world.level.ChunkPos> chunksToUpgrade();
+}
+Compiled from "UpgradeStatusTranslator.java"
+public final class net.minecraft.util.worldupdate.UpgradeStatusTranslator$Messages extends java.lang.Record {
+  public net.minecraft.util.worldupdate.UpgradeStatusTranslator$Messages(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public static net.minecraft.util.worldupdate.UpgradeStatusTranslator$Messages create(java.lang.String);
+  public net.minecraft.network.chat.Component forStatus(net.minecraft.util.worldupdate.UpgradeProgress$Status);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component upgrading();
+  public net.minecraft.network.chat.Component finished();
+}
+Compiled from "RegionStorageUpgrader.java"
+public class net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder {
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder(com.mojang.datafixers.DataFixer);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setDataFixType(net.minecraft.util.datafix.DataFixTypes);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setTypeAndFolderName(java.lang.String);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setType(java.lang.String);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setFolderName(java.lang.String);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setDefaultVersion(int);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setRecreateRegionFiles(boolean);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder trackProgress(net.minecraft.util.worldupdate.UpgradeProgress);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder setDataFixContextTag(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder addTagModifier(int, net.minecraft.util.worldupdate.RegionStorageUpgrader$TagModifier);
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader$Builder copy();
+  public net.minecraft.util.worldupdate.RegionStorageUpgrader build(int);
+}
+Compiled from "UpgradeProgress.java"
+public class net.minecraft.util.worldupdate.UpgradeProgress$Noop extends net.minecraft.util.worldupdate.UpgradeProgress {
+  public net.minecraft.util.worldupdate.UpgradeProgress$Noop();
+  public void setFinished(boolean);
+  public void addTotalFileFixOperations(int);
+  public void setTotalProgress(float);
+  public void addTotalChunks(int);
+  public void setDimensionProgress(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, float);
+  public void incrementConverted();
+  public void incrementSkipped();
+  public void incrementFinishedOperations();
+  public void incrementFinishedOperationsBy(int);
+  public void setCanceled();
+  public void setStatus(net.minecraft.util.worldupdate.UpgradeProgress$Status);
+  public void setApplicableFixerAmount(int);
+  public void incrementRunningFileFixer();
+  public void reset(net.minecraft.util.datafix.DataFixTypes);
+}
+Compiled from "UpgradeProgress.java"
+public final class net.minecraft.util.worldupdate.UpgradeProgress$Type extends java.lang.Enum<net.minecraft.util.worldupdate.UpgradeProgress$Type> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Type FILES;
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Type LEGACY_STRUCTURES;
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Type REGIONS;
+  public static net.minecraft.util.worldupdate.UpgradeProgress$Type[] values();
+  public static net.minecraft.util.worldupdate.UpgradeProgress$Type valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public net.minecraft.network.chat.Component label();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.worldupdate.package-info {
+}
+Compiled from "UpgradeProgress.java"
+public final class net.minecraft.util.worldupdate.UpgradeProgress$Status extends java.lang.Enum<net.minecraft.util.worldupdate.UpgradeProgress$Status> {
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Status COUNTING;
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Status FAILED;
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Status FINISHED;
+  public static final net.minecraft.util.worldupdate.UpgradeProgress$Status UPGRADING;
+  public static net.minecraft.util.worldupdate.UpgradeProgress$Status[] values();
+  public static net.minecraft.util.worldupdate.UpgradeProgress$Status valueOf(java.lang.String);
+}
+Compiled from "RegionStorageUpgrader.java"
+public interface net.minecraft.util.worldupdate.RegionStorageUpgrader$TagModifier {
+  public abstract boolean modifyTagAfterFix(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+}
+Compiled from "UpgradeStatusTranslator.java"
+public class net.minecraft.util.worldupdate.UpgradeStatusTranslator {
+  public net.minecraft.util.worldupdate.UpgradeStatusTranslator();
+  public net.minecraft.network.chat.Component translate(net.minecraft.util.worldupdate.UpgradeProgress);
+}
+Compiled from "WorldUpgrader.java"
+public class net.minecraft.util.worldupdate.WorldUpgrader implements java.lang.AutoCloseable {
+  public net.minecraft.util.worldupdate.WorldUpgrader(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.datafixers.DataFixer, net.minecraft.core.RegistryAccess, boolean, boolean);
+  public static net.minecraft.nbt.CompoundTag getDataFixContextTag(net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public static boolean verifyChunkPosAndEraseCache(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+  public static boolean verifyChunkPos(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+  public void cancel();
+  public boolean isFinished();
+  public java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public float dimensionProgress(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public float getTotalProgress();
+  public int getTotalChunks();
+  public int getConverted();
+  public int getSkipped();
+  public net.minecraft.network.chat.Component getStatus();
+  public void close();
+}
+Compiled from "UpgradeProgress.java"
+public class net.minecraft.util.worldupdate.UpgradeProgress {
+  public net.minecraft.util.worldupdate.UpgradeProgress();
+  public net.minecraft.util.worldupdate.UpgradeProgress(net.minecraft.server.notifications.NotificationService);
+  public boolean isFinished();
+  public void setFinished(boolean);
+  public net.minecraft.util.worldupdate.UpgradeProgress$FileFixStats getTotalFileFixStats();
+  public net.minecraft.util.worldupdate.UpgradeProgress$FileFixStats getTypeFileFixStats();
+  public net.minecraft.util.worldupdate.UpgradeProgress$FileFixStats getRunningFileFixerStats();
+  public void addTotalFileFixOperations(int);
+  public float getTotalProgress();
+  public void setTotalProgress(float);
+  public int getTotalChunks();
+  public void addTotalChunks(int);
+  public int getConverted();
+  public void setDimensionProgress(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, float);
+  public float getDimensionProgress(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public void incrementConverted();
+  public int getSkipped();
+  public void incrementSkipped();
+  public void incrementFinishedOperations();
+  public void incrementFinishedOperationsBy(int);
+  public void setCanceled();
+  public boolean isCanceled();
+  public net.minecraft.util.worldupdate.UpgradeProgress$Status getStatus();
+  public void setStatus(net.minecraft.util.worldupdate.UpgradeProgress$Status);
+  public net.minecraft.util.datafix.DataFixTypes getDataFixType();
+  public void setType(net.minecraft.util.worldupdate.UpgradeProgress$Type);
+  public net.minecraft.util.worldupdate.UpgradeProgress$Type getType();
+  public void setApplicableFixerAmount(int);
+  public void incrementRunningFileFixer();
+  public void reset(net.minecraft.util.datafix.DataFixTypes);
+  public void logProgress();
+  public net.minecraft.server.notifications.NotificationService notifications();
+}
+Compiled from "UpgradeProgress.java"
+public class net.minecraft.util.worldupdate.UpgradeProgress$FileFixStats {
+  public net.minecraft.util.worldupdate.UpgradeProgress$FileFixStats();
+  public int finishedOperations();
+  public int totalOperations();
+  public void reset();
+  public float getProgress();
+}

@@ -1,0 +1,110 @@
+Compiled from "CollectToTag.java"
+public class net.minecraft.nbt.visitors.CollectToTag implements net.minecraft.nbt.StreamTagVisitor {
+  public net.minecraft.nbt.visitors.CollectToTag();
+  public net.minecraft.nbt.Tag getResult();
+  protected int depth();
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitEnd();
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(java.lang.String);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(byte);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(short);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(int);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(long);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(float);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(double);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(byte[]);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(int[]);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visit(long[]);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitList(net.minecraft.nbt.TagType<?>, int);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitElement(net.minecraft.nbt.TagType<?>, int);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitContainerEnd();
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitRootEntry(net.minecraft.nbt.TagType<?>);
+}
+Compiled from "CollectToTag.java"
+class net.minecraft.nbt.visitors.CollectToTag$CompoundBuilder implements net.minecraft.nbt.visitors.CollectToTag$ContainerBuilder {
+  public void acceptKey(java.lang.String);
+  public void acceptValue(net.minecraft.nbt.Tag);
+  public net.minecraft.nbt.Tag build();
+}
+Compiled from "CollectToTag.java"
+class net.minecraft.nbt.visitors.CollectToTag$ListBuilder implements net.minecraft.nbt.visitors.CollectToTag$ContainerBuilder {
+  public void acceptValue(net.minecraft.nbt.Tag);
+  public net.minecraft.nbt.Tag build();
+}
+Compiled from "CollectToTag.java"
+class net.minecraft.nbt.visitors.CollectToTag$RootBuilder implements net.minecraft.nbt.visitors.CollectToTag$ContainerBuilder {
+  public void acceptValue(net.minecraft.nbt.Tag);
+  public net.minecraft.nbt.Tag build();
+}
+Compiled from "package-info.java"
+interface net.minecraft.nbt.visitors.package-info {
+}
+Compiled from "SkipAll.java"
+public interface net.minecraft.nbt.visitors.SkipAll extends net.minecraft.nbt.StreamTagVisitor {
+  public static final net.minecraft.nbt.visitors.SkipAll INSTANCE;
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visitEnd();
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(java.lang.String);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(byte);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(short);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(int);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(long);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(float);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(double);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(byte[]);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(int[]);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visit(long[]);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visitList(net.minecraft.nbt.TagType<?>, int);
+  public default net.minecraft.nbt.StreamTagVisitor$EntryResult visitElement(net.minecraft.nbt.TagType<?>, int);
+  public default net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>);
+  public default net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visitContainerEnd();
+  public default net.minecraft.nbt.StreamTagVisitor$ValueResult visitRootEntry(net.minecraft.nbt.TagType<?>);
+}
+Compiled from "CollectFields.java"
+public class net.minecraft.nbt.visitors.CollectFields extends net.minecraft.nbt.visitors.CollectToTag {
+  public net.minecraft.nbt.visitors.CollectFields(net.minecraft.nbt.visitors.FieldSelector...);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitRootEntry(net.minecraft.nbt.TagType<?>);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitContainerEnd();
+  public int getMissingFieldCount();
+}
+Compiled from "SkipFields.java"
+public class net.minecraft.nbt.visitors.SkipFields extends net.minecraft.nbt.visitors.CollectToTag {
+  public net.minecraft.nbt.visitors.SkipFields(net.minecraft.nbt.visitors.FieldSelector...);
+  public net.minecraft.nbt.StreamTagVisitor$EntryResult visitEntry(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.StreamTagVisitor$ValueResult visitContainerEnd();
+}
+Compiled from "CollectToTag.java"
+interface net.minecraft.nbt.visitors.CollectToTag$ContainerBuilder {
+  public default void acceptKey(java.lang.String);
+  public abstract void acceptValue(net.minecraft.nbt.Tag);
+  public abstract net.minecraft.nbt.Tag build();
+}
+Compiled from "FieldSelector.java"
+public final class net.minecraft.nbt.visitors.FieldSelector extends java.lang.Record {
+  public net.minecraft.nbt.visitors.FieldSelector(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.visitors.FieldSelector(java.lang.String, net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.visitors.FieldSelector(java.lang.String, java.lang.String, net.minecraft.nbt.TagType<?>, java.lang.String);
+  public net.minecraft.nbt.visitors.FieldSelector(java.util.List<java.lang.String>, net.minecraft.nbt.TagType<?>, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.lang.String> path();
+  public net.minecraft.nbt.TagType<?> type();
+  public java.lang.String name();
+}
+Compiled from "FieldTree.java"
+public final class net.minecraft.nbt.visitors.FieldTree extends java.lang.Record {
+  public net.minecraft.nbt.visitors.FieldTree(int, java.util.Map<java.lang.String, net.minecraft.nbt.TagType<?>>, java.util.Map<java.lang.String, net.minecraft.nbt.visitors.FieldTree>);
+  public static net.minecraft.nbt.visitors.FieldTree createRoot();
+  public void addEntry(net.minecraft.nbt.visitors.FieldSelector);
+  public boolean isSelected(net.minecraft.nbt.TagType<?>, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int depth();
+  public java.util.Map<java.lang.String, net.minecraft.nbt.TagType<?>> selectedFields();
+  public java.util.Map<java.lang.String, net.minecraft.nbt.visitors.FieldTree> fieldsToRecurse();
+}

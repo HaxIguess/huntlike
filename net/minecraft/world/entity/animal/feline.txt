@@ -1,0 +1,185 @@
+Compiled from "Ocelot.java"
+public class net.minecraft.world.entity.animal.feline.Ocelot extends net.minecraft.world.entity.animal.Animal {
+  public static final double CROUCH_SPEED_MOD;
+  public static final double WALK_SPEED_MOD;
+  public static final double SPRINT_SPEED_MOD;
+  public net.minecraft.world.entity.animal.feline.Ocelot(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.feline.Ocelot>, net.minecraft.world.level.Level);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void registerGoals();
+  public void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public boolean removeWhenFarAway(double);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  public int getAmbientSoundInterval();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void handleEntityEvent(byte);
+  protected void reassessTrustingGoals();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public net.minecraft.world.entity.animal.feline.Ocelot getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public static boolean checkOcelotSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.animal.feline.Ocelot>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public boolean isSteppingCarefully();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "Cat.java"
+class net.minecraft.world.entity.animal.feline.Cat$CatRelaxOnOwnerGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.animal.feline.Cat$CatRelaxOnOwnerGoal(net.minecraft.world.entity.animal.feline.Cat);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "Ocelot.java"
+class net.minecraft.world.entity.animal.feline.Ocelot$OcelotAvoidEntityGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
+  public net.minecraft.world.entity.animal.feline.Ocelot$OcelotAvoidEntityGoal(net.minecraft.world.entity.animal.feline.Ocelot, java.lang.Class<T>, float, double, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.feline.package-info {
+}
+Compiled from "Cat.java"
+class net.minecraft.world.entity.animal.feline.Cat$CatAvoidEntityGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
+  public net.minecraft.world.entity.animal.feline.Cat$CatAvoidEntityGoal(net.minecraft.world.entity.animal.feline.Cat, java.lang.Class<T>, float, double, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "CatSoundVariants.java"
+public final class net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet extends java.lang.Enum<net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet> {
+  public static final net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet CLASSIC;
+  public static final net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet ROYAL;
+  public static net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet[] values();
+  public static net.minecraft.world.entity.animal.feline.CatSoundVariants$SoundSet valueOf(java.lang.String);
+  public java.lang.String getIdentifier();
+  public java.lang.String getSoundEventIdentifier();
+}
+Compiled from "CatVariant.java"
+public final class net.minecraft.world.entity.animal.feline.CatVariant extends java.lang.Record implements net.minecraft.world.entity.variant.PriorityProvider<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.feline.CatVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.feline.CatVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.feline.CatVariant(net.minecraft.core.ClientAsset$ResourceTexture, net.minecraft.core.ClientAsset$ResourceTexture, net.minecraft.world.entity.variant.SpawnPrioritySelectors);
+  public java.util.List<net.minecraft.world.entity.variant.PriorityProvider$Selector<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition>> selectors();
+  public net.minecraft.core.ClientAsset$ResourceTexture assetInfo(boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.ClientAsset$ResourceTexture adultAssetInfo();
+  public net.minecraft.core.ClientAsset$ResourceTexture babyAssetInfo();
+  public net.minecraft.world.entity.variant.SpawnPrioritySelectors spawnConditions();
+}
+Compiled from "CatSoundVariant.java"
+public final class net.minecraft.world.entity.animal.feline.CatSoundVariant extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.feline.CatSoundVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.feline.CatSoundVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatSoundVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatSoundVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.feline.CatSoundVariant(net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet, net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet adultSounds();
+  public net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet babySounds();
+}
+Compiled from "CatSoundVariants.java"
+public class net.minecraft.world.entity.animal.feline.CatSoundVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatSoundVariant> CLASSIC;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatSoundVariant> ROYAL;
+  public net.minecraft.world.entity.animal.feline.CatSoundVariants();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.feline.CatSoundVariant>);
+  public static net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatSoundVariant> pickRandomSoundVariant(net.minecraft.core.RegistryAccess, net.minecraft.util.RandomSource);
+}
+Compiled from "Cat.java"
+class net.minecraft.world.entity.animal.feline.Cat$CatTemptGoal extends net.minecraft.world.entity.ai.goal.TemptGoal {
+  public net.minecraft.world.entity.animal.feline.Cat$CatTemptGoal(net.minecraft.world.entity.animal.feline.Cat, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean);
+  public void tick();
+  protected boolean canScare();
+  public boolean canUse();
+}
+Compiled from "Cat.java"
+public class net.minecraft.world.entity.animal.feline.Cat extends net.minecraft.world.entity.TamableAnimal {
+  public static final double TEMPT_SPEED_MOD;
+  public static final double WALK_SPEED_MOD;
+  public static final double SPRINT_SPEED_MOD;
+  public net.minecraft.world.entity.animal.feline.Cat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.feline.Cat>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatVariant> getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public void setLying(boolean);
+  public boolean isLying();
+  public net.minecraft.world.item.DyeColor getCollarColor();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  public int getAmbientSoundInterval();
+  public void hiss();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected void playEatingSound();
+  public void tick();
+  public boolean isLyingOnTopOfSleepingPlayer();
+  public float getLieDownAmount(float);
+  public float getLieDownAmountTail(float);
+  public float getRelaxStateOneAmount(float);
+  public net.minecraft.world.entity.animal.feline.Cat getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public boolean removeWhenFarAway(double);
+  public void setTame(boolean, boolean);
+  protected void reassessTameGoals();
+  public boolean isSteppingCarefully();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "Ocelot.java"
+class net.minecraft.world.entity.animal.feline.Ocelot$OcelotTemptGoal extends net.minecraft.world.entity.ai.goal.TemptGoal {
+  public net.minecraft.world.entity.animal.feline.Ocelot$OcelotTemptGoal(net.minecraft.world.entity.animal.feline.Ocelot, double, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, boolean);
+  protected boolean canScare();
+}
+Compiled from "CatSoundVariant.java"
+public final class net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet extends java.lang.Record {
+  public net.minecraft.world.entity.animal.feline.CatSoundVariant$CatSoundSet(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> ambientSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> strayAmbientSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> hissSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> hurtSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> deathSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> eatSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> begForFoodSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> purrSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> purreowSound();
+}
+Compiled from "CatVariants.java"
+public interface net.minecraft.world.entity.animal.feline.CatVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> TABBY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> BLACK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> RED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> SIAMESE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> BRITISH_SHORTHAIR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> CALICO;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> PERSIAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> RAGDOLL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> WHITE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> JELLIE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.feline.CatVariant> ALL_BLACK;
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.feline.CatVariant>);
+}

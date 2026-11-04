@@ -1,0 +1,98 @@
+Compiled from "PacketCheatPermission.java"
+public class mezz.jei.common.network.packets.PacketCheatPermission extends mezz.jei.common.network.packets.PlayToClientPacket<mezz.jei.common.network.packets.PacketCheatPermission> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketCheatPermission> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketCheatPermission> STREAM_CODEC;
+  public mezz.jei.common.network.packets.PacketCheatPermission(boolean, mezz.jei.common.config.IServerConfig);
+  public mezz.jei.common.network.packets.PacketCheatPermission(boolean, java.util.List<java.lang.String>);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketCheatPermission> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketCheatPermission> streamCodec();
+  public void process(mezz.jei.common.network.ClientPacketContext);
+}
+Compiled from "PacketDeletePlayerItem.java"
+public class mezz.jei.common.network.packets.PacketDeletePlayerItem extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketDeletePlayerItem> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketDeletePlayerItem> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketDeletePlayerItem> STREAM_CODEC;
+  public mezz.jei.common.network.packets.PacketDeletePlayerItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketDeletePlayerItem> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketDeletePlayerItem> streamCodec();
+  public void process(mezz.jei.common.network.ServerPacketContext);
+}
+Compiled from "PacketGiveItemStack.java"
+public class mezz.jei.common.network.packets.PacketGiveItemStack extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketGiveItemStack> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketGiveItemStack> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketGiveItemStack> STREAM_CODEC;
+  public mezz.jei.common.network.packets.PacketGiveItemStack(net.minecraft.world.item.ItemStack, mezz.jei.common.config.GiveMode);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketGiveItemStack> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketGiveItemStack> streamCodec();
+  public void process(mezz.jei.common.network.ServerPacketContext);
+}
+Compiled from "PacketRecipeTransferCountedWithResult.java"
+public class mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult> STREAM_CODEC;
+  public static mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult fromSlots(java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<net.minecraft.world.inventory.Slot>, java.util.List<net.minecraft.world.inventory.Slot>, boolean, boolean, int);
+  public mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult(java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<java.lang.Integer>, java.util.List<java.lang.Integer>, boolean, boolean, int);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferCountedWithResult> streamCodec();
+  public void process(mezz.jei.common.network.ServerPacketContext);
+}
+Compiled from "PacketRecipeTransferResult.java"
+public class mezz.jei.common.network.packets.PacketRecipeTransferResult extends mezz.jei.common.network.packets.PlayToClientPacket<mezz.jei.common.network.packets.PacketRecipeTransferResult> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferResult> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferResult> STREAM_CODEC;
+  public final int transferId;
+  public final mezz.jei.api.recipe.transfer.RecipeTransferResult result;
+  public mezz.jei.common.network.packets.PacketRecipeTransferResult(int, boolean);
+  public static void registerPendingRecipeTransfer(mezz.jei.api.recipe.transfer.IRecipeTransferContext<?, ?>);
+  public static void clearPendingRecipeTransfers();
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferResult> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferResult> streamCodec();
+  public void process(mezz.jei.common.network.ClientPacketContext);
+  public void completePendingRecipeTransfer();
+}
+Compiled from "PacketRecipeTransferWithResult.java"
+public class mezz.jei.common.network.packets.PacketRecipeTransferWithResult extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketRecipeTransferWithResult> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferWithResult> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferWithResult> STREAM_CODEC;
+  public static mezz.jei.common.network.packets.PacketRecipeTransferWithResult fromSlots(java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<net.minecraft.world.inventory.Slot>, java.util.List<net.minecraft.world.inventory.Slot>, boolean, boolean, int);
+  public mezz.jei.common.network.packets.PacketRecipeTransferWithResult(java.util.List<mezz.jei.common.transfer.TransferOperation>, java.util.List<java.lang.Integer>, java.util.List<java.lang.Integer>, boolean, boolean, int);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRecipeTransferWithResult> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRecipeTransferWithResult> streamCodec();
+  public void process(mezz.jei.common.network.ServerPacketContext);
+  public static java.util.List<net.minecraft.world.inventory.Slot> getSlots(net.minecraft.world.inventory.AbstractContainerMenu, java.util.List<java.lang.Integer>);
+}
+Compiled from "PacketRequestCheatPermission.java"
+public class mezz.jei.common.network.packets.PacketRequestCheatPermission extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketRequestCheatPermission> {
+  public static final mezz.jei.common.network.packets.PacketRequestCheatPermission INSTANCE;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRequestCheatPermission> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRequestCheatPermission> STREAM_CODEC;
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketRequestCheatPermission> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketRequestCheatPermission> streamCodec();
+  public void process(mezz.jei.common.network.ServerPacketContext);
+}
+Compiled from "PacketSetHotbarItemStack.java"
+public class mezz.jei.common.network.packets.PacketSetHotbarItemStack extends mezz.jei.common.network.packets.PlayToServerPacket<mezz.jei.common.network.packets.PacketSetHotbarItemStack> {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketSetHotbarItemStack> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketSetHotbarItemStack> STREAM_CODEC;
+  public mezz.jei.common.network.packets.PacketSetHotbarItemStack(net.minecraft.world.item.ItemStack, int);
+  public void process(mezz.jei.common.network.ServerPacketContext);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<mezz.jei.common.network.packets.PacketSetHotbarItemStack> type();
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.common.network.packets.PacketSetHotbarItemStack> streamCodec();
+}
+Compiled from "PlayToClientPacket.java"
+public abstract class mezz.jei.common.network.packets.PlayToClientPacket<T extends mezz.jei.common.network.packets.PlayToClientPacket<T>> implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public mezz.jei.common.network.packets.PlayToClientPacket();
+  public abstract net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T> type();
+  public abstract net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> streamCodec();
+  public abstract void process(mezz.jei.common.network.ClientPacketContext);
+}
+Compiled from "PlayToServerPacket.java"
+public abstract class mezz.jei.common.network.packets.PlayToServerPacket<T extends mezz.jei.common.network.packets.PlayToServerPacket<T>> implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public mezz.jei.common.network.packets.PlayToServerPacket();
+  public abstract net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<T> type();
+  public abstract net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> streamCodec();
+  public abstract void process(mezz.jei.common.network.ServerPacketContext);
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.network.packets.package-info {
+}

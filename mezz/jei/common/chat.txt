@@ -1,0 +1,66 @@
+Compiled from "JeiChatItemLinkHover.java"
+public final class mezz.jei.common.chat.JeiChatItemLinkHover$HoveredText extends java.lang.Record {
+  public mezz.jei.common.chat.JeiChatItemLinkHover$HoveredText(net.minecraft.network.chat.Style, net.minecraft.client.renderer.Rect2i);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Style style();
+  public net.minecraft.client.renderer.Rect2i area();
+}
+Compiled from "JeiChatItemLinkHover.java"
+final class mezz.jei.common.chat.JeiChatItemLinkHover$HoveredTextFinder implements net.minecraft.client.gui.ActiveTextCollector {
+  public mezz.jei.common.chat.JeiChatItemLinkHover$HoveredTextFinder(net.minecraft.client.gui.Font, int, int);
+  public net.minecraft.client.gui.ActiveTextCollector$Parameters defaultParameters();
+  public void defaultParameters(net.minecraft.client.gui.ActiveTextCollector$Parameters);
+  public void accept(net.minecraft.client.gui.TextAlignment, int, int, net.minecraft.client.gui.ActiveTextCollector$Parameters, net.minecraft.util.FormattedCharSequence);
+  public void acceptScrolling(net.minecraft.network.chat.Component, int, int, int, int, int, net.minecraft.client.gui.ActiveTextCollector$Parameters);
+  public java.util.Optional<mezz.jei.common.chat.JeiChatItemLinkHover$HoveredText> result();
+}
+Compiled from "JeiChatItemLinkHover.java"
+public final class mezz.jei.common.chat.JeiChatItemLinkHover {
+  public static java.util.Optional<net.minecraft.network.chat.Style> getHoveredStyle(net.minecraft.client.gui.screens.Screen, double, double);
+  public static java.util.Optional<mezz.jei.common.chat.JeiChatItemLinkHover$HoveredText> getHoveredText(net.minecraft.client.gui.screens.Screen, double, double);
+  public static java.util.Optional<mezz.jei.common.chat.JeiChatItemLinks$IngredientLink> getIngredientLink(net.minecraft.network.chat.Style);
+}
+Compiled from "JeiChatItemLinkRecipeLookup.java"
+public final class mezz.jei.common.chat.JeiChatItemLinkRecipeLookup {
+  public static int executeShowRecipeCommand(java.lang.String);
+  public static boolean showRecipeForIngredient(mezz.jei.api.runtime.IJeiRuntime, mezz.jei.common.chat.JeiChatItemLinks$IngredientLink);
+}
+Compiled from "JeiChatItemLinks.java"
+public final class mezz.jei.common.chat.JeiChatItemLinks$IngredientLink extends java.lang.Record {
+  public mezz.jei.common.chat.JeiChatItemLinks$IngredientLink(java.lang.String, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String ingredientTypeUid();
+  public java.lang.String ingredientUid();
+}
+Compiled from "JeiChatItemLinks.java"
+final class mezz.jei.common.chat.JeiChatItemLinks$LinkMarker extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int start();
+  public int end();
+  public mezz.jei.common.chat.JeiChatItemLinks$IngredientLink link();
+}
+Compiled from "JeiChatItemLinks.java"
+public final class mezz.jei.common.chat.JeiChatItemLinks {
+  public static final java.lang.String SHOW_RECIPE_COMMAND;
+  public static final java.lang.String LINK_ARGUMENT;
+  public static java.lang.String createLinkMarker(mezz.jei.api.ingredients.ITypedIngredient<?>, mezz.jei.api.runtime.IIngredientManager);
+  public static net.minecraft.network.chat.Component parse(java.lang.String);
+  public static net.minecraft.network.chat.Component parse(java.lang.String, java.util.function.Function<mezz.jei.common.chat.JeiChatItemLinks$IngredientLink, java.util.Optional<java.lang.String>>);
+  public static java.util.Optional<net.minecraft.network.chat.Component> parseChatMessage(net.minecraft.network.chat.Component);
+  public static java.util.Optional<net.minecraft.network.chat.Component> parseChatMessage(net.minecraft.network.chat.Component, java.util.function.Function<mezz.jei.common.chat.JeiChatItemLinks$IngredientLink, java.util.Optional<java.lang.String>>);
+  public static boolean hasLinkMarkers(java.lang.String);
+  public static java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> resolveTypedIngredient(mezz.jei.common.chat.JeiChatItemLinks$IngredientLink, mezz.jei.api.runtime.IIngredientManager);
+  public static java.lang.String createCommandArgument(mezz.jei.common.chat.JeiChatItemLinks$IngredientLink);
+  public static java.util.Optional<mezz.jei.common.chat.JeiChatItemLinks$IngredientLink> parseCommandArgument(java.lang.String);
+  public static java.lang.String createShowRecipeCommand(mezz.jei.common.chat.JeiChatItemLinks$IngredientLink);
+  public static java.util.Optional<mezz.jei.common.chat.JeiChatItemLinks$IngredientLink> parseShowRecipeCommand(java.lang.String);
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.chat.package-info {
+}

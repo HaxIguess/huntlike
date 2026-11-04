@@ -1,0 +1,186 @@
+Compiled from "AttributeSupplier.java"
+public class net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder {
+  public net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder();
+  public net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder add(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder add(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, double);
+  public net.minecraft.world.entity.ai.attributes.AttributeSupplier build();
+}
+Compiled from "AttributeModifier.java"
+public final class net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation extends java.lang.Enum<net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation ADD_VALUE;
+  public static final net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation ADD_MULTIPLIED_BASE;
+  public static final net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation ADD_MULTIPLIED_TOTAL;
+  public static final java.util.function.IntFunction<net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation> BY_ID;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation> STREAM_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation> CODEC;
+  public static net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation[] values();
+  public static net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation valueOf(java.lang.String);
+  public int id();
+  public java.lang.String getSerializedName();
+}
+Compiled from "AttributeInstance.java"
+public final class net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed>> LIST_CODEC;
+  public net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, double, java.util.List<net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute();
+  public double baseValue();
+  public java.util.List<net.minecraft.world.entity.ai.attributes.AttributeModifier> modifiers();
+}
+Compiled from "AttributeModifier.java"
+public final class net.minecraft.world.entity.ai.attributes.AttributeModifier extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.entity.ai.attributes.AttributeModifier> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.attributes.AttributeModifier> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.ai.attributes.AttributeModifier> STREAM_CODEC;
+  public net.minecraft.world.entity.ai.attributes.AttributeModifier(net.minecraft.resources.Identifier, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+  public boolean is(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public double amount();
+  public net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation operation();
+}
+Compiled from "Attribute.java"
+public final class net.minecraft.world.entity.ai.attributes.Attribute$Sentiment extends java.lang.Enum<net.minecraft.world.entity.ai.attributes.Attribute$Sentiment> {
+  public static final net.minecraft.world.entity.ai.attributes.Attribute$Sentiment POSITIVE;
+  public static final net.minecraft.world.entity.ai.attributes.Attribute$Sentiment NEUTRAL;
+  public static final net.minecraft.world.entity.ai.attributes.Attribute$Sentiment NEGATIVE;
+  public static net.minecraft.world.entity.ai.attributes.Attribute$Sentiment[] values();
+  public static net.minecraft.world.entity.ai.attributes.Attribute$Sentiment valueOf(java.lang.String);
+  public net.minecraft.ChatFormatting getStyle(boolean);
+}
+Compiled from "DefaultAttributes.java"
+public class net.minecraft.world.entity.ai.attributes.DefaultAttributes {
+  public net.minecraft.world.entity.ai.attributes.DefaultAttributes();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier getSupplier(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.LivingEntity>);
+  public static boolean hasSupplier(net.minecraft.world.entity.EntityType<?>);
+  public static void validate();
+}
+Compiled from "AttributeInstance.java"
+public class net.minecraft.world.entity.ai.attributes.AttributeInstance {
+  public net.minecraft.world.entity.ai.attributes.AttributeInstance(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, java.util.function.Consumer<net.minecraft.world.entity.ai.attributes.AttributeInstance>);
+  public net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> getAttribute();
+  public double getBaseValue();
+  public void setBaseValue(double);
+  public java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeModifier> getModifiers();
+  public java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeModifier> getPermanentModifiers();
+  public net.minecraft.world.entity.ai.attributes.AttributeModifier getModifier(net.minecraft.resources.Identifier);
+  public boolean hasModifier(net.minecraft.resources.Identifier);
+  public void addOrUpdateTransientModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+  public void addTransientModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+  public void addOrReplacePermanentModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+  public void addPermanentModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+  public void addPermanentModifiers(java.util.Collection<net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  protected void setDirty();
+  public void removeModifier(net.minecraft.world.entity.ai.attributes.AttributeModifier);
+  public boolean removeModifier(net.minecraft.resources.Identifier);
+  public void removeModifiers();
+  public double getValue();
+  public void replaceFrom(net.minecraft.world.entity.ai.attributes.AttributeInstance);
+  public net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed pack();
+  public void apply(net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.attributes.package-info {
+}
+Compiled from "Attributes.java"
+public class net.minecraft.world.entity.ai.attributes.Attributes {
+  public static final double DEFAULT_ATTACK_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> AIR_DRAG_MODIFIER;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ARMOR;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ARMOR_TOUGHNESS;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ATTACK_DAMAGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ATTACK_KNOCKBACK;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ATTACK_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> BELOW_NAME_DISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> BLOCK_BREAK_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> BLOCK_INTERACTION_RANGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> BOUNCINESS;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> BURNING_TIME;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> CAMERA_DISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> EXPLOSION_KNOCKBACK_RESISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> ENTITY_INTERACTION_RANGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> FALL_DAMAGE_MULTIPLIER;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> FLYING_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> FOLLOW_RANGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> FRICTION_MODIFIER;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> GRAVITY;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> JUMP_STRENGTH;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> KNOCKBACK_RESISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> LUCK;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> MAX_ABSORPTION;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> MAX_HEALTH;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> MINING_EFFICIENCY;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> MOVEMENT_EFFICIENCY;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> MOVEMENT_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> NAME_TAG_DISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> OXYGEN_BONUS;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SAFE_FALL_DISTANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SCALE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SNEAKING_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SPAWN_REINFORCEMENTS_CHANCE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> STEP_HEIGHT;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SUBMERGED_MINING_SPEED;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> SWEEPING_DAMAGE_RATIO;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> TEMPT_RANGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> WATER_MOVEMENT_EFFICIENCY;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> WAYPOINT_TRANSMIT_RANGE;
+  public static final net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> WAYPOINT_RECEIVE_RANGE;
+  public net.minecraft.world.entity.ai.attributes.Attributes();
+  public static net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> bootstrap(net.minecraft.core.Registry<net.minecraft.world.entity.ai.attributes.Attribute>);
+}
+Compiled from "Attribute.java"
+public class net.minecraft.world.entity.ai.attributes.Attribute {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>> STREAM_CODEC;
+  protected net.minecraft.world.entity.ai.attributes.Attribute(java.lang.String, double);
+  public double getDefaultValue();
+  public boolean isClientSyncable();
+  public net.minecraft.world.entity.ai.attributes.Attribute setSyncable(boolean);
+  public net.minecraft.world.entity.ai.attributes.Attribute setSentiment(net.minecraft.world.entity.ai.attributes.Attribute$Sentiment);
+  public double sanitizeValue(double);
+  public java.lang.String getDescriptionId();
+  public net.minecraft.ChatFormatting getStyle(boolean);
+}
+Compiled from "AttributeSupplier.java"
+public class net.minecraft.world.entity.ai.attributes.AttributeSupplier {
+  public double getValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public double getBaseValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public double getModifierValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.resources.Identifier);
+  public net.minecraft.world.entity.ai.attributes.AttributeInstance createInstance(java.util.function.Consumer<net.minecraft.world.entity.ai.attributes.AttributeInstance>, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder builder();
+  public boolean hasAttribute(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public boolean hasModifier(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.resources.Identifier);
+}
+Compiled from "AttributeMap.java"
+public class net.minecraft.world.entity.ai.attributes.AttributeMap {
+  public net.minecraft.world.entity.ai.attributes.AttributeMap(net.minecraft.world.entity.ai.attributes.AttributeSupplier);
+  public java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeInstance> getAttributesToSync();
+  public java.util.Set<net.minecraft.world.entity.ai.attributes.AttributeInstance> getAttributesToUpdate();
+  public java.util.Collection<net.minecraft.world.entity.ai.attributes.AttributeInstance> getSyncableAttributes();
+  public net.minecraft.world.entity.ai.attributes.AttributeInstance getInstance(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public boolean hasAttribute(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public boolean hasModifier(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.resources.Identifier);
+  public double getValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public double getBaseValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public double getModifierValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.resources.Identifier);
+  public void addTransientAttributeModifiers(com.google.common.collect.Multimap<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  public void removeAttributeModifiers(com.google.common.collect.Multimap<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  public void assignAllValues(net.minecraft.world.entity.ai.attributes.AttributeMap);
+  public void assignBaseValues(net.minecraft.world.entity.ai.attributes.AttributeMap);
+  public void assignPermanentModifiers(net.minecraft.world.entity.ai.attributes.AttributeMap);
+  public boolean resetBaseValue(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>);
+  public java.util.List<net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed> pack();
+  public void apply(java.util.List<net.minecraft.world.entity.ai.attributes.AttributeInstance$Packed>);
+}
+Compiled from "RangedAttribute.java"
+public class net.minecraft.world.entity.ai.attributes.RangedAttribute extends net.minecraft.world.entity.ai.attributes.Attribute {
+  public net.minecraft.world.entity.ai.attributes.RangedAttribute(java.lang.String, double, double, double);
+  public double getMinValue();
+  public double getMaxValue();
+  public double sanitizeValue(double);
+}

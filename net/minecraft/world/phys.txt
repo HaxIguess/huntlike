@@ -1,0 +1,206 @@
+Compiled from "HitResult.java"
+public final class net.minecraft.world.phys.HitResult$Type extends java.lang.Enum<net.minecraft.world.phys.HitResult$Type> {
+  public static final net.minecraft.world.phys.HitResult$Type MISS;
+  public static final net.minecraft.world.phys.HitResult$Type BLOCK;
+  public static final net.minecraft.world.phys.HitResult$Type ENTITY;
+  public static net.minecraft.world.phys.HitResult$Type[] values();
+  public static net.minecraft.world.phys.HitResult$Type valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.phys.package-info {
+}
+Compiled from "BlockHitResult.java"
+public class net.minecraft.world.phys.BlockHitResult extends net.minecraft.world.phys.HitResult {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.phys.BlockHitResult> STREAM_CODEC;
+  public static net.minecraft.world.phys.BlockHitResult miss(net.minecraft.world.phys.Vec3, net.minecraft.core.Direction, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3, net.minecraft.core.Direction, net.minecraft.core.BlockPos, boolean);
+  public net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3, net.minecraft.core.Direction, net.minecraft.core.BlockPos, boolean, boolean);
+  public net.minecraft.world.phys.BlockHitResult withDirection(net.minecraft.core.Direction);
+  public net.minecraft.world.phys.BlockHitResult withPosition(net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.BlockHitResult hitBorder();
+  public net.minecraft.core.BlockPos getBlockPos();
+  public net.minecraft.core.Direction getDirection();
+  public net.minecraft.world.phys.HitResult$Type getType();
+  public boolean isInside();
+  public boolean isWorldBorderHit();
+}
+Compiled from "AABB.java"
+public class net.minecraft.world.phys.AABB$Builder {
+  public net.minecraft.world.phys.AABB$Builder();
+  public void include(org.joml.Vector3fc);
+  public boolean isDefined();
+  public net.minecraft.world.phys.AABB build();
+}
+Compiled from "HitResult.java"
+public abstract class net.minecraft.world.phys.HitResult {
+  protected final net.minecraft.world.phys.Vec3 location;
+  protected net.minecraft.world.phys.HitResult(net.minecraft.world.phys.Vec3);
+  public double distanceTo(net.minecraft.world.entity.Entity);
+  public abstract net.minecraft.world.phys.HitResult$Type getType();
+  public net.minecraft.world.phys.Vec3 getLocation();
+}
+Compiled from "Vec3.java"
+public class net.minecraft.world.phys.Vec3 implements net.minecraft.core.Position {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.phys.Vec3> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.phys.Vec3> STREAM_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.phys.Vec3> LP_STREAM_CODEC;
+  public static final net.minecraft.world.phys.Vec3 ZERO;
+  public static final net.minecraft.world.phys.Vec3 X_AXIS;
+  public static final net.minecraft.world.phys.Vec3 Y_AXIS;
+  public static final net.minecraft.world.phys.Vec3 Z_AXIS;
+  public final double x;
+  public final double y;
+  public final double z;
+  public static net.minecraft.world.phys.Vec3 atLowerCornerOf(net.minecraft.core.Vec3i);
+  public static net.minecraft.world.phys.Vec3 atLowerCornerWithOffset(net.minecraft.core.Vec3i, double, double, double);
+  public static net.minecraft.world.phys.Vec3 atCenterOf(net.minecraft.core.Vec3i);
+  public static net.minecraft.world.phys.Vec3 atCenterOfWithY(net.minecraft.core.Vec3i, double);
+  public static net.minecraft.world.phys.Vec3 atBottomCenterOf(net.minecraft.core.Vec3i);
+  public static net.minecraft.world.phys.Vec3 upFromBottomCenterOf(net.minecraft.core.Vec3i, double);
+  public net.minecraft.world.phys.Vec3(double, double, double);
+  public net.minecraft.world.phys.Vec3(org.joml.Vector3fc);
+  public net.minecraft.world.phys.Vec3(net.minecraft.core.Vec3i);
+  public net.minecraft.world.phys.Vec3 vectorTo(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 normalize();
+  public double dot(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 cross(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 subtract(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 subtract(double);
+  public net.minecraft.world.phys.Vec3 subtract(double, double, double);
+  public net.minecraft.world.phys.Vec3 add(double);
+  public net.minecraft.world.phys.Vec3 add(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 add(double, double, double);
+  public boolean closerThan(net.minecraft.core.Position, double);
+  public double distanceTo(net.minecraft.world.phys.Vec3);
+  public double distanceToSqr(net.minecraft.world.phys.Vec3);
+  public double distanceToSqr(double, double, double);
+  public boolean closerThan(net.minecraft.world.phys.Vec3, double, double);
+  public net.minecraft.world.phys.Vec3 scale(double);
+  public net.minecraft.world.phys.Vec3 reverse();
+  public net.minecraft.world.phys.Vec3 multiply(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 multiply(double, double, double);
+  public net.minecraft.world.phys.Vec3 horizontal();
+  public net.minecraft.world.phys.Vec3 offsetRandom(net.minecraft.util.RandomSource, float);
+  public net.minecraft.world.phys.Vec3 offsetRandomXZ(net.minecraft.util.RandomSource, float);
+  public double length();
+  public double lengthSqr();
+  public double horizontalDistance();
+  public double horizontalDistanceSqr();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public net.minecraft.world.phys.Vec3 lerp(net.minecraft.world.phys.Vec3, double);
+  public net.minecraft.world.phys.Vec3 xRot(float);
+  public net.minecraft.world.phys.Vec3 yRot(float);
+  public net.minecraft.world.phys.Vec3 zRot(float);
+  public net.minecraft.world.phys.Vec3 rotateClockwise90();
+  public static net.minecraft.world.phys.Vec3 directionFromRotation(net.minecraft.world.phys.Vec2);
+  public static net.minecraft.world.phys.Vec3 directionFromRotation(float, float);
+  public net.minecraft.world.phys.Vec2 rotation();
+  public net.minecraft.world.phys.Vec3 align(java.util.EnumSet<net.minecraft.core.Direction$Axis>);
+  public double get(net.minecraft.core.Direction$Axis);
+  public net.minecraft.world.phys.Vec3 with(net.minecraft.core.Direction$Axis, double);
+  public net.minecraft.world.phys.Vec3 relative(net.minecraft.core.Direction, double);
+  public final double x();
+  public final double y();
+  public final double z();
+  public org.joml.Vector3f toVector3f();
+  public net.minecraft.world.phys.Vec3 projectedOn(net.minecraft.world.phys.Vec3);
+  public boolean isFinite();
+}
+Compiled from "AABB.java"
+public class net.minecraft.world.phys.AABB {
+  public final double minX;
+  public final double minY;
+  public final double minZ;
+  public final double maxX;
+  public final double maxY;
+  public final double maxZ;
+  public net.minecraft.world.phys.AABB(double, double, double, double, double, double);
+  public net.minecraft.world.phys.AABB(net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static net.minecraft.world.phys.AABB of(net.minecraft.world.level.levelgen.structure.BoundingBox);
+  public static net.minecraft.world.phys.AABB unitCubeFromLowerCorner(net.minecraft.world.phys.Vec3);
+  public static net.minecraft.world.phys.AABB encapsulatingFullBlocks(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB setMinX(double);
+  public net.minecraft.world.phys.AABB setMinY(double);
+  public net.minecraft.world.phys.AABB setMinZ(double);
+  public net.minecraft.world.phys.AABB setMaxX(double);
+  public net.minecraft.world.phys.AABB setMaxY(double);
+  public net.minecraft.world.phys.AABB setMaxZ(double);
+  public double min(net.minecraft.core.Direction$Axis);
+  public double max(net.minecraft.core.Direction$Axis);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public net.minecraft.world.phys.AABB contract(double, double, double);
+  public net.minecraft.world.phys.AABB expandTowards(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.AABB expandTowards(double, double, double);
+  public net.minecraft.world.phys.AABB inflate(double, double, double);
+  public net.minecraft.world.phys.AABB inflate(double);
+  public net.minecraft.world.phys.AABB intersect(net.minecraft.world.phys.AABB);
+  public net.minecraft.world.phys.AABB minmax(net.minecraft.world.phys.AABB);
+  public net.minecraft.world.phys.AABB move(double, double, double);
+  public net.minecraft.world.phys.AABB move(net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB move(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.AABB move(org.joml.Vector3f);
+  public boolean intersects(net.minecraft.world.phys.AABB);
+  public boolean intersects(double, double, double, double, double, double);
+  public boolean intersects(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public boolean intersects(net.minecraft.core.BlockPos);
+  public boolean contains(net.minecraft.world.phys.Vec3);
+  public boolean contains(double, double, double);
+  public double getSize();
+  public double getXsize();
+  public double getYsize();
+  public double getZsize();
+  public net.minecraft.world.phys.AABB deflate(double, double, double);
+  public net.minecraft.world.phys.AABB deflate(double);
+  public java.util.Optional<net.minecraft.world.phys.Vec3> clip(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static java.util.Optional<net.minecraft.world.phys.Vec3> clip(double, double, double, double, double, double, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static net.minecraft.world.phys.BlockHitResult clip(java.lang.Iterable<net.minecraft.world.phys.AABB>, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.core.BlockPos);
+  public boolean collidedAlongVector(net.minecraft.world.phys.Vec3, java.util.List<net.minecraft.world.phys.AABB>);
+  public double distanceToSqr(net.minecraft.world.phys.Vec3);
+  public double distanceToSqr(net.minecraft.world.phys.AABB);
+  public java.lang.String toString();
+  public boolean hasNaN();
+  public net.minecraft.world.phys.Vec3 getCenter();
+  public net.minecraft.world.phys.Vec3 getBottomCenter();
+  public net.minecraft.world.phys.Vec3 getMinPosition();
+  public net.minecraft.world.phys.Vec3 getMaxPosition();
+  public static net.minecraft.world.phys.AABB ofSize(net.minecraft.world.phys.Vec3, double, double, double);
+  public net.minecraft.world.phys.AABB nextDeflated();
+}
+Compiled from "EntityHitResult.java"
+public class net.minecraft.world.phys.EntityHitResult extends net.minecraft.world.phys.HitResult {
+  public net.minecraft.world.phys.EntityHitResult(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.phys.EntityHitResult(net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.entity.Entity getEntity();
+  public net.minecraft.world.phys.HitResult$Type getType();
+}
+Compiled from "Vec2.java"
+public class net.minecraft.world.phys.Vec2 {
+  public static final net.minecraft.world.phys.Vec2 ZERO;
+  public static final net.minecraft.world.phys.Vec2 ONE;
+  public static final net.minecraft.world.phys.Vec2 UNIT_X;
+  public static final net.minecraft.world.phys.Vec2 NEG_UNIT_X;
+  public static final net.minecraft.world.phys.Vec2 UNIT_Y;
+  public static final net.minecraft.world.phys.Vec2 NEG_UNIT_Y;
+  public static final net.minecraft.world.phys.Vec2 MAX;
+  public static final net.minecraft.world.phys.Vec2 MIN;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.phys.Vec2> CODEC;
+  public final float x;
+  public final float y;
+  public net.minecraft.world.phys.Vec2(float, float);
+  public net.minecraft.world.phys.Vec2 scale(float);
+  public float dot(net.minecraft.world.phys.Vec2);
+  public net.minecraft.world.phys.Vec2 add(net.minecraft.world.phys.Vec2);
+  public net.minecraft.world.phys.Vec2 add(float);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public net.minecraft.world.phys.Vec2 normalized();
+  public float length();
+  public float lengthSquared();
+  public float distanceToSqr(net.minecraft.world.phys.Vec2);
+  public net.minecraft.world.phys.Vec2 negated();
+  public net.minecraft.world.phys.Vec2 rotate(double);
+}

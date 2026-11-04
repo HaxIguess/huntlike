@@ -1,0 +1,24 @@
+Compiled from "ISearchStorage.java"
+public interface mezz.jei.api.search.ISearchStorage<T> {
+  public abstract void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public abstract void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public abstract void put(java.lang.String, T);
+  public abstract java.lang.String statistics();
+}
+Compiled from "ISearchStorageBuilder.java"
+public interface mezz.jei.api.search.ISearchStorageBuilder<T> {
+  public abstract void put(java.lang.String, T);
+  public abstract mezz.jei.api.search.ISearchStorage<T> build();
+}
+Compiled from "ISearchStorageBuilderFactory.java"
+public interface mezz.jei.api.search.ISearchStorageBuilderFactory {
+  public abstract <T> mezz.jei.api.search.ISearchStorageBuilder<T> create();
+  public default <T> mezz.jei.api.search.ISearchStorageBuilder<T> create(java.lang.String);
+}
+Compiled from "ISearchStorageFactory.java"
+public interface mezz.jei.api.search.ISearchStorageFactory {
+  public abstract <T> mezz.jei.api.search.ISearchStorage<T> createSearchStorage();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.search.package-info {
+}

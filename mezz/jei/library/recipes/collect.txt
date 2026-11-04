@@ -1,0 +1,71 @@
+Compiled from "IngredientToRecipesMap.java"
+public class mezz.jei.library.recipes.collect.IngredientToRecipesMap<R> {
+  public mezz.jei.library.recipes.collect.IngredientToRecipesMap();
+  public void addExact(R, mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object);
+  public void addGrouping(R, mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object);
+  public java.util.List<R> get(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, java.lang.Object);
+  public void compact();
+}
+Compiled from "IngredientUidIndex.java"
+public interface mezz.jei.library.recipes.collect.IngredientUidIndex$EntryConsumer<V> {
+  public abstract void accept(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, mezz.jei.library.recipes.collect.MatchBuckets<V>);
+}
+Compiled from "IngredientUidIndex.java"
+final class mezz.jei.library.recipes.collect.IngredientUidIndex<V> {
+  public mezz.jei.library.recipes.collect.MatchBuckets<V> get(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object);
+  public mezz.jei.library.recipes.collect.MatchBuckets<V> get(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, java.lang.Object);
+  public V computeExactIfAbsent(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, java.util.function.Supplier<V>);
+  public V computeGroupingIfAbsent(mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, java.util.function.Supplier<V>);
+  public void forEach(mezz.jei.library.recipes.collect.IngredientUidIndex$EntryConsumer<V>);
+}
+Compiled from "IngredientUidIndex.java"
+final class mezz.jei.library.recipes.collect.MatchBuckets<V> extends java.lang.Record {
+  public static <V> mezz.jei.library.recipes.collect.MatchBuckets<V> empty();
+  public mezz.jei.library.recipes.collect.MatchBuckets<V> withExact(V);
+  public mezz.jei.library.recipes.collect.MatchBuckets<V> withGrouping(V);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public V exact();
+  public V grouping();
+}
+Compiled from "RecipeIngredientRoleMap.java"
+public class mezz.jei.library.recipes.collect.RecipeIngredientRoleMap {
+  public mezz.jei.library.recipes.collect.RecipeIngredientRoleMap(java.util.Comparator<mezz.jei.api.recipe.types.IRecipeType<?>>, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.recipe.RecipeIngredientRole);
+  public <T> java.util.stream.Stream<mezz.jei.api.recipe.types.IRecipeType<?>> getRecipeTypes(mezz.jei.api.ingredients.ITypedIngredient<T>);
+  public <T> void addCraftingStationForCategory(mezz.jei.api.recipe.types.IRecipeType<?>, mezz.jei.api.ingredients.ITypedIngredient<T>);
+  public <T> java.util.List<T> getRecipes(mezz.jei.api.recipe.types.IRecipeType<T>, mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public <T> boolean isCraftingStationForRecipeCategory(mezz.jei.api.recipe.types.IRecipeType<T>, mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public <T> void addRecipe(mezz.jei.api.recipe.types.IRecipeType<T>, T, mezz.jei.library.ingredients.RecipeIngredientSupplier);
+  public void compact();
+}
+Compiled from "RecipeIngredientTable.java"
+public class mezz.jei.library.recipes.collect.RecipeIngredientTable {
+  public mezz.jei.library.recipes.collect.RecipeIngredientTable();
+  public <V> void addExact(V, mezz.jei.api.recipe.types.IRecipeType<V>, mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object);
+  public <V> void addGrouping(V, mezz.jei.api.recipe.types.IRecipeType<V>, mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object);
+  public <V> java.util.List<V> get(mezz.jei.api.recipe.types.IRecipeType<V>, mezz.jei.api.ingredients.IIngredientType<?>, java.lang.Object, java.lang.Object);
+  public void compact();
+}
+Compiled from "RecipeTypeData.java"
+public class mezz.jei.library.recipes.collect.RecipeTypeData<T> {
+  public mezz.jei.library.recipes.collect.RecipeTypeData(mezz.jei.api.recipe.category.IRecipeCategory<T>, java.util.List<java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>>);
+  public mezz.jei.api.recipe.category.IRecipeCategory<T> getRecipeCategory();
+  public java.util.List<java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>> getCraftingStations();
+  public java.util.List<T> getRecipes();
+  public void addRecipes(java.util.Collection<T>);
+  public void addFocusLinks(T, java.util.List<mezz.jei.library.ingredients.RecipeIngredientSupplier$FocusLink>);
+  public java.util.List<mezz.jei.library.ingredients.RecipeIngredientSupplier$FocusLink> getFocusLinks(T);
+  public java.util.Set<T> getHiddenRecipes();
+}
+Compiled from "RecipeTypeDataMap.java"
+public class mezz.jei.library.recipes.collect.RecipeTypeDataMap {
+  public mezz.jei.library.recipes.collect.RecipeTypeDataMap(java.util.List<mezz.jei.api.recipe.category.IRecipeCategory<?>>, com.google.common.collect.ImmutableListMultimap<mezz.jei.api.recipe.category.IRecipeCategory<?>, java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>>);
+  public <T> mezz.jei.library.recipes.collect.RecipeTypeData<T> get(mezz.jei.api.recipe.types.IRecipeType<T>);
+  public void validate(mezz.jei.api.recipe.types.IRecipeType<?>);
+  public java.util.Optional<mezz.jei.api.recipe.types.IRecipeType<?>> getType(net.minecraft.resources.Identifier);
+  public <T> java.util.Optional<mezz.jei.api.recipe.types.IRecipeType<T>> getType(net.minecraft.resources.Identifier, java.lang.Class<? extends T>);
+}
+Compiled from "package-info.java"
+interface mezz.jei.library.recipes.collect.package-info {
+}

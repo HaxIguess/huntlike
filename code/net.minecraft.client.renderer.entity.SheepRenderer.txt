@@ -1,0 +1,139 @@
+Compiled from "SheepRenderer.java"
+public class net.minecraft.client.renderer.entity.SheepRenderer extends net.minecraft.client.renderer.entity.AgeableMobRenderer<net.minecraft.world.entity.animal.sheep.Sheep, net.minecraft.client.renderer.entity.state.SheepRenderState, net.minecraft.client.model.animal.sheep.SheepModel> {
+  private static final net.minecraft.resources.Identifier SHEEP_LOCATION;
+
+  private static final net.minecraft.resources.Identifier SHEEP_BABY_LOCATION;
+
+  public net.minecraft.client.renderer.entity.SheepRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider$Context);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: new           #1                  // class net/minecraft/client/model/animal/sheep/SheepModel
+         5: dup
+         6: aload_1
+         7: getstatic     #3                  // Field net/minecraft/client/model/geom/ModelLayers.SHEEP:Lnet/minecraft/client/model/geom/ModelLayerLocation;
+        10: invokevirtual #9                  // Method net/minecraft/client/renderer/entity/EntityRendererProvider$Context.bakeLayer:(Lnet/minecraft/client/model/geom/ModelLayerLocation;)Lnet/minecraft/client/model/geom/ModelPart;
+        13: invokespecial #15                 // Method net/minecraft/client/model/animal/sheep/SheepModel."<init>":(Lnet/minecraft/client/model/geom/ModelPart;)V
+        16: new           #19                 // class net/minecraft/client/model/animal/sheep/BabySheepModel
+        19: dup
+        20: aload_1
+        21: getstatic     #21                 // Field net/minecraft/client/model/geom/ModelLayers.SHEEP_BABY:Lnet/minecraft/client/model/geom/ModelLayerLocation;
+        24: invokevirtual #9                  // Method net/minecraft/client/renderer/entity/EntityRendererProvider$Context.bakeLayer:(Lnet/minecraft/client/model/geom/ModelLayerLocation;)Lnet/minecraft/client/model/geom/ModelPart;
+        27: invokespecial #24                 // Method net/minecraft/client/model/animal/sheep/BabySheepModel."<init>":(Lnet/minecraft/client/model/geom/ModelPart;)V
+        30: ldc           #25                 // float 0.7f
+        32: invokespecial #26                 // Method net/minecraft/client/renderer/entity/AgeableMobRenderer."<init>":(Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;Lnet/minecraft/client/model/EntityModel;Lnet/minecraft/client/model/EntityModel;F)V
+        35: aload_0
+        36: new           #31                 // class net/minecraft/client/renderer/entity/layers/SheepWoolUndercoatLayer
+        39: dup
+        40: aload_0
+        41: aload_1
+        42: invokevirtual #33                 // Method net/minecraft/client/renderer/entity/EntityRendererProvider$Context.getModelSet:()Lnet/minecraft/client/model/geom/EntityModelSet;
+        45: invokespecial #37                 // Method net/minecraft/client/renderer/entity/layers/SheepWoolUndercoatLayer."<init>":(Lnet/minecraft/client/renderer/entity/RenderLayerParent;Lnet/minecraft/client/model/geom/EntityModelSet;)V
+        48: invokevirtual #40                 // Method addLayer:(Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+        51: pop
+        52: aload_0
+        53: new           #46                 // class net/minecraft/client/renderer/entity/layers/SheepWoolLayer
+        56: dup
+        57: aload_0
+        58: aload_1
+        59: invokevirtual #33                 // Method net/minecraft/client/renderer/entity/EntityRendererProvider$Context.getModelSet:()Lnet/minecraft/client/model/geom/EntityModelSet;
+        62: invokespecial #48                 // Method net/minecraft/client/renderer/entity/layers/SheepWoolLayer."<init>":(Lnet/minecraft/client/renderer/entity/RenderLayerParent;Lnet/minecraft/client/model/geom/EntityModelSet;)V
+        65: invokevirtual #40                 // Method addLayer:(Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+        68: pop
+        69: return
+
+  public net.minecraft.resources.Identifier getTextureLocation(net.minecraft.client.renderer.entity.state.SheepRenderState);
+    Code:
+         0: aload_1
+         1: getfield      #49                 // Field net/minecraft/client/renderer/entity/state/SheepRenderState.isBaby:Z
+         4: ifeq          13
+         7: getstatic     #55                 // Field SHEEP_BABY_LOCATION:Lnet/minecraft/resources/Identifier;
+        10: goto          16
+        13: getstatic     #59                 // Field SHEEP_LOCATION:Lnet/minecraft/resources/Identifier;
+        16: areturn
+
+  public net.minecraft.client.renderer.entity.state.SheepRenderState createRenderState();
+    Code:
+         0: new           #50                 // class net/minecraft/client/renderer/entity/state/SheepRenderState
+         3: dup
+         4: invokespecial #62                 // Method net/minecraft/client/renderer/entity/state/SheepRenderState."<init>":()V
+         7: areturn
+
+  public void extractRenderState(net.minecraft.world.entity.animal.sheep.Sheep, net.minecraft.client.renderer.entity.state.SheepRenderState, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: fload_3
+         4: invokespecial #65                 // Method net/minecraft/client/renderer/entity/AgeableMobRenderer.extractRenderState:(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;F)V
+         7: aload_2
+         8: aload_1
+         9: fload_3
+        10: invokevirtual #69                 // Method net/minecraft/world/entity/animal/sheep/Sheep.getHeadEatAngleScale:(F)F
+        13: putfield      #75                 // Field net/minecraft/client/renderer/entity/state/SheepRenderState.headEatAngleScale:F
+        16: aload_2
+        17: aload_1
+        18: fload_3
+        19: invokevirtual #79                 // Method net/minecraft/world/entity/animal/sheep/Sheep.getHeadEatPositionScale:(F)F
+        22: putfield      #82                 // Field net/minecraft/client/renderer/entity/state/SheepRenderState.headEatPositionScale:F
+        25: aload_2
+        26: aload_1
+        27: invokevirtual #85                 // Method net/minecraft/world/entity/animal/sheep/Sheep.isSheared:()Z
+        30: putfield      #89                 // Field net/minecraft/client/renderer/entity/state/SheepRenderState.isSheared:Z
+        33: aload_2
+        34: aload_1
+        35: invokevirtual #91                 // Method net/minecraft/world/entity/animal/sheep/Sheep.getColor:()Lnet/minecraft/world/item/DyeColor;
+        38: putfield      #95                 // Field net/minecraft/client/renderer/entity/state/SheepRenderState.woolColor:Lnet/minecraft/world/item/DyeColor;
+        41: aload_2
+        42: aload_1
+        43: ldc           #99                 // String jeb_
+        45: invokestatic  #101                // Method checkMagicName:(Lnet/minecraft/world/entity/Entity;Ljava/lang/String;)Z
+        48: putfield      #105                // Field net/minecraft/client/renderer/entity/state/SheepRenderState.isJebSheep:Z
+        51: return
+
+  public void extractRenderState(net.minecraft.world.entity.LivingEntity, net.minecraft.client.renderer.entity.state.LivingEntityRenderState, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #70                 // class net/minecraft/world/entity/animal/sheep/Sheep
+         5: aload_2
+         6: checkcast     #50                 // class net/minecraft/client/renderer/entity/state/SheepRenderState
+         9: fload_3
+        10: invokevirtual #108                // Method extractRenderState:(Lnet/minecraft/world/entity/animal/sheep/Sheep;Lnet/minecraft/client/renderer/entity/state/SheepRenderState;F)V
+        13: return
+
+  public net.minecraft.resources.Identifier getTextureLocation(net.minecraft.client.renderer.entity.state.LivingEntityRenderState);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #50                 // class net/minecraft/client/renderer/entity/state/SheepRenderState
+         5: invokevirtual #111                // Method getTextureLocation:(Lnet/minecraft/client/renderer/entity/state/SheepRenderState;)Lnet/minecraft/resources/Identifier;
+         8: areturn
+
+  public void extractRenderState(net.minecraft.world.entity.Entity, net.minecraft.client.renderer.entity.state.EntityRenderState, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #70                 // class net/minecraft/world/entity/animal/sheep/Sheep
+         5: aload_2
+         6: checkcast     #50                 // class net/minecraft/client/renderer/entity/state/SheepRenderState
+         9: fload_3
+        10: invokevirtual #108                // Method extractRenderState:(Lnet/minecraft/world/entity/animal/sheep/Sheep;Lnet/minecraft/client/renderer/entity/state/SheepRenderState;F)V
+        13: return
+
+  public net.minecraft.client.renderer.entity.state.EntityRenderState createRenderState();
+    Code:
+         0: aload_0
+         1: invokevirtual #115                // Method createRenderState:()Lnet/minecraft/client/renderer/entity/state/SheepRenderState;
+         4: areturn
+
+  static {};
+    Code:
+         0: ldc           #119                // String textures/entity/sheep/sheep.png
+         2: invokestatic  #121                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         5: putstatic     #59                 // Field SHEEP_LOCATION:Lnet/minecraft/resources/Identifier;
+         8: ldc           #127                // String textures/entity/sheep/sheep_baby.png
+        10: invokestatic  #121                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        13: putstatic     #55                 // Field SHEEP_BABY_LOCATION:Lnet/minecraft/resources/Identifier;
+        16: return
+}

@@ -1,0 +1,38 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ambient.package-info {
+}
+Compiled from "AmbientCreature.java"
+public abstract class net.minecraft.world.entity.ambient.AmbientCreature extends net.minecraft.world.entity.Mob {
+  protected net.minecraft.world.entity.ambient.AmbientCreature(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.ambient.AmbientCreature>, net.minecraft.world.level.Level);
+  public boolean canBeLeashed();
+}
+Compiled from "Bat.java"
+public class net.minecraft.world.entity.ambient.Bat extends net.minecraft.world.entity.ambient.AmbientCreature {
+  public static final float FLAP_LENGTH_SECONDS;
+  public static final float TICKS_PER_FLAP;
+  public final net.minecraft.world.entity.AnimationState flyAnimationState;
+  public final net.minecraft.world.entity.AnimationState restAnimationState;
+  public net.minecraft.world.entity.ambient.Bat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.ambient.Bat>, net.minecraft.world.level.Level);
+  public boolean isFlapping();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected float getSoundVolume();
+  public float getVoicePitch();
+  public net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public boolean isPushable();
+  protected void doPush(net.minecraft.world.entity.Entity);
+  protected void pushEntities();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean isResting();
+  public void setResting(boolean);
+  public void tick();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  public boolean isIgnoringBlockTriggers();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public static boolean checkBatSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.ambient.Bat>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+}

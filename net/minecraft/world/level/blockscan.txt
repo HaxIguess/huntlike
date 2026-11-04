@@ -1,0 +1,65 @@
+Compiled from "FilteredSectionCache.java"
+public class net.minecraft.world.level.blockscan.FilteredSectionCache {
+  public net.minecraft.world.level.blockscan.FilteredSectionCache(net.minecraft.world.level.LevelReader, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.blockscan.package-info {
+}
+Compiled from "BlockMatcher.java"
+public abstract class net.minecraft.world.level.blockscan.BlockMatcher {
+  protected final net.minecraft.world.level.LevelReader level;
+  protected java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState> statePredicate;
+  public net.minecraft.world.level.blockscan.BlockMatcher(net.minecraft.world.level.LevelReader);
+  public net.minecraft.world.level.blockscan.BlockMatcher filterState(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public abstract boolean atLeastMatched(int);
+  public boolean atMostMatched(int);
+  public boolean anyMatched();
+  protected abstract boolean anyMatched(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public boolean noneMatched();
+  public boolean allMatched();
+  public abstract void forEach(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public abstract boolean forEachUntil(net.minecraft.world.level.blockscan.BlockStateConsumer);
+}
+Compiled from "BlockStateConsumer.java"
+public interface net.minecraft.world.level.blockscan.BlockStateConsumer {
+  public abstract net.minecraft.util.Continuation apply(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "FilteredSectionCache.java"
+final class net.minecraft.world.level.blockscan.FilteredSectionCache$CacheEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.LevelChunkSection chunkSection();
+  public int sectionX();
+  public int sectionY();
+  public int sectionZ();
+}
+Compiled from "OrderedBlockMatcher.java"
+public class net.minecraft.world.level.blockscan.OrderedBlockMatcher extends net.minecraft.world.level.blockscan.BlockMatcher {
+  public net.minecraft.world.level.blockscan.OrderedBlockMatcher(net.minecraft.world.level.LevelReader, java.lang.Iterable<net.minecraft.core.BlockPos>);
+  public net.minecraft.world.level.blockscan.OrderedBlockMatcher filterPos(java.util.function.Predicate<? super net.minecraft.core.BlockPos>);
+  public net.minecraft.world.level.blockscan.OrderedBlockMatcher filterState(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public boolean atLeastMatched(int);
+  protected boolean anyMatched(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public void forEach(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public boolean forEachUntil(net.minecraft.world.level.blockscan.BlockStateConsumer);
+  public java.util.Optional<net.minecraft.core.BlockPos> findFirst();
+  public java.util.Optional<net.minecraft.core.BlockPos> findFirst(java.util.function.BiPredicate<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.level.blockscan.BlockMatcher filterState(java.util.function.Predicate);
+}
+Compiled from "BlockScanUtils.java"
+public class net.minecraft.world.level.blockscan.BlockScanUtils {
+  public net.minecraft.world.level.blockscan.BlockScanUtils();
+  public static boolean findBlocksInSection(net.minecraft.world.level.chunk.LevelChunkSection, net.minecraft.core.BlockPos, int, int, int, int, int, int, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>, net.minecraft.world.level.blockscan.BlockStateConsumer);
+}
+Compiled from "BoxBlockMatcher.java"
+public class net.minecraft.world.level.blockscan.BoxBlockMatcher extends net.minecraft.world.level.blockscan.BlockMatcher {
+  public net.minecraft.world.level.blockscan.BoxBlockMatcher(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.blockscan.BoxBlockMatcher filterState(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public boolean atLeastMatched(int);
+  protected boolean anyMatched(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public void forEach(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public boolean forEachUntil(net.minecraft.world.level.blockscan.BlockStateConsumer);
+  public net.minecraft.world.level.blockscan.BlockMatcher filterState(java.util.function.Predicate);
+}

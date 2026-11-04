@@ -1,0 +1,45 @@
+Compiled from "ContainerStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage extends net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> {
+  public static net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage of(net.minecraft.world.Container, net.minecraft.core.Direction);
+  public abstract java.util.List<net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant>> getSlots();
+  public default int getSlotCount();
+  public default net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> getSlot(int);
+}
+Compiled from "ItemStorage.java"
+public final class net.fabricmc.fabric.api.transfer.v1.item.ItemStorage {
+  public static final net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup<net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant>, net.minecraft.core.Direction> SIDED;
+  public static final net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup<net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant>, net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext> ITEM;
+}
+Compiled from "ItemVariant.java"
+public interface net.fabricmc.fabric.api.transfer.v1.item.ItemVariant extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<net.minecraft.world.item.Item> {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> PACKET_CODEC;
+  public static net.fabricmc.fabric.api.transfer.v1.item.ItemVariant blank();
+  public static net.fabricmc.fabric.api.transfer.v1.item.ItemVariant of(net.minecraft.world.item.ItemStack);
+  public static net.fabricmc.fabric.api.transfer.v1.item.ItemVariant of(net.minecraft.world.level.ItemLike);
+  public static net.fabricmc.fabric.api.transfer.v1.item.ItemVariant of(net.minecraft.world.level.ItemLike, net.minecraft.core.component.DataComponentPatch);
+  public default boolean matches(net.minecraft.world.item.ItemStack);
+  public default net.minecraft.world.item.Item getItem();
+  public default net.minecraft.core.Holder<net.minecraft.world.item.Item> typeHolder();
+  public default net.minecraft.world.item.ItemStack toStack();
+  public default net.minecraft.world.item.ItemStack toStack(int);
+  public abstract net.fabricmc.fabric.api.transfer.v1.item.ItemVariant withComponents(net.minecraft.core.component.DataComponentPatch);
+  public default net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant withComponents(net.minecraft.core.component.DataComponentPatch);
+}
+Compiled from "PlayerInventoryStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage extends net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage {
+  public static net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage of(net.minecraft.world.entity.player.Player);
+  public static net.fabricmc.fabric.api.transfer.v1.item.PlayerInventoryStorage of(net.minecraft.world.entity.player.Inventory);
+  public static net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> getCursorStorage(net.minecraft.world.inventory.AbstractContainerMenu);
+  public abstract long insert(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public default void offerOrDrop(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public abstract long offer(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public abstract void drop(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, boolean, boolean, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public default void drop(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, boolean, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public default void drop(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public abstract net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> getHandSlot(net.minecraft.world.InteractionHand);
+  public default long insert(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.item.package-info {
+}

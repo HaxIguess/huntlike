@@ -1,0 +1,145 @@
+Compiled from "BlackholeTickAccess.java"
+public class net.minecraft.world.ticks.BlackholeTickAccess {
+  public net.minecraft.world.ticks.BlackholeTickAccess();
+  public static <T> net.minecraft.world.ticks.TickContainerAccess<T> emptyContainer();
+  public static <T> net.minecraft.world.ticks.LevelTickAccess<T> emptyLevelList();
+}
+Compiled from "SavedTick.java"
+public final class net.minecraft.world.ticks.SavedTick<T> extends java.lang.Record {
+  public static final it.unimi.dsi.fastutil.Hash$Strategy<net.minecraft.world.ticks.SavedTick<?>> UNIQUE_TICK_HASH;
+  public net.minecraft.world.ticks.SavedTick(T, net.minecraft.core.BlockPos, int, net.minecraft.world.ticks.TickPriority);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.ticks.SavedTick<T>> codec(com.mojang.serialization.Codec<T>);
+  public static <T> java.util.List<net.minecraft.world.ticks.SavedTick<T>> filterTickListForChunk(java.util.List<net.minecraft.world.ticks.SavedTick<T>>, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.ticks.ScheduledTick<T> unpack(long, long);
+  public static <T> net.minecraft.world.ticks.SavedTick<T> probe(T, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T type();
+  public net.minecraft.core.BlockPos pos();
+  public int delay();
+  public net.minecraft.world.ticks.TickPriority priority();
+}
+Compiled from "ContainerSingleItem.java"
+public interface net.minecraft.world.ticks.ContainerSingleItem extends net.minecraft.world.Container {
+  public abstract net.minecraft.world.item.ItemStack getTheItem();
+  public default net.minecraft.world.item.ItemStack splitTheItem(int);
+  public abstract void setTheItem(net.minecraft.world.item.ItemStack);
+  public default net.minecraft.world.item.ItemStack removeTheItem();
+  public default int getContainerSize();
+  public default boolean isEmpty();
+  public default void clearContent();
+  public default net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public default net.minecraft.world.item.ItemStack getItem(int);
+  public default net.minecraft.world.item.ItemStack removeItem(int, int);
+  public default void setItem(int, net.minecraft.world.item.ItemStack);
+}
+Compiled from "LevelTicks.java"
+interface net.minecraft.world.ticks.LevelTicks$PosAndContainerConsumer<T> {
+  public abstract void accept(long, net.minecraft.world.ticks.LevelChunkTicks<T>);
+}
+Compiled from "WorldGenTickAccess.java"
+public class net.minecraft.world.ticks.WorldGenTickAccess<T> implements net.minecraft.world.ticks.LevelTickAccess<T> {
+  public net.minecraft.world.ticks.WorldGenTickAccess(java.util.function.Function<net.minecraft.core.BlockPos, net.minecraft.world.ticks.TickContainerAccess<T>>);
+  public boolean hasScheduledTick(net.minecraft.core.BlockPos, T);
+  public void schedule(net.minecraft.world.ticks.ScheduledTick<T>);
+  public boolean willTickThisTick(net.minecraft.core.BlockPos, T);
+  public int count();
+}
+Compiled from "SerializableTickContainer.java"
+public interface net.minecraft.world.ticks.SerializableTickContainer<T> {
+  public abstract java.util.List<net.minecraft.world.ticks.SavedTick<T>> pack(long);
+}
+Compiled from "LevelChunkTicks.java"
+public class net.minecraft.world.ticks.LevelChunkTicks<T> implements net.minecraft.world.ticks.TickContainerAccess<T>, net.minecraft.world.ticks.SerializableTickContainer<T> {
+  public net.minecraft.world.ticks.LevelChunkTicks();
+  public net.minecraft.world.ticks.LevelChunkTicks(java.util.List<net.minecraft.world.ticks.SavedTick<T>>);
+  public void setOnTickAdded(java.util.function.BiConsumer<net.minecraft.world.ticks.LevelChunkTicks<T>, net.minecraft.world.ticks.ScheduledTick<T>>);
+  public net.minecraft.world.ticks.ScheduledTick<T> peek();
+  public net.minecraft.world.ticks.ScheduledTick<T> poll();
+  public void schedule(net.minecraft.world.ticks.ScheduledTick<T>);
+  public boolean hasScheduledTick(net.minecraft.core.BlockPos, T);
+  public void removeIf(java.util.function.Predicate<net.minecraft.world.ticks.ScheduledTick<T>>);
+  public java.util.stream.Stream<net.minecraft.world.ticks.ScheduledTick<T>> getAll();
+  public int count();
+  public java.util.List<net.minecraft.world.ticks.SavedTick<T>> pack(long);
+  public void unpack(long);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.ticks.package-info {
+}
+Compiled from "TickAccess.java"
+public interface net.minecraft.world.ticks.TickAccess<T> {
+  public abstract void schedule(net.minecraft.world.ticks.ScheduledTick<T>);
+  public abstract boolean hasScheduledTick(net.minecraft.core.BlockPos, T);
+  public abstract int count();
+}
+Compiled from "ContainerSingleItem.java"
+public interface net.minecraft.world.ticks.ContainerSingleItem$BlockContainerSingleItem extends net.minecraft.world.ticks.ContainerSingleItem {
+  public abstract net.minecraft.world.level.block.entity.BlockEntity getContainerBlockEntity();
+  public default boolean stillValid(net.minecraft.world.entity.player.Player);
+}
+Compiled from "TickContainerAccess.java"
+public interface net.minecraft.world.ticks.TickContainerAccess<T> extends net.minecraft.world.ticks.TickAccess<T> {
+}
+Compiled from "ProtoChunkTicks.java"
+public class net.minecraft.world.ticks.ProtoChunkTicks<T> implements net.minecraft.world.ticks.TickContainerAccess<T>, net.minecraft.world.ticks.SerializableTickContainer<T> {
+  public net.minecraft.world.ticks.ProtoChunkTicks();
+  public void schedule(net.minecraft.world.ticks.ScheduledTick<T>);
+  public boolean hasScheduledTick(net.minecraft.core.BlockPos, T);
+  public int count();
+  public java.util.List<net.minecraft.world.ticks.SavedTick<T>> pack(long);
+  public java.util.List<net.minecraft.world.ticks.SavedTick<T>> scheduledTicks();
+  public static <T> net.minecraft.world.ticks.ProtoChunkTicks<T> load(java.util.List<net.minecraft.world.ticks.SavedTick<T>>);
+}
+Compiled from "LevelTickAccess.java"
+public interface net.minecraft.world.ticks.LevelTickAccess<T> extends net.minecraft.world.ticks.TickAccess<T> {
+  public abstract boolean willTickThisTick(net.minecraft.core.BlockPos, T);
+}
+Compiled from "ScheduledTick.java"
+public final class net.minecraft.world.ticks.ScheduledTick<T> extends java.lang.Record {
+  public static final java.util.Comparator<net.minecraft.world.ticks.ScheduledTick<?>> DRAIN_ORDER;
+  public static final java.util.Comparator<net.minecraft.world.ticks.ScheduledTick<?>> INTRA_TICK_DRAIN_ORDER;
+  public static final it.unimi.dsi.fastutil.Hash$Strategy<net.minecraft.world.ticks.ScheduledTick<?>> UNIQUE_TICK_HASH;
+  public net.minecraft.world.ticks.ScheduledTick(T, net.minecraft.core.BlockPos, long, long);
+  public net.minecraft.world.ticks.ScheduledTick(T, net.minecraft.core.BlockPos, long, net.minecraft.world.ticks.TickPriority, long);
+  public static <T> net.minecraft.world.ticks.ScheduledTick<T> probe(T, net.minecraft.core.BlockPos);
+  public net.minecraft.world.ticks.SavedTick<T> toSavedTick(long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T type();
+  public net.minecraft.core.BlockPos pos();
+  public long triggerTick();
+  public net.minecraft.world.ticks.TickPriority priority();
+  public long subTickOrder();
+}
+Compiled from "LevelTicks.java"
+public class net.minecraft.world.ticks.LevelTicks<T> implements net.minecraft.world.ticks.LevelTickAccess<T> {
+  public net.minecraft.world.ticks.LevelTicks(java.util.function.LongPredicate);
+  public void addContainer(net.minecraft.world.level.ChunkPos, net.minecraft.world.ticks.LevelChunkTicks<T>);
+  public void removeContainer(net.minecraft.world.level.ChunkPos);
+  public void schedule(net.minecraft.world.ticks.ScheduledTick<T>);
+  public void tick(long, int, java.util.function.BiConsumer<net.minecraft.core.BlockPos, T>);
+  public boolean hasScheduledTick(net.minecraft.core.BlockPos, T);
+  public boolean willTickThisTick(net.minecraft.core.BlockPos, T);
+  public void clearArea(net.minecraft.world.level.levelgen.structure.BoundingBox);
+  public void copyArea(net.minecraft.world.level.levelgen.structure.BoundingBox, net.minecraft.core.Vec3i);
+  public void copyAreaFrom(net.minecraft.world.ticks.LevelTicks<T>, net.minecraft.world.level.levelgen.structure.BoundingBox, net.minecraft.core.Vec3i);
+  public int count();
+}
+Compiled from "TickPriority.java"
+public final class net.minecraft.world.ticks.TickPriority extends java.lang.Enum<net.minecraft.world.ticks.TickPriority> {
+  public static final net.minecraft.world.ticks.TickPriority EXTREMELY_HIGH;
+  public static final net.minecraft.world.ticks.TickPriority VERY_HIGH;
+  public static final net.minecraft.world.ticks.TickPriority HIGH;
+  public static final net.minecraft.world.ticks.TickPriority NORMAL;
+  public static final net.minecraft.world.ticks.TickPriority LOW;
+  public static final net.minecraft.world.ticks.TickPriority VERY_LOW;
+  public static final net.minecraft.world.ticks.TickPriority EXTREMELY_LOW;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.ticks.TickPriority> CODEC;
+  public static net.minecraft.world.ticks.TickPriority[] values();
+  public static net.minecraft.world.ticks.TickPriority valueOf(java.lang.String);
+  public static net.minecraft.world.ticks.TickPriority byValue(int);
+  public int getValue();
+}

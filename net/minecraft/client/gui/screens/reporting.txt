@@ -1,0 +1,173 @@
+Compiled from "AbstractReportScreen.java"
+class net.minecraft.client.gui.screens.reporting.AbstractReportScreen$DiscardReportWarningScreen extends net.minecraft.client.gui.screens.multiplayer.WarningScreen {
+  protected net.minecraft.client.gui.screens.reporting.AbstractReportScreen$DiscardReportWarningScreen(net.minecraft.client.gui.screens.reporting.AbstractReportScreen);
+  protected net.minecraft.client.gui.layouts.Layout addFooterButtons();
+  public void onClose();
+  public boolean shouldCloseOnEsc();
+}
+Compiled from "ChatSelectionScreen.java"
+public abstract class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry();
+  public net.minecraft.network.chat.Component getNarration();
+  public boolean isSelected();
+  public boolean canSelect();
+  public boolean canReport();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+}
+Compiled from "ChatSelectionLogFiller.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionLogFiller {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionLogFiller(net.minecraft.client.multiplayer.chat.report.ReportingContext, java.util.function.Predicate<net.minecraft.client.multiplayer.chat.LoggedChatMessage$Player>);
+  public void fillNextPage(int, net.minecraft.client.gui.screens.reporting.ChatSelectionLogFiller$Output);
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$MessageEntry extends net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$MessageEntry(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList, int, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.client.multiplayer.chat.GuiMessageTag, boolean, boolean);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean isSelected();
+  public boolean canSelect();
+  public boolean canReport();
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$MessageHeadingEntry extends net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$MessageHeadingEntry(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList, com.mojang.authlib.GameProfile, net.minecraft.network.chat.Component, boolean);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$DividerEntry extends net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$DividerEntry(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList, net.minecraft.network.chat.Component);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+}
+Compiled from "ChatSelectionLogFiller.java"
+public interface net.minecraft.client.gui.screens.reporting.ChatSelectionLogFiller$Output {
+  public abstract void acceptMessage(int, net.minecraft.client.multiplayer.chat.LoggedChatMessage$Player);
+  public abstract void acceptDivider(net.minecraft.network.chat.Component);
+}
+Compiled from "ReportPlayerScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ReportPlayerScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.reporting.ReportPlayerScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, net.minecraft.client.gui.screens.social.PlayerEntry, boolean);
+  public net.minecraft.network.chat.Component getNarrationMessage();
+  protected void init();
+  protected void repositionElements();
+  public void onClose();
+}
+Compiled from "ReportReasonSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry(net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList, net.minecraft.client.multiplayer.chat.report.ReportReason);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public net.minecraft.client.multiplayer.chat.report.ReportReason getReason();
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry> implements net.minecraft.client.gui.screens.reporting.ChatSelectionLogFiller$Output {
+  public static final int ITEM_HEIGHT;
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen, net.minecraft.client.Minecraft, int);
+  public void setScrollAmount(double);
+  public void acceptMessage(int, net.minecraft.client.multiplayer.chat.LoggedChatMessage$Player);
+  public void acceptDivider(net.minecraft.network.chat.Component);
+  public int getRowWidth();
+  public int getMaxVisibleEntries();
+  protected void extractItem(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float, net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry);
+  protected net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry nextEntry(net.minecraft.client.gui.navigation.ScreenDirection);
+  public void setSelected(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public int getFooterTop();
+  protected void extractItem(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float, net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+  protected net.minecraft.client.gui.components.AbstractSelectionList$Entry nextEntry(net.minecraft.client.gui.navigation.ScreenDirection);
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "AbstractReportScreen.java"
+public abstract class net.minecraft.client.gui.screens.reporting.AbstractReportScreen<B extends net.minecraft.client.multiplayer.chat.report.Report$Builder<?>> extends net.minecraft.client.gui.screens.Screen {
+  protected static final net.minecraft.network.chat.Component SEND_REPORT;
+  protected static final net.minecraft.network.chat.Component OBSERVED_WHAT_LABEL;
+  protected static final net.minecraft.network.chat.Component SELECT_REASON;
+  protected static final net.minecraft.network.chat.Component MORE_COMMENTS_LABEL;
+  protected static final int BUTTON_WIDTH;
+  protected static final int MARGIN;
+  protected static final int SCREEN_WIDTH;
+  protected static final int SPACING;
+  protected final net.minecraft.client.gui.screens.Screen lastScreen;
+  protected final net.minecraft.client.multiplayer.chat.report.ReportingContext reportingContext;
+  protected final net.minecraft.client.gui.layouts.LinearLayout layout;
+  protected B reportBuilder;
+  protected net.minecraft.client.gui.components.Button sendButton;
+  protected net.minecraft.client.gui.screens.reporting.AbstractReportScreen(net.minecraft.network.chat.Component, net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, B);
+  protected net.minecraft.client.gui.components.MultiLineEditBox createCommentBox(int, int, java.util.function.Consumer<java.lang.String>);
+  protected void init();
+  protected void createHeader();
+  protected abstract void addContent();
+  protected void createFooter();
+  protected void onReportChanged();
+  protected void repositionElements();
+  protected void sendReport();
+  public void onClose();
+  public void removed();
+}
+Compiled from "NameReportScreen.java"
+public class net.minecraft.client.gui.screens.reporting.NameReportScreen extends net.minecraft.client.gui.screens.reporting.AbstractReportScreen<net.minecraft.client.multiplayer.chat.report.NameReport$Builder> {
+  public net.minecraft.client.gui.screens.reporting.NameReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, java.util.UUID, java.lang.String);
+  public net.minecraft.client.gui.screens.reporting.NameReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, net.minecraft.client.multiplayer.chat.report.NameReport);
+  protected void addContent();
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.reporting.package-info {
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, net.minecraft.client.multiplayer.chat.report.ChatReport$Builder, java.util.function.Consumer<net.minecraft.client.multiplayer.chat.report.ChatReport$Builder>);
+  protected void init();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onClose();
+  public net.minecraft.network.chat.Component getNarrationMessage();
+}
+Compiled from "ChatSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$PaddingEntry extends net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry {
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$PaddingEntry();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+}
+Compiled from "ReportReasonSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList(net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen, net.minecraft.client.Minecraft);
+  public net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry findEntry(net.minecraft.client.multiplayer.chat.report.ReportReason);
+  public int getRowWidth();
+  public void setSelected(net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen$ReasonSelectionList$Entry);
+  public void setSelected(net.minecraft.client.gui.components.AbstractSelectionList$Entry);
+}
+Compiled from "ReportReasonSelectionScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.reporting.ReportReasonSelectionScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportReason, net.minecraft.client.multiplayer.chat.report.ReportType, java.util.function.Consumer<net.minecraft.client.multiplayer.chat.report.ReportReason>);
+  protected void init();
+  protected void repositionElements();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onClose();
+}
+Compiled from "SkinReportScreen.java"
+public class net.minecraft.client.gui.screens.reporting.SkinReportScreen extends net.minecraft.client.gui.screens.reporting.AbstractReportScreen<net.minecraft.client.multiplayer.chat.report.SkinReport$Builder> {
+  public net.minecraft.client.gui.screens.reporting.SkinReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, java.util.UUID, java.util.function.Supplier<net.minecraft.world.entity.player.PlayerSkin>);
+  public net.minecraft.client.gui.screens.reporting.SkinReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, net.minecraft.client.multiplayer.chat.report.SkinReport);
+  protected void addContent();
+  protected void onReportChanged();
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+}
+Compiled from "ChatReportScreen.java"
+public class net.minecraft.client.gui.screens.reporting.ChatReportScreen extends net.minecraft.client.gui.screens.reporting.AbstractReportScreen<net.minecraft.client.multiplayer.chat.report.ChatReport$Builder> {
+  public net.minecraft.client.gui.screens.reporting.ChatReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, java.util.UUID);
+  public net.minecraft.client.gui.screens.reporting.ChatReportScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.client.multiplayer.chat.report.ReportingContext, net.minecraft.client.multiplayer.chat.report.ChatReport);
+  protected void addContent();
+  protected void onReportChanged();
+  public boolean mouseReleased(net.minecraft.client.input.MouseButtonEvent);
+}
+Compiled from "ChatSelectionScreen.java"
+final class net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Heading extends java.lang.Record {
+  public boolean canCombine(net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Heading);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID sender();
+  public net.minecraft.client.gui.screens.reporting.ChatSelectionScreen$ChatSelectionList$Entry entry();
+}

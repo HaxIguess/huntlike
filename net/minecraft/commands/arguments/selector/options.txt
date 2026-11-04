@@ -1,0 +1,59 @@
+Compiled from "InvertableSetOptionState.java"
+final class net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation extends java.lang.Enum<net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation> {
+  public static final net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation NONE;
+  public static final net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation SINGLE;
+  public static final net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation MULTIPLE;
+  public static net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation[] values();
+  public static net.minecraft.commands.arguments.selector.options.InvertableSetOptionState$Limitation valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.selector.options.package-info {
+}
+Compiled from "EntitySelectorOptions.java"
+final class net.minecraft.commands.arguments.selector.options.EntitySelectorOptions$Option extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.commands.arguments.selector.options.EntitySelectorOptions$Modifier modifier();
+  public java.util.function.Predicate<net.minecraft.commands.arguments.selector.EntitySelectorParser> canUse();
+  public net.minecraft.network.chat.Component description();
+}
+Compiled from "EntitySelectorOptions.java"
+public class net.minecraft.commands.arguments.selector.options.EntitySelectorOptions {
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_UNKNOWN_OPTION;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_INAPPLICABLE_OPTION;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_RANGE_NEGATIVE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_LEVEL_NEGATIVE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_LIMIT_TOO_SMALL;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_SORT_UNKNOWN;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_GAME_MODE_INVALID;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_ENTITY_TYPE_INVALID;
+  public net.minecraft.commands.arguments.selector.options.EntitySelectorOptions();
+  public static void bootStrap();
+  public static net.minecraft.commands.arguments.selector.options.EntitySelectorOptions$Modifier get(net.minecraft.commands.arguments.selector.EntitySelectorParser, java.lang.String, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static void suggestNames(net.minecraft.commands.arguments.selector.EntitySelectorParser, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+}
+Compiled from "SetOnceOptionState.java"
+public class net.minecraft.commands.arguments.selector.options.SetOnceOptionState {
+  public net.minecraft.commands.arguments.selector.options.SetOnceOptionState();
+  public boolean canParse();
+  public void markParsed();
+}
+Compiled from "InvertableSetOptionState.java"
+public class net.minecraft.commands.arguments.selector.options.InvertableSetOptionState {
+  public net.minecraft.commands.arguments.selector.options.InvertableSetOptionState();
+  public boolean canParsePositiveElement();
+  public boolean canParseNegativeElement();
+  public boolean canParseAnyTag();
+  public boolean canParseTag(net.minecraft.resources.Identifier);
+  public boolean canParseAny();
+  public boolean canParseElement(boolean);
+  public void markParsedPositiveElement();
+  public void markParsedNegativeElement();
+  public void markParsedTag(net.minecraft.resources.Identifier);
+  public void markParsedElement(boolean);
+}
+Compiled from "EntitySelectorOptions.java"
+public interface net.minecraft.commands.arguments.selector.options.EntitySelectorOptions$Modifier {
+  public abstract void handle(net.minecraft.commands.arguments.selector.EntitySelectorParser) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}

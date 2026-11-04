@@ -1,0 +1,88 @@
+Compiled from "BlockPredicateArgument.java"
+public interface net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result extends java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld> {
+  public abstract boolean requiresNbt();
+}
+Compiled from "BlockPredicateArgument.java"
+class net.minecraft.commands.arguments.blocks.BlockPredicateArgument$BlockPredicate implements net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result {
+  public net.minecraft.commands.arguments.blocks.BlockPredicateArgument$BlockPredicate(net.minecraft.world.level.block.state.BlockState, java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>>, net.minecraft.nbt.CompoundTag);
+  public boolean test(net.minecraft.world.level.block.state.pattern.BlockInWorld);
+  public boolean requiresNbt();
+  public boolean test(java.lang.Object);
+}
+Compiled from "BlockPredicateArgument.java"
+class net.minecraft.commands.arguments.blocks.BlockPredicateArgument$TagPredicate implements net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result {
+  public boolean test(net.minecraft.world.level.block.state.pattern.BlockInWorld);
+  public boolean requiresNbt();
+  public boolean test(java.lang.Object);
+}
+Compiled from "BlockStateArgument.java"
+public class net.minecraft.commands.arguments.blocks.BlockStateArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.blocks.BlockInput> {
+  public net.minecraft.commands.arguments.blocks.BlockStateArgument(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.blocks.BlockStateArgument block(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.arguments.blocks.BlockInput parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.blocks.BlockInput getBlock(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "BlockStateParser.java"
+public final class net.minecraft.commands.arguments.blocks.BlockStateParser$TagResult extends java.lang.Record {
+  public net.minecraft.commands.arguments.blocks.BlockStateParser$TagResult(net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>, java.util.Map<java.lang.String, java.lang.String>, net.minecraft.nbt.CompoundTag);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> tag();
+  public java.util.Map<java.lang.String, java.lang.String> vagueProperties();
+  public net.minecraft.nbt.CompoundTag nbt();
+}
+Compiled from "BlockStateParser.java"
+public final class net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult extends java.lang.Record {
+  public net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult(net.minecraft.world.level.block.state.BlockState, java.util.Map<net.minecraft.world.level.block.state.properties.Property<?>, java.lang.Comparable<?>>, net.minecraft.nbt.CompoundTag);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.state.BlockState blockState();
+  public java.util.Map<net.minecraft.world.level.block.state.properties.Property<?>, java.lang.Comparable<?>> properties();
+  public net.minecraft.nbt.CompoundTag nbt();
+}
+Compiled from "BlockStateParser.java"
+public class net.minecraft.commands.arguments.blocks.BlockStateParser {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NO_TAGS_ALLOWED;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_UNKNOWN_BLOCK;
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_UNKNOWN_PROPERTY;
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_DUPLICATE_PROPERTY;
+  public static final com.mojang.brigadier.exceptions.Dynamic3CommandExceptionType ERROR_INVALID_VALUE;
+  public static final com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType ERROR_EXPECTED_VALUE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_EXPECTED_END_OF_PROPERTIES;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_UNKNOWN_TAG;
+  public static net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult parseForBlock(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, java.lang.String, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult parseForBlock(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, com.mojang.brigadier.StringReader, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static com.mojang.datafixers.util.Either<net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult, net.minecraft.commands.arguments.blocks.BlockStateParser$TagResult> parseForTesting(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, java.lang.String, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static com.mojang.datafixers.util.Either<net.minecraft.commands.arguments.blocks.BlockStateParser$BlockResult, net.minecraft.commands.arguments.blocks.BlockStateParser$TagResult> parseForTesting(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, com.mojang.brigadier.StringReader, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> fillSuggestions(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, com.mojang.brigadier.suggestion.SuggestionsBuilder, boolean, boolean);
+  public static java.lang.String serialize(net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "BlockPredicateArgument.java"
+public class net.minecraft.commands.arguments.blocks.BlockPredicateArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result> {
+  public net.minecraft.commands.arguments.blocks.BlockPredicateArgument(net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.commands.arguments.blocks.BlockPredicateArgument blockPredicate(net.minecraft.commands.CommandBuildContext);
+  public net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.blocks.BlockPredicateArgument$Result parse(net.minecraft.core.HolderLookup<net.minecraft.world.level.block.Block>, com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld> getBlockPredicate(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.blocks.package-info {
+}
+Compiled from "BlockInput.java"
+public class net.minecraft.commands.arguments.blocks.BlockInput implements java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld> {
+  public net.minecraft.commands.arguments.blocks.BlockInput(net.minecraft.world.level.block.state.BlockState, java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>>, net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.level.block.state.BlockState getState();
+  public java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>> getDefinedProperties();
+  public boolean test(net.minecraft.world.level.block.state.pattern.BlockInWorld);
+  public boolean test(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public boolean place(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, int);
+  public boolean test(java.lang.Object);
+}

@@ -1,0 +1,55 @@
+Compiled from "ContextAwareKeyMapping.java"
+public interface mezz.jei.fabric.input.ContextAwareKeyMapping {
+  public abstract boolean isContextActive();
+  public abstract boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+}
+Compiled from "FabricJeiKeyMapping.java"
+public class mezz.jei.fabric.input.FabricJeiKeyMapping<T extends net.minecraft.client.KeyMapping & mezz.jei.fabric.input.ContextAwareKeyMapping> implements mezz.jei.common.input.keys.IJeiKeyMappingInternal {
+  protected final T mapping;
+  public mezz.jei.fabric.input.FabricJeiKeyMapping(T);
+  public boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public boolean isUnbound();
+  public net.minecraft.network.chat.Component getTranslatedKeyMessage();
+  public boolean isDown();
+  public mezz.jei.common.input.keys.IJeiKeyMappingInternal register(java.util.function.Consumer<net.minecraft.client.KeyMapping>);
+}
+Compiled from "FabricJeiKeyMappingBuilder.java"
+public class mezz.jei.fabric.input.FabricJeiKeyMappingBuilder extends mezz.jei.common.input.keys.AbstractJeiKeyMappingBuilder {
+  protected final net.minecraft.client.KeyMapping$Category category;
+  protected final java.lang.String description;
+  protected mezz.jei.common.input.keys.JeiKeyConflictContext context;
+  public mezz.jei.fabric.input.FabricJeiKeyMappingBuilder(net.minecraft.client.KeyMapping$Category, java.lang.String);
+  public mezz.jei.common.input.keys.IJeiKeyMappingBuilder setContext(mezz.jei.common.input.keys.JeiKeyConflictContext);
+  public mezz.jei.common.input.keys.IJeiKeyMappingBuilder setModifier(mezz.jei.common.input.keys.JeiKeyModifier);
+  protected mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouse(int);
+  public mezz.jei.common.input.keys.IJeiKeyMappingInternal buildKeyboardKey(int);
+}
+Compiled from "FabricJeiKeyMappingCategoryBuilder.java"
+public class mezz.jei.fabric.input.FabricJeiKeyMappingCategoryBuilder implements mezz.jei.common.input.keys.IJeiKeyMappingCategoryBuilder {
+  public mezz.jei.fabric.input.FabricJeiKeyMappingCategoryBuilder(net.minecraft.client.KeyMapping$Category);
+  public mezz.jei.common.input.keys.IJeiKeyMappingBuilder createMapping(java.lang.String);
+}
+Compiled from "FabricKeyMapping.java"
+public class mezz.jei.fabric.input.FabricKeyMapping extends net.minecraft.client.KeyMapping implements mezz.jei.fabric.input.ContextAwareKeyMapping {
+  protected com.mojang.blaze3d.platform.InputConstants$Key realKey;
+  protected final mezz.jei.common.input.keys.JeiKeyConflictContext context;
+  public mezz.jei.fabric.input.FabricKeyMapping(java.lang.String, com.mojang.blaze3d.platform.InputConstants$Type, int, net.minecraft.client.KeyMapping$Category, mezz.jei.common.input.keys.JeiKeyConflictContext);
+  public void setKey(com.mojang.blaze3d.platform.InputConstants$Key);
+  public boolean same(net.minecraft.client.KeyMapping);
+  public boolean isUnbound();
+  public boolean matches(net.minecraft.client.input.KeyEvent);
+  public boolean matchesMouse(net.minecraft.client.input.MouseButtonEvent);
+  public net.minecraft.network.chat.Component getTranslatedKeyMessage();
+  public boolean isDefault();
+  public java.lang.String saveString();
+  public boolean isContextActive();
+  public boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public com.mojang.blaze3d.platform.InputConstants$Key getRealKey();
+}
+Compiled from "KeyboardHandlerExtension.java"
+public interface mezz.jei.fabric.input.KeyboardHandlerExtension {
+  public abstract void jei$setConsumeNextCharTyped(boolean);
+}
+Compiled from "package-info.java"
+interface mezz.jei.fabric.input.package-info {
+}

@@ -1,0 +1,90 @@
+Compiled from "PalettedTextureManager.java"
+final class net.minecraft.client.resources.palette.PalettedTextureManager$Slot extends java.lang.Record implements net.minecraft.client.resources.palette.PalettedTextureManager$Handle {
+  public float getU(float);
+  public float getV(float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.renderer.texture.AbstractTexture texture();
+  public net.minecraft.resources.Identifier textureLocation();
+  public int x();
+  public int y();
+  public int width();
+  public int height();
+}
+Compiled from "PalettedTextureManager.java"
+final class net.minecraft.client.resources.palette.PalettedTextureManager$SlotKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier baseTexture();
+  public net.minecraft.resources.Identifier paletteId();
+}
+Compiled from "PalettedTextureManager.java"
+public class net.minecraft.client.resources.palette.PalettedTextureManager implements net.minecraft.server.packs.resources.PreparableReloadListener,java.lang.AutoCloseable {
+  public net.minecraft.client.resources.palette.PalettedTextureManager(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.client.renderer.texture.TextureManager);
+  public net.minecraft.client.resources.palette.PalettedTextureManager$Handle getOrPrepare(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public void close();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+}
+Compiled from "PaletteMappingCache.java"
+public class net.minecraft.client.resources.palette.PaletteMappingCache {
+  public net.minecraft.client.resources.palette.PaletteMappingCache(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.palette.Palette>);
+  public net.minecraft.client.resources.palette.PaletteMapping get(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.resources.palette.package-info {
+}
+Compiled from "PalettedTextureManager.java"
+class net.minecraft.client.resources.palette.PalettedTextureManager$AtlasTexture extends net.minecraft.client.renderer.texture.AbstractTexture implements net.minecraft.client.renderer.texture.Dumpable {
+  public net.minecraft.client.renderer.texture.DynamicAtlasTreeSlot tryAllocateSlot(int, int);
+  public void dumpContents(net.minecraft.resources.Identifier, java.nio.file.Path);
+}
+Compiled from "Palette.java"
+public class net.minecraft.client.resources.palette.Palette {
+  public static final net.minecraft.client.resources.palette.Palette EMPTY;
+  public static final net.minecraft.resources.FileToIdConverter ID_CONVERTER;
+  public static java.util.concurrent.CompletableFuture<java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.palette.Palette>> listAndLoad(net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+  public static net.minecraft.client.resources.palette.Palette load(net.minecraft.server.packs.resources.Resource) throws java.io.IOException;
+  public static net.minecraft.client.resources.palette.Palette from(com.mojang.blaze3d.platform.NativeImage);
+  public static net.minecraft.client.resources.palette.Palette of(int...);
+  public int get(int);
+  public int size();
+  public boolean isEmpty();
+}
+Compiled from "PaletteMapping.java"
+public final class net.minecraft.client.resources.palette.PaletteMapping extends java.lang.Record implements it.unimi.dsi.fastutil.ints.IntUnaryOperator {
+  public static final net.minecraft.client.resources.palette.PaletteMapping NONE;
+  public net.minecraft.client.resources.palette.PaletteMapping(it.unimi.dsi.fastutil.ints.Int2IntMap);
+  public static net.minecraft.client.resources.palette.PaletteMapping create(net.minecraft.client.resources.palette.Palette, net.minecraft.client.resources.palette.Palette);
+  public int apply(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public it.unimi.dsi.fastutil.ints.Int2IntMap palette();
+}
+Compiled from "PalettedTextureManager.java"
+public interface net.minecraft.client.resources.palette.PalettedTextureManager$Handle extends net.minecraft.client.renderer.texture.UvMapping {
+  public abstract net.minecraft.resources.Identifier textureLocation();
+}
+Compiled from "PaletteMappingCache.java"
+final class net.minecraft.client.resources.palette.PaletteMappingCache$IdPair extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier base();
+  public net.minecraft.resources.Identifier target();
+}
+Compiled from "PalettedTextureManager.java"
+class net.minecraft.client.resources.palette.PalettedTextureManager$OverflowTexture extends net.minecraft.client.renderer.texture.DynamicTexture {
+  public net.minecraft.client.resources.palette.PalettedTextureManager$OverflowTexture(net.minecraft.resources.Identifier, int, int);
+}
+Compiled from "PalettedTextureManager.java"
+final class net.minecraft.client.resources.palette.PalettedTextureManager$BaseTexture extends java.lang.Record implements java.lang.AutoCloseable {
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.blaze3d.platform.NativeImage image();
+  public net.minecraft.client.resources.metadata.texture.PaletteMetadataSection paletteMetadata();
+}

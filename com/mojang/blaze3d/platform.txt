@@ -1,0 +1,552 @@
+Compiled from "DisplayData.java"
+public final class com.mojang.blaze3d.platform.DisplayData extends java.lang.Record {
+  public com.mojang.blaze3d.platform.DisplayData(int, int, java.util.OptionalInt, java.util.OptionalInt, boolean);
+  public com.mojang.blaze3d.platform.DisplayData withSize(int, int);
+  public com.mojang.blaze3d.platform.DisplayData withFullscreen(boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public java.util.OptionalInt fullscreenWidth();
+  public java.util.OptionalInt fullscreenHeight();
+  public boolean isFullscreen();
+}
+Compiled from "Transparency.java"
+public final class com.mojang.blaze3d.platform.Transparency extends java.lang.Record {
+  public static final com.mojang.blaze3d.platform.Transparency NONE;
+  public static final com.mojang.blaze3d.platform.Transparency TRANSPARENT;
+  public static final com.mojang.blaze3d.platform.Transparency TRANSLUCENT;
+  public static final com.mojang.blaze3d.platform.Transparency TRANSPARENT_AND_TRANSLUCENT;
+  public com.mojang.blaze3d.platform.Transparency(boolean, boolean);
+  public static com.mojang.blaze3d.platform.Transparency of(boolean, boolean);
+  public com.mojang.blaze3d.platform.Transparency or(com.mojang.blaze3d.platform.Transparency);
+  public boolean isOpaque();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean hasTransparent();
+  public boolean hasTranslucent();
+}
+Compiled from "package-info.java"
+interface com.mojang.blaze3d.platform.package-info {
+}
+Compiled from "IconSet.java"
+public final class com.mojang.blaze3d.platform.IconSet extends java.lang.Enum<com.mojang.blaze3d.platform.IconSet> {
+  public static final com.mojang.blaze3d.platform.IconSet RELEASE;
+  public static final com.mojang.blaze3d.platform.IconSet SNAPSHOT;
+  public static com.mojang.blaze3d.platform.IconSet[] values();
+  public static com.mojang.blaze3d.platform.IconSet valueOf(java.lang.String);
+  public java.util.List<net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream>> getStandardIcons(net.minecraft.server.packs.PackMetadataResources) throws java.io.IOException;
+}
+Compiled from "NativeLibrariesBootstrap.java"
+class com.mojang.blaze3d.platform.NativeLibrariesBootstrap$CapturingStream extends java.io.OutputStream {
+  public void write(byte[], int, int);
+  public void write(int);
+}
+Compiled from "MacosUtil.java"
+public final class com.mojang.blaze3d.platform.MacosUtil {
+  public static final boolean IS_MACOS;
+  public static void disableCloseWindowMenuItem();
+  public static void setFullscreenMenuVisibility(boolean);
+  public static void setCtrlClickEmulatesRightClick(boolean);
+}
+Compiled from "Window.java"
+public class com.mojang.blaze3d.platform.Window$WindowInitFailed extends net.minecraft.client.main.SilentInitException {
+  public com.mojang.blaze3d.platform.Window$WindowInitFailed(java.lang.String);
+}
+Compiled from "VideoMode.java"
+public final class com.mojang.blaze3d.platform.VideoMode {
+  public static final com.mojang.serialization.Codec<com.mojang.blaze3d.platform.VideoMode> CODEC;
+  public com.mojang.blaze3d.platform.VideoMode(int, int, int, int, int, int);
+  public com.mojang.blaze3d.platform.VideoMode(org.lwjgl.sdl.SDL_DisplayMode);
+  public static java.util.Optional<com.mojang.blaze3d.platform.VideoMode> read(java.lang.String);
+  public int getWidth();
+  public int getHeight();
+  public int getRedBits();
+  public int getGreenBits();
+  public int getBlueBits();
+  public float getRefreshRate();
+  public java.lang.String refreshRateLabel();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public java.lang.String write();
+}
+Compiled from "FramerateLimitTracker.java"
+public class com.mojang.blaze3d.platform.FramerateLimitTracker {
+  public com.mojang.blaze3d.platform.FramerateLimitTracker(net.minecraft.client.Options, net.minecraft.client.Minecraft);
+  public int getFramerateLimit();
+  public com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason getThrottleReason();
+  public boolean isHeavilyThrottled();
+  public void setFramerateLimit(int);
+  public void onInputReceived();
+}
+Compiled from "InputConstants.java"
+public final class com.mojang.blaze3d.platform.InputConstants$Type extends java.lang.Enum<com.mojang.blaze3d.platform.InputConstants$Type> {
+  public static final com.mojang.blaze3d.platform.InputConstants$Type KEYBOARD;
+  public static final com.mojang.blaze3d.platform.InputConstants$Type MOUSE;
+  public static com.mojang.blaze3d.platform.InputConstants$Type[] values();
+  public static com.mojang.blaze3d.platform.InputConstants$Type valueOf(java.lang.String);
+  public com.mojang.blaze3d.platform.InputConstants$Key getOrCreate(int);
+}
+Compiled from "MessageBox.java"
+public class com.mojang.blaze3d.platform.MessageBox {
+  public com.mojang.blaze3d.platform.MessageBox();
+  public static void error(java.lang.String);
+  public static boolean errorWithContinue(java.lang.String);
+}
+Compiled from "Lighting.java"
+public final class com.mojang.blaze3d.platform.Lighting$Entry extends java.lang.Enum<com.mojang.blaze3d.platform.Lighting$Entry> {
+  public static final com.mojang.blaze3d.platform.Lighting$Entry LEVEL;
+  public static final com.mojang.blaze3d.platform.Lighting$Entry ITEMS_FLAT;
+  public static final com.mojang.blaze3d.platform.Lighting$Entry ITEMS_3D;
+  public static final com.mojang.blaze3d.platform.Lighting$Entry ENTITY_IN_UI;
+  public static final com.mojang.blaze3d.platform.Lighting$Entry PLAYER_SKIN;
+  public static com.mojang.blaze3d.platform.Lighting$Entry[] values();
+  public static com.mojang.blaze3d.platform.Lighting$Entry valueOf(java.lang.String);
+}
+Compiled from "Window.java"
+public final class com.mojang.blaze3d.platform.Window implements java.lang.AutoCloseable {
+  public static final int MIN_WINDOW_WIDTH;
+  public static final int MIN_WINDOW_HEIGHT;
+  public static final int BASE_WIDTH;
+  public static final int BASE_HEIGHT;
+  public com.mojang.blaze3d.platform.Window(com.mojang.blaze3d.platform.WindowEventHandler, com.mojang.blaze3d.platform.DisplayData, java.lang.String, boolean, java.lang.String, com.mojang.blaze3d.platform.MonitorManager, com.mojang.renderpearl.api.device.GpuBackend);
+  public com.mojang.blaze3d.platform.Window(com.mojang.blaze3d.platform.WindowEventHandler, com.mojang.blaze3d.platform.DisplayData, java.lang.String, boolean, java.lang.String, com.mojang.blaze3d.platform.MonitorManager, com.mojang.renderpearl.api.device.GpuBackend, int);
+  public static java.lang.String getPlatform();
+  public com.mojang.blaze3d.platform.VideoMode getActiveVideoMode();
+  public boolean shouldClose();
+  public void handleEvent(org.lwjgl.sdl.SDL_Event);
+  public void setIcon(net.minecraft.server.packs.PackMetadataResources, com.mojang.blaze3d.platform.IconSet) throws java.io.IOException;
+  public java.lang.String getErrorSection();
+  public void setErrorSection(java.lang.String);
+  public void close();
+  public com.mojang.blaze3d.platform.Window$FramebufferSize queryFramebufferSize();
+  public void updateFullscreenIfChanged();
+  public java.util.Optional<com.mojang.blaze3d.platform.VideoMode> getPreferredFullscreenVideoMode();
+  public void setPreferredFullscreenVideoMode(java.util.Optional<com.mojang.blaze3d.platform.VideoMode>);
+  public void changeFullscreenVideoMode();
+  public boolean isExclusiveFullscreen();
+  public void setExclusiveFullscreen(boolean);
+  public void setWindowed(int, int);
+  public int calculateScale(int, boolean);
+  public void setTitle(java.lang.String);
+  public void setWindowMaxSize(int, int);
+  public long handle();
+  public void setFullscreen(boolean);
+  public boolean isIconified();
+  public boolean isFocused();
+  public int getWidth();
+  public void setWidth(int);
+  public int getHeight();
+  public void setHeight(int);
+  public int getScreenWidth();
+  public int getScreenHeight();
+  public int getGuiScaledWidth();
+  public int getGuiScaledHeight();
+  public int getX();
+  public int getY();
+  public int getGuiScale();
+  public void setGuiScale(int);
+  public float getPixelDensity();
+  public com.mojang.blaze3d.platform.Monitor findBestMonitor();
+  public void setWindowCloseCallback(java.lang.Runnable);
+  public void setAllowCursorChanges(boolean);
+  public void setQuitShortcuts(boolean);
+  public void selectCursor(com.mojang.blaze3d.platform.cursor.CursorType);
+  public float getAppropriateLineWidth();
+}
+Compiled from "WindowEventHandler.java"
+public interface com.mojang.blaze3d.platform.WindowEventHandler {
+  public abstract void framebufferSizeChanged();
+  public abstract void resizeGui();
+  public abstract void cursorEntered();
+  public abstract void fullscreenStateChanged(boolean);
+}
+Compiled from "MacosUtil.java"
+final class com.mojang.blaze3d.platform.MacosUtil$DisabledActions {
+}
+Compiled from "InputConstants.java"
+public interface com.mojang.blaze3d.platform.InputConstants$Value extends java.lang.annotation.Annotation {
+}
+Compiled from "Monitor.java"
+public final class com.mojang.blaze3d.platform.Monitor extends java.lang.Record {
+  public com.mojang.blaze3d.platform.Monitor(java.lang.String, int, java.util.List<com.mojang.blaze3d.platform.VideoMode>, com.mojang.blaze3d.platform.VideoMode, int, int, int, int);
+  public static com.mojang.blaze3d.platform.Monitor tryCreate(int);
+  public com.mojang.blaze3d.platform.VideoMode getPreferredVideoMode(java.util.Optional<com.mojang.blaze3d.platform.VideoMode>);
+  public int indexOfMode(com.mojang.blaze3d.platform.VideoMode);
+  public com.mojang.blaze3d.platform.VideoMode mode(int);
+  public int modeCount();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public int id();
+  public java.util.List<com.mojang.blaze3d.platform.VideoMode> videoModes();
+  public com.mojang.blaze3d.platform.VideoMode currentMode();
+  public int x();
+  public int y();
+  public int w();
+  public int h();
+}
+Compiled from "NativeLibrariesBootstrap.java"
+class com.mojang.blaze3d.platform.NativeLibrariesBootstrap$CapturingPrintStream extends java.io.PrintStream {
+  public com.mojang.blaze3d.platform.NativeLibrariesBootstrap$CapturingPrintStream(java.io.OutputStream);
+  public synchronized void startCapturing();
+  public synchronized java.lang.String stopCapturing();
+}
+Compiled from "InputConstants.java"
+public class com.mojang.blaze3d.platform.InputConstants {
+  public static final int KEY_0;
+  public static final int KEY_1;
+  public static final int KEY_2;
+  public static final int KEY_3;
+  public static final int KEY_4;
+  public static final int KEY_5;
+  public static final int KEY_6;
+  public static final int KEY_7;
+  public static final int KEY_8;
+  public static final int KEY_9;
+  public static final int KEY_A;
+  public static final int KEY_B;
+  public static final int KEY_C;
+  public static final int KEY_D;
+  public static final int KEY_E;
+  public static final int KEY_F;
+  public static final int KEY_G;
+  public static final int KEY_H;
+  public static final int KEY_I;
+  public static final int KEY_J;
+  public static final int KEY_K;
+  public static final int KEY_L;
+  public static final int KEY_M;
+  public static final int KEY_N;
+  public static final int KEY_O;
+  public static final int KEY_P;
+  public static final int KEY_Q;
+  public static final int KEY_R;
+  public static final int KEY_S;
+  public static final int KEY_T;
+  public static final int KEY_U;
+  public static final int KEY_V;
+  public static final int KEY_W;
+  public static final int KEY_X;
+  public static final int KEY_Y;
+  public static final int KEY_Z;
+  public static final int KEY_F1;
+  public static final int KEY_F2;
+  public static final int KEY_F3;
+  public static final int KEY_F4;
+  public static final int KEY_F5;
+  public static final int KEY_F6;
+  public static final int KEY_F7;
+  public static final int KEY_F8;
+  public static final int KEY_F9;
+  public static final int KEY_F10;
+  public static final int KEY_F11;
+  public static final int KEY_F12;
+  public static final int KEY_F13;
+  public static final int KEY_F14;
+  public static final int KEY_F15;
+  public static final int KEY_F16;
+  public static final int KEY_F17;
+  public static final int KEY_F18;
+  public static final int KEY_F19;
+  public static final int KEY_F20;
+  public static final int KEY_F21;
+  public static final int KEY_F22;
+  public static final int KEY_F23;
+  public static final int KEY_F24;
+  public static final int KEY_NUMLOCK;
+  public static final int KEY_NUMPAD0;
+  public static final int KEY_NUMPAD1;
+  public static final int KEY_NUMPAD2;
+  public static final int KEY_NUMPAD3;
+  public static final int KEY_NUMPAD4;
+  public static final int KEY_NUMPAD5;
+  public static final int KEY_NUMPAD6;
+  public static final int KEY_NUMPAD7;
+  public static final int KEY_NUMPAD8;
+  public static final int KEY_NUMPAD9;
+  public static final int KEY_NUMPADCOMMA;
+  public static final int KEY_NUMPADENTER;
+  public static final int KEY_NUMPADEQUALS;
+  public static final int KEY_DOWN;
+  public static final int KEY_LEFT;
+  public static final int KEY_RIGHT;
+  public static final int KEY_UP;
+  public static final int KEY_ADD;
+  public static final int KEY_APOSTROPHE;
+  public static final int KEY_BACKSLASH;
+  public static final int KEY_COMMA;
+  public static final int KEY_EQUALS;
+  public static final int KEY_GRAVE;
+  public static final int KEY_LBRACKET;
+  public static final int KEY_MINUS;
+  public static final int KEY_MULTIPLY;
+  public static final int KEY_PERIOD;
+  public static final int KEY_RBRACKET;
+  public static final int KEY_SEMICOLON;
+  public static final int KEY_SLASH;
+  public static final int KEY_SPACE;
+  public static final int KEY_TAB;
+  public static final int KEY_LALT;
+  public static final int KEY_LCONTROL;
+  public static final int KEY_LSHIFT;
+  public static final int KEY_LGUI;
+  public static final int KEY_RALT;
+  public static final int KEY_RCONTROL;
+  public static final int KEY_RSHIFT;
+  public static final int KEY_RGUI;
+  public static final int KEY_RETURN;
+  public static final int KEY_ESCAPE;
+  public static final int KEY_BACKSPACE;
+  public static final int KEY_DELETE;
+  public static final int KEY_END;
+  public static final int KEY_HOME;
+  public static final int KEY_INSERT;
+  public static final int KEY_PAGEDOWN;
+  public static final int KEY_PAGEUP;
+  public static final int KEY_CAPSLOCK;
+  public static final int KEY_PAUSE;
+  public static final int KEY_SCROLLLOCK;
+  public static final int KEY_PRINTSCREEN;
+  public static final int PRESS;
+  public static final int RELEASE;
+  public static final int REPEAT;
+  public static final int MOUSE_BUTTON_LEFT;
+  public static final int MOUSE_BUTTON_MIDDLE;
+  public static final int MOUSE_BUTTON_RIGHT;
+  public static final int MOUSE_BUTTON_4;
+  public static final int MOUSE_BUTTON_5;
+  public static final int MOUSE_BUTTON_6;
+  public static final int MOUSE_BUTTON_7;
+  public static final int MOUSE_BUTTON_8;
+  public static final int MOD_SHIFT;
+  public static final int MOD_CONTROL;
+  public static final int MOD_ALT;
+  public static final int MOD_SUPER;
+  public static final int MOD_CAPS_LOCK;
+  public static final int MOD_NUM_LOCK;
+  public static final int KEYCODE_A;
+  public static final int KEYCODE_B;
+  public static final int KEYCODE_C;
+  public static final int KEYCODE_E;
+  public static final int KEYCODE_F;
+  public static final int KEYCODE_L;
+  public static final int KEYCODE_M;
+  public static final int KEYCODE_O;
+  public static final int KEYCODE_R;
+  public static final int KEYCODE_U;
+  public static final int KEYCODE_V;
+  public static final int KEYCODE_W;
+  public static final int KEYCODE_X;
+  public static final int KEYCODE_Y;
+  public static final int KEYCODE_Z;
+  public static final int KEYCODE_RETURN;
+  public static final int KEYCODE_NUMPADENTER;
+  public static final int KEYCODE_PAGEUP;
+  public static final int KEYCODE_PAGEDOWN;
+  public static final int KEYCODE_BACKSPACE;
+  public static final int KEYCODE_UP;
+  public static final int KEYCODE_DOWN;
+  public static final int KEYCODE_FORWARD;
+  public static final int KEYCODE_BACKWARD;
+  public static final int KEYCODE_LEFT;
+  public static final int KEYCODE_RIGHT;
+  public static final int KEYCODE_NUMPAD9;
+  public static final int KEYCODE_NUMPAD3;
+  public static final int KEYCODE_DELETE;
+  public static final int KEYCODE_HOME;
+  public static final int KEYCODE_END;
+  public static final int KEYCODE_F5;
+  public static final int KEYCODE_TAB;
+  public static final int KEYCODE_LCONTROL;
+  public static final int KEYCODE_RCONTROL;
+  public static final int KEYCODE_SPACE;
+  public static final com.mojang.blaze3d.platform.InputConstants$Key UNKNOWN;
+  public com.mojang.blaze3d.platform.InputConstants();
+  public static com.mojang.blaze3d.platform.InputConstants$Key getKey(net.minecraft.client.input.KeyEvent);
+  public static com.mojang.blaze3d.platform.InputConstants$Key getKey(java.lang.String);
+  public static boolean isKeyDown(int);
+  public static void grabMouse(com.mojang.blaze3d.platform.Window, double, double);
+  public static void releaseMouse(com.mojang.blaze3d.platform.Window, double, double);
+}
+Compiled from "NativeImage.java"
+class com.mojang.blaze3d.platform.NativeImage$WriteCallback extends org.lwjgl.stb.STBIWriteCallback {
+  public void invoke(long, long, int);
+  public void throwIfException() throws java.io.IOException;
+}
+Compiled from "FramerateLimitTracker.java"
+public final class com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason extends java.lang.Enum<com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason> {
+  public static final com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason NONE;
+  public static final com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason WINDOW_ICONIFIED;
+  public static final com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason LONG_AFK;
+  public static final com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason SHORT_AFK;
+  public static final com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason OUT_OF_LEVEL_MENU;
+  public static com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason[] values();
+  public static com.mojang.blaze3d.platform.FramerateLimitTracker$FramerateThrottleReason valueOf(java.lang.String);
+}
+Compiled from "ClipboardManager.java"
+public class com.mojang.blaze3d.platform.ClipboardManager {
+  public com.mojang.blaze3d.platform.ClipboardManager();
+  public java.lang.String getClipboard();
+  public void setClipboard(java.lang.String);
+}
+Compiled from "SdlDebug.java"
+public class com.mojang.blaze3d.platform.SdlDebug {
+  public static void init();
+}
+Compiled from "NativeLibrariesBootstrap.java"
+public class com.mojang.blaze3d.platform.NativeLibrariesBootstrap {
+  public com.mojang.blaze3d.platform.NativeLibrariesBootstrap();
+  public static void loadLibraries() throws java.io.IOException;
+  public static boolean isVulkanLoaderAvailable();
+}
+Compiled from "Window.java"
+public final class com.mojang.blaze3d.platform.Window$FramebufferSize extends java.lang.Record {
+  public com.mojang.blaze3d.platform.Window$FramebufferSize(int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+}
+Compiled from "MonitorManager.java"
+public class com.mojang.blaze3d.platform.MonitorManager {
+  public com.mojang.blaze3d.platform.MonitorManager();
+  public void onDisplayConnected(int);
+  public void onDisplayDisconnected(int);
+  public void onDisplayModeChanged(int);
+  public com.mojang.blaze3d.platform.Monitor getMonitor(int);
+  public com.mojang.blaze3d.platform.Monitor findBestMonitor(com.mojang.blaze3d.platform.Window);
+}
+Compiled from "ClientShutdownWatchdog.java"
+public class com.mojang.blaze3d.platform.ClientShutdownWatchdog {
+  public com.mojang.blaze3d.platform.ClientShutdownWatchdog();
+  public static void startShutdownWatchdog(java.lang.String, boolean, net.minecraft.client.Minecraft, net.minecraft.client.main.GameConfig, long);
+}
+Compiled from "NativeImage.java"
+public final class com.mojang.blaze3d.platform.NativeImage implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.platform.NativeImage(int, int, boolean);
+  public com.mojang.blaze3d.platform.NativeImage(com.mojang.blaze3d.platform.NativeImage$Format, int, int, boolean);
+  public com.mojang.blaze3d.platform.NativeImage(com.mojang.blaze3d.platform.NativeImage$Format, int, int, boolean, long);
+  public java.lang.String toString();
+  public static com.mojang.blaze3d.platform.NativeImage read(java.io.InputStream) throws java.io.IOException;
+  public static com.mojang.blaze3d.platform.NativeImage read(byte[]) throws java.io.IOException;
+  public static com.mojang.blaze3d.platform.NativeImage read(java.nio.ByteBuffer) throws java.io.IOException;
+  public void close();
+  public boolean isClosed();
+  public int getWidth();
+  public int getHeight();
+  public com.mojang.blaze3d.platform.NativeImage$Format format();
+  public int getPixel(int, int);
+  public void setPixelABGR(int, int, int);
+  public void setPixel(int, int, int);
+  public com.mojang.blaze3d.platform.NativeImage mappedCopy(java.util.function.IntUnaryOperator);
+  public int[] getPixelsABGR();
+  public int[] getPixels();
+  public byte getLuminanceOrAlpha(int, int);
+  public int[] makePixelArray();
+  public void writeToFile(java.io.File) throws java.io.IOException;
+  public boolean copyFromFont(org.lwjgl.util.freetype.FT_Face, int);
+  public void writeToFile(java.nio.file.Path) throws java.io.IOException;
+  public void copyFrom(com.mojang.blaze3d.platform.NativeImage);
+  public void fillRect(int, int, int, int, int);
+  public void copyRect(int, int, int, int, int, int, boolean, boolean);
+  public void copyRect(com.mojang.blaze3d.platform.NativeImage, int, int, int, int, int, int, boolean, boolean);
+  public void resizeSubRectTo(int, int, int, int, com.mojang.blaze3d.platform.NativeImage);
+  public void untrack();
+  public long getPointer();
+  public java.nio.ByteBuffer getPixelBytes();
+  public com.mojang.blaze3d.platform.Transparency computeTransparency(int, int, int, int);
+  public com.mojang.blaze3d.platform.Transparency computeTransparency();
+}
+Compiled from "DebugMemoryUntracker.java"
+public class com.mojang.blaze3d.platform.DebugMemoryUntracker {
+  public com.mojang.blaze3d.platform.DebugMemoryUntracker();
+  public static void untrack(long);
+}
+Compiled from "TextureUtil.java"
+public class com.mojang.blaze3d.platform.TextureUtil {
+  public static final int MIN_MIPMAP_LEVEL;
+  public com.mojang.blaze3d.platform.TextureUtil();
+  public static java.nio.ByteBuffer readResource(java.io.InputStream) throws java.io.IOException;
+  public static void writeAsPNG(java.nio.file.Path, java.lang.String, com.mojang.renderpearl.api.textures.GpuTexture, int, java.util.function.IntUnaryOperator);
+  public static java.nio.file.Path getDebugTexturePath(java.nio.file.Path);
+  public static java.nio.file.Path getDebugTexturePath();
+  public static void solidify(com.mojang.blaze3d.platform.NativeImage);
+  public static void fillEmptyAreasWithDarkColor(com.mojang.blaze3d.platform.NativeImage);
+}
+Compiled from "Lighting.java"
+public class com.mojang.blaze3d.platform.Lighting implements java.lang.AutoCloseable {
+  public static final int UBO_SIZE;
+  public com.mojang.blaze3d.platform.Lighting();
+  public void updateLevel(net.minecraft.world.level.CardinalLighting$Type);
+  public void setupFor(com.mojang.blaze3d.platform.Lighting$Entry);
+  public void close();
+}
+Compiled from "SDLEventHandler.java"
+public class com.mojang.blaze3d.platform.SDLEventHandler {
+  public com.mojang.blaze3d.platform.SDLEventHandler(net.minecraft.client.Minecraft, com.mojang.blaze3d.platform.Window);
+  public void pollEvents();
+  public void pumpEvents();
+  public void flushInputEvents();
+}
+Compiled from "NativeLibrariesBootstrap.java"
+final class com.mojang.blaze3d.platform.NativeLibrariesBootstrap$LibraryLoadEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.Runnable loader();
+}
+Compiled from "InputConstants.java"
+public final class com.mojang.blaze3d.platform.InputConstants$Key {
+  public com.mojang.blaze3d.platform.InputConstants$Type getType();
+  public int getValue();
+  public java.lang.String getName();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public java.util.OptionalInt getNumericKeyValue();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "NativeImage.java"
+public final class com.mojang.blaze3d.platform.NativeImage$Format extends java.lang.Enum<com.mojang.blaze3d.platform.NativeImage$Format> {
+  public static final com.mojang.blaze3d.platform.NativeImage$Format RGBA;
+  public static final com.mojang.blaze3d.platform.NativeImage$Format RGB;
+  public static final com.mojang.blaze3d.platform.NativeImage$Format LUMINANCE_ALPHA;
+  public static final com.mojang.blaze3d.platform.NativeImage$Format LUMINANCE;
+  public static com.mojang.blaze3d.platform.NativeImage$Format[] values();
+  public static com.mojang.blaze3d.platform.NativeImage$Format valueOf(java.lang.String);
+  public int components();
+  public boolean hasRed();
+  public boolean hasGreen();
+  public boolean hasBlue();
+  public boolean hasLuminance();
+  public boolean hasAlpha();
+  public int redOffset();
+  public int greenOffset();
+  public int blueOffset();
+  public int luminanceOffset();
+  public int alphaOffset();
+  public boolean hasLuminanceOrRed();
+  public boolean hasLuminanceOrGreen();
+  public boolean hasLuminanceOrBlue();
+  public boolean hasLuminanceOrAlpha();
+  public int luminanceOrRedOffset();
+  public int luminanceOrGreenOffset();
+  public int luminanceOrBlueOffset();
+  public int luminanceOrAlphaOffset();
+}
+Compiled from "TextInputManager.java"
+public class com.mojang.blaze3d.platform.TextInputManager {
+  public com.mojang.blaze3d.platform.TextInputManager(com.mojang.blaze3d.platform.Window);
+  public void setTextInputArea(int, int, int, int);
+  public void startTextInput(java.lang.Object);
+  public void stopTextInput(java.lang.Object);
+  public void stopTextInput();
+  public void onTextInputFocusChange(java.lang.Object, boolean);
+}

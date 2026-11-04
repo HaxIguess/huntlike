@@ -1,0 +1,138 @@
+Compiled from "LinkFSPath.java"
+class net.minecraft.server.packs.linkfs.LinkFSPath implements java.nio.file.Path {
+  public net.minecraft.server.packs.linkfs.LinkFSPath(net.minecraft.server.packs.linkfs.LinkFileSystem, java.lang.String, net.minecraft.server.packs.linkfs.LinkFSPath, net.minecraft.server.packs.linkfs.PathContents);
+  public net.minecraft.server.packs.linkfs.LinkFileSystem getFileSystem();
+  public boolean isAbsolute();
+  public java.io.File toFile();
+  public net.minecraft.server.packs.linkfs.LinkFSPath getRoot();
+  public net.minecraft.server.packs.linkfs.LinkFSPath getFileName();
+  public net.minecraft.server.packs.linkfs.LinkFSPath getParent();
+  public int getNameCount();
+  public net.minecraft.server.packs.linkfs.LinkFSPath getName(int);
+  public net.minecraft.server.packs.linkfs.LinkFSPath subpath(int, int);
+  public boolean startsWith(java.nio.file.Path);
+  public boolean endsWith(java.nio.file.Path);
+  public net.minecraft.server.packs.linkfs.LinkFSPath normalize();
+  public net.minecraft.server.packs.linkfs.LinkFSPath resolve(java.nio.file.Path);
+  public net.minecraft.server.packs.linkfs.LinkFSPath relativize(java.nio.file.Path);
+  public java.net.URI toUri();
+  public net.minecraft.server.packs.linkfs.LinkFSPath toAbsolutePath();
+  public net.minecraft.server.packs.linkfs.LinkFSPath toRealPath(java.nio.file.LinkOption...);
+  public java.nio.file.WatchKey register(java.nio.file.WatchService, java.nio.file.WatchEvent$Kind<?>[], java.nio.file.WatchEvent$Modifier...);
+  public int compareTo(java.nio.file.Path);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public boolean exists();
+  public java.nio.file.Path getTargetPath();
+  public net.minecraft.server.packs.linkfs.PathContents$DirectoryContents getDirectoryContents();
+  public java.nio.file.attribute.BasicFileAttributeView getBasicAttributeView();
+  public java.nio.file.attribute.BasicFileAttributes getBasicAttributes() throws java.io.IOException;
+  public java.nio.file.Path toRealPath(java.nio.file.LinkOption[]) throws java.io.IOException;
+  public java.nio.file.Path toAbsolutePath();
+  public java.nio.file.Path relativize(java.nio.file.Path);
+  public java.nio.file.Path resolve(java.nio.file.Path);
+  public java.nio.file.Path normalize();
+  public java.nio.file.Path subpath(int, int);
+  public java.nio.file.Path getName(int);
+  public java.nio.file.Path getParent();
+  public java.nio.file.Path getFileName();
+  public java.nio.file.Path getRoot();
+  public java.nio.file.FileSystem getFileSystem();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "PathContents.java"
+public final class net.minecraft.server.packs.linkfs.PathContents$FileContents extends java.lang.Record implements net.minecraft.server.packs.linkfs.PathContents {
+  public net.minecraft.server.packs.linkfs.PathContents$FileContents(java.nio.file.Path);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path contents();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.packs.linkfs.package-info {
+}
+Compiled from "LinkFSFileStore.java"
+class net.minecraft.server.packs.linkfs.LinkFSFileStore extends java.nio.file.FileStore {
+  public net.minecraft.server.packs.linkfs.LinkFSFileStore(java.lang.String);
+  public java.lang.String name();
+  public java.lang.String type();
+  public boolean isReadOnly();
+  public long getTotalSpace();
+  public long getUsableSpace();
+  public long getUnallocatedSpace();
+  public boolean supportsFileAttributeView(java.lang.Class<? extends java.nio.file.attribute.FileAttributeView>);
+  public boolean supportsFileAttributeView(java.lang.String);
+  public <V extends java.nio.file.attribute.FileStoreAttributeView> V getFileStoreAttributeView(java.lang.Class<V>);
+  public java.lang.Object getAttribute(java.lang.String) throws java.io.IOException;
+}
+Compiled from "PathContents.java"
+public final class net.minecraft.server.packs.linkfs.PathContents$DirectoryContents extends java.lang.Record implements net.minecraft.server.packs.linkfs.PathContents {
+  public net.minecraft.server.packs.linkfs.PathContents$DirectoryContents(java.util.Map<java.lang.String, net.minecraft.server.packs.linkfs.LinkFSPath>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.String, net.minecraft.server.packs.linkfs.LinkFSPath> children();
+}
+Compiled from "LinkFileSystem.java"
+public class net.minecraft.server.packs.linkfs.LinkFileSystem$Builder {
+  public net.minecraft.server.packs.linkfs.LinkFileSystem$Builder();
+  public net.minecraft.server.packs.linkfs.LinkFileSystem$Builder put(java.util.List<java.lang.String>, java.lang.String, java.nio.file.Path);
+  public net.minecraft.server.packs.linkfs.LinkFileSystem$Builder put(java.util.List<java.lang.String>, java.nio.file.Path);
+  public java.nio.file.FileSystem build(java.lang.String);
+}
+Compiled from "LinkFSProvider.java"
+class net.minecraft.server.packs.linkfs.LinkFSProvider extends java.nio.file.spi.FileSystemProvider {
+  public static final java.lang.String SCHEME;
+  public java.lang.String getScheme();
+  public java.nio.file.FileSystem newFileSystem(java.net.URI, java.util.Map<java.lang.String, ?>);
+  public java.nio.file.FileSystem getFileSystem(java.net.URI);
+  public java.nio.file.Path getPath(java.net.URI);
+  public java.nio.channels.SeekableByteChannel newByteChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) throws java.io.IOException;
+  public java.nio.file.DirectoryStream<java.nio.file.Path> newDirectoryStream(java.nio.file.Path, java.nio.file.DirectoryStream$Filter<? super java.nio.file.Path>) throws java.io.IOException;
+  public void createDirectory(java.nio.file.Path, java.nio.file.attribute.FileAttribute<?>...);
+  public void delete(java.nio.file.Path);
+  public void copy(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...);
+  public void move(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...);
+  public boolean isSameFile(java.nio.file.Path, java.nio.file.Path);
+  public boolean isHidden(java.nio.file.Path);
+  public java.nio.file.FileStore getFileStore(java.nio.file.Path);
+  public void checkAccess(java.nio.file.Path, java.nio.file.AccessMode...) throws java.io.IOException;
+  public <V extends java.nio.file.attribute.FileAttributeView> V getFileAttributeView(java.nio.file.Path, java.lang.Class<V>, java.nio.file.LinkOption...);
+  public <A extends java.nio.file.attribute.BasicFileAttributes> A readAttributes(java.nio.file.Path, java.lang.Class<A>, java.nio.file.LinkOption...) throws java.io.IOException;
+  public java.util.Map<java.lang.String, java.lang.Object> readAttributes(java.nio.file.Path, java.lang.String, java.nio.file.LinkOption...);
+  public void setAttribute(java.nio.file.Path, java.lang.String, java.lang.Object, java.nio.file.LinkOption...);
+}
+Compiled from "PathContents.java"
+interface net.minecraft.server.packs.linkfs.PathContents {
+  public static final net.minecraft.server.packs.linkfs.PathContents MISSING;
+  public static final net.minecraft.server.packs.linkfs.PathContents RELATIVE;
+}
+Compiled from "LinkFileSystem.java"
+final class net.minecraft.server.packs.linkfs.LinkFileSystem$DirectoryEntry extends java.lang.Record {
+  public net.minecraft.server.packs.linkfs.LinkFileSystem$DirectoryEntry();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.String, net.minecraft.server.packs.linkfs.LinkFileSystem$DirectoryEntry> children();
+  public java.util.Map<java.lang.String, java.nio.file.Path> files();
+}
+Compiled from "LinkFileSystem.java"
+public class net.minecraft.server.packs.linkfs.LinkFileSystem extends java.nio.file.FileSystem {
+  public static final java.lang.String PATH_SEPARATOR;
+  public java.nio.file.spi.FileSystemProvider provider();
+  public void close();
+  public boolean isOpen();
+  public boolean isReadOnly();
+  public java.lang.String getSeparator();
+  public java.lang.Iterable<java.nio.file.Path> getRootDirectories();
+  public java.lang.Iterable<java.nio.file.FileStore> getFileStores();
+  public java.util.Set<java.lang.String> supportedFileAttributeViews();
+  public java.nio.file.Path getPath(java.lang.String, java.lang.String...);
+  public java.nio.file.PathMatcher getPathMatcher(java.lang.String);
+  public java.nio.file.attribute.UserPrincipalLookupService getUserPrincipalLookupService();
+  public java.nio.file.WatchService newWatchService();
+  public java.nio.file.FileStore store();
+  public net.minecraft.server.packs.linkfs.LinkFSPath rootPath();
+  public static net.minecraft.server.packs.linkfs.LinkFileSystem$Builder builder();
+}

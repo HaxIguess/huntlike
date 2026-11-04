@@ -1,0 +1,134 @@
+Compiled from "Permission.java"
+public interface net.minecraft.server.permissions.Permission {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.permissions.Permission> FULL_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.permissions.Permission> CODEC;
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.Permission> codec();
+}
+Compiled from "LevelBasedPermissionSet.java"
+public interface net.minecraft.server.permissions.LevelBasedPermissionSet extends net.minecraft.server.permissions.PermissionSet {
+  public static final net.minecraft.server.permissions.LevelBasedPermissionSet ALL;
+  public static final net.minecraft.server.permissions.LevelBasedPermissionSet MODERATOR;
+  public static final net.minecraft.server.permissions.LevelBasedPermissionSet GAMEMASTER;
+  public static final net.minecraft.server.permissions.LevelBasedPermissionSet ADMIN;
+  public static final net.minecraft.server.permissions.LevelBasedPermissionSet OWNER;
+  public abstract net.minecraft.server.permissions.PermissionLevel level();
+  public default boolean hasPermission(net.minecraft.server.permissions.Permission);
+  public default net.minecraft.server.permissions.PermissionSet union(net.minecraft.server.permissions.PermissionSet);
+  public static net.minecraft.server.permissions.LevelBasedPermissionSet forLevel(net.minecraft.server.permissions.PermissionLevel);
+}
+Compiled from "Permission.java"
+public final class net.minecraft.server.permissions.Permission$Atom extends java.lang.Record implements net.minecraft.server.permissions.Permission {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.permissions.Permission$Atom> MAP_CODEC;
+  public net.minecraft.server.permissions.Permission$Atom(net.minecraft.resources.Identifier);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.permissions.Permission$Atom> codec();
+  public static net.minecraft.server.permissions.Permission$Atom create(java.lang.String);
+  public static net.minecraft.server.permissions.Permission$Atom create(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+}
+Compiled from "PermissionCheckTypes.java"
+public class net.minecraft.server.permissions.PermissionCheckTypes {
+  public net.minecraft.server.permissions.PermissionCheckTypes();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.PermissionCheck> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.PermissionCheck>>);
+}
+Compiled from "PermissionTypes.java"
+public class net.minecraft.server.permissions.PermissionTypes {
+  public net.minecraft.server.permissions.PermissionTypes();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.Permission> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.Permission>>);
+}
+Compiled from "Permission.java"
+public final class net.minecraft.server.permissions.Permission$HasCommandLevel extends java.lang.Record implements net.minecraft.server.permissions.Permission {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.permissions.Permission$HasCommandLevel> MAP_CODEC;
+  public net.minecraft.server.permissions.Permission$HasCommandLevel(net.minecraft.server.permissions.PermissionLevel);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.permissions.Permission$HasCommandLevel> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.permissions.PermissionLevel level();
+}
+Compiled from "PermissionProviderCheck.java"
+public final class net.minecraft.server.permissions.PermissionProviderCheck<T extends net.minecraft.server.permissions.PermissionSetSupplier> extends java.lang.Record implements java.util.function.Predicate<T> {
+  public net.minecraft.server.permissions.PermissionProviderCheck(net.minecraft.server.permissions.PermissionCheck);
+  public boolean test(T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.permissions.PermissionCheck test();
+  public boolean test(java.lang.Object);
+}
+Compiled from "PermissionCheck.java"
+public interface net.minecraft.server.permissions.PermissionCheck {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.permissions.PermissionCheck> CODEC;
+  public abstract boolean check(net.minecraft.server.permissions.PermissionSet);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.server.permissions.PermissionCheck> codec();
+}
+Compiled from "PermissionLevel.java"
+public final class net.minecraft.server.permissions.PermissionLevel extends java.lang.Enum<net.minecraft.server.permissions.PermissionLevel> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.server.permissions.PermissionLevel ALL;
+  public static final net.minecraft.server.permissions.PermissionLevel MODERATORS;
+  public static final net.minecraft.server.permissions.PermissionLevel GAMEMASTERS;
+  public static final net.minecraft.server.permissions.PermissionLevel ADMINS;
+  public static final net.minecraft.server.permissions.PermissionLevel OWNERS;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.permissions.PermissionLevel> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.permissions.PermissionLevel> INT_CODEC;
+  public static net.minecraft.server.permissions.PermissionLevel[] values();
+  public static net.minecraft.server.permissions.PermissionLevel valueOf(java.lang.String);
+  public boolean isEqualOrHigherThan(net.minecraft.server.permissions.PermissionLevel);
+  public static net.minecraft.server.permissions.PermissionLevel byId(int);
+  public int id();
+  public java.lang.String getSerializedName();
+}
+Compiled from "PermissionCheck.java"
+public class net.minecraft.server.permissions.PermissionCheck$AlwaysPass implements net.minecraft.server.permissions.PermissionCheck {
+  public static final net.minecraft.server.permissions.PermissionCheck$AlwaysPass INSTANCE;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.permissions.PermissionCheck$AlwaysPass> MAP_CODEC;
+  public boolean check(net.minecraft.server.permissions.PermissionSet);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.permissions.PermissionCheck$AlwaysPass> codec();
+}
+Compiled from "PermissionSet.java"
+public interface net.minecraft.server.permissions.PermissionSet {
+  public static final net.minecraft.server.permissions.PermissionSet NO_PERMISSIONS;
+  public static final net.minecraft.server.permissions.PermissionSet ALL_PERMISSIONS;
+  public abstract boolean hasPermission(net.minecraft.server.permissions.Permission);
+  public default net.minecraft.server.permissions.PermissionSet union(net.minecraft.server.permissions.PermissionSet);
+}
+Compiled from "PermissionSetUnion.java"
+public class net.minecraft.server.permissions.PermissionSetUnion implements net.minecraft.server.permissions.PermissionSet {
+  public boolean hasPermission(net.minecraft.server.permissions.Permission);
+  public net.minecraft.server.permissions.PermissionSet union(net.minecraft.server.permissions.PermissionSet);
+  public it.unimi.dsi.fastutil.objects.ReferenceSet<net.minecraft.server.permissions.PermissionSet> getPermissions();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.permissions.package-info {
+}
+Compiled from "PermissionCheck.java"
+public final class net.minecraft.server.permissions.PermissionCheck$Require extends java.lang.Record implements net.minecraft.server.permissions.PermissionCheck {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.permissions.PermissionCheck$Require> MAP_CODEC;
+  public net.minecraft.server.permissions.PermissionCheck$Require(net.minecraft.server.permissions.Permission);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.permissions.PermissionCheck$Require> codec();
+  public boolean check(net.minecraft.server.permissions.PermissionSet);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.permissions.Permission permission();
+}
+Compiled from "PermissionSetSupplier.java"
+public interface net.minecraft.server.permissions.PermissionSetSupplier {
+  public abstract net.minecraft.server.permissions.PermissionSet permissions();
+}
+Compiled from "Permissions.java"
+public class net.minecraft.server.permissions.Permissions {
+  public static final net.minecraft.server.permissions.Permission COMMANDS_MODERATOR;
+  public static final net.minecraft.server.permissions.Permission COMMANDS_GAMEMASTER;
+  public static final net.minecraft.server.permissions.Permission COMMANDS_ADMIN;
+  public static final net.minecraft.server.permissions.Permission COMMANDS_OWNER;
+  public static final net.minecraft.server.permissions.Permission COMMANDS_ENTITY_SELECTORS;
+  public static final net.minecraft.server.permissions.Permission CHAT_SEND_MESSAGES;
+  public static final net.minecraft.server.permissions.Permission CHAT_SEND_COMMANDS;
+  public static final net.minecraft.server.permissions.Permission CHAT_RECEIVE_PLAYER_MESSAGES;
+  public static final net.minecraft.server.permissions.Permission CHAT_RECEIVE_SYSTEM_MESSAGES;
+  public static final java.util.Set<net.minecraft.server.permissions.Permission> CHAT_PERMISSIONS;
+  public net.minecraft.server.permissions.Permissions();
+}

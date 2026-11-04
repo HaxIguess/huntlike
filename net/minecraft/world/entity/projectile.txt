@@ -1,0 +1,239 @@
+Compiled from "EyeOfEnder.java"
+public class net.minecraft.world.entity.projectile.EyeOfEnder extends net.minecraft.world.entity.Entity implements net.minecraft.world.entity.projectile.ItemSupplier {
+  public net.minecraft.world.entity.projectile.EyeOfEnder(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.EyeOfEnder>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.EyeOfEnder(net.minecraft.world.level.Level, double, double, double);
+  public void setItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getItem();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean shouldRenderAtSqrDistance(double);
+  public void signalTo(net.minecraft.world.phys.Vec3);
+  public void tick();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public float getLightLevelDependentMagicValue();
+  public boolean isAttackable();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+}
+Compiled from "Projectile.java"
+public abstract class net.minecraft.world.entity.projectile.Projectile extends net.minecraft.world.entity.Entity implements net.minecraft.world.entity.TraceableEntity {
+  protected net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.Entity> owner;
+  public net.minecraft.world.entity.projectile.Projectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.Projectile>, net.minecraft.world.level.Level);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  protected void setOwner(net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.Entity>);
+  public void setOwner(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.Entity getOwner();
+  public net.minecraft.world.entity.Entity getEffectSource();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected boolean ownedBy(net.minecraft.world.entity.Entity);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void restoreFrom(net.minecraft.world.entity.Entity);
+  public void tick();
+  protected void checkLeftOwner();
+  public net.minecraft.world.phys.Vec3 getMovementToShoot(double, double, double, float, float);
+  public void shoot(double, double, double, float, float);
+  public void shootFromRotation(net.minecraft.world.entity.Entity, float, float, float, float, float);
+  public void onAboveBubbleColumn(boolean, net.minecraft.core.BlockPos);
+  public void onInsideBubbleColumn(boolean);
+  public boolean canBreakBlockInAdventureMode(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.block.state.pattern.BlockInWorld);
+  public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectileFromRotation(net.minecraft.world.entity.projectile.Projectile$ProjectileFactory<T>, net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, float, float, float);
+  public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectileUsingShoot(net.minecraft.world.entity.projectile.Projectile$ProjectileFactory<T>, net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, double, double, double, float, float);
+  public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectileUsingShoot(T, net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, double, double, double, float, float);
+  public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectile(T, net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  public static <T extends net.minecraft.world.entity.projectile.Projectile> T spawnProjectile(T, net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, java.util.function.Consumer<T>);
+  public void applyOnProjectileSpawned(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  protected net.minecraft.world.entity.projectile.ProjectileDeflection hitTargetOrDeflectSelf(net.minecraft.world.phys.HitResult);
+  protected boolean shouldBounceOnWorldBorder();
+  public boolean deflect(net.minecraft.world.entity.projectile.ProjectileDeflection, net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.Entity>, boolean, net.minecraft.world.phys.Vec3);
+  public boolean deflect(net.minecraft.world.entity.projectile.ProjectileDeflection, net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.Entity>, boolean, double);
+  protected void onDeflection(boolean);
+  protected void onItemBreak(net.minecraft.world.item.ItemStack);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  protected void onRedirectProjectile(net.minecraft.world.entity.projectile.Projectile);
+  protected boolean canHitEntity(net.minecraft.world.entity.Entity);
+  protected void updateRotation();
+  protected static float lerpRotation(float, float);
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public boolean mayInteract(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public boolean mayBreak(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public boolean isPickable();
+  public float getPickRadius();
+  public it.unimi.dsi.fastutil.doubles.DoubleDoubleImmutablePair calculateHorizontalHurtKnockbackDirection(net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+  public int getDimensionChangingDelay();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.MoveSimulationType getMoveSimulationType();
+}
+Compiled from "LlamaSpit.java"
+public class net.minecraft.world.entity.projectile.LlamaSpit extends net.minecraft.world.entity.projectile.Projectile {
+  public net.minecraft.world.entity.projectile.LlamaSpit(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.LlamaSpit>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.LlamaSpit(net.minecraft.world.level.Level, net.minecraft.world.entity.animal.equine.Llama);
+  protected double getDefaultGravity();
+  public void tick();
+  protected float getAirDrag();
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+}
+Compiled from "FishingHook.java"
+public class net.minecraft.world.entity.projectile.FishingHook extends net.minecraft.world.entity.projectile.Projectile {
+  public net.minecraft.world.entity.projectile.FishingHook(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.FishingHook>, net.minecraft.world.level.Level, int, int);
+  public net.minecraft.world.entity.projectile.FishingHook(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.FishingHook>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.FishingHook(net.minecraft.world.entity.player.Player, net.minecraft.world.level.Level, int, int);
+  protected net.minecraft.world.entity.InterpolationHandler createInterpolationHandler();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected boolean shouldBounceOnWorldBorder();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public boolean shouldRenderAtSqrDistance(double);
+  public void tick();
+  protected boolean canHitEntity(net.minecraft.world.entity.Entity);
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  public boolean isOpenWaterFishing();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public int retrieve(net.minecraft.world.item.ItemStack);
+  public void handleEntityEvent(byte);
+  protected double getDefaultGravity();
+  protected void pullEntity(net.minecraft.world.entity.Entity);
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  public void onClientRemoval();
+  public void setOwner(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.player.Player getPlayerOwner();
+  public net.minecraft.world.entity.Entity getHookedIn();
+  public boolean canUsePortal(boolean);
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.projectile.package-info {
+}
+Compiled from "ProjectileUtil.java"
+public final class net.minecraft.world.entity.projectile.ProjectileUtil {
+  public static final float DEFAULT_ENTITY_HIT_RESULT_MARGIN;
+  public net.minecraft.world.entity.projectile.ProjectileUtil();
+  public static net.minecraft.world.phys.HitResult getHitResultOnMoveVector(net.minecraft.world.entity.Entity, java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+  public static com.mojang.datafixers.util.Either<net.minecraft.world.phys.BlockHitResult, java.util.Collection<net.minecraft.world.phys.EntityHitResult>> getHitEntitiesAlong(net.minecraft.world.entity.Entity, net.minecraft.world.item.component.AttackRange, java.util.function.Predicate<net.minecraft.world.entity.Entity>, net.minecraft.world.level.ClipContext$Block);
+  public static net.minecraft.world.phys.HitResult getHitResultOnMoveVector(net.minecraft.world.entity.Entity, java.util.function.Predicate<net.minecraft.world.entity.Entity>, net.minecraft.world.level.ClipContext$Block);
+  public static net.minecraft.world.phys.HitResult getHitResultOnViewVector(net.minecraft.world.entity.Entity, java.util.function.Predicate<net.minecraft.world.entity.Entity>, double);
+  public static net.minecraft.world.phys.EntityHitResult getEntityHitResult(net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>, double);
+  public static net.minecraft.world.phys.EntityHitResult getEntityHitResult(net.minecraft.world.level.Level, net.minecraft.world.entity.projectile.Projectile, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+  public static float computeMargin(net.minecraft.world.entity.Entity);
+  public static net.minecraft.world.phys.EntityHitResult getEntityHitResult(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>, float);
+  public static java.util.Collection<net.minecraft.world.phys.EntityHitResult> getManyEntityHitResult(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>, boolean, boolean);
+  public static java.util.Collection<net.minecraft.world.phys.EntityHitResult> getManyEntityHitResult(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB, java.util.function.Predicate<net.minecraft.world.entity.Entity>, float, net.minecraft.world.level.ClipContext$Block, boolean, boolean);
+  public static void rotateTowardsMovement(net.minecraft.world.entity.Entity, float);
+  public static net.minecraft.world.InteractionHand getWeaponHoldingHand(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.Item);
+  public static net.minecraft.world.entity.projectile.arrow.AbstractArrow getMobArrow(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack, float, net.minecraft.world.item.ItemStack);
+}
+Compiled from "ItemSupplier.java"
+public interface net.minecraft.world.entity.projectile.ItemSupplier {
+  public abstract net.minecraft.world.item.ItemStack getItem();
+}
+Compiled from "ShulkerBullet.java"
+public class net.minecraft.world.entity.projectile.ShulkerBullet extends net.minecraft.world.entity.projectile.Projectile {
+  public net.minecraft.world.entity.projectile.ShulkerBullet(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.ShulkerBullet>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.ShulkerBullet(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.Entity, net.minecraft.core.Direction$Axis);
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void checkDespawn();
+  protected double getDefaultGravity();
+  public void tick();
+  protected boolean isAffectedByBlocks();
+  protected boolean canHitEntity(net.minecraft.world.entity.Entity);
+  public boolean isOnFire();
+  public boolean shouldRenderAtSqrDistance(double);
+  public float getLightLevelDependentMagicValue();
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  protected void onRedirectProjectile(net.minecraft.world.entity.projectile.Projectile);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+  public boolean isPickable();
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+}
+Compiled from "FishingHook.java"
+final class net.minecraft.world.entity.projectile.FishingHook$OpenWaterType extends java.lang.Enum<net.minecraft.world.entity.projectile.FishingHook$OpenWaterType> {
+  public static final net.minecraft.world.entity.projectile.FishingHook$OpenWaterType ABOVE_WATER;
+  public static final net.minecraft.world.entity.projectile.FishingHook$OpenWaterType INSIDE_WATER;
+  public static final net.minecraft.world.entity.projectile.FishingHook$OpenWaterType INVALID;
+  public static net.minecraft.world.entity.projectile.FishingHook$OpenWaterType[] values();
+  public static net.minecraft.world.entity.projectile.FishingHook$OpenWaterType valueOf(java.lang.String);
+}
+Compiled from "ThrowableProjectile.java"
+public abstract class net.minecraft.world.entity.projectile.ThrowableProjectile extends net.minecraft.world.entity.projectile.Projectile {
+  protected net.minecraft.world.entity.projectile.ThrowableProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.ThrowableProjectile>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.projectile.ThrowableProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.ThrowableProjectile>, double, double, double, net.minecraft.world.level.Level);
+  public boolean shouldRenderAtSqrDistance(double);
+  public boolean canUsePortal(boolean);
+  public void tick();
+  protected float getAirDrag();
+  protected double getDefaultGravity();
+}
+Compiled from "EvokerFangs.java"
+public class net.minecraft.world.entity.projectile.EvokerFangs extends net.minecraft.world.entity.Entity implements net.minecraft.world.entity.TraceableEntity {
+  public static final int ATTACK_DURATION;
+  public static final int LIFE_OFFSET;
+  public static final int ATTACK_TRIGGER_TICKS;
+  public net.minecraft.world.entity.projectile.EvokerFangs(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.EvokerFangs>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.EvokerFangs(net.minecraft.world.level.Level, double, double, double, float, int, net.minecraft.world.entity.LivingEntity);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void setOwner(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.entity.LivingEntity getOwner();
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void tick();
+  public void handleEntityEvent(byte);
+  public float getAnimationProgress(float);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.Entity getOwner();
+}
+Compiled from "ProjectileDeflection.java"
+public interface net.minecraft.world.entity.projectile.ProjectileDeflection {
+  public static final net.minecraft.world.entity.projectile.ProjectileDeflection NONE;
+  public static final net.minecraft.world.entity.projectile.ProjectileDeflection REVERSE;
+  public static final net.minecraft.world.entity.projectile.ProjectileDeflection AIM_DEFLECT;
+  public static final net.minecraft.world.entity.projectile.ProjectileDeflection MOMENTUM_DEFLECT;
+  public abstract void deflect(net.minecraft.world.entity.projectile.Projectile, net.minecraft.world.entity.Entity, net.minecraft.util.RandomSource, net.minecraft.world.phys.Vec3);
+}
+Compiled from "FishingHook.java"
+final class net.minecraft.world.entity.projectile.FishingHook$FishHookState extends java.lang.Enum<net.minecraft.world.entity.projectile.FishingHook$FishHookState> {
+  public static final net.minecraft.world.entity.projectile.FishingHook$FishHookState FLYING;
+  public static final net.minecraft.world.entity.projectile.FishingHook$FishHookState HOOKED_IN_ENTITY;
+  public static final net.minecraft.world.entity.projectile.FishingHook$FishHookState BOBBING;
+  public static net.minecraft.world.entity.projectile.FishingHook$FishHookState[] values();
+  public static net.minecraft.world.entity.projectile.FishingHook$FishHookState valueOf(java.lang.String);
+}
+Compiled from "FireworkRocketEntity.java"
+public class net.minecraft.world.entity.projectile.FireworkRocketEntity extends net.minecraft.world.entity.projectile.Projectile implements net.minecraft.world.entity.projectile.ItemSupplier {
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.FireworkRocketEntity>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.level.Level, double, double, double, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, double, double, double, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, double, double, double, boolean);
+  public net.minecraft.world.entity.projectile.FireworkRocketEntity(net.minecraft.world.level.Level, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, double, double, double, boolean);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean shouldRenderAtSqrDistance(double);
+  public boolean shouldRender(double, double, double);
+  public void tick();
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  public boolean isShotAtAngle();
+  public void handleEntityEvent(byte);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.item.ItemStack getItem();
+  public boolean isAttackable();
+  public it.unimi.dsi.fastutil.doubles.DoubleDoubleImmutablePair calculateHorizontalHurtKnockbackDirection(net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+}
+Compiled from "Projectile.java"
+public interface net.minecraft.world.entity.projectile.Projectile$ProjectileFactory<T extends net.minecraft.world.entity.projectile.Projectile> {
+  public abstract T create(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+}

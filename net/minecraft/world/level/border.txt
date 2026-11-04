@@ -1,0 +1,148 @@
+Compiled from "WorldBorder.java"
+interface net.minecraft.world.level.border.WorldBorder$BorderExtent {
+  public abstract double getMinX(float);
+  public abstract double getMaxX(float);
+  public abstract double getMinZ(float);
+  public abstract double getMaxZ(float);
+  public abstract double getSize();
+  public abstract double getLerpSpeed();
+  public abstract long getLerpTime();
+  public abstract double getLerpTarget();
+  public abstract net.minecraft.world.level.border.BorderStatus getStatus();
+  public abstract void onAbsoluteMaxSizeChange();
+  public abstract void onCenterChange();
+  public abstract net.minecraft.world.level.border.WorldBorder$BorderExtent update();
+  public abstract net.minecraft.world.phys.shapes.VoxelShape getCollisionShape();
+}
+Compiled from "BorderStatus.java"
+public final class net.minecraft.world.level.border.BorderStatus extends java.lang.Enum<net.minecraft.world.level.border.BorderStatus> {
+  public static final net.minecraft.world.level.border.BorderStatus GROWING;
+  public static final net.minecraft.world.level.border.BorderStatus SHRINKING;
+  public static final net.minecraft.world.level.border.BorderStatus STATIONARY;
+  public static net.minecraft.world.level.border.BorderStatus[] values();
+  public static net.minecraft.world.level.border.BorderStatus valueOf(java.lang.String);
+  public int getColor();
+}
+Compiled from "BorderChangeListener.java"
+public interface net.minecraft.world.level.border.BorderChangeListener {
+  public abstract void onSetSize(net.minecraft.world.level.border.WorldBorder, double);
+  public abstract void onLerpSize(net.minecraft.world.level.border.WorldBorder, double, double, long, long);
+  public abstract void onSetCenter(net.minecraft.world.level.border.WorldBorder, double, double);
+  public abstract void onSetWarningTime(net.minecraft.world.level.border.WorldBorder, int);
+  public abstract void onSetWarningBlocks(net.minecraft.world.level.border.WorldBorder, int);
+  public abstract void onSetDamagePerBlock(net.minecraft.world.level.border.WorldBorder, double);
+  public abstract void onSetSafeZone(net.minecraft.world.level.border.WorldBorder, double);
+}
+Compiled from "WorldBorder.java"
+class net.minecraft.world.level.border.WorldBorder$StaticBorderExtent implements net.minecraft.world.level.border.WorldBorder$BorderExtent {
+  public net.minecraft.world.level.border.WorldBorder$StaticBorderExtent(net.minecraft.world.level.border.WorldBorder, double);
+  public double getMinX(float);
+  public double getMaxX(float);
+  public double getMinZ(float);
+  public double getMaxZ(float);
+  public double getSize();
+  public net.minecraft.world.level.border.BorderStatus getStatus();
+  public double getLerpSpeed();
+  public long getLerpTime();
+  public double getLerpTarget();
+  public void onAbsoluteMaxSizeChange();
+  public void onCenterChange();
+  public net.minecraft.world.level.border.WorldBorder$BorderExtent update();
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.border.package-info {
+}
+Compiled from "WorldBorder.java"
+public final class net.minecraft.world.level.border.WorldBorder$Settings extends java.lang.Record {
+  public static final net.minecraft.world.level.border.WorldBorder$Settings DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.border.WorldBorder$Settings> CODEC;
+  public net.minecraft.world.level.border.WorldBorder$Settings(net.minecraft.world.level.border.WorldBorder);
+  public net.minecraft.world.level.border.WorldBorder$Settings(double, double, double, double, int, int, double, long, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double centerX();
+  public double centerZ();
+  public double damagePerBlock();
+  public double safeZone();
+  public int warningBlocks();
+  public int warningTime();
+  public double size();
+  public long lerpTime();
+  public double lerpTarget();
+}
+Compiled from "WorldBorder.java"
+class net.minecraft.world.level.border.WorldBorder$MovingBorderExtent implements net.minecraft.world.level.border.WorldBorder$BorderExtent {
+  public double getMinX(float);
+  public double getMinZ(float);
+  public double getMaxX(float);
+  public double getMaxZ(float);
+  public double getSize();
+  public double getPreviousSize();
+  public double getLerpSpeed();
+  public long getLerpTime();
+  public double getLerpTarget();
+  public net.minecraft.world.level.border.BorderStatus getStatus();
+  public void onCenterChange();
+  public void onAbsoluteMaxSizeChange();
+  public net.minecraft.world.level.border.WorldBorder$BorderExtent update();
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape();
+}
+Compiled from "WorldBorder.java"
+public class net.minecraft.world.level.border.WorldBorder extends net.minecraft.world.level.saveddata.SavedData {
+  public static final double MAX_SIZE;
+  public static final double MAX_CENTER_COORDINATE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.border.WorldBorder> CODEC;
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.level.border.WorldBorder> TYPE;
+  public net.minecraft.world.level.border.WorldBorder();
+  public net.minecraft.world.level.border.WorldBorder(net.minecraft.world.level.border.WorldBorder$Settings);
+  public boolean isWithinBounds(net.minecraft.core.BlockPos);
+  public boolean isWithinBounds(net.minecraft.world.phys.Vec3);
+  public boolean isWithinBounds(net.minecraft.world.level.ChunkPos);
+  public boolean isWithinBounds(net.minecraft.world.phys.AABB);
+  public boolean isWithinBounds(double, double);
+  public boolean isWithinBounds(double, double, double);
+  public net.minecraft.core.BlockPos clampToBounds(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos clampToBounds(net.minecraft.world.phys.Vec3);
+  public net.minecraft.core.BlockPos clampToBounds(double, double, double);
+  public net.minecraft.world.phys.Vec3 clampVec3ToBound(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 clampVec3ToBound(double, double, double);
+  public double getDistanceToBorder(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape();
+  public double getDistanceToBorder(double, double);
+  public boolean isInsideCloseToBorder(net.minecraft.world.entity.Entity, net.minecraft.world.phys.AABB);
+  public net.minecraft.world.level.border.BorderStatus getStatus();
+  public double getMinX();
+  public double getMinX(float);
+  public double getMinZ();
+  public double getMinZ(float);
+  public double getMaxX();
+  public double getMaxX(float);
+  public double getMaxZ();
+  public double getMaxZ(float);
+  public double getCenterX();
+  public double getCenterZ();
+  public void setCenter(double, double);
+  public double getSize();
+  public long getLerpTime();
+  public double getLerpTarget();
+  public void setSize(double);
+  public void lerpSizeBetween(double, double, long, long);
+  protected java.util.List<net.minecraft.world.level.border.BorderChangeListener> getListeners();
+  public void addListener(net.minecraft.world.level.border.BorderChangeListener);
+  public void removeListener(net.minecraft.world.level.border.BorderChangeListener);
+  public void setAbsoluteMaxSize(int);
+  public int getAbsoluteMaxSize();
+  public double getSafeZone();
+  public void setSafeZone(double);
+  public double getDamagePerBlock();
+  public void setDamagePerBlock(double);
+  public double getLerpSpeed();
+  public int getWarningTime();
+  public void setWarningTime(int);
+  public int getWarningBlocks();
+  public void setWarningBlocks(int);
+  public void tick();
+  public void applyInitialSettings(long);
+}

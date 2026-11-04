@@ -1,0 +1,74 @@
+Compiled from "WorldCarver.java"
+public interface net.minecraft.world.level.levelgen.carver.WorldCarver {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.carver.WorldCarver> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver>> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.carver.WorldCarver>> LIST_CODEC;
+  public default int getRange();
+  public static void carveEllipsoid(net.minecraft.world.level.ChunkPos, double, double, double, double, double, net.minecraft.world.level.chunk.CarverOutput, net.minecraft.world.level.levelgen.carver.WorldCarver$CarveSkipChecker);
+  public abstract boolean carve(net.minecraft.world.level.levelgen.WorldGenerationContext, net.minecraft.util.RandomSource, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.CarverOutput);
+  public abstract boolean isStartChunk(net.minecraft.util.RandomSource);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.carver.WorldCarver> codec();
+  public static boolean canReach(net.minecraft.world.level.ChunkPos, double, double, int, int, float);
+}
+Compiled from "WorldCarverTypes.java"
+public interface net.minecraft.world.level.levelgen.carver.WorldCarverTypes {
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.carver.WorldCarver> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.carver.WorldCarver>>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.carver.package-info {
+}
+Compiled from "WorldCarver.java"
+public interface net.minecraft.world.level.levelgen.carver.WorldCarver$CarveSkipChecker {
+  public abstract boolean shouldSkip(double, double, double, int);
+}
+Compiled from "CaveWorldCarver.java"
+public final class net.minecraft.world.level.levelgen.carver.CaveWorldCarver extends java.lang.Record implements net.minecraft.world.level.levelgen.carver.WorldCarver {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.carver.CaveWorldCarver> MAP_CODEC;
+  public net.minecraft.world.level.levelgen.carver.CaveWorldCarver(float, net.minecraft.world.level.levelgen.heightproviders.HeightProvider, net.minecraft.util.valueproviders.IntProvider, net.minecraft.util.valueproviders.FloatProvider, boolean, net.minecraft.util.valueproviders.FloatProvider, net.minecraft.util.valueproviders.FloatProvider, net.minecraft.util.valueproviders.FloatProvider, net.minecraft.util.valueproviders.FloatProvider, net.minecraft.util.valueproviders.FloatProvider);
+  public boolean isStartChunk(net.minecraft.util.RandomSource);
+  public boolean carve(net.minecraft.world.level.levelgen.WorldGenerationContext, net.minecraft.util.RandomSource, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.CarverOutput);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.carver.CaveWorldCarver> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float probability();
+  public net.minecraft.world.level.levelgen.heightproviders.HeightProvider y();
+  public net.minecraft.util.valueproviders.IntProvider count();
+  public net.minecraft.util.valueproviders.FloatProvider thickness();
+  public boolean weirdThicknessBias();
+  public net.minecraft.util.valueproviders.FloatProvider roomVerticalRadiusMultiplier();
+  public net.minecraft.util.valueproviders.FloatProvider horizontalRadiusMultiplier();
+  public net.minecraft.util.valueproviders.FloatProvider verticalRadiusMultiplier();
+  public net.minecraft.util.valueproviders.FloatProvider startVerticalRadiusMultiplier();
+  public net.minecraft.util.valueproviders.FloatProvider floorLevel();
+}
+Compiled from "CanyonWorldCarver.java"
+public final class net.minecraft.world.level.levelgen.carver.CanyonWorldCarver$Shape extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.carver.CanyonWorldCarver$Shape> CODEC;
+  public net.minecraft.world.level.levelgen.carver.CanyonWorldCarver$Shape(net.minecraft.util.valueproviders.FloatProvider, net.minecraft.util.valueproviders.FloatProvider, int, net.minecraft.util.valueproviders.FloatProvider, float, float, net.minecraft.util.valueproviders.FloatProvider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.valueproviders.FloatProvider distanceFactor();
+  public net.minecraft.util.valueproviders.FloatProvider thickness();
+  public int widthSmoothness();
+  public net.minecraft.util.valueproviders.FloatProvider horizontalRadiusFactor();
+  public float verticalRadiusDefaultFactor();
+  public float verticalRadiusCenterFactor();
+  public net.minecraft.util.valueproviders.FloatProvider yScale();
+}
+Compiled from "CanyonWorldCarver.java"
+public final class net.minecraft.world.level.levelgen.carver.CanyonWorldCarver extends java.lang.Record implements net.minecraft.world.level.levelgen.carver.WorldCarver {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.carver.CanyonWorldCarver> MAP_CODEC;
+  public net.minecraft.world.level.levelgen.carver.CanyonWorldCarver(float, net.minecraft.world.level.levelgen.heightproviders.HeightProvider, net.minecraft.util.valueproviders.FloatProvider, net.minecraft.world.level.levelgen.carver.CanyonWorldCarver$Shape);
+  public boolean isStartChunk(net.minecraft.util.RandomSource);
+  public boolean carve(net.minecraft.world.level.levelgen.WorldGenerationContext, net.minecraft.util.RandomSource, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.CarverOutput);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.carver.CanyonWorldCarver> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float probability();
+  public net.minecraft.world.level.levelgen.heightproviders.HeightProvider y();
+  public net.minecraft.util.valueproviders.FloatProvider verticalRotation();
+  public net.minecraft.world.level.levelgen.carver.CanyonWorldCarver$Shape shape();
+}

@@ -1,0 +1,281 @@
+Compiled from "NameAndId.java"
+public final class net.minecraft.server.players.NameAndId extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.players.NameAndId> CODEC;
+  public net.minecraft.server.players.NameAndId(com.mojang.authlib.GameProfile);
+  public net.minecraft.server.players.NameAndId(com.mojang.authlib.services.response.NameAndId);
+  public net.minecraft.server.players.NameAndId(java.util.UUID, java.lang.String);
+  public static net.minecraft.server.players.NameAndId fromJson(com.google.gson.JsonObject);
+  public void appendTo(com.google.gson.JsonObject);
+  public static net.minecraft.server.players.NameAndId createOffline(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID id();
+  public java.lang.String name();
+}
+Compiled from "UserWhiteListEntry.java"
+public class net.minecraft.server.players.UserWhiteListEntry extends net.minecraft.server.players.StoredUserEntry<net.minecraft.server.players.NameAndId> {
+  public net.minecraft.server.players.UserWhiteListEntry(net.minecraft.server.players.NameAndId);
+  public net.minecraft.server.players.UserWhiteListEntry(com.google.gson.JsonObject);
+  protected void serialize(com.google.gson.JsonObject);
+}
+Compiled from "SleepStatus.java"
+public class net.minecraft.server.players.SleepStatus {
+  public net.minecraft.server.players.SleepStatus();
+  public boolean areEnoughSleeping(int);
+  public boolean areEnoughDeepSleeping(int, java.util.List<net.minecraft.server.level.ServerPlayer>);
+  public int sleepersNeeded(int);
+  public void removeAllSleepers();
+  public int amountSleeping();
+  public boolean update(java.util.List<net.minecraft.server.level.ServerPlayer>);
+}
+Compiled from "UserBanList.java"
+public class net.minecraft.server.players.UserBanList extends net.minecraft.server.players.StoredUserList<net.minecraft.server.players.NameAndId, net.minecraft.server.players.UserBanListEntry> {
+  public net.minecraft.server.players.UserBanList(java.io.File, net.minecraft.server.notifications.NotificationService);
+  protected net.minecraft.server.players.StoredUserEntry<net.minecraft.server.players.NameAndId> createEntry(com.google.gson.JsonObject);
+  public boolean isBanned(net.minecraft.server.players.NameAndId);
+  public java.lang.String[] getUserList();
+  protected java.lang.String getKeyForUser(net.minecraft.server.players.NameAndId);
+  public boolean add(net.minecraft.server.players.UserBanListEntry);
+  public boolean remove(net.minecraft.server.players.NameAndId);
+  public void clear();
+  protected java.lang.String getKeyForUser(java.lang.Object);
+  public boolean remove(java.lang.Object);
+  public boolean add(net.minecraft.server.players.StoredUserEntry);
+}
+Compiled from "ServerOpListEntry.java"
+public class net.minecraft.server.players.ServerOpListEntry extends net.minecraft.server.players.StoredUserEntry<net.minecraft.server.players.NameAndId> {
+  public net.minecraft.server.players.ServerOpListEntry(net.minecraft.server.players.NameAndId, net.minecraft.server.permissions.LevelBasedPermissionSet, boolean);
+  public net.minecraft.server.players.ServerOpListEntry(com.google.gson.JsonObject);
+  public net.minecraft.server.permissions.LevelBasedPermissionSet permissions();
+  public boolean getBypassesPlayerLimit();
+  protected void serialize(com.google.gson.JsonObject);
+}
+Compiled from "UserNameToIdResolver.java"
+public interface net.minecraft.server.players.UserNameToIdResolver {
+  public abstract void add(net.minecraft.server.players.NameAndId);
+  public abstract java.util.Optional<net.minecraft.server.players.NameAndId> get(java.lang.String);
+  public abstract java.util.Optional<net.minecraft.server.players.NameAndId> get(java.util.UUID);
+  public abstract void resolveOfflineUsers(boolean);
+  public abstract void save();
+}
+Compiled from "OldUsersConverter.java"
+public class net.minecraft.server.players.OldUsersConverter {
+  public static final java.io.File OLD_IPBANLIST;
+  public static final java.io.File OLD_USERBANLIST;
+  public static final java.io.File OLD_OPLIST;
+  public static final java.io.File OLD_WHITELIST;
+  public net.minecraft.server.players.OldUsersConverter();
+  public static boolean convertUserBanlist(net.minecraft.server.MinecraftServer);
+  public static boolean convertIpBanlist(net.minecraft.server.MinecraftServer);
+  public static boolean convertOpsList(net.minecraft.server.MinecraftServer);
+  public static boolean convertWhiteList(net.minecraft.server.MinecraftServer);
+  public static java.util.UUID convertMobOwnerIfNecessary(net.minecraft.server.MinecraftServer, java.lang.String);
+  public static boolean convertPlayers(net.minecraft.server.dedicated.DedicatedServer);
+  public static boolean areOldUserlistsRemoved();
+}
+Compiled from "UserWhiteList.java"
+public class net.minecraft.server.players.UserWhiteList extends net.minecraft.server.players.StoredUserList<net.minecraft.server.players.NameAndId, net.minecraft.server.players.UserWhiteListEntry> {
+  public net.minecraft.server.players.UserWhiteList(java.io.File, net.minecraft.server.notifications.NotificationService);
+  protected net.minecraft.server.players.StoredUserEntry<net.minecraft.server.players.NameAndId> createEntry(com.google.gson.JsonObject);
+  public boolean isWhiteListed(net.minecraft.server.players.NameAndId);
+  public boolean add(net.minecraft.server.players.UserWhiteListEntry);
+  public boolean remove(net.minecraft.server.players.NameAndId);
+  public void clear();
+  public java.lang.String[] getUserList();
+  protected java.lang.String getKeyForUser(net.minecraft.server.players.NameAndId);
+  protected java.lang.String getKeyForUser(java.lang.Object);
+  public boolean remove(java.lang.Object);
+  public boolean add(net.minecraft.server.players.StoredUserEntry);
+}
+Compiled from "ProfileResolver.java"
+public interface net.minecraft.server.players.ProfileResolver {
+  public abstract java.util.Optional<com.mojang.authlib.GameProfile> fetchByName(java.lang.String);
+  public abstract java.util.Optional<com.mojang.authlib.GameProfile> fetchById(java.util.UUID);
+  public default java.util.Optional<com.mojang.authlib.GameProfile> fetchByNameOrId(com.mojang.datafixers.util.Either<java.lang.String, java.util.UUID>);
+}
+Compiled from "UserBanListEntry.java"
+public class net.minecraft.server.players.UserBanListEntry extends net.minecraft.server.players.BanListEntry<net.minecraft.server.players.NameAndId> {
+  public net.minecraft.server.players.UserBanListEntry(net.minecraft.server.players.NameAndId);
+  public net.minecraft.server.players.UserBanListEntry(net.minecraft.server.players.NameAndId, java.util.Date, java.lang.String, java.util.Date, java.lang.String);
+  public net.minecraft.server.players.UserBanListEntry(com.google.gson.JsonObject);
+  protected void serialize(com.google.gson.JsonObject);
+  public net.minecraft.network.chat.Component getDisplayName();
+}
+Compiled from "ServerOpList.java"
+public class net.minecraft.server.players.ServerOpList extends net.minecraft.server.players.StoredUserList<net.minecraft.server.players.NameAndId, net.minecraft.server.players.ServerOpListEntry> {
+  public net.minecraft.server.players.ServerOpList(java.io.File, net.minecraft.server.notifications.NotificationService);
+  protected net.minecraft.server.players.StoredUserEntry<net.minecraft.server.players.NameAndId> createEntry(com.google.gson.JsonObject);
+  public java.lang.String[] getUserList();
+  public boolean add(net.minecraft.server.players.ServerOpListEntry);
+  public boolean remove(net.minecraft.server.players.NameAndId);
+  public void clear();
+  public boolean canBypassPlayerLimit(net.minecraft.server.players.NameAndId);
+  protected java.lang.String getKeyForUser(net.minecraft.server.players.NameAndId);
+  protected java.lang.String getKeyForUser(java.lang.Object);
+  public boolean remove(java.lang.Object);
+  public boolean add(net.minecraft.server.players.StoredUserEntry);
+}
+Compiled from "ProfileResolver.java"
+public class net.minecraft.server.players.ProfileResolver$Cached implements net.minecraft.server.players.ProfileResolver {
+  public net.minecraft.server.players.ProfileResolver$Cached(com.mojang.authlib.minecraft.SessionService, net.minecraft.server.players.UserNameToIdResolver);
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchByName(java.lang.String);
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchById(java.util.UUID);
+}
+Compiled from "BanListEntry.java"
+public abstract class net.minecraft.server.players.BanListEntry<T> extends net.minecraft.server.players.StoredUserEntry<T> {
+  public static final java.text.SimpleDateFormat DATE_FORMAT;
+  public static final java.lang.String EXPIRES_NEVER;
+  protected final java.util.Date created;
+  protected final java.lang.String source;
+  protected final java.util.Date expires;
+  protected final java.lang.String reason;
+  public net.minecraft.server.players.BanListEntry(T, java.util.Date, java.lang.String, java.util.Date, java.lang.String);
+  protected net.minecraft.server.players.BanListEntry(T, com.google.gson.JsonObject);
+  public java.util.Date getCreated();
+  public java.lang.String getSource();
+  public java.util.Date getExpires();
+  public java.lang.String getReason();
+  public net.minecraft.network.chat.Component getReasonMessage();
+  public abstract net.minecraft.network.chat.Component getDisplayName();
+  public boolean hasExpired();
+  protected void serialize(com.google.gson.JsonObject);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "CachedUserNameToIdResolver.java"
+class net.minecraft.server.players.CachedUserNameToIdResolver$GameProfileInfo {
+  public net.minecraft.server.players.NameAndId nameAndId();
+  public java.util.Date expirationDate();
+  public void setLastAccess(long);
+  public long lastAccess();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.players.package-info {
+}
+Compiled from "IpBanList.java"
+public class net.minecraft.server.players.IpBanList extends net.minecraft.server.players.StoredUserList<java.lang.String, net.minecraft.server.players.IpBanListEntry> {
+  public net.minecraft.server.players.IpBanList(java.io.File, net.minecraft.server.notifications.NotificationService);
+  protected net.minecraft.server.players.StoredUserEntry<java.lang.String> createEntry(com.google.gson.JsonObject);
+  public boolean isBanned(java.net.SocketAddress);
+  public boolean isBanned(java.lang.String);
+  public net.minecraft.server.players.IpBanListEntry get(java.net.SocketAddress);
+  public boolean add(net.minecraft.server.players.IpBanListEntry);
+  public boolean remove(java.lang.String);
+  public void clear();
+  public boolean remove(java.lang.Object);
+  public boolean add(net.minecraft.server.players.StoredUserEntry);
+}
+Compiled from "PlayerList.java"
+public abstract class net.minecraft.server.players.PlayerList {
+  public static final java.io.File USERBANLIST_FILE;
+  public static final java.io.File IPBANLIST_FILE;
+  public static final java.io.File OPLIST_FILE;
+  public static final java.io.File WHITELIST_FILE;
+  public static final net.minecraft.network.chat.Component CHAT_FILTERED_FULL;
+  public static final net.minecraft.network.chat.Component DUPLICATE_LOGIN_DISCONNECT_MESSAGE;
+  public net.minecraft.server.players.PlayerList(net.minecraft.server.MinecraftServer, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.PlayerDataStorage, net.minecraft.server.notifications.NotificationService);
+  public void placeNewPlayer(net.minecraft.network.Connection, net.minecraft.server.level.ServerPlayer, net.minecraft.server.network.CommonListenerCookie);
+  protected void updateEntireScoreboard(net.minecraft.server.ServerScoreboard, net.minecraft.server.level.ServerPlayer);
+  public void addWorldborderListener(net.minecraft.server.level.ServerLevel);
+  public java.util.Optional<net.minecraft.nbt.CompoundTag> loadPlayerData(net.minecraft.server.players.NameAndId);
+  protected void save(net.minecraft.server.level.ServerPlayer);
+  public void remove(net.minecraft.server.level.ServerPlayer);
+  public net.minecraft.network.chat.Component canPlayerLogin(java.net.SocketAddress, net.minecraft.server.players.NameAndId);
+  public boolean disconnectAllPlayersWithProfile(java.util.UUID);
+  public net.minecraft.server.level.ServerPlayer respawn(net.minecraft.server.level.ServerPlayer, boolean, net.minecraft.world.entity.Entity$RemovalReason);
+  public void sendActivePlayerEffects(net.minecraft.server.level.ServerPlayer);
+  public void sendActiveEffects(net.minecraft.world.entity.LivingEntity, net.minecraft.server.network.ServerGamePacketListenerImpl);
+  public void sendPlayerPermissionLevel(net.minecraft.server.level.ServerPlayer);
+  public void tick();
+  public void broadcastAll(net.minecraft.network.protocol.Packet<?>);
+  public void broadcastAll(net.minecraft.network.protocol.Packet<?>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public void broadcastSystemToTeam(net.minecraft.world.entity.player.Player, net.minecraft.network.chat.Component);
+  public void broadcastSystemToAllExceptTeam(net.minecraft.world.entity.player.Player, net.minecraft.network.chat.Component);
+  public java.lang.String[] getPlayerNamesArray();
+  public net.minecraft.server.players.UserBanList getBans();
+  public net.minecraft.server.players.IpBanList getIpBans();
+  public void op(net.minecraft.server.players.NameAndId);
+  public void op(net.minecraft.server.players.NameAndId, java.util.Optional<net.minecraft.server.permissions.LevelBasedPermissionSet>, java.util.Optional<java.lang.Boolean>);
+  public void deop(net.minecraft.server.players.NameAndId);
+  public boolean isWhiteListed(net.minecraft.server.players.NameAndId);
+  public boolean isOp(net.minecraft.server.players.NameAndId);
+  public net.minecraft.server.level.ServerPlayer getPlayerByName(java.lang.String);
+  public void broadcast(net.minecraft.world.entity.player.Player, double, double, double, double, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.network.protocol.Packet<?>);
+  public void saveAll();
+  public net.minecraft.server.players.UserWhiteList getWhiteList();
+  public java.lang.String[] getWhiteListNames();
+  public net.minecraft.server.players.ServerOpList getOps();
+  public java.lang.String[] getOpNames();
+  public void reloadWhiteList();
+  public void sendLevelInfo(net.minecraft.server.level.ServerPlayer, net.minecraft.server.level.ServerLevel);
+  public void sendAllPlayerInfo(net.minecraft.server.level.ServerPlayer);
+  public int getPlayerCount();
+  public int getMaxPlayers();
+  public boolean isUsingWhitelist();
+  public java.util.List<net.minecraft.server.level.ServerPlayer> getPlayersWithAddress(java.lang.String);
+  public int getViewDistance();
+  public int getSimulationDistance();
+  public net.minecraft.server.MinecraftServer getServer();
+  public void removeAll();
+  public void broadcastSystemMessage(net.minecraft.network.chat.Component, boolean);
+  public void broadcastSystemMessage(net.minecraft.network.chat.Component, java.util.function.Function<net.minecraft.server.level.ServerPlayer, net.minecraft.network.chat.Component>, boolean);
+  public void broadcastChatMessage(net.minecraft.network.chat.PlayerChatMessage, net.minecraft.commands.CommandSourceStack, net.minecraft.network.chat.ChatType$Bound);
+  public void broadcastChatMessage(net.minecraft.network.chat.PlayerChatMessage, net.minecraft.server.level.ServerPlayer, net.minecraft.network.chat.ChatType$Bound);
+  public net.minecraft.stats.ServerStatsCounter getPlayerStats(net.minecraft.world.entity.player.Player);
+  public net.minecraft.server.PlayerAdvancements getPlayerAdvancements(net.minecraft.server.level.ServerPlayer);
+  public void setViewDistance(int);
+  public void setSimulationDistance(int);
+  public java.util.List<net.minecraft.server.level.ServerPlayer> getPlayers();
+  public java.util.Map<java.util.UUID, net.minecraft.server.level.ServerPlayer> getPlayersByUUID();
+  public net.minecraft.server.level.ServerPlayer getPlayer(java.util.UUID);
+  public net.minecraft.server.level.ServerPlayer getPlayer(java.lang.String);
+  public boolean canBypassPlayerLimit(net.minecraft.server.players.NameAndId);
+  public void reloadResources();
+}
+Compiled from "StoredUserEntry.java"
+public abstract class net.minecraft.server.players.StoredUserEntry<T> {
+  public net.minecraft.server.players.StoredUserEntry(T);
+  public T getUser();
+  public boolean hasExpired();
+  protected abstract void serialize(com.google.gson.JsonObject);
+}
+Compiled from "CachedUserNameToIdResolver.java"
+public class net.minecraft.server.players.CachedUserNameToIdResolver implements net.minecraft.server.players.UserNameToIdResolver {
+  public net.minecraft.server.players.CachedUserNameToIdResolver(com.mojang.authlib.GameProfileRepository, java.io.File);
+  public void resolveOfflineUsers(boolean);
+  public void add(net.minecraft.server.players.NameAndId);
+  public java.util.Optional<net.minecraft.server.players.NameAndId> get(java.lang.String);
+  public java.util.Optional<net.minecraft.server.players.NameAndId> get(java.util.UUID);
+  public void save();
+}
+Compiled from "OldUsersConverter.java"
+class net.minecraft.server.players.OldUsersConverter$ConversionError extends java.lang.RuntimeException {
+}
+Compiled from "IpBanListEntry.java"
+public class net.minecraft.server.players.IpBanListEntry extends net.minecraft.server.players.BanListEntry<java.lang.String> {
+  public net.minecraft.server.players.IpBanListEntry(java.lang.String);
+  public net.minecraft.server.players.IpBanListEntry(java.lang.String, java.util.Date, java.lang.String, java.util.Date, java.lang.String);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.server.players.IpBanListEntry(com.google.gson.JsonObject);
+  protected void serialize(com.google.gson.JsonObject);
+}
+Compiled from "StoredUserList.java"
+public abstract class net.minecraft.server.players.StoredUserList<K, V extends net.minecraft.server.players.StoredUserEntry<K>> {
+  protected final net.minecraft.server.notifications.NotificationService notificationService;
+  public net.minecraft.server.players.StoredUserList(java.io.File, net.minecraft.server.notifications.NotificationService);
+  public java.io.File getFile();
+  public boolean add(V);
+  public V get(K);
+  public boolean remove(K);
+  public boolean remove(net.minecraft.server.players.StoredUserEntry<K>);
+  public void clear();
+  public java.lang.String[] getUserList();
+  public boolean isEmpty();
+  protected java.lang.String getKeyForUser(K);
+  protected boolean contains(K);
+  protected abstract net.minecraft.server.players.StoredUserEntry<K> createEntry(com.google.gson.JsonObject);
+  public java.util.Collection<V> getEntries();
+  public void save() throws java.io.IOException;
+  public void load() throws java.io.IOException;
+}

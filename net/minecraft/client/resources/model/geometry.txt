@@ -1,0 +1,80 @@
+Compiled from "BakedQuad.java"
+public final class net.minecraft.client.resources.model.geometry.BakedQuad extends java.lang.Record {
+  public static final int VERTEX_COUNT;
+  public static final int FLAG_TRANSLUCENT;
+  public static final int FLAG_ANIMATED;
+  public net.minecraft.client.resources.model.geometry.BakedQuad(org.joml.Vector3fc, org.joml.Vector3fc, org.joml.Vector3fc, org.joml.Vector3fc, long, long, long, long, net.minecraft.core.Direction, net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo);
+  public org.joml.Vector3fc position(int);
+  public long packedUV(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.joml.Vector3fc position0();
+  public org.joml.Vector3fc position1();
+  public org.joml.Vector3fc position2();
+  public org.joml.Vector3fc position3();
+  public long packedUV0();
+  public long packedUV1();
+  public long packedUV2();
+  public long packedUV3();
+  public net.minecraft.core.Direction direction();
+  public net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo materialInfo();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.resources.model.geometry.package-info {
+}
+Compiled from "BakedQuad.java"
+public final class net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo extends java.lang.Record {
+  public net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo(net.minecraft.client.renderer.texture.TextureAtlasSprite, net.minecraft.client.renderer.chunk.ChunkSectionLayer, net.minecraft.client.renderer.rendertype.RenderType, net.minecraft.client.renderer.rendertype.RenderType, net.minecraft.client.renderer.rendertype.RenderType, int, net.minecraft.core.Direction, int);
+  public static net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo of(net.minecraft.client.resources.model.sprite.Material$Baked, com.mojang.blaze3d.platform.Transparency, int, net.minecraft.core.Direction, int);
+  public boolean isTinted();
+  public int flags();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite sprite();
+  public net.minecraft.client.renderer.chunk.ChunkSectionLayer layer();
+  public net.minecraft.client.renderer.rendertype.RenderType itemRenderType();
+  public net.minecraft.client.renderer.rendertype.RenderType itemGlintRenderType();
+  public net.minecraft.client.renderer.rendertype.RenderType itemGlintSpecialRenderType();
+  public int tintIndex();
+  public net.minecraft.core.Direction shadeDirectionOverride();
+  public int lightEmission();
+}
+Compiled from "QuadCollection.java"
+public class net.minecraft.client.resources.model.geometry.QuadCollection$Builder {
+  public net.minecraft.client.resources.model.geometry.QuadCollection$Builder();
+  public net.minecraft.client.resources.model.geometry.QuadCollection$Builder addCulledFace(net.minecraft.core.Direction, net.minecraft.client.resources.model.geometry.BakedQuad);
+  public net.minecraft.client.resources.model.geometry.QuadCollection$Builder addUnculledFace(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public net.minecraft.client.resources.model.geometry.QuadCollection$Builder addAll(net.minecraft.client.resources.model.geometry.QuadCollection);
+  public net.minecraft.client.resources.model.geometry.QuadCollection build();
+}
+Compiled from "BakedQuad.java"
+public interface net.minecraft.client.resources.model.geometry.BakedQuad$MaterialFlags extends java.lang.annotation.Annotation {
+}
+Compiled from "ItemQuads.java"
+public final class net.minecraft.client.resources.model.geometry.ItemQuads extends java.lang.Record {
+  public static final net.minecraft.client.resources.model.geometry.ItemQuads EMPTY;
+  public net.minecraft.client.resources.model.geometry.ItemQuads(java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad>, java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad>, java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad>);
+  public static net.minecraft.client.resources.model.geometry.ItemQuads split(java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad>);
+  public boolean isEmpty();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> all();
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> solid();
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> translucent();
+}
+Compiled from "UnbakedGeometry.java"
+public interface net.minecraft.client.resources.model.geometry.UnbakedGeometry {
+  public static final net.minecraft.client.resources.model.geometry.UnbakedGeometry EMPTY;
+  public abstract net.minecraft.client.resources.model.geometry.QuadCollection bake(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker, net.minecraft.client.renderer.block.dispatch.ModelState, net.minecraft.client.resources.model.ModelDebugName);
+}
+Compiled from "QuadCollection.java"
+public class net.minecraft.client.resources.model.geometry.QuadCollection {
+  public static final net.minecraft.client.resources.model.geometry.QuadCollection EMPTY;
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> getQuads(net.minecraft.core.Direction);
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> getAll();
+  public int materialFlags();
+  public boolean hasMaterialFlag(int);
+}

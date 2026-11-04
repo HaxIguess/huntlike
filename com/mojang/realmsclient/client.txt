@@ -1,0 +1,261 @@
+Compiled from "RealmsError.java"
+public final class com.mojang.realmsclient.client.RealmsError$CustomError extends java.lang.Record implements com.mojang.realmsclient.client.RealmsError {
+  public static final com.mojang.realmsclient.client.RealmsError$CustomError SERVICE_BUSY;
+  public static final net.minecraft.network.chat.Component RETRY_MESSAGE;
+  public static final java.lang.String BODY_TAG;
+  public static final java.lang.String CLOSING_BODY_TAG;
+  public com.mojang.realmsclient.client.RealmsError$CustomError(int, net.minecraft.network.chat.Component);
+  public static com.mojang.realmsclient.client.RealmsError$CustomError unknownCompatibilityResponse(java.lang.String);
+  public static com.mojang.realmsclient.client.RealmsError$CustomError configurationError();
+  public static com.mojang.realmsclient.client.RealmsError$CustomError connectivityError(com.mojang.realmsclient.exception.RealmsHttpException);
+  public static com.mojang.realmsclient.client.RealmsError$CustomError retry(int);
+  public static com.mojang.realmsclient.client.RealmsError$CustomError noPayload(int);
+  public static com.mojang.realmsclient.client.RealmsError$CustomError htmlPayload(int, java.lang.String);
+  public int errorCode();
+  public net.minecraft.network.chat.Component errorMessage();
+  public java.lang.String logMessage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int httpCode();
+  public net.minecraft.network.chat.Component payload();
+}
+Compiled from "FileDownload.java"
+public class com.mojang.realmsclient.client.FileDownload {
+  public com.mojang.realmsclient.client.FileDownload();
+  public static java.util.OptionalLong contentLength(java.lang.String);
+  public void download(com.mojang.realmsclient.dto.WorldDownload, java.lang.String, com.mojang.realmsclient.gui.screens.RealmsDownloadLatestWorldScreen$DownloadStatus, net.minecraft.world.level.storage.LevelStorageSource);
+  public void cancel();
+  public boolean isFinished();
+  public boolean isError();
+  public boolean isExtracting();
+  public static java.lang.String findAvailableFolderName(java.lang.String);
+}
+Compiled from "RealmsClient.java"
+public final class com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse extends java.lang.Enum<com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse> {
+  public static final com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse COMPATIBLE;
+  public static final com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse OUTDATED;
+  public static final com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse OTHER;
+  public static com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse[] values();
+  public static com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse valueOf(java.lang.String);
+}
+Compiled from "RealmsError.java"
+public final class com.mojang.realmsclient.client.RealmsError$ErrorWithRawPayload extends java.lang.Record implements com.mojang.realmsclient.client.RealmsError {
+  public com.mojang.realmsclient.client.RealmsError$ErrorWithRawPayload(int, java.lang.String);
+  public int errorCode();
+  public net.minecraft.network.chat.Component errorMessage();
+  public java.lang.String logMessage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int httpCode();
+  public java.lang.String payload();
+}
+Compiled from "Request.java"
+public class com.mojang.realmsclient.client.Request$Delete extends com.mojang.realmsclient.client.Request<com.mojang.realmsclient.client.Request$Delete> {
+  public com.mojang.realmsclient.client.Request$Delete(java.lang.String, int, int);
+  public com.mojang.realmsclient.client.Request$Delete doConnect();
+  public com.mojang.realmsclient.client.Request doConnect();
+}
+Compiled from "Ping.java"
+public class com.mojang.realmsclient.client.Ping {
+  public com.mojang.realmsclient.client.Ping();
+  public static java.util.List<com.mojang.realmsclient.dto.RegionPingResult> ping(com.mojang.realmsclient.client.Ping$Region...);
+  public static java.util.List<com.mojang.realmsclient.dto.RegionPingResult> pingAllRegions();
+}
+Compiled from "Request.java"
+public class com.mojang.realmsclient.client.Request$Get extends com.mojang.realmsclient.client.Request<com.mojang.realmsclient.client.Request$Get> {
+  public com.mojang.realmsclient.client.Request$Get(java.lang.String, int, int);
+  public com.mojang.realmsclient.client.Request$Get doConnect();
+  public com.mojang.realmsclient.client.Request doConnect();
+}
+Compiled from "RealmsError.java"
+public interface com.mojang.realmsclient.client.RealmsError {
+  public static final net.minecraft.network.chat.Component NO_MESSAGE;
+  public static final org.slf4j.Logger LOGGER;
+  public abstract int errorCode();
+  public abstract net.minecraft.network.chat.Component errorMessage();
+  public abstract java.lang.String logMessage();
+  public static com.mojang.realmsclient.client.RealmsError parse(int, java.lang.String);
+}
+Compiled from "RealmsClientConfig.java"
+public class com.mojang.realmsclient.client.RealmsClientConfig {
+  public com.mojang.realmsclient.client.RealmsClientConfig();
+  public static java.net.Proxy getProxy();
+  public static void setProxy(java.net.Proxy);
+}
+Compiled from "FileDownload.java"
+class com.mojang.realmsclient.client.FileDownload$DownloadCountingOutputStream extends org.apache.commons.io.output.CountingOutputStream {
+  public com.mojang.realmsclient.client.FileDownload$DownloadCountingOutputStream(java.io.OutputStream, com.mojang.realmsclient.gui.screens.RealmsDownloadLatestWorldScreen$DownloadStatus);
+  protected void afterWrite(int) throws java.io.IOException;
+}
+Compiled from "RealmsClient.java"
+public class com.mojang.realmsclient.client.RealmsClient {
+  public static final com.mojang.realmsclient.client.RealmsClient$Environment ENVIRONMENT;
+  public static com.mojang.realmsclient.client.RealmsClient getOrCreate();
+  public static com.mojang.realmsclient.client.RealmsClient getOrCreate(net.minecraft.client.Minecraft);
+  public java.util.Set<java.lang.String> getFeatureFlags();
+  public com.mojang.realmsclient.dto.RealmsServerList listRealms() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.util.List<com.mojang.realmsclient.dto.RealmsServer> listSnapshotEligibleRealms() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmsServer createSnapshotRealm(java.lang.Long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.util.List<com.mojang.realmsclient.dto.RealmsNotification> getNotifications() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void notificationsSeen(java.util.List<java.util.UUID>) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void notificationsDismiss(java.util.List<java.util.UUID>) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmsServer getOwnRealm(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmTierConfigurationDto getRealmTierConfiguration(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void updateRenderDistance(long, int) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void updateSimulationDistance(long, int) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.PreferredRegionsDto getPreferredRegionSelections() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmsServerPlayerLists getLiveStats() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmsJoinInformation join(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void initializeRealm(long, java.lang.String, java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public boolean hasParentalConsent() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.client.RealmsClient$CompatibleVersionResponse clientCompatible() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void uninvite(long, java.util.UUID) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void uninviteMyselfFrom(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.util.List<com.mojang.realmsclient.dto.PlayerInfo> invite(long, java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.InviteCodeList inviteCodes(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void createInviteCode(long, boolean, java.time.Instant) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void updateInviteCode(long, java.lang.String, boolean, java.time.Instant) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void deleteInviteCode(java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void redeemInviteCode(java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.BackupList backupsFor(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void updateConfiguration(long, java.lang.String, java.lang.String, com.mojang.realmsclient.dto.RegionSelectionPreferenceDto, int, com.mojang.realmsclient.dto.RealmsWorldOptions, java.util.List<com.mojang.realmsclient.dto.RealmsSetting>) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void updateSlot(long, int, com.mojang.realmsclient.dto.RealmsWorldOptions, java.util.List<com.mojang.realmsclient.dto.RealmsSetting>) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public boolean switchSlot(long, int) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void restoreWorld(long, java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.WorldTemplatePaginatedList fetchWorldTemplates(int, int, com.mojang.realmsclient.dto.RealmsServer$WorldType) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.lang.Boolean putIntoMinigameMode(long, java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.Ops op(long, java.util.UUID) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.Ops deop(long, java.util.UUID) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.lang.Boolean open(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.lang.Boolean close(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.lang.Boolean resetWorldWithTemplate(long, java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.Subscription subscriptionFor(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public int pendingInvitesCount() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.PendingInvitesList pendingInvites() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void acceptInvitation(java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.WorldDownload requestDownloadInfo(long, int) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.UploadInfo requestUploadInfo(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void rejectInvitation(java.lang.String) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void agreeToTos() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public com.mojang.realmsclient.dto.RealmsNews getNews() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void sendPingResults(com.mojang.realmsclient.dto.PingResult) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public java.lang.Boolean trialAvailable() throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void deleteRealm(long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+}
+Compiled from "Request.java"
+public abstract class com.mojang.realmsclient.client.Request<T extends com.mojang.realmsclient.client.Request<T>> {
+  protected java.net.HttpURLConnection connection;
+  protected java.lang.String url;
+  public com.mojang.realmsclient.client.Request(java.lang.String, int, int);
+  public void cookie(java.lang.String, java.lang.String);
+  public static void cookie(java.net.HttpURLConnection, java.lang.String, java.lang.String);
+  public void addVersionHeaders(java.lang.String, int, boolean);
+  public int getRetryAfterHeader();
+  public static int getRetryAfterHeader(java.net.HttpURLConnection);
+  public int responseCode();
+  public java.lang.String text();
+  protected T connect();
+  protected abstract T doConnect();
+  public static com.mojang.realmsclient.client.Request<?> get(java.lang.String);
+  public static com.mojang.realmsclient.client.Request<?> get(java.lang.String, int, int);
+  public static com.mojang.realmsclient.client.Request<?> post(java.lang.String, java.lang.String);
+  public static com.mojang.realmsclient.client.Request<?> post(java.lang.String, java.lang.String, int, int);
+  public static com.mojang.realmsclient.client.Request<?> delete(java.lang.String);
+  public static com.mojang.realmsclient.client.Request<?> put(java.lang.String, java.lang.String);
+  public static com.mojang.realmsclient.client.Request<?> put(java.lang.String, java.lang.String, int, int);
+  public java.lang.String getHeader(java.lang.String);
+  public static java.lang.String getHeader(java.net.HttpURLConnection, java.lang.String);
+}
+Compiled from "RealmsClient.java"
+public final class com.mojang.realmsclient.client.RealmsClient$Environment extends java.lang.Enum<com.mojang.realmsclient.client.RealmsClient$Environment> {
+  public static final com.mojang.realmsclient.client.RealmsClient$Environment PRODUCTION;
+  public static final com.mojang.realmsclient.client.RealmsClient$Environment STAGE;
+  public static final com.mojang.realmsclient.client.RealmsClient$Environment LOCAL;
+  public final java.lang.String baseUrl;
+  public final java.lang.String alternativeUrl;
+  public final java.lang.String frontendV2Url;
+  public final java.lang.String protocol;
+  public static com.mojang.realmsclient.client.RealmsClient$Environment[] values();
+  public static com.mojang.realmsclient.client.RealmsClient$Environment valueOf(java.lang.String);
+  public static java.util.Optional<com.mojang.realmsclient.client.RealmsClient$Environment> byName(java.lang.String);
+}
+Compiled from "RealmsError.java"
+public final class com.mojang.realmsclient.client.RealmsError$ErrorWithJsonPayload extends java.lang.Record implements com.mojang.realmsclient.client.RealmsError {
+  public com.mojang.realmsclient.client.RealmsError$ErrorWithJsonPayload(int, int, java.lang.String, java.lang.String);
+  public int errorCode();
+  public net.minecraft.network.chat.Component errorMessage();
+  public java.lang.String logMessage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int httpCode();
+  public int code();
+  public java.lang.String reason();
+  public java.lang.String message();
+}
+Compiled from "Request.java"
+public class com.mojang.realmsclient.client.Request$Post extends com.mojang.realmsclient.client.Request<com.mojang.realmsclient.client.Request$Post> {
+  public com.mojang.realmsclient.client.Request$Post(java.lang.String, java.lang.String, int, int);
+  public com.mojang.realmsclient.client.Request$Post doConnect();
+  public com.mojang.realmsclient.client.Request doConnect();
+}
+Compiled from "FileUpload.java"
+class com.mojang.realmsclient.client.FileUpload$UploadCountingInputStream extends org.apache.commons.io.input.CountingInputStream {
+  protected void afterRead(int) throws java.io.IOException;
+}
+Compiled from "FileUpload.java"
+public class com.mojang.realmsclient.client.FileUpload implements java.lang.AutoCloseable {
+  public com.mojang.realmsclient.client.FileUpload(java.io.File, long, int, com.mojang.realmsclient.dto.UploadInfo, net.minecraft.client.User, java.lang.String, java.lang.String, com.mojang.realmsclient.client.UploadStatus);
+  public void close();
+  public java.util.concurrent.CompletableFuture<com.mojang.realmsclient.gui.screens.UploadResult> startUpload();
+}
+Compiled from "UploadStatus.java"
+public class com.mojang.realmsclient.client.UploadStatus {
+  public com.mojang.realmsclient.client.UploadStatus();
+  public void setTotalBytes(long);
+  public void restart();
+  public long getTotalBytes();
+  public long getBytesWritten();
+  public void onWrite(long);
+  public boolean uploadStarted();
+  public boolean uploadCompleted();
+  public double getPercentage();
+  public void refreshBytesPerSecond();
+  public long getBytesPerSecond();
+}
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.client.package-info {
+}
+Compiled from "RealmsError.java"
+public final class com.mojang.realmsclient.client.RealmsError$AuthenticationError extends java.lang.Record implements com.mojang.realmsclient.client.RealmsError {
+  public static final int ERROR_CODE;
+  public com.mojang.realmsclient.client.RealmsError$AuthenticationError(java.lang.String);
+  public int errorCode();
+  public net.minecraft.network.chat.Component errorMessage();
+  public java.lang.String logMessage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String message();
+}
+Compiled from "Request.java"
+public class com.mojang.realmsclient.client.Request$Put extends com.mojang.realmsclient.client.Request<com.mojang.realmsclient.client.Request$Put> {
+  public com.mojang.realmsclient.client.Request$Put(java.lang.String, java.lang.String, int, int);
+  public com.mojang.realmsclient.client.Request$Put doConnect();
+  public com.mojang.realmsclient.client.Request doConnect();
+}
+Compiled from "Ping.java"
+final class com.mojang.realmsclient.client.Ping$Region extends java.lang.Enum<com.mojang.realmsclient.client.Ping$Region> {
+  public static final com.mojang.realmsclient.client.Ping$Region US_EAST_1;
+  public static final com.mojang.realmsclient.client.Ping$Region US_WEST_2;
+  public static final com.mojang.realmsclient.client.Ping$Region US_WEST_1;
+  public static final com.mojang.realmsclient.client.Ping$Region EU_WEST_1;
+  public static final com.mojang.realmsclient.client.Ping$Region AP_SOUTHEAST_1;
+  public static final com.mojang.realmsclient.client.Ping$Region AP_SOUTHEAST_2;
+  public static final com.mojang.realmsclient.client.Ping$Region AP_NORTHEAST_1;
+  public static final com.mojang.realmsclient.client.Ping$Region SA_EAST_1;
+  public static com.mojang.realmsclient.client.Ping$Region[] values();
+  public static com.mojang.realmsclient.client.Ping$Region valueOf(java.lang.String);
+}

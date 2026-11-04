@@ -1,0 +1,101 @@
+Compiled from "RealmsUtil.java"
+public class com.mojang.realmsclient.util.RealmsUtil {
+  public com.mojang.realmsclient.util.RealmsUtil();
+  public static net.minecraft.network.chat.Component convertToAgePresentation(long);
+  public static net.minecraft.network.chat.Component convertToAgePresentationFromInstant(java.time.Instant);
+  public static void extractPlayerFace(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, java.util.UUID);
+  public static <T> java.util.concurrent.CompletableFuture<T> supplyAsync(com.mojang.realmsclient.util.RealmsUtil$RealmsIoFunction<T>, java.util.function.Consumer<com.mojang.realmsclient.exception.RealmsServiceException>);
+  public static java.util.concurrent.CompletableFuture<java.lang.Void> runAsync(com.mojang.realmsclient.util.RealmsUtil$RealmsIoConsumer, java.util.function.Consumer<com.mojang.realmsclient.exception.RealmsServiceException>);
+  public static java.util.function.Consumer<com.mojang.realmsclient.exception.RealmsServiceException> openScreenOnFailure(java.util.function.Function<com.mojang.realmsclient.exception.RealmsServiceException, net.minecraft.client.gui.screens.Screen>);
+  public static java.util.function.Consumer<com.mojang.realmsclient.exception.RealmsServiceException> openScreenAndLogOnFailure(java.util.function.Function<com.mojang.realmsclient.exception.RealmsServiceException, net.minecraft.client.gui.screens.Screen>, java.lang.String);
+}
+Compiled from "RealmsPersistence.java"
+public class com.mojang.realmsclient.util.RealmsPersistence {
+  public com.mojang.realmsclient.util.RealmsPersistence();
+  public com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData read();
+  public void save(com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData);
+  public static com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData readFile();
+  public static void writeFile(com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData);
+}
+Compiled from "RealmsUtil.java"
+public interface com.mojang.realmsclient.util.RealmsUtil$RealmsIoFunction<T> {
+  public abstract T apply(com.mojang.realmsclient.client.RealmsClient) throws com.mojang.realmsclient.exception.RealmsServiceException;
+}
+Compiled from "RealmsUtil.java"
+public interface com.mojang.realmsclient.util.RealmsUtil$RealmsIoConsumer extends com.mojang.realmsclient.util.RealmsUtil$RealmsIoFunction<java.lang.Void> {
+  public abstract void accept(com.mojang.realmsclient.client.RealmsClient) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public default java.lang.Void apply(com.mojang.realmsclient.client.RealmsClient) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public default java.lang.Object apply(com.mojang.realmsclient.client.RealmsClient) throws com.mojang.realmsclient.exception.RealmsServiceException;
+}
+Compiled from "TextRenderingUtils.java"
+public class com.mojang.realmsclient.util.TextRenderingUtils$Line {
+  public final java.util.List<com.mojang.realmsclient.util.TextRenderingUtils$LineSegment> segments;
+  public com.mojang.realmsclient.util.TextRenderingUtils$Line(com.mojang.realmsclient.util.TextRenderingUtils$LineSegment...);
+  public com.mojang.realmsclient.util.TextRenderingUtils$Line(java.util.List<com.mojang.realmsclient.util.TextRenderingUtils$LineSegment>);
+  public java.lang.String toString();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "TextRenderingUtils.java"
+public class com.mojang.realmsclient.util.TextRenderingUtils {
+  protected static java.util.List<java.lang.String> lineBreak(java.lang.String);
+  public static java.util.List<com.mojang.realmsclient.util.TextRenderingUtils$Line> decompose(java.lang.String, com.mojang.realmsclient.util.TextRenderingUtils$LineSegment...);
+  public static java.util.List<java.lang.String> split(java.lang.String, java.lang.String);
+}
+Compiled from "RealmsPersistence.java"
+public class com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData implements com.mojang.realmsclient.dto.ReflectionBasedSerialization {
+  public java.net.URI newsLink;
+  public boolean hasUnreadNews;
+  public com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData();
+}
+Compiled from "RealmsTextureManager.java"
+public final class com.mojang.realmsclient.util.RealmsTextureManager$RealmsTexture extends java.lang.Record {
+  public com.mojang.realmsclient.util.RealmsTextureManager$RealmsTexture(java.lang.String, net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String image();
+  public net.minecraft.resources.Identifier textureId();
+}
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.util.package-info {
+}
+Compiled from "UploadTokenCache.java"
+public class com.mojang.realmsclient.util.UploadTokenCache {
+  public com.mojang.realmsclient.util.UploadTokenCache();
+  public static java.lang.String get(long);
+  public static void invalidate(long);
+  public static void put(long, java.lang.String);
+}
+Compiled from "TextRenderingUtils.java"
+public class com.mojang.realmsclient.util.TextRenderingUtils$LineSegment {
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public java.lang.String renderedText();
+  public boolean isLink();
+  public java.net.URI getLinkUrl();
+  public static com.mojang.realmsclient.util.TextRenderingUtils$LineSegment link(java.lang.String, java.net.URI);
+  protected static com.mojang.realmsclient.util.TextRenderingUtils$LineSegment text(java.lang.String);
+}
+Compiled from "RealmsTextureManager.java"
+public class com.mojang.realmsclient.util.RealmsTextureManager {
+  public com.mojang.realmsclient.util.RealmsTextureManager();
+  public static net.minecraft.resources.Identifier worldTemplate(java.lang.String, java.lang.String);
+}
+Compiled from "JsonUtils.java"
+public class com.mojang.realmsclient.util.JsonUtils {
+  public com.mojang.realmsclient.util.JsonUtils();
+  public static <T> T getRequired(java.lang.String, com.google.gson.JsonObject, java.util.function.Function<com.google.gson.JsonObject, T>);
+  public static <T> T getOptional(java.lang.String, com.google.gson.JsonObject, java.util.function.Function<com.google.gson.JsonObject, T>);
+  public static java.lang.String getRequiredString(java.lang.String, com.google.gson.JsonObject);
+  public static java.lang.String getStringOr(java.lang.String, com.google.gson.JsonObject, java.lang.String);
+  public static java.net.URI getRequiredUri(java.lang.String, com.google.gson.JsonObject);
+  public static java.net.URI getUriNullable(java.lang.String, com.google.gson.JsonObject);
+  public static java.util.UUID getUuidOr(java.lang.String, com.google.gson.JsonObject, java.util.UUID);
+  public static int getIntOr(java.lang.String, com.google.gson.JsonObject, int);
+  public static long getLongOr(java.lang.String, com.google.gson.JsonObject, long);
+  public static boolean getBooleanOr(java.lang.String, com.google.gson.JsonObject, boolean);
+  public static java.time.Instant getDateOr(java.lang.String, com.google.gson.JsonObject);
+  public static java.time.Instant getEpochMillisOr(java.lang.String, com.google.gson.JsonObject, java.time.Instant);
+}

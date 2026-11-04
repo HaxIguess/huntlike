@@ -1,0 +1,104 @@
+Compiled from "BandlandsRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.BandlandsRule extends java.lang.Enum<net.minecraft.world.level.levelgen.material.rule.BandlandsRule> implements net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public static final net.minecraft.world.level.levelgen.material.rule.BandlandsRule INSTANCE;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.BandlandsRule> CODEC;
+  public static net.minecraft.world.level.levelgen.material.rule.BandlandsRule[] values();
+  public static net.minecraft.world.level.levelgen.material.rule.BandlandsRule valueOf(java.lang.String);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.BandlandsRule> codec();
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+}
+Compiled from "OreVeinRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.OreVeinRule extends java.lang.Record implements net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public static final float VEININESS_THRESHOLD;
+  public static final int EDGE_ROUNDOFF_BEGIN;
+  public static final float MAX_EDGE_ROUNDOFF;
+  public static final float VEIN_SOLIDNESS;
+  public static final float MIN_RICHNESS;
+  public static final float MAX_RICHNESS;
+  public static final float MAX_RICHNESS_THRESHOLD;
+  public static final float SKIP_ORE_IF_GAP_NOISE_IS_BELOW;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.OreVeinRule> CODEC;
+  public net.minecraft.world.level.levelgen.material.rule.OreVeinRule(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, float, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.OreVeinRule> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.state.BlockState oreBlock();
+  public net.minecraft.world.level.block.state.BlockState rawOreBlock();
+  public net.minecraft.world.level.block.state.BlockState fillerBlock();
+  public float rawOreChance();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction density();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction richness();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction fillerGap();
+}
+Compiled from "ConditionRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.ConditionRule extends java.lang.Record implements net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.ConditionRule> CODEC;
+  public net.minecraft.world.level.levelgen.material.rule.ConditionRule(net.minecraft.world.level.levelgen.material.condition.MaterialCondition, net.minecraft.world.level.levelgen.material.rule.MaterialRule);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.ConditionRule> codec();
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.material.condition.MaterialCondition ifTrue();
+  public net.minecraft.world.level.levelgen.material.rule.MaterialRule thenRun();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.material.rule.package-info {
+}
+Compiled from "OreVeinRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType extends java.lang.Enum<net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType> {
+  public static final net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType COPPER;
+  public static final net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType IRON;
+  public final int minY;
+  public final int maxY;
+  public static net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType[] values();
+  public static net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType valueOf(java.lang.String);
+  public net.minecraft.world.level.levelgen.material.rule.OreVeinRule create(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+}
+Compiled from "SequenceRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.SequenceRule extends java.lang.Record implements net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.SequenceRule> CODEC;
+  public net.minecraft.world.level.levelgen.material.rule.SequenceRule(java.util.List<net.minecraft.world.level.levelgen.material.rule.MaterialRule>);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.SequenceRule> codec();
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.levelgen.material.rule.MaterialRule> sequence();
+}
+Compiled from "MaterialRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.MaterialRule$HolderHolder extends java.lang.Record implements net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public net.minecraft.world.level.levelgen.material.rule.MaterialRule$HolderHolder(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.material.rule.MaterialRule>);
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.MaterialRule$HolderHolder> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.material.rule.MaterialRule> holder();
+}
+Compiled from "MaterialRule.java"
+public interface net.minecraft.world.level.levelgen.material.rule.MaterialRule {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.material.rule.MaterialRule> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.material.rule.MaterialRule>> HOLDER_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.material.rule.MaterialRule> CODEC;
+  public abstract net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.material.rule.MaterialRule> codec();
+}
+Compiled from "BlockRule.java"
+public final class net.minecraft.world.level.levelgen.material.rule.BlockRule extends java.lang.Record implements net.minecraft.world.level.levelgen.material.rule.MaterialRule,net.minecraft.world.level.levelgen.material.rule.RuleEvaluator {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.BlockRule> CODEC;
+  public net.minecraft.world.level.levelgen.material.rule.BlockRule(net.minecraft.world.level.block.state.BlockState);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.material.rule.BlockRule> codec();
+  public net.minecraft.world.level.levelgen.material.rule.RuleEvaluator compile(net.minecraft.world.level.levelgen.material.MaterialRuleContext);
+  public net.minecraft.world.level.block.state.BlockState tryApply(int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.state.BlockState resultState();
+}
+Compiled from "RuleEvaluator.java"
+public interface net.minecraft.world.level.levelgen.material.rule.RuleEvaluator {
+  public abstract net.minecraft.world.level.block.state.BlockState tryApply(int, int, int);
+}

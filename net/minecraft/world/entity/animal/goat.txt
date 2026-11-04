@@ -1,0 +1,62 @@
+Compiled from "GoatAi.java"
+public class net.minecraft.world.entity.animal.goat.GoatAi {
+  public static final int RAM_PREPARE_TIME;
+  public static final int RAM_MAX_DISTANCE;
+  public static final int MAX_LONG_JUMP_HEIGHT;
+  public static final int MAX_LONG_JUMP_WIDTH;
+  public static final float MAX_JUMP_VELOCITY_MULTIPLIER;
+  public static final int RAM_MIN_DISTANCE;
+  public static final float ADULT_RAM_KNOCKBACK_FORCE;
+  public static final float BABY_RAM_KNOCKBACK_FORCE;
+  public net.minecraft.world.entity.animal.goat.GoatAi();
+  protected static void initMemories(net.minecraft.world.entity.animal.goat.Goat, net.minecraft.util.RandomSource);
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.goat.Goat>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.goat.Goat);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.goat.package-info {
+}
+Compiled from "Goat.java"
+public class net.minecraft.world.entity.animal.goat.Goat extends net.minecraft.world.entity.animal.Animal {
+  public static final float LONG_JUMPING_DIMENSION_SCALE_FACTOR;
+  public static final float BABY_DEFAULT_X_HEAD_ROT;
+  public static final float MAX_ADDED_RAMMING_X_HEAD_ROT;
+  public static final int GOAT_FALL_DAMAGE_REDUCTION;
+  public static final double GOAT_SCREAMING_CHANCE;
+  public static final double UNIHORN_CHANCE;
+  public net.minecraft.world.entity.animal.goat.Goat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.goat.Goat>, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.ItemStack createHorn();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.goat.Goat> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void ageBoundaryReached();
+  protected int calculateFallDamage(double, float);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.sounds.SoundEvent getMilkingSound();
+  public net.minecraft.world.entity.animal.goat.Goat getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public float getAgeScale();
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.goat.Goat> getBrain();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public int getMaxHeadYRot();
+  public void setYHeadRot(float);
+  protected void playEatingSound();
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void handleEntityEvent(byte);
+  public void aiStep();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean hasLeftHorn();
+  public boolean hasRightHorn();
+  public boolean dropHorn();
+  public boolean isScreamingGoat();
+  public void setScreamingGoat(boolean);
+  public float getRammingXHeadRot();
+  public static boolean checkGoatSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}

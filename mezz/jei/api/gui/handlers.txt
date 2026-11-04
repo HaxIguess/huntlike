@@ -1,0 +1,54 @@
+Compiled from "IGhostIngredientHandler.java"
+public interface mezz.jei.api.gui.handlers.IGhostIngredientHandler$Target<I> extends java.util.function.Consumer<I> {
+  public abstract net.minecraft.client.renderer.Rect2i getArea();
+  public abstract void accept(I);
+}
+Compiled from "IGhostIngredientHandler.java"
+public interface mezz.jei.api.gui.handlers.IGhostIngredientHandler<T extends net.minecraft.client.gui.screens.Screen> {
+  public abstract <I> java.util.List<mezz.jei.api.gui.handlers.IGhostIngredientHandler$Target<I>> getTargetsTyped(T, mezz.jei.api.ingredients.ITypedIngredient<I>, boolean);
+  public abstract void onComplete();
+  public default boolean shouldHighlightTargets();
+  public default <I> boolean quickMove(T, mezz.jei.api.ingredients.ITypedIngredient<I>);
+}
+Compiled from "IGlobalGuiHandler.java"
+public interface mezz.jei.api.gui.handlers.IGlobalGuiHandler {
+  public default java.util.Collection<net.minecraft.client.renderer.Rect2i> getGuiExtraAreas();
+  public default java.util.Optional<? extends mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(mezz.jei.api.gui.builder.IClickableIngredientFactory, double, double);
+  public default java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(double, double);
+}
+Compiled from "IGuiClickableArea.java"
+public interface mezz.jei.api.gui.handlers.IGuiClickableArea {
+  public abstract net.minecraft.client.renderer.Rect2i getArea();
+  public default boolean isTooltipEnabled();
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public abstract void onClick(mezz.jei.api.recipe.IFocusFactory, mezz.jei.api.runtime.IRecipesGui);
+  public static mezz.jei.api.gui.handlers.IGuiClickableArea createBasic(int, int, int, int, mezz.jei.api.recipe.types.IRecipeType<?>...);
+}
+Compiled from "IGuiContainerHandler.java"
+public interface mezz.jei.api.gui.handlers.IGuiContainerHandler<T extends net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>> {
+  public default java.util.List<net.minecraft.client.renderer.Rect2i> getGuiExtraAreas(T);
+  public default java.util.Optional<? extends mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(mezz.jei.api.gui.builder.IClickableIngredientFactory, T, double, double);
+  public default java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(T, double, double);
+  public default java.util.Collection<mezz.jei.api.gui.handlers.IGuiClickableArea> getGuiClickableAreas(T, double, double);
+}
+Compiled from "IGuiProperties.java"
+public interface mezz.jei.api.gui.handlers.IGuiProperties {
+  public abstract java.lang.Class<? extends net.minecraft.client.gui.screens.Screen> screenClass();
+  public abstract int guiLeft();
+  public abstract int guiTop();
+  public abstract int guiXSize();
+  public abstract int guiYSize();
+  public abstract int screenWidth();
+  public abstract int screenHeight();
+  public default int guiRight();
+  public default int guiBottom();
+}
+Compiled from "IScreenHandler.java"
+public interface mezz.jei.api.gui.handlers.IScreenHandler<T extends net.minecraft.client.gui.screens.Screen> extends java.util.function.Function<T, mezz.jei.api.gui.handlers.IGuiProperties> {
+  public abstract mezz.jei.api.gui.handlers.IGuiProperties apply(T);
+  public default java.util.Optional<? extends mezz.jei.api.runtime.IClickableIngredient<?>> getClickableIngredientUnderMouse(mezz.jei.api.gui.builder.IClickableIngredientFactory, T, double, double);
+  public default java.lang.Object apply(java.lang.Object);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.handlers.package-info {
+}

@@ -1,0 +1,74 @@
+Compiled from "BooleanFunction.java"
+public interface net.fabricmc.fabric.api.util.BooleanFunction<R> {
+  public abstract R apply(boolean);
+}
+Compiled from "EventResult.java"
+public final class net.fabricmc.fabric.api.util.EventResult extends java.lang.Enum<net.fabricmc.fabric.api.util.EventResult> implements net.minecraft.util.StringRepresentable {
+  public static final net.fabricmc.fabric.api.util.EventResult ALLOW;
+  public static final net.fabricmc.fabric.api.util.EventResult PASS;
+  public static final net.fabricmc.fabric.api.util.EventResult DENY;
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.util.EventResult> CODEC;
+  public static net.fabricmc.fabric.api.util.EventResult[] values();
+  public static net.fabricmc.fabric.api.util.EventResult valueOf(java.lang.String);
+  public boolean allowAction();
+  public boolean allowAction(boolean);
+  public java.lang.String getSerializedName();
+}
+Compiled from "NbtType.java"
+public final class net.fabricmc.fabric.api.util.NbtType {
+  public static final int END;
+  public static final int BYTE;
+  public static final int SHORT;
+  public static final int INT;
+  public static final int LONG;
+  public static final int FLOAT;
+  public static final int DOUBLE;
+  public static final int BYTE_ARRAY;
+  public static final int STRING;
+  public static final int LIST;
+  public static final int COMPOUND;
+  public static final int INT_ARRAY;
+  public static final int LONG_ARRAY;
+}
+Compiled from "TriState.java"
+public final class net.fabricmc.fabric.api.util.TriState extends java.lang.Enum<net.fabricmc.fabric.api.util.TriState> implements net.minecraft.util.StringRepresentable {
+  public static final net.fabricmc.fabric.api.util.TriState FALSE;
+  public static final net.fabricmc.fabric.api.util.TriState DEFAULT;
+  public static final net.fabricmc.fabric.api.util.TriState TRUE;
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.util.TriState> CODEC;
+  public static net.fabricmc.fabric.api.util.TriState[] values();
+  public static net.fabricmc.fabric.api.util.TriState valueOf(java.lang.String);
+  public static net.fabricmc.fabric.api.util.TriState of(boolean);
+  public static net.fabricmc.fabric.api.util.TriState of(java.lang.Boolean);
+  public boolean get();
+  public java.lang.Boolean getBoxed();
+  public boolean orElse(boolean);
+  public boolean orElseGet(java.util.function.BooleanSupplier);
+  public <T> java.util.Optional<T> map(net.fabricmc.fabric.api.util.BooleanFunction<? extends T>);
+  public <X extends java.lang.Throwable> boolean orElseThrow(java.util.function.Supplier<X>) throws X;
+  public static net.fabricmc.fabric.api.util.TriState fromSystemProperty(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.util.package-info {
+}
+Compiled from "Block2ObjectMap.java"
+public interface net.fabricmc.fabric.api.util.Block2ObjectMap<V> {
+  public abstract V get(net.minecraft.world.level.block.Block);
+  public abstract void add(net.minecraft.world.level.block.Block, V);
+  public abstract void add(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>, V);
+  public abstract void remove(net.minecraft.world.level.block.Block);
+  public abstract void remove(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  public abstract void clear(net.minecraft.world.level.block.Block);
+  public abstract void clear(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+}
+Compiled from "Item2ObjectMap.java"
+public interface net.fabricmc.fabric.api.util.Item2ObjectMap<V> {
+  public abstract V get(net.minecraft.world.level.ItemLike);
+  public abstract void add(net.minecraft.world.level.ItemLike, V);
+  public abstract void add(net.minecraft.tags.TagKey<net.minecraft.world.item.Item>, V);
+  public abstract void remove(net.minecraft.world.level.ItemLike);
+  public abstract void remove(net.minecraft.tags.TagKey<net.minecraft.world.item.Item>);
+  public abstract void clear(net.minecraft.world.level.ItemLike);
+  public abstract void clear(net.minecraft.tags.TagKey<net.minecraft.world.item.Item>);
+}

@@ -1,0 +1,94 @@
+Compiled from "BakedSubstringIndexBuilder.java"
+public class mezz.jei.common.search.BakedSubstringIndexBuilder<T> implements mezz.jei.api.search.ISearchStorageBuilder<T> {
+  public mezz.jei.common.search.BakedSubstringIndexBuilder();
+  public void put(java.lang.String, T);
+  public mezz.jei.api.search.ISearchStorage<T> build();
+}
+Compiled from "BakedSubstringIndexSearchStorage.java"
+public class mezz.jei.common.search.BakedSubstringIndexSearchStorage<T> implements mezz.jei.api.search.ISearchStorage<T> {
+  public mezz.jei.common.search.BakedSubstringIndexSearchStorage(mezz.jei.modshade.net.mezzdev.bakedsubstring.BakedSubstringIndex<T>);
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public void put(java.lang.String, T);
+  public java.lang.String statistics();
+}
+Compiled from "CombinedSearchables.java"
+public class mezz.jei.common.search.CombinedSearchables<T> implements mezz.jei.common.search.ISearchable<T> {
+  public mezz.jei.common.search.CombinedSearchables();
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public void addSearchable(mezz.jei.common.search.ISearchable<T>);
+}
+Compiled from "GeneralizedSuffixTreeSearchStorage.java"
+public class mezz.jei.common.search.GeneralizedSuffixTreeSearchStorage<T> implements mezz.jei.api.search.ISearchStorage<T> {
+  public mezz.jei.common.search.GeneralizedSuffixTreeSearchStorage();
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public void put(java.lang.String, T);
+  public java.lang.String statistics();
+}
+Compiled from "ISearchable.java"
+public interface mezz.jei.common.search.ISearchable<T> {
+  public abstract void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public abstract void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public default mezz.jei.common.search.SearchMode getMode();
+}
+Compiled from "LimitedStringStorage.java"
+public class mezz.jei.common.search.LimitedStringStorage<T> implements mezz.jei.api.search.ISearchStorage<T> {
+  public mezz.jei.common.search.LimitedStringStorage(mezz.jei.api.search.ISearchStorage<java.util.Set<T>>);
+  public mezz.jei.common.search.LimitedStringStorage(mezz.jei.api.search.ISearchStorage<java.util.Set<T>>, mezz.jei.common.collect.SetMultiMap<java.lang.String, T>);
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<T>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<T>>);
+  public void put(java.lang.String, T);
+  public java.lang.String statistics();
+}
+Compiled from "LimitedStringStorageBuilder.java"
+public class mezz.jei.common.search.LimitedStringStorageBuilder<T> implements mezz.jei.api.search.ISearchStorageBuilder<T> {
+  public mezz.jei.common.search.LimitedStringStorageBuilder(mezz.jei.api.search.ISearchStorageBuilderFactory);
+  public mezz.jei.common.search.LimitedStringStorageBuilder(mezz.jei.api.search.ISearchStorageBuilderFactory, java.lang.String);
+  public void put(java.lang.String, T);
+  public mezz.jei.api.search.ISearchStorage<T> build();
+}
+Compiled from "PrefixInfo.java"
+public interface mezz.jei.common.search.PrefixInfo$IModeGetter {
+  public abstract mezz.jei.common.search.SearchMode getMode();
+}
+Compiled from "PrefixInfo.java"
+public interface mezz.jei.common.search.PrefixInfo$IStringsGetter<T> {
+  public abstract java.util.Collection<java.lang.String> getStrings(T);
+}
+Compiled from "PrefixInfo.java"
+public class mezz.jei.common.search.PrefixInfo<T, I> {
+  public mezz.jei.common.search.PrefixInfo(java.lang.String, char, mezz.jei.common.search.PrefixInfo$IModeGetter, mezz.jei.common.search.PrefixInfo$IStringsGetter<T>, mezz.jei.api.search.ISearchStorageBuilderFactory);
+  public char getPrefix();
+  public mezz.jei.common.search.SearchMode getMode();
+  public mezz.jei.api.search.ISearchStorageBuilder<I> createStorageBuilder();
+  public java.util.Collection<java.lang.String> getStrings(T);
+  public java.lang.String toString();
+}
+Compiled from "PrefixedSearchable.java"
+public class mezz.jei.common.search.PrefixedSearchable<T, I> implements mezz.jei.common.search.ISearchable<I> {
+  public mezz.jei.common.search.PrefixedSearchable(mezz.jei.api.search.ISearchStorage<I>, mezz.jei.common.search.PrefixInfo<T, I>);
+  public mezz.jei.api.search.ISearchStorage<I> getSearchStorage();
+  public java.util.Collection<java.lang.String> getStrings(T);
+  public mezz.jei.common.search.SearchMode getMode();
+  public void getSearchResults(java.lang.String, java.util.function.Consumer<java.util.Collection<I>>);
+  public void getAllElements(java.util.function.Consumer<java.util.Collection<I>>);
+}
+Compiled from "SearchMode.java"
+public final class mezz.jei.common.search.SearchMode extends java.lang.Enum<mezz.jei.common.search.SearchMode> {
+  public static final mezz.jei.common.search.SearchMode ENABLED;
+  public static final mezz.jei.common.search.SearchMode REQUIRE_PREFIX;
+  public static final mezz.jei.common.search.SearchMode DISABLED;
+  public static mezz.jei.common.search.SearchMode[] values();
+  public static mezz.jei.common.search.SearchMode valueOf(java.lang.String);
+}
+Compiled from "SearchStorageBuilderAdapter.java"
+public class mezz.jei.common.search.SearchStorageBuilderAdapter<T> implements mezz.jei.api.search.ISearchStorageBuilder<T> {
+  public mezz.jei.common.search.SearchStorageBuilderAdapter(mezz.jei.api.search.ISearchStorage<T>);
+  public void put(java.lang.String, T);
+  public mezz.jei.api.search.ISearchStorage<T> build();
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.search.package-info {
+}

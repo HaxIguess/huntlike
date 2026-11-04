@@ -1,0 +1,118 @@
+Compiled from "IDrawableWidget.java"
+public interface mezz.jei.api.gui.widgets.IDrawableWidget extends mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<mezz.jei.api.gui.widgets.IDrawableWidget> {
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setPosition(int, int);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(net.minecraft.network.chat.FormattedText);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(java.util.Collection<? extends net.minecraft.network.chat.FormattedText>);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setPosition(int, int);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(java.util.Collection);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(net.minecraft.network.chat.FormattedText);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "IRecipeExtrasBuilder.java"
+public interface mezz.jei.api.gui.widgets.IRecipeExtrasBuilder {
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotDrawablesView getRecipeSlots();
+  public abstract void addDrawable(mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public abstract mezz.jei.api.gui.placement.IPlaceable<?> addDrawable(mezz.jei.api.gui.drawable.IDrawable);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addDrawableWidget(mezz.jei.api.gui.drawable.IDrawable);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addTooltipArea(int, int, int, int);
+  public abstract void addWidget(mezz.jei.api.gui.widgets.IRecipeWidget);
+  public abstract void addSlottedWidget(mezz.jei.api.gui.widgets.ISlottedRecipeWidget, java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable>);
+  public abstract void addInputHandler(mezz.jei.api.gui.inputs.IJeiInputHandler);
+  public abstract void addGuiEventListener(mezz.jei.api.gui.inputs.IJeiGuiEventListener);
+  public abstract mezz.jei.api.gui.widgets.IScrollBoxWidget addScrollBoxWidget(int, int, int, int);
+  public abstract mezz.jei.api.gui.widgets.IScrollGridWidget addScrollGridWidget(java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable>, int, int);
+  public abstract mezz.jei.api.gui.placement.IPlaceable<?> addRecipeArrow();
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addRecipeArrowWidget();
+  public abstract mezz.jei.api.gui.placement.IPlaceable<?> addRecipePlusSign();
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addRecipePlusSignWidget();
+  public abstract mezz.jei.api.gui.placement.IPlaceable<?> addAnimatedRecipeArrow(int);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addAnimatedRecipeArrowWidget(int);
+  public abstract mezz.jei.api.gui.placement.IPlaceable<?> addAnimatedRecipeFlame(int);
+  public abstract mezz.jei.api.gui.widgets.IDrawableWidget addAnimatedRecipeFlameWidget(int);
+  public default mezz.jei.api.gui.widgets.ITextWidget addText(net.minecraft.network.chat.FormattedText, int, int);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget addText(java.util.List<net.minecraft.network.chat.FormattedText>, int, int);
+}
+Compiled from "IRecipeWidget.java"
+public interface mezz.jei.api.gui.widgets.IRecipeWidget {
+  public abstract net.minecraft.client.gui.navigation.ScreenPosition getPosition();
+  public default net.minecraft.client.gui.navigation.ScreenRectangle getScreenRectangle();
+  public default void drawWidget(net.minecraft.client.gui.GuiGraphicsExtractor, double, double);
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, double, double);
+  public default void tick();
+}
+Compiled from "IRecipeWidgetBuilder.java"
+public interface mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<THIS extends mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<THIS>> extends mezz.jei.api.gui.placement.IPlaceable<THIS> {
+  public abstract THIS setTooltip(net.minecraft.network.chat.FormattedText);
+  public abstract THIS setTooltip(java.util.Collection<? extends net.minecraft.network.chat.FormattedText>);
+  public abstract THIS setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public abstract THIS setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public abstract THIS setPosition(int, int);
+  public abstract THIS setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "IRecipeWidgetTooltipCallback.java"
+public interface mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback {
+  public abstract void onTooltip(mezz.jei.api.gui.builder.ITooltipBuilder);
+}
+Compiled from "IScrollBoxWidget.java"
+public interface mezz.jei.api.gui.widgets.IScrollBoxWidget extends mezz.jei.api.gui.widgets.IRecipeWidget,mezz.jei.api.gui.inputs.IJeiInputHandler {
+  public abstract int getContentAreaWidth();
+  public abstract int getContentAreaHeight();
+  public abstract mezz.jei.api.gui.widgets.IScrollBoxWidget setContents(mezz.jei.api.gui.drawable.IDrawable);
+  public abstract mezz.jei.api.gui.widgets.IScrollBoxWidget setContents(java.util.List<net.minecraft.network.chat.FormattedText>);
+}
+Compiled from "IScrollGridWidget.java"
+public interface mezz.jei.api.gui.widgets.IScrollGridWidget extends mezz.jei.api.gui.widgets.ISlottedRecipeWidget, mezz.jei.api.gui.placement.IPlaceable<mezz.jei.api.gui.widgets.IScrollGridWidget> {
+  public abstract mezz.jei.api.gui.widgets.IScrollGridWidget setPosition(int, int);
+  public abstract mezz.jei.api.gui.widgets.IScrollGridWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public abstract java.util.Optional<mezz.jei.api.gui.inputs.RecipeSlotUnderMouse> getSlotUnderMouse(double, double);
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle getScreenRectangle();
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "ISlottedRecipeWidget.java"
+public interface mezz.jei.api.gui.widgets.ISlottedRecipeWidget extends mezz.jei.api.gui.widgets.IRecipeWidget {
+  public abstract java.util.Optional<mezz.jei.api.gui.inputs.RecipeSlotUnderMouse> getSlotUnderMouse(double, double);
+}
+Compiled from "ITextWidget.java"
+public interface mezz.jei.api.gui.widgets.ITextWidget extends mezz.jei.api.gui.widgets.IRecipeWidgetBuilder<mezz.jei.api.gui.widgets.ITextWidget> {
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setFont(net.minecraft.client.gui.Font);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setColor(int);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setLineSpacing(int);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setShadow(boolean);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTextAlignment(mezz.jei.api.gui.placement.HorizontalAlignment);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTextAlignment(mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setPosition(int, int);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTooltip(net.minecraft.network.chat.FormattedText);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTooltip(java.util.Collection<? extends net.minecraft.network.chat.FormattedText>);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public abstract mezz.jei.api.gui.widgets.ITextWidget setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setPosition(int, int);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(mezz.jei.api.gui.widgets.IRecipeWidgetTooltipCallback);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(java.util.Collection);
+  public default mezz.jei.api.gui.widgets.IRecipeWidgetBuilder setTooltip(net.minecraft.network.chat.FormattedText);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.widgets.package-info {
+}

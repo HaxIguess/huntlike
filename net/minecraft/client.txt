@@ -1,0 +1,1197 @@
+Compiled from "GraphicsPreset.java"
+public final class net.minecraft.client.GraphicsPreset extends java.lang.Enum<net.minecraft.client.GraphicsPreset> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.GraphicsPreset FAST;
+  public static final net.minecraft.client.GraphicsPreset FANCY;
+  public static final net.minecraft.client.GraphicsPreset FABULOUS;
+  public static final net.minecraft.client.GraphicsPreset CUSTOM;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.GraphicsPreset> CODEC;
+  public static net.minecraft.client.GraphicsPreset[] values();
+  public static net.minecraft.client.GraphicsPreset valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public java.lang.String getKey();
+  public void apply(net.minecraft.client.Minecraft);
+}
+Compiled from "RotatingSectionStorage.java"
+public interface net.minecraft.client.RotatingSectionStorage$Value {
+  public abstract void setSectionNode(long);
+  public abstract long getSectionNode();
+}
+Compiled from "InputType.java"
+public final class net.minecraft.client.InputType extends java.lang.Enum<net.minecraft.client.InputType> {
+  public static final net.minecraft.client.InputType NONE;
+  public static final net.minecraft.client.InputType MOUSE;
+  public static final net.minecraft.client.InputType KEYBOARD_ARROW;
+  public static final net.minecraft.client.InputType KEYBOARD_TAB;
+  public static net.minecraft.client.InputType[] values();
+  public static net.minecraft.client.InputType valueOf(java.lang.String);
+  public boolean isMouse();
+  public boolean isKeyboard();
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$LazyEnum<T> extends java.lang.Record implements net.minecraft.client.OptionInstance$CycleableValueSet<T> {
+  public net.minecraft.client.OptionInstance$LazyEnum(java.util.function.Supplier<java.util.List<T>>, java.util.function.Function<T, java.util.Optional<T>>, com.mojang.serialization.Codec<T>);
+  public java.util.Optional<T> validateValue(T);
+  public net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> valueListSupplier();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.Supplier<java.util.List<T>> values();
+  public java.util.function.Function<T, java.util.Optional<T>> validateValue();
+  public com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "PeriodicNotificationManager.java"
+public final class net.minecraft.client.PeriodicNotificationManager$Notification extends java.lang.Record {
+  public net.minecraft.client.PeriodicNotificationManager$Notification(long, long, java.lang.String, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long delay();
+  public long period();
+  public java.lang.String title();
+  public java.lang.String message();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$CaptionBasedToString<T> {
+  public abstract net.minecraft.network.chat.Component toString(net.minecraft.network.chat.Component, T);
+}
+Compiled from "StringSplitter.java"
+public interface net.minecraft.client.StringSplitter$LinePosConsumer {
+  public abstract void accept(net.minecraft.network.chat.Style, int, int);
+}
+Compiled from "MouseHandler.java"
+public class net.minecraft.client.MouseHandler {
+  public static final long DOUBLE_CLICK_THRESHOLD_MS;
+  protected int lastClickButton;
+  public net.minecraft.client.MouseHandler(net.minecraft.client.Minecraft);
+  public void onButton(long, net.minecraft.client.input.MouseButtonInfo, int);
+  public void fillMousePositionDetails(net.minecraft.CrashReportCategory, com.mojang.blaze3d.platform.Window);
+  public void onScroll(long, double, double);
+  public void onDrop(long, java.util.List<java.lang.String>);
+  public void onMove(long, double, double, double, double);
+  public void handleAccumulatedMovement();
+  public static double getScaledXPos(com.mojang.blaze3d.platform.Window, double);
+  public double getScaledXPos(com.mojang.blaze3d.platform.Window);
+  public static double getScaledYPos(com.mojang.blaze3d.platform.Window, double);
+  public double getScaledYPos(com.mojang.blaze3d.platform.Window);
+  public boolean isLeftPressed();
+  public boolean isMiddlePressed();
+  public boolean isRightPressed();
+  public double xpos();
+  public double ypos();
+  public void setIgnoreFirstMove();
+  public void resyncMousePosition();
+  public boolean isMouseGrabbed();
+  public void grabMouse();
+  public void releaseMouse();
+  public void cursorEntered();
+  public void drawDebugMouseInfo(net.minecraft.client.gui.Font, net.minecraft.client.gui.GuiGraphicsExtractor);
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$CycleableValueSet<T> extends net.minecraft.client.OptionInstance$ValueSet<T> {
+  public abstract net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> valueListSupplier();
+  public default net.minecraft.client.OptionInstance$CycleableValueSet$ValueSetter<T> valueSetter();
+  public default java.util.function.Function<net.minecraft.client.OptionInstance<T>, net.minecraft.client.gui.components.AbstractWidget> createButton(net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.Options, int, int, int, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+}
+Compiled from "CloudStatus.java"
+public final class net.minecraft.client.CloudStatus extends java.lang.Enum<net.minecraft.client.CloudStatus> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.CloudStatus OFF;
+  public static final net.minecraft.client.CloudStatus FAST;
+  public static final net.minecraft.client.CloudStatus FANCY;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.CloudStatus> CODEC;
+  public static net.minecraft.client.CloudStatus[] values();
+  public static net.minecraft.client.CloudStatus valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+  public java.lang.String getSerializedName();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$IntRangeBase extends net.minecraft.client.OptionInstance$SliderableValueSet<java.lang.Integer> {
+  public abstract int minInclusive();
+  public abstract int maxInclusive();
+  public default java.util.Optional<java.lang.Integer> next(java.lang.Integer);
+  public default java.util.Optional<java.lang.Integer> previous(java.lang.Integer);
+  public default double toSliderValue(java.lang.Integer);
+  public default java.lang.Integer fromSliderValue(double);
+  public default <R> net.minecraft.client.OptionInstance$SliderableValueSet<R> xmap(java.util.function.IntFunction<? extends R>, java.util.function.ToIntFunction<? super R>, boolean);
+  public default java.lang.Object fromSliderValue(double);
+  public default java.util.Optional previous(java.lang.Object);
+  public default java.util.Optional next(java.lang.Object);
+  public default double toSliderValue(java.lang.Object);
+}
+Compiled from "CommandHistory.java"
+public class net.minecraft.client.CommandHistory {
+  public net.minecraft.client.CommandHistory(java.nio.file.Path);
+  public void addCommand(java.lang.String);
+  public java.util.Collection<java.lang.String> history();
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$SliderableEnum<T> extends java.lang.Record implements net.minecraft.client.OptionInstance$SliderableValueSet<T> {
+  public net.minecraft.client.OptionInstance$SliderableEnum(java.util.List<T>, com.mojang.serialization.Codec<T>);
+  public double toSliderValue(T);
+  public java.util.Optional<T> next(T);
+  public java.util.Optional<T> previous(T);
+  public T fromSliderValue(double);
+  public java.util.Optional<T> validateValue(T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<T> values();
+  public com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "SectionUpdateTracker.java"
+public class net.minecraft.client.SectionUpdateTracker$SectionDirtyState implements net.minecraft.client.RotatingSectionStorage$Value {
+  public void setDirty(boolean);
+  public void setNotDirty();
+  public void setSectionNode(long);
+  public long getSectionNode();
+  public boolean isDirty();
+  public boolean isDirtyFromPlayer();
+}
+Compiled from "Screenshot.java"
+public class net.minecraft.client.Screenshot {
+  public static final java.lang.String SCREENSHOT_DIR;
+  public net.minecraft.client.Screenshot();
+  public static void grab(java.io.File, com.mojang.blaze3d.pipeline.RenderTarget, java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public static void grab(net.minecraft.client.Minecraft, boolean);
+  public static void grab(java.io.File, java.lang.String, com.mojang.blaze3d.pipeline.RenderTarget, int, java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public static void takeScreenshot(com.mojang.blaze3d.pipeline.RenderTarget, java.util.function.Consumer<com.mojang.blaze3d.platform.NativeImage>);
+  public static void takeScreenshot(com.mojang.blaze3d.pipeline.RenderTarget, int, java.util.function.Consumer<com.mojang.blaze3d.platform.NativeImage>);
+}
+Compiled from "DebugQueryHandler.java"
+public class net.minecraft.client.DebugQueryHandler {
+  public net.minecraft.client.DebugQueryHandler(net.minecraft.client.multiplayer.ClientPacketListener);
+  public boolean handleResponse(int, net.minecraft.nbt.CompoundTag);
+  public void queryEntityTag(int, java.util.function.Consumer<net.minecraft.nbt.CompoundTag>);
+  public void queryBlockEntityTag(net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.nbt.CompoundTag>);
+}
+Compiled from "ClientClockManager.java"
+public class net.minecraft.client.ClientClockManager implements net.minecraft.world.clock.ClockManager {
+  public net.minecraft.client.ClientClockManager();
+  public net.minecraft.client.ClientClockManager$ClientClockInstance getInstance(net.minecraft.core.Holder<net.minecraft.world.clock.WorldClock>);
+  public void tick(long);
+  public void handleUpdates(long, java.util.Map<net.minecraft.core.Holder<net.minecraft.world.clock.WorldClock>, net.minecraft.world.clock.ClockNetworkState>);
+  public net.minecraft.world.clock.ClockInstance getInstance(net.minecraft.core.Holder);
+}
+Compiled from "Options.java"
+interface net.minecraft.client.Options$FieldAccess extends net.minecraft.client.Options$OptionAccess {
+  public abstract int process(java.lang.String, int);
+  public abstract boolean process(java.lang.String, boolean);
+  public abstract java.lang.String process(java.lang.String, java.lang.String);
+  public abstract float process(java.lang.String, float);
+  public abstract <T> T process(java.lang.String, T, java.util.function.Function<java.lang.String, T>, java.util.function.Function<T, java.lang.String>);
+}
+Compiled from "DeltaTracker.java"
+public interface net.minecraft.client.DeltaTracker {
+  public static final net.minecraft.client.DeltaTracker ZERO;
+  public static final net.minecraft.client.DeltaTracker ONE;
+  public abstract float getGameTimeDeltaTicks();
+  public abstract float getGameTimeDeltaPartialTick(boolean);
+  public abstract float getRealtimeDeltaTicks();
+}
+Compiled from "AttackIndicatorStatus.java"
+public final class net.minecraft.client.AttackIndicatorStatus extends java.lang.Enum<net.minecraft.client.AttackIndicatorStatus> {
+  public static final net.minecraft.client.AttackIndicatorStatus OFF;
+  public static final net.minecraft.client.AttackIndicatorStatus CROSSHAIR;
+  public static final net.minecraft.client.AttackIndicatorStatus HOTBAR;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.AttackIndicatorStatus> LEGACY_CODEC;
+  public static net.minecraft.client.AttackIndicatorStatus[] values();
+  public static net.minecraft.client.AttackIndicatorStatus valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$TooltipSupplier<T> {
+  public abstract net.minecraft.client.gui.components.Tooltip apply(T);
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$OptionInstanceSliderButton<N> extends net.minecraft.client.gui.components.AbstractOptionSliderButton implements net.minecraft.client.gui.components.ResettableOptionWidget {
+  protected void updateMessage();
+  protected void applyValue();
+  public void applyUnsavedValue();
+  public void resetValue();
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void onRelease(net.minecraft.client.input.MouseButtonEvent);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+}
+Compiled from "DeltaTracker.java"
+public class net.minecraft.client.DeltaTracker$Timer implements net.minecraft.client.DeltaTracker {
+  public net.minecraft.client.DeltaTracker$Timer(float, long, it.unimi.dsi.fastutil.floats.FloatUnaryOperator);
+  public int advanceGameTime(long);
+  public void advanceRealTime(long);
+  public void updatePauseState(boolean);
+  public void updateFrozenState(boolean);
+  public float getGameTimeDeltaTicks();
+  public float getGameTimeDeltaPartialTick(boolean);
+  public float getRealtimeDeltaTicks();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$SliderableValueSet<T> extends net.minecraft.client.OptionInstance$ValueSet<T> {
+  public abstract double toSliderValue(T);
+  public default java.util.Optional<T> next(T);
+  public default java.util.Optional<T> previous(T);
+  public abstract T fromSliderValue(double);
+  public default boolean applyValueImmediately();
+  public default java.util.function.Function<net.minecraft.client.OptionInstance<T>, net.minecraft.client.gui.components.AbstractWidget> createButton(net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.Options, int, int, int, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$ClampingLazyMaxIntRange extends java.lang.Record implements net.minecraft.client.OptionInstance$IntRangeBase, net.minecraft.client.OptionInstance$SliderableOrCyclableValueSet<java.lang.Integer> {
+  public net.minecraft.client.OptionInstance$ClampingLazyMaxIntRange(int, java.util.function.IntSupplier, int);
+  public java.util.Optional<java.lang.Integer> validateValue(java.lang.Integer);
+  public int maxInclusive();
+  public com.mojang.serialization.Codec<java.lang.Integer> codec();
+  public boolean createCycleButton();
+  public net.minecraft.client.gui.components.CycleButton$ValueListSupplier<java.lang.Integer> valueListSupplier();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int minInclusive();
+  public java.util.function.IntSupplier maxSupplier();
+  public int encodableMaxInclusive();
+  public java.util.Optional validateValue(java.lang.Object);
+}
+Compiled from "StringSplitter.java"
+class net.minecraft.client.StringSplitter$LineComponent implements net.minecraft.network.chat.FormattedText {
+  public net.minecraft.client.StringSplitter$LineComponent(java.lang.String, net.minecraft.network.chat.Style);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+}
+Compiled from "Camera.java"
+public class net.minecraft.client.Camera$NearPlane {
+  public net.minecraft.world.phys.Vec3 getTopLeft();
+  public net.minecraft.world.phys.Vec3 getTopRight();
+  public net.minecraft.world.phys.Vec3 getBottomLeft();
+  public net.minecraft.world.phys.Vec3 getBottomRight();
+  public net.minecraft.world.phys.Vec3 getPointOnPlane(float, float);
+}
+Compiled from "ToggleKeyMapping.java"
+public class net.minecraft.client.ToggleKeyMapping extends net.minecraft.client.KeyMapping {
+  public net.minecraft.client.ToggleKeyMapping(java.lang.String, int, net.minecraft.client.KeyMapping$Category, java.util.function.BooleanSupplier, boolean);
+  public net.minecraft.client.ToggleKeyMapping(java.lang.String, com.mojang.blaze3d.platform.InputConstants$Type, int, net.minecraft.client.KeyMapping$Category, java.util.function.BooleanSupplier, boolean);
+  protected boolean shouldSetOnIngameFocus();
+  public void setDown(boolean);
+  protected void release();
+  public boolean shouldRestoreStateOnScreenClosed();
+  protected void reset();
+}
+Compiled from "DeltaTracker.java"
+public class net.minecraft.client.DeltaTracker$DefaultValue implements net.minecraft.client.DeltaTracker {
+  public float getGameTimeDeltaTicks();
+  public float getGameTimeDeltaPartialTick(boolean);
+  public float getRealtimeDeltaTicks();
+}
+Compiled from "StringSplitter.java"
+public class net.minecraft.client.StringSplitter {
+  public net.minecraft.client.StringSplitter(net.minecraft.client.StringSplitter$WidthProvider);
+  public float stringWidth(java.lang.String);
+  public float stringWidth(net.minecraft.network.chat.FormattedText);
+  public float stringWidth(net.minecraft.util.FormattedCharSequence);
+  public int plainIndexAtWidth(java.lang.String, int, net.minecraft.network.chat.Style);
+  public java.lang.String plainHeadByWidth(java.lang.String, int, net.minecraft.network.chat.Style);
+  public java.lang.String plainTailByWidth(java.lang.String, int, net.minecraft.network.chat.Style);
+  public net.minecraft.network.chat.FormattedText headByWidth(net.minecraft.network.chat.FormattedText, int, net.minecraft.network.chat.Style);
+  public int findLineBreak(java.lang.String, int, net.minecraft.network.chat.Style);
+  public static int getWordPosition(java.lang.String, int, int, boolean);
+  public void splitLines(java.lang.String, int, net.minecraft.network.chat.Style, boolean, net.minecraft.client.StringSplitter$LinePosConsumer);
+  public java.util.List<net.minecraft.network.chat.FormattedText> splitLines(java.lang.String, int, net.minecraft.network.chat.Style);
+  public java.util.List<net.minecraft.network.chat.FormattedText> splitLines(net.minecraft.network.chat.FormattedText, int, net.minecraft.network.chat.Style);
+  public void splitLines(net.minecraft.network.chat.FormattedText, int, net.minecraft.network.chat.Style, java.util.function.BiConsumer<net.minecraft.network.chat.FormattedText, java.lang.Boolean>);
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$Enum<T> extends java.lang.Record implements net.minecraft.client.OptionInstance$CycleableValueSet<T> {
+  public net.minecraft.client.OptionInstance$Enum(java.util.List<T>, com.mojang.serialization.Codec<T>);
+  public java.util.Optional<T> validateValue(T);
+  public net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> valueListSupplier();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<T> values();
+  public com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$CycleableValueSet$ValueSetter<T> {
+  public abstract void set(net.minecraft.client.OptionInstance<T>, T);
+}
+Compiled from "StringSplitter.java"
+public interface net.minecraft.client.StringSplitter$WidthProvider {
+  public abstract float getWidth(int, net.minecraft.network.chat.Style);
+}
+Compiled from "ComponentCollector.java"
+public class net.minecraft.client.ComponentCollector {
+  public net.minecraft.client.ComponentCollector();
+  public void append(net.minecraft.network.chat.FormattedText);
+  public net.minecraft.network.chat.FormattedText getResult();
+  public net.minecraft.network.chat.FormattedText getResultOrEmpty();
+  public void reset();
+}
+Compiled from "HotbarManager.java"
+public class net.minecraft.client.HotbarManager {
+  public static final int NUM_HOTBAR_GROUPS;
+  public net.minecraft.client.HotbarManager(java.nio.file.Path, com.mojang.datafixers.DataFixer);
+  public void save();
+  public net.minecraft.client.player.inventory.Hotbar get(int);
+}
+Compiled from "KeyboardHandler.java"
+public class net.minecraft.client.KeyboardHandler {
+  public static final int DEBUG_CRASH_TIME;
+  public net.minecraft.client.KeyboardHandler(net.minecraft.client.Minecraft);
+  public void keyPress(long, int, net.minecraft.client.input.KeyEvent);
+  public void charTyped(long, net.minecraft.client.input.CharacterEvent);
+  public void textInput(long, java.lang.String);
+  public void textEditing(long, net.minecraft.client.input.PreeditEvent);
+  public void resubmitLastPreeditEvent(net.minecraft.client.gui.components.events.GuiEventListener);
+  public static void submitPreeditEvent(net.minecraft.client.gui.components.events.GuiEventListener, net.minecraft.client.input.PreeditEvent);
+  public java.lang.String getClipboard();
+  public void setClipboard(java.lang.String);
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.package-info {
+}
+Compiled from "ClientClockManager.java"
+public class net.minecraft.client.ClientClockManager$ClientClockInstance implements net.minecraft.world.clock.ClockInstance {
+  public net.minecraft.client.ClientClockManager$ClientClockInstance();
+  public long totalTicks();
+  public float partialTick();
+  public float rate();
+  public boolean isPaused();
+}
+Compiled from "PeriodicNotificationManager.java"
+class net.minecraft.client.PeriodicNotificationManager$NotificationTask extends java.util.TimerTask {
+  public net.minecraft.client.PeriodicNotificationManager$NotificationTask(java.util.List<net.minecraft.client.PeriodicNotificationManager$Notification>, long, long);
+  public net.minecraft.client.PeriodicNotificationManager$NotificationTask reset(java.util.List<net.minecraft.client.PeriodicNotificationManager$Notification>, long);
+  public void run();
+}
+Compiled from "KeyMapping.java"
+public class net.minecraft.client.KeyMapping implements java.lang.Comparable<net.minecraft.client.KeyMapping> {
+  protected com.mojang.blaze3d.platform.InputConstants$Key key;
+  public static void click(com.mojang.blaze3d.platform.InputConstants$Key);
+  public static void set(com.mojang.blaze3d.platform.InputConstants$Key, boolean);
+  public static void setAll();
+  public static void releaseAll();
+  public static void restoreToggleStatesOnScreenClosed();
+  public static void resetToggleKeys();
+  public static void resetMapping();
+  public net.minecraft.client.KeyMapping(java.lang.String, int, net.minecraft.client.KeyMapping$Category);
+  public net.minecraft.client.KeyMapping(java.lang.String, com.mojang.blaze3d.platform.InputConstants$Type, int, net.minecraft.client.KeyMapping$Category);
+  public net.minecraft.client.KeyMapping(java.lang.String, com.mojang.blaze3d.platform.InputConstants$Type, int, net.minecraft.client.KeyMapping$Category, int);
+  public boolean isDown();
+  public net.minecraft.client.KeyMapping$Category getCategory();
+  public boolean consumeClick();
+  protected void release();
+  protected boolean shouldSetOnIngameFocus();
+  public java.lang.String getName();
+  public com.mojang.blaze3d.platform.InputConstants$Key getDefaultKey();
+  public void setKey(com.mojang.blaze3d.platform.InputConstants$Key);
+  public int compareTo(net.minecraft.client.KeyMapping);
+  public static java.util.function.Supplier<net.minecraft.network.chat.Component> createNameSupplier(java.lang.String);
+  public boolean same(net.minecraft.client.KeyMapping);
+  public boolean isUnbound();
+  public boolean matches(net.minecraft.client.input.KeyEvent);
+  public boolean matchesMouse(net.minecraft.client.input.MouseButtonEvent);
+  public boolean matches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public net.minecraft.network.chat.Component getTranslatedKeyMessage();
+  public boolean isDefault();
+  public java.lang.String saveString();
+  public void setDown(boolean);
+  public static net.minecraft.client.KeyMapping get(java.lang.String);
+  public int compareTo(java.lang.Object);
+}
+Compiled from "Options.java"
+public class net.minecraft.client.Options {
+  public static final int RENDER_DISTANCE_SHORT;
+  public static final int RENDER_DISTANCE_FAR;
+  public static final int RENDER_DISTANCE_REALLY_FAR;
+  public static final int RENDER_DISTANCE_EXTREME;
+  public static final int UNLIMITED_FRAMERATE_CUTOFF;
+  public java.util.List<java.lang.String> resourcePacks;
+  public java.util.List<java.lang.String> incompatibleResourcePacks;
+  public java.lang.String fullscreenVideoModeString;
+  public boolean hideServerAddress;
+  public boolean advancedItemTooltips;
+  public boolean pauseOnLostFocus;
+  public int overrideWidth;
+  public int overrideHeight;
+  public net.minecraft.client.tutorial.TutorialSteps tutorialStep;
+  public boolean joinedFirstServer;
+  public int glDebugVerbosity;
+  public boolean skipMultiplayerWarning;
+  public final net.minecraft.client.KeyMapping keyUp;
+  public final net.minecraft.client.KeyMapping keyLeft;
+  public final net.minecraft.client.KeyMapping keyDown;
+  public final net.minecraft.client.KeyMapping keyRight;
+  public final net.minecraft.client.KeyMapping keyJump;
+  public final net.minecraft.client.KeyMapping keyShift;
+  public final net.minecraft.client.KeyMapping keySprint;
+  public final net.minecraft.client.KeyMapping keyInventory;
+  public final net.minecraft.client.KeyMapping keySwapOffhand;
+  public final net.minecraft.client.KeyMapping keyDrop;
+  public final net.minecraft.client.KeyMapping keyUse;
+  public final net.minecraft.client.KeyMapping keyAttack;
+  public final net.minecraft.client.KeyMapping keyPickItem;
+  public final net.minecraft.client.KeyMapping keyChat;
+  public final net.minecraft.client.KeyMapping keyPlayerList;
+  public final net.minecraft.client.KeyMapping keyCommand;
+  public final net.minecraft.client.KeyMapping keyFriends;
+  public final net.minecraft.client.KeyMapping keySocialInteractions;
+  public final net.minecraft.client.KeyMapping keyScreenshot;
+  public final net.minecraft.client.KeyMapping keyTogglePerspective;
+  public final net.minecraft.client.KeyMapping keySmoothCamera;
+  public final net.minecraft.client.KeyMapping keyFullscreen;
+  public final net.minecraft.client.KeyMapping keyAdvancements;
+  public final net.minecraft.client.KeyMapping keyQuickActions;
+  public final net.minecraft.client.KeyMapping keyToggleGui;
+  public final net.minecraft.client.KeyMapping keyToggleSpectatorShaderEffects;
+  public final net.minecraft.client.KeyMapping[] keyHotbarSlots;
+  public final net.minecraft.client.KeyMapping keySaveHotbarActivator;
+  public final net.minecraft.client.KeyMapping keyLoadHotbarActivator;
+  public final net.minecraft.client.KeyMapping keySpectatorOutlines;
+  public final net.minecraft.client.KeyMapping keySpectatorHotbar;
+  public final net.minecraft.client.KeyMapping keyDebugOverlay;
+  public final net.minecraft.client.KeyMapping keyDebugModifier;
+  public final net.minecraft.client.KeyMapping keyDebugCrash;
+  public final net.minecraft.client.KeyMapping keyDebugReloadChunk;
+  public final net.minecraft.client.KeyMapping keyDebugShowHitboxes;
+  public final net.minecraft.client.KeyMapping keyDebugClearChat;
+  public final net.minecraft.client.KeyMapping keyDebugShowChunkBorders;
+  public final net.minecraft.client.KeyMapping keyDebugShowAdvancedTooltips;
+  public final net.minecraft.client.KeyMapping keyDebugCopyRecreateCommand;
+  public final net.minecraft.client.KeyMapping keyDebugSpectate;
+  public final net.minecraft.client.KeyMapping keyDebugSwitchGameMode;
+  public final net.minecraft.client.KeyMapping keyDebugDebugOptions;
+  public final net.minecraft.client.KeyMapping keyDebugFocusPause;
+  public final net.minecraft.client.KeyMapping keyDebugDumpDynamicTextures;
+  public final net.minecraft.client.KeyMapping keyDebugReloadResourcePacks;
+  public final net.minecraft.client.KeyMapping keyDebugProfiling;
+  public final net.minecraft.client.KeyMapping keyDebugCopyLocation;
+  public final net.minecraft.client.KeyMapping keyDebugDumpVersion;
+  public final net.minecraft.client.KeyMapping keyDebugPofilingChart;
+  public final net.minecraft.client.KeyMapping keyDebugFpsCharts;
+  public final net.minecraft.client.KeyMapping keyDebugNetworkCharts;
+  public final net.minecraft.client.KeyMapping keyDebugLightmapTexture;
+  public final net.minecraft.client.KeyMapping keyDebugSwitchTranslucencyMode;
+  public final net.minecraft.client.KeyMapping[] debugKeys;
+  public final net.minecraft.client.KeyMapping[] keyMappings;
+  protected net.minecraft.client.Minecraft minecraft;
+  public java.lang.String lastMpIp;
+  public boolean smoothCamera;
+  public static final int AUTO_GUI_SCALE;
+  public static final int DEBUG_GUI_SCALE_UNCHANGED;
+  public java.lang.String languageCode;
+  public boolean onboardAccessibility;
+  public boolean syncWrites;
+  public boolean startedCleanly;
+  public static boolean isSoundDeviceDefault(java.lang.String);
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> darkMojangStudiosBackground();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> hideLightningFlash();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> hideSplashTexts();
+  public net.minecraft.client.OptionInstance<java.lang.Double> sensitivity();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> renderDistance();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> simulationDistance();
+  public net.minecraft.client.OptionInstance<java.lang.Double> entityDistanceScaling();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> framerateLimit();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.PreferredGraphicsApi> preferredGraphicsBackend();
+  public boolean isRestartRequiredToApplyVideoSettings();
+  public void applyGraphicsPreset(net.minecraft.client.GraphicsPreset);
+  public net.minecraft.client.OptionInstance<net.minecraft.client.GraphicsPreset> graphicsPreset();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.InactivityFpsLimit> inactivityFpsLimit();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.CloudStatus> cloudStatus();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> cloudRange();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> weatherRadius();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> cutoutLeaves();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> vignette();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> improvedTransparency();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> ambientOcclusion();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chunkSectionFadeInTime();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.PrioritizeChunkUpdates> prioritizeChunkUpdates();
+  public void updateResourcePacks(net.minecraft.server.packs.repository.PackRepository);
+  public net.minecraft.client.OptionInstance<net.minecraft.world.entity.player.ChatVisiblity> chatVisibility();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatOpacity();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatLineSpacing();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> menuBackgroundBlurriness();
+  public int getMenuBackgroundBlurriness();
+  public net.minecraft.client.OptionInstance<java.lang.Double> textBackgroundOpacity();
+  public net.minecraft.client.OptionInstance<java.lang.Double> panoramaSpeed();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> highContrast();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> highContrastBlockOutline();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> narratorHotkey();
+  public net.minecraft.client.OptionInstance<net.minecraft.world.entity.HumanoidArm> mainHand();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatScale();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatWidth();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatHeightUnfocused();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatHeightFocused();
+  public net.minecraft.client.OptionInstance<java.lang.Double> chatDelay();
+  public net.minecraft.client.OptionInstance<java.lang.Double> notificationDisplayTime();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> mipmapLevels();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> maxAnisotropyBit();
+  public int maxAnisotropyValue();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.TextureFilteringMethod> textureFiltering();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.AttackIndicatorStatus> attackIndicator();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> biomeBlendRadius();
+  public net.minecraft.client.OptionInstance<java.lang.Double> mouseWheelSensitivity();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> allowCursorChanges();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> quitShortcuts();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> ctrlClickEmulatesRightClick();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> autoJump();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> rotateWithMinecart();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> operatorItemsTab();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> autoSuggestions();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> chatColors();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> chatLinks();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> chatLinksPrompt();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> enableVsync();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> entityShadows();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> forceUnicodeFont();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> japaneseGlyphVariants();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> invertMouseX();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> invertMouseY();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> discreteMouseScroll();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> realmsNotifications();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> allowServerListing();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> reducedDebugInfo();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> inGameNotification();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.PresenceSharing> sharePresence();
+  public final float getFinalSoundSourceVolume(net.minecraft.sounds.SoundSource);
+  public final float getSoundSourceVolume(net.minecraft.sounds.SoundSource);
+  public final net.minecraft.client.OptionInstance<java.lang.Double> getSoundSourceOptionInstance(net.minecraft.sounds.SoundSource);
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> showSubtitles();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> directionalAudio();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> backgroundForChatOnly();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> fullscreen();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> exclusiveFullscreen();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> macFullscreenMenuVisibility();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> bobView();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> toggleCrouch();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> toggleSprint();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> toggleAttack();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> toggleUse();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> sprintWindow();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> hideMatchedNames();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> showAutosaveIndicator();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> onlyShowSecureChat();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> saveChatDrafts();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> fov();
+  public net.minecraft.client.OptionInstance<java.lang.Boolean> telemetryOptInExtra();
+  public net.minecraft.client.OptionInstance<java.lang.Double> screenEffectScale();
+  public net.minecraft.client.OptionInstance<java.lang.Double> fovEffectScale();
+  public net.minecraft.client.OptionInstance<java.lang.Double> darknessEffectScale();
+  public net.minecraft.client.OptionInstance<java.lang.Double> glintSpeed();
+  public net.minecraft.client.OptionInstance<java.lang.Double> glintStrength();
+  public net.minecraft.client.OptionInstance<java.lang.Double> damageTiltStrength();
+  public net.minecraft.client.OptionInstance<java.lang.Double> gamma();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> guiScale();
+  public net.minecraft.client.OptionInstance<java.lang.Integer> debugGuiScale();
+  public net.minecraft.client.OptionInstance<net.minecraft.server.level.ParticleStatus> particles();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.NarratorStatus> narrator();
+  public net.minecraft.client.OptionInstance<java.lang.String> soundDevice();
+  public void onboardingAccessibilityFinished();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.sounds.MusicManager$MusicFrequency> musicFrequency();
+  public net.minecraft.client.OptionInstance<net.minecraft.client.MusicToastDisplayState> musicToast();
+  public net.minecraft.client.Options(net.minecraft.client.Minecraft, java.io.File);
+  public float getBackgroundOpacity(float);
+  public int getBackgroundColor(float);
+  public int getBackgroundColor(int);
+  public void load();
+  public void save();
+  public net.minecraft.server.level.ClientInformation buildPlayerInformation();
+  public void broadcastOptions();
+  public void setModelPart(net.minecraft.world.entity.player.PlayerModelPart, boolean);
+  public boolean isModelPartEnabled(net.minecraft.world.entity.player.PlayerModelPart);
+  public net.minecraft.client.CloudStatus getCloudStatus();
+  public boolean useNativeTransport();
+  public void loadSelectedResourcePacks(net.minecraft.server.packs.repository.PackRepository);
+  public net.minecraft.client.CameraType getCameraType();
+  public void setCameraType(net.minecraft.client.CameraType);
+  public java.io.File getFile();
+  public java.lang.String dumpOptionsForReport();
+  public void setServerRenderDistance(int);
+  public int getEffectiveRenderDistance();
+  public static net.minecraft.network.chat.Component genericValueLabel(net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  public static net.minecraft.network.chat.Component genericValueLabel(net.minecraft.network.chat.Component, int);
+  public static net.minecraft.network.chat.Component genericValueOrOffLabel(net.minecraft.network.chat.Component, int);
+}
+Compiled from "RotatingSectionStorage.java"
+final class net.minecraft.client.RotatingSectionStorage$Node<T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+}
+Compiled from "PreferredGraphicsApi.java"
+public final class net.minecraft.client.PreferredGraphicsApi extends java.lang.Enum<net.minecraft.client.PreferredGraphicsApi> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.PreferredGraphicsApi DEFAULT;
+  public static final net.minecraft.client.PreferredGraphicsApi OPENGL;
+  public static final net.minecraft.client.PreferredGraphicsApi VULKAN;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.PreferredGraphicsApi> CODEC;
+  public static net.minecraft.client.PreferredGraphicsApi[] values();
+  public static net.minecraft.client.PreferredGraphicsApi valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+  public java.lang.String getSerializedName();
+  public com.mojang.renderpearl.api.device.GpuBackend[] getBackendsToTry();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$SliderableOrCyclableValueSet<T> extends net.minecraft.client.OptionInstance$SliderableValueSet<T>, net.minecraft.client.OptionInstance$CycleableValueSet<T> {
+  public abstract boolean createCycleButton();
+  public default java.util.function.Function<net.minecraft.client.OptionInstance<T>, net.minecraft.client.gui.components.AbstractWidget> createButton(net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.Options, int, int, int, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+}
+Compiled from "Minecraft.java"
+public class net.minecraft.client.Minecraft extends net.minecraft.util.thread.ReentrantBlockableEventLoop<java.lang.Runnable> implements com.mojang.blaze3d.platform.WindowEventHandler {
+  public static final net.minecraft.resources.Identifier DEFAULT_FONT;
+  public static final java.lang.String UPDATE_DRIVERS_ADVICE;
+  public final net.minecraft.client.renderer.extract.LevelExtractor levelExtractor;
+  public final net.minecraft.client.renderer.LevelRenderer levelRenderer;
+  public final net.minecraft.client.particle.ParticleEngine particleEngine;
+  public final net.minecraft.client.gui.Font font;
+  public final net.minecraft.client.gui.Font fontFilterFishy;
+  public final net.minecraft.client.renderer.GameRenderer gameRenderer;
+  public final net.minecraft.client.gui.Gui gui;
+  public final net.minecraft.client.Options options;
+  public final net.minecraft.client.gui.components.debug.DebugScreenEntryList debugEntries;
+  public final net.minecraft.client.MouseHandler mouseHandler;
+  public final net.minecraft.client.KeyboardHandler keyboardHandler;
+  public final java.io.File gameDirectory;
+  public net.minecraft.client.multiplayer.MultiPlayerGameMode gameMode;
+  public net.minecraft.client.multiplayer.ClientLevel level;
+  public net.minecraft.client.player.LocalPlayer player;
+  public net.minecraft.world.entity.Entity crosshairPickEntity;
+  public net.minecraft.world.phys.HitResult hitResult;
+  public int missTime;
+  public boolean multiDrawIndirect;
+  public boolean wireframe;
+  public boolean smartCull;
+  public net.minecraft.client.Minecraft(net.minecraft.client.main.GameConfig);
+  public boolean hasShiftDown();
+  public boolean hasControlDown();
+  public boolean hasAltDown();
+  public boolean isGameLoadFinished();
+  public void updateTitle();
+  public boolean isOfflineDeveloperMode();
+  public static net.minecraft.util.ModCheck checkModStatus();
+  public void clearResourcePacksOnError(java.lang.Throwable, net.minecraft.network.chat.Component, net.minecraft.client.GameLoadCookie);
+  public void triggerResourcePackRecovery(java.lang.Exception);
+  public void run();
+  public java.lang.String getLaunchedVersion();
+  public void delayCrash(net.minecraft.CrashReport);
+  public void emergencySaveAndCrash(net.minecraft.CrashReport);
+  public static void saveReport(java.io.File, net.minecraft.CrashReport);
+  public static int saveReport(java.io.File, net.minecraft.CrashReport, int);
+  public static void crash(net.minecraft.client.Minecraft, java.io.File, net.minecraft.CrashReport, int);
+  public static int saveReportAndShutdownSoundManager(net.minecraft.client.Minecraft, java.io.File, net.minecraft.CrashReport, int);
+  public boolean isEnforceUnicode();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> reloadResourcePacks();
+  public net.minecraft.world.level.storage.LevelStorageSource getLevelSource();
+  public void exitWorldAndClose();
+  public void close();
+  public void renderFrame(boolean);
+  public void framebufferSizeChanged();
+  public void resizeGui();
+  public void cursorEntered();
+  public void fullscreenStateChanged(boolean);
+  public int getFps();
+  public long getFrameTimeNs();
+  public void sendLowDiskSpaceWarning();
+  public boolean debugClientMetricsStart(java.util.function.Consumer<net.minecraft.network.chat.Component>);
+  public void stop();
+  public boolean isRunning();
+  public void pauseGame(boolean);
+  public net.minecraft.client.sounds.MusicManager getMusicManager();
+  public void tick();
+  public boolean isMultiplayerServer();
+  public net.minecraft.client.telemetry.ClientTelemetryManager getTelemetryManager();
+  public net.minecraft.util.profiling.metrics.profiling.MetricsRecorder getMetricsRecorder();
+  public double getGpuUtilization();
+  public net.minecraft.client.multiplayer.ProfileKeyPairManager getProfileKeyPairManager();
+  public net.minecraft.client.gui.screens.worldselection.WorldOpenFlows createWorldOpenFlows();
+  public void doWorldLoad(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.packs.repository.PackRepository, net.minecraft.server.WorldStem, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>, boolean);
+  public void setLevel(net.minecraft.client.multiplayer.ClientLevel);
+  public void disconnectFromWorld(net.minecraft.network.chat.Component);
+  public void disconnectWithSavingScreen();
+  public void disconnectWithProgressScreen();
+  public void disconnectWithProgressScreen(boolean);
+  public void disconnect(net.minecraft.client.gui.screens.Screen, boolean);
+  public void disconnect(net.minecraft.client.gui.screens.Screen, boolean, boolean);
+  public void clearDownloadedResourcePacks();
+  public void clearClientLevel(net.minecraft.client.gui.screens.Screen);
+  public void setScreenAndShow(net.minecraft.client.gui.screens.Screen);
+  public boolean telemetryOptInExtra();
+  public boolean extraTelemetryAvailable();
+  public boolean allowsTelemetry();
+  public boolean allowsMultiplayer();
+  public boolean allowsRealms();
+  public boolean friendsEnabled();
+  public boolean handleGlobalKeyPress(com.mojang.blaze3d.platform.InputConstants$Key, boolean);
+  public boolean allowFriendRequests();
+  public boolean allowChatOnlyWithFriend();
+  public com.mojang.authlib.minecraft.BanDetails multiplayerBan();
+  public boolean isNameBanned();
+  public boolean isBlocked(java.util.UUID);
+  public boolean isFriendOnlyRestricted(java.util.UUID);
+  public net.minecraft.client.multiplayer.chat.ChatAbilities computeChatAbilities();
+  public final boolean isDemo();
+  public final boolean canSwitchGameMode();
+  public net.minecraft.client.multiplayer.ClientPacketListener getConnection();
+  public net.minecraft.CrashReport fillReport(net.minecraft.CrashReport);
+  public static void fillReport(net.minecraft.client.Minecraft, net.minecraft.client.resources.language.LanguageManager, java.lang.String, net.minecraft.client.Options, net.minecraft.CrashReport);
+  public static net.minecraft.client.Minecraft getInstance();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> delayTextureReload();
+  public void updateReportEnvironment(net.minecraft.client.multiplayer.chat.report.ReportEnvironment);
+  public net.minecraft.client.multiplayer.ServerData getCurrentServer();
+  public boolean isLocalServer();
+  public boolean hasSingleplayerServer();
+  public net.minecraft.client.server.IntegratedServer getSingleplayerServer();
+  public boolean isLocalPlayer(java.util.UUID);
+  public net.minecraft.client.User getUser();
+  public com.mojang.authlib.services.ProfileResult getProfileResult();
+  public com.mojang.authlib.GameProfile getGameProfile();
+  public java.net.Proxy getProxy();
+  public net.minecraft.client.renderer.texture.TextureManager getTextureManager();
+  public net.minecraft.client.renderer.ShaderManager getShaderManager();
+  public net.minecraft.server.packs.resources.ResourceManager getResourceManager();
+  public net.minecraft.server.packs.repository.PackRepository getResourcePackRepository();
+  public net.minecraft.server.packs.VanillaPackResources getVanillaPackResources();
+  public net.minecraft.client.resources.server.DownloadedPackSource getDownloadedPackSource();
+  public java.nio.file.Path getResourcePackDirectory();
+  public net.minecraft.client.resources.language.LanguageManager getLanguageManager();
+  public boolean isPaused();
+  public net.minecraft.client.renderer.GpuWarnlistManager getGpuWarnlistManager();
+  public net.minecraft.client.sounds.SoundManager getSoundManager();
+  public net.minecraft.sounds.Music getSituationalMusic();
+  public float getMusicVolume();
+  public net.minecraft.server.Services services();
+  public net.minecraft.client.resources.SkinManager getSkinManager();
+  public net.minecraft.world.entity.Entity getCameraEntity();
+  public void setCameraEntity(net.minecraft.world.entity.Entity);
+  public boolean shouldEntityAppearGlowing(net.minecraft.world.entity.Entity);
+  public java.lang.Thread getRunningThread();
+  public java.lang.Runnable wrapRunnable(java.lang.Runnable);
+  protected boolean shouldRun(java.lang.Runnable);
+  public net.minecraft.client.renderer.entity.EntityRenderDispatcher getEntityRenderDispatcher();
+  public net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher getBlockEntityRenderDispatcher();
+  public net.minecraft.client.renderer.MapRenderer getMapRenderer();
+  public com.mojang.datafixers.DataFixer getFixerUpper();
+  public net.minecraft.client.DeltaTracker getDeltaTracker();
+  public net.minecraft.client.color.block.BlockColors getBlockColors();
+  public boolean showOnlyReducedInfo();
+  public net.minecraft.client.tutorial.Tutorial getTutorial();
+  public boolean isWindowActive();
+  public net.minecraft.client.HotbarManager getHotbarManager();
+  public net.minecraft.client.resources.model.ModelManager getModelManager();
+  public net.minecraft.client.resources.model.sprite.AtlasManager getAtlasManager();
+  public net.minecraft.client.resources.palette.PalettedTextureManager getPalettedTextureManager();
+  public net.minecraft.client.resources.MapTextureManager getMapTextureManager();
+  public net.minecraft.network.chat.Component grabPanoramixScreenshot(java.io.File);
+  public net.minecraft.client.gui.screens.social.PlayerSocialManager getPlayerSocialManager();
+  public com.mojang.blaze3d.platform.Window getWindow();
+  public com.mojang.blaze3d.platform.TextInputManager textInputManager();
+  public void onTextInputFocusChange(net.minecraft.client.gui.components.events.GuiEventListener, boolean);
+  public com.mojang.renderpearl.api.device.GpuSurface windowSurface();
+  public com.mojang.blaze3d.platform.FramerateLimitTracker getFramerateLimitTracker();
+  public net.minecraft.client.gui.components.DebugScreenOverlay getDebugOverlay();
+  public void updateMaxMipLevel(int);
+  public net.minecraft.client.model.geom.EntityModelSet getEntityModels();
+  public boolean isTextFilteringEnabled();
+  public void prepareForMultiplayer();
+  public net.minecraft.client.InputType getLastInputType();
+  public void setLastInputType(net.minecraft.client.InputType);
+  public net.minecraft.client.GameNarrator getNarrator();
+  public net.minecraft.client.multiplayer.chat.report.ReportingContext getReportingContext();
+  public com.mojang.realmsclient.gui.RealmsDataFetcher realmsDataFetcher();
+  public net.minecraft.client.quickplay.QuickPlayLog quickPlayLog();
+  public net.minecraft.world.level.validation.DirectoryValidator directoryValidator();
+  public net.minecraft.client.renderer.PlayerSkinRenderCache playerSkinRenderCache();
+  public net.minecraft.client.renderer.item.ItemModelResolver getItemModelResolver();
+  public boolean canInterruptScreen();
+  public void invalidateSurfaceConfiguration();
+  public static java.lang.String getLauncherBrand();
+  public net.minecraft.network.PacketProcessor packetProcessor();
+  public net.minecraft.gizmos.Gizmos$TemporaryCollection collectPerTickGizmos();
+  public java.util.Collection<net.minecraft.gizmos.SimpleGizmoCollector$GizmoInstance> getPerTickGizmos();
+  public void showDebugChat(net.minecraft.network.chat.Component);
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance<T> {
+  public static final net.minecraft.client.OptionInstance$Enum<java.lang.Boolean> BOOLEAN_VALUES;
+  public static final net.minecraft.client.OptionInstance$CaptionBasedToString<java.lang.Boolean> BOOLEAN_TO_STRING;
+  public static final net.minecraft.client.OptionInstance$ValueUpdateListener<java.lang.Object> NO_ACTION;
+  public static net.minecraft.client.OptionInstance<java.lang.Boolean> createBoolean(java.lang.String, boolean, net.minecraft.client.OptionInstance$ValueUpdateListener<? super java.lang.Boolean>);
+  public static net.minecraft.client.OptionInstance<java.lang.Boolean> createBoolean(java.lang.String, boolean);
+  public static net.minecraft.client.OptionInstance<java.lang.Boolean> createBoolean(java.lang.String, net.minecraft.client.OptionInstance$TooltipSupplier<java.lang.Boolean>, boolean);
+  public static net.minecraft.client.OptionInstance<java.lang.Boolean> createBoolean(java.lang.String, net.minecraft.client.OptionInstance$TooltipSupplier<java.lang.Boolean>, boolean, net.minecraft.client.OptionInstance$ValueUpdateListener<? super java.lang.Boolean>);
+  public static net.minecraft.client.OptionInstance<java.lang.Boolean> createBoolean(java.lang.String, net.minecraft.client.OptionInstance$TooltipSupplier<java.lang.Boolean>, net.minecraft.client.OptionInstance$CaptionBasedToString<java.lang.Boolean>, boolean, net.minecraft.client.OptionInstance$ValueUpdateListener<? super java.lang.Boolean>);
+  public net.minecraft.client.OptionInstance(java.lang.String, net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.OptionInstance$CaptionBasedToString<T>, net.minecraft.client.OptionInstance$ValueSet<T>, T, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+  public net.minecraft.client.OptionInstance(java.lang.String, net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.OptionInstance$CaptionBasedToString<T>, net.minecraft.client.OptionInstance$ValueSet<T>, com.mojang.serialization.Codec<T>, T, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+  public static <T> net.minecraft.client.OptionInstance$TooltipSupplier<T> noTooltip();
+  public static <T> net.minecraft.client.OptionInstance$TooltipSupplier<T> cachedConstantTooltip(net.minecraft.network.chat.Component);
+  public net.minecraft.client.gui.components.AbstractWidget createButton(net.minecraft.client.Options);
+  public net.minecraft.client.gui.components.AbstractWidget createButton(net.minecraft.client.Options, int, int, int);
+  public net.minecraft.client.gui.components.AbstractWidget createButton(net.minecraft.client.Options, int, int, int, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+  public T get();
+  public com.mojang.serialization.Codec<T> codec();
+  public java.lang.String toString();
+  public void set(T);
+  public net.minecraft.client.OptionInstance$ValueSet<T> values();
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$AltEnum<T> extends java.lang.Record implements net.minecraft.client.OptionInstance$CycleableValueSet<T> {
+  public net.minecraft.client.OptionInstance$AltEnum(java.util.List<T>, java.util.List<T>, java.util.function.BooleanSupplier, net.minecraft.client.OptionInstance$CycleableValueSet$ValueSetter<T>, com.mojang.serialization.Codec<T>);
+  public net.minecraft.client.gui.components.CycleButton$ValueListSupplier<T> valueListSupplier();
+  public java.util.Optional<T> validateValue(T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<T> values();
+  public java.util.List<T> altValues();
+  public java.util.function.BooleanSupplier altCondition();
+  public net.minecraft.client.OptionInstance$CycleableValueSet$ValueSetter<T> valueSetter();
+  public com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "RotatingSectionStorage.java"
+public interface net.minecraft.client.RotatingSectionStorage$ValueCreator<T extends net.minecraft.client.RotatingSectionStorage$Value> {
+  public abstract T createValue(int, long);
+}
+Compiled from "GameNarrator.java"
+public class net.minecraft.client.GameNarrator$NarratorInitException extends net.minecraft.client.main.SilentInitException {
+  public net.minecraft.client.GameNarrator$NarratorInitException(java.lang.String);
+}
+Compiled from "ClientBrandRetriever.java"
+public class net.minecraft.client.ClientBrandRetriever {
+  public static final java.lang.String VANILLA_NAME;
+  public net.minecraft.client.ClientBrandRetriever();
+  public static java.lang.String getClientModName();
+}
+Compiled from "User.java"
+public class net.minecraft.client.User {
+  public net.minecraft.client.User(java.lang.String, java.util.UUID, java.lang.String, java.util.Optional<java.lang.String>, java.util.Optional<java.lang.String>);
+  public java.lang.String getSessionId();
+  public java.util.UUID getProfileId();
+  public java.lang.String getName();
+  public java.lang.String getAccessToken();
+  public java.util.Optional<java.lang.String> getClientId();
+  public java.util.Optional<java.lang.String> getXuid();
+}
+Compiled from "RotatingSectionStorage.java"
+public class net.minecraft.client.RotatingSectionStorage<T extends net.minecraft.client.RotatingSectionStorage$Value> implements java.lang.Iterable<T> {
+  public net.minecraft.client.RotatingSectionStorage(int, int, int, net.minecraft.client.RotatingSectionStorage$ValueCreator<T>);
+  public boolean repositionCenter(net.minecraft.core.SectionPos);
+  public int radius();
+  public int minY();
+  public int maxY();
+  public int height();
+  public net.minecraft.core.SectionPos centerSectionPos();
+  public T getValueAt(net.minecraft.core.BlockPos);
+  public T getValue(long);
+  public T getValue(int, int, int);
+  public java.util.Iterator<T> iterator();
+  public void forEach(java.util.function.Consumer<? super T>);
+  public java.util.Spliterator<T> spliterator();
+  public int size();
+}
+Compiled from "NarratorStatus.java"
+public final class net.minecraft.client.NarratorStatus extends java.lang.Enum<net.minecraft.client.NarratorStatus> {
+  public static final net.minecraft.client.NarratorStatus OFF;
+  public static final net.minecraft.client.NarratorStatus ALL;
+  public static final net.minecraft.client.NarratorStatus CHAT;
+  public static final net.minecraft.client.NarratorStatus SYSTEM;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.NarratorStatus> LEGACY_CODEC;
+  public static net.minecraft.client.NarratorStatus[] values();
+  public static net.minecraft.client.NarratorStatus valueOf(java.lang.String);
+  public int getId();
+  public net.minecraft.network.chat.Component getName();
+  public static net.minecraft.client.NarratorStatus byId(int);
+  public boolean shouldNarrateChat();
+  public boolean shouldNarrateSystem();
+  public boolean shouldNarrateSystemOrChat();
+}
+Compiled from "PrioritizeChunkUpdates.java"
+public final class net.minecraft.client.PrioritizeChunkUpdates extends java.lang.Enum<net.minecraft.client.PrioritizeChunkUpdates> {
+  public static final net.minecraft.client.PrioritizeChunkUpdates NONE;
+  public static final net.minecraft.client.PrioritizeChunkUpdates PLAYER_AFFECTED;
+  public static final net.minecraft.client.PrioritizeChunkUpdates NEARBY;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.PrioritizeChunkUpdates> LEGACY_CODEC;
+  public static net.minecraft.client.PrioritizeChunkUpdates[] values();
+  public static net.minecraft.client.PrioritizeChunkUpdates valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+}
+Compiled from "MouseHandler.java"
+final class net.minecraft.client.MouseHandler$LastClick extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long time();
+  public net.minecraft.client.gui.screens.Screen screen();
+}
+Compiled from "InactivityFpsLimit.java"
+public final class net.minecraft.client.InactivityFpsLimit extends java.lang.Enum<net.minecraft.client.InactivityFpsLimit> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.InactivityFpsLimit MINIMIZED;
+  public static final net.minecraft.client.InactivityFpsLimit AFK;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.InactivityFpsLimit> CODEC;
+  public static net.minecraft.client.InactivityFpsLimit[] values();
+  public static net.minecraft.client.InactivityFpsLimit valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+  public java.lang.String getSerializedName();
+}
+Compiled from "GameNarrator.java"
+public class net.minecraft.client.GameNarrator {
+  public static final net.minecraft.network.chat.Component NO_TITLE;
+  public net.minecraft.client.GameNarrator(net.minecraft.client.Minecraft);
+  public void sayChatQueued(net.minecraft.network.chat.Component);
+  public void saySystemChatQueued(net.minecraft.network.chat.Component);
+  public void saySystemQueued(net.minecraft.network.chat.Component);
+  public void saySystemNow(net.minecraft.network.chat.Component);
+  public void saySystemNow(java.lang.String);
+  public void updateNarratorStatus(net.minecraft.client.NarratorStatus);
+  public boolean isActive();
+  public void clear();
+  public void destroy();
+  public void checkStatus(boolean);
+}
+Compiled from "ScrollWheelHandler.java"
+public class net.minecraft.client.ScrollWheelHandler {
+  public net.minecraft.client.ScrollWheelHandler();
+  public org.joml.Vector2i onMouseScroll(double, double);
+  public static int getNextScrollWheelSelection(double, int, int);
+}
+Compiled from "Camera.java"
+public class net.minecraft.client.Camera implements net.minecraft.world.waypoints.TrackedWaypoint$Camera {
+  public static final float PROJECTION_Z_NEAR;
+  public static final float BASE_HUD_FOV;
+  public net.minecraft.client.Camera();
+  public void tick();
+  public void update(net.minecraft.client.DeltaTracker);
+  public float getCameraEntityPartialTicks(net.minecraft.client.DeltaTracker);
+  public void extractRenderState(net.minecraft.client.renderer.state.level.CameraRenderState, net.minecraft.client.DeltaTracker);
+  public net.minecraft.client.renderer.culling.Frustum getCullFrustum();
+  public net.minecraft.client.renderer.culling.Frustum getCapturedFrustum();
+  public void captureFrustum();
+  public void killFrustum();
+  public boolean isPanoramicMode();
+  public float getFov();
+  protected void move(float, float, float);
+  protected void setRotation(float, float);
+  protected void setPosition(double, double, double);
+  protected void setPosition(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 position();
+  public net.minecraft.core.BlockPos blockPosition();
+  public float xRot();
+  public float yRot();
+  public float yaw();
+  public org.joml.Quaternionf rotation();
+  public org.joml.Matrix4f getViewRotationMatrix(org.joml.Matrix4f);
+  public org.joml.Matrix4f getViewRotationProjectionMatrix(org.joml.Matrix4f);
+  public net.minecraft.world.entity.Entity entity();
+  public void setEntity(net.minecraft.world.entity.Entity);
+  public boolean isInitialized();
+  public boolean isDetached();
+  public net.minecraft.world.attribute.EnvironmentAttributeProbe attributeProbe();
+  public net.minecraft.client.Camera$NearPlane getNearPlane(float);
+  public net.minecraft.world.level.material.FogType getFluidInCamera();
+  public org.joml.Vector3fc forwardVector();
+  public org.joml.Vector3fc panoramicForwards();
+  public org.joml.Vector3fc upVector();
+  public org.joml.Vector3fc leftVector();
+  public void reset();
+  public void setLevel(net.minecraft.client.multiplayer.ClientLevel);
+  public void enablePanoramicMode();
+  public void disablePanoramicMode();
+}
+Compiled from "FramerateLimiter.java"
+public class net.minecraft.client.FramerateLimiter {
+  public net.minecraft.client.FramerateLimiter();
+  public static void limitDisplayFPS(int);
+}
+Compiled from "TextureFilteringMethod.java"
+public final class net.minecraft.client.TextureFilteringMethod extends java.lang.Enum<net.minecraft.client.TextureFilteringMethod> {
+  public static final net.minecraft.client.TextureFilteringMethod NONE;
+  public static final net.minecraft.client.TextureFilteringMethod RGSS;
+  public static final net.minecraft.client.TextureFilteringMethod ANISOTROPIC;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.TextureFilteringMethod> LEGACY_CODEC;
+  public static net.minecraft.client.TextureFilteringMethod[] values();
+  public static net.minecraft.client.TextureFilteringMethod valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+}
+Compiled from "GameLoadCookie.java"
+public final class net.minecraft.client.GameLoadCookie extends java.lang.Record {
+  public net.minecraft.client.GameLoadCookie(com.mojang.realmsclient.client.RealmsClient, net.minecraft.client.main.GameConfig$QuickPlayData);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.realmsclient.client.RealmsClient realmsClient();
+  public net.minecraft.client.main.GameConfig$QuickPlayData quickPlayData();
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$ValueSet<T> {
+  public abstract java.util.function.Function<net.minecraft.client.OptionInstance<T>, net.minecraft.client.gui.components.AbstractWidget> createButton(net.minecraft.client.OptionInstance$TooltipSupplier<T>, net.minecraft.client.Options, int, int, int, net.minecraft.client.OptionInstance$ValueUpdateListener<? super T>);
+  public abstract java.util.Optional<T> validateValue(T);
+  public abstract com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "Options.java"
+interface net.minecraft.client.Options$OptionAccess {
+  public abstract <T> void process(java.lang.String, net.minecraft.client.OptionInstance<T>);
+}
+Compiled from "ResourceLoadStateTracker.java"
+class net.minecraft.client.ResourceLoadStateTracker$ReloadState {
+  public void fillCrashInfo(net.minecraft.CrashReportCategory);
+}
+Compiled from "MusicToastDisplayState.java"
+public final class net.minecraft.client.MusicToastDisplayState extends java.lang.Enum<net.minecraft.client.MusicToastDisplayState> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.MusicToastDisplayState NEVER;
+  public static final net.minecraft.client.MusicToastDisplayState PAUSE;
+  public static final net.minecraft.client.MusicToastDisplayState PAUSE_AND_TOAST;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.MusicToastDisplayState> CODEC;
+  public static net.minecraft.client.MusicToastDisplayState[] values();
+  public static net.minecraft.client.MusicToastDisplayState valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component text();
+  public net.minecraft.network.chat.Component tooltip();
+  public java.lang.String getSerializedName();
+  public boolean renderInPauseScreen();
+  public boolean renderToast();
+}
+Compiled from "ResourceLoadStateTracker.java"
+public final class net.minecraft.client.ResourceLoadStateTracker$ReloadReason extends java.lang.Enum<net.minecraft.client.ResourceLoadStateTracker$ReloadReason> {
+  public static final net.minecraft.client.ResourceLoadStateTracker$ReloadReason INITIAL;
+  public static final net.minecraft.client.ResourceLoadStateTracker$ReloadReason MANUAL;
+  public static final net.minecraft.client.ResourceLoadStateTracker$ReloadReason UNKNOWN;
+  public static net.minecraft.client.ResourceLoadStateTracker$ReloadReason[] values();
+  public static net.minecraft.client.ResourceLoadStateTracker$ReloadReason valueOf(java.lang.String);
+}
+Compiled from "ResourceLoadStateTracker.java"
+public class net.minecraft.client.ResourceLoadStateTracker {
+  public net.minecraft.client.ResourceLoadStateTracker();
+  public void startReload(net.minecraft.client.ResourceLoadStateTracker$ReloadReason, java.util.List<net.minecraft.server.packs.PackResources>);
+  public void startRecovery(java.lang.Throwable);
+  public void finishReload();
+  public void fillCrashReport(net.minecraft.CrashReport);
+}
+Compiled from "PresenceSharing.java"
+public final class net.minecraft.client.PresenceSharing extends java.lang.Enum<net.minecraft.client.PresenceSharing> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.PresenceSharing NONE;
+  public static final net.minecraft.client.PresenceSharing LIMITED;
+  public static final net.minecraft.client.PresenceSharing ALL;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.PresenceSharing> CODEC;
+  public static final java.lang.String TRANSLATION_KEY_BASE;
+  public static net.minecraft.client.PresenceSharing[] values();
+  public static net.minecraft.client.PresenceSharing valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public net.minecraft.network.chat.Component getTranslation();
+  public net.minecraft.network.chat.Component getTooltip();
+}
+Compiled from "StringSplitter.java"
+class net.minecraft.client.StringSplitter$LineBreakFinder implements net.minecraft.util.FormattedCharSink {
+  public net.minecraft.client.StringSplitter$LineBreakFinder(net.minecraft.client.StringSplitter, float);
+  public boolean accept(int, net.minecraft.network.chat.Style, int);
+  public int getSplitPosition();
+  public net.minecraft.network.chat.Style getSplitStyle();
+  public void addToOffset(int);
+}
+Compiled from "KeyMapping.java"
+public final class net.minecraft.client.KeyMapping$Category extends java.lang.Record {
+  public static final net.minecraft.client.KeyMapping$Category MOVEMENT;
+  public static final net.minecraft.client.KeyMapping$Category MISC;
+  public static final net.minecraft.client.KeyMapping$Category MULTIPLAYER;
+  public static final net.minecraft.client.KeyMapping$Category GAMEPLAY;
+  public static final net.minecraft.client.KeyMapping$Category INVENTORY;
+  public static final net.minecraft.client.KeyMapping$Category CREATIVE;
+  public static final net.minecraft.client.KeyMapping$Category SPECTATOR;
+  public static final net.minecraft.client.KeyMapping$Category DEBUG;
+  public net.minecraft.client.KeyMapping$Category(net.minecraft.resources.Identifier);
+  public static net.minecraft.client.KeyMapping$Category register(net.minecraft.resources.Identifier);
+  public net.minecraft.network.chat.Component label();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+}
+Compiled from "StringSplitter.java"
+class net.minecraft.client.StringSplitter$FlatComponents {
+  public net.minecraft.client.StringSplitter$FlatComponents(java.util.List<net.minecraft.client.StringSplitter$LineComponent>);
+  public char charAt(int);
+  public net.minecraft.network.chat.FormattedText splitAt(int, int, net.minecraft.network.chat.Style);
+  public net.minecraft.network.chat.FormattedText getRemainder();
+}
+Compiled from "ResourceLoadStateTracker.java"
+class net.minecraft.client.ResourceLoadStateTracker$RecoveryInfo {
+  public void fillCrashInfo(net.minecraft.CrashReportCategory);
+}
+Compiled from "StringSplitter.java"
+class net.minecraft.client.StringSplitter$WidthLimitedCharSink implements net.minecraft.util.FormattedCharSink {
+  public net.minecraft.client.StringSplitter$WidthLimitedCharSink(net.minecraft.client.StringSplitter, float);
+  public boolean accept(int, net.minecraft.network.chat.Style, int);
+  public int getPosition();
+  public void resetPosition();
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$UnitDouble extends java.lang.Enum<net.minecraft.client.OptionInstance$UnitDouble> implements net.minecraft.client.OptionInstance$SliderableValueSet<java.lang.Double> {
+  public static final net.minecraft.client.OptionInstance$UnitDouble INSTANCE;
+  public static net.minecraft.client.OptionInstance$UnitDouble[] values();
+  public static net.minecraft.client.OptionInstance$UnitDouble valueOf(java.lang.String);
+  public java.util.Optional<java.lang.Double> validateValue(java.lang.Double);
+  public double toSliderValue(java.lang.Double);
+  public java.lang.Double fromSliderValue(double);
+  public <R> net.minecraft.client.OptionInstance$SliderableValueSet<R> xmap(java.util.function.DoubleFunction<? extends R>, java.util.function.ToDoubleFunction<? super R>);
+  public com.mojang.serialization.Codec<java.lang.Double> codec();
+  public java.lang.Object fromSliderValue(double);
+  public double toSliderValue(java.lang.Object);
+  public java.util.Optional validateValue(java.lang.Object);
+}
+Compiled from "PeriodicNotificationManager.java"
+public class net.minecraft.client.PeriodicNotificationManager extends net.minecraft.server.packs.resources.SimplePreparableReloadListener<java.util.Map<java.lang.String, java.util.List<net.minecraft.client.PeriodicNotificationManager$Notification>>> implements java.lang.AutoCloseable {
+  public net.minecraft.client.PeriodicNotificationManager(net.minecraft.resources.Identifier, it.unimi.dsi.fastutil.objects.Object2BooleanFunction<java.lang.String>);
+  protected java.util.Map<java.lang.String, java.util.List<net.minecraft.client.PeriodicNotificationManager$Notification>> prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected void apply(java.util.Map<java.lang.String, java.util.List<net.minecraft.client.PeriodicNotificationManager$Notification>>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  public void close();
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected java.lang.Object prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "SectionUpdateTracker.java"
+public class net.minecraft.client.SectionUpdateTracker {
+  public net.minecraft.client.SectionUpdateTracker(net.minecraft.world.level.LevelHeightAccessor, int);
+  public void setDirty(int, int, int, boolean);
+  public void repositionCamera(net.minecraft.core.SectionPos);
+  public int size();
+  public net.minecraft.client.SectionUpdateTracker$SectionDirtyState getDirtyState(long);
+  public boolean hasAllNeighbors(net.minecraft.client.multiplayer.ClientLevel, long);
+}
+Compiled from "CameraType.java"
+public final class net.minecraft.client.CameraType extends java.lang.Enum<net.minecraft.client.CameraType> {
+  public static final net.minecraft.client.CameraType FIRST_PERSON;
+  public static final net.minecraft.client.CameraType THIRD_PERSON_BACK;
+  public static final net.minecraft.client.CameraType THIRD_PERSON_FRONT;
+  public static net.minecraft.client.CameraType[] values();
+  public static net.minecraft.client.CameraType valueOf(java.lang.String);
+  public boolean isFirstPerson();
+  public boolean isMirrored();
+  public net.minecraft.client.CameraType cycle();
+}
+Compiled from "OptionInstance.java"
+public final class net.minecraft.client.OptionInstance$IntRange extends java.lang.Record implements net.minecraft.client.OptionInstance$IntRangeBase {
+  public net.minecraft.client.OptionInstance$IntRange(int, int);
+  public net.minecraft.client.OptionInstance$IntRange(int, int, boolean);
+  public java.util.Optional<java.lang.Integer> validateValue(java.lang.Integer);
+  public com.mojang.serialization.Codec<java.lang.Integer> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int minInclusive();
+  public int maxInclusive();
+  public boolean applyValueImmediately();
+  public java.util.Optional validateValue(java.lang.Object);
+}
+Compiled from "ClientBootstrap.java"
+public class net.minecraft.client.ClientBootstrap {
+  public net.minecraft.client.ClientBootstrap();
+  public static void bootstrap();
+}
+Compiled from "ClientRecipeBook.java"
+public class net.minecraft.client.ClientRecipeBook extends net.minecraft.stats.RecipeBook {
+  public net.minecraft.client.ClientRecipeBook();
+  public void add(net.minecraft.world.item.crafting.display.RecipeDisplayEntry);
+  public void remove(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public void clear();
+  public boolean willHighlight(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public void removeHighlight(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public void addHighlight(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public void rebuildCollections();
+  public java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> getCollections();
+  public java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection> getCollection(net.minecraft.world.item.crafting.ExtendedRecipeBookCategory);
+}
+Compiled from "OptionInstance.java"
+public interface net.minecraft.client.OptionInstance$ValueUpdateListener<T> {
+  public abstract void valueChanged(T);
+}

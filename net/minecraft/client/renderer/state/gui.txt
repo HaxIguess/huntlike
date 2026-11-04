@@ -1,0 +1,169 @@
+Compiled from "ScreenArea.java"
+public interface net.minecraft.client.renderer.state.gui.ScreenArea {
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "PanoramaRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.PanoramaRenderState extends java.lang.Record implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.client.renderer.state.gui.PanoramaRenderState(float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float spin();
+}
+Compiled from "GlyphRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.GlyphRenderState extends java.lang.Record implements net.minecraft.client.renderer.state.gui.GuiElementRenderState {
+  public net.minecraft.client.renderer.state.gui.GlyphRenderState(org.joml.Matrix3x2fc, net.minecraft.client.gui.font.TextRenderable, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void buildVertices(com.mojang.blaze3d.vertex.VertexConsumer);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline();
+  public net.minecraft.client.gui.render.TextureSetup textureSetup();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.joml.Matrix3x2fc pose();
+  public net.minecraft.client.gui.font.TextRenderable renderable();
+  public net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+}
+Compiled from "GuiRenderState.java"
+class net.minecraft.client.renderer.state.gui.GuiRenderState$Node {
+  public final net.minecraft.client.renderer.state.gui.GuiRenderState$Node parent;
+  public net.minecraft.client.renderer.state.gui.GuiRenderState$Node up;
+  public java.util.List<net.minecraft.client.renderer.state.gui.GuiElementRenderState> elementStates;
+  public java.util.List<net.minecraft.client.renderer.state.gui.GuiElementRenderState> glyphStates;
+  public java.util.List<net.minecraft.client.renderer.state.gui.GuiItemRenderState> itemStates;
+  public java.util.List<net.minecraft.client.renderer.state.gui.GuiTextRenderState> textStates;
+  public java.util.List<net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState> picturesInPictureStates;
+  public void addItem(net.minecraft.client.renderer.state.gui.GuiItemRenderState);
+  public void addText(net.minecraft.client.renderer.state.gui.GuiTextRenderState);
+  public void addPicturesInPictureState(net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState);
+  public void addGuiElement(net.minecraft.client.renderer.state.gui.GuiElementRenderState);
+  public void addGlyph(net.minecraft.client.renderer.state.gui.GuiElementRenderState);
+}
+Compiled from "GuiElementRenderState.java"
+public interface net.minecraft.client.renderer.state.gui.GuiElementRenderState extends net.minecraft.client.renderer.state.gui.ScreenArea {
+  public abstract void buildVertices(com.mojang.blaze3d.vertex.VertexConsumer);
+  public abstract com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline();
+  public abstract net.minecraft.client.gui.render.TextureSetup textureSetup();
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.state.gui.package-info {
+}
+Compiled from "GuiRenderState.java"
+public class net.minecraft.client.renderer.state.gui.GuiRenderState implements net.fabricmc.fabric.api.client.rendering.v1.FabricRenderState {
+  public net.minecraft.client.renderer.state.gui.PanoramaRenderState panoramaRenderState;
+  public org.joml.Vector4f clearColorOverride;
+  public boolean isHudHidden;
+  public net.minecraft.client.renderer.state.gui.GuiRenderState();
+  public void nextStratum();
+  public void blurBeforeThisStratum();
+  public void up();
+  public void addItem(net.minecraft.client.renderer.state.gui.GuiItemRenderState);
+  public void addText(net.minecraft.client.renderer.state.gui.GuiTextRenderState);
+  public void addPicturesInPictureState(net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState);
+  public void addGuiElement(net.minecraft.client.renderer.state.gui.GuiElementRenderState);
+  public void addBlitToCurrentLayer(net.minecraft.client.renderer.state.gui.BlitRenderState);
+  public void addGlyphToCurrentLayer(net.minecraft.client.renderer.state.gui.GuiElementRenderState);
+  public java.util.Set<java.lang.Object> getItemModelIdentities();
+  public void forEachElement(java.util.function.Consumer<net.minecraft.client.renderer.state.gui.GuiElementRenderState>, net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange);
+  public void forEachItem(java.util.function.Consumer<net.minecraft.client.renderer.state.gui.GuiItemRenderState>);
+  public void forEachText(java.util.function.Consumer<net.minecraft.client.renderer.state.gui.GuiTextRenderState>);
+  public void forEachPictureInPicture(java.util.function.Consumer<net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState>);
+  public void sortElements(java.util.Comparator<net.minecraft.client.renderer.state.gui.GuiElementRenderState>);
+  public void reset();
+}
+Compiled from "GuiItemRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.GuiItemRenderState implements net.minecraft.client.renderer.state.gui.ScreenArea {
+  public net.minecraft.client.renderer.state.gui.GuiItemRenderState(org.joml.Matrix3x2f, net.minecraft.client.renderer.item.TrackingItemStackRenderState, int, int, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public org.joml.Matrix3x2f pose();
+  public net.minecraft.client.renderer.item.TrackingItemStackRenderState itemStackRenderState();
+  public int x();
+  public int y();
+  public net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+  public net.minecraft.client.gui.navigation.ScreenRectangle oversizedItemBounds();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "GuiTextRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.GuiTextRenderState implements net.minecraft.client.renderer.state.gui.ScreenArea {
+  public final org.joml.Matrix3x2fc pose;
+  public final net.minecraft.client.gui.navigation.ScreenRectangle scissor;
+  public net.minecraft.client.renderer.state.gui.GuiTextRenderState(net.minecraft.client.gui.Font, net.minecraft.util.FormattedCharSequence, org.joml.Matrix3x2fc, int, int, int, int, boolean, boolean, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.Font$PreparedText ensurePrepared();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "BlitRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.BlitRenderState extends java.lang.Record implements net.minecraft.client.renderer.state.gui.GuiElementRenderState {
+  public net.minecraft.client.renderer.state.gui.BlitRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2f, int, int, int, int, float, float, float, float, int, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.renderer.state.gui.BlitRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2fc, int, int, int, int, float, float, float, float, int, net.minecraft.client.gui.navigation.ScreenRectangle, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void buildVertices(com.mojang.blaze3d.vertex.VertexConsumer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline();
+  public net.minecraft.client.gui.render.TextureSetup textureSetup();
+  public org.joml.Matrix3x2fc pose();
+  public int x0();
+  public int y0();
+  public int x1();
+  public int y1();
+  public float u0();
+  public float u1();
+  public float v0();
+  public float v1();
+  public int color();
+  public net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "TiledBlitRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.TiledBlitRenderState extends java.lang.Record implements net.minecraft.client.renderer.state.gui.GuiElementRenderState {
+  public net.minecraft.client.renderer.state.gui.TiledBlitRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2f, int, int, int, int, int, int, float, float, float, float, int, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.renderer.state.gui.TiledBlitRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2f, int, int, int, int, int, int, float, float, float, float, int, net.minecraft.client.gui.navigation.ScreenRectangle, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void buildVertices(com.mojang.blaze3d.vertex.VertexConsumer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline();
+  public net.minecraft.client.gui.render.TextureSetup textureSetup();
+  public org.joml.Matrix3x2f pose();
+  public int tileWidth();
+  public int tileHeight();
+  public int x0();
+  public int y0();
+  public int x1();
+  public int y1();
+  public float u0();
+  public float u1();
+  public float v0();
+  public float v1();
+  public int color();
+  public net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "ColoredRectangleRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.ColoredRectangleRenderState extends java.lang.Record implements net.minecraft.client.renderer.state.gui.GuiElementRenderState {
+  public net.minecraft.client.renderer.state.gui.ColoredRectangleRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2fc, int, int, int, int, int, int, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.renderer.state.gui.ColoredRectangleRenderState(com.mojang.renderpearl.api.pipeline.RenderPipeline, net.minecraft.client.gui.render.TextureSetup, org.joml.Matrix3x2fc, int, int, int, int, int, int, net.minecraft.client.gui.navigation.ScreenRectangle, net.minecraft.client.gui.navigation.ScreenRectangle);
+  public void buildVertices(com.mojang.blaze3d.vertex.VertexConsumer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline pipeline();
+  public net.minecraft.client.gui.render.TextureSetup textureSetup();
+  public org.joml.Matrix3x2fc pose();
+  public int x0();
+  public int y0();
+  public int x1();
+  public int y1();
+  public int col1();
+  public int col2();
+  public net.minecraft.client.gui.navigation.ScreenRectangle scissorArea();
+  public net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+}
+Compiled from "GuiRenderState.java"
+public final class net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange extends java.lang.Enum<net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange> {
+  public static final net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange ALL;
+  public static final net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange BEFORE_BLUR;
+  public static final net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange AFTER_BLUR;
+  public static net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange[] values();
+  public static net.minecraft.client.renderer.state.gui.GuiRenderState$TraverseRange valueOf(java.lang.String);
+}

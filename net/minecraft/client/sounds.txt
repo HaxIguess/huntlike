@@ -1,0 +1,223 @@
+Compiled from "SoundPreviewHandler.java"
+public final class net.minecraft.client.sounds.SoundPreviewHandler {
+  public net.minecraft.client.sounds.SoundPreviewHandler();
+  public static void preview(net.minecraft.client.sounds.SoundManager, net.minecraft.sounds.SoundSource, float);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.sounds.package-info {
+}
+Compiled from "SoundEventListener.java"
+public interface net.minecraft.client.sounds.SoundEventListener {
+  public abstract void onPlaySound(net.minecraft.client.resources.sounds.SoundInstance, net.minecraft.client.sounds.WeighedSoundEvents, float);
+}
+Compiled from "SoundEngine.java"
+public class net.minecraft.client.sounds.SoundEngine {
+  public static final java.lang.String MISSING_SOUND;
+  public static final int LOOPING_SOUND_SUBTITLE_INTERVAL_TICKS;
+  public static final java.lang.String OPEN_AL_SOFT_PREFIX;
+  public static final int OPEN_AL_SOFT_PREFIX_LENGTH;
+  public net.minecraft.client.sounds.SoundEngine(net.minecraft.client.sounds.SoundManager, net.minecraft.client.Options, net.minecraft.server.packs.resources.ResourceProvider);
+  public void reload();
+  public void refreshCategoryVolume(net.minecraft.sounds.SoundSource);
+  public void destroy();
+  public void emergencyShutdown();
+  public void stop(net.minecraft.client.resources.sounds.SoundInstance);
+  public void updateCategoryVolume(net.minecraft.sounds.SoundSource, float);
+  public void stopAll();
+  public void addEventListener(net.minecraft.client.sounds.SoundEventListener);
+  public void removeEventListener(net.minecraft.client.sounds.SoundEventListener);
+  public void tick(boolean);
+  public boolean isActive(net.minecraft.client.resources.sounds.SoundInstance);
+  public net.minecraft.client.sounds.SoundEngine$PlayResult play(net.minecraft.client.resources.sounds.SoundInstance);
+  public void queueTickingSound(net.minecraft.client.resources.sounds.TickableSoundInstance);
+  public void requestPreload(net.minecraft.client.resources.sounds.Sound);
+  public void pauseAllExcept(net.minecraft.sounds.SoundSource...);
+  public void resume();
+  public void playDelayed(net.minecraft.client.resources.sounds.SoundInstance, int);
+  public void updateSource(net.minecraft.client.Camera);
+  public void stop(net.minecraft.resources.Identifier, net.minecraft.sounds.SoundSource);
+  public java.lang.String getChannelDebugString();
+  public void getSoundCacheDebugStats(net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput);
+  public java.util.List<java.lang.String> getAvailableSoundDevices();
+  public com.mojang.blaze3d.audio.ListenerTransform getListenerTransform();
+}
+Compiled from "ChunkedSampleByteBuf.java"
+public class net.minecraft.client.sounds.ChunkedSampleByteBuf implements it.unimi.dsi.fastutil.floats.FloatConsumer {
+  public net.minecraft.client.sounds.ChunkedSampleByteBuf(int);
+  public void accept(float);
+  public java.nio.ByteBuffer get();
+  public int size();
+}
+Compiled from "JOrbisAudioStream.java"
+public class net.minecraft.client.sounds.JOrbisAudioStream implements net.minecraft.client.sounds.FloatSampleSource {
+  public net.minecraft.client.sounds.JOrbisAudioStream(java.io.InputStream) throws java.io.IOException;
+  public javax.sound.sampled.AudioFormat getFormat();
+  public boolean readChunk(it.unimi.dsi.fastutil.floats.FloatConsumer) throws java.io.IOException;
+  public void close() throws java.io.IOException;
+}
+Compiled from "AudioStream.java"
+public interface net.minecraft.client.sounds.AudioStream extends java.io.Closeable {
+  public abstract javax.sound.sampled.AudioFormat getFormat();
+  public abstract java.nio.ByteBuffer read(int) throws java.io.IOException;
+}
+Compiled from "LoopingAudioStream.java"
+class net.minecraft.client.sounds.LoopingAudioStream$NoCloseBuffer extends java.io.FilterInputStream {
+  public void close();
+}
+Compiled from "FiniteAudioStream.java"
+public interface net.minecraft.client.sounds.FiniteAudioStream extends net.minecraft.client.sounds.AudioStream {
+  public abstract java.nio.ByteBuffer readAll() throws java.io.IOException;
+}
+Compiled from "Weighted.java"
+public interface net.minecraft.client.sounds.Weighted<T> {
+  public abstract int getWeight();
+  public abstract T getSound(net.minecraft.util.RandomSource);
+  public abstract void preloadIfRequired(net.minecraft.client.sounds.SoundEngine);
+}
+Compiled from "SoundEngine.java"
+public final class net.minecraft.client.sounds.SoundEngine$PlayResult extends java.lang.Enum<net.minecraft.client.sounds.SoundEngine$PlayResult> {
+  public static final net.minecraft.client.sounds.SoundEngine$PlayResult STARTED;
+  public static final net.minecraft.client.sounds.SoundEngine$PlayResult STARTED_SILENTLY;
+  public static final net.minecraft.client.sounds.SoundEngine$PlayResult NOT_STARTED;
+  public static net.minecraft.client.sounds.SoundEngine$PlayResult[] values();
+  public static net.minecraft.client.sounds.SoundEngine$PlayResult valueOf(java.lang.String);
+}
+Compiled from "LoopingAudioStream.java"
+public class net.minecraft.client.sounds.LoopingAudioStream implements net.minecraft.client.sounds.AudioStream {
+  public net.minecraft.client.sounds.LoopingAudioStream(net.minecraft.client.sounds.LoopingAudioStream$AudioStreamProvider, java.io.InputStream) throws java.io.IOException;
+  public javax.sound.sampled.AudioFormat getFormat();
+  public java.nio.ByteBuffer read(int) throws java.io.IOException;
+  public void close() throws java.io.IOException;
+}
+Compiled from "SoundBufferLibrary.java"
+public interface net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput {
+  public abstract void accountBuffer(net.minecraft.resources.Identifier, int, javax.sound.sampled.AudioFormat);
+}
+Compiled from "SoundBufferLibrary.java"
+public class net.minecraft.client.sounds.SoundBufferLibrary {
+  public net.minecraft.client.sounds.SoundBufferLibrary(net.minecraft.server.packs.resources.ResourceProvider);
+  public java.util.concurrent.CompletableFuture<com.mojang.blaze3d.audio.SoundBuffer> getCompleteBuffer(net.minecraft.resources.Identifier);
+  public java.util.concurrent.CompletableFuture<net.minecraft.client.sounds.AudioStream> getStream(net.minecraft.resources.Identifier, boolean);
+  public void clear();
+  public java.util.concurrent.CompletableFuture<?> preload(java.util.Collection<net.minecraft.client.resources.sounds.Sound>);
+  public void enumerate(net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput);
+}
+Compiled from "LoopingAudioStream.java"
+public interface net.minecraft.client.sounds.LoopingAudioStream$AudioStreamProvider {
+  public abstract net.minecraft.client.sounds.AudioStream create(java.io.InputStream) throws java.io.IOException;
+}
+Compiled from "SoundManager.java"
+public class net.minecraft.client.sounds.SoundManager$Preparations {
+  protected net.minecraft.client.sounds.SoundManager$Preparations();
+  public void apply(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.sounds.WeighedSoundEvents>, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource>, net.minecraft.client.sounds.SoundEngine);
+}
+Compiled from "SoundEngineExecutor.java"
+public class net.minecraft.client.sounds.SoundEngineExecutor extends net.minecraft.util.thread.BlockableEventLoop<java.lang.Runnable> {
+  public net.minecraft.client.sounds.SoundEngineExecutor();
+  public java.lang.Runnable wrapRunnable(java.lang.Runnable);
+  public void schedule(java.lang.Runnable);
+  protected boolean shouldRun(java.lang.Runnable);
+  protected java.lang.Thread getRunningThread();
+  protected void waitForTasks();
+  public void shutDown();
+  public void startUp();
+}
+Compiled from "FloatSampleSource.java"
+public interface net.minecraft.client.sounds.FloatSampleSource extends net.minecraft.client.sounds.FiniteAudioStream {
+  public static final int EXPECTED_MAX_FRAME_SIZE;
+  public abstract boolean readChunk(it.unimi.dsi.fastutil.floats.FloatConsumer) throws java.io.IOException;
+  public default java.nio.ByteBuffer read(int) throws java.io.IOException;
+  public default java.nio.ByteBuffer readAll() throws java.io.IOException;
+}
+Compiled from "SoundManager.java"
+public class net.minecraft.client.sounds.SoundManager extends net.minecraft.server.packs.resources.SimplePreparableReloadListener<net.minecraft.client.sounds.SoundManager$Preparations> {
+  public static final net.minecraft.resources.Identifier EMPTY_SOUND_LOCATION;
+  public static final net.minecraft.client.resources.sounds.Sound EMPTY_SOUND;
+  public static final net.minecraft.resources.Identifier INTENTIONALLY_EMPTY_SOUND_LOCATION;
+  public static final net.minecraft.client.sounds.WeighedSoundEvents INTENTIONALLY_EMPTY_SOUND_EVENT;
+  public static final net.minecraft.client.resources.sounds.Sound INTENTIONALLY_EMPTY_SOUND;
+  public net.minecraft.client.sounds.SoundManager(net.minecraft.client.Options);
+  protected net.minecraft.client.sounds.SoundManager$Preparations prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected void apply(net.minecraft.client.sounds.SoundManager$Preparations, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  public java.util.List<java.lang.String> getAvailableSoundDevices();
+  public com.mojang.blaze3d.audio.ListenerTransform getListenerTransform();
+  public net.minecraft.client.sounds.WeighedSoundEvents getSoundEvent(net.minecraft.resources.Identifier);
+  public java.util.Collection<net.minecraft.resources.Identifier> getAvailableSounds();
+  public void queueTickingSound(net.minecraft.client.resources.sounds.TickableSoundInstance);
+  public net.minecraft.client.sounds.SoundEngine$PlayResult play(net.minecraft.client.resources.sounds.SoundInstance);
+  public void playDelayed(net.minecraft.client.resources.sounds.SoundInstance, int);
+  public void updateSource(net.minecraft.client.Camera);
+  public void pauseAllExcept(net.minecraft.sounds.SoundSource...);
+  public void stop();
+  public void destroy();
+  public void emergencyShutdown();
+  public void tick(boolean);
+  public void resume();
+  public void refreshCategoryVolume(net.minecraft.sounds.SoundSource);
+  public void stop(net.minecraft.client.resources.sounds.SoundInstance);
+  public void updateCategoryVolume(net.minecraft.sounds.SoundSource, float);
+  public boolean isActive(net.minecraft.client.resources.sounds.SoundInstance);
+  public void addListener(net.minecraft.client.sounds.SoundEventListener);
+  public void removeListener(net.minecraft.client.sounds.SoundEventListener);
+  public void stop(net.minecraft.resources.Identifier, net.minecraft.sounds.SoundSource);
+  public java.lang.String getChannelDebugString();
+  public void getSoundCacheDebugStats(net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput);
+  public void reload();
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected java.lang.Object prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "SoundBufferLibrary.java"
+public class net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput$Counter implements net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput {
+  public net.minecraft.client.sounds.SoundBufferLibrary$DebugOutput$Counter();
+  public void accountBuffer(net.minecraft.resources.Identifier, int, javax.sound.sampled.AudioFormat);
+  public int totalCount();
+  public long totalSize();
+}
+Compiled from "MusicManager.java"
+public class net.minecraft.client.sounds.MusicManager {
+  public net.minecraft.client.sounds.MusicManager(net.minecraft.client.Minecraft);
+  public void tick();
+  public void startPlaying(net.minecraft.sounds.Music);
+  public void showNowPlayingToastIfNeeded();
+  public void stopPlaying(net.minecraft.sounds.Music);
+  public void stopPlaying();
+  public boolean isPlayingMusic(net.minecraft.sounds.Music);
+  public java.lang.String getCurrentMusicTranslationKey();
+  public void setMinutesBetweenSongs(net.minecraft.client.sounds.MusicManager$MusicFrequency);
+}
+Compiled from "ChannelAccess.java"
+public class net.minecraft.client.sounds.ChannelAccess {
+  public net.minecraft.client.sounds.ChannelAccess(com.mojang.blaze3d.audio.Library, java.util.concurrent.Executor);
+  public java.util.concurrent.CompletableFuture<net.minecraft.client.sounds.ChannelAccess$ChannelHandle> createHandle(com.mojang.blaze3d.audio.Library$Pool);
+  public void executeOnChannels(java.util.function.Consumer<java.util.stream.Stream<com.mojang.blaze3d.audio.Channel>>);
+  public void scheduleTick();
+  public void clear();
+}
+Compiled from "WeighedSoundEvents.java"
+public class net.minecraft.client.sounds.WeighedSoundEvents implements net.minecraft.client.sounds.Weighted<net.minecraft.client.resources.sounds.Sound> {
+  public net.minecraft.client.sounds.WeighedSoundEvents(net.minecraft.resources.Identifier, java.lang.String);
+  public int getWeight();
+  public net.minecraft.client.resources.sounds.Sound getSound(net.minecraft.util.RandomSource);
+  public void addSound(net.minecraft.client.sounds.Weighted<net.minecraft.client.resources.sounds.Sound>);
+  public net.minecraft.network.chat.Component getSubtitle();
+  public void preloadIfRequired(net.minecraft.client.sounds.SoundEngine);
+  public java.lang.Object getSound(net.minecraft.util.RandomSource);
+}
+Compiled from "ChannelAccess.java"
+public class net.minecraft.client.sounds.ChannelAccess$ChannelHandle {
+  public boolean isStopped();
+  public net.minecraft.client.sounds.ChannelAccess$ChannelHandle(net.minecraft.client.sounds.ChannelAccess, com.mojang.blaze3d.audio.Channel);
+  public void execute(java.util.function.Consumer<com.mojang.blaze3d.audio.Channel>);
+  public void release();
+}
+Compiled from "MusicManager.java"
+public final class net.minecraft.client.sounds.MusicManager$MusicFrequency extends java.lang.Enum<net.minecraft.client.sounds.MusicManager$MusicFrequency> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.sounds.MusicManager$MusicFrequency DEFAULT;
+  public static final net.minecraft.client.sounds.MusicManager$MusicFrequency FREQUENT;
+  public static final net.minecraft.client.sounds.MusicManager$MusicFrequency CONSTANT;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.sounds.MusicManager$MusicFrequency> CODEC;
+  public static net.minecraft.client.sounds.MusicManager$MusicFrequency[] values();
+  public static net.minecraft.client.sounds.MusicManager$MusicFrequency valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component caption();
+  public java.lang.String getSerializedName();
+}

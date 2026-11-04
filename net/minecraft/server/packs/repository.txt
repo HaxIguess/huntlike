@@ -1,0 +1,158 @@
+Compiled from "package-info.java"
+interface net.minecraft.server.packs.repository.package-info {
+}
+Compiled from "PackDetector.java"
+public abstract class net.minecraft.server.packs.repository.PackDetector<T> {
+  protected net.minecraft.server.packs.repository.PackDetector(net.minecraft.world.level.validation.DirectoryValidator);
+  public T detectPackResources(java.nio.file.Path, java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo>) throws java.io.IOException;
+  protected abstract T createZipPack(java.nio.file.Path) throws java.io.IOException;
+  protected abstract T createDirectoryPack(java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "PackCompatibility.java"
+public final class net.minecraft.server.packs.repository.PackCompatibility extends java.lang.Enum<net.minecraft.server.packs.repository.PackCompatibility> {
+  public static final net.minecraft.server.packs.repository.PackCompatibility TOO_OLD;
+  public static final net.minecraft.server.packs.repository.PackCompatibility TOO_NEW;
+  public static final net.minecraft.server.packs.repository.PackCompatibility UNKNOWN;
+  public static final net.minecraft.server.packs.repository.PackCompatibility COMPATIBLE;
+  public static final int UNKNOWN_VERSION;
+  public static net.minecraft.server.packs.repository.PackCompatibility[] values();
+  public static net.minecraft.server.packs.repository.PackCompatibility valueOf(java.lang.String);
+  public boolean isCompatible();
+  public static net.minecraft.server.packs.repository.PackCompatibility forVersion(net.minecraft.util.InclusiveRange<net.minecraft.server.packs.metadata.pack.PackFormat>, net.minecraft.server.packs.metadata.pack.PackFormat);
+  public net.minecraft.network.chat.Component getDescription();
+  public net.minecraft.network.chat.Component getConfirmation();
+}
+Compiled from "PackRepository.java"
+public class net.minecraft.server.packs.repository.PackRepository {
+  public net.minecraft.server.packs.repository.PackRepository(net.minecraft.server.packs.repository.RepositorySource...);
+  public static java.lang.String displayPackList(java.util.Collection<net.minecraft.server.packs.repository.Pack>);
+  public void reload();
+  public boolean isAbleToClearAnyPack();
+  public void setSelected(java.util.Collection<java.lang.String>);
+  public boolean addPack(java.lang.String);
+  public boolean removePack(java.lang.String);
+  public java.util.Collection<java.lang.String> getAvailableIds();
+  public java.util.Collection<net.minecraft.server.packs.repository.Pack> getAvailablePacks();
+  public java.util.Collection<java.lang.String> getSelectedIds();
+  public net.minecraft.world.flag.FeatureFlagSet getRequestedFeatureFlags();
+  public java.util.Collection<net.minecraft.server.packs.repository.Pack> getSelectedPacks();
+  public net.minecraft.server.packs.repository.Pack getPack(java.lang.String);
+  public boolean isAvailable(java.lang.String);
+  public java.util.List<net.minecraft.server.packs.PackResources> openAllSelected();
+}
+Compiled from "Pack.java"
+public final class net.minecraft.server.packs.repository.Pack$Metadata extends java.lang.Record {
+  public net.minecraft.server.packs.repository.Pack$Metadata(net.minecraft.network.chat.Component, net.minecraft.server.packs.repository.PackCompatibility, net.minecraft.world.flag.FeatureFlagSet, java.util.List<java.lang.String>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component description();
+  public net.minecraft.server.packs.repository.PackCompatibility compatibility();
+  public net.minecraft.world.flag.FeatureFlagSet requestedFeatures();
+  public java.util.List<java.lang.String> overlays();
+}
+Compiled from "KnownPack.java"
+public final class net.minecraft.server.packs.repository.KnownPack extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.server.packs.repository.KnownPack> STREAM_CODEC;
+  public static final java.lang.String VANILLA_NAMESPACE;
+  public net.minecraft.server.packs.repository.KnownPack(java.lang.String, java.lang.String, java.lang.String);
+  public static net.minecraft.server.packs.repository.KnownPack vanilla(java.lang.String);
+  public boolean isVanilla();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String namespace();
+  public java.lang.String id();
+  public java.lang.String version();
+}
+Compiled from "RepositorySource.java"
+public interface net.minecraft.server.packs.repository.RepositorySource {
+  public abstract void loadPacks(java.util.function.Consumer<net.minecraft.server.packs.repository.Pack>);
+}
+Compiled from "FolderRepositorySource.java"
+class net.minecraft.server.packs.repository.FolderRepositorySource$FolderPackDetector extends net.minecraft.server.packs.repository.PackDetector<net.minecraft.server.packs.repository.Pack$ResourcesSupplier> {
+  protected net.minecraft.server.packs.repository.FolderRepositorySource$FolderPackDetector(net.minecraft.world.level.validation.DirectoryValidator);
+  protected net.minecraft.server.packs.repository.Pack$ResourcesSupplier createZipPack(java.nio.file.Path);
+  protected net.minecraft.server.packs.repository.Pack$ResourcesSupplier createDirectoryPack(java.nio.file.Path);
+  protected java.lang.Object createDirectoryPack(java.nio.file.Path) throws java.io.IOException;
+  protected java.lang.Object createZipPack(java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "FolderRepositorySource.java"
+public class net.minecraft.server.packs.repository.FolderRepositorySource implements net.minecraft.server.packs.repository.RepositorySource {
+  public net.minecraft.server.packs.repository.FolderRepositorySource(java.nio.file.Path, net.minecraft.server.packs.PackType, net.minecraft.server.packs.repository.PackSource, net.minecraft.world.level.validation.DirectoryValidator);
+  public void loadPacks(java.util.function.Consumer<net.minecraft.server.packs.repository.Pack>);
+  public static void discoverPacks(java.nio.file.Path, net.minecraft.world.level.validation.DirectoryValidator, java.util.function.BiConsumer<java.nio.file.Path, net.minecraft.server.packs.repository.Pack$ResourcesSupplier>) throws java.io.IOException;
+}
+Compiled from "ServerPacksSource.java"
+public class net.minecraft.server.packs.repository.ServerPacksSource extends net.minecraft.server.packs.repository.BuiltInPackSource {
+  public net.minecraft.server.packs.repository.ServerPacksSource(net.minecraft.world.level.validation.DirectoryValidator);
+  public static net.minecraft.server.packs.VanillaPackResources createVanillaPackSource();
+  protected net.minecraft.network.chat.Component getPackTitle(java.lang.String);
+  protected net.minecraft.server.packs.repository.Pack createVanillaPack(net.minecraft.server.packs.repository.Pack$ResourcesSupplier);
+  protected net.minecraft.server.packs.repository.Pack createBuiltinPack(java.lang.String, net.minecraft.server.packs.repository.Pack$ResourcesSupplier, net.minecraft.network.chat.Component);
+  public static net.minecraft.server.packs.repository.PackRepository createPackRepository(java.nio.file.Path, net.minecraft.world.level.validation.DirectoryValidator);
+  public static net.minecraft.server.packs.repository.PackRepository createVanillaTrustedRepository();
+  public static net.minecraft.server.packs.repository.PackRepository createPackRepository(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess);
+}
+Compiled from "Pack.java"
+public interface net.minecraft.server.packs.repository.Pack$ResourcesSupplier {
+  public abstract net.minecraft.server.packs.PackMetadataResources openMetadata(net.minecraft.server.packs.PackLocationInfo);
+  public abstract java.util.stream.Stream<net.minecraft.server.packs.PackResources> openResources(net.minecraft.server.packs.PackLocationInfo, net.minecraft.server.packs.repository.Pack$Metadata);
+}
+Compiled from "Pack.java"
+public class net.minecraft.server.packs.repository.Pack {
+  public static net.minecraft.server.packs.repository.Pack readMetaAndCreate(net.minecraft.server.packs.PackLocationInfo, net.minecraft.server.packs.repository.Pack$ResourcesSupplier, net.minecraft.server.packs.PackType, net.minecraft.server.packs.PackSelectionConfig);
+  public net.minecraft.server.packs.repository.Pack(net.minecraft.server.packs.PackLocationInfo, net.minecraft.server.packs.repository.Pack$ResourcesSupplier, net.minecraft.server.packs.repository.Pack$Metadata, net.minecraft.server.packs.PackSelectionConfig);
+  public static net.minecraft.server.packs.repository.Pack$Metadata readPackMetadata(net.minecraft.server.packs.PackLocationInfo, net.minecraft.server.packs.repository.Pack$ResourcesSupplier, net.minecraft.server.packs.metadata.pack.PackFormat, net.minecraft.server.packs.PackType);
+  public net.minecraft.server.packs.PackLocationInfo location();
+  public net.minecraft.network.chat.Component getTitle();
+  public net.minecraft.network.chat.Component getDescription();
+  public net.minecraft.network.chat.Component getChatLink(boolean);
+  public net.minecraft.server.packs.repository.PackCompatibility getCompatibility();
+  public net.minecraft.world.flag.FeatureFlagSet getRequestedFeatures();
+  public net.minecraft.server.packs.PackMetadataResources openMetadata();
+  public java.util.stream.Stream<net.minecraft.server.packs.PackResources> open();
+  public java.lang.String getId();
+  public net.minecraft.server.packs.PackSelectionConfig selectionConfig();
+  public boolean isRequired();
+  public boolean isFixedPosition();
+  public net.minecraft.server.packs.repository.Pack$Position getDefaultPosition();
+  public net.minecraft.server.packs.repository.PackSource getPackSource();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "Pack.java"
+public final class net.minecraft.server.packs.repository.Pack$Position extends java.lang.Enum<net.minecraft.server.packs.repository.Pack$Position> {
+  public static final net.minecraft.server.packs.repository.Pack$Position TOP;
+  public static final net.minecraft.server.packs.repository.Pack$Position BOTTOM;
+  public static net.minecraft.server.packs.repository.Pack$Position[] values();
+  public static net.minecraft.server.packs.repository.Pack$Position valueOf(java.lang.String);
+  public <T> int insert(java.util.List<T>, T, java.util.function.Function<T, net.minecraft.server.packs.PackSelectionConfig>, boolean);
+  public net.minecraft.server.packs.repository.Pack$Position opposite();
+}
+Compiled from "BuiltInPackSource.java"
+public abstract class net.minecraft.server.packs.repository.BuiltInPackSource implements net.minecraft.server.packs.repository.RepositorySource {
+  public static final java.lang.String VANILLA_ID;
+  public static final java.lang.String TESTS_ID;
+  public static final net.minecraft.server.packs.repository.KnownPack CORE_PACK_INFO;
+  public net.minecraft.server.packs.repository.BuiltInPackSource(net.minecraft.server.packs.PackType, net.minecraft.server.packs.VanillaPackResources, net.minecraft.resources.Identifier, net.minecraft.world.level.validation.DirectoryValidator);
+  public void loadPacks(java.util.function.Consumer<net.minecraft.server.packs.repository.Pack>);
+  protected abstract net.minecraft.server.packs.repository.Pack createVanillaPack(net.minecraft.server.packs.repository.Pack$ResourcesSupplier);
+  protected abstract net.minecraft.network.chat.Component getPackTitle(java.lang.String);
+  public net.minecraft.server.packs.VanillaPackResources getVanillaPack();
+  protected void populatePackList(java.util.function.BiConsumer<java.lang.String, java.util.function.Function<java.lang.String, net.minecraft.server.packs.repository.Pack>>);
+  protected void discoverPacksInPath(java.nio.file.Path, java.util.function.BiConsumer<java.lang.String, java.util.function.Function<java.lang.String, net.minecraft.server.packs.repository.Pack>>);
+  protected abstract net.minecraft.server.packs.repository.Pack createBuiltinPack(java.lang.String, net.minecraft.server.packs.repository.Pack$ResourcesSupplier, net.minecraft.network.chat.Component);
+}
+Compiled from "PackSource.java"
+public interface net.minecraft.server.packs.repository.PackSource {
+  public static final java.util.function.UnaryOperator<net.minecraft.network.chat.Component> NO_DECORATION;
+  public static final net.minecraft.server.packs.repository.PackSource DEFAULT;
+  public static final net.minecraft.server.packs.repository.PackSource BUILT_IN;
+  public static final net.minecraft.server.packs.repository.PackSource FEATURE;
+  public static final net.minecraft.server.packs.repository.PackSource WORLD;
+  public static final net.minecraft.server.packs.repository.PackSource SERVER;
+  public abstract net.minecraft.network.chat.Component decorate(net.minecraft.network.chat.Component);
+  public abstract boolean shouldAddAutomatically();
+  public static net.minecraft.server.packs.repository.PackSource create(java.util.function.UnaryOperator<net.minecraft.network.chat.Component>, boolean);
+}
