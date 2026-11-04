@@ -702,10 +702,11 @@ public class HuntMenuScreen extends Screen {
 			ClientHuntState.invitesNew = false;
 		});
 		// The user's envelope; with a new invite, the one with the red dot (25 x 18, the envelope at the same spot).
+		// Shrunk to the basket's 16 pixels wide and centered like it (the dotted one is the same envelope, 1 pixel in).
 		if (ClientHuntState.invitesNew) {
-			sprite(g, "invites_new", bx + 3, by + 6, 25, 18);
+			sprite(g, "invites_new", bx + 5, by + 7, 18, 13);
 		} else {
-			sprite(g, "invites", bx + 3, by + 6, 22, 15);
+			sprite(g, "invites", bx + 6, by + 8, 16, 11);
 		}
 		int sx = bx - ICON - 4;
 		drawIconButton(g, sx, by, "Stash", mouseX, mouseY, () -> {
