@@ -1350,6 +1350,30 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					HuntLike.id("brewing/potion_awkward_blazing_heart"))).isPresent();
 			return player.hasEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE) && boosted && brews;
 		});
+		// The three chalices in the hotbar (empty, filling, full) and the two effect icons, in the inventory.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var inventory = player.getInventory();
+			inventory.setItem(0, new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.CHALICE_ITEM));
+			var filling = new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.CHALICE_ITEM);
+			filling.set(com.huntlike.path.ModPaths.BLOOD, 50);
+			inventory.setItem(1, filling);
+			inventory.setItem(2, new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.FULL_CHALICE));
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER, 600));
+			player.inventoryMenu.broadcastChanges();
+		});
+		context.waitTicks(5);
+		context.setScreen(() -> new net.minecraft.client.gui.screens.inventory.InventoryScreen(net.minecraft.client.Minecraft.getInstance().player));
+		context.waitTicks(5);
+		context.takeScreenshot("98f-chalices-and-effects");
+		context.setScreen(() -> null);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			for (int i = 0; i < 3; i++) {
+				player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+			}
+			player.removeEffect(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER);
+		});
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer mate = packmate(server);
 			QuestManager.data(mate).quest = null;
