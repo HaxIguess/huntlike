@@ -538,7 +538,7 @@ public class HuntMenuScreen extends Screen {
 		int x = left - SIDE_W + (packView ? 3 : 1);
 		int y = top + (H - SIDE_H) * 2 / 3;
 		int w = SIDE_W + (packView ? 1 : 0);
-		sprite(g, packView ? "panel" : "tab", x, y, w, SIDE_H);
+		sprite(g, "tab", x, y, w, SIDE_H);
 		Component label = Component.literal("Hunting Pack");
 		g.pose().pushMatrix();
 		g.pose().translate(x + w / 2.0F - 4.0F, y + SIDE_H / 2.0F);
