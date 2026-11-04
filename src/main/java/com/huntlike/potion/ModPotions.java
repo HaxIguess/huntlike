@@ -12,7 +12,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -66,7 +66,7 @@ public final class ModPotions {
 
 	/** Whether this horse should jump twice as high right now. */
 	public static boolean boosted(AbstractHorse horse) {
-		if (horse.getType() != EntityType.HORSE) {
+		if (horse.getType() != EntityTypes.HORSE) {
 			return false;
 		}
 		return horse.hasEffect(HIGHER_HORSEPOWER)
