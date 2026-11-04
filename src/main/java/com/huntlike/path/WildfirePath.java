@@ -83,19 +83,24 @@ public final class WildfirePath {
 	public static final int BONUS_GOALS = 3;
 
 	/**
-	 * The Path's buffs (draft), as a tree: Fire Resistance first; then Burning Blows and Warm Heart; then Nether Strength
-	 * (after Burning Blows) and Hot Heart (after Warm Heart). The tier is the numeral shown in its square.
+	 * The Path's skills, as a tree (the user's design). I: Netherspawn. II (after Netherspawn): Hot Blows, Raging
+	 * Metabolism, Golden Style. III: Fiery Blows (after Hot Blows), Hot food! (after Raging Metabolism), Nether Veil and
+	 * Hot Tub (after Golden Style). The tier is the numeral shown in its square. The order is the save bit: keep it (the
+	 * first five took the places of the old Fire Resistance, Burning Blows, Nether Strength, Warm Heart and Hot Heart).
 	 */
 	public enum Buff {
-		FIRE_RESISTANCE("Fire Resistance", "Take 25% less fire and lava damage.", null, 1),
-		BURNING_BLOWS("Burning Blows", "In the Nether, your melee hits set targets on fire for 2 s.", FIRE_RESISTANCE, 2),
-		NETHER_STRENGTH("Nether Strength", "Deal 5% more damage in the Nether.", BURNING_BLOWS, 3),
-		WARM_HEART("Warm Heart", "Eat Blazing Hearts 50% faster; the fire beam lasts 1 s longer.", FIRE_RESISTANCE, 2),
-		HOT_HEART("Hot Heart", "The Blazing Heart's fire beam deals 50% more damage.", WARM_HEART, 3);
+		NETHERSPAWN("Netherspawn", "Become more resistant to normal fire damage.", null, 1),
+		HOT_BLOWS("Hot Blows", "Have a chance of lighting enemies ablaze!", NETHERSPAWN, 2),
+		FIERY_BLOWS("Fiery Blows", "The chance of lighting enemies on fire is increased!", HOT_BLOWS, 3),
+		RAGING_METABOLISM("Raging Metabolism", "Blazing Hearts go down faster!", NETHERSPAWN, 2),
+		HOT_FOOD("Hot food!", "Blazing Heart's ability now deals more damage", RAGING_METABOLISM, 3),
+		GOLDEN_STYLE("Golden Style", "Your way of walking changes and Piglins seem to not be against you so much anymore.", NETHERSPAWN, 2),
+		NETHER_VEIL("Nether Veil", "Nether wanderers won't notice you...", GOLDEN_STYLE, 3),
+		HOT_TUB("Hot Tub", "Gain fire immunity upon contact with lava for a brief period of time.", GOLDEN_STYLE, 3);
 
 		public final String title;
 		public final String description;
-		/** The buff it needs first, or null. */
+		/** The skill it needs first, or null. */
 		public final Buff parent;
 		public final int tier;
 
@@ -111,21 +116,29 @@ public final class WildfirePath {
 		}
 	}
 
-	public static final float FIRE_RESISTANCE = 0.25F;
-	public static final int BURNING_BLOWS_SECONDS = 2;
-	public static final float NETHER_STRENGTH = 0.05F;
+	/** Netherspawn: 25% less fire damage (vanilla's fire damage types: fire, burning, lava, magma, fireballs, campfires). */
+	public static final float NETHERSPAWN_RESISTANCE = 0.25F;
+	/** Hot Blows / Fiery Blows: the chance a melee hit in the Nether sets the target on fire, and for how long. */
+	public static final float HOT_BLOWS_CHANCE = 0.25F;
+	public static final float FIERY_BLOWS_CHANCE = 0.5F;
+	public static final int BLOWS_FIRE_SECONDS = 2;
 	public static final int BEAM_TICKS = 3 * 20;
-	public static final int WARM_HEART_TICKS = 20;
 	public static final float BEAM_DAMAGE = 2.0F;
 	public static final int BEAM_HIT_TICKS = 5;
 	public static final double BEAM_RANGE = 12.0;
-	public static final float HOT_HEART = 0.5F;
+	/** Hot food!: the Blazing Heart's fire beam deals twice the damage. */
+	public static final float HOT_FOOD_MULTIPLIER = 2.0F;
+	/** Hot Tub: touching lava gives 5 s of fire immunity, at most once every 3 minutes. */
+	public static final int HOT_TUB_TICKS = 5 * 20;
+	public static final int HOT_TUB_COOLDOWN = 3 * 60 * 20;
+	/** Nether Veil: a ghast hit by a player carries this tag + the player's UUID, and may hunt that player again. */
+	public static final String PROVOKED_TAG = "huntlike.provoked.";
 
-	/** Client side: whether the local player has Warm Heart (set by the client, for the eating animation). */
-	public static java.util.function.BooleanSupplier clientWarmHeart = () -> false;
+	/** Client side: whether the local player has Raging Metabolism (set by the client, for the eating animation). */
+	public static java.util.function.BooleanSupplier clientRagingMetabolism = () -> false;
 
-	public static boolean clientHasWarmHeart() {
-		return clientWarmHeart.getAsBoolean();
+	public static boolean clientHasRagingMetabolism() {
+		return clientRagingMetabolism.getAsBoolean();
 	}
 
 	public static boolean discovered(HuntData data) {
@@ -204,7 +217,7 @@ public final class WildfirePath {
 
 	// ---------------------------------------------------------------- damage
 
-	/** Fire Resistance, Burning Blows and Nether Strength; the Blazing Wither Skeleton's skulls deal 12. */
+	/** Netherspawn, Hot Blows and Fiery Blows; a ghast hit by a player is provoked (Nether Veil). */
 	public static float adjust(LivingEntity target, DamageSource source, float amount) {
 		// Imps' fireballs hit twice as hard as a blaze's; the Demonling's 50% harder.
 		if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball) {
@@ -214,19 +227,58 @@ public final class WildfirePath {
 				amount *= 1.5F;
 			}
 		}
-		if (source.getEntity() instanceof ServerPlayer attacker && attacker != target && attacker.level().dimension() == Level.NETHER) {
-			HuntData data = QuestManager.data(attacker);
-			if (has(data, Buff.NETHER_STRENGTH)) {
-				amount *= 1.0F + NETHER_STRENGTH;
+		if (source.getEntity() instanceof ServerPlayer attacker && attacker != target) {
+			if (target.getType() == EntityTypes.GHAST) {
+				target.addTag(PROVOKED_TAG + attacker.getStringUUID());
 			}
-			if (has(data, Buff.BURNING_BLOWS) && source.getDirectEntity() == attacker) {
-				target.igniteForSeconds(BURNING_BLOWS_SECONDS);
+			HuntData data = QuestManager.data(attacker);
+			if (attacker.level().dimension() == Level.NETHER && source.getDirectEntity() == attacker && has(data, Buff.HOT_BLOWS)) {
+				float chance = has(data, Buff.FIERY_BLOWS) ? FIERY_BLOWS_CHANCE : HOT_BLOWS_CHANCE;
+				if (attacker.getRandom().nextFloat() < chance) {
+					target.igniteForSeconds(BLOWS_FIRE_SECONDS);
+				}
 			}
 		}
-		if (target instanceof ServerPlayer player && source.is(DamageTypeTags.IS_FIRE) && has(QuestManager.data(player), Buff.FIRE_RESISTANCE)) {
-			amount *= 1.0F - FIRE_RESISTANCE;
+		if (target instanceof ServerPlayer player && source.is(net.minecraft.world.damagesource.DamageTypes.LAVA) && hotTub(player)) {
+			return 0.0F;
+		}
+		if (target instanceof ServerPlayer player && source.is(DamageTypeTags.IS_FIRE) && has(QuestManager.data(player), Buff.NETHERSPAWN)) {
+			amount *= 1.0F - NETHERSPAWN_RESISTANCE;
 		}
 		return amount;
+	}
+
+	// ---------------------------------------------------------------- Hot Tub, Golden Style, Nether Veil
+
+	/** Hot Tub: server tick of each player's last soak. */
+	private static final Map<UUID, Long> HOT_TUB_USED = new HashMap<>();
+
+	/** Hot Tub: if the player has it and it's ready, 5 s of fire immunity now. Returns whether it started. */
+	public static boolean hotTub(ServerPlayer player) {
+		if (!has(QuestManager.data(player), Buff.HOT_TUB)) {
+			return false;
+		}
+		long now = player.level().getServer().getTickCount();
+		Long used = HOT_TUB_USED.get(player.getUUID());
+		if (used != null && now - used < HOT_TUB_COOLDOWN && now >= used) {
+			return false;
+		}
+		HOT_TUB_USED.put(player.getUUID(), now);
+		player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE,
+				HOT_TUB_TICKS, 0, false, true, true));
+		player.level().playSound(null, player.blockPosition(), SoundEvents.LAVA_EXTINGUISH, SoundSource.PLAYERS, 0.8F, 1.4F);
+		return true;
+	}
+
+	/** Golden Style: piglins see the player as if they wore gold. */
+	public static boolean goldenStyle(LivingEntity entity) {
+		return entity instanceof ServerPlayer player && has(QuestManager.data(player), Buff.GOLDEN_STYLE);
+	}
+
+	/** Nether Veil: a (plain) ghast doesn't target the player unless that player hit it first. */
+	public static boolean veiledFrom(Mob mob, LivingEntity target) {
+		return mob.getType() == EntityTypes.GHAST && target instanceof ServerPlayer player
+				&& has(QuestManager.data(player), Buff.NETHER_VEIL) && !mob.entityTags().contains(PROVOKED_TAG + player.getStringUUID());
 	}
 
 	// ---------------------------------------------------------------- the Blazing Heart
@@ -241,8 +293,8 @@ public final class WildfirePath {
 	public static void onHeartEaten(ServerPlayer player) {
 		HuntData data = QuestManager.data(player);
 		player.igniteForSeconds(5);
-		int ticks = BEAM_TICKS + (has(data, Buff.WARM_HEART) ? WARM_HEART_TICKS : 0);
-		float damage = BEAM_DAMAGE * (has(data, Buff.HOT_HEART) ? 1.0F + HOT_HEART : 1.0F);
+		int ticks = BEAM_TICKS;
+		float damage = BEAM_DAMAGE * (has(data, Buff.HOT_FOOD) ? HOT_FOOD_MULTIPLIER : 1.0F);
 		BEAMS.put(player.getUUID(), new float[] {ticks, damage});
 		player.level().playSound(null, player.blockPosition(), SoundEvents.BLAZE_SHOOT, SoundSource.PLAYERS, 1.0F, 0.8F);
 		reach(player, data, 0);
@@ -576,6 +628,11 @@ public final class WildfirePath {
 		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			tickBeams(server);
 			tickLater(server);
+			for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+				if (player.isInLava() && !player.hasEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE)) {
+					hotTub(player);
+				}
+			}
 			if (server.getTickCount() % 20 != 0) {
 				return;
 			}

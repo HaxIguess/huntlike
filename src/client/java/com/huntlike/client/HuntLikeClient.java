@@ -62,8 +62,8 @@ public class HuntLikeClient implements ClientModInitializer {
 		EntityRendererRegistry.register(com.huntlike.path.ModPaths.EVILBORN, com.huntlike.client.entity.EvilbornRenderer::new);
 		EntityRendererRegistry.register(com.huntlike.path.ModPaths.BLAZING_WITHER_SKELETON,
 				net.minecraft.client.renderer.entity.WitherSkeletonRenderer::new);
-		com.huntlike.path.WildfirePath.clientWarmHeart = () -> com.huntlike.path.WildfirePath.has(ClientHuntState.data,
-				com.huntlike.path.WildfirePath.Buff.WARM_HEART);
+		com.huntlike.path.WildfirePath.clientRagingMetabolism = () -> com.huntlike.path.WildfirePath.has(ClientHuntState.data,
+				com.huntlike.path.WildfirePath.Buff.RAGING_METABOLISM);
 		com.huntlike.client.entity.horns.Horns.registerLayers();
 		ImpRenderer.registerLayer();
 		com.huntlike.client.entity.DemonlingHorns.register();

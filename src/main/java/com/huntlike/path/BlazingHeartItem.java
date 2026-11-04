@@ -22,10 +22,10 @@ public class BlazingHeartItem extends Item {
 
 	@Override
 	public int getUseDuration(ItemStack stack, LivingEntity entity) {
-		if (entity instanceof ServerPlayer player && WildfirePath.has(QuestManager.data(player), WildfirePath.Buff.WARM_HEART)) {
+		if (entity instanceof ServerPlayer player && WildfirePath.has(QuestManager.data(player), WildfirePath.Buff.RAGING_METABOLISM)) {
 			return EAT_TICKS / 2;
 		}
-		if (entity != null && entity.level().isClientSide() && WildfirePath.clientHasWarmHeart()) {
+		if (entity != null && entity.level().isClientSide() && WildfirePath.clientHasRagingMetabolism()) {
 			return EAT_TICKS / 2;
 		}
 		return EAT_TICKS;

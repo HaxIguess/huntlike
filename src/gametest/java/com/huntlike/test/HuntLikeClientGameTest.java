@@ -3584,13 +3584,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 						new com.huntlike.network.HuntPayloads.Action("wildfire_buff", Integer.toString(buff), value)));
 		send.accept(2, 1);
 		context.waitTicks(5);
-		check(singleplayer, "Nether Strength can't be taken before Burning Blows", data -> data.wildfireBuffs == 0);
+		check(singleplayer, "Fiery Blows can't be taken before Hot Blows", data -> data.wildfireBuffs == 0);
 		for (int i = 0; i < 5; i++) {
 			send.accept(i, 1);
 			context.waitTicks(3);
 		}
 		context.waitTicks(5);
-		check(singleplayer, "5 Wildfire points buy all 5 buffs", data -> data.wildfireBuffs == 31
+		check(singleplayer, "5 Wildfire points buy 5 skills (Netherspawn, Hot Blows, Fiery Blows, Raging Metabolism, Hot food!)", data -> data.wildfireBuffs == 31
 				&& com.huntlike.path.WildfirePath.free(data) == 0);
 		context.setScreen(() -> new com.huntlike.client.screen.PathsScreen(null));
 		context.getInput().setCursorPos(2, 2);
@@ -3604,13 +3604,53 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				&& com.huntlike.path.WildfirePath.free(data) == 1);
 		send.accept(0, -1);
 		context.waitTicks(5);
-		check(singleplayer, "Fire Resistance can't be given back while the buffs after it are taken", data -> data.wildfireBuffs == 15);
-		assertServer(singleplayer, "Fire Resistance: 25% less fire damage; Warm Heart: hearts eaten in half the time", server -> {
+		check(singleplayer, "Netherspawn can't be given back while the skills after it are taken", data -> data.wildfireBuffs == 15);
+		assertServer(singleplayer, "Netherspawn: 25% less fire damage; Raging Metabolism: hearts eaten in half the time", server -> {
 			ServerPlayer player = player(server);
 			float fire = com.huntlike.path.WildfirePath.adjust(player, player.level().damageSources().inFire(), 8.0F);
 			int duration = new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.BLAZING_HEART).getUseDuration(player);
 			return Math.abs(fire - 6.0F) < 1.0E-4F && duration == 48;
 		});
+		// Golden Style, Nether Veil and Hot Tub (set directly, then the old skills come back).
+		singleplayer.getServer().runOnServer(server -> {
+			var data = QuestManager.data(player(server));
+			data.wildfireBuffs = 0xFF;
+			player(server).setAttached(QuestManager.DATA, data);
+			QuestManager.sync(player(server));
+		});
+		context.waitTicks(5);
+		context.setScreen(() -> new com.huntlike.client.screen.PathsScreen(null));
+		context.getInput().setCursorPos(2, 2);
+		context.waitTicks(5);
+		context.takeScreenshot("97x-wildfire-tree-all");
+		context.setScreen(() -> null);
+		context.waitTicks(2);
+		assertServer(singleplayer, "Golden Style: piglins see gold; Nether Veil: a ghast won't target you until you hit it; Hot Tub: 5 s of fire immunity, then a 3 minute wait",
+				server -> {
+					ServerPlayer player = player(server);
+					boolean gold = net.minecraft.world.entity.monster.piglin.PiglinAi.isWearingSafeArmor(player);
+					var ghast = EntityTypes.GHAST.create(player.level(), EntitySpawnReason.COMMAND);
+					ghast.snapTo(player.getX(), player.getY() + 6, player.getZ() + 8, 0.0F, 0.0F);
+					player.level().addFreshEntity(ghast);
+					ghast.setTarget(player);
+					boolean ignored = ghast.getTarget() == null;
+					com.huntlike.path.WildfirePath.adjust(ghast, player.level().damageSources().playerAttack(player), 1.0F);
+					ghast.setTarget(player);
+					boolean provoked = ghast.getTarget() == player;
+					ghast.discard();
+					player.removeEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE);
+					float lava = com.huntlike.path.WildfirePath.adjust(player, player.level().damageSources().lava(), 4.0F);
+					boolean immune = player.hasEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE);
+					player.removeEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE);
+					boolean again = com.huntlike.path.WildfirePath.hotTub(player);
+					HuntLike.LOGGER.info("[test] Wildfire skills: gold {} ignored {} provoked {} lava {} immune {} again {}", gold, ignored,
+							provoked, lava, immune, again);
+					var data = QuestManager.data(player);
+					data.wildfireBuffs = 15;
+					player.setAttached(QuestManager.DATA, data);
+					QuestManager.sync(player);
+					return gold && ignored && provoked && lava == 0.0F && immune && !again;
+				});
 		assertServer(singleplayer, "after 3 minutes a Blazing Piglin turns into ashes, with no drops", server -> {
 			ServerPlayer player = player(server);
 			for (var item : player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(24))) {

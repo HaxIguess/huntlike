@@ -94,19 +94,24 @@ public class PathsScreen extends Screen {
 		return x >= box[0] && x < box[0] + box[2] && y >= box[1] && y < box[1] + box[3];
 	}
 
-	/** A buff's square: Fire Resistance on the left, Burning Blows and Warm Heart next, Nether Strength and Hot Heart last. */
+	/** A skill's square: Netherspawn on the left, the three tier II skills next, the four tier III skills last. */
 	private int[] buff(int i) {
 		Buff buff = Buff.values()[i];
 		int[] s = skillPanel();
 		int cx = (s[0] + s[2]) / 2 + (int) panX;
 		int cy = (s[1] + s[3]) / 2 + 14 + (int) panY;
 		int column = buff.tier - 2;
-		int row = switch (buff) {
-			case FIRE_RESISTANCE -> 0;
-			case BURNING_BLOWS, NETHER_STRENGTH -> -1;
-			default -> 1;
+		// Rows in half steps: tier II at -1, 0, 1; tier III's four at -1.5, -0.5, 0.5, 1.5, each next to its parent.
+		int halfRow = switch (buff) {
+			case NETHERSPAWN, RAGING_METABOLISM -> 0;
+			case HOT_BLOWS -> -2;
+			case GOLDEN_STYLE -> 2;
+			case FIERY_BLOWS -> -3;
+			case HOT_FOOD -> -1;
+			case NETHER_VEIL -> 1;
+			case HOT_TUB -> 3;
 		};
-		return new int[] {cx + column * (BUFF + 36) - BUFF / 2, cy + row * (BUFF + 20) - BUFF / 2, BUFF, BUFF};
+		return new int[] {cx + column * (BUFF + 36) - BUFF / 2, cy + halfRow * (BUFF + 12) / 2 - BUFF / 2, BUFF, BUFF};
 	}
 
 	// ---------------------------------------------------------------- drawing
