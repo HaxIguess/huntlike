@@ -585,6 +585,12 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.takeScreenshot("99z-soul-blocks");
 		context.waitTicks(17);
 		context.takeScreenshot("99z-soul-blocks-later");
+		context.runOnClient(client -> {
+			client.player.setYRot(22.0F);
+			client.player.setXRot(55.0F);
+		});
+		context.waitTicks(5);
+		context.takeScreenshot("99z-soul-nexus-close");
 		singleplayer.getServer().runOnServer(server -> {
 			for (int i = 0; i < soulBlocks.size(); i++) {
 				player(server).level().setBlockAndUpdate(altar[0].offset(i - 1, 0, 0),
