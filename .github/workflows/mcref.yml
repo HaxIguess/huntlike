@@ -3,6 +3,8 @@
 
 name: mcref
 on:
+  push:
+    branches: [mcref-run]
   workflow_dispatch:
     inputs:
       cleanup:
@@ -17,7 +19,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: cleanup
-        if: ${{ inputs.cleanup == 'true' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.cleanup == 'true' }}
         run: |
           git init -q /tmp/c && cd /tmp/c
           git push "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" --delete mc-ref || true
