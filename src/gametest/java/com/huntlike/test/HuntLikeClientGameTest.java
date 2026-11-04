@@ -3617,6 +3617,22 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			int duration = new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.BLAZING_HEART).getUseDuration(player);
 			return Math.abs(fire - 6.0F) < 1.0E-4F && duration == 48;
 		});
+		// The tree grows as points are spent: nothing taken shows only Netherspawn; taking it shows its three children.
+		for (int taken : new int[] {0, 1}) {
+			singleplayer.getServer().runOnServer(server -> {
+				var data = QuestManager.data(player(server));
+				data.wildfireBuffs = taken;
+				player(server).setAttached(QuestManager.DATA, data);
+				QuestManager.sync(player(server));
+			});
+			context.waitTicks(5);
+			context.setScreen(() -> new com.huntlike.client.screen.PathsScreen(null));
+			context.getInput().setCursorPos(2, 2);
+			context.waitTicks(5);
+			context.takeScreenshot("97w-wildfire-tree-taken-" + taken);
+			context.setScreen(() -> null);
+			context.waitTicks(2);
+		}
 		// Golden Style, Nether Veil and Hot Tub (set directly, then the old skills come back).
 		singleplayer.getServer().runOnServer(server -> {
 			var data = QuestManager.data(player(server));

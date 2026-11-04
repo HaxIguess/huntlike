@@ -23,7 +23,7 @@ import com.huntlike.path.WildfirePath.Buff;
 /**
  * One Path (for now the Path of the Wildfire), opened from the Path selection: a Progress panel on the left (scroll it) with
  * the goals reached and the hint for the next one, and a Skill panel on the right (drag it) with the buff tree. Later goals
- * and locked buffs stay hidden. Attack (left-click) takes a buff, use (right-click) gives it back.
+ * and skills stay hidden until the one before them is taken. Attack (left-click) takes a buff, use (right-click) gives it back.
  */
 public class PathsScreen extends Screen {
 	private static final int W = 360;
@@ -88,6 +88,11 @@ public class PathsScreen extends Screen {
 
 	private static boolean in(int[] r, double x, double y) {
 		return x >= r[0] && x < r[2] && y >= r[1] && y < r[3];
+	}
+
+	/** A skill shows only once the skill before it is taken: the tree grows as points are spent. */
+	private static boolean visible(HuntData data, Buff buff) {
+		return buff.parent == null || WildfirePath.has(data, buff.parent);
 	}
 
 	private static boolean inside(int[] box, double x, double y) {
@@ -197,7 +202,7 @@ public class PathsScreen extends Screen {
 		return tooltip;
 	}
 
-	/** The points counter and the buff tree. A buff whose parent isn't taken stays a nameless crying obsidian square. */
+	/** The points counter and the buff tree. A buff whose parent isn't taken isn't drawn at all (nor its connector). */
 	private List<Component> drawSkills(GuiGraphicsExtractor g, HuntData data, int[] s, int mouseX, int mouseY) {
 		List<Component> tooltip = null;
 		// The points: [earned / most] (spending them doesn't lower it), centered at the top of the panel.
@@ -216,7 +221,7 @@ public class PathsScreen extends Screen {
 		for (Buff parentBuff : Buff.values()) {
 			List<int[]> children = new ArrayList<>();
 			for (Buff child : Buff.values()) {
-				if (child.parent == parentBuff) {
+				if (child.parent == parentBuff && visible(data, child)) {
 					children.add(buff(child.ordinal()));
 				}
 			}
@@ -246,9 +251,11 @@ public class PathsScreen extends Screen {
 			}
 		}
 		for (Buff buff : Buff.values()) {
+			if (!visible(data, buff)) {
+				continue;
+			}
 			int[] b = buff(buff.ordinal());
 			boolean owned = WildfirePath.has(data, buff);
-			boolean known = buff.parent == null || WildfirePath.has(data, buff.parent);
 			square(g, b[0], b[1], BUFF, owned);
 			var pose = g.pose();
 			pose.pushMatrix();
@@ -259,16 +266,12 @@ public class PathsScreen extends Screen {
 			pose.popMatrix();
 			if (inside(b, mouseX, mouseY)) {
 				List<Component> lines = new ArrayList<>();
-				if (!known) {
-					lines.add(Component.literal("???").withColor(0x808080));
+				lines.add(Component.literal(buff.title).withColor(WildfirePath.COLOR));
+				lines.add(Component.literal(buff.description).withColor(0xAAAAAA));
+				if (owned) {
+					lines.add(Component.literal("Taken").withColor(0x55FF55));
 				} else {
-					lines.add(Component.literal(buff.title).withColor(WildfirePath.COLOR));
-					lines.add(Component.literal(buff.description).withColor(0xAAAAAA));
-					if (owned) {
-						lines.add(Component.literal("Taken").withColor(0x55FF55));
-					} else {
-						lines.add(Component.literal("Cost: 1 Wildfire point").withColor(WildfirePath.free(data) > 0 ? 0xFFCC66 : 0xFF5555));
-					}
+					lines.add(Component.literal("Cost: 1 Wildfire point").withColor(WildfirePath.free(data) > 0 ? 0xFFCC66 : 0xFF5555));
 				}
 				tooltip = lines;
 			}
@@ -374,7 +377,7 @@ public class PathsScreen extends Screen {
 		boolean use = this.minecraft.options.keyUse.matchesMouse(event);
 		if (in(skillPanel(), event.x(), event.y())) {
 			for (Buff buff : Buff.values()) {
-				if ((attack || use) && inside(buff(buff.ordinal()), event.x(), event.y())) {
+				if ((attack || use) && visible(ClientHuntState.data, buff) && inside(buff(buff.ordinal()), event.x(), event.y())) {
 					ClientPlayNetworking.send(new HuntPayloads.Action("wildfire_buff", Integer.toString(buff.ordinal()), attack ? 1 : -1));
 					return true;
 				}
