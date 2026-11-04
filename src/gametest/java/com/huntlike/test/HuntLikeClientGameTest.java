@@ -566,6 +566,31 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.takeScreenshot("99z-alpha-altar");
 		singleplayer.getServer().runOnServer(server -> player(server).level().setBlockAndUpdate(altar[0],
 				net.minecraft.world.level.block.Blocks.AIR.defaultBlockState()));
+		// The Soul Nexus and both Monoliths, turned towards the camera (north of them), the way placing them turns them.
+		var soulBlocks = java.util.List.of(com.huntlike.registry.ModBlocks.SOUL_NEXUS, com.huntlike.registry.ModBlocks.SOUL_MONOLITH,
+				com.huntlike.registry.ModBlocks.UPGRADED_SOUL_MONOLITH);
+		singleplayer.getServer().runOnServer(server -> {
+			var level = player(server).level();
+			for (int i = 0; i < soulBlocks.size(); i++) {
+				level.setBlockAndUpdate(altar[0].offset(i - 1, 0, 0), soulBlocks.get(i).defaultBlockState()
+						.setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING,
+								net.minecraft.core.Direction.NORTH));
+			}
+		});
+		context.runOnClient(client -> {
+			client.player.setYRot(0.0F);
+			client.player.setXRot(35.0F);
+		});
+		context.waitTicks(10);
+		context.takeScreenshot("99z-soul-blocks");
+		context.waitTicks(17);
+		context.takeScreenshot("99z-soul-blocks-later");
+		singleplayer.getServer().runOnServer(server -> {
+			for (int i = 0; i < soulBlocks.size(); i++) {
+				player(server).level().setBlockAndUpdate(altar[0].offset(i - 1, 0, 0),
+						net.minecraft.world.level.block.Blocks.AIR.defaultBlockState());
+			}
+		});
 		// Armor sets on an armor stand (the Cluster ones are see-through).
 		for (var set : java.util.List.of(com.huntlike.gear.ModGear.ROTTEN, com.huntlike.gear.ModGear.GEL, com.huntlike.gear.ModGear.THERMODYNAMIC)) {
 			java.util.UUID[] stand = new java.util.UUID[1];
