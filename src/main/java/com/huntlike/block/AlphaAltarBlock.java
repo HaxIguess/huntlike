@@ -25,9 +25,17 @@ public class AlphaAltarBlock extends Block implements EntityBlock {
 	}
 
 	@Override
+	protected boolean triggerEvent(BlockState state, Level level, BlockPos pos, int id, int param) {
+		BlockEntity entity = level.getBlockEntity(pos);
+		return entity != null && entity.triggerEvent(id, param);
+	}
+
+	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
 		if (player instanceof ServerPlayer serverPlayer) {
 			QuestManager.openMenu(serverPlayer);
+			// Everyone nearby sees the altar's center pulse once.
+			level.blockEvent(pos, this, AlphaAltarBlockEntity.EVENT_PULSE, 0);
 		}
 		return InteractionResult.SUCCESS;
 	}

@@ -30,8 +30,8 @@ import com.huntlike.registry.ModBlocks;
 
 /**
  * Draws the Alpha Altar from the user's Blockbench model: its texture, and the end portal starfield on the side panels.
- * The center (top slab, leather band, rim and symbol holder) drops one pixel at the start of every second and rises
- * back over the rest of it, as in the model's animation. The same drawing is used for the item.
+ * When the altar is clicked, the center (top slab, leather band, rim and symbol holder) drops one pixel and rises back
+ * over a second, as in the model's animation; otherwise it stands still. The same drawing is used for the item.
  */
 public class AlphaAltarRenderer implements BlockEntityRenderer<AlphaAltarBlockEntity, AlphaAltarRenderer.State> {
 	private static final Identifier TEXTURE = HuntLike.id("textures/entity/alpha_altar.png");
@@ -39,7 +39,8 @@ public class AlphaAltarRenderer implements BlockEntityRenderer<AlphaAltarBlockEn
 	private static final float DROP = 1.0F / 24.0F;
 
 	public static class State extends BlockEntityRenderState {
-		float time;
+		/** Seconds into the pulse (0-1), or -1 when not pulsing. */
+		float time = -1.0F;
 	}
 
 	@Override
@@ -52,12 +53,13 @@ public class AlphaAltarRenderer implements BlockEntityRenderer<AlphaAltarBlockEn
 			ModelFeatureRenderer.CrumblingOverlay crumbling) {
 		BlockEntityRenderer.super.extractRenderState(altar, state, partialTick, cameraPos, crumbling);
 		long gameTime = altar.getLevel() == null ? 0 : altar.getLevel().getGameTime();
-		state.time = ((gameTime % 20) + partialTick) / 20.0F;
+		float elapsed = altar.pulseStart < 0 ? -1.0F : (gameTime - altar.pulseStart + partialTick) / 20.0F;
+		state.time = elapsed >= 0.0F && elapsed < 1.0F ? elapsed : -1.0F;
 	}
 
 	@Override
 	public void submit(State state, PoseStack pose, SubmitNodeCollector collector, CameraRenderState camera) {
-		draw(pose, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, centerOffset(state.time));
+		draw(pose, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, state.time < 0.0F ? 0.0F : centerOffset(state.time));
 	}
 
 	/** The center's height offset (in blocks) at time t (0-1) of the one-second loop. */
