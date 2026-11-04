@@ -1,6 +1,18 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "huntlike:block/chalice"
+    "type": "minecraft:condition",
+    "property": "minecraft:has_component",
+    "component": "huntlike:blood",
+    "on_true": {
+      "type": "minecraft:special",
+      "base": "huntlike:block/chalice_filling",
+      "model": {
+        "type": "huntlike:chalice_filling"
+      }
+    },
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "huntlike:block/chalice"
+    }
   }
 }

@@ -52,6 +52,7 @@ public class HuntLikeClient implements ClientModInitializer {
 		com.huntlike.client.item.TexturedShieldRenderer.initialize();
 		com.huntlike.client.block.AlphaAltarRenderer.initialize();
 		com.huntlike.client.block.SoulModelRenderer.initialize();
+		com.huntlike.client.block.ChaliceRenderer.initialize();
 		// The Blazing mobs use the vanilla piglin and wither skeleton looks until their own sprites are ready.
 		EntityRendererRegistry.register(com.huntlike.path.ModPaths.BLAZING_PIGLIN, context -> new net.minecraft.client.renderer.entity.PiglinRenderer(
 				context, net.minecraft.client.model.geom.ModelLayers.PIGLIN, net.minecraft.client.model.geom.ModelLayers.PIGLIN_BABY,

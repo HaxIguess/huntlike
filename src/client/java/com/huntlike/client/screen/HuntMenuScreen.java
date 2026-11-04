@@ -531,7 +531,7 @@ public class HuntMenuScreen extends Screen {
 	private static final int SIDE_H = 96;
 	private static final int HEAD = 48;
 	private static final int CELL = 26;
-	private static final int ICON = 22;
+	private static final int ICON = 28;
 
 	/** The "Hunting Pack" tab on the window's left side (A-Phone only), text reading upwards. */
 	private void drawSideTab(GuiGraphicsExtractor g, int mouseX, int mouseY) {
@@ -541,7 +541,7 @@ public class HuntMenuScreen extends Screen {
 		sprite(g, packView ? "panel" : "tab", x, y, w, SIDE_H);
 		Component label = Component.literal("Hunting Pack");
 		g.pose().pushMatrix();
-		g.pose().translate(x + w / 2.0F + 4.0F, y + SIDE_H / 2.0F);
+		g.pose().translate(x + w / 2.0F - 4.0F, y + SIDE_H / 2.0F);
 		g.pose().rotate((float) (-Math.PI / 2));
 		g.text(this.font, label, -this.font.width(label) / 2, 0, TAB_TEXT, false);
 		g.pose().popMatrix();
@@ -688,7 +688,7 @@ public class HuntMenuScreen extends Screen {
 		}
 
 		// The members box, with the Stash and Invites buttons above its right end.
-		int boxTop = hy + HEAD + 22;
+		int boxTop = hy + HEAD + 34;
 		int boxX = x0 + 6;
 		int boxW = w0 - 12;
 		int boxH = y0 + h0 - 6 - boxTop;
@@ -701,17 +701,18 @@ public class HuntMenuScreen extends Screen {
 			ClientPlayNetworking.send(new HuntPayloads.Action("pack_seen", "", 0));
 			ClientHuntState.invitesNew = false;
 		});
-		g.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.withDefaultNamespace("icon/invite"), bx + 3, by + 4, 16, 13);
+		// The user's envelope; with a new invite, the one with the red dot (25 x 18, the envelope at the same spot).
 		if (ClientHuntState.invitesNew) {
-			g.fill(bx + ICON - 7, by + ICON - 7, bx + ICON - 1, by + ICON - 1, 0xFF5A0000);
-			g.fill(bx + ICON - 6, by + ICON - 6, bx + ICON - 2, by + ICON - 2, 0xFFFF2020);
+			sprite(g, "invites_new", bx + 3, by + 6, 25, 18);
+		} else {
+			sprite(g, "invites", bx + 3, by + 6, 22, 15);
 		}
 		int sx = bx - ICON - 4;
 		drawIconButton(g, sx, by, "Stash", mouseX, mouseY, () -> {
 			closePackOverlays();
 			stashOpen = true;
 		});
-		g.item(new ItemStack(net.minecraft.world.item.Items.BUNDLE), sx + 3, by + 3);
+		sprite(g, "stash", sx + 6, by + 6, 16, 16);
 		sprite(g, "panel_dark", boxX, boxTop, boxW, boxH);
 
 		List<CompoundTagView> entries = new ArrayList<>();

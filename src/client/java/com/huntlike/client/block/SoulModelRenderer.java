@@ -123,7 +123,7 @@ public class SoulModelRenderer implements BlockEntityRenderer<SoulModelBlockEnti
 	static void draw(PoseStack pose, SubmitNodeCollector collector, Kind kind, int light, int overlay, float time) {
 		float[][] quads = kind.quads();
 		var type = RenderTypes.entityCutout(kind.texture());
-		collector.submitCustomGeometry(pose, type, (p, consumer) -> emit(p, consumer, quads, 0, light, overlay));
+		collector.submitCustomGeometry(pose, type, (p, consumer) -> emitPart(p, consumer, quads, 0, light, overlay));
 		if (kind == Kind.NEXUS) {
 			return;
 		}
@@ -131,7 +131,7 @@ public class SoulModelRenderer implements BlockEntityRenderer<SoulModelBlockEnti
 		if (time >= 0.0F) {
 			animatePebble(pose, time);
 		}
-		collector.submitCustomGeometry(pose, type, (p, consumer) -> emit(p, consumer, quads, 1, light, overlay));
+		collector.submitCustomGeometry(pose, type, (p, consumer) -> emitPart(p, consumer, quads, 1, light, overlay));
 		pose.popPose();
 	}
 
@@ -164,7 +164,7 @@ public class SoulModelRenderer implements BlockEntityRenderer<SoulModelBlockEnti
 		return new float[] {last[1], last[2], last[3]};
 	}
 
-	private static void emit(PoseStack.Pose pose, VertexConsumer consumer, float[][] quads, int part, int light, int overlay) {
+	static void emitPart(PoseStack.Pose pose, VertexConsumer consumer, float[][] quads, int part, int light, int overlay) {
 		for (float[] q : quads) {
 			if ((int) q[23] != part) {
 				continue;
