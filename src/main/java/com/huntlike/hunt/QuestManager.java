@@ -128,13 +128,14 @@ public final class QuestManager {
 		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> sync(newPlayer));
 		ServerEntityLevelChangeEvents.AFTER_PLAYER_CHANGE_LEVEL.register((player, origin, destination) -> onChangeLevel(player));
 		ServerEntityEvents.ENTITY_LOAD.register(QuestManager::onEntityLoad);
+		HuntingPacks.initialize();
 	}
 
 	public static HuntData data(ServerPlayer player) {
 		return player.getAttachedOrCreate(DATA);
 	}
 
-	private static void save(ServerPlayer player, HuntData data) {
+	public static void save(ServerPlayer player, HuntData data) {
 		player.setAttached(DATA, data);
 	}
 
@@ -144,9 +145,19 @@ public final class QuestManager {
 
 	// ---------------------------------------------------------------- menu
 
+	/** Opens on the Hunting Pack screen during a pack quest. */
+	public static final int PACK_TAB = 3;
+	/** Added to the tab when the menu comes from the A-Phone (it has the Hunting Pack side tab). */
+	public static final int PHONE_FLAG = 16;
+
 	public static void openMenu(ServerPlayer player) {
+		openMenu(player, false);
+	}
+
+	public static void openMenu(ServerPlayer player, boolean phone) {
 		sync(player);
-		ServerPlayNetworking.send(player, new HuntPayloads.OpenMenu(0));
+		int tab = HuntingPacks.redirect(player) ? PACK_TAB : 0;
+		ServerPlayNetworking.send(player, new HuntPayloads.OpenMenu(tab + (phone ? PHONE_FLAG : 0)));
 	}
 
 	public static void openNexus(ServerPlayer player) {
@@ -155,6 +166,10 @@ public final class QuestManager {
 	}
 
 	private static void handleAction(ServerPlayer player, HuntPayloads.Action action) {
+		if (HuntingPacks.handle(player, action.action(), action.hunt(), action.value())) {
+			sync(player);
+			return;
+		}
 		HuntData data = data(player);
 		Hunt hunt = HuntDefs.hunt(action.hunt());
 		switch (action.action()) {
@@ -164,14 +179,30 @@ public final class QuestManager {
 			}
 			case "start" -> startQuest(player, data, hunt, action.value());
 			case "cancel" -> {
-				if (data.quest != null) {
+				if (data.quest != null && data.quest.isPack() && !HuntingPacks.isLeader(player)) {
+					player.sendSystemMessage(Messages.error("Only the pack's leader can cancel the Hunt."));
+				} else if (data.quest != null) {
 					fail(player, data);
+				} else if (HuntingPacks.packQuest(player) != null) {
+					player.sendSystemMessage(Messages.error("Only the pack's leader can cancel the Hunt."));
+				} else if (data.pausedQuest != null) {
+					Quest paused = data.pausedQuest;
+					data.pausedQuest = null;
+					save(player, data);
+					player.sendSystemMessage(Messages.failed(HuntDefs.hunt(paused.hunt), paused.tier));
+					playSound(player, SoundEvents.BEACON_DEACTIVATE, 0.8F);
 				}
 			}
 			case "buy_tokens" -> buyTokens(player, data, hunt, action.value() == 1);
 			case "buy_gear" -> buyGear(player, data, hunt, action.value());
 			case "koro_click" -> KoroManager.click(player, data);
-			case "interlude_start" -> com.huntlike.interlude.SlimeRiderFight.start(player, data, action.value());
+			case "interlude_start" -> {
+				if (HuntingPacks.grouped(player)) {
+					player.sendSystemMessage(Messages.error("Interludes can't be started while you are in a Hunting Pack."));
+				} else {
+					com.huntlike.interlude.SlimeRiderFight.start(player, data, action.value());
+				}
+			}
 			case "interlude_tokens" -> com.huntlike.interlude.SlimeRiderFight.buyTokens(player, data, action.value() == 1);
 			case "towernaar_click" -> com.huntlike.towernaar.TowernaarManager.click(player, data);
 			case "towernaar_start" -> com.huntlike.towernaar.TowernaarFight.start(player, data);
@@ -325,6 +356,14 @@ public final class QuestManager {
 	// ---------------------------------------------------------------- quest lifecycle
 
 	private static void startQuest(ServerPlayer player, HuntData data, Hunt hunt, int tierNumber) {
+		if (HuntingPacks.grouped(player)) {
+			if (HuntingPacks.isLeader(player)) {
+				HuntingPacks.start(player, hunt, tierNumber);
+			} else {
+				player.sendSystemMessage(Messages.error("Only the pack's leader can start a Hunt."));
+			}
+			return;
+		}
 		if (data.quest != null) {
 			player.sendSystemMessage(Messages.error("You already have an active quest."));
 			return;
@@ -418,6 +457,11 @@ public final class QuestManager {
 		if (quest == null) {
 			return;
 		}
+		if (quest.isPack()) {
+			HuntingPacks.fail(player, quest);
+			sync(player);
+			return;
+		}
 		BossController.discardBoss(player, quest);
 		SpiritLure.cleanup(player);
 		data.quest = null;
@@ -462,26 +506,26 @@ public final class QuestManager {
 
 	public static void complete(ServerPlayer owner, HuntData data, Collection<UUID> helpers) {
 		Quest quest = data.quest;
+		if (quest.isPack()) {
+			HuntingPacks.complete(owner, quest, helpers);
+			return;
+		}
 		Hunt hunt = HuntDefs.hunt(quest.hunt);
 		Tier tier = hunt.tier(quest.tier);
-		Progress progress = data.progress(hunt.id());
-		RandomSource random = owner.getRandom();
 		awardBossExperience(owner, helpers);
+		rollDrops(owner, data, hunt, tier, quest.daily, (stack, rare) -> giveStack(owner, stack));
+		rewardHelpers(owner, hunt, tier, helpers, java.util.Set.of());
+		SpiritLure.cleanup(owner);
+		data.quest = null;
+		save(owner, data);
+		credit(owner, data, hunt, tier, quest.daily);
+	}
 
-		for (Drop drop : HuntDefs.drops(tier)) {
-			if (drop.guaranteed()) {
-				int count = drop.minCount() + random.nextInt(drop.maxCount() - drop.minCount() + 1);
-				give(owner, data, hunt, drop, count);
-			} else if (random.nextDouble() < HuntDefs.chance(hunt.id(), drop.chanceNum(), drop.chanceDen(), HuntDefs.luck(data, hunt.id()), quest.daily)) {
-				give(owner, data, hunt, drop, drop.minCount());
-				if (drop.dropClass() > 0) {
-					owner.sendSystemMessage(Messages.rareDrop(drop.dropClass(), new ItemStack(drop.item()).getStyledHoverName()));
-					playSound(owner, SoundEvents.AMETHYST_BLOCK_CHIME, 1.5F);
-				}
-			}
-		}
+	/** Helpers (players who hit the boss but don't own the quest) roll the chance drops with their own luck. */
+	public static void rewardHelpers(ServerPlayer owner, Hunt hunt, Tier tier, Collection<UUID> helpers, java.util.Set<UUID> skip) {
+		RandomSource random = owner.getRandom();
 		for (UUID helperId : helpers) {
-			if (helperId.equals(owner.getUUID())) {
+			if (helperId.equals(owner.getUUID()) || skip.contains(helperId)) {
 				continue;
 			}
 			ServerPlayer helper = owner.level().getServer().getPlayerList().getPlayer(helperId);
@@ -501,13 +545,43 @@ public final class QuestManager {
 			save(helper, helperData);
 			sync(helper);
 		}
+	}
 
+	/**
+	 * Rolls one player's boss drops (guaranteed ones and the chance ones, with their luck) and hands each to the sink,
+	 * recording what they've seen. The sink gets the stack and whether it was a rare drop.
+	 */
+	public static void rollDrops(ServerPlayer player, HuntData data, Hunt hunt, Tier tier, boolean daily,
+			java.util.function.BiConsumer<ItemStack, Boolean> sink) {
+		RandomSource random = player.getRandom();
+		Progress progress = data.progress(hunt.id());
+		for (Drop drop : HuntDefs.drops(tier)) {
+			int count;
+			if (drop.guaranteed()) {
+				count = drop.minCount() + random.nextInt(drop.maxCount() - drop.minCount() + 1);
+			} else if (random.nextDouble() < HuntDefs.chance(hunt.id(), drop.chanceNum(), drop.chanceDen(), HuntDefs.luck(data, hunt.id()), daily)) {
+				count = drop.minCount();
+			} else {
+				continue;
+			}
+			progress.dropsSeen.add(drop.id());
+			progress.dropCounts.merge(drop.id(), count, Integer::sum);
+			boolean rare = !drop.guaranteed() && drop.dropClass() > 0;
+			sink.accept(new ItemStack(drop.item(), count), rare);
+			if (rare) {
+				player.sendSystemMessage(Messages.rareDrop(drop.dropClass(), new ItemStack(drop.item()).getStyledHoverName()));
+				playSound(player, SoundEvents.AMETHYST_BLOCK_CHIME, 1.5F);
+			}
+		}
+	}
+
+	/** Boss kill credit: the kill, Rank XP, rank-up titles, the trophy and the advancement. */
+	public static void credit(ServerPlayer owner, HuntData data, Hunt hunt, Tier tier, boolean daily) {
+		Progress progress = data.progress(hunt.id());
 		int oldRank = progress.rank();
 		progress.bossKills[tier.number() - 1]++;
-		progress.xp += quest.daily ? tier.xp() * 2 : tier.xp();
+		progress.xp += daily ? tier.xp() * 2 : tier.xp();
 		int newRank = progress.rank();
-		SpiritLure.cleanup(owner);
-		data.quest = null;
 		save(owner, data);
 
 		owner.sendSystemMessage(Messages.complete(hunt, tier.number()));
@@ -593,7 +667,8 @@ public final class QuestManager {
 	private static void onDeath(LivingEntity entity, DamageSource source) {
 		if (entity instanceof ServerPlayer player) {
 			HuntData data = data(player);
-			if (data.quest != null && data.quest.phase != HuntData.PHASE_KILLING) {
+			// In a Hunting Pack a death fails nothing: the member comes back and keeps hunting.
+			if (data.quest != null && !data.quest.isPack() && data.quest.phase != HuntData.PHASE_KILLING) {
 				fail(player, data);
 			}
 			return;
@@ -627,10 +702,14 @@ public final class QuestManager {
 			save(killer, data);
 			giveStack(killer, new ItemStack(ModItems.SOUL_STONE));
 		}
-		Quest quest = data.quest;
+		Quest quest = HuntingPacks.questFor(killer, data);
 		if (quest == null || quest.phase != HuntData.PHASE_KILLING
 				|| !(quest.hunt.equals("animal") || com.huntlike.interlude.InterludeDefs.isInterlude(quest.hunt)) || isPeaceful(killer)
 				|| com.huntlike.rogue.RogueHunters.active(killer)) {
+			return;
+		}
+		if (quest.isPack()) {
+			HuntingPacks.addPoints(killer, quest, com.huntlike.gear.GearEffects.quotaKills(killer));
 			return;
 		}
 		quest.kills = Math.min(quest.quota, quest.kills + com.huntlike.gear.GearEffects.quotaKills(killer));
@@ -661,6 +740,10 @@ public final class QuestManager {
 
 	/** Adds quota points (one kill, or a whole cluster) and summons the boss once the quota is full. */
 	static void addQuotaPoints(ServerPlayer killer, HuntData data, Quest quest, int points, BlockPos killPos) {
+		if (quest.isPack()) {
+			HuntingPacks.addPoints(killer, quest, points);
+			return;
+		}
 		quest.kills = Math.min(quest.quota, quest.kills + points);
 		SpiritLure.onQuotaKill(killer);
 		Hunt hunt = HuntDefs.hunt(quest.hunt);
@@ -674,7 +757,7 @@ public final class QuestManager {
 		sync(killer);
 	}
 
-	private static void beginSummon(ServerPlayer player, HuntData data, Quest quest, BlockPos killPos) {
+	static void beginSummon(ServerPlayer player, HuntData data, Quest quest, BlockPos killPos) {
 		BlockPos spot = findGround(player.level(), killPos);
 		if (spot == null) {
 			player.sendSystemMessage(Messages.badTerrain());
@@ -716,6 +799,7 @@ public final class QuestManager {
 	}
 
 	private static void onLogout(ServerPlayer player) {
+		HuntingPacks.onLogout(player);
 		com.huntlike.gear.HideBoots.forget(player);
 		HuntData data = data(player);
 		if (data.quest != null && data.quest.phase != HuntData.PHASE_KILLING) {
@@ -727,7 +811,9 @@ public final class QuestManager {
 
 	private static void onChangeLevel(ServerPlayer player) {
 		HuntData data = data(player);
-		if (data.quest != null && data.quest.phase != HuntData.PHASE_KILLING) {
+		if (data.quest != null && data.quest.isPack()) {
+			HuntingPacks.onRunnerInterrupted(player, data);
+		} else if (data.quest != null && data.quest.phase != HuntData.PHASE_KILLING) {
 			fail(player, data);
 		}
 		sync(player);
@@ -804,6 +890,7 @@ public final class QuestManager {
 			}
 		}
 		tag.put("huntable", huntable);
+		HuntingPacks.writeSync(player, tag);
 		ServerPlayNetworking.send(player, new HuntPayloads.Sync(tag));
 	}
 }

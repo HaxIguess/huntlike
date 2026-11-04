@@ -21,6 +21,7 @@ public final class HuntDefs {
 	public static final int AQUA = 0x55FFFF;
 	public static final int DARK_GREEN = 0x00AA00;
 	public static final int DARK_RED = 0xAA0000;
+	public static final int GREEN = 0x55FF55;
 	public static final int RED = 0xFF5555;
 	public static final int GOLD = 0xFFAA00;
 	public static final int DARK_PURPLE = 0xAA00AA;

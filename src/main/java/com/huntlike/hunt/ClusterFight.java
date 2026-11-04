@@ -186,10 +186,12 @@ public final class ClusterFight {
 		if (body instanceof AbstractCubeMob cube) {
 			cube.setSize(spec.size(generation), false);
 		}
-		setBase(body, Attributes.MAX_HEALTH, spec.health(generation));
+		HuntData.Quest packQuest = QuestManager.data(owner).quest;
+		int packSize = packQuest == null ? 1 : packQuest.packSize;
+		setBase(body, Attributes.MAX_HEALTH, spec.health(generation) * packSize);
 		setBase(body, Attributes.ATTACK_DAMAGE, tier.melee());
 		setBase(body, Attributes.FOLLOW_RANGE, 64.0);
-		body.setHealth(spec.health(generation));
+		body.setHealth(spec.health(generation) * packSize);
 		body.setPersistenceRequired();
 		body.addTag(BossController.BOSS_TAG);
 		body.addTag(BossController.OWNER_PREFIX + owner.getUUID());
@@ -251,7 +253,7 @@ public final class ClusterFight {
 		long elapsed = level.getGameTime() - quest.bossSpawnTime;
 		double nearest = Double.MAX_VALUE;
 		for (Mob body : bodies) {
-			nearest = Math.min(nearest, body.distanceTo(player));
+			nearest = Math.min(nearest, HuntingPacks.nearestMember(player, quest, body));
 		}
 		if (elapsed > QuestManager.BOSS_TIME_LIMIT || nearest > QuestManager.FLEE_DISTANCE) {
 			QuestManager.fail(player, data);

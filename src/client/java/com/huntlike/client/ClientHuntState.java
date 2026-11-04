@@ -29,6 +29,13 @@ public final class ClientHuntState {
 	/** The outline color of spiritual animals: light blue. */
 	public static final int SPIRIT_COLOR = 0x55FFFF;
 	public static List<String> huntable = new ArrayList<>();
+	/** The player's Hunting Pack (see HuntingPacks.writeSync), or an empty tag. */
+	public static CompoundTag pack = new CompoundTag();
+	/** Pending pack invites: pack, from, name, seconds, blocked (why Accept is greyed, if it is). */
+	public static List<CompoundTag> invites = new ArrayList<>();
+	public static boolean invitesNew;
+	/** Items waiting in the Stash (rewards from while the player was away). */
+	public static List<net.minecraft.world.item.ItemStack> stash = new ArrayList<>();
 
 	public static void update(CompoundTag tag) {
 		data = HuntData.fromTag(tag);
@@ -44,5 +51,38 @@ public final class ClientHuntState {
 			names.add(list.getStringOr(i, ""));
 		}
 		huntable = names;
+		pack = tag.getCompoundOrEmpty("pack");
+		List<CompoundTag> inviteList = new ArrayList<>();
+		ListTag invitesTag = tag.getListOrEmpty("invites");
+		for (int i = 0; i < invitesTag.size(); i++) {
+			inviteList.add(invitesTag.getCompoundOrEmpty(i));
+		}
+		invites = inviteList;
+		invitesNew = tag.getBooleanOr("invitesNew", false);
+		List<net.minecraft.world.item.ItemStack> items = new ArrayList<>();
+		var level = net.minecraft.client.Minecraft.getInstance().level;
+		if (level != null) {
+			var ops = level.registryAccess().createSerializationContext(net.minecraft.nbt.NbtOps.INSTANCE);
+			ListTag stashTag = tag.getListOrEmpty("stash");
+			for (int i = 0; i < stashTag.size(); i++) {
+				net.minecraft.world.item.ItemStack.CODEC.parse(ops, stashTag.get(i)).result().ifPresent(items::add);
+			}
+		}
+		stash = items;
+	}
+
+	/** In a pack with at least one other player. */
+	public static boolean grouped() {
+		return pack.getListOrEmpty("members").size() >= 2;
+	}
+
+	public static boolean packLeader() {
+		var player = net.minecraft.client.Minecraft.getInstance().player;
+		return player != null && player.getUUID().toString().equals(pack.getStringOr("leader", player.getUUID().toString()));
+	}
+
+	/** The pack's running quest, or null. */
+	public static HuntData.Quest packQuest() {
+		return grouped() && pack.contains("quest") ? HuntData.questFrom(pack.getCompoundOrEmpty("quest")) : null;
 	}
 }

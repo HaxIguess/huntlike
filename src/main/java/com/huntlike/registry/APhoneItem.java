@@ -18,7 +18,7 @@ public class APhoneItem extends Item {
 	@Override
 	public InteractionResult use(Level level, Player player, InteractionHand hand) {
 		if (player instanceof ServerPlayer serverPlayer) {
-			QuestManager.openMenu(serverPlayer);
+			QuestManager.openMenu(serverPlayer, true);
 		}
 		return InteractionResult.SUCCESS;
 	}

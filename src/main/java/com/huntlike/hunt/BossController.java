@@ -195,7 +195,7 @@ public final class BossController {
 		double cx = quest.summonX + 0.5;
 		double cy = quest.summonY + 0.1;
 		double cz = quest.summonZ + 0.5;
-		double progress = 1.0 - quest.summonTicks / (double) QuestManager.SUMMON_TICKS;
+		double progress = Math.max(0.0, 1.0 - quest.summonTicks / (double) QuestManager.SUMMON_TICKS);
 		double radius = 1.6 * (1.0 - progress) + 0.2;
 		double angle = quest.summonTicks * 0.45;
 		for (int arm = 0; arm < 4; arm++) {
@@ -231,12 +231,13 @@ public final class BossController {
 		}
 		boss.snapTo(quest.summonX + 0.5, quest.summonY, quest.summonZ + 0.5, player.getYRot() + 180.0F, 0.0F);
 		boss.setBaby(false);
-		setBase(boss, Attributes.MAX_HEALTH, tier.health());
+		// A Hunting Pack's boss: health times the members when the quest started.
+		setBase(boss, Attributes.MAX_HEALTH, tier.health() * quest.packSize);
 		setBase(boss, Attributes.SCALE, tier.scale());
 		setBase(boss, Attributes.MOVEMENT_SPEED, 0.3);
 		setBase(boss, Attributes.FOLLOW_RANGE, 64.0);
 		setBase(boss, Attributes.STEP_HEIGHT, 1.0);
-		boss.setHealth(tier.health());
+		boss.setHealth(tier.health() * quest.packSize);
 		MobAccessor accessor = (MobAccessor) boss;
 		accessor.huntlike$getGoalSelector().removeAllGoals(goal -> !(goal instanceof FloatGoal));
 		accessor.huntlike$getTargetSelector().removeAllGoals(goal -> true);
@@ -293,7 +294,7 @@ public final class BossController {
 		}
 		ServerLevel level = player.level();
 		long elapsed = level.getGameTime() - quest.bossSpawnTime;
-		if (elapsed > QuestManager.BOSS_TIME_LIMIT || boss.distanceTo(player) > QuestManager.FLEE_DISTANCE) {
+		if (elapsed > QuestManager.BOSS_TIME_LIMIT || HuntingPacks.nearestMember(player, quest, boss) > QuestManager.FLEE_DISTANCE) {
 			QuestManager.fail(player, data);
 			return;
 		}

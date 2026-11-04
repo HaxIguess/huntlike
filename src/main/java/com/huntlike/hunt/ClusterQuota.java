@@ -82,7 +82,7 @@ public final class ClusterQuota {
 		if (SpiritLure.isLuredBy(entity, killer)) {
 			QuestManager.countLuredKill(killer, data);
 		}
-		HuntData.Quest quest = data.quest;
+		HuntData.Quest quest = HuntingPacks.questFor(killer, data);
 		if (quest == null || quest.phase != HuntData.PHASE_KILLING
 				|| !(HuntDefs.isCluster(HuntDefs.hunt(quest.hunt)) || com.huntlike.interlude.InterludeDefs.isInterlude(quest.hunt))
 				|| QuestManager.isPeaceful(killer) || !clusterFinished(entity) || com.huntlike.rogue.RogueHunters.active(killer)) {

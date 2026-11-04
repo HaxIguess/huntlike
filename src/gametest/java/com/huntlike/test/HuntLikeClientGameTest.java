@@ -198,6 +198,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			koro(context, singleplayer);
 			extras(context, singleplayer);
 			multiplayer(context, singleplayer);
+			huntingPack(context, singleplayer);
 			trophy(context, singleplayer);
 			catalystAndPulverizer(context, singleplayer);
 			dailyRefill(context, singleplayer);
@@ -1200,6 +1201,167 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			ServerPlayer helper = helper(server);
 			removeFromPlayerList(server, helper);
 			helper.discard();
+		});
+	}
+
+	private static final java.util.UUID PACKMATE = java.util.UUID.fromString("00000000-0000-4000-8000-0000000fa11e");
+
+	private static ServerPlayer packmate(MinecraftServer server) {
+		return server.getPlayerList().getPlayer(PACKMATE);
+	}
+
+	/**
+	 * Hunting Packs with a fake second player: invite, accept (their own quest pauses), the pack screen, a shared quota
+	 * (doubled), a boss with double health summoned at the leader, both members rewarded, kick; the potions too.
+	 */
+	private static void huntingPack(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			com.huntlike.hunt.HuntingPacks.resetAll();
+			var mate = net.fabricmc.fabric.api.entity.FakePlayer.get(player.level(), new com.mojang.authlib.GameProfile(PACKMATE, "Packmate"));
+			mate.snapTo(player.getX() + 2, player.getY(), player.getZ(), 0, 0);
+			addToPlayerList(server, mate);
+			for (ServerPlayer p : List.of(player, mate)) {
+				var data = QuestManager.data(p);
+				data.quest = null;
+				data.pausedQuest = null;
+				data.progress("animal").tokens = 50;
+				p.setAttached(QuestManager.DATA, data);
+			}
+			// The packmate has a quest of their own: joining pauses it.
+			QuestManager.forceStart(mate, HuntDefs.ANIMAL, 1);
+			com.huntlike.hunt.HuntingPacks.handle(player, "pack_name", "Wolf Pack", 0);
+			com.huntlike.hunt.HuntingPacks.handle(player, "pack_invite", PACKMATE.toString(), 0);
+			var pack = com.huntlike.hunt.HuntingPacks.packOf(player.getUUID());
+			com.huntlike.hunt.HuntingPacks.handle(mate, "pack_accept", pack.id().toString(), 0);
+		});
+		context.waitTicks(3);
+		assertServer(singleplayer, "Hunting Pack: invite and accept; the new member's own quest is paused", server -> {
+			var pack = com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID());
+			var mateData = QuestManager.data(packmate(server));
+			return pack != null && pack.members().size() == 2 && pack.name().equals("Wolf Pack")
+					&& com.huntlike.hunt.HuntingPacks.grouped(packmate(server)) && mateData.quest == null && mateData.pausedQuest != null;
+		});
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98a-hunting-pack");
+		context.setScreen(() -> null);
+		singleplayer.getServer().runOnServer(server -> com.huntlike.hunt.HuntingPacks.start(player(server), HuntDefs.ANIMAL, 1));
+		context.waitTicks(3);
+		assertServer(singleplayer, "Hunting Pack quest: quota x2, both pay tokens, it runs on the leader", server -> {
+			var pack = com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID());
+			var quest = pack.quest();
+			int cost = HuntDefs.ANIMAL.tier(1).tokenCost();
+			return quest != null && quest.quota == HuntDefs.ANIMAL.tier(1).quota() * 2 && quest.packSize == 2
+					&& QuestManager.data(player(server)).quest == quest
+					&& QuestManager.data(player(server)).progress("animal").tokens == 50 - cost
+					&& QuestManager.data(packmate(server)).progress("animal").tokens == 50 - cost;
+		});
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer mate = packmate(server);
+			var cow = net.minecraft.world.entity.EntityTypes.COW.create(mate.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			cow.snapTo(mate.getX() + 1, mate.getY(), mate.getZ(), 0, 0);
+			mate.level().addFreshEntity(cow);
+			cow.hurtServer(mate.level(), mate.level().damageSources().playerAttack(mate), 1000.0F);
+		});
+		context.waitTicks(3);
+		assertServer(singleplayer, "Hunting Pack: a member's kill counts for the pack", server ->
+				com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID()).quest().kills >= 1);
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98b-hunting-pack-quest");
+		context.setScreen(() -> null);
+		int killsBefore = singleplayer.getServer().computeOnServer(server ->
+				QuestManager.data(packmate(server)).progress("animal").bossKills[0]);
+		singleplayer.getServer().runOnServer(server -> {
+			var quest = com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID()).quest();
+			quest.kills = quest.quota - 1;
+			ServerPlayer mate = packmate(server);
+			var cow = net.minecraft.world.entity.EntityTypes.COW.create(mate.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			cow.snapTo(mate.getX() + 1, mate.getY(), mate.getZ(), 0, 0);
+			mate.level().addFreshEntity(cow);
+			cow.hurtServer(mate.level(), mate.level().damageSources().playerAttack(mate), 1000.0F);
+		});
+		context.waitTicks(80);
+		assertServer(singleplayer, "Hunting Pack boss: summoned for the leader with twice the health", server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
+			HuntLike.LOGGER.info("[test] pack boss health {}", boss == null ? "none" : boss.getMaxHealth());
+			return boss != null && Math.abs(boss.getMaxHealth() - HuntDefs.ANIMAL.tier(1).health() * 2) < 0.01F;
+		});
+		singleplayer.getServer().runOnServer(server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			var boss = BossController.findBoss(player(server), quest);
+			boss.hurtServer(player(server).level(), player(server).level().damageSources().playerAttack(player(server)), 100000.0F);
+		});
+		context.waitTicks(5);
+		assertServer(singleplayer, "Hunting Pack boss down: both members get the kill; the quest ends", server ->
+				com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID()).quest() == null
+						&& QuestManager.data(packmate(server)).progress("animal").bossKills[0] == killsBefore + 1);
+		singleplayer.getServer().runOnServer(server -> {
+			// An invite waiting in the leader's inbox, from a second pack.
+			ServerPlayer mate = packmate(server);
+			com.huntlike.hunt.HuntingPacks.handle(player(server), "pack_kick", PACKMATE.toString(), 0);
+			com.huntlike.hunt.HuntingPacks.handle(mate, "pack_invite", player(server).getUUID().toString(), 0);
+		});
+		context.waitTicks(3);
+		assertServer(singleplayer, "Hunting Pack: a kicked member is on their own again with their quest back", server ->
+				!com.huntlike.hunt.HuntingPacks.grouped(packmate(server)) && QuestManager.data(packmate(server)).quest != null
+						&& QuestManager.data(packmate(server)).pausedQuest == null);
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98c-hunting-pack-red-dot");
+		context.runOnClient(client -> {
+			if (client.screen instanceof com.huntlike.client.screen.HuntMenuScreen menu) {
+				int[] at = menu.buttonCenter("Invites");
+				if (at != null) {
+					menu.mouseClicked(new net.minecraft.client.input.MouseButtonEvent(at[0], at[1],
+							new net.minecraft.client.input.MouseButtonInfo(0, 0)), false);
+				}
+			}
+		});
+		context.waitTicks(3);
+		context.takeScreenshot("98d-hunting-pack-invites");
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98e-a-phone-side-tab");
+		context.setScreen(() -> null);
+		// Potions: Blazing Soul gives (hidden) Fire Resistance; Higher Horsepower makes a ridden horse jump twice as high.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(com.huntlike.potion.ModPotions.BLAZING_SOUL, 200));
+			var horse = net.minecraft.world.entity.EntityTypes.HORSE.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			horse.snapTo(player.getX() + 3, player.getY(), player.getZ(), 0, 0);
+			player.level().addFreshEntity(horse);
+			horse.addEffect(new net.minecraft.world.effect.MobEffectInstance(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER, 200));
+			horse.addTag("huntlike_test_horse");
+		});
+		context.waitTicks(25);
+		assertServer(singleplayer, "Potions: Blazing Soul gives Fire Resistance; Higher Horsepower boosts a horse", server -> {
+			ServerPlayer player = player(server);
+			var horse = player.level().getEntitiesOfClass(net.minecraft.world.entity.animal.equine.Horse.class,
+					player.getBoundingBox().inflate(10), h -> h.entityTags().contains("huntlike_test_horse")).stream().findFirst().orElse(null);
+			boolean boosted = horse != null && com.huntlike.potion.ModPotions.boosted(horse);
+			if (horse != null) {
+				horse.discard();
+			}
+			var recipes = server.getRecipeManager();
+			boolean brews = recipes.byKey(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.RECIPE,
+					HuntLike.id("brewing/potion_awkward_blazing_heart"))).isPresent();
+			return player.hasEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE) && boosted && brews;
+		});
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer mate = packmate(server);
+			QuestManager.data(mate).quest = null;
+			removeFromPlayerList(server, mate);
+			mate.discard();
+			var data = QuestManager.data(player(server));
+			data.quest = null;
+			data.pausedQuest = null;
+			player(server).setAttached(QuestManager.DATA, data);
+			player(server).removeEffect(com.huntlike.potion.ModPotions.BLAZING_SOUL);
+			player(server).removeEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE);
+			com.huntlike.hunt.HuntingPacks.resetAll();
 		});
 	}
 

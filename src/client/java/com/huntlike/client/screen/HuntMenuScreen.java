@@ -68,6 +68,21 @@ public class HuntMenuScreen extends Screen {
 	private static final int TEXT_DIM = 0xFF6F6F6F;
 
 	private int tab;
+	/** Opened from the A-Phone: the Hunting Pack side tab shows. */
+	private final boolean phone;
+	/** The Hunting Pack screen is showing (from the side tab, or opened on it during a pack quest). */
+	private boolean packView;
+	/** The members box lists online players to invite instead of the members. */
+	private boolean packPlayers;
+	/** The open options popup: a member's UUID, or "leader" for the big head; null when closed. */
+	private String popupFor;
+	private int popupX;
+	private int popupY;
+	private boolean inboxOpen;
+	private boolean stashOpen;
+	/** Text being typed: 0 none, 1 the pack's name, 2 its member limit. */
+	private int editField;
+	private String editText = "";
 	/** False: the Hunt rail only. True: the selected Hunt's panel is open. */
 	private boolean panelOpen;
 	private int huntIndex;
@@ -118,7 +133,10 @@ public class HuntMenuScreen extends Screen {
 
 	public HuntMenuScreen(int tab) {
 		super(Component.literal("Hunt Menu"));
-		this.tab = Math.max(0, Math.min(2, tab));
+		this.phone = (tab & com.huntlike.hunt.QuestManager.PHONE_FLAG) != 0;
+		int base = tab & 15;
+		this.packView = base == com.huntlike.hunt.QuestManager.PACK_TAB;
+		this.tab = this.packView ? 0 : Math.max(0, Math.min(2, base));
 		HuntData data = ClientHuntState.data;
 		for (int i = 0; i < HuntDefs.HUNTS.size(); i++) {
 			if (HuntDefs.HUNTS.get(i).id().equals(data.selectedHunt)) {
@@ -209,8 +227,13 @@ public class HuntMenuScreen extends Screen {
 		return tier.number() == 1 || progress().bossKills[tier.number() - 2] > 0;
 	}
 
+	/** The player's own quest: the running one, or the one paused while they are in a Hunting Pack. */
 	private HuntData.Quest activeQuest() {
-		return ClientHuntState.data.quest;
+		return ClientHuntState.data.quest != null ? ClientHuntState.data.quest : ClientHuntState.data.pausedQuest;
+	}
+
+	private boolean questPaused() {
+		return ClientHuntState.data.quest == null && ClientHuntState.data.pausedQuest != null;
 	}
 
 	// ---------------------------------------------------------------- drawing
@@ -233,11 +256,22 @@ public class HuntMenuScreen extends Screen {
 		pw = iw - 100;
 		ph = ih - 16;
 
+		boolean sideTab = phone || packView;
+		if (sideTab && !packView) {
+			drawSideTab(g, mouseX, mouseY);
+		}
 		drawTabs(g, mouseX, mouseY, false);
 		sprite(g, "window", left, top, W, H);
 		drawTabs(g, mouseX, mouseY, true);
+		if (sideTab && packView) {
+			drawSideTab(g, mouseX, mouseY);
+		}
 		sprite(g, "content", ix - 2, iy - 2, iw + 4, ih + 4);
 		sprite(g, "portal", ix, iy, iw, ih);
+		if (packView) {
+			drawPack(g, mouseX, mouseY);
+			return;
+		}
 		drawRail(g, mouseX, mouseY);
 
 		boolean questRunning = activeQuest() != null;
@@ -330,7 +364,7 @@ public class HuntMenuScreen extends Screen {
 	private void drawTabs(GuiGraphicsExtractor g, int mouseX, int mouseY, boolean selectedPass) {
 		int tabW = W / 3;
 		for (int i = 0; i < 3; i++) {
-			boolean selected = i == tab;
+			boolean selected = i == tab && !packView;
 			if (selected != selectedPass) {
 				continue;
 			}
@@ -345,7 +379,11 @@ public class HuntMenuScreen extends Screen {
 			g.text(this.font, label, x + (tabW - this.font.width(label)) / 2, y + (selected ? 7 : 8), TAB_TEXT, false);
 			if (!selectedPass) {
 				int index = i;
-				hits.add(new Hit(x, y, tabW, TAB_H, () -> switchTab(index)));
+				hits.add(new Hit(x, y, tabW, TAB_H, () -> {
+					closePackOverlays();
+					packView = false;
+					switchTab(index);
+				}));
 			}
 		}
 	}
@@ -487,6 +525,424 @@ public class HuntMenuScreen extends Screen {
 		return Component.literal(text).withColor(rgb);
 	}
 
+	// ---------------------------------------------------------------- Hunting Pack
+
+	private static final int SIDE_W = 20;
+	private static final int SIDE_H = 96;
+	private static final int HEAD = 48;
+	private static final int CELL = 26;
+	private static final int ICON = 22;
+
+	/** The "Hunting Pack" tab on the window's left side (A-Phone only), text reading upwards. */
+	private void drawSideTab(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+		int x = left - SIDE_W + (packView ? 3 : 1);
+		int y = top + (H - SIDE_H) * 2 / 3;
+		int w = SIDE_W + (packView ? 1 : 0);
+		sprite(g, packView ? "panel" : "tab", x, y, w, SIDE_H);
+		Component label = Component.literal("Hunting Pack");
+		g.pose().pushMatrix();
+		g.pose().translate(x + w / 2.0F + 4.0F, y + SIDE_H / 2.0F);
+		g.pose().rotate((float) (-Math.PI / 2));
+		g.text(this.font, label, -this.font.width(label) / 2, 0, TAB_TEXT, false);
+		g.pose().popMatrix();
+		buttonCenters.put("Hunting Pack", new int[] {x + w / 2, y + SIDE_H / 2});
+		hits.add(new Hit(x, y, w, SIDE_H, () -> {
+			closePackOverlays();
+			packView = !packView;
+		}));
+	}
+
+	private void closePackOverlays() {
+		popupFor = null;
+		inboxOpen = false;
+		stashOpen = false;
+		editField = 0;
+	}
+
+	private void submitEdit() {
+		if (editField == 1 && !editText.isBlank()) {
+			ClientPlayNetworking.send(new HuntPayloads.Action("pack_name", editText.trim(), 0));
+		} else if (editField == 2) {
+			int max = editText.isEmpty() ? 0 : Integer.parseInt(editText);
+			ClientPlayNetworking.send(new HuntPayloads.Action("pack_max", "", max));
+		}
+		editField = 0;
+	}
+
+	private String myId() {
+		return this.minecraft.player == null ? "" : this.minecraft.player.getUUID().toString();
+	}
+
+	private List<CompoundTagView> packMembers() {
+		List<CompoundTagView> out = new ArrayList<>();
+		net.minecraft.nbt.ListTag list = ClientHuntState.pack.getListOrEmpty("members");
+		for (int i = 0; i < list.size(); i++) {
+			net.minecraft.nbt.CompoundTag m = list.getCompoundOrEmpty(i);
+			out.add(new CompoundTagView(m.getStringOr("id", ""), m.getStringOr("name", "?"), m.getBooleanOr("online", false)));
+		}
+		if (out.isEmpty() && this.minecraft.player != null) {
+			out.add(new CompoundTagView(myId(), this.minecraft.player.getName().getString(), true));
+		}
+		return out;
+	}
+
+	private record CompoundTagView(String id, String name, boolean online) {
+	}
+
+	private void face(GuiGraphicsExtractor g, String id, int x, int y, int size, boolean online) {
+		net.minecraft.world.entity.player.PlayerSkin skin;
+		java.util.UUID uuid;
+		try {
+			uuid = java.util.UUID.fromString(id);
+		} catch (IllegalArgumentException e) {
+			return;
+		}
+		var connection = this.minecraft.getConnection();
+		var info = connection == null ? null : connection.getPlayerInfo(uuid);
+		skin = info != null ? info.getSkin() : net.minecraft.client.resources.DefaultPlayerSkin.get(uuid);
+		net.minecraft.client.gui.components.PlayerFaceExtractor.extractRenderState(g, skin, x, y, size);
+		if (!online) {
+			g.fill(x, y, x + size, y + size, 0x99000000);
+		}
+	}
+
+	private void drawPack(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+		net.minecraft.nbt.CompoundTag pack = ClientHuntState.pack;
+		boolean leader = ClientHuntState.packLeader();
+		boolean grouped = ClientHuntState.grouped();
+		HuntData.Quest quest = ClientHuntState.packQuest();
+		List<CompoundTagView> members = packMembers();
+		String leaderId = pack.getStringOr("leader", myId());
+		CompoundTagView leaderView = members.stream().filter(m -> m.id().equals(leaderId)).findFirst().orElse(members.get(0));
+		String packName = pack.getStringOr("name", leaderView.name() + "'s Group");
+
+		int x0 = ix + 4;
+		int y0 = iy + 4;
+		int w0 = iw - 8;
+		int h0 = ih - 8;
+		sprite(g, "panel", x0, y0, w0, h0);
+
+		// The leader's big head.
+		int hx = x0 + 8;
+		int hy = y0 + 8;
+		sprite(g, "panel_dark", hx - 2, hy - 2, HEAD + 4, HEAD + 4);
+		face(g, leaderView.id(), hx, hy, HEAD, leaderView.online());
+		boolean hoverHead = mouseX >= hx && mouseX < hx + HEAD && mouseY >= hy && mouseY < hy + HEAD;
+		hits.add(new Hit(hx, hy, HEAD, HEAD, () -> openPopup("leader", mouseX, mouseY)));
+
+		// Name, members, active Hunt, quota.
+		int tx = hx + HEAD + 10;
+		int ty = hy + 1;
+		if (editField == 1) {
+			sprite(g, "panel_dark", tx - 3, ty - 3, w0 - (tx - x0) - 8, 14);
+			boolean caret = (System.currentTimeMillis() / 500) % 2 == 0;
+			g.text(this.font, colored(editText + (caret ? "_" : ""), WHITE), tx, ty, WHITE, false);
+		} else {
+			g.text(this.font, colored(packName, WHITE), tx, ty, WHITE, false);
+			if (leader) {
+				hits.add(new Hit(tx, ty - 2, Math.max(40, this.font.width(packName)), 11, () -> {
+					closePackOverlays();
+					editField = 1;
+					editText = packName;
+				}));
+			}
+		}
+		ty += 13;
+		int max = pack.getIntOr("max", 0);
+		String count = editField == 2 ? editText + ((System.currentTimeMillis() / 500) % 2 == 0 ? "_" : "")
+				: max > 0 ? members.size() + "/" + max : String.valueOf(members.size());
+		Component membersLine = colored("Members: ", TEXT_GRAY).append(colored(count, WHITE));
+		g.text(this.font, membersLine, tx, ty, WHITE, false);
+		boolean hoverMembers = mouseX >= tx && mouseX < tx + this.font.width(membersLine) + 4 && mouseY >= ty - 2 && mouseY < ty + 9;
+		if (leader && editField != 2) {
+			hits.add(new Hit(tx, ty - 2, this.font.width(membersLine) + 4, 11, () -> {
+				closePackOverlays();
+				editField = 2;
+				editText = "";
+			}));
+		}
+		ty += 13;
+		Component huntLine;
+		if (quest == null) {
+			huntLine = colored("None", TEXT_DIM);
+		} else {
+			Hunt hunt = HuntDefs.hunt(quest.hunt);
+			Tier tier = hunt.tier(quest.tier);
+			huntLine = colored(hunt.name() + " ", hunt.color()).append(colored("[Tier " + tier.roman() + "] ", tier.color()))
+					.append(colored(tier.bossName(), tier.color()));
+		}
+		g.text(this.font, colored("Active Hunt: ", TEXT_GRAY).append(huntLine), tx, ty, WHITE, false);
+		ty += 13;
+		if (quest != null) {
+			int barX = tx;
+			int barW = x0 + w0 - 8 - barX;
+			float fill = quest.phase == HuntData.PHASE_KILLING ? quest.kills / (float) Math.max(1, quest.quota) : 1.0F;
+			Component label = quest.phase == HuntData.PHASE_KILLING ? colored("Quota " + quest.kills + "/" + quest.quota, WHITE)
+					: quest.phase == HuntData.PHASE_SUMMONING ? colored("The boss is being summoned...", WHITE) : colored("Boss alive", WHITE);
+			sprite(g, "bar_background", barX, ty, barW, 12);
+			int filled = Math.round(barW * fill);
+			if (filled > 0) {
+				sprite(g, "bar_quota", barX, ty, filled, 12);
+			}
+			g.centeredText(this.font, label, barX + barW / 2, ty + 2, WHITE);
+		}
+
+		// The members box, with the Stash and Invites buttons above its right end.
+		int boxTop = hy + HEAD + 22;
+		int boxX = x0 + 6;
+		int boxW = w0 - 12;
+		int boxH = y0 + h0 - 6 - boxTop;
+		g.text(this.font, colored(packPlayers ? "Players" : "Members", WHITE), boxX + 2, boxTop - 11, WHITE, false);
+		int bx = boxX + boxW - ICON;
+		int by = boxTop - ICON - 3;
+		drawIconButton(g, bx, by, "Invites", mouseX, mouseY, () -> {
+			closePackOverlays();
+			inboxOpen = true;
+			ClientPlayNetworking.send(new HuntPayloads.Action("pack_seen", "", 0));
+			ClientHuntState.invitesNew = false;
+		});
+		g.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.withDefaultNamespace("icon/invite"), bx + 3, by + 4, 16, 13);
+		if (ClientHuntState.invitesNew) {
+			g.fill(bx + ICON - 7, by + ICON - 7, bx + ICON - 1, by + ICON - 1, 0xFF5A0000);
+			g.fill(bx + ICON - 6, by + ICON - 6, bx + ICON - 2, by + ICON - 2, 0xFFFF2020);
+		}
+		int sx = bx - ICON - 4;
+		drawIconButton(g, sx, by, "Stash", mouseX, mouseY, () -> {
+			closePackOverlays();
+			stashOpen = true;
+		});
+		g.item(new ItemStack(net.minecraft.world.item.Items.BUNDLE), sx + 3, by + 3);
+		sprite(g, "panel_dark", boxX, boxTop, boxW, boxH);
+
+		List<CompoundTagView> entries = new ArrayList<>();
+		if (packPlayers) {
+			var connection = this.minecraft.getConnection();
+			if (connection != null) {
+				for (var info : connection.getListedOnlinePlayers()) {
+					String id = info.getProfile().id().toString();
+					if (members.stream().noneMatch(m -> m.id().equals(id))) {
+						entries.add(new CompoundTagView(id, info.getProfile().name(), true));
+					}
+				}
+			}
+		} else {
+			for (CompoundTagView member : members) {
+				if (!member.id().equals(leaderId)) {
+					if (member.id().equals(myId())) {
+						entries.add(0, member);
+					} else {
+						entries.add(member);
+					}
+				}
+			}
+		}
+		int perRow = Math.max(1, (boxW - 8) / CELL);
+		int cells = entries.size() + (leader && quest == null ? 1 : 0);
+		String hoverName = null;
+		for (int i = 0; i < cells; i++) {
+			int cx = boxX + 5 + (i % perRow) * CELL;
+			int cy = boxTop + 5 + (i / perRow) * CELL;
+			if (cy + CELL > boxTop + boxH) {
+				break;
+			}
+			boolean hover = mouseX >= cx && mouseX < cx + CELL - 4 && mouseY >= cy && mouseY < cy + CELL - 4;
+			if (i < entries.size()) {
+				CompoundTagView entry = entries.get(i);
+				g.fill(cx - 1, cy - 1, cx + CELL - 3, cy + CELL - 3, hover ? 0xFFFFFFFF : 0xFF202020);
+				face(g, entry.id(), cx, cy, CELL - 4, entry.online());
+				if (hover) {
+					hoverName = entry.name() + (entry.online() ? "" : " (offline)") + (packPlayers ? " - click to invite" : "");
+				}
+				hits.add(new Hit(cx, cy, CELL - 4, CELL - 4, packPlayers ? () -> {
+					ClientPlayNetworking.send(new HuntPayloads.Action("pack_invite", entry.id(), 0));
+					packPlayers = false;
+				} : () -> openPopup(entry.id(), mouseX, mouseY)));
+			} else {
+				// The + (or - to go back) for the leader.
+				g.fill(cx - 1, cy - 1, cx + CELL - 3, cy + CELL - 3, hover ? 0xFFFFFFFF : 0xFFA0A0A0);
+				g.fill(cx, cy, cx + CELL - 4, cy + CELL - 4, 0xFF6F6F6F);
+				g.centeredText(this.font, colored(packPlayers ? "-" : "+", WHITE), cx + (CELL - 4) / 2, cy + (CELL - 4) / 2 - 4, WHITE);
+				buttonCenters.put("Pack +", new int[] {cx + (CELL - 4) / 2, cy + (CELL - 4) / 2});
+				hits.add(new Hit(cx, cy, CELL - 4, CELL - 4, () -> {
+					closePackOverlays();
+					packPlayers = !packPlayers;
+				}));
+				if (hover) {
+					hoverName = packPlayers ? "Back to the members" : "Invite players";
+				}
+			}
+		}
+		if (entries.isEmpty() && packPlayers) {
+			g.text(this.font, colored("No other players online.", TEXT_DIM), boxX + 34, boxTop + 13, WHITE, false);
+		}
+
+		// Overlays take every click while open.
+		if (popupFor != null) {
+			drawPopup(g, mouseX, mouseY, leader, grouped, quest != null, leaderId);
+		} else if (inboxOpen) {
+			drawInbox(g, mouseX, mouseY);
+		} else if (stashOpen) {
+			drawStash(g, mouseX, mouseY);
+		} else if (hoverName != null) {
+			g.setComponentTooltipForNextFrame(this.font, List.of(colored(hoverName, WHITE)), mouseX, mouseY);
+		} else if (hoverHead) {
+			g.setComponentTooltipForNextFrame(this.font, List.of(colored(leaderView.name() + " (leader)", HuntDefs.GOLD)), mouseX, mouseY);
+		} else if (hoverMembers && leader) {
+			g.setComponentTooltipForNextFrame(this.font, List.of(colored("Click to set the most members (0 = no limit).", TEXT_GRAY)),
+					mouseX, mouseY);
+		}
+	}
+
+	private void drawIconButton(GuiGraphicsExtractor g, int x, int y, String name, int mouseX, int mouseY, Runnable action) {
+		boolean hover = mouseX >= x && mouseX < x + ICON && mouseY >= y && mouseY < y + ICON;
+		g.blitSprite(RenderPipelines.GUI_TEXTURED, hover ? BUTTON_HIGHLIGHTED : BUTTON_SPRITE, x, y, ICON, ICON);
+		buttonCenters.put(name, new int[] {x + ICON / 2, y + ICON / 2});
+		hits.add(new Hit(x, y, ICON, ICON, action));
+		if (hover && popupFor == null && !inboxOpen && !stashOpen) {
+			g.setComponentTooltipForNextFrame(this.font, List.of(colored(name, WHITE)), mouseX, mouseY);
+		}
+	}
+
+	private void openPopup(String target, int mouseX, int mouseY) {
+		closePackOverlays();
+		popupFor = target;
+		popupX = mouseX;
+		popupY = mouseY;
+	}
+
+	/** A player's options: the leader can kick or promote; the big head disbands or leaves; your own head leaves. */
+	private void drawPopup(GuiGraphicsExtractor g, int mouseX, int mouseY, boolean leader, boolean grouped, boolean questRunning,
+			String leaderId) {
+		List<String> options = new ArrayList<>();
+		if ("leader".equals(popupFor)) {
+			if (leader && grouped) {
+				options.add("Disband");
+				options.add("Leave");
+			}
+		} else if (leader) {
+			options.add("Kick");
+			if (!questRunning) {
+				options.add("Promote to leader");
+			}
+		} else if (popupFor.equals(myId())) {
+			options.add("Leave");
+		}
+		hits.clear();
+		hits.add(new Hit(0, 0, this.width, this.height, this::closePackOverlays));
+		if (options.isEmpty()) {
+			popupFor = null;
+			return;
+		}
+		int w = 0;
+		for (String option : options) {
+			w = Math.max(w, this.font.width(option) + 12);
+		}
+		int x = Math.min(popupX, this.width - w - 4);
+		int y = Math.min(popupY, this.height - options.size() * 16 - 8);
+		sprite(g, "panel_dark", x - 3, y - 3, w + 6, options.size() * 16 + 4);
+		List<Hit> mine = new ArrayList<>();
+		for (int i = 0; i < options.size(); i++) {
+			String option = options.get(i);
+			String target = popupFor;
+			boolean disabled = questRunning && (option.equals("Leave") || option.equals("Disband"));
+			button(g, x, y + i * 16, w, 15, Component.literal(option), !disabled, mouseX, mouseY, null);
+			if (!disabled) {
+				mine.add(new Hit(x, y + i * 16, w, 15, () -> {
+					switch (option) {
+						case "Kick" -> ClientPlayNetworking.send(new HuntPayloads.Action("pack_kick", target, 0));
+						case "Promote to leader" -> ClientPlayNetworking.send(new HuntPayloads.Action("pack_promote", target, 0));
+						case "Leave" -> ClientPlayNetworking.send(new HuntPayloads.Action("pack_leave", "", 0));
+						default -> ClientPlayNetworking.send(new HuntPayloads.Action("pack_disband", "", 0));
+					}
+					closePackOverlays();
+				}));
+			}
+		}
+		hits.addAll(0, mine);
+	}
+
+	private int[] overlayBox(int w, int h) {
+		return new int[] {(this.width - w) / 2, (this.height - h) / 2, w, h};
+	}
+
+	/** The invites inbox: each invite with Accept (greyed, with the reason, when it can't be taken) and Decline. */
+	private void drawInbox(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+		List<net.minecraft.nbt.CompoundTag> invites = ClientHuntState.invites;
+		int rows = Math.max(1, invites.size());
+		int[] box = overlayBox(240, 30 + rows * 24);
+		hits.clear();
+		List<Hit> mine = new ArrayList<>();
+		sprite(g, "window", box[0], box[1], box[2], box[3]);
+		g.centeredText(this.font, colored("Invites", TAB_TEXT), box[0] + box[2] / 2, box[1] + 7, TAB_TEXT);
+		if (invites.isEmpty()) {
+			g.centeredText(this.font, colored("No invites for you right now...", 0xFF606060), box[0] + box[2] / 2, box[1] + 26, TAB_TEXT);
+		}
+		List<Component> tooltip = null;
+		for (int i = 0; i < invites.size(); i++) {
+			net.minecraft.nbt.CompoundTag invite = invites.get(i);
+			int y = box[1] + 22 + i * 24;
+			sprite(g, "panel_dark", box[0] + 6, y, box[2] - 12, 22);
+			int seconds = invite.getIntOr("seconds", 0);
+			g.text(this.font, colored(invite.getStringOr("name", "?"), WHITE), box[0] + 10, y + 3, WHITE, false);
+			g.text(this.font, colored("from " + invite.getStringOr("from", "?") + String.format(" - %d:%02d", seconds / 60, seconds % 60),
+					TEXT_GRAY), box[0] + 10, y + 12, WHITE, false);
+			String packId = invite.getStringOr("pack", "");
+			String blocked = invite.getStringOr("blocked", "");
+			int ax = box[0] + box[2] - 108;
+			boolean hoverAccept = button(g, ax, y + 3, 48, 16, Component.literal("Accept"), blocked.isEmpty(), mouseX, mouseY, null);
+			if (blocked.isEmpty()) {
+				mine.add(new Hit(ax, y + 3, 48, 16, () -> {
+					ClientPlayNetworking.send(new HuntPayloads.Action("pack_accept", packId, 0));
+					closePackOverlays();
+				}));
+			} else if (hoverAccept) {
+				tooltip = List.of(colored(blocked, HuntDefs.RED));
+			}
+			button(g, ax + 52, y + 3, 50, 16, Component.literal("Decline"), true, mouseX, mouseY, null);
+			mine.add(new Hit(ax + 52, y + 3, 50, 16, () -> ClientPlayNetworking.send(new HuntPayloads.Action("pack_decline", packId, 0))));
+		}
+		hits.addAll(mine);
+		hits.add(new Hit(0, 0, this.width, this.height, this::closePackOverlays));
+		if (tooltip != null) {
+			g.setComponentTooltipForNextFrame(this.font, tooltip, mouseX, mouseY);
+		}
+	}
+
+	/** The Stash: rewards that came while the player was away. Items can only be taken out (click one). */
+	private void drawStash(GuiGraphicsExtractor g, int mouseX, int mouseY) {
+		List<ItemStack> stash = ClientHuntState.stash;
+		int columns = 9;
+		int rows = Math.max(1, (stash.size() + columns - 1) / columns);
+		int[] box = overlayBox(columns * 18 + 16, 30 + rows * 18 + 4);
+		hits.clear();
+		List<Hit> mine = new ArrayList<>();
+		sprite(g, "window", box[0], box[1], box[2], box[3]);
+		g.centeredText(this.font, colored("Stash", TAB_TEXT), box[0] + box[2] / 2, box[1] + 7, TAB_TEXT);
+		if (stash.isEmpty()) {
+			g.centeredText(this.font, colored("Your Stash is empty.", 0xFF606060), box[0] + box[2] / 2, box[1] + 26, TAB_TEXT);
+		}
+		ItemStack hovered = null;
+		for (int i = 0; i < stash.size(); i++) {
+			int x = box[0] + 8 + (i % columns) * 18;
+			int y = box[1] + 22 + (i / columns) * 18;
+			g.fill(x, y, x + 18, y + 18, 0xFF8B8B8B);
+			g.fill(x + 1, y + 1, x + 17, y + 17, 0xFF373737);
+			ItemStack stack = stash.get(i);
+			g.item(stack, x + 1, y + 1);
+			g.itemDecorations(this.font, stack, x + 1, y + 1);
+			if (mouseX >= x && mouseX < x + 18 && mouseY >= y && mouseY < y + 18) {
+				hovered = stack;
+			}
+			int index = i;
+			mine.add(new Hit(x, y, 18, 18, () -> ClientPlayNetworking.send(new HuntPayloads.Action("stash_take", "", index))));
+		}
+		hits.addAll(mine);
+		hits.add(new Hit(0, 0, this.width, this.height, this::closePackOverlays));
+		if (hovered != null) {
+			g.setTooltipForNextFrame(this.font, hovered, mouseX, mouseY);
+		}
+	}
+
 	// ---------------------------------------------------------------- Quests tab
 
 	private void drawBossCard(GuiGraphicsExtractor g, int mouseX, int mouseY) {
@@ -569,13 +1025,32 @@ public class HuntMenuScreen extends Screen {
 			startX += 38;
 			startW -= 38;
 		}
-		boolean canStart = unlocked && affordable && !ClientHuntState.peaceful;
+		boolean canStart = unlocked && affordable && !ClientHuntState.peaceful && packAllowsStart(hunt, tier);
 		if (ClientHuntState.peaceful) {
 			g.text(this.font, colored("Cannot start quest because of", HuntDefs.RED), px + 4, by - 20, WHITE, false);
 			g.text(this.font, colored("the world's difficulty.", HuntDefs.RED), px + 4, by - 11, WHITE, false);
 		}
-		button(g, startX, by, startW, 16, Component.literal("Start [" + tier.tokenCost() + " Tokens]"), canStart,
+		boolean hoverStart = button(g, startX, by, startW, 16, Component.literal("Start [" + tier.tokenCost() + " Tokens]"), canStart,
 				mouseX, mouseY, this::startQuest);
+		if (hoverStart && ClientHuntState.grouped()) {
+			String tip = !ClientHuntState.packLeader() ? "Only the pack's leader can start Hunts."
+					: ClientHuntState.packQuest() != null ? "The pack is already on a Hunt."
+					: !packAllowsStart(hunt, tier) ? com.huntlike.hunt.HuntingPacks.REQUIREMENTS : "Starts this Hunt for the whole pack.";
+			g.setComponentTooltipForNextFrame(this.font, List.of(colored(tip, packAllowsStart(hunt, tier) ? TEXT_GRAY : HuntDefs.RED)),
+					mouseX, mouseY);
+		}
+	}
+
+	/** In a Hunting Pack only the leader starts, and only a tier every member can take (unlocked, tokens, online). */
+	private static boolean packAllowsStart(Hunt hunt, Tier tier) {
+		if (!ClientHuntState.grouped()) {
+			return true;
+		}
+		if (!ClientHuntState.packLeader() || ClientHuntState.packQuest() != null) {
+			return false;
+		}
+		byte[] ok = ClientHuntState.pack.getCompoundOrEmpty("ok").getByteArray(hunt.id()).orElse(new byte[0]);
+		return tier.number() - 1 < ok.length && ok[tier.number() - 1] == 1;
 	}
 
 	/** A boss's name, scrambled until its tier (or stage) is unlocked. */
@@ -870,7 +1345,10 @@ public class HuntMenuScreen extends Screen {
 		int barW = pw - 12;
 		float fill;
 		Component label;
-		if (quest.phase == HuntData.PHASE_KILLING) {
+		if (questPaused()) {
+			fill = quest.quota == 0 ? 0 : quest.kills / (float) quest.quota;
+			label = colored("Quota paused", WHITE);
+		} else if (quest.phase == HuntData.PHASE_KILLING) {
 			fill = quest.quota == 0 ? 0 : quest.kills / (float) quest.quota;
 			label = colored("Quota " + quest.kills + "/" + quest.quota, WHITE);
 		} else if (quest.phase == HuntData.PHASE_SUMMONING) {
@@ -1391,6 +1869,28 @@ public class HuntMenuScreen extends Screen {
 	@Override
 	public boolean keyPressed(KeyEvent event) {
 		int key = event.key();
+		if (editField != 0) {
+			if (key == InputConstants.KEY_RETURN || key == InputConstants.KEY_NUMPADENTER) {
+				submitEdit();
+			} else if (key == InputConstants.KEY_ESCAPE) {
+				editField = 0;
+			} else if (key == InputConstants.KEY_BACKSPACE && !editText.isEmpty()) {
+				editText = editText.substring(0, editText.length() - 1);
+			}
+			return true;
+		}
+		if (key == InputConstants.KEY_ESCAPE && (popupFor != null || inboxOpen || stashOpen)) {
+			closePackOverlays();
+			return true;
+		}
+		if (packView) {
+			if (key == InputConstants.KEY_ESCAPE) {
+				// First Esc goes back to the Quests tab, the second closes the menu.
+				packView = false;
+				tab = 0;
+			}
+			return true;
+		}
 		if (key == InputConstants.KEY_ESCAPE || key == InputConstants.KEY_BACKSPACE) {
 			if (panelOpen && !questPanelShowing()) {
 				panelOpen = false;
@@ -1440,7 +1940,7 @@ public class HuntMenuScreen extends Screen {
 			} else if (tab == 0 && !questPanelShowing()) {
 				Tier tier = hunt().tier(questTier);
 				HuntData.Progress progress = progress();
-				if (tierOpen(tier) && progress.tokens >= tier.tokenCost() && !ClientHuntState.peaceful) {
+				if (tierOpen(tier) && progress.tokens >= tier.tokenCost() && !ClientHuntState.peaceful && packAllowsStart(hunt(), tier)) {
 					startQuest();
 				}
 			}
@@ -1450,7 +1950,31 @@ public class HuntMenuScreen extends Screen {
 	}
 
 	@Override
+	public boolean charTyped(net.minecraft.client.input.CharacterEvent event) {
+		if (editField == 0) {
+			return super.charTyped(event);
+		}
+		String typed = event.codepointAsString();
+		if (editField == 1 && typed.matches("[A-Za-z0-9 ]") && editText.length() < com.huntlike.hunt.HuntingPacks.NAME_LENGTH) {
+			editText += typed;
+		} else if (editField == 2 && typed.matches("[0-9]") && editText.length() < 3) {
+			editText += typed;
+		}
+		return true;
+	}
+
+	@Override
 	public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+		// In the Hunting Pack screen both buttons open a player's options.
+		if (packView && event.button() == InputConstants.MOUSE_BUTTON_RIGHT) {
+			for (Hit hit : List.copyOf(hits)) {
+				if (hit.contains(event.x(), event.y())) {
+					hit.action().run();
+					return true;
+				}
+			}
+			return true;
+		}
 		if (event.button() == InputConstants.MOUSE_BUTTON_LEFT) {
 			double mx = event.x();
 			double my = event.y();

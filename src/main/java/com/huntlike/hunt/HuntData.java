@@ -65,8 +65,10 @@ public final class HuntData {
 	public int dailyCharges = DAILY_CHARGES;
 	public long dailyDay = -1;
 	public final Map<String, Progress> progress = new HashMap<>();
-	/** The running quest, or null. */
+	/** The running quest, or null. A Hunting Pack quest sits here on the member running it, but is saved with the pack. */
 	public Quest quest;
+	/** The player's own quest, paused while they are in a Hunting Pack (its quota shows "paused"), or null. */
+	public Quest pausedQuest;
 
 	/** Per-Hunt progress. */
 	public static final class Progress {
@@ -98,6 +100,14 @@ public final class HuntData {
 		public int summonY;
 		public int summonZ;
 		public int summonTicks;
+		/** A Hunting Pack quest: id of the pack, members when it started (quota and boss health scale), kicked players. */
+		public String pack = "";
+		public int packSize = 1;
+		public java.util.Set<String> kicked = new java.util.HashSet<>();
+
+		public boolean isPack() {
+			return !pack.isEmpty();
+		}
 	}
 
 	public Progress progress(String hunt) {
@@ -147,7 +157,17 @@ public final class HuntData {
 			hunts.put(id, h);
 		});
 		tag.put("hunts", hunts);
-		if (quest != null) {
+		if (quest != null && !quest.isPack()) {
+			tag.put("quest", questTag(quest));
+		}
+		if (pausedQuest != null) {
+			tag.put("pausedQuest", questTag(pausedQuest));
+		}
+		return tag;
+	}
+
+	public static CompoundTag questTag(Quest quest) {
+		{
 			CompoundTag q = new CompoundTag();
 			q.putString("hunt", quest.hunt);
 			q.putInt("tier", quest.tier);
@@ -161,9 +181,11 @@ public final class HuntData {
 			q.putInt("sz", quest.summonZ);
 			q.putInt("summonTicks", quest.summonTicks);
 			q.putBoolean("daily", quest.daily);
-			tag.put("quest", q);
+			q.putString("pack", quest.pack);
+			q.putInt("packSize", quest.packSize);
+			q.putString("kicked", String.join(",", quest.kicked));
+			return q;
 		}
-		return tag;
 	}
 
 	public static HuntData fromTag(CompoundTag tag) {
@@ -209,7 +231,16 @@ public final class HuntData {
 			}
 		}
 		if (tag.contains("quest")) {
-			CompoundTag q = tag.getCompoundOrEmpty("quest");
+			data.quest = questFrom(tag.getCompoundOrEmpty("quest"));
+		}
+		if (tag.contains("pausedQuest")) {
+			data.pausedQuest = questFrom(tag.getCompoundOrEmpty("pausedQuest"));
+		}
+		return data;
+	}
+
+	public static Quest questFrom(CompoundTag q) {
+		{
 			Quest quest = new Quest();
 			quest.hunt = q.getStringOr("hunt", "animal");
 			quest.tier = q.getIntOr("tier", 1);
@@ -223,8 +254,14 @@ public final class HuntData {
 			quest.summonZ = q.getIntOr("sz", 0);
 			quest.summonTicks = q.getIntOr("summonTicks", 0);
 			quest.daily = q.getBooleanOr("daily", false);
-			data.quest = quest;
+			quest.pack = q.getStringOr("pack", "");
+			quest.packSize = q.getIntOr("packSize", 1);
+			for (String id : q.getStringOr("kicked", "").split(",")) {
+				if (!id.isEmpty()) {
+					quest.kicked.add(id);
+				}
+			}
+			return quest;
 		}
-		return data;
 	}
 }
