@@ -1267,9 +1267,18 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(3);
 		assertServer(singleplayer, "Hunting Pack: a member's kill counts for the pack", server ->
 				com.huntlike.hunt.HuntingPacks.packOf(player(server).getUUID()).quest().kills >= 1);
+		context.runOnClient(client -> client.gui.toastManager().clear());
 		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
 		context.waitTicks(5);
 		context.takeScreenshot("98b-hunting-pack-quest");
+		// The leader's Quests tab during the pack quest.
+		context.runOnClient(client -> {
+			if (client.gui.screen() instanceof com.huntlike.client.screen.HuntMenuScreen menu) {
+				menu.keyPressed(new net.minecraft.client.input.KeyEvent(com.mojang.blaze3d.platform.InputConstants.KEY_ESCAPE, 0, 0));
+			}
+		});
+		context.waitTicks(3);
+		context.takeScreenshot("98b1-hunting-pack-quests-tab");
 		context.setScreen(() -> null);
 		int killsBefore = singleplayer.getServer().computeOnServer(server ->
 				QuestManager.data(packmate(server)).progress("animal").bossKills[0]);
@@ -1283,6 +1292,11 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			cow.hurtServer(mate.level(), mate.level().damageSources().playerAttack(mate), 1000.0F);
 		});
 		context.waitTicks(80);
+		context.runOnClient(client -> client.gui.toastManager().clear());
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98b2-hunting-pack-boss");
+		context.setScreen(() -> null);
 		assertServer(singleplayer, "Hunting Pack boss: summoned for the leader with twice the health", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
