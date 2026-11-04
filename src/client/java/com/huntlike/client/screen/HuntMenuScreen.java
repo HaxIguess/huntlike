@@ -83,6 +83,9 @@ public class HuntMenuScreen extends Screen {
 	/** Text being typed: 0 none, 1 the pack's name, 2 its member limit. */
 	private int editField;
 	private String editText = "";
+	/** Scroll of the members box, in pixels. */
+	private int packScroll;
+	private int[] packBox;
 	/** False: the Hunt rail only. True: the selected Hunt's panel is open. */
 	private boolean panelOpen;
 	private int huntIndex;
@@ -530,8 +533,11 @@ public class HuntMenuScreen extends Screen {
 	private static final int SIDE_W = 20;
 	private static final int SIDE_H = 96;
 	private static final int HEAD = 48;
-	private static final int CELL = 26;
-	private static final int ICON = 28;
+	/** A head in the members box: 24 pixels, with room around it. */
+	private static final int CELL = 34;
+	private static final int FACE = 24;
+	private static final int BOX_ROWS = 2;
+	private static final int ICON = 24;
 
 	/** The "Hunting Pack" tab on the window's left side (A-Phone only), text reading upwards. */
 	private void drawSideTab(GuiGraphicsExtractor g, int mouseX, int mouseY) {
@@ -638,7 +644,11 @@ public class HuntMenuScreen extends Screen {
 			boolean caret = (System.currentTimeMillis() / 500) % 2 == 0;
 			g.text(this.font, colored(editText + (caret ? "_" : ""), WHITE), tx, ty, WHITE, false);
 		} else {
-			g.text(this.font, colored(packName, WHITE), tx, ty, WHITE, false);
+			// Long names stop short of the Stash and Invites buttons in the corner.
+			int room = x0 + w0 - 2 * ICON - 14 - tx;
+			String shown = this.font.width(packName) <= room ? packName
+					: this.font.plainSubstrByWidth(packName, room - this.font.width("...")) + "...";
+			g.text(this.font, colored(shown, WHITE), tx, ty, WHITE, false);
 			if (leader) {
 				hits.add(new Hit(tx, ty - 2, Math.max(40, this.font.width(packName)), 11, () -> {
 					closePackOverlays();
@@ -687,34 +697,36 @@ public class HuntMenuScreen extends Screen {
 			g.centeredText(this.font, label, barX + barW / 2, ty + 2, WHITE);
 		}
 
-		// The members box, with the Stash and Invites buttons above its right end.
-		int boxTop = hy + HEAD + 34;
-		int boxX = x0 + 6;
-		int boxW = w0 - 12;
-		int boxH = y0 + h0 - 6 - boxTop;
-		g.text(this.font, colored(packPlayers ? "Players" : "Members", WHITE), boxX + 2, boxTop - 11, WHITE, false);
-		int bx = boxX + boxW - ICON;
-		int by = boxTop - ICON - 3;
+		// Stash and Invites: the panel's top-right corner.
+		int bx = x0 + w0 - ICON - 4;
+		int by = y0 + 4;
 		drawIconButton(g, bx, by, "Invites", mouseX, mouseY, () -> {
 			closePackOverlays();
 			inboxOpen = true;
 			ClientPlayNetworking.send(new HuntPayloads.Action("pack_seen", "", 0));
 			ClientHuntState.invitesNew = false;
 		});
-		// The user's envelope; with a new invite, the one with the red dot (25 x 18, the envelope at the same spot).
-		// Shrunk to the basket's 16 pixels wide and centered like it (the dotted one is the same envelope, 1 pixel in).
+		// The user's envelope the basket's size (16 wide), centered; the dotted one is the same envelope 1 pixel in.
 		if (ClientHuntState.invitesNew) {
-			sprite(g, "invites_new", bx + 5, by + 7, 18, 13);
+			sprite(g, "invites_new", bx + 3, by + 5, 18, 13);
 		} else {
-			sprite(g, "invites", bx + 6, by + 8, 16, 11);
+			sprite(g, "invites", bx + 4, by + 6, 16, 11);
 		}
-		int sx = bx - ICON - 4;
+		int sx = bx - ICON - 3;
 		drawIconButton(g, sx, by, "Stash", mouseX, mouseY, () -> {
 			closePackOverlays();
 			stashOpen = true;
 		});
-		sprite(g, "stash", sx + 6, by + 6, 16, 16);
+		sprite(g, "stash", sx + 4, by + 4, 16, 16);
+
+		// The members box: two rows of heads, scrolled with the mouse wheel.
+		int boxX = x0 + 6;
+		int boxW = w0 - 12;
+		int boxH = BOX_ROWS * CELL + 6;
+		int boxTop = y0 + h0 - 6 - boxH;
+		g.text(this.font, colored(packPlayers ? "Players" : "Members", WHITE), boxX + 2, boxTop - 11, WHITE, false);
 		sprite(g, "panel_dark", boxX, boxTop, boxW, boxH);
+		packBox = new int[] {boxX, boxTop, boxW, boxH};
 
 		List<CompoundTagView> entries = new ArrayList<>();
 		if (packPlayers) {
@@ -738,44 +750,60 @@ public class HuntMenuScreen extends Screen {
 				}
 			}
 		}
-		int perRow = Math.max(1, (boxW - 8) / CELL);
+		int perRow = Math.max(1, (boxW - 10) / CELL);
 		int cells = entries.size() + (leader && quest == null ? 1 : 0);
+		int rows = (cells + perRow - 1) / perRow;
+		int maxScroll = Math.max(0, rows * CELL - (boxH - 6));
+		packScroll = Math.max(0, Math.min(maxScroll, packScroll));
+		int left0 = boxX + (boxW - perRow * CELL) / 2 + (CELL - FACE) / 2;
 		String hoverName = null;
+		g.enableScissor(boxX + 1, boxTop + 1, boxX + boxW - 1, boxTop + boxH - 1);
 		for (int i = 0; i < cells; i++) {
-			int cx = boxX + 5 + (i % perRow) * CELL;
-			int cy = boxTop + 5 + (i / perRow) * CELL;
-			if (cy + CELL > boxTop + boxH) {
-				break;
+			int cx = left0 + (i % perRow) * CELL;
+			int cy = boxTop + 3 + (CELL - FACE) / 2 + (i / perRow) * CELL - packScroll;
+			if (cy + FACE < boxTop || cy > boxTop + boxH) {
+				continue;
 			}
-			boolean hover = mouseX >= cx && mouseX < cx + CELL - 4 && mouseY >= cy && mouseY < cy + CELL - 4;
+			boolean inBox = mouseY >= boxTop && mouseY < boxTop + boxH;
+			boolean hover = inBox && mouseX >= cx && mouseX < cx + FACE && mouseY >= cy && mouseY < cy + FACE;
 			if (i < entries.size()) {
 				CompoundTagView entry = entries.get(i);
-				g.fill(cx - 1, cy - 1, cx + CELL - 3, cy + CELL - 3, hover ? 0xFFFFFFFF : 0xFF202020);
-				face(g, entry.id(), cx, cy, CELL - 4, entry.online());
+				g.fill(cx - 1, cy - 1, cx + FACE + 1, cy + FACE + 1, hover ? 0xFFFFFFFF : 0xFF202020);
+				face(g, entry.id(), cx, cy, FACE, entry.online());
 				if (hover) {
 					hoverName = entry.name() + (entry.online() ? "" : " (offline)") + (packPlayers ? " - click to invite" : "");
 				}
-				hits.add(new Hit(cx, cy, CELL - 4, CELL - 4, packPlayers ? () -> {
+				if (inBox) hits.add(new Hit(cx, cy, FACE, FACE, packPlayers ? () -> {
 					ClientPlayNetworking.send(new HuntPayloads.Action("pack_invite", entry.id(), 0));
 					packPlayers = false;
 				} : () -> openPopup(entry.id(), mouseX, mouseY)));
 			} else {
 				// The + (or - to go back) for the leader.
-				g.fill(cx - 1, cy - 1, cx + CELL - 3, cy + CELL - 3, hover ? 0xFFFFFFFF : 0xFFA0A0A0);
-				g.fill(cx, cy, cx + CELL - 4, cy + CELL - 4, 0xFF6F6F6F);
-				g.centeredText(this.font, colored(packPlayers ? "-" : "+", WHITE), cx + (CELL - 4) / 2, cy + (CELL - 4) / 2 - 4, WHITE);
-				buttonCenters.put("Pack +", new int[] {cx + (CELL - 4) / 2, cy + (CELL - 4) / 2});
-				hits.add(new Hit(cx, cy, CELL - 4, CELL - 4, () -> {
+				g.fill(cx - 1, cy - 1, cx + FACE + 1, cy + FACE + 1, hover ? 0xFFFFFFFF : 0xFFA0A0A0);
+				g.fill(cx, cy, cx + FACE, cy + FACE, 0xFF6F6F6F);
+				g.centeredText(this.font, colored(packPlayers ? "-" : "+", WHITE), cx + (FACE) / 2, cy + (FACE) / 2 - 4, WHITE);
+				buttonCenters.put("Pack +", new int[] {cx + (FACE) / 2, cy + (FACE) / 2});
+				if (inBox) hits.add(new Hit(cx, cy, FACE, FACE, () -> {
 					closePackOverlays();
 					packPlayers = !packPlayers;
+					packScroll = 0;
 				}));
 				if (hover) {
 					hoverName = packPlayers ? "Back to the members" : "Invite players";
 				}
 			}
 		}
+		g.disableScissor();
+		if (maxScroll > 0) {
+			// A thin scrollbar on the box's right edge.
+			int trackH = boxH - 4;
+			int thumbH = Math.max(8, trackH * (boxH - 6) / (rows * CELL));
+			int thumbY = boxTop + 2 + (trackH - thumbH) * packScroll / maxScroll;
+			g.fill(boxX + boxW - 4, boxTop + 2, boxX + boxW - 2, boxTop + 2 + trackH, 0xFF1A1A1A);
+			g.fill(boxX + boxW - 4, thumbY, boxX + boxW - 2, thumbY + thumbH, 0xFFA0A0A0);
+		}
 		if (entries.isEmpty() && packPlayers) {
-			g.text(this.font, colored("No other players online.", TEXT_DIM), boxX + 34, boxTop + 13, WHITE, false);
+			g.text(this.font, colored("No other players online.", TEXT_DIM), left0 + CELL + 4, boxTop + 3 + CELL / 2 - 4, WHITE, false);
 		}
 
 		// Overlays take every click while open.
@@ -2016,6 +2044,13 @@ public class HuntMenuScreen extends Screen {
 
 	@Override
 	public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+		if (packView) {
+			int[] box = packBox;
+			if (box != null && mouseX >= box[0] && mouseX < box[0] + box[2] && mouseY >= box[1] && mouseY < box[1] + box[3]) {
+				packScroll -= (int) Math.round(scrollY * 12);
+			}
+			return true;
+		}
 		if (panelOpen && tab == 0 && !questPanelShowing() && mouseX >= px && mouseX < px + pw) {
 			abilityScroll -= (int) Math.round(scrollY * 9);
 			return true;

@@ -1350,6 +1350,41 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					HuntLike.id("brewing/potion_awkward_blazing_heart"))).isPresent();
 			return player.hasEffect(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE) && boosted && brews;
 		});
+		// A big pack (21 members): the members box scrolls.
+		List<ServerPlayer> crowd = new java.util.ArrayList<>();
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var pack = com.huntlike.hunt.HuntingPacks.packOf(player.getUUID());
+			for (int i = 0; i < 20; i++) {
+				var id = java.util.UUID.fromString(String.format("00000000-0000-4000-8000-0000000c%04d", i));
+				var fake = net.fabricmc.fabric.api.entity.FakePlayer.get(player.level(), new com.mojang.authlib.GameProfile(id, "Hunter" + i));
+				addToPlayerList(server, fake);
+				crowd.add(fake);
+				com.huntlike.hunt.HuntingPacks.handle(player, "pack_invite", id.toString(), 0);
+				com.huntlike.hunt.HuntingPacks.handle(fake, "pack_accept", pack.id().toString(), 0);
+			}
+			QuestManager.sync(player);
+		});
+		context.waitTicks(5);
+		context.setScreen(() -> new com.huntlike.client.screen.HuntMenuScreen(QuestManager.PACK_TAB + QuestManager.PHONE_FLAG));
+		context.waitTicks(5);
+		context.takeScreenshot("98g-hunting-pack-many");
+		context.runOnClient(client -> {
+			if (client.gui.screen() instanceof com.huntlike.client.screen.HuntMenuScreen menu) {
+				int[] at = menu.buttonCenter("Hunting Pack");
+				menu.mouseScrolled(client.getWindow().getGuiScaledWidth() / 2.0, client.getWindow().getGuiScaledHeight() - 60.0, 0, -5);
+			}
+		});
+		context.waitTicks(3);
+		context.takeScreenshot("98h-hunting-pack-scrolled");
+		context.setScreen(() -> null);
+		singleplayer.getServer().runOnServer(server -> {
+			for (ServerPlayer fake : crowd) {
+				com.huntlike.hunt.HuntingPacks.handle(fake, "pack_leave", "", 0);
+				removeFromPlayerList(server, fake);
+				fake.discard();
+			}
+		});
 		// The three chalices in the hotbar (empty, filling, full) and the two effect icons, in the inventory.
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
