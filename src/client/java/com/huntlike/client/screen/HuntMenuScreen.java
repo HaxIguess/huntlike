@@ -232,7 +232,12 @@ public class HuntMenuScreen extends Screen {
 
 	/** The player's own quest: the running one, or the one paused while they are in a Hunting Pack. */
 	private HuntData.Quest activeQuest() {
-		return ClientHuntState.data.quest != null ? ClientHuntState.data.quest : ClientHuntState.data.pausedQuest;
+		HuntData data = ClientHuntState.data;
+		if (data.quest != null) {
+			return data.quest;
+		}
+		// The player's own quest, paused while in a pack, comes first; otherwise the pack's running quest.
+		return data.pausedQuest != null ? data.pausedQuest : ClientHuntState.packQuest();
 	}
 
 	private boolean questPaused() {
@@ -1351,7 +1356,7 @@ public class HuntMenuScreen extends Screen {
 		Tier tier = hunt.tier(quest.tier);
 		int cx = px + pw / 2;
 		int y = py + 5;
-		g.centeredText(this.font, colored("Active Quest", WHITE), cx, y, WHITE);
+		g.centeredText(this.font, colored(quest.isPack() ? "Hunting Pack Quest" : "Active Quest", WHITE), cx, y, WHITE);
 		y += 13;
 		boolean interludeQuest = com.huntlike.interlude.InterludeDefs.isInterlude(hunt);
 		if (interludeQuest) {
@@ -1387,7 +1392,8 @@ public class HuntMenuScreen extends Screen {
 		} else {
 			fill = 1.0F;
 			int seconds = ClientHuntState.bossTicksLeft / 20;
-			label = colored(String.format("Boss alive - %d:%02d left", seconds / 60, seconds % 60), WHITE);
+			label = quest.isPack() && seconds == 0 ? colored("Boss alive", WHITE)
+					: colored(String.format("Boss alive - %d:%02d left", seconds / 60, seconds % 60), WHITE);
 		}
 		sprite(g, "bar_background", barX, y, barW, 12);
 		int filled = Math.round(barW * fill);
