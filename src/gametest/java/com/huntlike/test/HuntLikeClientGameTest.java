@@ -1237,7 +1237,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				net.minecraft.world.item.Items.RAW_IRON_BLOCK, net.minecraft.world.item.Items.RAW_GOLD_BLOCK, net.minecraft.world.item.Items.DIAMOND_BLOCK);
 		// On the ground or already picked up.
 		int count = player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30),
-				item -> minerals.contains(item.getItem().getItem())).size();
+				item -> minerals.contains(item.getItem().getItem())).stream().mapToInt(item -> item.getItem().getCount()).sum();
 		for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
 			if (minerals.contains(player.getInventory().getItem(i).getItem())) {
 				count += player.getInventory().getItem(i).getCount();
@@ -1295,6 +1295,8 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		assertServer(singleplayer, "Mineral: still alive with one phase left (4 of 5 plain hits)", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
+			HuntLike.LOGGER.info("[test] Mineral boss alive {}, drops {} (before {})", boss != null && boss.isAlive(), mineralDrops(player(server)),
+					before);
 			return boss != null && boss.isAlive() && mineralDrops(player(server)) == before + 4;
 		});
 		hitBoss(context, singleplayer, false, 1.0F);
