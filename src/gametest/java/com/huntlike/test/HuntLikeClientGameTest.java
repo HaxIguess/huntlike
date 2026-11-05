@@ -1297,11 +1297,17 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		});
 	}
 
-	/** Higher Horsepower: the player drinks it and rides a horse; the client's horse (which does the jumping) must see it. */
+	/** Higher Horsepower on a horse and on Pom's remains horse: the rider's client (which does the jumping) must see it. */
 	private static void horsepower(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		horsepower(context, singleplayer, net.minecraft.world.entity.EntityTypes.HORSE);
+		horsepower(context, singleplayer, com.huntlike.interlude.ModInterlude.REMAINS_HORSE);
+	}
+
+	private static void horsepower(ClientGameTestContext context, TestSingleplayerContext singleplayer,
+			net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.AbstractHorse> type) {
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			var horse = net.minecraft.world.entity.EntityTypes.HORSE.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			var horse = type.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
 			horse.snapTo(player.getX() + 2, player.getY(), player.getZ(), 0, 0);
 			horse.setTamed(true);
 			horse.setItemSlot(net.minecraft.world.entity.EquipmentSlot.SADDLE, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.SADDLE));
@@ -1319,12 +1325,12 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			var attribute = horse.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.JUMP_STRENGTH);
 			return new double[] {attribute.getBaseValue(), attribute.getValue()};
 		});
-		HuntLike.LOGGER.info("[test] Higher Horsepower on the client's horse: base {} now {}", jump[0], jump[1]);
+		HuntLike.LOGGER.info("[test] Higher Horsepower on the client's {}: base {} now {}", type.toShortString(), jump[0], jump[1]);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
 			player.stopRiding();
 			player.removeEffect(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER);
-			player.level().getEntitiesOfClass(net.minecraft.world.entity.animal.equine.Horse.class, player.getBoundingBox().inflate(10),
+			player.level().getEntitiesOfClass(net.minecraft.world.entity.animal.equine.AbstractHorse.class, player.getBoundingBox().inflate(10),
 					h -> h.entityTags().contains("huntlike_horsepower_test")).forEach(net.minecraft.world.entity.Entity::discard);
 		});
 		if (jump[0] <= 0 || jump[1] < jump[0] * 1.4) {

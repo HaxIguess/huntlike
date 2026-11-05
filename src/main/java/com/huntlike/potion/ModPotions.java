@@ -38,7 +38,7 @@ public final class ModPotions {
 
 	public static final Holder<MobEffect> BLAZING_SOUL = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,
 			HuntLike.id("blazing_soul"), new BlazingSoulEffect());
-	/** Any horse its holder rides (or a horse that has it, from a splash) jumps twice as high. Only horses. */
+	/** Any horse its holder rides (or a horse that has it, from a splash) jumps twice as high. Horses and Pom's remains horse. */
 	public static final Holder<MobEffect> HIGHER_HORSEPOWER = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT,
 			HuntLike.id("higher_horsepower"), new MobEffect(MobEffectCategory.BENEFICIAL, 0x9C6B3A) {
 			});
@@ -66,7 +66,8 @@ public final class ModPotions {
 
 	/** Whether this horse should jump twice as high right now. */
 	public static boolean boosted(AbstractHorse horse) {
-		if (horse.getType() != EntityTypes.HORSE) {
+		// Horses and Pom's remains horse (summoned with Pom's Skeletal Remains); no other horse.
+		if (horse.getType() != EntityTypes.HORSE && horse.getType() != com.huntlike.interlude.ModInterlude.REMAINS_HORSE) {
 			return false;
 		}
 		if (horse.hasEffect(HIGHER_HORSEPOWER)) {
