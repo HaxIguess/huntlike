@@ -50,7 +50,8 @@ public final class Mutations {
 	private Mutations() {
 	}
 
-	public static final float CHANCE = 0.05F;
+	/** 5%; tests set it to 0 so their bosses die the usual way. */
+	public static float chance = 0.05F;
 	public static final int NORMAL_HITS = 5;
 	private static final float[] THRESHOLDS = {0.75F, 0.5F, 0.25F};
 
@@ -119,7 +120,7 @@ public final class Mutations {
 			forced = null;
 			return mutation;
 		}
-		if (random.nextFloat() >= CHANCE) {
+		if (random.nextFloat() >= chance) {
 			return "";
 		}
 		Mutation[] all = Mutation.values();

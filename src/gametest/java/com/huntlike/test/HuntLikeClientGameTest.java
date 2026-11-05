@@ -29,6 +29,7 @@ import com.huntlike.hunt.QuestManager;
 public class HuntLikeClientGameTest implements FabricClientGameTest {
 	@Override
 	public void runTest(ClientGameTestContext context) {
+		com.huntlike.hunt.Mutations.chance = 0.0F;
 		try (TestSingleplayerContext singleplayer = context.worldBuilder().create()) {
 			singleplayer.getConnection().waitForChunksRender();
 			singleplayer.getServer().runCommand("time set day");
