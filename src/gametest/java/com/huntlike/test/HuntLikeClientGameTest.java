@@ -201,6 +201,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			multiplayer(context, singleplayer);
 			huntingPack(context, singleplayer);
 			mutations(context, singleplayer);
+			mutationCommand(context, singleplayer);
 			trophy(context, singleplayer);
 			catalystAndPulverizer(context, singleplayer);
 			dailyRefill(context, singleplayer);
@@ -1293,6 +1294,21 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				}
 			}
 		});
+	}
+
+	/** /huntlike boss animal 1 mutation Bejeweled @p summons a Bejeweled boss. */
+	private static void mutationCommand(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runOnServer(server -> cmd(server, "huntlike boss animal 1 mutation Bejeweled " + player(server).getScoreboardName()));
+		context.waitTicks(80);
+		context.runOnClient(client -> client.gui.toastManager().clear());
+		context.waitTicks(3);
+		context.takeScreenshot("98j-mutation-bejeweled");
+		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			return quest != null && "Bejeweled".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;
+		});
+		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
+		context.waitTicks(3);
 	}
 
 	/** One hit on the running boss by the player, with an iron pickaxe or empty-handed; waits out its hurt time. */

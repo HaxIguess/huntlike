@@ -106,6 +106,8 @@ public final class HuntData {
 		public String pack = "";
 		/** The boss's mutation ("Mineral", "Bejeweled"), or "" for none; rolled when it is summoned. */
 		public String mutation = "";
+		/** From /huntlike boss ... mutation <name>: the summoned boss gets this one ("none" = no mutation). Not saved. */
+		public String forcedMutation;
 		public int packSize = 1;
 		public java.util.Set<String> kicked = new java.util.HashSet<>();
 

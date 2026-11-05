@@ -72,7 +72,14 @@ public final class HuntCommand {
 										.then(Commands.argument("tier", IntegerArgumentType.integer(1, 5))
 												.executes(ctx -> bossSelf(ctx))
 												.then(Commands.argument("players", EntityArgument.players())
-														.executes(ctx -> start(ctx, true))))))));
+														.executes(ctx -> start(ctx, true)))
+												// /huntlike boss <hunt> <tier> mutation <Mineral|Bejeweled|none> [players]
+												.then(Commands.literal("mutation")
+														.then(Commands.argument("mutation", StringArgumentType.word())
+																.suggests((ctx, builder) -> SharedSuggestionProvider.suggest(mutationNames(), builder))
+																.executes(ctx -> mutatedBoss(ctx, java.util.List.of(ctx.getSource().getPlayerOrException())))
+																.then(Commands.argument("players", EntityArgument.players())
+																		.executes(ctx -> mutatedBoss(ctx, EntityArgument.getPlayers(ctx, "players"))))))))));
 	}
 
 	private static com.mojang.brigadier.builder.RequiredArgumentBuilder<CommandSourceStack, String> huntArgument() {
@@ -92,6 +99,43 @@ public final class HuntCommand {
 
 	private static int start(CommandContext<CommandSourceStack> ctx, boolean boss) throws CommandSyntaxException {
 		return start(ctx, EntityArgument.getPlayers(ctx, "players"), boss);
+	}
+
+	private static java.util.List<String> mutationNames() {
+		java.util.List<String> names = new java.util.ArrayList<>();
+		for (com.huntlike.hunt.Mutations.Mutation mutation : com.huntlike.hunt.Mutations.Mutation.values()) {
+			names.add(mutation.title);
+		}
+		names.add("none");
+		return names;
+	}
+
+	/** Summons the boss with the given mutation (or "none", for none at all). Animal bosses only for now. */
+	private static int mutatedBoss(CommandContext<CommandSourceStack> ctx, Collection<ServerPlayer> players) throws CommandSyntaxException {
+		Hunt hunt = hunt(ctx);
+		String name = StringArgumentType.getString(ctx, "mutation");
+		String mutation = null;
+		for (String known : mutationNames()) {
+			if (known.equalsIgnoreCase(name)) {
+				mutation = known;
+			}
+		}
+		if (mutation == null) {
+			ctx.getSource().sendFailure(Component.literal("Unknown mutation: " + name + " (" + String.join(", ", mutationNames()) + ")"));
+			return 0;
+		}
+		if (HuntDefs.isCluster(hunt) && !mutation.equals("none")) {
+			ctx.getSource().sendFailure(Component.literal("Cluster bosses can't be mutated yet."));
+			return 0;
+		}
+		int count = start(ctx, players, true);
+		for (ServerPlayer player : players) {
+			HuntData.Quest quest = QuestManager.data(player).quest;
+			if (quest != null && quest.phase == HuntData.PHASE_SUMMONING) {
+				quest.forcedMutation = mutation;
+			}
+		}
+		return count;
 	}
 
 	private static int bossSelf(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {

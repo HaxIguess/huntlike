@@ -250,7 +250,9 @@ public final class BossController {
 		quest.bossUuid = boss.getUUID().toString();
 		quest.bossSpawnTime = level.getGameTime();
 		quest.phase = HuntData.PHASE_BOSS;
-		quest.mutation = Mutations.roll(level.getRandom());
+		quest.mutation = quest.forcedMutation == null ? Mutations.roll(level.getRandom())
+				: "none".equals(quest.forcedMutation) ? "" : quest.forcedMutation;
+		quest.forcedMutation = null;
 		player.setAttached(QuestManager.DATA, data);
 		level.addFreshEntity(boss);
 		ServerBossEvent bar = new ServerBossEvent(boss.getUUID(), Messages.c(tier.bossName(), tier.color()), hunt.barColor(),
