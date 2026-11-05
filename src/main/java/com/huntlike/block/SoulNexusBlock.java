@@ -52,6 +52,16 @@ public class SoulNexusBlock extends Block implements EntityBlock {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
+	/** The model's three slabs, 9 pixels high (the triangle on top is left out). */
+	private static final net.minecraft.world.phys.shapes.VoxelShape SHAPE = net.minecraft.world.phys.shapes.Shapes.or(
+			Block.box(0, 0, 0, 16, 2, 16), Block.box(1, 2, 1, 15, 6, 15), Block.box(0, 6, 0, 16, 9, 16));
+
+	@Override
+	protected net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState state, net.minecraft.world.level.BlockGetter level,
+			BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
+		return SHAPE;
+	}
+
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SoulModelBlockEntity(pos, state);

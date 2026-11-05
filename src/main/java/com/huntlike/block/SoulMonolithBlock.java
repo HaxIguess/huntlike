@@ -81,6 +81,36 @@ public class SoulMonolithBlock extends Block implements EntityBlock {
 		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
+	/**
+	 * The model's stone (with its face, back plate and top) turned to FACING; the pebbles are left out. Boxes in pixels,
+	 * face to the north: {x1, y1, z1, x2, y2, z2}.
+	 */
+	private static final double[][] BOXES = {{2, 0, 5, 14, 11, 12}, {3, 0, 4, 13, 11, 5}, {3, 0, 12, 13, 11, 13}, {3, 11, 5, 13, 12, 12}};
+	private static final java.util.Map<Direction, net.minecraft.world.phys.shapes.VoxelShape> SHAPES = new java.util.EnumMap<>(Direction.class);
+
+	static {
+		for (Direction direction : Direction.Plane.HORIZONTAL) {
+			net.minecraft.world.phys.shapes.VoxelShape shape = net.minecraft.world.phys.shapes.Shapes.empty();
+			for (double[] b : BOXES) {
+				double x1 = b[0], z1 = b[2], x2 = b[3], z2 = b[5];
+				double[] r = switch (direction) {
+					case SOUTH -> new double[] {16 - x2, 16 - z2, 16 - x1, 16 - z1};
+					case EAST -> new double[] {16 - z2, x1, 16 - z1, x2};
+					case WEST -> new double[] {z1, 16 - x2, z2, 16 - x1};
+					default -> new double[] {x1, z1, x2, z2};
+				};
+				shape = net.minecraft.world.phys.shapes.Shapes.or(shape, Block.box(r[0], b[1], r[1], r[2], b[4], r[3]));
+			}
+			SHAPES.put(direction, shape);
+		}
+	}
+
+	@Override
+	protected net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState state, net.minecraft.world.level.BlockGetter level,
+			BlockPos pos, net.minecraft.world.phys.shapes.CollisionContext context) {
+		return SHAPES.get(state.getValue(FACING));
+	}
+
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new SoulModelBlockEntity(pos, state);

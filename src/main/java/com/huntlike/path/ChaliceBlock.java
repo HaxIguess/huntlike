@@ -10,7 +10,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 
 /** What the Blazing Spawner leaves behind: a small chalice (6 x 8 pixels). Mined with any pickaxe. */
 public class ChaliceBlock extends Block {
-	private static final VoxelShape SHAPE = Shapes.or(Block.box(6, 0, 6, 10, 1, 10), Block.box(7, 1, 7, 9, 4, 9), Block.box(5, 4, 5, 11, 8, 11));
+	/** The user's chalice model: the foot, the stem and the cup (4 by 4, up to 7 pixels). */
+	private static final VoxelShape SHAPE = Shapes.or(Block.box(6, 0, 6, 10, 1, 10), Block.box(7, 1, 7, 9, 3, 9), Block.box(6, 3, 6, 10, 7, 10));
 
 	public ChaliceBlock(Properties properties) {
 		super(properties);

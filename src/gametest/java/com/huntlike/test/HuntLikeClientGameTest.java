@@ -1215,6 +1215,21 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 	 * (doubled), a boss with double health summoned at the leader, both members rewarded, kick; the potions too.
 	 */
 	private static void huntingPack(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		assertServer(singleplayer, "Hitboxes: Soul Nexus 9 px high, chalice 7 px and 4 wide, Soul Monolith turned with its face", server -> {
+			var level = player(server).level();
+			var pos = net.minecraft.core.BlockPos.ZERO;
+			var ctx = net.minecraft.world.phys.shapes.CollisionContext.empty();
+			var nexus = com.huntlike.registry.ModBlocks.SOUL_NEXUS.defaultBlockState().getShape(level, pos, ctx).bounds();
+			var chalice = com.huntlike.path.ModPaths.CHALICE.defaultBlockState().getShape(level, pos, ctx).bounds();
+			var facing = net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+			var north = com.huntlike.registry.ModBlocks.SOUL_MONOLITH.defaultBlockState().setValue(facing, net.minecraft.core.Direction.NORTH)
+					.getShape(level, pos, ctx).bounds();
+			var east = com.huntlike.registry.ModBlocks.SOUL_MONOLITH.defaultBlockState().setValue(facing, net.minecraft.core.Direction.EAST)
+					.getShape(level, pos, ctx).bounds();
+			double px = 1.0 / 16;
+			return Math.abs(nexus.maxY - 9 * px) < 1e-6 && Math.abs(chalice.maxY - 7 * px) < 1e-6 && Math.abs(chalice.minX - 6 * px) < 1e-6
+					&& Math.abs(north.minZ - 4 * px) < 1e-6 && Math.abs(north.maxY - 12 * px) < 1e-6 && Math.abs(east.maxX - 12 * px) < 1e-6;
+		});
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
 			com.huntlike.hunt.HuntingPacks.resetAll();
