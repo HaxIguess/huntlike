@@ -366,12 +366,12 @@ public final class Mutations {
 
 	/** "MUTATION! Mineral Sylviornis" in chat. */
 	public static Component announcement(HuntDefs.Hunt hunt, HuntDefs.Tier tier, Mutation mutation) {
-		// All bold, between an obfuscated (scrambling) A and Z.
-		return Messages.c("A", HuntDefs.RED).withStyle(style -> style.withObfuscated(true))
+		// All bold, between an obfuscated (scrambling) dark red AZ and ZA.
+		return Messages.c("AZ", 0xAA0000).withStyle(style -> style.withObfuscated(true))
 				.append(Messages.c(" MUTATION! ", HuntDefs.RED).withStyle(style -> style.withObfuscated(false)))
 				.append(mutation.colored().withStyle(style -> style.withObfuscated(false))).append(Messages.c(" ", 0xFFFFFF).withStyle(style -> style.withObfuscated(false)))
 				.append(Messages.c(tier.bossName() + " ", hunt.color()).withStyle(style -> style.withObfuscated(false)))
-				.append(Messages.c("Z", HuntDefs.RED))
+				.append(Messages.c("ZA", 0xAA0000))
 				.withStyle(style -> style.withBold(true));
 	}
 }
