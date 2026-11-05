@@ -56,7 +56,7 @@ public final class Mutations {
 	private static final float[] THRESHOLDS = {0.75F, 0.5F, 0.25F};
 
 	public enum Mutation {
-		MINERAL("Mineral", new int[] {0xAAAAAA, 0xFF5555, 0xAAAAAA, 0x55FF55, 0xAAAAAA, 0x55FFFF, 0xAAAAAA}, 0.5F),
+		MINERAL("Mineral", new int[] {0x555555, 0xFF5555, 0x555555, 0x55FF55, 0x555555, 0x55FFFF, 0x555555}, 0.5F),
 		BEJEWELED("Bejeweled", new int[] {0xAA00AA, 0xAA00AA, 0xAA00AA, 0xFF55FF, 0xFF55FF, 0xFF55FF, 0xAA00AA, 0xAA00AA, 0xAA00AA}, 1.0F);
 
 		public final String title;
@@ -366,7 +366,12 @@ public final class Mutations {
 
 	/** "MUTATION! Mineral Sylviornis" in chat. */
 	public static Component announcement(HuntDefs.Hunt hunt, HuntDefs.Tier tier, Mutation mutation) {
-		return Messages.c("MUTATION! ", HuntDefs.RED).append(mutation.colored()).append(Messages.c(" ", 0xFFFFFF))
-				.append(Messages.c(tier.bossName(), hunt.color()));
+		// All bold, between an obfuscated (scrambling) A and Z.
+		return Messages.c("A", HuntDefs.RED).withStyle(style -> style.withObfuscated(true))
+				.append(Messages.c(" MUTATION! ", HuntDefs.RED).withStyle(style -> style.withObfuscated(false)))
+				.append(mutation.colored().withStyle(style -> style.withObfuscated(false))).append(Messages.c(" ", 0xFFFFFF).withStyle(style -> style.withObfuscated(false)))
+				.append(Messages.c(tier.bossName() + " ", hunt.color()).withStyle(style -> style.withObfuscated(false)))
+				.append(Messages.c("Z", HuntDefs.RED))
+				.withStyle(style -> style.withBold(true));
 	}
 }
