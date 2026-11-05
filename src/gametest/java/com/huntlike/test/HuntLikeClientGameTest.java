@@ -896,7 +896,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				}
 			}
 		});
-		context.waitTicks(10);
+		context.waitTicks(40); // the Bone Pulverizer is slow: let the attack recharge fully
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
 			ServerLevel level = player.level();
