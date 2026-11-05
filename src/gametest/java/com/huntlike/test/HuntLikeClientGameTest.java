@@ -1210,8 +1210,15 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				net.minecraft.world.item.Items.RAW_COPPER, net.minecraft.world.item.Items.RAW_IRON, net.minecraft.world.item.Items.RAW_GOLD,
 				net.minecraft.world.item.Items.DIAMOND, net.minecraft.world.item.Items.COAL_BLOCK, net.minecraft.world.item.Items.RAW_COPPER_BLOCK,
 				net.minecraft.world.item.Items.RAW_IRON_BLOCK, net.minecraft.world.item.Items.RAW_GOLD_BLOCK, net.minecraft.world.item.Items.DIAMOND_BLOCK);
-		return player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30),
+		// On the ground or already picked up.
+		int count = player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30),
 				item -> minerals.contains(item.getItem().getItem())).size();
+		for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+			if (minerals.contains(player.getInventory().getItem(i).getItem())) {
+				count += player.getInventory().getItem(i).getCount();
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -1275,6 +1282,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
 			player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30))
 					.forEach(net.minecraft.world.entity.Entity::discard);
+			player.getInventory().clearContent();
 		});
 	}
 
