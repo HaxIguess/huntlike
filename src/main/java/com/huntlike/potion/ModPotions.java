@@ -69,8 +69,15 @@ public final class ModPotions {
 		if (horse.getType() != EntityTypes.HORSE) {
 			return false;
 		}
-		return horse.hasEffect(HIGHER_HORSEPOWER)
-				|| horse.getControllingPassenger() instanceof ServerPlayer rider && rider.hasEffect(HIGHER_HORSEPOWER);
+		if (horse.hasEffect(HIGHER_HORSEPOWER)) {
+			return true;
+		}
+		for (var passenger : horse.getPassengers()) {
+			if (passenger instanceof ServerPlayer rider && rider.hasEffect(HIGHER_HORSEPOWER)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/** Riders whose client was last told their horse is boosted. */

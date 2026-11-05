@@ -1304,6 +1304,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			var horse = net.minecraft.world.entity.EntityTypes.HORSE.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
 			horse.snapTo(player.getX() + 2, player.getY(), player.getZ(), 0, 0);
 			horse.setTamed(true);
+			horse.setItemSlot(net.minecraft.world.entity.EquipmentSlot.SADDLE, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.SADDLE));
 			horse.addTag("huntlike_horsepower_test");
 			player.level().addFreshEntity(horse);
 			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER, 600));
