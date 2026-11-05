@@ -73,13 +73,27 @@ public final class ModPotions {
 				|| horse.getControllingPassenger() instanceof ServerPlayer rider && rider.hasEffect(HIGHER_HORSEPOWER);
 	}
 
+	/** Riders whose client was last told their horse is boosted. */
+	private static final Set<UUID> TOLD = new HashSet<>();
+
 	private static void tick(MinecraftServer server) {
 		Set<AbstractHorse> now = new HashSet<>();
 		for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-			if (player.getVehicle() instanceof AbstractHorse horse && boosted(horse)) {
-				now.add(horse);
+			boolean on = player.getVehicle() instanceof AbstractHorse horse && boosted(horse);
+			if (on) {
+				now.add((AbstractHorse) player.getVehicle());
+			}
+			// A ridden horse moves (and jumps) on its rider's client, so the rider's client applies the bonus too.
+			if (on != TOLD.contains(player.getUUID())) {
+				if (on) {
+					TOLD.add(player.getUUID());
+				} else {
+					TOLD.remove(player.getUUID());
+				}
+				net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.send(player, new com.huntlike.network.HuntPayloads.Horsepower(on));
 			}
 		}
+		TOLD.removeIf(id -> server.getPlayerList().getPlayer(id) == null);
 		for (var level : server.getAllLevels()) {
 			for (UUID id : Set.copyOf(BOOSTED)) {
 				if (level.getEntity(id) instanceof AbstractHorse horse && !now.contains(horse) && !boosted(horse)) {
@@ -94,7 +108,7 @@ public final class ModPotions {
 		}
 	}
 
-	private static void setBonus(AbstractHorse horse, boolean on) {
+	public static void setBonus(AbstractHorse horse, boolean on) {
 		AttributeInstance jump = horse.getAttribute(Attributes.JUMP_STRENGTH);
 		if (jump == null) {
 			return;

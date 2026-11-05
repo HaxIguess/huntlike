@@ -13,10 +13,29 @@ import com.huntlike.network.HuntPayloads;
 
 /** Client entrypoint: the Hunt menu, synced data and renderers. */
 public class HuntLikeClient implements ClientModInitializer {
+	private static boolean horsepower;
+	private static net.minecraft.world.entity.animal.equine.AbstractHorse lastHorse;
+
 	@Override
 	public void onInitializeClient() {
 		ClientPlayNetworking.registerGlobalReceiver(HuntPayloads.Sync.TYPE,
 				(payload, context) -> ClientHuntState.update(payload.tag()));
+		ClientPlayNetworking.registerGlobalReceiver(HuntPayloads.Horsepower.TYPE, (payload, context) -> horsepower = payload.on());
+		net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			// Higher Horsepower on the horse this client rides (it does the jumping); taken off when it ends or they dismount.
+			var player = client.player;
+			var vehicle = player == null ? null : player.getVehicle();
+			if (vehicle instanceof net.minecraft.world.entity.animal.equine.AbstractHorse horse) {
+				com.huntlike.potion.ModPotions.setBonus(horse, horsepower);
+				lastHorse = horse;
+			} else if (lastHorse != null) {
+				com.huntlike.potion.ModPotions.setBonus(lastHorse, false);
+				lastHorse = null;
+			}
+			if (player == null) {
+				horsepower = false;
+			}
+		});
 		ClientPlayNetworking.registerGlobalReceiver(HuntPayloads.OpenMenu.TYPE,
 				(payload, context) -> context.client().gui.setScreen(payload.tab() == com.huntlike.nexus.SoulNexus.SCREEN_TAB
 						? new com.huntlike.client.screen.SoulNexusScreen() : new HuntMenuScreen(payload.tab())));

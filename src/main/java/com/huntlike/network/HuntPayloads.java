@@ -28,6 +28,17 @@ public final class HuntPayloads {
 	}
 
 	/** Server to client: open the Hunt menu. */
+	/** Higher Horsepower: whether the horse this player rides jumps twice as high (the rider's client does the jumping). */
+	public record Horsepower(boolean on) implements CustomPacketPayload {
+		public static final Type<Horsepower> TYPE = new Type<>(HuntLike.id("horsepower"));
+		public static final StreamCodec<ByteBuf, Horsepower> CODEC = ByteBufCodecs.BOOL.map(Horsepower::new, Horsepower::on);
+
+		@Override
+		public Type<? extends CustomPacketPayload> type() {
+			return TYPE;
+		}
+	}
+
 	public record OpenMenu(int tab) implements CustomPacketPayload {
 		public static final Type<OpenMenu> TYPE = new Type<>(HuntLike.id("open_menu"));
 		public static final StreamCodec<ByteBuf, OpenMenu> CODEC = ByteBufCodecs.VAR_INT.map(OpenMenu::new, OpenMenu::tab);
@@ -108,6 +119,7 @@ public final class HuntPayloads {
 		PayloadTypeRegistry.clientboundPlay().register(Yummy.TYPE, Yummy.CODEC);
 		PayloadTypeRegistry.clientboundPlay().register(Sync.TYPE, Sync.CODEC);
 		PayloadTypeRegistry.clientboundPlay().register(OpenMenu.TYPE, OpenMenu.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(Horsepower.TYPE, Horsepower.CODEC);
 		PayloadTypeRegistry.serverboundPlay().register(Action.TYPE, Action.CODEC);
 	}
 }
