@@ -79,7 +79,7 @@ public final class HuntCommand {
 																.suggests((ctx, builder) -> SharedSuggestionProvider.suggest(mutationNames(), builder))
 																.executes(ctx -> mutatedBoss(ctx, java.util.List.of(ctx.getSource().getPlayerOrException())))
 																.then(Commands.argument("players", EntityArgument.players())
-																		.executes(ctx -> mutatedBoss(ctx, EntityArgument.getPlayers(ctx, "players"))))))))));
+																		.executes(ctx -> mutatedBoss(ctx, EntityArgument.getPlayers(ctx, "players")))))))))));
 	}
 
 	private static com.mojang.brigadier.builder.RequiredArgumentBuilder<CommandSourceStack, String> huntArgument() {
