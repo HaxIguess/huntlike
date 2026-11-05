@@ -108,7 +108,7 @@ public final class HuntingPacks {
 	}
 
 	/** A boss the pack beat while this member was offline: given on their next login. */
-	private record Credit(String hunt, int tier) {
+	private record Credit(String hunt, int tier, String mutation) {
 	}
 
 	private static final Map<UUID, Pack> PACKS = new LinkedHashMap<>();
@@ -684,10 +684,10 @@ public final class HuntingPacks {
 		for (UUID id : members) {
 			ServerPlayer member = player(id);
 			if (member == null) {
-				CREDITS.computeIfAbsent(id, k -> new ArrayList<>()).add(new Credit(hunt.id(), tier.number()));
+				CREDITS.computeIfAbsent(id, k -> new ArrayList<>()).add(new Credit(hunt.id(), tier.number(), quest.mutation));
 				continue;
 			}
-			reward(member, hunt, tier, false);
+			reward(member, hunt, tier, false, quest.mutation);
 		}
 		Set<UUID> kicked = new HashSet<>();
 		for (String id : quest.kicked) {
@@ -712,7 +712,7 @@ public final class HuntingPacks {
 	}
 
 	/** One member's share: experience at their feet, their own drops (into the Stash when away), the kill credit. */
-	private static void reward(ServerPlayer member, Hunt hunt, Tier tier, boolean away) {
+	private static void reward(ServerPlayer member, Hunt hunt, Tier tier, boolean away, String mutation) {
 		HuntData data = QuestManager.data(member);
 		ExperienceOrb.award(member.level(), member.position(), EXPERIENCE);
 		QuestManager.rollDrops(member, data, hunt, tier, false, (stack, rare) -> {
@@ -723,7 +723,13 @@ public final class HuntingPacks {
 				QuestManager.giveStack(member, stack);
 			}
 		});
-		QuestManager.credit(member, data, hunt, tier, false);
+		QuestManager.credit(member, data, hunt, tier, false, mutation);
+	}
+
+	/** Who hears about the boss: the pack's online members, or just the player. */
+	public static List<ServerPlayer> membersOnline(ServerPlayer runner, Quest quest) {
+		Pack pack = quest.isPack() ? PACKS.get(UUID.fromString(quest.pack)) : null;
+		return pack == null ? List.of(runner) : online(pack);
 	}
 
 	/** The boss may run off from the player it chases as long as some member is near it. */
@@ -893,7 +899,7 @@ public final class HuntingPacks {
 				Tier tier = hunt.tier(credit.tier());
 				player.sendSystemMessage(Messages.c("While you were away, your Hunting Pack defeated " + tier.bossName()
 						+ "! Your drops are waiting in your Stash.", HuntDefs.GOLD));
-				reward(player, hunt, tier, true);
+				reward(player, hunt, tier, true, credit.mutation());
 			}
 			dirty = true;
 		}
@@ -1009,6 +1015,7 @@ public final class HuntingPacks {
 				CompoundTag c = new CompoundTag();
 				c.putString("hunt", credit.hunt());
 				c.putInt("tier", credit.tier());
+				c.putString("mutation", credit.mutation());
 				l.add(c);
 			}
 			credits.put(id.toString(), l);
@@ -1086,7 +1093,7 @@ public final class HuntingPacks {
 			ListTag l = credits.getListOrEmpty(key);
 			for (int i = 0; i < l.size(); i++) {
 				CompoundTag c = l.getCompoundOrEmpty(i);
-				list.add(new Credit(c.getStringOr("hunt", "animal"), c.getIntOr("tier", 1)));
+				list.add(new Credit(c.getStringOr("hunt", "animal"), c.getIntOr("tier", 1), c.getStringOr("mutation", "")));
 			}
 			CREDITS.put(UUID.fromString(key), list);
 		}

@@ -199,6 +199,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			extras(context, singleplayer);
 			multiplayer(context, singleplayer);
 			huntingPack(context, singleplayer);
+			mutations(context, singleplayer);
 			trophy(context, singleplayer);
 			catalystAndPulverizer(context, singleplayer);
 			dailyRefill(context, singleplayer);
@@ -1202,6 +1203,94 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			removeFromPlayerList(server, helper);
 			helper.discard();
 		});
+	}
+
+	private static int mineralDrops(ServerPlayer player) {
+		var minerals = java.util.Set.of(net.minecraft.world.item.Items.STONE, net.minecraft.world.item.Items.COAL,
+				net.minecraft.world.item.Items.RAW_COPPER, net.minecraft.world.item.Items.RAW_IRON, net.minecraft.world.item.Items.RAW_GOLD,
+				net.minecraft.world.item.Items.DIAMOND, net.minecraft.world.item.Items.COAL_BLOCK, net.minecraft.world.item.Items.RAW_COPPER_BLOCK,
+				net.minecraft.world.item.Items.RAW_IRON_BLOCK, net.minecraft.world.item.Items.RAW_GOLD_BLOCK, net.minecraft.world.item.Items.DIAMOND_BLOCK);
+		return player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30),
+				item -> minerals.contains(item.getItem().getItem())).size();
+	}
+
+	/**
+	 * A Mineral boss: its name, a pickaxe hit clearing the first phase with a drop, a one-shot stacking the other four
+	 * phases, then three pickaxe hits and five plain hits to finish it, and the kill counted for the journal.
+	 */
+	private static void mutations(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 2400, 4));
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.REGENERATION, 2400, 2));
+			var data = QuestManager.data(player);
+			data.quest = null;
+			data.pausedQuest = null;
+			data.progress("animal").tokens = 50;
+			player.setAttached(QuestManager.DATA, data);
+			com.huntlike.hunt.Mutations.forced = "Mineral";
+			QuestManager.forceStart(player, com.huntlike.hunt.HuntDefs.ANIMAL, 1);
+			var quest = QuestManager.data(player).quest;
+			quest.kills = quest.quota - 1;
+			var cow = net.minecraft.world.entity.EntityTypes.COW.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			cow.snapTo(player.getX() + 2, player.getY(), player.getZ(), 0, 0);
+			player.level().addFreshEntity(cow);
+			cow.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 1000.0F);
+		});
+		context.waitTicks(80);
+		context.runOnClient(client -> client.gui.toastManager().clear());
+		context.waitTicks(5);
+		context.takeScreenshot("98i-mutation-mineral");
+		assertServer(singleplayer, "Mutation: the boss is Mineral", server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			return quest != null && "Mineral".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;
+		});
+		int before = singleplayer.getServer().computeOnServer(server -> mineralDrops(player(server)));
+		hitBoss(context, singleplayer, true, 1.0F);
+		assertServer(singleplayer, "Mineral: a pickaxe hit clears the first phase with a mineral drop", server ->
+				mineralDrops(player(server)) == before + 1);
+		hitBoss(context, singleplayer, false, 100000.0F);
+		assertServer(singleplayer, "Mineral: a one-shot leaves the boss at 1 health with its phases stacked", server -> {
+			var boss = BossController.findBoss(player(server), QuestManager.data(player(server)).quest);
+			return boss != null && boss.isAlive() && boss.getHealth() <= 1.0F;
+		});
+		for (int i = 0; i < 3; i++) {
+			hitBoss(context, singleplayer, true, 1.0F);
+		}
+		for (int i = 0; i < 4; i++) {
+			hitBoss(context, singleplayer, false, 1.0F);
+		}
+		assertServer(singleplayer, "Mineral: still alive with one phase left (4 of 5 plain hits)", server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
+			return boss != null && boss.isAlive() && mineralDrops(player(server)) == before + 4;
+		});
+		hitBoss(context, singleplayer, false, 1.0F);
+		context.waitTicks(5);
+		assertServer(singleplayer, "Mineral: the fifth plain hit ends it; the kill is counted as a Mineral kill", server ->
+				QuestManager.data(player(server)).quest == null
+						&& QuestManager.data(player(server)).progress("animal").mutationKills.getOrDefault("1:Mineral", 0) == 1);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
+			player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30))
+					.forEach(net.minecraft.world.entity.Entity::discard);
+		});
+	}
+
+	/** One hit on the running boss by the player, with an iron pickaxe or empty-handed; waits out its hurt time. */
+	private static void hitBoss(ClientGameTestContext context, TestSingleplayerContext singleplayer, boolean pickaxe, float damage) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,
+					pickaxe ? new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_PICKAXE)
+							: net.minecraft.world.item.ItemStack.EMPTY);
+			var boss = BossController.findBoss(player, QuestManager.data(player).quest);
+			if (boss != null) {
+				boss.hurtServer(player.level(), player.level().damageSources().playerAttack(player), damage);
+			}
+		});
+		context.waitTicks(12);
 	}
 
 	private static final java.util.UUID PACKMATE = java.util.UUID.fromString("00000000-0000-4000-8000-0000000fa11e");

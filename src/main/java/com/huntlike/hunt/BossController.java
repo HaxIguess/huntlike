@@ -59,7 +59,8 @@ public final class BossController {
 		}
 		boolean immune = BossAbilities.immune(boss);
 		int seconds = (int) Math.max(0, (QuestManager.BOSS_TIME_LIMIT - elapsed) / 20);
-		net.minecraft.network.chat.MutableComponent name = Messages.c(tier.bossName(), tier.color())
+		HuntData.Quest quest = QuestManager.data(owner).quest;
+		net.minecraft.network.chat.MutableComponent name = Mutations.barName(tier, quest == null ? "" : quest.mutation)
 				.append(Messages.c("  \u2764 " + (int) Math.ceil(boss.getHealth()) + "/" + (int) boss.getMaxHealth(), HuntDefs.RED))
 				.append(Messages.c(String.format("  %d:%02d", seconds / 60, seconds % 60), HuntDefs.GRAY));
 		if (immune) {
@@ -233,7 +234,8 @@ public final class BossController {
 		boss.setBaby(false);
 		// A Hunting Pack's boss: health times the members when the quest started.
 		setBase(boss, Attributes.MAX_HEALTH, tier.health() * quest.packSize);
-		setBase(boss, Attributes.SCALE, tier.scale());
+		// Bigger for a pack (easier to hit in a crowd): +10% per extra member, at most +50%.
+		setBase(boss, Attributes.SCALE, tier.scale() * packScale(quest));
 		setBase(boss, Attributes.MOVEMENT_SPEED, 0.3);
 		setBase(boss, Attributes.FOLLOW_RANGE, 64.0);
 		setBase(boss, Attributes.STEP_HEIGHT, 1.0);
@@ -248,17 +250,31 @@ public final class BossController {
 		quest.bossUuid = boss.getUUID().toString();
 		quest.bossSpawnTime = level.getGameTime();
 		quest.phase = HuntData.PHASE_BOSS;
+		quest.mutation = Mutations.roll(level.getRandom());
 		player.setAttached(QuestManager.DATA, data);
 		level.addFreshEntity(boss);
 		ServerBossEvent bar = new ServerBossEvent(boss.getUUID(), Messages.c(tier.bossName(), tier.color()), hunt.barColor(),
 				BossEvent.BossBarOverlay.NOTCHED_10);
 		BARS.put(boss.getUUID(), bar);
+		Mutations.start(boss, quest);
+		Mutations.Mutation mutation = Mutations.Mutation.byTitle(quest.mutation);
 
 		level.sendParticles(ParticleTypes.EXPLOSION, boss.getX(), boss.getY() + 0.5, boss.getZ(), 1, 0, 0, 0, 0);
 		player.sendSystemMessage(Messages.bossSpawned(hunt, tier.number()));
+		if (mutation != null) {
+			for (ServerPlayer member : HuntingPacks.membersOnline(player, quest)) {
+				member.sendSystemMessage(Mutations.announcement(hunt, tier, mutation));
+				QuestManager.playSound(member, SoundEvents.ELDER_GUARDIAN_CURSE, 1.4F);
+			}
+		}
 		QuestManager.playSound(player, SoundEvents.EVOKER_PREPARE_SUMMON, 1.0F);
 		QuestManager.playSound(player, SoundEvents.TRIAL_SPAWNER_SPAWN_MOB, 0.8F);
 		QuestManager.sync(player);
+	}
+
+	/** A pack's boss is 10% bigger per extra member, at most 50%. */
+	public static double packScale(HuntData.Quest quest) {
+		return Math.min(1.5, 1.0 + 0.1 * (quest.packSize - 1));
 	}
 
 	private static void setBase(Mob mob, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute,
@@ -329,7 +345,9 @@ public final class BossController {
 
 		if (elapsed % 20 == 0) {
 			// Regeneration: health equal to the tier every second (6 in Apex Instinct, none while the herd lives).
-			boss.heal(BossAbilities.regen(boss, tier));
+			if (!Mutations.blocksRegen(boss)) {
+				boss.heal(BossAbilities.regen(boss, tier));
+			}
 			// Egg Blaster: one fast egg every second.
 			if (!frozen && boss.hasLineOfSight(player) && !player.isSpectator()) {
 				BossEgg egg = new BossEgg(level, boss, tier.eggDamage());
@@ -362,7 +380,11 @@ public final class BossController {
 		if (entity instanceof Mob mob && BossAbilities.immune(mob)) {
 			return false;
 		}
-		return !(source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_DROWNING) || source.is(DamageTypes.IN_WALL));
+		boolean allowed = !(source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_DROWNING) || source.is(DamageTypes.IN_WALL));
+		if (allowed && !ClusterFight.isBody(entity)) {
+			Mutations.onHit(entity, source);
+		}
+		return allowed;
 	}
 
 	public static void afterDamage(LivingEntity entity, DamageSource source, float baseDamage, float damageTaken, boolean blocked) {
@@ -385,6 +407,7 @@ public final class BossController {
 			return;
 		}
 		HuntData.Quest quest = QuestManager.data(owner).quest;
+		Mutations.afterDamage(boss);
 		BossAbilities.afterDamage(boss, owner, HuntDefs.hunt(quest.hunt).tier(quest.tier));
 	}
 
@@ -399,6 +422,7 @@ public final class BossController {
 			BossAbilities.discardHerd(mob);
 		}
 		BossAbilities.forget(entity.getUUID());
+		Mutations.forget(entity.getUUID());
 		com.huntlike.gear.GearEffects.forgetBoss(entity.getUUID());
 		removeBar(entity.getUUID());
 		STUCK.remove(entity.getUUID());

@@ -79,6 +79,8 @@ public final class HuntData {
 		public final Set<String> dropsSeen = new HashSet<>();
 		/** How many of each drop this player has received. */
 		public final Map<String, Integer> dropCounts = new HashMap<>();
+		/** Mutated bosses killed, by "tier:Mutation" (for the Hunter's Journal). */
+		public final Map<String, Integer> mutationKills = new HashMap<>();
 
 		public int rank() {
 			return HuntDefs.rankForXp(xp);
@@ -102,6 +104,8 @@ public final class HuntData {
 		public int summonTicks;
 		/** A Hunting Pack quest: id of the pack, members when it started (quota and boss health scale), kicked players. */
 		public String pack = "";
+		/** The boss's mutation ("Mineral", "Bejeweled"), or "" for none; rolled when it is summoned. */
+		public String mutation = "";
 		public int packSize = 1;
 		public java.util.Set<String> kicked = new java.util.HashSet<>();
 
@@ -154,6 +158,9 @@ public final class HuntData {
 				seen.putInt(drop, p.dropCounts.getOrDefault(drop, 0));
 			}
 			h.put("drops", seen);
+			CompoundTag mutations = new CompoundTag();
+			p.mutationKills.forEach(mutations::putInt);
+			h.put("mutationKills", mutations);
 			hunts.put(id, h);
 		});
 		tag.put("hunts", hunts);
@@ -182,6 +189,7 @@ public final class HuntData {
 			q.putInt("summonTicks", quest.summonTicks);
 			q.putBoolean("daily", quest.daily);
 			q.putString("pack", quest.pack);
+			q.putString("mutation", quest.mutation);
 			q.putInt("packSize", quest.packSize);
 			q.putString("kicked", String.join(",", quest.kicked));
 			return q;
@@ -229,6 +237,10 @@ public final class HuntData {
 				p.dropsSeen.add(drop);
 				p.dropCounts.put(drop, seen.getIntOr(drop, 0));
 			}
+			CompoundTag mutations = h.getCompoundOrEmpty("mutationKills");
+			for (String key : mutations.keySet()) {
+				p.mutationKills.put(key, mutations.getIntOr(key, 0));
+			}
 		}
 		if (tag.contains("quest")) {
 			data.quest = questFrom(tag.getCompoundOrEmpty("quest"));
@@ -255,6 +267,7 @@ public final class HuntData {
 			quest.summonTicks = q.getIntOr("summonTicks", 0);
 			quest.daily = q.getBooleanOr("daily", false);
 			quest.pack = q.getStringOr("pack", "");
+			quest.mutation = q.getStringOr("mutation", "");
 			quest.packSize = q.getIntOr("packSize", 1);
 			for (String id : q.getStringOr("kicked", "").split(",")) {
 				if (!id.isEmpty()) {

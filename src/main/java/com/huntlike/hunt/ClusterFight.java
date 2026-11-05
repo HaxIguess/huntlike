@@ -189,6 +189,12 @@ public final class ClusterFight {
 		HuntData.Quest packQuest = QuestManager.data(owner).quest;
 		int packSize = packQuest == null ? 1 : packQuest.packSize;
 		setBase(body, Attributes.MAX_HEALTH, spec.health(generation) * packSize);
+		if (packQuest != null && packQuest.isPack()) {
+			AttributeInstance scale = body.getAttribute(Attributes.SCALE);
+			if (scale != null) {
+				scale.setBaseValue(scale.getBaseValue() * BossController.packScale(packQuest));
+			}
+		}
 		setBase(body, Attributes.ATTACK_DAMAGE, tier.melee());
 		setBase(body, Attributes.FOLLOW_RANGE, 64.0);
 		body.setHealth(spec.health(generation) * packSize);

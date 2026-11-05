@@ -129,6 +129,7 @@ public final class QuestManager {
 		ServerEntityLevelChangeEvents.AFTER_PLAYER_CHANGE_LEVEL.register((player, origin, destination) -> onChangeLevel(player));
 		ServerEntityEvents.ENTITY_LOAD.register(QuestManager::onEntityLoad);
 		HuntingPacks.initialize();
+		Mutations.initialize();
 	}
 
 	public static HuntData data(ServerPlayer player) {
@@ -518,7 +519,7 @@ public final class QuestManager {
 		SpiritLure.cleanup(owner);
 		data.quest = null;
 		save(owner, data);
-		credit(owner, data, hunt, tier, quest.daily);
+		credit(owner, data, hunt, tier, quest.daily, quest.mutation);
 	}
 
 	/** Helpers (players who hit the boss but don't own the quest) roll the chance drops with their own luck. */
@@ -576,8 +577,11 @@ public final class QuestManager {
 	}
 
 	/** Boss kill credit: the kill, Rank XP, rank-up titles, the trophy and the advancement. */
-	public static void credit(ServerPlayer owner, HuntData data, Hunt hunt, Tier tier, boolean daily) {
+	public static void credit(ServerPlayer owner, HuntData data, Hunt hunt, Tier tier, boolean daily, String mutation) {
 		Progress progress = data.progress(hunt.id());
+		if (!mutation.isEmpty()) {
+			progress.mutationKills.merge(tier.number() + ":" + mutation, 1, Integer::sum);
+		}
 		int oldRank = progress.rank();
 		progress.bossKills[tier.number() - 1]++;
 		progress.xp += daily ? tier.xp() * 2 : tier.xp();

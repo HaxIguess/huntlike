@@ -685,7 +685,7 @@ public class HuntMenuScreen extends Screen {
 			Hunt hunt = HuntDefs.hunt(quest.hunt);
 			Tier tier = hunt.tier(quest.tier);
 			huntLine = colored(hunt.name() + " ", hunt.color()).append(colored("[Tier " + tier.roman() + "] ", tier.color()))
-					.append(colored(tier.bossName(), tier.color()));
+					.append(colored(tier.bossName() + mutationSuffix(quest), tier.color()));
 		}
 		g.text(this.font, colored("Active Hunt: ", LABEL), tx, ty, LABEL, false);
 		// The Hunt's bright colors keep their shadow so they read on the light grey.
@@ -841,6 +841,11 @@ public class HuntMenuScreen extends Screen {
 		g.fill(x, y, x + 1, y + h - 1, 0xFF373737);
 		g.fill(x + 1, y + h - 1, x + w, y + h, 0xFFFFFFFF);
 		g.fill(x + w - 1, y + 1, x + w, y + h, 0xFFFFFFFF);
+	}
+
+	/** " | Mineral" once a mutated boss is out. */
+	private static String mutationSuffix(HuntData.Quest quest) {
+		return quest == null || quest.mutation.isEmpty() ? "" : " | " + quest.mutation;
 	}
 
 	private void drawIconButton(GuiGraphicsExtractor g, int x, int y, String name, int mouseX, int mouseY, Runnable action) {
@@ -1383,7 +1388,8 @@ public class HuntMenuScreen extends Screen {
 					px + 6, y, WHITE, false);
 		}
 		y += 11;
-		g.text(this.font, colored("Boss: ", TEXT_GRAY).append(colored(tier.bossName(), tier.color())), px + 6, y, WHITE, false);
+		g.text(this.font, colored("Boss: ", TEXT_GRAY).append(colored(tier.bossName() + mutationSuffix(quest), tier.color())), px + 6, y,
+				WHITE, false);
 		y += 11;
 		if (quest.daily) {
 			g.text(this.font, colored("\u2605 Daily Quest - \u00d72 XP", HuntDefs.PINK), px + 6, y, WHITE, false);
