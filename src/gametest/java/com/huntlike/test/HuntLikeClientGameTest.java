@@ -1257,8 +1257,10 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		});
 		int before = singleplayer.getServer().computeOnServer(server -> mineralDrops(player(server)));
 		hitBoss(context, singleplayer, true, 1.0F);
-		assertServer(singleplayer, "Mineral: a pickaxe hit clears the first phase with a mineral drop", server ->
-				mineralDrops(player(server)) == before + 1);
+		assertServer(singleplayer, "Mineral: a pickaxe hit clears the first phase with a mineral drop, and takes no health", server -> {
+			var boss = BossController.findBoss(player(server), QuestManager.data(player(server)).quest);
+			return mineralDrops(player(server)) == before + 1 && boss != null && boss.getHealth() >= boss.getMaxHealth() - 0.01F;
+		});
 		hitBoss(context, singleplayer, false, 100000.0F);
 		assertServer(singleplayer, "Mineral: a one-shot leaves the boss at 1 health with its phases stacked", server -> {
 			var boss = BossController.findBoss(player(server), QuestManager.data(player(server)).quest);
@@ -1267,9 +1269,11 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		for (int i = 0; i < 3; i++) {
 			hitBoss(context, singleplayer, true, 1.0F);
 		}
-		for (int i = 0; i < 4; i++) {
-			hitBoss(context, singleplayer, false, 1.0F);
-		}
+		// Plain hits count whatever deals them: two punches, two magic (poison-like) hits.
+		hitBoss(context, singleplayer, false, 1.0F);
+		hitBoss(context, singleplayer, false, 1.0F);
+		magicHit(context, singleplayer);
+		magicHit(context, singleplayer);
 		assertServer(singleplayer, "Mineral: still alive with one phase left (4 of 5 plain hits)", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
@@ -1277,7 +1281,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					before);
 			return boss != null && boss.isAlive() && mineralDrops(player(server)) == before + 4;
 		});
-		hitBoss(context, singleplayer, false, 1.0F);
+		magicHit(context, singleplayer);
 		context.waitTicks(5);
 		assertServer(singleplayer, "Mineral: the fifth plain hit ends it; the kill is counted as a Mineral kill", server ->
 				QuestManager.data(player(server)).quest == null
@@ -1351,6 +1355,18 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		});
 		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
 		context.waitTicks(3);
+	}
+
+	/** A magic hit (like poison) on the running boss; waits out its hurt time. */
+	private static void magicHit(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var boss = BossController.findBoss(player, QuestManager.data(player).quest);
+			if (boss != null) {
+				boss.hurtServer(player.level(), player.level().damageSources().magic(), 1.0F);
+			}
+		});
+		context.waitTicks(12);
 	}
 
 	/** One hit on the running boss by the player, with an iron pickaxe or empty-handed; waits out its hurt time. */

@@ -95,6 +95,7 @@ public final class Mutations {
 		final Mutation mutation;
 		int pending;
 		int normalHits;
+		long lastHit = Long.MIN_VALUE / 2;
 		/** Thresholds (75, 50, 25%) already entered, and the dying one. */
 		final boolean[] entered = new boolean[THRESHOLDS.length];
 		boolean dying;
@@ -165,15 +166,30 @@ public final class Mutations {
 		return state != null && state.pending > 0;
 	}
 
-	/** A hit on the boss (before its damage): counts toward the open phase. */
-	public static void onHit(LivingEntity boss, DamageSource source) {
+	/** Hits count at most once per half second (fire and the like hurt every tick; a hurt boss ignores hits that long). */
+	private static final int HIT_TICKS = 10;
+
+	/**
+	 * A hit on the boss, before its damage. While a phase is open the boss loses no health: the hit only counts toward the
+	 * phase (a pickaxe swing clears it with a drop; any other damage, poison, wither and fire included, counts as one of
+	 * five). The hit that clears the dying phase kills it. Returns whether the damage goes through.
+	 */
+	public static boolean onHit(LivingEntity boss, DamageSource source) {
 		State state = state(boss);
-		if (state == null || state.pending <= 0 || !(source.getEntity() instanceof ServerPlayer player)
-				|| !(boss.level() instanceof ServerLevel level)) {
-			return;
+		if (state == null || state.pending <= 0) {
+			return true;
 		}
-		ItemStack tool = player.getMainHandItem();
-		boolean pickaxe = source.getDirectEntity() == player && tool.is(ItemTags.PICKAXES);
+		if (!(boss.level() instanceof ServerLevel level)) {
+			return false;
+		}
+		long now = level.getGameTime();
+		if (now - state.lastHit < HIT_TICKS) {
+			return false;
+		}
+		state.lastHit = now;
+		ServerPlayer player = source.getEntity() instanceof ServerPlayer p ? p : null;
+		ItemStack tool = player == null ? ItemStack.EMPTY : player.getMainHandItem();
+		boolean pickaxe = player != null && source.getDirectEntity() == player && tool.is(ItemTags.PICKAXES);
 		if (pickaxe) {
 			level.playSound(null, boss.blockPosition(), SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.HOSTILE, 1.5F, 1.0F);
 			drop(boss, player, tool, state.mutation, level);
@@ -186,6 +202,12 @@ public final class Mutations {
 				state.normalHits = 0;
 			}
 		}
+		if (state.pending == 0 && state.dying) {
+			// The last phase is done: this hit finishes it.
+			boss.setHealth(1.0F);
+			return true;
+		}
+		return false;
 	}
 
 	/** After damage: phases for the thresholds it fell past. */

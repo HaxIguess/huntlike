@@ -384,7 +384,8 @@ public final class BossController {
 		}
 		boolean allowed = !(source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_DROWNING) || source.is(DamageTypes.IN_WALL));
 		if (allowed && !ClusterFight.isBody(entity)) {
-			Mutations.onHit(entity, source);
+			// A mutated boss in a hit phase takes no damage: the hit only counts toward the phase.
+			return Mutations.onHit(entity, source);
 		}
 		return allowed;
 	}
