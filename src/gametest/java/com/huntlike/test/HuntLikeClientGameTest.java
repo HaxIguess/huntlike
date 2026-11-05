@@ -1349,6 +1349,19 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.runOnClient(client -> client.gui.toastManager().clear());
 		context.waitTicks(3);
 		context.takeScreenshot("98j-mutation-bejeweled");
+		// The user's 3D shards bursting out (as when a hit phase opens), Bejeweled then Mineral.
+		for (String mutation : List.of("Bejeweled", "Mineral")) {
+			singleplayer.getServer().runOnServer(server -> {
+				var quest = QuestManager.data(player(server)).quest;
+				var boss = quest == null ? null : BossController.findBoss(player(server), quest);
+				if (boss != null) {
+					com.huntlike.hunt.Mutations.burst(boss, mutation);
+				}
+			});
+			context.waitTicks(7);
+			context.takeScreenshot("98k-shards-" + mutation.toLowerCase(java.util.Locale.ROOT));
+			context.waitTicks(25);
+		}
 		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			return quest != null && "Bejeweled".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;

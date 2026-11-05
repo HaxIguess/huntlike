@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import net.minecraft.core.particles.ItemParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -18,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Display;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -109,6 +108,12 @@ public final class Mutations {
 
 	public static void initialize() {
 		ServerLivingEntityEvents.ALLOW_DEATH.register(Mutations::allowDeath);
+		net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_SERVER_TICK.register(Mutations::tickShards);
+		net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents.ENTITY_LOAD.register((entity, level) -> {
+			if (entity.entityTags().contains(SHARD_TAG) && FLYING.stream().noneMatch(shard -> shard.display() == entity)) {
+				entity.discard();
+			}
+		});
 	}
 
 	/** For tests: the next boss gets this mutation. */
@@ -357,21 +362,86 @@ public final class Mutations {
 		}
 	}
 
-	/** Bits of its minerals fly off the boss as it enters a phase (until the user's particles exist). */
+	/** The user's 3D shards (Blockbench models), drawn by item displays; only used for this. */
+	public static final Item MINERAL_SHARD = com.huntlike.registry.ModItems.register("mutation_mineral_particle", Item::new, new Item.Properties());
+	public static final Item BEJEWELED_SHARD = com.huntlike.registry.ModItems.register("mutation_bejeweled_particle", Item::new,
+			new Item.Properties());
+	private static final int SHARDS = 10;
+	/** Shards left over from a save (the server stopped mid-flight) are removed when they load. */
+	private static final String SHARD_TAG = "huntlike_mutation_shard";
+	private static final int SHARD_LIFE = 24;
+
+	/** A flying shard: its display, direction and the tick it was thrown. */
+	private record Shard(Display.ItemDisplay display, org.joml.Vector3f direction, float spin, long born) {
+	}
+
+	private static final List<Shard> FLYING = new ArrayList<>();
+
+	/** Shards of the user's model burst out of the boss as it enters a phase, arc out and fall, then vanish. */
+	/** For tests and showcases: a burst of this mutation's shards. */
+	public static void burst(LivingEntity boss, String mutation) {
+		Mutation m = Mutation.byTitle(mutation);
+		if (m != null) {
+			spray(boss, m);
+		}
+	}
+
 	private static void spray(LivingEntity boss, Mutation mutation) {
 		if (!(boss.level() instanceof ServerLevel level)) {
 			return;
 		}
-		Item[] items = mutation == Mutation.BEJEWELED ? BEJEWELED
-				: new Item[] {Items.STONE, Items.COAL, Items.RAW_COPPER, Items.RAW_IRON, Items.RAW_GOLD, Items.DIAMOND,
-						Items.EMERALD, Items.ANCIENT_DEBRIS};
-		double w = boss.getBbWidth() / 2.0;
-		double h = boss.getBbHeight();
-		for (Item item : items) {
-			level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, item), boss.getX(), boss.getY() + h * 0.6, boss.getZ(), 6, w,
-					h / 3.0, w, 0.25);
+		RandomSource random = boss.getRandom();
+		Item shard = mutation == Mutation.BEJEWELED ? BEJEWELED_SHARD : MINERAL_SHARD;
+		double y = boss.getY() + boss.getBbHeight() * 0.6;
+		for (int i = 0; i < SHARDS; i++) {
+			Display.ItemDisplay display = net.minecraft.world.entity.EntityTypes.ITEM_DISPLAY.create(level,
+					net.minecraft.world.entity.EntitySpawnReason.TRIGGERED);
+			if (display == null) {
+				return;
+			}
+			display.addTag(SHARD_TAG);
+			display.setPos(boss.getX(), y, boss.getZ());
+			display.setItemStack(new ItemStack(shard));
+			display.setItemTransform(net.minecraft.world.item.ItemDisplayContext.FIXED);
+			float angle = random.nextFloat() * (float) (Math.PI * 2);
+			float spin = random.nextFloat() * (float) (Math.PI * 2);
+			display.setTransformation(transform(new org.joml.Vector3f(), spin, 0.0F));
+			level.addFreshEntity(display);
+			float reach = (boss.getBbWidth() / 2.0F + 0.6F) * (0.7F + random.nextFloat() * 0.6F);
+			FLYING.add(new Shard(display, new org.joml.Vector3f((float) Math.cos(angle) * reach, 0.0F, (float) Math.sin(angle) * reach), spin,
+					level.getGameTime()));
 		}
-		level.playSound(null, boss.blockPosition(), SoundEvents.STONE_BREAK, SoundSource.HOSTILE, 1.2F, 0.7F);
+		level.playSound(null, boss.blockPosition(), mutation == Mutation.BEJEWELED ? SoundEvents.AMETHYST_CLUSTER_BREAK : SoundEvents.STONE_BREAK,
+				SoundSource.HOSTILE, 1.2F, 0.8F);
+	}
+
+	private static com.mojang.math.Transformation transform(org.joml.Vector3f translation, float spin, float tumble) {
+		org.joml.Quaternionf rotation = new org.joml.Quaternionf().rotateY(spin).rotateX(tumble);
+		return new com.mojang.math.Transformation(translation, rotation, new org.joml.Vector3f(1.5F), null);
+	}
+
+	/** Each shard: up and out over 8 ticks, then out and down over 12 (the client smooths both), then it's removed. */
+	private static void tickShards(net.minecraft.server.MinecraftServer server) {
+		if (FLYING.isEmpty()) {
+			return;
+		}
+		for (java.util.Iterator<Shard> it = FLYING.iterator(); it.hasNext();) {
+			Shard shard = it.next();
+			Display.ItemDisplay display = shard.display();
+			long age = display.level().getGameTime() - shard.born();
+			if (display.isRemoved() || age >= SHARD_LIFE) {
+				display.discard();
+				it.remove();
+			} else if (age == 1) {
+				display.setTransformationInterpolationDelay(0);
+				display.setTransformationInterpolationDuration(8);
+				display.setTransformation(transform(new org.joml.Vector3f(shard.direction()).mul(0.6F).add(0, 0.7F, 0), shard.spin(), 1.5F));
+			} else if (age == 9) {
+				display.setTransformationInterpolationDelay(0);
+				display.setTransformationInterpolationDuration(12);
+				display.setTransformation(transform(new org.joml.Vector3f(shard.direction()).add(0, -0.9F, 0), shard.spin(), 3.5F));
+			}
+		}
 	}
 
 	// ---------------------------------------------------------------- names
