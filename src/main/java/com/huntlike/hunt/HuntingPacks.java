@@ -138,6 +138,15 @@ public final class HuntingPacks {
 		});
 		ServerTickEvents.END_SERVER_TICK.register(HuntingPacks::tick);
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, s) -> onJoin(handler.player));
+		net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.ALLOW_DAMAGE.register(
+				(entity, source, amount) -> !(entity instanceof ServerPlayer target && source.getEntity() instanceof ServerPlayer attacker
+						&& attacker != target && samePack(attacker, target)));
+	}
+
+	/** Packmates can't hurt each other (melee, arrows, anything they cause), quest or not. */
+	public static boolean samePack(ServerPlayer a, ServerPlayer b) {
+		Pack pack = packOf(a.getUUID());
+		return pack != null && pack.grouped() && pack.members.contains(b.getUUID());
 	}
 
 	// ---------------------------------------------------------------- lookups

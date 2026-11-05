@@ -1261,6 +1261,12 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(5);
 		context.takeScreenshot("98a-hunting-pack");
 		context.setScreen(() -> null);
+		assertServer(singleplayer, "Hunting Pack: packmates can't hurt each other", server -> {
+			ServerPlayer mate = packmate(server);
+			float before = mate.getHealth();
+			mate.hurtServer(mate.level(), mate.level().damageSources().playerAttack(player(server)), 4.0F);
+			return mate.getHealth() == before;
+		});
 		singleplayer.getServer().runOnServer(server -> com.huntlike.hunt.HuntingPacks.start(player(server), com.huntlike.hunt.HuntDefs.ANIMAL, 1));
 		context.waitTicks(3);
 		assertServer(singleplayer, "Hunting Pack quest: quota x2, both pay tokens, it runs on the leader", server -> {
