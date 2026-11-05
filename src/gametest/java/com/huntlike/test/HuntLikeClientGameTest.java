@@ -202,6 +202,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			huntingPack(context, singleplayer);
 			mutations(context, singleplayer);
 			mutationCommand(context, singleplayer);
+			horsepower(context, singleplayer);
 			trophy(context, singleplayer);
 			catalystAndPulverizer(context, singleplayer);
 			dailyRefill(context, singleplayer);
@@ -1294,6 +1295,40 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 				}
 			}
 		});
+	}
+
+	/** Higher Horsepower: the player drinks it and rides a horse; the client's horse (which does the jumping) must see it. */
+	private static void horsepower(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var horse = net.minecraft.world.entity.EntityTypes.HORSE.create(player.level(), net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			horse.snapTo(player.getX() + 2, player.getY(), player.getZ(), 0, 0);
+			horse.setTamed(true);
+			horse.addTag("huntlike_horsepower_test");
+			player.level().addFreshEntity(horse);
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER, 600));
+			player.startRiding(horse, true, true);
+		});
+		context.waitTicks(20);
+		double[] jump = context.computeOnClient(client -> {
+			var vehicle = client.player.getVehicle();
+			if (!(vehicle instanceof net.minecraft.world.entity.animal.equine.AbstractHorse horse)) {
+				return new double[] {-1, -1};
+			}
+			var attribute = horse.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.JUMP_STRENGTH);
+			return new double[] {attribute.getBaseValue(), attribute.getValue()};
+		});
+		HuntLike.LOGGER.info("[test] Higher Horsepower on the client's horse: base {} now {}", jump[0], jump[1]);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.stopRiding();
+			player.removeEffect(com.huntlike.potion.ModPotions.HIGHER_HORSEPOWER);
+			player.level().getEntitiesOfClass(net.minecraft.world.entity.animal.equine.Horse.class, player.getBoundingBox().inflate(10),
+					h -> h.entityTags().contains("huntlike_horsepower_test")).forEach(net.minecraft.world.entity.Entity::discard);
+		});
+		if (jump[0] <= 0 || jump[1] < jump[0] * 1.4) {
+			throw new AssertionError("Higher Horsepower doesn't reach the client's horse: base " + jump[0] + ", now " + jump[1]);
+		}
 	}
 
 	/** /huntlike boss animal 1 mutation Bejeweled @p summons a Bejeweled boss. */
