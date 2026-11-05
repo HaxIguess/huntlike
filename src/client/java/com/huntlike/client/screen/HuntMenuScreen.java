@@ -631,12 +631,13 @@ public class HuntMenuScreen extends Screen {
 		int y0 = iy + 4;
 		int w0 = iw - 8;
 		int h0 = ih - 8;
-		sprite(g, "panel", x0, y0, w0, h0);
+		// The vanilla inventory window look (light grey, bevelled), with dark text like a container screen.
+		sprite(g, "panel_light", x0, y0, w0, h0);
 
 		// The leader's big head.
 		int hx = x0 + 8;
 		int hy = y0 + 8;
-		sprite(g, "panel_dark", hx - 2, hy - 2, HEAD + 4, HEAD + 4);
+		inset(g, hx - 1, hy - 1, HEAD + 2, HEAD + 2);
 		face(g, leaderView.id(), hx, hy, HEAD, leaderView.online());
 		boolean hoverHead = mouseX >= hx && mouseX < hx + HEAD && mouseY >= hy && mouseY < hy + HEAD;
 		hits.add(new Hit(hx, hy, HEAD, HEAD, () -> openPopup("leader", mouseX, mouseY)));
@@ -653,7 +654,7 @@ public class HuntMenuScreen extends Screen {
 			int room = x0 + w0 - 2 * ICON - 14 - tx;
 			String shown = this.font.width(packName) <= room ? packName
 					: this.font.plainSubstrByWidth(packName, room - this.font.width("...")) + "...";
-			g.text(this.font, colored(shown, WHITE), tx, ty, WHITE, false);
+			g.text(this.font, colored(shown, LABEL), tx, ty, LABEL, false);
 			if (leader) {
 				hits.add(new Hit(tx, ty - 2, Math.max(40, this.font.width(packName)), 11, () -> {
 					closePackOverlays();
@@ -666,7 +667,7 @@ public class HuntMenuScreen extends Screen {
 		int max = pack.getIntOr("max", 0);
 		String count = editField == 2 ? editText + ((System.currentTimeMillis() / 500) % 2 == 0 ? "_" : "")
 				: max > 0 ? members.size() + "/" + max : String.valueOf(members.size());
-		Component membersLine = colored("Members: ", TEXT_GRAY).append(colored(count, WHITE));
+		Component membersLine = colored("Members: ", LABEL).append(colored(count, LABEL));
 		g.text(this.font, membersLine, tx, ty, WHITE, false);
 		boolean hoverMembers = mouseX >= tx && mouseX < tx + this.font.width(membersLine) + 4 && mouseY >= ty - 2 && mouseY < ty + 9;
 		if (leader && editField != 2) {
@@ -679,14 +680,16 @@ public class HuntMenuScreen extends Screen {
 		ty += 13;
 		Component huntLine;
 		if (quest == null) {
-			huntLine = colored("None", TEXT_DIM);
+			huntLine = colored("None", 0xFF707070);
 		} else {
 			Hunt hunt = HuntDefs.hunt(quest.hunt);
 			Tier tier = hunt.tier(quest.tier);
 			huntLine = colored(hunt.name() + " ", hunt.color()).append(colored("[Tier " + tier.roman() + "] ", tier.color()))
 					.append(colored(tier.bossName(), tier.color()));
 		}
-		g.text(this.font, colored("Active Hunt: ", TEXT_GRAY).append(huntLine), tx, ty, WHITE, false);
+		g.text(this.font, colored("Active Hunt: ", LABEL), tx, ty, LABEL, false);
+		// The Hunt's bright colors keep their shadow so they read on the light grey.
+		g.text(this.font, huntLine, tx + this.font.width("Active Hunt: "), ty, WHITE, quest != null);
 		ty += 13;
 		if (quest != null) {
 			int barX = tx;
@@ -729,8 +732,8 @@ public class HuntMenuScreen extends Screen {
 		int boxW = w0 - 12;
 		int boxH = BOX_ROWS * CELL + 6;
 		int boxTop = y0 + h0 - 6 - boxH;
-		g.text(this.font, colored(packPlayers ? "Players" : "Members", WHITE), boxX + 2, boxTop - 11, WHITE, false);
-		sprite(g, "panel_dark", boxX, boxTop, boxW, boxH);
+		g.text(this.font, colored(packPlayers ? "Players" : "Members", LABEL), boxX + 2, boxTop - 11, LABEL, false);
+		inset(g, boxX, boxTop, boxW, boxH);
 		packBox = new int[] {boxX, boxTop, boxW, boxH};
 
 		List<CompoundTagView> entries = new ArrayList<>();
@@ -808,7 +811,7 @@ public class HuntMenuScreen extends Screen {
 			g.fill(boxX + boxW - 4, thumbY, boxX + boxW - 2, thumbY + thumbH, 0xFFA0A0A0);
 		}
 		if (entries.isEmpty() && packPlayers) {
-			g.text(this.font, colored("No other players online.", TEXT_DIM), left0 + CELL + 4, boxTop + 3 + CELL / 2 - 4, WHITE, false);
+			g.text(this.font, colored("No other players online.", 0xFFE0E0E0), left0 + CELL + 4, boxTop + 3 + CELL / 2 - 4, WHITE, false);
 		}
 
 		// Overlays take every click while open.
@@ -826,6 +829,18 @@ public class HuntMenuScreen extends Screen {
 			g.setComponentTooltipForNextFrame(this.font, List.of(colored("Click to set the most members (0 = no limit).", TEXT_GRAY)),
 					mouseX, mouseY);
 		}
+	}
+
+	/** Vanilla container text color. */
+	private static final int LABEL = 0xFF404040;
+
+	/** A sunken area like an inventory slot: dark top and left, white bottom and right, mid grey inside. */
+	private static void inset(GuiGraphicsExtractor g, int x, int y, int w, int h) {
+		g.fill(x, y, x + w, y + h, 0xFF8B8B8B);
+		g.fill(x, y, x + w - 1, y + 1, 0xFF373737);
+		g.fill(x, y, x + 1, y + h - 1, 0xFF373737);
+		g.fill(x + 1, y + h - 1, x + w, y + h, 0xFFFFFFFF);
+		g.fill(x + w - 1, y + 1, x + w, y + h, 0xFFFFFFFF);
 	}
 
 	private void drawIconButton(GuiGraphicsExtractor g, int x, int y, String name, int mouseX, int mouseY, Runnable action) {
