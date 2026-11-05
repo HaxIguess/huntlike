@@ -493,7 +493,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
 			player.setGameMode(net.minecraft.world.level.GameType.CREATIVE);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			player.teleportTo(600.5, player.getY(), 600.5);
 			base[0] = 600.5;
 			base[1] = player.getY();
@@ -807,7 +813,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		addProgress(singleplayer, 26500, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			var sharpness = player.level().registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT)
 					.getOrThrow(net.minecraft.world.item.enchantment.Enchantments.SHARPNESS);
 			var sword = new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_SWORD);
@@ -938,7 +950,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		addProgress(singleplayer, 50500, 0);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			give(player, net.minecraft.world.item.Items.MUSHROOM_STEW, 1);
 			give(player, net.minecraft.world.item.Items.OAK_LOG, 16);
 			give(player, com.huntlike.registry.ModItems.THICK_HIDE, 3);
@@ -1060,7 +1078,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		});
 		assertServer(singleplayer, "golden meat eaten instantly", server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			player.getFoodData().setFoodLevel(4);
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,
 					new net.minecraft.world.item.ItemStack(com.huntlike.registry.ModItems.GOLDEN_MEAT, 2));
@@ -1282,7 +1306,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
 			player.level().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, player.getBoundingBox().inflate(30))
 					.forEach(net.minecraft.world.entity.Entity::discard);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 		});
 	}
 
@@ -1729,7 +1759,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 								.equals(List.of(EntityTypes.SLIME)));
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			give(player, net.minecraft.world.item.Items.SOUL_SAND, 5);
 		});
 		context.runOnClient(client -> net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(
@@ -2107,7 +2143,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 	private static void towernaar(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			give(player, net.minecraft.world.item.Items.SHIELD, 1);
 			give(player, net.minecraft.world.item.Items.IRON_INGOT, 16);
 			give(player, net.minecraft.world.item.Items.OBSIDIAN, 8);
@@ -2339,7 +2381,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		// The PRD unlocks the Magnetic Wand trade.
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,
 					new net.minecraft.world.item.ItemStack(com.huntlike.gear.ModShields.MAGNETIC_WAND_PRD));
 			player.getMainHandItem().use(player.level(), player, net.minecraft.world.InteractionHand.MAIN_HAND);
@@ -2460,7 +2508,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		// The A-Phone is bought on the Cluster Misc page (4th trade), not crafted.
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			var inv = player.getInventory();
 			inv.add(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.REDSTONE, 8));
 			inv.add(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.REDSTONE_TORCH, 2));
@@ -2559,7 +2613,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runCommand("huntlike quest cancel @a");
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 20 * 600, 4));
 			for (var e : player.level().getEntitiesOfClass(net.minecraft.world.entity.Mob.class, player.getBoundingBox().inflate(40))) {
 				e.discard();
@@ -3699,7 +3759,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.setScreen(() -> null);
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			HuntData data = QuestManager.data(player);
 			data.progress("animal").bossKills[4] = 99;
 			player.setAttached(QuestManager.DATA, data);
@@ -3834,7 +3900,13 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		singleplayer.getServer().runOnServer(server -> {
 			ServerPlayer player = player(server);
 			player.setGameMode(net.minecraft.world.level.GameType.SURVIVAL);
-			player.getInventory().clearContent();
+			for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+				var stack = player.getInventory().getItem(i);
+				if (stack.is(net.minecraft.world.item.Items.STONE) || stack.is(net.minecraft.world.item.Items.COAL)
+						|| stack.is(net.minecraft.world.item.Items.RAW_COPPER) || stack.is(net.minecraft.world.item.Items.RAW_IRON)) {
+					player.getInventory().setItem(i, net.minecraft.world.item.ItemStack.EMPTY);
+				}
+			}
 			player.getInventory().add(new net.minecraft.world.item.ItemStack(com.huntlike.path.ModPaths.BLAZING_HEART, 2));
 		});
 		context.waitTicks(30);
