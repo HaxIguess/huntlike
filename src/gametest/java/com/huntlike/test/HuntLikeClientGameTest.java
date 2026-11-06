@@ -1350,7 +1350,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(3);
 		context.takeScreenshot("98j-mutation-bejeweled");
 		// The user's 3D shards bursting out (as when a hit phase opens), Bejeweled then Mineral.
-		context.runOnClient(client -> client.options.hideGui = true);
+		hideHud(context, true);
 		for (String mutation : List.of("Bejeweled", "Mineral")) {
 			singleplayer.getServer().runOnServer(server -> {
 				var quest = QuestManager.data(player(server)).quest;
@@ -1369,7 +1369,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.takeScreenshot("98k-shards-" + mutation.toLowerCase(java.util.Locale.ROOT));
 			context.waitTicks(25);
 		}
-		context.runOnClient(client -> client.options.hideGui = false);
+		hideHud(context, false);
 		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			return quest != null && "Bejeweled".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;
