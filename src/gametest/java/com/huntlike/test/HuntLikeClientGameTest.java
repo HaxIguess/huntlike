@@ -1349,27 +1349,26 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.runOnClient(client -> client.gui.toastManager().clear());
 		context.waitTicks(3);
 		context.takeScreenshot("98j-mutation-bejeweled");
-		// The user's 3D shards bursting out (as when a hit phase opens), Bejeweled then Mineral.
+		// The user's 3D shards bursting out (as when a hit phase opens), Bejeweled then Mineral, off a still stand-in.
 		hideHud(context, true);
 		for (String mutation : List.of("Bejeweled", "Mineral")) {
 			singleplayer.getServer().runOnServer(server -> {
-				var quest = QuestManager.data(player(server)).quest;
-				var boss = quest == null ? null : BossController.findBoss(player(server), quest);
-				if (boss != null) {
-					// Close up: the boss held still, the camera 3 blocks away looking at it.
-					boss.setNoAi(true);
-					ServerPlayer player = player(server);
-					player.teleportTo(boss.getX(), boss.getY() + 1.5, boss.getZ() - 6.5);
-					player.getAbilities().flying = true;
-					player.onUpdateAbilities();
-					player.lookAt(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor.EYES,
-							boss.position().add(0, boss.getBbHeight() * 0.6, 0));
-					com.huntlike.hunt.Mutations.burst(boss, mutation);
-				}
+				ServerPlayer player = player(server);
+				var stand = net.minecraft.world.entity.EntityTypes.ARMOR_STAND.create(player.level(),
+						net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+				stand.snapTo(player.getX(), player.getY(), player.getZ() + 4.0, 0, 0);
+				stand.setInvisible(true);
+				stand.addTag("huntlike_shard_stand");
+				player.level().addFreshEntity(stand);
+				player.lookAt(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor.EYES, stand.position().add(0, 1.0, 0));
+				com.huntlike.hunt.Mutations.burst(stand, mutation);
 			});
-			context.waitTicks(12);
+			context.waitTicks(10);
 			context.takeScreenshot("98k-shards-" + mutation.toLowerCase(java.util.Locale.ROOT));
 			context.waitTicks(20);
+			singleplayer.getServer().runOnServer(server -> player(server).level().getEntitiesOfClass(
+					net.minecraft.world.entity.decoration.ArmorStand.class, player(server).getBoundingBox().inflate(10),
+					stand -> stand.entityTags().contains("huntlike_shard_stand")).forEach(net.minecraft.world.entity.Entity::discard));
 		}
 		hideHud(context, false);
 		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
