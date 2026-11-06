@@ -86,6 +86,7 @@ public class HuntLikeClient implements ClientModInitializer {
 				com.huntlike.path.WildfirePath.Buff.RAGING_METABOLISM);
 		com.huntlike.client.entity.horns.Horns.registerLayers();
 		ImpRenderer.registerLayer();
+		SylviornisRenderer.registerLayer();
 		com.huntlike.client.entity.DemonlingHorns.register();
 		EntityRendererRegistry.register(com.huntlike.interlude.ModInterlude.POM, context -> new net.minecraft.client.renderer.entity.UndeadHorseRenderer(
 				context, net.minecraft.client.resources.model.EquipmentClientInfo.LayerType.ZOMBIE_HORSE_SADDLE,
