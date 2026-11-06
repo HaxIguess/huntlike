@@ -340,6 +340,8 @@ public final class BossController {
 		} else if (!frozen && player.isAlive() && !player.isSpectator() && !player.isCreative()) {
 			double reach = boss.getBbWidth() / 2.0 + 1.6;
 			if (boss.distanceTo(player) <= reach) {
+				// The swing reaches the players nearby, whose renderers play an attack animation if the boss has one.
+				boss.swing(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.component.SwingAnimation.DEFAULT, true);
 				player.hurtServer(level, level.damageSources().mobAttack(boss), tier.melee() * BossAbilities.meleeMultiplier(boss));
 				MELEE_COOLDOWN.put(boss.getUUID(), 20);
 			}

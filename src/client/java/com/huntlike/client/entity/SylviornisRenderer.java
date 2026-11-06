@@ -27,24 +27,40 @@ import com.huntlike.entity.animal.Sylviornis;
  * wings, tail, head, body) played as it walks and faded out as it stops. Generated from the .bbmodel; on trial (the
  * chicken look is SylviornisChickenRenderer).
  */
-public class SylviornisRenderer extends MobRenderer<Sylviornis, LivingEntityRenderState, SylviornisRenderer.Model> {
+public class SylviornisRenderer extends MobRenderer<Sylviornis, SylviornisRenderer.State, SylviornisRenderer.Model> {
+	public static class State extends LivingEntityRenderState {
+		/** Seconds into the peck, or -1. */
+		float attackTime = -1.0F;
+	}
+
 	private static final Identifier TEXTURE = HuntLike.id("textures/entity/animal/sylviornis_model.png");
 	public static final ModelLayerLocation LAYER = new ModelLayerLocation(HuntLike.id("sylviornis"), "main");
 	/** Walk keyframes per bone: time (s), x, y, z (degrees, as Blockbench shows them). */
 	static final Map<String, float[][]> WALK = new HashMap<>();
+	static final Map<String, float[][]> WALK_POS = new HashMap<>();
 	static final float WALK_LENGTH = 2.0F;
+	/** The peck, played once each time it attacks (position keyframes in pixels). */
+	static final Map<String, float[][]> ATTACK = new HashMap<>();
+	static final Map<String, float[][]> ATTACK_POS = new HashMap<>();
+	static final float ATTACK_LENGTH = 1.25F;
+	/** Client side: when each Sylviornis's current peck started (game time in ticks), and whether it was swinging. */
+	private static final Map<Integer, Float> ATTACK_START = new HashMap<>();
+	private static final Map<Integer, Boolean> WAS_SWINGING = new HashMap<>();
 	/** Where each animated bone sits in the model. */
 	static final Map<String, String[]> PATHS = new HashMap<>();
 
 	static {
-		PATHS.put("tail", new String[] {"body", "tail"});
-		PATHS.put("left", new String[] {"body", "legs", "left"});
-		PATHS.put("right", new String[] {"body", "legs", "right"});
-		PATHS.put("head", new String[] {"body", "head"});
-		PATHS.put("neck", new String[] {"body", "head", "neck"});
-		PATHS.put("left2", new String[] {"body", "main", "wings", "left2"});
-		PATHS.put("right2", new String[] {"body", "main", "wings", "right2"});
 		PATHS.put("body2", new String[] {"body", "main", "body2"});
+		PATHS.put("bottom", new String[] {"body", "head", "head2", "peck", "bottom"});
+		PATHS.put("head", new String[] {"body", "head"});
+		PATHS.put("left", new String[] {"body", "legs", "left"});
+		PATHS.put("left2", new String[] {"body", "main", "wings", "left2"});
+		PATHS.put("neck", new String[] {"body", "head", "neck"});
+		PATHS.put("right", new String[] {"body", "legs", "right"});
+		PATHS.put("right2", new String[] {"body", "main", "wings", "right2"});
+		PATHS.put("tail", new String[] {"body", "tail"});
+		PATHS.put("top", new String[] {"body", "head", "head2", "peck", "top"});
+		PATHS.put("wings", new String[] {"body", "main", "wings"});
 		WALK.put("tail", new float[][] {{0F, 0F, 0F, 0F}, {0.29167F, 0F, 7.5F, 0F}, {0.5F, 0F, 10F, 0F}, {0.70833F, 0F, 7.5F, 0F}, {1F, 0F, 0F, 0F}, {1.33333F, 0F, -7.5F, 0F}, {1.5F, 0F, -10F, 0F}, {1.66667F, 0F, -7.5F, 0F}, {2F, 0F, 0F, 0F}});
 		WALK.put("left", new float[][] {{0F, 25F, 0F, 0F}, {0.25F, 0F, 0F, 0F}, {0.5F, 25F, 0F, 0F}, {0.75F, 0F, 0F, 0F}, {1F, 25F, 0F, 0F}, {1.25F, 0F, 0F, 0F}, {1.5F, 25F, 0F, 0F}, {1.75F, 0F, 0F, 0F}, {2F, 25F, 0F, 0F}});
 		WALK.put("right", new float[][] {{0F, 0F, 0F, 0F}, {0.25F, 25F, 0F, 0F}, {0.5F, 0F, 0F, 0F}, {0.75F, 25F, 0F, 0F}, {1F, 0F, 0F, 0F}, {1.25F, 25F, 0F, 0F}, {1.5F, 0F, 0F, 0F}, {1.75F, 25F, 0F, 0F}, {2F, 0F, 0F, 0F}});
@@ -53,6 +69,16 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, LivingEntityRend
 		WALK.put("left2", new float[][] {{0F, 0F, 0F, 0F}, {0.25F, 0F, 0F, 0F}, {0.375F, 0F, 0F, -25F}, {0.5F, 0F, 0F, -30F}, {2F, 0F, 0F, 0F}});
 		WALK.put("right2", new float[][] {{0F, 0F, 0F, 0F}, {0.25F, 0F, 0F, 0F}, {0.375F, 0F, 0F, 25F}, {0.5F, 0F, 0F, 30F}, {2F, 0F, 0F, 0F}});
 		WALK.put("body2", new float[][] {{0F, 0F, 0F, 0F}, {1F, 2.5F, 0F, 0F}, {2F, 0F, 0F, 0F}});
+		ATTACK.put("tail", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, -35F, 0F, 0F}, {0.875F, 0F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK_POS.put("tail", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 0F, 0F, -1F}, {0.875F, 0F, 0F, -1F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK.put("head", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 20F, 0F, 0F}, {0.79167F, 20F, 0F, 0F}, {1.04167F, 0F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK_POS.put("head", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 0F, 1F, -1F}, {0.79167F, 0F, 1F, -1F}, {1.04167F, 0F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK.put("neck", new float[][] {{0F, 0F, 0F, 0F}});
+		ATTACK_POS.put("wings", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 0F, 0F, -1F}, {0.875F, 0F, 0F, -1F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK.put("top", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 32.5F, 0F, 0F}, {0.75F, 0F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK.put("bottom", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, -30F, 0F, 0F}, {0.75F, 0F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK.put("body2", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 5F, 0F, 0F}, {0.875F, 5F, 0F, 0F}, {1.25F, 0F, 0F, 0F}});
+		ATTACK_POS.put("body2", new float[][] {{0F, 0F, 0F, 0F}, {0.5F, 0F, 0F, -1F}, {0.875F, 0F, 0F, -1F}, {1.25F, 0F, 0F, 0F}});
 	}
 
 	public static LayerDefinition createLayer() {
@@ -145,7 +171,7 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, LivingEntityRend
 		ModelLayerRegistry.registerModelLayer(LAYER, SylviornisRenderer::createLayer);
 	}
 
-	public static class Model extends EntityModel<LivingEntityRenderState> {
+	public static class Model extends EntityModel<State> {
 		private final Map<String, ModelPart> bones = new HashMap<>();
 		private final ModelPart head;
 
@@ -166,27 +192,43 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, LivingEntityRend
 		}
 
 		@Override
-		public void setupAnim(LivingEntityRenderState state) {
+		public void setupAnim(State state) {
 			super.setupAnim(state);
 			float time = (state.walkAnimationPos * 0.25F) % WALK_LENGTH;
 			if (time < 0) {
 				time += WALK_LENGTH;
 			}
 			float amount = Math.min(1.0F, state.walkAnimationSpeed * 1.5F);
-			for (Map.Entry<String, float[][]> entry : WALK.entrySet()) {
-				ModelPart bone = bones.get(entry.getKey());
-				if (bone == null) {
-					continue;
-				}
-				float[] r = SylviornisRenderer.sample(entry.getValue(), time);
-				// Blockbench's bone rotation, in the model's y-down space: x as is, y and z flipped.
-				bone.xRot += (float) Math.toRadians(r[0]) * amount;
-				bone.yRot -= (float) Math.toRadians(r[1]) * amount;
-				bone.zRot -= (float) Math.toRadians(r[2]) * amount;
+			apply(WALK, WALK_POS, time, amount);
+			if (state.attackTime >= 0.0F) {
+				apply(ATTACK, ATTACK_POS, state.attackTime, 1.0F);
 			}
+			ModelPart head = bones.get("head");
 			if (head != null) {
 				head.yRot += state.yRot * ((float) Math.PI / 180.0F);
 				head.xRot += state.xRot * ((float) Math.PI / 180.0F);
+			}
+		}
+
+		/** Blockbench's bone keyframes in the model's y-down space: rotation x as is, y and z flipped; position x and y flipped. */
+		private void apply(Map<String, float[][]> rotations, Map<String, float[][]> positions, float time, float amount) {
+			for (Map.Entry<String, float[][]> entry : rotations.entrySet()) {
+				ModelPart bone = bones.get(entry.getKey());
+				if (bone != null) {
+					float[] r = sample(entry.getValue(), time);
+					bone.xRot += (float) Math.toRadians(r[0]) * amount;
+					bone.yRot -= (float) Math.toRadians(r[1]) * amount;
+					bone.zRot -= (float) Math.toRadians(r[2]) * amount;
+				}
+			}
+			for (Map.Entry<String, float[][]> entry : positions.entrySet()) {
+				ModelPart bone = bones.get(entry.getKey());
+				if (bone != null) {
+					float[] p = sample(entry.getValue(), time);
+					bone.x -= p[0] * amount;
+					bone.y -= p[1] * amount;
+					bone.z += p[2] * amount;
+				}
 			}
 		}
 	}
@@ -212,12 +254,35 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, LivingEntityRend
 	}
 
 	@Override
-	public LivingEntityRenderState createRenderState() {
-		return new LivingEntityRenderState();
+	public State createRenderState() {
+		return new State();
+	}
+
+	/** A new swing (the boss's melee attack) starts the peck from the beginning. */
+	@Override
+	public void extractRenderState(Sylviornis entity, State state, float partialTick) {
+		super.extractRenderState(entity, state, partialTick);
+		int id = entity.getId();
+		float now = entity.level().getGameTime() + partialTick;
+		boolean swinging = entity.isSwinging();
+		if (swinging && !WAS_SWINGING.getOrDefault(id, false)) {
+			ATTACK_START.put(id, now);
+		}
+		WAS_SWINGING.put(id, swinging);
+		Float start = ATTACK_START.get(id);
+		float seconds = start == null ? -1.0F : (now - start) / 20.0F;
+		if (seconds > ATTACK_LENGTH || entity.isRemoved()) {
+			ATTACK_START.remove(id);
+			seconds = -1.0F;
+		}
+		if (entity.isRemoved()) {
+			WAS_SWINGING.remove(id);
+		}
+		state.attackTime = seconds;
 	}
 
 	@Override
-	public Identifier getTextureLocation(LivingEntityRenderState state) {
+	public Identifier getTextureLocation(State state) {
 		return TEXTURE;
 	}
 }
