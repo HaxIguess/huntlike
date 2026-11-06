@@ -43,9 +43,6 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, SylviornisRender
 	static final Map<String, float[][]> ATTACK = new HashMap<>();
 	static final Map<String, float[][]> ATTACK_POS = new HashMap<>();
 	static final float ATTACK_LENGTH = 1.25F;
-	/** Client side: when each Sylviornis's current peck started (game time in ticks), and whether it was swinging. */
-	private static final Map<Integer, Float> ATTACK_START = new HashMap<>();
-	private static final Map<Integer, Boolean> WAS_SWINGING = new HashMap<>();
 	/** Where each animated bone sits in the model. */
 	static final Map<String, String[]> PATHS = new HashMap<>();
 
@@ -258,27 +255,12 @@ public class SylviornisRenderer extends MobRenderer<Sylviornis, SylviornisRender
 		return new State();
 	}
 
-	/** A new swing (the boss's melee attack) starts the peck from the beginning. */
+	/** Each melee attack (an entity event from the server) starts the peck from the beginning. */
 	@Override
 	public void extractRenderState(Sylviornis entity, State state, float partialTick) {
 		super.extractRenderState(entity, state, partialTick);
-		int id = entity.getId();
-		float now = entity.level().getGameTime() + partialTick;
-		boolean swinging = entity.isSwinging();
-		if (swinging && !WAS_SWINGING.getOrDefault(id, false)) {
-			ATTACK_START.put(id, now);
-		}
-		WAS_SWINGING.put(id, swinging);
-		Float start = ATTACK_START.get(id);
-		float seconds = start == null ? -1.0F : (now - start) / 20.0F;
-		if (seconds > ATTACK_LENGTH || entity.isRemoved()) {
-			ATTACK_START.remove(id);
-			seconds = -1.0F;
-		}
-		if (entity.isRemoved()) {
-			WAS_SWINGING.remove(id);
-		}
-		state.attackTime = seconds;
+		float seconds = entity.attackStart < 0 ? -1.0F : (entity.level().getGameTime() - entity.attackStart + partialTick) / 20.0F;
+		state.attackTime = seconds >= 0.0F && seconds <= ATTACK_LENGTH ? seconds : -1.0F;
 	}
 
 	@Override

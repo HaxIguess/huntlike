@@ -1375,6 +1375,21 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			var quest = QuestManager.data(player(server)).quest;
 			return quest != null && "Bejeweled".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;
 		});
+		// The attack event reaches the client's Sylviornis (it starts the peck animation).
+		singleplayer.getServer().runOnServer(server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			var boss = quest == null ? null : BossController.findBoss(player(server), quest);
+			if (boss != null) {
+				boss.level().broadcastEntityEvent(boss, BossController.ATTACK_EVENT);
+			}
+		});
+		context.waitTicks(4);
+		boolean pecking = context.computeOnClient(client -> client.level.getEntitiesOfClass(com.huntlike.entity.animal.Sylviornis.class,
+				client.player.getBoundingBox().inflate(40)).stream().anyMatch(bird -> bird.attackStart >= 0));
+		HuntLike.LOGGER.info("[test] Sylviornis attack animation started on the client: {}", pecking ? "OK" : "FAILED");
+		if (!pecking) {
+			throw new AssertionError("The Sylviornis attack event didn't reach the client");
+		}
 		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
 		context.waitTicks(3);
 	}

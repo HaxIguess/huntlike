@@ -274,6 +274,9 @@ public final class BossController {
 		QuestManager.sync(player);
 	}
 
+	/** Entity event sent when a boss attacks in melee (its attack animation starts on the clients). */
+	public static final byte ATTACK_EVENT = 100;
+
 	/** A pack's boss is 10% bigger per extra member, at most 50%. */
 	public static double packScale(HuntData.Quest quest) {
 		return Math.min(1.5, 1.0 + 0.1 * (quest.packSize - 1));
@@ -340,8 +343,8 @@ public final class BossController {
 		} else if (!frozen && player.isAlive() && !player.isSpectator() && !player.isCreative()) {
 			double reach = boss.getBbWidth() / 2.0 + 1.6;
 			if (boss.distanceTo(player) <= reach) {
-				// The swing reaches the players nearby, whose renderers play an attack animation if the boss has one.
-				boss.swing(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.component.SwingAnimation.DEFAULT, true);
+				// Tells the players nearby, whose renderers play an attack animation if the boss has one.
+				level.broadcastEntityEvent(boss, ATTACK_EVENT);
 				player.hurtServer(level, level.damageSources().mobAttack(boss), tier.melee() * BossAbilities.meleeMultiplier(boss));
 				MELEE_COOLDOWN.put(boss.getUUID(), 20);
 			}
