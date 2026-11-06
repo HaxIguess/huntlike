@@ -1359,15 +1359,17 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 					// Close up: the boss held still, the camera 3 blocks away looking at it.
 					boss.setNoAi(true);
 					ServerPlayer player = player(server);
-					player.teleportTo(boss.getX(), boss.getY(), boss.getZ() - 3.2);
+					player.teleportTo(boss.getX(), boss.getY() + 1.5, boss.getZ() - 6.5);
+					player.getAbilities().flying = true;
+					player.onUpdateAbilities();
 					player.lookAt(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor.EYES,
 							boss.position().add(0, boss.getBbHeight() * 0.6, 0));
 					com.huntlike.hunt.Mutations.burst(boss, mutation);
 				}
 			});
-			context.waitTicks(7);
+			context.waitTicks(12);
 			context.takeScreenshot("98k-shards-" + mutation.toLowerCase(java.util.Locale.ROOT));
-			context.waitTicks(25);
+			context.waitTicks(20);
 		}
 		hideHud(context, false);
 		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
