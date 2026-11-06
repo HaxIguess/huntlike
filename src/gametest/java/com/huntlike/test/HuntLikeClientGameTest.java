@@ -1350,11 +1350,18 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(3);
 		context.takeScreenshot("98j-mutation-bejeweled");
 		// The user's 3D shards bursting out (as when a hit phase opens), Bejeweled then Mineral.
+		context.runOnClient(client -> client.options.hideGui = true);
 		for (String mutation : List.of("Bejeweled", "Mineral")) {
 			singleplayer.getServer().runOnServer(server -> {
 				var quest = QuestManager.data(player(server)).quest;
 				var boss = quest == null ? null : BossController.findBoss(player(server), quest);
 				if (boss != null) {
+					// Close up: the boss held still, the camera 3 blocks away looking at it.
+					boss.setNoAi(true);
+					ServerPlayer player = player(server);
+					player.teleportTo(boss.getX(), boss.getY(), boss.getZ() - 3.2);
+					player.lookAt(net.minecraft.commands.arguments.EntityAnchorArgument.Anchor.EYES,
+							boss.position().add(0, boss.getBbHeight() * 0.6, 0));
 					com.huntlike.hunt.Mutations.burst(boss, mutation);
 				}
 			});
@@ -1362,6 +1369,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			context.takeScreenshot("98k-shards-" + mutation.toLowerCase(java.util.Locale.ROOT));
 			context.waitTicks(25);
 		}
+		context.runOnClient(client -> client.options.hideGui = false);
 		assertServer(singleplayer, "/huntlike boss ... mutation Bejeweled summons a Bejeweled boss", server -> {
 			var quest = QuestManager.data(player(server)).quest;
 			return quest != null && "Bejeweled".equals(quest.mutation) && BossController.findBoss(player(server), quest) != null;
