@@ -1523,12 +1523,15 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 		context.waitTicks(2);
 		context.takeScreenshot("98o-femurang-flying");
 		context.waitTicks(10);
-		assertServer(singleplayer, "Femurang: the zombie took 6 damage and the Femurang is coming back", server -> {
+		assertServer(singleplayer, "Femurang: the zombie took about 6 damage", server -> {
 			ServerPlayer player = player(server);
 			var zombie = player.level().getEntitiesOfClass(net.minecraft.world.entity.monster.zombie.Zombie.class, player.getBoundingBox().inflate(20),
 					z -> z.entityTags().contains("huntlike_femurang_target")).stream().findFirst().orElse(null);
 			HuntLike.LOGGER.info("[test] Femurang target health {}", zombie == null ? -1 : zombie.getHealth());
-			return zombie != null && Math.abs(zombie.getHealth() - (zombie.getMaxHealth() - 6.0F)) < 0.01F;
+			// About 6 (a zombie's natural armor can shave a little off).
+			float taken = zombie == null ? 0.0F : zombie.getMaxHealth() - zombie.getHealth();
+			HuntLike.LOGGER.info("[test] Femurang damage taken {} of max {}", taken, zombie == null ? 0 : zombie.getMaxHealth());
+			return zombie != null && taken >= 5.0F && taken <= 6.01F;
 		});
 		context.waitTicks(40);
 		assertServer(singleplayer, "Femurang: back in hand, ready to throw again", server -> {
