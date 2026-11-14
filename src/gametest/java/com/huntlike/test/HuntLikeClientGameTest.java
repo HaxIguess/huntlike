@@ -1618,7 +1618,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			var pos = player.blockPosition().offset(2, 0, 0);
 			level.setBlockAndUpdate(pos, net.minecraft.world.level.block.Blocks.LODESTONE.defaultBlockState());
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(com.huntlike.tools.ModTools.SPIRITUAL_COMPASS_STAR));
-			var hit = new net.minecraft.world.phys.BlockHitResult(pos.getCenter(), net.minecraft.core.Direction.UP, pos, false);
+			var hit = new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(pos), net.minecraft.core.Direction.UP, pos, false);
 			player.gameMode.useItemOn(player, level, player.getMainHandItem(), net.minecraft.world.InteractionHand.MAIN_HAND, hit);
 			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
 			player.gameMode.useItemOn(player, level, player.getMainHandItem(), net.minecraft.world.InteractionHand.MAIN_HAND, hit);

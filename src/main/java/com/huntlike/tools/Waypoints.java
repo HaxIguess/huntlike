@@ -206,6 +206,6 @@ public final class Waypoints {
 	}
 
 	public static boolean mayUse(Player player, BlockPos pos) {
-		return player.level().getBlockState(pos).is(Blocks.LODESTONE) && player.distanceToSqr(pos.getCenter()) <= 64.0;
+		return player.level().getBlockState(pos).is(Blocks.LODESTONE) && player.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos)) <= 64.0;
 	}
 }
