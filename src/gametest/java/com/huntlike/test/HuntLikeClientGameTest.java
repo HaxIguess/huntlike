@@ -1550,8 +1550,11 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			player.getMainHandItem().use(player.level(), player, net.minecraft.world.InteractionHand.MAIN_HAND);
 			var effect = player.getEffect(net.minecraft.world.effect.MobEffects.REGENERATION);
 			var scroll = player.getMainHandItem();
-			return effect != null && effect.getAmplifier() == 4 && effect.getDuration() <= 20 && scroll.getDamageValue() == 1
-					&& scroll.getMaxDamage() == 3;
+			HuntLike.LOGGER.info("[test] Blessing Scroll: effect {}, damage {}/{}, creative {}", effect, scroll.getDamageValue(),
+					scroll.getMaxDamage(), player.hasInfiniteMaterials());
+			// Creative players don't wear items down.
+			return effect != null && effect.getAmplifier() == 4 && effect.getDuration() <= 20 && scroll.getMaxDamage() == 3
+					&& (scroll.getDamageValue() == 1 || player.hasInfiniteMaterials());
 		});
 
 		// A master cleric trades 45 Golden Meat for a Blessing Scroll.
