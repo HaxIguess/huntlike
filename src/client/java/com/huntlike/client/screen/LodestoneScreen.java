@@ -129,7 +129,7 @@ public class LodestoneScreen extends AbstractContainerScreen<LodestoneMenu> {
 		}
 		if (!this.menu.getSlot(0).hasItem()) {
 			// A faint dye in the empty slot.
-			g.fakeItem(new ItemStack(Items.RED_DYE), x + LodestoneMenu.DYE_X, y + LodestoneMenu.DYE_Y);
+			g.fakeItem(new ItemStack(Items.DYE.red()), x + LodestoneMenu.DYE_X, y + LodestoneMenu.DYE_Y);
 			g.fill(x + LodestoneMenu.DYE_X, y + LodestoneMenu.DYE_Y, x + LodestoneMenu.DYE_X + 16, y + LodestoneMenu.DYE_Y + 16, 0xA08B8B8B);
 		}
 	}

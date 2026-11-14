@@ -1635,7 +1635,7 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			ServerPlayer player = player(server);
 			var menu = (com.huntlike.tools.LodestoneMenu) player.containerMenu;
 			com.huntlike.tools.Waypoints.rename(player, "Home");
-			menu.getSlot(0).set(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.RED_DYE, 2));
+			menu.getSlot(0).set(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.DYE.red(), 2));
 			menu.clickMenuButton(player, com.huntlike.tools.LodestoneMenu.BUTTON_DYE);
 			var waypoint = QuestManager.data(player).waypoints.get(0);
 			return "Home".equals(waypoint.name) && waypoint.color == net.minecraft.world.item.DyeColor.RED.getTextColor()
