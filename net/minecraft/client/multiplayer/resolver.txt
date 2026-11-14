@@ -1,0 +1,47 @@
+Compiled from "ServerAddress.java"
+public final class net.minecraft.client.multiplayer.resolver.ServerAddress {
+  public net.minecraft.client.multiplayer.resolver.ServerAddress(java.lang.String, int);
+  public java.lang.String getHost();
+  public int getPort();
+  public static net.minecraft.client.multiplayer.resolver.ServerAddress parseString(java.lang.String);
+  public static boolean isValidAddress(java.lang.String);
+  public static int parsePort(java.lang.String);
+  public java.lang.String toString();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "ServerRedirectHandler.java"
+public interface net.minecraft.client.multiplayer.resolver.ServerRedirectHandler {
+  public static final org.slf4j.Logger LOGGER;
+  public static final net.minecraft.client.multiplayer.resolver.ServerRedirectHandler EMPTY;
+  public abstract java.util.Optional<net.minecraft.client.multiplayer.resolver.ServerAddress> lookupRedirect(net.minecraft.client.multiplayer.resolver.ServerAddress);
+  public static net.minecraft.client.multiplayer.resolver.ServerRedirectHandler createDnsSrvRedirectHandler();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.multiplayer.resolver.package-info {
+}
+Compiled from "AddressCheck.java"
+public interface net.minecraft.client.multiplayer.resolver.AddressCheck {
+  public abstract boolean isAllowed(net.minecraft.client.multiplayer.resolver.ResolvedServerAddress);
+  public abstract boolean isAllowed(net.minecraft.client.multiplayer.resolver.ServerAddress);
+  public static net.minecraft.client.multiplayer.resolver.AddressCheck createFromService();
+}
+Compiled from "ServerNameResolver.java"
+public class net.minecraft.client.multiplayer.resolver.ServerNameResolver {
+  public static final net.minecraft.client.multiplayer.resolver.ServerNameResolver DEFAULT;
+  public java.util.Optional<net.minecraft.client.multiplayer.resolver.ResolvedServerAddress> resolveAddress(net.minecraft.client.multiplayer.resolver.ServerAddress);
+}
+Compiled from "ResolvedServerAddress.java"
+public interface net.minecraft.client.multiplayer.resolver.ResolvedServerAddress {
+  public abstract java.lang.String getHostName();
+  public abstract java.lang.String getHostIp();
+  public abstract int getPort();
+  public abstract java.net.InetSocketAddress asInetSocketAddress();
+  public static net.minecraft.client.multiplayer.resolver.ResolvedServerAddress from(java.net.InetSocketAddress);
+}
+Compiled from "ServerAddressResolver.java"
+public interface net.minecraft.client.multiplayer.resolver.ServerAddressResolver {
+  public static final org.slf4j.Logger LOGGER;
+  public static final net.minecraft.client.multiplayer.resolver.ServerAddressResolver SYSTEM;
+  public abstract java.util.Optional<net.minecraft.client.multiplayer.resolver.ResolvedServerAddress> resolve(net.minecraft.client.multiplayer.resolver.ServerAddress);
+}

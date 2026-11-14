@@ -1,0 +1,111 @@
+Compiled from "UnboundProtocol.java"
+public interface net.minecraft.network.protocol.UnboundProtocol<T extends net.minecraft.network.PacketListener, B extends io.netty.buffer.ByteBuf, C> extends net.minecraft.network.ProtocolInfo$DetailsProvider {
+  public abstract net.minecraft.network.ProtocolInfo<T> bind(java.util.function.Function<io.netty.buffer.ByteBuf, B>, C);
+}
+Compiled from "BundlerInfo.java"
+public interface net.minecraft.network.protocol.BundlerInfo$Bundler {
+  public abstract net.minecraft.network.protocol.Packet<?> addPacket(net.minecraft.network.protocol.Packet<?>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.package-info {
+}
+Compiled from "ProtocolInfoBuilder.java"
+final class net.minecraft.network.protocol.ProtocolInfoBuilder$CodecEntry<T extends net.minecraft.network.PacketListener, P extends net.minecraft.network.protocol.Packet<? super T>, B extends io.netty.buffer.ByteBuf, C> extends java.lang.Record {
+  public void addToBuilder(net.minecraft.network.protocol.ProtocolCodecBuilder<io.netty.buffer.ByteBuf, T>, java.util.function.Function<io.netty.buffer.ByteBuf, B>, C);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.protocol.PacketType<P> type();
+  public net.minecraft.network.codec.StreamCodec<? super B, P> serializer();
+  public net.minecraft.network.protocol.CodecModifier<B, P, C> modifier();
+}
+Compiled from "SimpleUnboundProtocol.java"
+public interface net.minecraft.network.protocol.SimpleUnboundProtocol<T extends net.minecraft.network.PacketListener, B extends io.netty.buffer.ByteBuf> extends net.minecraft.network.ProtocolInfo$DetailsProvider {
+  public abstract net.minecraft.network.ProtocolInfo<T> bind(java.util.function.Function<io.netty.buffer.ByteBuf, B>);
+}
+Compiled from "BundlePacket.java"
+public abstract class net.minecraft.network.protocol.BundlePacket<T extends net.minecraft.network.PacketListener> implements net.minecraft.network.protocol.Packet<T> {
+  protected net.minecraft.network.protocol.BundlePacket(java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>>);
+  public final java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>> subPackets();
+  public abstract net.minecraft.network.protocol.PacketType<? extends net.minecraft.network.protocol.BundlePacket<T>> type();
+}
+Compiled from "ProtocolCodecBuilder.java"
+public class net.minecraft.network.protocol.ProtocolCodecBuilder<B extends io.netty.buffer.ByteBuf, L extends net.minecraft.network.PacketListener> {
+  public net.minecraft.network.protocol.ProtocolCodecBuilder(net.minecraft.network.protocol.PacketFlow);
+  public <T extends net.minecraft.network.protocol.Packet<? super L>> net.minecraft.network.protocol.ProtocolCodecBuilder<B, L> add(net.minecraft.network.protocol.PacketType<T>, net.minecraft.network.codec.StreamCodec<? super B, T>);
+  public net.minecraft.network.codec.StreamCodec<B, net.minecraft.network.protocol.Packet<? super L>> build();
+}
+Compiled from "CodecModifier.java"
+public interface net.minecraft.network.protocol.CodecModifier<B, V, C> {
+  public abstract net.minecraft.network.codec.StreamCodec<? super B, V> apply(net.minecraft.network.codec.StreamCodec<? super B, V>, C);
+}
+Compiled from "ProtocolInfoBuilder.java"
+final class net.minecraft.network.protocol.ProtocolInfoBuilder$Implementation<L extends net.minecraft.network.PacketListener> extends java.lang.Record implements net.minecraft.network.ProtocolInfo<L> {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.ConnectionProtocol id();
+  public net.minecraft.network.protocol.PacketFlow flow();
+  public net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.Packet<? super L>> codec();
+  public net.minecraft.network.protocol.BundlerInfo bundlerInfo();
+}
+Compiled from "PacketFlow.java"
+public final class net.minecraft.network.protocol.PacketFlow extends java.lang.Enum<net.minecraft.network.protocol.PacketFlow> {
+  public static final net.minecraft.network.protocol.PacketFlow SERVERBOUND;
+  public static final net.minecraft.network.protocol.PacketFlow CLIENTBOUND;
+  public static net.minecraft.network.protocol.PacketFlow[] values();
+  public static net.minecraft.network.protocol.PacketFlow valueOf(java.lang.String);
+  public net.minecraft.network.protocol.PacketFlow getOpposite();
+  public java.lang.String id();
+}
+Compiled from "PacketUtils.java"
+public class net.minecraft.network.protocol.PacketUtils {
+  public net.minecraft.network.protocol.PacketUtils();
+  public static <T extends net.minecraft.network.PacketListener> void ensureRunningOnSameThread(net.minecraft.network.protocol.Packet<T>, T, net.minecraft.server.level.ServerLevel) throws net.minecraft.server.RunningOnDifferentThreadException;
+  public static <T extends net.minecraft.network.PacketListener> void ensureRunningOnSameThread(net.minecraft.network.protocol.Packet<T>, T, net.minecraft.network.PacketProcessor) throws net.minecraft.server.RunningOnDifferentThreadException;
+  public static <T extends net.minecraft.network.PacketListener> net.minecraft.ReportedException makeReportedException(java.lang.Exception, net.minecraft.network.protocol.Packet<T>, T);
+  public static <T extends net.minecraft.network.PacketListener> void fillCrashReport(net.minecraft.CrashReport, T, net.minecraft.network.protocol.Packet<T>);
+}
+Compiled from "BundleDelimiterPacket.java"
+public abstract class net.minecraft.network.protocol.BundleDelimiterPacket<T extends net.minecraft.network.PacketListener> implements net.minecraft.network.protocol.Packet<T> {
+  public net.minecraft.network.protocol.BundleDelimiterPacket();
+  public final void handle(T);
+  public abstract net.minecraft.network.protocol.PacketType<? extends net.minecraft.network.protocol.BundleDelimiterPacket<T>> type();
+}
+Compiled from "PacketType.java"
+public final class net.minecraft.network.protocol.PacketType<T extends net.minecraft.network.protocol.Packet<?>> extends java.lang.Record {
+  public net.minecraft.network.protocol.PacketType(net.minecraft.network.protocol.PacketFlow, net.minecraft.resources.Identifier);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.protocol.PacketFlow flow();
+  public net.minecraft.resources.Identifier id();
+}
+Compiled from "Packet.java"
+public interface net.minecraft.network.protocol.Packet<T extends net.minecraft.network.PacketListener> {
+  public abstract net.minecraft.network.protocol.PacketType<? extends net.minecraft.network.protocol.Packet<T>> type();
+  public abstract void handle(T);
+  public default boolean isSkippable();
+  public default boolean isTerminal();
+  public static <B extends io.netty.buffer.ByteBuf, T extends net.minecraft.network.protocol.Packet<?>> net.minecraft.network.codec.StreamCodec<B, T> codec(net.minecraft.network.codec.StreamMemberEncoder<B, T>, net.minecraft.network.codec.StreamDecoder<B, T>);
+}
+Compiled from "BundlerInfo.java"
+public interface net.minecraft.network.protocol.BundlerInfo {
+  public static final int BUNDLE_SIZE_LIMIT;
+  public static <T extends net.minecraft.network.PacketListener, P extends net.minecraft.network.protocol.BundlePacket<? super T>> net.minecraft.network.protocol.BundlerInfo createForPacket(net.minecraft.network.protocol.PacketType<P>, java.util.function.Function<java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>>, P>, net.minecraft.network.protocol.BundleDelimiterPacket<? super T>);
+  public abstract void unbundlePacket(net.minecraft.network.protocol.Packet<?>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public abstract net.minecraft.network.protocol.BundlerInfo$Bundler startPacketBundling(net.minecraft.network.protocol.Packet<?>);
+}
+Compiled from "ProtocolInfoBuilder.java"
+public class net.minecraft.network.protocol.ProtocolInfoBuilder<T extends net.minecraft.network.PacketListener, B extends io.netty.buffer.ByteBuf, C> {
+  public net.minecraft.network.protocol.ProtocolInfoBuilder(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketFlow);
+  public <P extends net.minecraft.network.protocol.Packet<? super T>> net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, C> addPacket(net.minecraft.network.protocol.PacketType<P>, net.minecraft.network.codec.StreamCodec<? super B, P>);
+  public <P extends net.minecraft.network.protocol.Packet<? super T>> net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, C> addPacket(net.minecraft.network.protocol.PacketType<P>, net.minecraft.network.codec.StreamCodec<? super B, P>, net.minecraft.network.protocol.CodecModifier<B, P, C>);
+  public <P extends net.minecraft.network.protocol.BundlePacket<? super T>, D extends net.minecraft.network.protocol.BundleDelimiterPacket<? super T>> net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, C> withBundlePacket(net.minecraft.network.protocol.PacketType<P>, java.util.function.Function<java.lang.Iterable<net.minecraft.network.protocol.Packet<? super T>>, P>, D);
+  public net.minecraft.network.protocol.SimpleUnboundProtocol<T, B> buildUnbound(C);
+  public net.minecraft.network.protocol.UnboundProtocol<T, B, C> buildUnbound();
+  public static <T extends net.minecraft.network.ServerboundPacketListener, B extends io.netty.buffer.ByteBuf> net.minecraft.network.protocol.SimpleUnboundProtocol<T, B> serverboundProtocol(net.minecraft.network.ConnectionProtocol, java.util.function.Consumer<net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, net.minecraft.util.Unit>>);
+  public static <T extends net.minecraft.network.ClientboundPacketListener, B extends io.netty.buffer.ByteBuf> net.minecraft.network.protocol.SimpleUnboundProtocol<T, B> clientboundProtocol(net.minecraft.network.ConnectionProtocol, java.util.function.Consumer<net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, net.minecraft.util.Unit>>);
+  public static <T extends net.minecraft.network.ServerboundPacketListener, B extends io.netty.buffer.ByteBuf, C> net.minecraft.network.protocol.UnboundProtocol<T, B, C> contextServerboundProtocol(net.minecraft.network.ConnectionProtocol, java.util.function.Consumer<net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, C>>);
+  public static <T extends net.minecraft.network.ClientboundPacketListener, B extends io.netty.buffer.ByteBuf, C> net.minecraft.network.protocol.UnboundProtocol<T, B, C> contextClientboundProtocol(net.minecraft.network.ConnectionProtocol, java.util.function.Consumer<net.minecraft.network.protocol.ProtocolInfoBuilder<T, B, C>>);
+}

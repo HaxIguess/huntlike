@@ -1,0 +1,87 @@
+Compiled from "GetServerDetailsTask.java"
+public class com.mojang.realmsclient.util.task.GetServerDetailsTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.GetServerDetailsTask(net.minecraft.client.gui.screens.Screen, com.mojang.realmsclient.dto.RealmsServer);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+  public com.mojang.realmsclient.gui.screens.RealmsLongRunningMcoTaskScreen connectScreen(com.mojang.realmsclient.dto.RealmsJoinInformation);
+}
+Compiled from "ConnectTask.java"
+public class com.mojang.realmsclient.util.task.ConnectTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.ConnectTask(net.minecraft.client.gui.screens.Screen, com.mojang.realmsclient.dto.RealmsServer, com.mojang.realmsclient.dto.RealmsJoinInformation);
+  public void run();
+  public void abortTask();
+  public void tick();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "LongRunningTask.java"
+public abstract class com.mojang.realmsclient.util.task.LongRunningTask implements java.lang.Runnable {
+  protected static final int NUMBER_OF_RETRIES;
+  public com.mojang.realmsclient.util.task.LongRunningTask();
+  protected static void pause(long);
+  public static void setScreen(net.minecraft.client.gui.screens.Screen);
+  protected void error(net.minecraft.network.chat.Component);
+  protected void error(java.lang.Exception);
+  protected void error(com.mojang.realmsclient.exception.RealmsServiceException);
+  public abstract net.minecraft.network.chat.Component getTitle();
+  public boolean aborted();
+  public void tick();
+  public void init();
+  public void abortTask();
+}
+Compiled from "ResettingTemplateWorldTask.java"
+public class com.mojang.realmsclient.util.task.ResettingTemplateWorldTask extends com.mojang.realmsclient.util.task.ResettingWorldTask {
+  public com.mojang.realmsclient.util.task.ResettingTemplateWorldTask(com.mojang.realmsclient.dto.WorldTemplate, long, net.minecraft.network.chat.Component, java.lang.Runnable);
+  protected void sendResetRequest(com.mojang.realmsclient.client.RealmsClient, long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+}
+Compiled from "CloseServerTask.java"
+public class com.mojang.realmsclient.util.task.CloseServerTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.CloseServerTask(com.mojang.realmsclient.dto.RealmsServer, com.mojang.realmsclient.gui.screens.configuration.RealmsConfigureWorldScreen);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "SwitchMinigameTask.java"
+public class com.mojang.realmsclient.util.task.SwitchMinigameTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.SwitchMinigameTask(long, com.mojang.realmsclient.dto.WorldTemplate, com.mojang.realmsclient.gui.screens.configuration.RealmsConfigureWorldScreen);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.util.task.package-info {
+}
+Compiled from "OpenServerTask.java"
+public class com.mojang.realmsclient.util.task.OpenServerTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.OpenServerTask(com.mojang.realmsclient.dto.RealmsServer, net.minecraft.client.gui.screens.Screen, boolean, net.minecraft.client.Minecraft);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "DownloadTask.java"
+public class com.mojang.realmsclient.util.task.DownloadTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.DownloadTask(long, int, java.lang.String, net.minecraft.client.gui.screens.Screen);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "RealmCreationTask.java"
+public class com.mojang.realmsclient.util.task.RealmCreationTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.RealmCreationTask(long, java.lang.String, java.lang.String);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "ResettingWorldTask.java"
+public abstract class com.mojang.realmsclient.util.task.ResettingWorldTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.ResettingWorldTask(long, net.minecraft.network.chat.Component, java.lang.Runnable);
+  protected abstract void sendResetRequest(com.mojang.realmsclient.client.RealmsClient, long) throws com.mojang.realmsclient.exception.RealmsServiceException;
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "SwitchSlotTask.java"
+public class com.mojang.realmsclient.util.task.SwitchSlotTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.SwitchSlotTask(long, int, java.lang.Runnable);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}
+Compiled from "RestoreTask.java"
+public class com.mojang.realmsclient.util.task.RestoreTask extends com.mojang.realmsclient.util.task.LongRunningTask {
+  public com.mojang.realmsclient.util.task.RestoreTask(com.mojang.realmsclient.dto.Backup, long, com.mojang.realmsclient.gui.screens.configuration.RealmsConfigureWorldScreen);
+  public void run();
+  public net.minecraft.network.chat.Component getTitle();
+}

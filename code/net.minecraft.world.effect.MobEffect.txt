@@ -1,0 +1,415 @@
+Compiled from "MobEffect.java"
+public class net.minecraft.world.effect.MobEffect implements net.minecraft.world.flag.FeatureElement,net.fabricmc.fabric.api.entity.event.v1.effect.FabricMobEffect {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>> CODEC;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>> STREAM_CODEC;
+
+  private static final int AMBIENT_ALPHA;
+
+  private final java.util.Map<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.effect.MobEffect$AttributeTemplate> attributeModifiers;
+
+  private final net.minecraft.world.effect.MobEffectCategory category;
+
+  private final int color;
+
+  private final java.util.function.Function<net.minecraft.world.effect.MobEffectInstance, net.minecraft.core.particles.ParticleOptions> particleFactory;
+
+  private java.lang.String descriptionId;
+
+  private int blendInDurationTicks;
+
+  private int blendOutDurationTicks;
+
+  private int blendOutAdvanceTicks;
+
+  private java.util.Optional<net.minecraft.sounds.SoundEvent> soundOnAdded;
+
+  private net.minecraft.world.flag.FeatureFlagSet requiredFeatures;
+
+  protected net.minecraft.world.effect.MobEffect(net.minecraft.world.effect.MobEffectCategory, int);
+    Code:
+         0: aload_0
+         1: invokespecial #65                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #67                 // class it/unimi/dsi/fastutil/objects/Object2ObjectOpenHashMap
+         8: dup
+         9: invokespecial #68                 // Method it/unimi/dsi/fastutil/objects/Object2ObjectOpenHashMap."<init>":()V
+        12: putfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+        15: aload_0
+        16: invokestatic  #76                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        19: putfield      #78                 // Field soundOnAdded:Ljava/util/Optional;
+        22: aload_0
+        23: getstatic     #83                 // Field net/minecraft/world/flag/FeatureFlags.VANILLA_SET:Lnet/minecraft/world/flag/FeatureFlagSet;
+        26: putfield      #85                 // Field requiredFeatures:Lnet/minecraft/world/flag/FeatureFlagSet;
+        29: aload_0
+        30: aload_1
+        31: putfield      #87                 // Field category:Lnet/minecraft/world/effect/MobEffectCategory;
+        34: aload_0
+        35: iload_2
+        36: putfield      #89                 // Field color:I
+        39: aload_0
+        40: iload_2
+        41: invokedynamic #109,  0            // InvokeDynamic #0:apply:(I)Ljava/util/function/Function;
+        46: putfield      #111                // Field particleFactory:Ljava/util/function/Function;
+        49: return
+
+  protected net.minecraft.world.effect.MobEffect(net.minecraft.world.effect.MobEffectCategory, int, net.minecraft.core.particles.ParticleOptions);
+    Code:
+         0: aload_0
+         1: invokespecial #65                 // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #67                 // class it/unimi/dsi/fastutil/objects/Object2ObjectOpenHashMap
+         8: dup
+         9: invokespecial #68                 // Method it/unimi/dsi/fastutil/objects/Object2ObjectOpenHashMap."<init>":()V
+        12: putfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+        15: aload_0
+        16: invokestatic  #76                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        19: putfield      #78                 // Field soundOnAdded:Ljava/util/Optional;
+        22: aload_0
+        23: getstatic     #83                 // Field net/minecraft/world/flag/FeatureFlags.VANILLA_SET:Lnet/minecraft/world/flag/FeatureFlagSet;
+        26: putfield      #85                 // Field requiredFeatures:Lnet/minecraft/world/flag/FeatureFlagSet;
+        29: aload_0
+        30: aload_1
+        31: putfield      #87                 // Field category:Lnet/minecraft/world/effect/MobEffectCategory;
+        34: aload_0
+        35: iload_2
+        36: putfield      #89                 // Field color:I
+        39: aload_0
+        40: aload_3
+        41: invokedynamic #123,  0            // InvokeDynamic #1:apply:(Lnet/minecraft/core/particles/ParticleOptions;)Ljava/util/function/Function;
+        46: putfield      #111                // Field particleFactory:Ljava/util/function/Function;
+        49: return
+
+  public int getBlendInDurationTicks();
+    Code:
+         0: aload_0
+         1: getfield      #128                // Field blendInDurationTicks:I
+         4: ireturn
+
+  public int getBlendOutDurationTicks();
+    Code:
+         0: aload_0
+         1: getfield      #131                // Field blendOutDurationTicks:I
+         4: ireturn
+
+  public int getBlendOutAdvanceTicks();
+    Code:
+         0: aload_0
+         1: getfield      #134                // Field blendOutAdvanceTicks:I
+         4: ireturn
+
+  public boolean applyEffectTick(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, int);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  public void applyInstantaneousEffect(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, net.minecraft.world.entity.LivingEntity, int, double);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload         4
+         4: iload         5
+         6: invokevirtual #149                // Method applyEffectTick:(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;I)Z
+         9: pop
+        10: return
+
+  public boolean shouldApplyEffectTickThisTick(int, int);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  public void onEffectStarted(net.minecraft.world.entity.LivingEntity, int);
+    Code:
+         0: return
+
+  public void onEffectAdded(net.minecraft.world.entity.LivingEntity, int);
+    Code:
+         0: aload_0
+         1: getfield      #78                 // Field soundOnAdded:Ljava/util/Optional;
+         4: aload_1
+         5: invokedynamic #171,  0            // InvokeDynamic #2:accept:(Lnet/minecraft/world/entity/LivingEntity;)Ljava/util/function/Consumer;
+        10: invokevirtual #175                // Method java/util/Optional.ifPresent:(Ljava/util/function/Consumer;)V
+        13: return
+
+  public void onMobRemoved(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, int, net.minecraft.world.entity.Entity$RemovalReason);
+    Code:
+         0: return
+
+  public void onMobHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, int, net.minecraft.world.damagesource.DamageSource, float);
+    Code:
+         0: return
+
+  public boolean isInstantaneous();
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected java.lang.String getOrCreateDescriptionId();
+    Code:
+         0: aload_0
+         1: getfield      #190                // Field descriptionId:Ljava/lang/String;
+         4: ifnonnull     25
+         7: aload_0
+         8: ldc           #192                // String effect
+        10: getstatic     #198                // Field net/minecraft/core/registries/BuiltInRegistries.MOB_EFFECT:Lnet/minecraft/core/Registry;
+        13: aload_0
+        14: invokeinterface #204,  2          // InterfaceMethod net/minecraft/core/Registry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/Identifier;
+        19: invokestatic  #210                // Method net/minecraft/util/Util.makeDescriptionId:(Ljava/lang/String;Lnet/minecraft/resources/Identifier;)Ljava/lang/String;
+        22: putfield      #190                // Field descriptionId:Ljava/lang/String;
+        25: aload_0
+        26: getfield      #190                // Field descriptionId:Ljava/lang/String;
+        29: areturn
+
+  public java.lang.String getDescriptionId();
+    Code:
+         0: aload_0
+         1: invokevirtual #213                // Method getOrCreateDescriptionId:()Ljava/lang/String;
+         4: areturn
+
+  public net.minecraft.network.chat.Component getDisplayName();
+    Code:
+         0: aload_0
+         1: invokevirtual #217                // Method getDescriptionId:()Ljava/lang/String;
+         4: invokestatic  #223                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+         7: areturn
+
+  public net.minecraft.world.effect.MobEffectCategory getCategory();
+    Code:
+         0: aload_0
+         1: getfield      #87                 // Field category:Lnet/minecraft/world/effect/MobEffectCategory;
+         4: areturn
+
+  public int getColor();
+    Code:
+         0: aload_0
+         1: getfield      #89                 // Field color:I
+         4: ireturn
+
+  public net.minecraft.world.effect.MobEffect addAttributeModifier(net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.resources.Identifier, double, net.minecraft.world.entity.ai.attributes.AttributeModifier$Operation);
+    Code:
+         0: aload_0
+         1: getfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+         4: aload_1
+         5: new           #11                 // class net/minecraft/world/effect/MobEffect$AttributeTemplate
+         8: dup
+         9: aload_2
+        10: dload_3
+        11: aload         5
+        13: invokespecial #236                // Method net/minecraft/world/effect/MobEffect$AttributeTemplate."<init>":(Lnet/minecraft/resources/Identifier;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+        16: invokeinterface #240,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        21: pop
+        22: aload_0
+        23: areturn
+
+  public net.minecraft.world.effect.MobEffect setBlendDuration(int);
+    Code:
+         0: aload_0
+         1: iload_1
+         2: iload_1
+         3: iload_1
+         4: invokevirtual #250                // Method setBlendDuration:(III)Lnet/minecraft/world/effect/MobEffect;
+         7: areturn
+
+  public net.minecraft.world.effect.MobEffect setBlendDuration(int, int, int);
+    Code:
+         0: aload_0
+         1: iload_1
+         2: putfield      #128                // Field blendInDurationTicks:I
+         5: aload_0
+         6: iload_2
+         7: putfield      #131                // Field blendOutDurationTicks:I
+        10: aload_0
+        11: iload_3
+        12: putfield      #134                // Field blendOutAdvanceTicks:I
+        15: aload_0
+        16: areturn
+
+  public void createModifiers(int, java.util.function.BiConsumer<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+    Code:
+         0: aload_0
+         1: getfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+         4: aload_2
+         5: iload_1
+         6: invokedynamic #269,  0            // InvokeDynamic #3:accept:(Ljava/util/function/BiConsumer;I)Ljava/util/function/BiConsumer;
+        11: invokeinterface #273,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+        16: return
+
+  public void removeAttributeModifiers(net.minecraft.world.entity.ai.attributes.AttributeMap);
+    Code:
+         0: aload_0
+         1: getfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+         4: invokeinterface #282,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+         9: invokeinterface #288,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        14: astore_2
+        15: aload_2
+        16: invokeinterface #293,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        21: ifeq          75
+        24: aload_2
+        25: invokeinterface #297,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        30: checkcast     #19                 // class java/util/Map$Entry
+        33: astore_3
+        34: aload_1
+        35: aload_3
+        36: invokeinterface #299,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        41: checkcast     #301                // class net/minecraft/core/Holder
+        44: invokevirtual #307                // Method net/minecraft/world/entity/ai/attributes/AttributeMap.getInstance:(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+        47: astore        4
+        49: aload         4
+        51: ifnull        72
+        54: aload         4
+        56: aload_3
+        57: invokeinterface #310,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        62: checkcast     #11                 // class net/minecraft/world/effect/MobEffect$AttributeTemplate
+        65: invokevirtual #313                // Method net/minecraft/world/effect/MobEffect$AttributeTemplate.id:()Lnet/minecraft/resources/Identifier;
+        68: invokevirtual #319                // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.removeModifier:(Lnet/minecraft/resources/Identifier;)Z
+        71: pop
+        72: goto          15
+        75: return
+
+  public void addAttributeModifiers(net.minecraft.world.entity.ai.attributes.AttributeMap, int);
+    Code:
+         0: aload_0
+         1: getfield      #70                 // Field attributeModifiers:Ljava/util/Map;
+         4: invokeinterface #282,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+         9: invokeinterface #288,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        14: astore_3
+        15: aload_3
+        16: invokeinterface #293,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        21: ifeq          97
+        24: aload_3
+        25: invokeinterface #297,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        30: checkcast     #19                 // class java/util/Map$Entry
+        33: astore        4
+        35: aload_1
+        36: aload         4
+        38: invokeinterface #299,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        43: checkcast     #301                // class net/minecraft/core/Holder
+        46: invokevirtual #307                // Method net/minecraft/world/entity/ai/attributes/AttributeMap.getInstance:(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+        49: astore        5
+        51: aload         5
+        53: ifnull        94
+        56: aload         5
+        58: aload         4
+        60: invokeinterface #310,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        65: checkcast     #11                 // class net/minecraft/world/effect/MobEffect$AttributeTemplate
+        68: invokevirtual #313                // Method net/minecraft/world/effect/MobEffect$AttributeTemplate.id:()Lnet/minecraft/resources/Identifier;
+        71: invokevirtual #319                // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.removeModifier:(Lnet/minecraft/resources/Identifier;)Z
+        74: pop
+        75: aload         5
+        77: aload         4
+        79: invokeinterface #310,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        84: checkcast     #11                 // class net/minecraft/world/effect/MobEffect$AttributeTemplate
+        87: iload_2
+        88: invokevirtual #330                // Method net/minecraft/world/effect/MobEffect$AttributeTemplate.create:(I)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+        91: invokevirtual #334                // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.addPermanentModifier:(Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;)V
+        94: goto          15
+        97: return
+
+  public boolean isBeneficial();
+    Code:
+         0: aload_0
+         1: getfield      #87                 // Field category:Lnet/minecraft/world/effect/MobEffectCategory;
+         4: getstatic     #340                // Field net/minecraft/world/effect/MobEffectCategory.BENEFICIAL:Lnet/minecraft/world/effect/MobEffectCategory;
+         7: if_acmpne     14
+        10: iconst_1
+        11: goto          15
+        14: iconst_0
+        15: ireturn
+
+  public net.minecraft.core.particles.ParticleOptions createParticleOptions(net.minecraft.world.effect.MobEffectInstance);
+    Code:
+         0: aload_0
+         1: getfield      #111                // Field particleFactory:Ljava/util/function/Function;
+         4: aload_1
+         5: invokeinterface #346,  2          // InterfaceMethod java/util/function/Function.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+        10: checkcast     #348                // class net/minecraft/core/particles/ParticleOptions
+        13: areturn
+
+  public net.minecraft.world.effect.MobEffect withSoundOnAdded(net.minecraft.sounds.SoundEvent);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #356                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         5: putfield      #78                 // Field soundOnAdded:Ljava/util/Optional;
+         8: aload_0
+         9: areturn
+
+  public net.minecraft.world.effect.MobEffect requiredFeatures(net.minecraft.world.flag.FeatureFlag...);
+    Code:
+         0: aload_0
+         1: getstatic     #363                // Field net/minecraft/world/flag/FeatureFlags.REGISTRY:Lnet/minecraft/world/flag/FeatureFlagRegistry;
+         4: aload_1
+         5: invokevirtual #369                // Method net/minecraft/world/flag/FeatureFlagRegistry.subset:([Lnet/minecraft/world/flag/FeatureFlag;)Lnet/minecraft/world/flag/FeatureFlagSet;
+         8: putfield      #85                 // Field requiredFeatures:Lnet/minecraft/world/flag/FeatureFlagSet;
+        11: aload_0
+        12: areturn
+
+  public net.minecraft.world.flag.FeatureFlagSet requiredFeatures();
+    Code:
+         0: aload_0
+         1: getfield      #85                 // Field requiredFeatures:Lnet/minecraft/world/flag/FeatureFlagSet;
+         4: areturn
+
+  private static void lambda$createModifiers$0(java.util.function.BiConsumer, int, net.minecraft.core.Holder, net.minecraft.world.effect.MobEffect$AttributeTemplate);
+    Code:
+         0: aload_0
+         1: aload_2
+         2: aload_3
+         3: iload_1
+         4: invokevirtual #330                // Method net/minecraft/world/effect/MobEffect$AttributeTemplate.create:(I)Lnet/minecraft/world/entity/ai/attributes/AttributeModifier;
+         7: invokeinterface #375,  3          // InterfaceMethod java/util/function/BiConsumer.accept:(Ljava/lang/Object;Ljava/lang/Object;)V
+        12: return
+
+  private static void lambda$onEffectAdded$0(net.minecraft.world.entity.LivingEntity, net.minecraft.sounds.SoundEvent);
+    Code:
+         0: aload_0
+         1: invokevirtual #382                // Method net/minecraft/world/entity/LivingEntity.level:()Lnet/minecraft/world/level/Level;
+         4: aconst_null
+         5: aload_0
+         6: invokevirtual #386                // Method net/minecraft/world/entity/LivingEntity.getX:()D
+         9: aload_0
+        10: invokevirtual #389                // Method net/minecraft/world/entity/LivingEntity.getY:()D
+        13: aload_0
+        14: invokevirtual #392                // Method net/minecraft/world/entity/LivingEntity.getZ:()D
+        17: aload_1
+        18: aload_0
+        19: invokevirtual #396                // Method net/minecraft/world/entity/LivingEntity.getSoundSource:()Lnet/minecraft/sounds/SoundSource;
+        22: fconst_1
+        23: fconst_1
+        24: invokevirtual #402                // Method net/minecraft/world/level/Level.playSound:(Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+        27: return
+
+  private static net.minecraft.core.particles.ParticleOptions lambda$new$1(net.minecraft.core.particles.ParticleOptions, net.minecraft.world.effect.MobEffectInstance);
+    Code:
+         0: aload_0
+         1: areturn
+
+  private static net.minecraft.core.particles.ParticleOptions lambda$new$0(int, net.minecraft.world.effect.MobEffectInstance);
+    Code:
+         0: aload_1
+         1: invokevirtual #408                // Method net/minecraft/world/effect/MobEffectInstance.isAmbient:()Z
+         4: ifeq          13
+         7: getstatic     #410                // Field AMBIENT_ALPHA:I
+        10: goto          16
+        13: sipush        255
+        16: istore_2
+        17: getstatic     #416                // Field net/minecraft/core/particles/ParticleTypes.ENTITY_EFFECT:Lnet/minecraft/core/particles/ParticleType;
+        20: iload_2
+        21: iload_0
+        22: invokestatic  #421                // Method net/minecraft/util/ARGB.color:(II)I
+        25: invokestatic  #426                // Method net/minecraft/core/particles/ColorParticleOption.create:(Lnet/minecraft/core/particles/ParticleType;I)Lnet/minecraft/core/particles/ColorParticleOption;
+        28: areturn
+
+  static {};
+    Code:
+         0: getstatic     #198                // Field net/minecraft/core/registries/BuiltInRegistries.MOB_EFFECT:Lnet/minecraft/core/Registry;
+         3: invokeinterface #433,  1          // InterfaceMethod net/minecraft/core/Registry.holderByNameCodec:()Lcom/mojang/serialization/Codec;
+         8: putstatic     #435                // Field CODEC:Lcom/mojang/serialization/Codec;
+        11: getstatic     #440                // Field net/minecraft/core/registries/Registries.MOB_EFFECT:Lnet/minecraft/resources/ResourceKey;
+        14: invokestatic  #446                // InterfaceMethod net/minecraft/network/codec/ByteBufCodecs.holderRegistry:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/network/codec/StreamCodec;
+        17: putstatic     #448                // Field STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        20: ldc_w         #449                // float 38.25f
+        23: invokestatic  #455                // Method net/minecraft/util/Mth.floor:(F)I
+        26: putstatic     #410                // Field AMBIENT_ALPHA:I
+        29: return
+}

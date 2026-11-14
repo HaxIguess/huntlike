@@ -1,0 +1,52 @@
+Compiled from "DefaultResourceConditionTypes.java"
+public class net.fabricmc.fabric.impl.resource.conditions.DefaultResourceConditionTypes {
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.TrueResourceCondition> TRUE;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.FalseResourceCondition> FALSE;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.NotResourceCondition> NOT;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.OrResourceCondition> OR;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.AndResourceCondition> AND;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.AllModsLoadedResourceCondition> ALL_MODS_LOADED;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.AnyModsLoadedResourceCondition> ANY_MODS_LOADED;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.TagsPopulatedResourceCondition> TAGS_POPULATED;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.FeaturesEnabledResourceCondition> FEATURES_ENABLED;
+  public static final net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<net.fabricmc.fabric.impl.resource.conditions.conditions.RegistryContainsResourceCondition> REGISTRY_CONTAINS;
+  public net.fabricmc.fabric.impl.resource.conditions.DefaultResourceConditionTypes();
+}
+Compiled from "OverlayConditionsMetadata.java"
+public final class net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata$Entry extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata$Entry> CODEC;
+  public net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata$Entry(java.lang.String, net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String directory();
+  public net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition condition();
+}
+Compiled from "OverlayConditionsMetadata.java"
+public final class net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata> CODEC;
+  public static final net.minecraft.server.packs.metadata.MetadataSectionType<net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata> SERIALIZER;
+  public net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata(java.util.List<net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata$Entry>);
+  public java.util.List<java.lang.String> appliedOverlays();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.fabricmc.fabric.impl.resource.conditions.OverlayConditionsMetadata$Entry> overlays();
+}
+Compiled from "ResourceConditionsImpl.java"
+public final class net.fabricmc.fabric.impl.resource.conditions.ResourceConditionsImpl implements net.fabricmc.api.ModInitializer {
+  public static final org.slf4j.Logger LOGGER;
+  public static net.minecraft.world.flag.FeatureFlagSet currentFeatures;
+  public static java.lang.Exception DISABLED_RESOURCE_EXCEPTION;
+  public net.fabricmc.fabric.impl.resource.conditions.ResourceConditionsImpl();
+  public void onInitialize();
+  public static boolean applyResourceConditions(com.google.gson.JsonObject, java.lang.String, net.minecraft.resources.Identifier, net.minecraft.resources.RegistryOps$RegistryInfoLookup);
+  public static boolean conditionsMet(java.util.List<net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition>, net.minecraft.resources.RegistryOps$RegistryInfoLookup, boolean);
+  public static boolean modsLoaded(java.util.List<java.lang.String>, boolean);
+  public static boolean tagsPopulated(net.minecraft.resources.RegistryOps$RegistryInfoLookup, net.minecraft.resources.Identifier, java.util.List<net.minecraft.resources.Identifier>);
+  public static boolean featuresEnabled(java.util.Collection<net.minecraft.resources.Identifier>);
+  public static boolean registryContains(net.minecraft.resources.RegistryOps$RegistryInfoLookup, net.minecraft.resources.Identifier, java.util.List<net.minecraft.resources.Identifier>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.resource.conditions.package-info {
+}

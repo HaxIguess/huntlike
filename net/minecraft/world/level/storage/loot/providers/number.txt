@@ -1,0 +1,124 @@
+Compiled from "RangeProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.RangeProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.RangeProvider<Value>> {
+  public abstract Self create(net.minecraft.core.Holder<Value>, net.minecraft.core.Holder<Value>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.storage.loot.providers.number.package-info {
+}
+Compiled from "AggregateProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.AggregateProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.AggregateProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.HolderSet<Value>>, net.minecraft.world.level.storage.loot.providers.number.AggregateProvider$Factory<Value, Self>);
+  public abstract net.minecraft.core.HolderSet<Value> inputs();
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "EnvironmentAttributeProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.EnvironmentAttributeProvider$Factory<Self extends net.minecraft.world.level.storage.loot.providers.number.EnvironmentAttributeProvider> {
+  public abstract Self create(net.minecraft.world.attribute.EnvironmentAttribute<?>);
+}
+Compiled from "BinaryProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.BinaryProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.BinaryProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.world.level.storage.loot.providers.number.BinaryProvider$Factory<Value, Self>);
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public abstract net.minecraft.core.Holder<Value> left();
+  public abstract net.minecraft.core.Holder<Value> right();
+}
+Compiled from "ConditionalProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.ConditionalProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.ConditionalProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.core.Holder<Value>, net.minecraft.world.level.storage.loot.providers.number.ConditionalProvider$Factory<Value, Self>);
+  public abstract net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> condition();
+  public abstract net.minecraft.core.Holder<Value> onTrue();
+  public abstract net.minecraft.core.Holder<Value> onFalse();
+  public default net.minecraft.core.Holder<Value> selectValue(net.minecraft.world.level.storage.loot.LootContext);
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "StoredNumberAccess.java"
+public final class net.minecraft.world.level.storage.loot.providers.number.StoredNumberAccess extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.loot.providers.number.StoredNumberAccess> MAP_CODEC;
+  public net.minecraft.world.level.storage.loot.providers.number.StoredNumberAccess(net.minecraft.resources.Identifier, net.minecraft.commands.arguments.NbtPathArgument$NbtPath);
+  public java.lang.Number getNumericTag(net.minecraft.world.level.storage.loot.LootContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier storage();
+  public net.minecraft.commands.arguments.NbtPathArgument$NbtPath path();
+}
+Compiled from "UnaryProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.UnaryProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.UnaryProvider<Value>> {
+  public abstract Self create(net.minecraft.core.Holder<Value>);
+}
+Compiled from "EnvironmentAttributeProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.EnvironmentAttributeProvider extends net.minecraft.world.level.storage.loot.LootContextUser {
+  public static <Self extends net.minecraft.world.level.storage.loot.providers.number.EnvironmentAttributeProvider> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.world.attribute.EnvironmentAttribute<?>>, net.minecraft.world.level.storage.loot.providers.number.EnvironmentAttributeProvider$Factory<Self>);
+  public abstract net.minecraft.world.attribute.EnvironmentAttribute<?> attribute();
+  public default java.util.Set<net.minecraft.util.context.ContextKey<?>> getReferencedContextParams();
+}
+Compiled from "RangeProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.RangeProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.RangeProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.world.level.storage.loot.providers.number.RangeProvider$Factory<Value, Self>);
+  public abstract net.minecraft.core.Holder<Value> min();
+  public abstract net.minecraft.core.Holder<Value> max();
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "PowerProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.PowerProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.PowerProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.world.level.storage.loot.providers.number.PowerProvider$Factory<Value, Self>);
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public abstract net.minecraft.core.Holder<Value> base();
+  public abstract net.minecraft.core.Holder<Value> exponent();
+}
+Compiled from "UnaryProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.UnaryProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.UnaryProvider<Value>> com.mojang.serialization.MapCodec<Self> codec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.world.level.storage.loot.providers.number.UnaryProvider$Factory<Value, Self>);
+  public abstract net.minecraft.core.Holder<Value> input();
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "DispatcherProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.core.Holder<Value>, net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Factory<Value, Self>);
+  public default net.minecraft.core.Holder<Value> selectValue(net.minecraft.world.level.storage.loot.LootContext);
+  public abstract java.util.List<net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Case<Value>> cases();
+  public abstract net.minecraft.core.Holder<Value> defaultValue();
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "ConditionalProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.ConditionalProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.ConditionalProvider<Value>> {
+  public abstract Self create(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>, net.minecraft.core.Holder<Value>, net.minecraft.core.Holder<Value>);
+}
+Compiled from "DispatcherProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider<Value>> {
+  public abstract Self create(java.util.List<net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Case<Value>>, net.minecraft.core.Holder<Value>);
+}
+Compiled from "PowerProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.PowerProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.PowerProvider<Value>> {
+  public abstract Self create(net.minecraft.core.Holder<Value>, net.minecraft.core.Holder<Value>);
+}
+Compiled from "BinaryProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.BinaryProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.BinaryProvider<Value>> {
+  public abstract Self create(net.minecraft.core.Holder<Value>, net.minecraft.core.Holder<Value>);
+}
+Compiled from "AggregateProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.AggregateProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.AggregateProvider<Value>> {
+  public abstract Self create(net.minecraft.core.HolderSet<Value>);
+}
+Compiled from "DistributionProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.DistributionProvider<Value extends net.minecraft.world.level.storage.loot.Validatable> extends net.minecraft.world.level.storage.loot.Validatable {
+  public abstract net.minecraft.util.random.WeightedList<net.minecraft.core.Holder<Value>> distribution();
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.DistributionProvider<Value>> com.mojang.serialization.MapCodec<Self> mapCodec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>, net.minecraft.world.level.storage.loot.providers.number.DistributionProvider$Factory<Value, Self>);
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "DispatcherProvider.java"
+public final class net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Case<Value extends net.minecraft.world.level.storage.loot.Validatable> extends java.lang.Record implements net.minecraft.world.level.storage.loot.Validatable {
+  public net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Case(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>, net.minecraft.core.Holder<Value>);
+  public static <Value extends net.minecraft.world.level.storage.loot.Validatable> com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.providers.number.DispatcherProvider$Case<Value>> codec(com.mojang.serialization.Codec<net.minecraft.core.Holder<Value>>);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> condition();
+  public net.minecraft.core.Holder<Value> value();
+}
+Compiled from "DistributionProvider.java"
+public interface net.minecraft.world.level.storage.loot.providers.number.DistributionProvider$Factory<Value extends net.minecraft.world.level.storage.loot.Validatable, Self extends net.minecraft.world.level.storage.loot.providers.number.DistributionProvider<Value>> {
+  public abstract Self create(net.minecraft.util.random.WeightedList<net.minecraft.core.Holder<Value>>);
+}

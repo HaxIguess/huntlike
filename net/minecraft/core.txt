@@ -1,0 +1,1129 @@
+Compiled from "Holder.java"
+public final class net.minecraft.core.Holder$Kind extends java.lang.Enum<net.minecraft.core.Holder$Kind> {
+  public static final net.minecraft.core.Holder$Kind REFERENCE;
+  public static final net.minecraft.core.Holder$Kind DIRECT;
+  public static net.minecraft.core.Holder$Kind[] values();
+  public static net.minecraft.core.Holder$Kind valueOf(java.lang.String);
+}
+Compiled from "Direction.java"
+public final class net.minecraft.core.Direction$Axis extends java.lang.Enum<net.minecraft.core.Direction$Axis> implements java.util.function.Predicate<net.minecraft.core.Direction>, net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.Direction$Axis X;
+  public static final net.minecraft.core.Direction$Axis Y;
+  public static final net.minecraft.core.Direction$Axis Z;
+  public static final net.minecraft.core.Direction$Axis[] VALUES;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.core.Direction$Axis> CODEC;
+  public static net.minecraft.core.Direction$Axis[] values();
+  public static net.minecraft.core.Direction$Axis valueOf(java.lang.String);
+  public static net.minecraft.core.Direction$Axis byName(java.lang.String);
+  public java.lang.String getName();
+  public boolean isVertical();
+  public boolean isHorizontal();
+  public net.minecraft.core.Direction getPositive();
+  public net.minecraft.core.Direction getNegative();
+  public net.minecraft.core.Direction[] getDirections();
+  public java.lang.String toString();
+  public static net.minecraft.core.Direction$Axis getRandom(net.minecraft.util.RandomSource);
+  public boolean test(net.minecraft.core.Direction);
+  public net.minecraft.core.Direction$Plane getPlane();
+  public java.lang.String getSerializedName();
+  public int choose(int, int, int);
+  public double choose(double, double, double);
+  public boolean choose(boolean, boolean, boolean);
+  public boolean test(java.lang.Object);
+}
+Compiled from "BlockPos.java"
+public class net.minecraft.core.BlockPos extends net.minecraft.core.Vec3i {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.BlockPos> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.BlockPos> STREAM_CODEC;
+  public static final net.minecraft.core.BlockPos ZERO;
+  public static final int PACKED_HORIZONTAL_LENGTH;
+  public static final int PACKED_Y_LENGTH;
+  public static final int MAX_HORIZONTAL_COORDINATE;
+  public net.minecraft.core.BlockPos(int, int, int);
+  public static long offset(long, net.minecraft.core.Direction);
+  public static long offset(long, int, int, int);
+  public static int getX(long);
+  public static int getY(long);
+  public static int getZ(long);
+  public static net.minecraft.core.BlockPos of(long);
+  public static net.minecraft.core.BlockPos containing(double, double, double);
+  public static net.minecraft.core.BlockPos containing(net.minecraft.core.Position);
+  public static net.minecraft.core.BlockPos min(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public static net.minecraft.core.BlockPos max(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public long asLong();
+  public static long asLong(int, int, int);
+  public static long getFlatIndex(long);
+  public net.minecraft.core.BlockPos offset(int, int, int);
+  public net.minecraft.core.BlockPos offset(net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos subtract(net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos multiply(int);
+  public net.minecraft.core.BlockPos above();
+  public net.minecraft.core.BlockPos above(int);
+  public net.minecraft.core.BlockPos below();
+  public net.minecraft.core.BlockPos below(int);
+  public net.minecraft.core.BlockPos north();
+  public net.minecraft.core.BlockPos north(int);
+  public net.minecraft.core.BlockPos south();
+  public net.minecraft.core.BlockPos south(int);
+  public net.minecraft.core.BlockPos west();
+  public net.minecraft.core.BlockPos west(int);
+  public net.minecraft.core.BlockPos east();
+  public net.minecraft.core.BlockPos east(int);
+  public net.minecraft.core.BlockPos relative(net.minecraft.core.Direction);
+  public net.minecraft.core.BlockPos relative(net.minecraft.core.Direction, int);
+  public net.minecraft.core.BlockPos relative(net.minecraft.core.Direction$Axis, int);
+  public net.minecraft.core.BlockPos rotate(net.minecraft.world.level.block.Rotation);
+  public net.minecraft.core.BlockPos cross(net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos atY(int);
+  public net.minecraft.core.BlockPos immutable();
+  public net.minecraft.core.BlockPos$MutableBlockPos mutable();
+  public net.minecraft.world.phys.Vec3 clampLocationWithin(net.minecraft.world.phys.Vec3);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> randomInCube(net.minecraft.util.RandomSource, int, net.minecraft.core.BlockPos, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> randomBetweenClosed(net.minecraft.util.RandomSource, int, int, int, int, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> withinManhattan(net.minecraft.core.BlockPos, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> withinClippedManhattan(net.minecraft.core.BlockPos, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> withinBoxByManhattanDistance(net.minecraft.core.BlockPos, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenClosed(net.minecraft.world.phys.AABB);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenClosed(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> betweenClosedStream(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> betweenClosedStream(net.minecraft.world.level.levelgen.structure.BoundingBox);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> betweenClosedStream(net.minecraft.world.phys.AABB);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> betweenClosedStream(int, int, int, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenClosed(int, int, int, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> neighborColumn(int, int, int, int);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos$MutableBlockPos> spiralAround(net.minecraft.core.BlockPos, int, net.minecraft.core.Direction, net.minecraft.core.Direction);
+  public static int breadthFirstTraversal(net.minecraft.core.BlockPos, int, int, java.util.function.BiConsumer<net.minecraft.core.BlockPos, java.util.function.Consumer<net.minecraft.core.BlockPos>>, java.util.function.Function<net.minecraft.core.BlockPos, net.minecraft.core.BlockPos$TraversalNodeStatus>);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenCornersInDirection(net.minecraft.world.phys.AABB, net.minecraft.world.phys.Vec3);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenCornersInDirection(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, net.minecraft.world.phys.Vec3);
+  public static java.lang.Iterable<net.minecraft.core.BlockPos> betweenCornersInDirection(int, int, int, int, int, int, net.minecraft.world.phys.Vec3);
+  public net.minecraft.core.Vec3i cross(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction$Axis, int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction, int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction);
+  public net.minecraft.core.Vec3i east(int);
+  public net.minecraft.core.Vec3i east();
+  public net.minecraft.core.Vec3i west(int);
+  public net.minecraft.core.Vec3i west();
+  public net.minecraft.core.Vec3i south(int);
+  public net.minecraft.core.Vec3i south();
+  public net.minecraft.core.Vec3i north(int);
+  public net.minecraft.core.Vec3i north();
+  public net.minecraft.core.Vec3i below(int);
+  public net.minecraft.core.Vec3i below();
+  public net.minecraft.core.Vec3i above(int);
+  public net.minecraft.core.Vec3i above();
+  public net.minecraft.core.Vec3i multiply(int);
+  public net.minecraft.core.Vec3i subtract(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i offset(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i offset(int, int, int);
+}
+Compiled from "CompositeDirection.java"
+public final class net.minecraft.core.CompositeDirection extends java.lang.Record implements net.minecraft.core.Directional {
+  public static final net.minecraft.core.CompositeDirection NORTH;
+  public static final net.minecraft.core.CompositeDirection EAST;
+  public static final net.minecraft.core.CompositeDirection SOUTH;
+  public static final net.minecraft.core.CompositeDirection WEST;
+  public static final net.minecraft.core.CompositeDirection NORTH_EAST;
+  public static final net.minecraft.core.CompositeDirection SOUTH_EAST;
+  public static final net.minecraft.core.CompositeDirection SOUTH_WEST;
+  public static final net.minecraft.core.CompositeDirection NORTH_WEST;
+  public static final net.minecraft.core.CompositeDirection UP;
+  public static final net.minecraft.core.CompositeDirection NORTH_UP;
+  public static final net.minecraft.core.CompositeDirection EAST_UP;
+  public static final net.minecraft.core.CompositeDirection SOUTH_UP;
+  public static final net.minecraft.core.CompositeDirection WEST_UP;
+  public static final net.minecraft.core.CompositeDirection NORTH_EAST_UP;
+  public static final net.minecraft.core.CompositeDirection SOUTH_EAST_UP;
+  public static final net.minecraft.core.CompositeDirection SOUTH_WEST_UP;
+  public static final net.minecraft.core.CompositeDirection NORTH_WEST_UP;
+  public static final net.minecraft.core.CompositeDirection DOWN;
+  public static final net.minecraft.core.CompositeDirection NORTH_DOWN;
+  public static final net.minecraft.core.CompositeDirection EAST_DOWN;
+  public static final net.minecraft.core.CompositeDirection SOUTH_DOWN;
+  public static final net.minecraft.core.CompositeDirection WEST_DOWN;
+  public static final net.minecraft.core.CompositeDirection NORTH_EAST_DOWN;
+  public static final net.minecraft.core.CompositeDirection SOUTH_EAST_DOWN;
+  public static final net.minecraft.core.CompositeDirection SOUTH_WEST_DOWN;
+  public static final net.minecraft.core.CompositeDirection NORTH_WEST_DOWN;
+  public net.minecraft.core.CompositeDirection(java.util.Set<net.minecraft.core.Direction>, net.minecraft.core.Vec3i);
+  public net.minecraft.core.CompositeDirection compose(net.minecraft.core.CompositeDirection);
+  public int getStepX();
+  public int getStepY();
+  public int getStepZ();
+  public net.minecraft.core.Vec3i getStep();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Set<net.minecraft.core.Direction> directions();
+  public net.minecraft.core.Vec3i step();
+}
+Compiled from "Direction.java"
+public final class net.minecraft.core.Direction$Plane extends java.lang.Enum<net.minecraft.core.Direction$Plane> implements java.util.function.Predicate<net.minecraft.core.Direction>, java.lang.Iterable<net.minecraft.core.Direction> {
+  public static final net.minecraft.core.Direction$Plane HORIZONTAL;
+  public static final net.minecraft.core.Direction$Plane VERTICAL;
+  public static net.minecraft.core.Direction$Plane[] values();
+  public static net.minecraft.core.Direction$Plane valueOf(java.lang.String);
+  public net.minecraft.core.Direction getRandomDirection(net.minecraft.util.RandomSource);
+  public net.minecraft.core.Direction$Axis getRandomAxis(net.minecraft.util.RandomSource);
+  public boolean test(net.minecraft.core.Direction);
+  public java.util.Iterator<net.minecraft.core.Direction> iterator();
+  public java.util.stream.Stream<net.minecraft.core.Direction> stream();
+  public java.util.List<net.minecraft.core.Direction> shuffledCopy(net.minecraft.util.RandomSource);
+  public int length();
+  public boolean test(java.lang.Object);
+}
+Compiled from "ClientAsset.java"
+public interface net.minecraft.core.ClientAsset {
+  public abstract net.minecraft.resources.Identifier id();
+}
+Compiled from "HolderSet.java"
+public interface net.minecraft.core.HolderSet<T> extends java.lang.Iterable<net.minecraft.core.Holder<T>> {
+  public abstract java.util.stream.Stream<net.minecraft.core.Holder<T>> stream();
+  public abstract int size();
+  public abstract boolean isBound();
+  public abstract com.mojang.datafixers.util.Either<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>> unwrap();
+  public abstract java.util.Optional<net.minecraft.core.Holder<T>> getRandomElement(net.minecraft.util.RandomSource);
+  public abstract net.minecraft.core.Holder<T> get(int);
+  public abstract boolean contains(net.minecraft.core.Holder<T>);
+  public abstract boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+  public abstract java.util.Optional<net.minecraft.tags.TagKey<T>> unwrapKey();
+  public static <T> net.minecraft.core.HolderSet$Named<T> emptyNamed(net.minecraft.core.HolderOwner<T>, net.minecraft.tags.TagKey<T>);
+  public static <T> net.minecraft.core.HolderSet<T> empty();
+  public static <T> net.minecraft.core.HolderSet$Direct<T> direct(net.minecraft.core.Holder<T>...);
+  public static <T> net.minecraft.core.HolderSet$Direct<T> direct(java.util.List<? extends net.minecraft.core.Holder<T>>);
+  public static <E, T> net.minecraft.core.HolderSet$Direct<T> direct(java.util.function.Function<E, net.minecraft.core.Holder<T>>, E...);
+  public static <E, T> net.minecraft.core.HolderSet$Direct<T> direct(java.util.function.Function<E, net.minecraft.core.Holder<T>>, java.util.Collection<E>);
+}
+Compiled from "ClientAsset.java"
+public final class net.minecraft.core.ClientAsset$ResourceTexture extends java.lang.Record implements net.minecraft.core.ClientAsset$Texture {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.ClientAsset$ResourceTexture> CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.core.ClientAsset$ResourceTexture> DEFAULT_FIELD_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.ClientAsset$ResourceTexture> STREAM_CODEC;
+  public net.minecraft.core.ClientAsset$ResourceTexture(net.minecraft.resources.Identifier);
+  public net.minecraft.core.ClientAsset$ResourceTexture(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public net.minecraft.resources.Identifier texturePath();
+}
+Compiled from "RegistrySynchronization.java"
+public class net.minecraft.core.RegistrySynchronization {
+  public net.minecraft.core.RegistrySynchronization();
+  public static void packRegistries(com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>, net.minecraft.core.RegistryAccess, java.util.Set<net.minecraft.server.packs.repository.KnownPack>, java.util.function.BiConsumer<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry>>);
+  public static java.util.stream.Stream<net.minecraft.core.RegistryAccess$RegistryEntry<?>> networkedRegistries(net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>);
+  public static java.util.stream.Stream<net.minecraft.core.RegistryAccess$RegistryEntry<?>> networkSafeRegistries(net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>);
+  public static boolean isNetworkable(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+}
+Compiled from "BlockBox.java"
+public final class net.minecraft.core.BlockBox extends java.lang.Record implements java.lang.Iterable<net.minecraft.core.BlockPos> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.BlockBox> STREAM_CODEC;
+  public net.minecraft.core.BlockBox(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public static net.minecraft.core.BlockBox of(net.minecraft.core.BlockPos);
+  public static net.minecraft.core.BlockBox of(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockBox include(net.minecraft.core.BlockPos);
+  public boolean isBlock();
+  public boolean contains(net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB aabb();
+  public java.util.Iterator<net.minecraft.core.BlockPos> iterator();
+  public int sizeX();
+  public int sizeY();
+  public int sizeZ();
+  public net.minecraft.core.BlockBox extend(net.minecraft.core.Direction, int);
+  public net.minecraft.core.BlockBox move(net.minecraft.core.Direction, int);
+  public net.minecraft.core.BlockBox offset(net.minecraft.core.Vec3i);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos min();
+  public net.minecraft.core.BlockPos max();
+}
+Compiled from "QuartPos.java"
+public final class net.minecraft.core.QuartPos {
+  public static final int BITS;
+  public static final int SIZE;
+  public static final int MASK;
+  public static int fromBlock(int);
+  public static int quartLocal(int);
+  public static int toBlock(int);
+  public static int fromSection(int);
+  public static int toSection(int);
+}
+Compiled from "Holder.java"
+public interface net.minecraft.core.Holder<T> {
+  public abstract T value();
+  public abstract boolean isBound();
+  public abstract boolean areComponentsBound();
+  public abstract boolean is(net.minecraft.resources.Identifier);
+  public abstract boolean is(net.minecraft.resources.ResourceKey<T>);
+  public abstract boolean is(java.util.function.Predicate<net.minecraft.resources.ResourceKey<T>>);
+  public abstract boolean is(net.minecraft.tags.TagKey<T>);
+  public abstract boolean is(net.minecraft.core.Holder<T>);
+  public abstract java.util.stream.Stream<net.minecraft.tags.TagKey<T>> tags();
+  public abstract net.minecraft.core.component.DataComponentMap components();
+  public abstract com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, T> unwrap();
+  public abstract java.util.Optional<net.minecraft.resources.ResourceKey<T>> unwrapKey();
+  public abstract net.minecraft.core.Holder$Kind kind();
+  public abstract boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+  public default java.util.Optional<java.lang.String> getRegisteredNameIfPresent();
+  public default java.lang.String getRegisteredName();
+  public static <T> net.minecraft.core.Holder<T> direct(T);
+  public static <T> net.minecraft.core.Holder<T> direct(T, net.minecraft.core.component.DataComponentMap);
+}
+Compiled from "TypedInstance.java"
+public interface net.minecraft.core.TypedInstance<T> {
+  public abstract net.minecraft.core.Holder<T> typeHolder();
+  public default java.util.stream.Stream<net.minecraft.tags.TagKey<T>> tags();
+  public default boolean is(net.minecraft.tags.TagKey<T>);
+  public default boolean is(net.minecraft.core.HolderSet<T>);
+  public default boolean is(T);
+  public default boolean is(net.minecraft.core.Holder<T>);
+  public default boolean is(net.minecraft.resources.ResourceKey<T>);
+}
+Compiled from "Cursor3D.java"
+public class net.minecraft.core.Cursor3D {
+  public static final int TYPE_INSIDE;
+  public static final int TYPE_FACE;
+  public static final int TYPE_EDGE;
+  public static final int TYPE_CORNER;
+  public net.minecraft.core.Cursor3D(int, int, int, int, int, int);
+  public boolean advance();
+  public int nextX();
+  public int nextY();
+  public int nextZ();
+  public int getNextType();
+}
+Compiled from "IdMap.java"
+public interface net.minecraft.core.IdMap<T> extends java.lang.Iterable<T> {
+  public static final int DEFAULT;
+  public abstract int getId(T);
+  public abstract T byId(int);
+  public default T byIdOrThrow(int);
+  public default int getIdOrThrow(T);
+  public abstract int size();
+}
+Compiled from "HolderLookup.java"
+public interface net.minecraft.core.HolderLookup<T> extends net.minecraft.core.HolderGetter<T> {
+  public abstract java.util.stream.Stream<net.minecraft.core.Holder$Reference<T>> listElements();
+  public default java.util.stream.Stream<net.minecraft.resources.ResourceKey<T>> listElementIds();
+  public abstract java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> listTags();
+  public default java.util.stream.Stream<net.minecraft.tags.TagKey<T>> listTagIds();
+}
+Compiled from "CompositeDirection.java"
+public final class net.minecraft.core.CompositeDirection$Direction8 extends java.lang.Enum<net.minecraft.core.CompositeDirection$Direction8> implements net.minecraft.core.Directional {
+  public static final net.minecraft.core.CompositeDirection$Direction8 NORTH;
+  public static final net.minecraft.core.CompositeDirection$Direction8 NORTH_EAST;
+  public static final net.minecraft.core.CompositeDirection$Direction8 EAST;
+  public static final net.minecraft.core.CompositeDirection$Direction8 SOUTH_EAST;
+  public static final net.minecraft.core.CompositeDirection$Direction8 SOUTH;
+  public static final net.minecraft.core.CompositeDirection$Direction8 SOUTH_WEST;
+  public static final net.minecraft.core.CompositeDirection$Direction8 WEST;
+  public static final net.minecraft.core.CompositeDirection$Direction8 NORTH_WEST;
+  public static net.minecraft.core.CompositeDirection$Direction8[] values();
+  public static net.minecraft.core.CompositeDirection$Direction8 valueOf(java.lang.String);
+  public java.util.Set<net.minecraft.core.Direction> getDirections();
+  public int getStepX();
+  public int getStepY();
+  public int getStepZ();
+  public net.minecraft.core.Vec3i getStep();
+}
+Compiled from "AxisCycle.java"
+public abstract class net.minecraft.core.AxisCycle extends java.lang.Enum<net.minecraft.core.AxisCycle> {
+  public static final net.minecraft.core.AxisCycle NONE;
+  public static final net.minecraft.core.AxisCycle FORWARD;
+  public static final net.minecraft.core.AxisCycle BACKWARD;
+  public static final net.minecraft.core.Direction$Axis[] AXIS_VALUES;
+  public static final net.minecraft.core.AxisCycle[] VALUES;
+  public static net.minecraft.core.AxisCycle[] values();
+  public static net.minecraft.core.AxisCycle valueOf(java.lang.String);
+  public abstract int cycle(int, int, int, net.minecraft.core.Direction$Axis);
+  public abstract double cycle(double, double, double, net.minecraft.core.Direction$Axis);
+  public abstract net.minecraft.core.Direction$Axis cycle(net.minecraft.core.Direction$Axis);
+  public abstract net.minecraft.core.AxisCycle inverse();
+  public static net.minecraft.core.AxisCycle between(net.minecraft.core.Direction$Axis, net.minecraft.core.Direction$Axis);
+}
+Compiled from "RegistrySetBuilder.java"
+public final class net.minecraft.core.RegistrySetBuilder$PatchedRegistries extends java.lang.Record {
+  public net.minecraft.core.RegistrySetBuilder$PatchedRegistries(net.minecraft.core.HolderLookup$Provider, net.minecraft.core.HolderLookup$Provider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderLookup$Provider full();
+  public net.minecraft.core.HolderLookup$Provider patches();
+}
+Compiled from "RegistrySetBuilder.java"
+final class net.minecraft.core.RegistrySetBuilder$BootstrappedRegistryState<T> extends java.lang.Record {
+  public static <T> net.minecraft.core.RegistrySetBuilder$BootstrappedRegistryState<T> create(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Lifecycle);
+  public net.minecraft.data.worldgen.BootstrapContext<T> createBootstrapContext(net.minecraft.core.RegistrySetBuilder$BuildState);
+  public void bindHolders();
+  public void freeze();
+  public void errorOnMissingHolders(net.minecraft.core.RegistrySetBuilder$BuildState);
+  public void validatePatchHolders(net.minecraft.core.RegistrySetBuilder$BuildState, net.minecraft.core.HolderLookup$Provider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.registries.BootstrapRegistry<T> registry();
+  public java.util.Map<net.minecraft.resources.ResourceKey<T>, T> registeredValues();
+}
+Compiled from "BlockPos.java"
+public final class net.minecraft.core.BlockPos$TraversalNodeStatus extends java.lang.Enum<net.minecraft.core.BlockPos$TraversalNodeStatus> {
+  public static final net.minecraft.core.BlockPos$TraversalNodeStatus ACCEPT;
+  public static final net.minecraft.core.BlockPos$TraversalNodeStatus SKIP;
+  public static final net.minecraft.core.BlockPos$TraversalNodeStatus STOP;
+  public static net.minecraft.core.BlockPos$TraversalNodeStatus[] values();
+  public static net.minecraft.core.BlockPos$TraversalNodeStatus valueOf(java.lang.String);
+}
+Compiled from "HolderSet.java"
+public final class net.minecraft.core.HolderSet$Direct<T> extends net.minecraft.core.HolderSet$ListBacked<T> {
+  protected java.util.List<net.minecraft.core.Holder<T>> contents();
+  public boolean isBound();
+  public com.mojang.datafixers.util.Either<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>> unwrap();
+  public java.util.Optional<net.minecraft.tags.TagKey<T>> unwrapKey();
+  public boolean contains(net.minecraft.core.Holder<T>);
+  public java.lang.String toString();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "Registry.java"
+public interface net.minecraft.core.Registry$PendingTags<T> {
+  public abstract net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>> key();
+  public abstract net.minecraft.core.HolderLookup$RegistryLookup<T> lookup();
+  public abstract void apply();
+  public abstract int size();
+}
+Compiled from "PositionAndRotation.java"
+public class net.minecraft.core.PositionAndRotation$Mutable implements net.minecraft.core.PositionAndRotation {
+  public net.minecraft.core.PositionAndRotation$Mutable();
+  public net.minecraft.world.phys.Vec3 position();
+  public float yRot();
+  public float xRot();
+  public net.minecraft.core.PositionAndRotation immutable();
+  public void set(net.minecraft.world.phys.Vec3, float, float);
+  public void addDelta(net.minecraft.world.phys.Vec3);
+  public void addRotation(float, float);
+}
+Compiled from "SectionPos.java"
+public class net.minecraft.core.SectionPos extends net.minecraft.core.Vec3i {
+  public static final int SECTION_BITS;
+  public static final int SECTION_SIZE;
+  public static final int SECTION_BLOCK_COUNT;
+  public static final int SECTION_MASK;
+  public static final int SECTION_HALF_SIZE;
+  public static final int SECTION_MAX_INDEX;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.SectionPos> STREAM_CODEC;
+  public static net.minecraft.core.SectionPos of(int, int, int);
+  public static net.minecraft.core.SectionPos of(net.minecraft.core.BlockPos);
+  public static net.minecraft.core.SectionPos of(net.minecraft.world.level.ChunkPos, int);
+  public static net.minecraft.core.SectionPos of(net.minecraft.world.level.entity.EntityAccess);
+  public static net.minecraft.core.SectionPos of(net.minecraft.core.Position);
+  public static net.minecraft.core.SectionPos of(long);
+  public static net.minecraft.core.SectionPos bottomOf(net.minecraft.world.level.chunk.ChunkAccess);
+  public static long offset(long, net.minecraft.core.Direction);
+  public static long offset(long, int, int, int);
+  public static int posToSectionCoord(double);
+  public static int blockToSectionCoord(int);
+  public static int blockToSectionCoord(double);
+  public static int sectionRelative(int);
+  public static short sectionRelativePos(net.minecraft.core.BlockPos);
+  public static int sectionRelativeX(short);
+  public static int sectionRelativeY(short);
+  public static int sectionRelativeZ(short);
+  public int relativeToBlockX(short);
+  public int relativeToBlockY(short);
+  public int relativeToBlockZ(short);
+  public net.minecraft.core.BlockPos relativeToBlockPos(short);
+  public static int sectionToBlockCoord(int);
+  public static int sectionToBlockCoord(int, int);
+  public static int x(long);
+  public static int y(long);
+  public static int z(long);
+  public int x();
+  public int y();
+  public int z();
+  public int minBlockX();
+  public int minBlockY();
+  public int minBlockZ();
+  public int maxBlockX();
+  public int maxBlockY();
+  public int maxBlockZ();
+  public static long blockToSection(long);
+  public static long getZeroNode(int, int);
+  public static long getZeroNode(long);
+  public static long sectionToChunk(long);
+  public net.minecraft.core.BlockPos origin();
+  public net.minecraft.core.BlockPos center();
+  public net.minecraft.world.level.ChunkPos chunk();
+  public static long asLong(net.minecraft.core.BlockPos);
+  public static long asLong(int, int, int);
+  public long asLong();
+  public net.minecraft.core.SectionPos offset(int, int, int);
+  public java.util.stream.Stream<net.minecraft.core.BlockPos> blocksInside();
+  public static java.util.stream.Stream<net.minecraft.core.SectionPos> cube(net.minecraft.core.SectionPos, int);
+  public static java.util.stream.Stream<net.minecraft.core.SectionPos> aroundChunk(net.minecraft.world.level.ChunkPos, int, int, int);
+  public static java.util.stream.Stream<net.minecraft.core.SectionPos> betweenClosedStream(int, int, int, int, int, int);
+  public static void aroundAndAtBlockPos(net.minecraft.core.BlockPos, it.unimi.dsi.fastutil.longs.LongConsumer);
+  public static void aroundAndAtBlockPos(long, it.unimi.dsi.fastutil.longs.LongConsumer);
+  public static void aroundAndAtBlockPos(int, int, int, it.unimi.dsi.fastutil.longs.LongConsumer);
+  public net.minecraft.core.Vec3i offset(int, int, int);
+}
+Compiled from "MappedRegistry.java"
+interface net.minecraft.core.MappedRegistry$TagSet<T> {
+  public static <T> net.minecraft.core.MappedRegistry$TagSet<T> unbound();
+  public static <T> net.minecraft.core.MappedRegistry$TagSet<T> fromMap(java.util.Map<net.minecraft.tags.TagKey<T>, net.minecraft.core.HolderSet$Named<T>>);
+  public abstract boolean isBound();
+  public abstract java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+  public abstract void forEach(java.util.function.BiConsumer<? super net.minecraft.tags.TagKey<T>, ? super net.minecraft.core.HolderSet$Named<T>>);
+  public abstract java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> getTags();
+}
+Compiled from "HolderSet.java"
+public abstract class net.minecraft.core.HolderSet$ListBacked<T> implements net.minecraft.core.HolderSet<T> {
+  public net.minecraft.core.HolderSet$ListBacked();
+  protected abstract java.util.List<net.minecraft.core.Holder<T>> contents();
+  public int size();
+  public java.util.Spliterator<net.minecraft.core.Holder<T>> spliterator();
+  public java.util.Iterator<net.minecraft.core.Holder<T>> iterator();
+  public java.util.stream.Stream<net.minecraft.core.Holder<T>> stream();
+  public java.util.Optional<net.minecraft.core.Holder<T>> getRandomElement(net.minecraft.util.RandomSource);
+  public net.minecraft.core.Holder<T> get(int);
+  public boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+}
+Compiled from "RegistrySetBuilder.java"
+final class net.minecraft.core.RegistrySetBuilder$BuildState extends java.lang.Record {
+  public static net.minecraft.core.RegistrySetBuilder$BuildState createAndApply(net.minecraft.core.HolderLookup$Provider, java.util.List<net.minecraft.core.RegistrySetBuilder$RegistryStub>);
+  public void throwOnError();
+  public <T> net.minecraft.data.worldgen.BootstrapContext<T> createBootstrap(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderLookup$Provider contextRegistries();
+  public net.minecraft.core.HolderLookup$Provider allRegistries();
+  public java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.core.RegistrySetBuilder$BootstrappedRegistryState<?>> bootstrappedRegistries();
+  public java.util.List<java.lang.RuntimeException> errors();
+}
+Compiled from "ClientAsset.java"
+public interface net.minecraft.core.ClientAsset$Texture extends net.minecraft.core.ClientAsset {
+  public abstract net.minecraft.resources.Identifier texturePath();
+}
+Compiled from "RegistrationInfo.java"
+public final class net.minecraft.core.RegistrationInfo extends java.lang.Record {
+  public static final net.minecraft.core.RegistrationInfo BUILT_IN;
+  public net.minecraft.core.RegistrationInfo(java.util.Optional<net.minecraft.server.packs.repository.KnownPack>, com.mojang.serialization.Lifecycle);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.server.packs.repository.KnownPack> knownPackInfo();
+  public com.mojang.serialization.Lifecycle lifecycle();
+}
+Compiled from "Directional.java"
+public interface net.minecraft.core.Directional {
+  public abstract int getStepX();
+  public abstract int getStepY();
+  public abstract int getStepZ();
+  public abstract net.minecraft.core.Vec3i getStep();
+}
+Compiled from "UUIDUtil.java"
+public final class net.minecraft.core.UUIDUtil {
+  public static final com.mojang.serialization.Codec<java.util.UUID> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.Set<java.util.UUID>> CODEC_SET;
+  public static final com.mojang.serialization.Codec<java.util.Set<java.util.UUID>> CODEC_LINKED_SET;
+  public static final com.mojang.serialization.Codec<java.util.UUID> STRING_CODEC;
+  public static final com.mojang.serialization.Codec<java.util.UUID> AUTHLIB_CODEC;
+  public static final com.mojang.serialization.Codec<java.util.UUID> LENIENT_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.UUID> STREAM_CODEC;
+  public static final int UUID_BYTES;
+  public static java.util.UUID uuidFromIntArray(int[]);
+  public static int[] uuidToIntArray(java.util.UUID);
+  public static byte[] uuidToByteArray(java.util.UUID);
+  public static java.util.UUID readUUID(com.mojang.serialization.Dynamic<?>);
+  public static java.util.UUID createOfflinePlayerUUID(java.lang.String);
+  public static com.mojang.authlib.GameProfile createOfflineProfile(java.lang.String);
+}
+Compiled from "RegistrySynchronization.java"
+public final class net.minecraft.core.RegistrySynchronization$PackedRegistryEntry extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.RegistrySynchronization$PackedRegistryEntry> STREAM_CODEC;
+  public net.minecraft.core.RegistrySynchronization$PackedRegistryEntry(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.Tag>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public java.util.Optional<net.minecraft.nbt.Tag> data();
+}
+Compiled from "DefaultedRegistry.java"
+public interface net.minecraft.core.DefaultedRegistry<T> extends net.minecraft.core.Registry<T> {
+  public abstract net.minecraft.resources.Identifier getKey(T);
+  public abstract T getValue(net.minecraft.resources.Identifier);
+  public abstract T byId(int);
+  public abstract net.minecraft.resources.Identifier getDefaultKey();
+}
+Compiled from "package-info.java"
+interface net.minecraft.core.package-info {
+}
+Compiled from "MappedRegistry.java"
+public class net.minecraft.core.MappedRegistry<T> implements net.minecraft.core.WritableRegistry<T> {
+  public java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> listTags();
+  public net.minecraft.core.MappedRegistry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Lifecycle);
+  public net.minecraft.core.MappedRegistry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Lifecycle, boolean);
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> key();
+  public java.lang.String toString();
+  public net.minecraft.core.Holder$Reference<T> register(net.minecraft.resources.ResourceKey<T>, T, net.minecraft.core.RegistrationInfo);
+  public net.minecraft.resources.Identifier getKey(T);
+  public java.util.Optional<net.minecraft.resources.ResourceKey<T>> getResourceKey(T);
+  public int getId(T);
+  public T getValue(net.minecraft.resources.ResourceKey<T>);
+  public T byId(int);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(int);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.Identifier);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.ResourceKey<T>);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> getAny();
+  public net.minecraft.core.Holder<T> wrapAsHolder(T);
+  public int size();
+  public java.util.Optional<net.minecraft.core.RegistrationInfo> registrationInfo(net.minecraft.resources.ResourceKey<T>);
+  public com.mojang.serialization.Lifecycle registryLifecycle();
+  public java.util.Iterator<T> iterator();
+  public T getValue(net.minecraft.resources.Identifier);
+  public java.util.Set<net.minecraft.resources.Identifier> keySet();
+  public java.util.Set<net.minecraft.resources.ResourceKey<T>> registryKeySet();
+  public java.util.Set<java.util.Map$Entry<net.minecraft.resources.ResourceKey<T>, T>> entrySet();
+  public java.util.stream.Stream<net.minecraft.core.Holder$Reference<T>> listElements();
+  public java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> getTags();
+  public boolean isEmpty();
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> getRandom(net.minecraft.util.RandomSource);
+  public boolean containsKey(net.minecraft.resources.Identifier);
+  public boolean containsKey(net.minecraft.resources.ResourceKey<T>);
+  public net.minecraft.core.component.DataComponentLookup<T> componentLookup();
+  public net.minecraft.core.Registry<T> freeze();
+  public net.minecraft.core.Holder$Reference<T> createIntrusiveHolder(T);
+  public java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+  public void bindTags(java.util.Map<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>>);
+  public void bindAllTagsToEmpty();
+  public net.minecraft.core.HolderGetter<T> createRegistrationLookup();
+  public net.minecraft.core.Registry$PendingTags<T> prepareTagReload(net.minecraft.tags.TagLoader$LoadResult<T>);
+}
+Compiled from "HolderLookup.java"
+public interface net.minecraft.core.HolderLookup$RegistryLookup$Delegate<T> extends net.minecraft.core.HolderLookup$RegistryLookup<T> {
+  public abstract net.minecraft.core.HolderLookup$RegistryLookup<T> parent();
+  public default net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>> key();
+  public default com.mojang.serialization.Lifecycle registryLifecycle();
+  public default java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.ResourceKey<T>);
+  public default java.util.stream.Stream<net.minecraft.core.Holder$Reference<T>> listElements();
+  public default java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+  public default java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> listTags();
+  public default boolean canSerialize(net.minecraft.core.HolderOwner<T>);
+}
+Compiled from "IdMapper.java"
+public class net.minecraft.core.IdMapper<T> implements net.minecraft.core.IdMap<T> {
+  public net.minecraft.core.IdMapper();
+  public net.minecraft.core.IdMapper(int);
+  public void addMapping(T, int);
+  public void add(T);
+  public int getId(T);
+  public final T byId(int);
+  public java.util.Iterator<T> iterator();
+  public boolean contains(int);
+  public int size();
+}
+Compiled from "GlobalPos.java"
+public final class net.minecraft.core.GlobalPos extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.core.GlobalPos> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.GlobalPos> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.GlobalPos> STREAM_CODEC;
+  public net.minecraft.core.GlobalPos(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.BlockPos);
+  public static net.minecraft.core.GlobalPos of(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.BlockPos);
+  public java.lang.String toString();
+  public boolean isCloseEnough(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.BlockPos, int);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+  public net.minecraft.core.BlockPos pos();
+}
+Compiled from "RegistrySetBuilder.java"
+public class net.minecraft.core.RegistrySetBuilder {
+  public net.minecraft.core.RegistrySetBuilder();
+  public <T> net.minecraft.core.RegistrySetBuilder add(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.core.registries.SingleRegistryBootstrap<T>);
+  public net.minecraft.core.RegistrySetBuilder add(net.minecraft.core.registries.MultiRegistryBootstrap);
+  public net.minecraft.core.HolderLookup$Provider build(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.core.RegistrySetBuilder$PatchedRegistries buildPatch(net.minecraft.core.HolderLookup$Provider, net.minecraft.core.HolderLookup$Provider, net.minecraft.core.Cloner$Factory);
+}
+Compiled from "LayeredRegistryAccess.java"
+public class net.minecraft.core.LayeredRegistryAccess<T> {
+  public net.minecraft.core.LayeredRegistryAccess(java.util.List<T>);
+  public net.minecraft.core.RegistryAccess$Frozen getLayer(T);
+  public net.minecraft.core.RegistryAccess$Frozen getAccessForLoading(T);
+  public net.minecraft.core.RegistryAccess$Frozen getAccessFrom(T);
+  public net.minecraft.core.LayeredRegistryAccess<T> replaceFrom(T, net.minecraft.core.RegistryAccess$Frozen...);
+  public net.minecraft.core.LayeredRegistryAccess<T> replaceFrom(T, java.util.List<net.minecraft.core.RegistryAccess$Frozen>);
+  public net.minecraft.core.RegistryAccess$Frozen compositeAccess();
+}
+Compiled from "HolderSet.java"
+public class net.minecraft.core.HolderSet$Named<T> extends net.minecraft.core.HolderSet$ListBacked<T> {
+  public net.minecraft.tags.TagKey<T> key();
+  protected java.util.List<net.minecraft.core.Holder<T>> contents();
+  public boolean isBound();
+  public com.mojang.datafixers.util.Either<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>> unwrap();
+  public java.util.Optional<net.minecraft.tags.TagKey<T>> unwrapKey();
+  public boolean contains(net.minecraft.core.Holder<T>);
+  public java.lang.String toString();
+  public boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+}
+Compiled from "NonNullList.java"
+public class net.minecraft.core.NonNullList<E> extends java.util.AbstractList<E> {
+  public static <E> net.minecraft.core.NonNullList<E> create();
+  public static <E> net.minecraft.core.NonNullList<E> createWithCapacity(int);
+  public static <E> net.minecraft.core.NonNullList<E> withSize(int, E);
+  public static <E> net.minecraft.core.NonNullList<E> of(E, E...);
+  protected net.minecraft.core.NonNullList(java.util.List<E>, E);
+  public E get(int);
+  public E set(int, E);
+  public void add(int, E);
+  public E remove(int);
+  public int size();
+  public void clear();
+}
+Compiled from "Cloner.java"
+public class net.minecraft.core.Cloner$Factory {
+  public net.minecraft.core.Cloner$Factory();
+  public <T> net.minecraft.core.Cloner$Factory addCodec(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>, com.mojang.serialization.Codec<T>);
+  public <T> net.minecraft.core.Cloner<T> cloner(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+}
+Compiled from "BlockMath.java"
+public class net.minecraft.core.BlockMath {
+  public net.minecraft.core.BlockMath();
+  public static com.mojang.math.Transformation blockCenterToCorner(com.mojang.math.Transformation);
+  public static com.mojang.math.Transformation blockCornerToCenter(com.mojang.math.Transformation);
+  public static com.mojang.math.Transformation getFaceTransformation(com.mojang.math.Transformation, net.minecraft.core.Direction);
+}
+Compiled from "PositionAndRotation.java"
+public interface net.minecraft.core.PositionAndRotation {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.PositionAndRotation> STREAM_CODEC;
+  public abstract net.minecraft.world.phys.Vec3 position();
+  public abstract float yRot();
+  public abstract float xRot();
+  public abstract net.minecraft.core.PositionAndRotation immutable();
+  public default boolean is(net.minecraft.world.phys.Vec3, float, float);
+  public static net.minecraft.core.PositionAndRotation of(net.minecraft.world.phys.Vec3, float, float);
+}
+Compiled from "HolderGetter.java"
+public interface net.minecraft.core.HolderGetter$Provider {
+  public abstract <T> java.util.Optional<? extends net.minecraft.core.HolderGetter<T>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public default <T> net.minecraft.core.HolderGetter<T> lookupOrThrow(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public default <T> java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.ResourceKey<T>);
+  public default <T> net.minecraft.core.Holder$Reference<T> getOrThrow(net.minecraft.resources.ResourceKey<T>);
+  public default <T> java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+  public default <T> net.minecraft.core.HolderSet$Named<T> getOrThrow(net.minecraft.tags.TagKey<T>);
+}
+Compiled from "HolderGetter.java"
+public interface net.minecraft.core.HolderGetter<T> extends net.minecraft.core.HolderOwner<T> {
+  public abstract java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.ResourceKey<T>);
+  public default net.minecraft.core.Holder$Reference<T> getOrThrow(net.minecraft.resources.ResourceKey<T>);
+  public abstract java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+  public default net.minecraft.core.HolderSet$Named<T> getOrThrow(net.minecraft.tags.TagKey<T>);
+  public default java.util.Optional<net.minecraft.core.Holder<T>> getRandomElementOf(net.minecraft.tags.TagKey<T>, net.minecraft.util.RandomSource);
+}
+Compiled from "RegistrySetBuilder.java"
+interface net.minecraft.core.RegistrySetBuilder$RegistryStub {
+  public abstract java.util.stream.Stream<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> requiredRegistries();
+  public abstract void apply(net.minecraft.core.RegistrySetBuilder$BuildState);
+}
+Compiled from "Direction.java"
+public final class net.minecraft.core.Direction$AxisDirection extends java.lang.Enum<net.minecraft.core.Direction$AxisDirection> {
+  public static final net.minecraft.core.Direction$AxisDirection POSITIVE;
+  public static final net.minecraft.core.Direction$AxisDirection NEGATIVE;
+  public static net.minecraft.core.Direction$AxisDirection[] values();
+  public static net.minecraft.core.Direction$AxisDirection valueOf(java.lang.String);
+  public int getStep();
+  public java.lang.String getName();
+  public java.lang.String toString();
+  public net.minecraft.core.Direction$AxisDirection opposite();
+}
+Compiled from "HolderLookup.java"
+public interface net.minecraft.core.HolderLookup$Provider extends net.minecraft.core.HolderGetter$Provider {
+  public abstract java.util.stream.Stream<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> listRegistryKeys();
+  public default java.util.stream.Stream<net.minecraft.core.HolderLookup$RegistryLookup<?>> listRegistries();
+  public abstract <T> java.util.Optional<? extends net.minecraft.core.HolderLookup$RegistryLookup<T>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public default <T> net.minecraft.core.HolderLookup$RegistryLookup<T> lookupOrThrow(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public default <V> net.minecraft.resources.RegistryOps<V> createSerializationContext(com.mojang.serialization.DynamicOps<V>);
+  public static net.minecraft.core.HolderLookup$Provider create(java.util.stream.Stream<net.minecraft.core.HolderLookup$RegistryLookup<?>>);
+  public default com.mojang.serialization.Lifecycle allRegistriesLifecycle();
+  public default net.minecraft.core.HolderGetter lookupOrThrow(net.minecraft.resources.ResourceKey);
+}
+Compiled from "Holder.java"
+public final class net.minecraft.core.Holder$Direct<T> extends java.lang.Record implements net.minecraft.core.Holder<T> {
+  public net.minecraft.core.Holder$Direct(T, net.minecraft.core.component.DataComponentMap);
+  public boolean isBound();
+  public boolean areComponentsBound();
+  public boolean is(net.minecraft.resources.Identifier);
+  public boolean is(net.minecraft.resources.ResourceKey<T>);
+  public boolean is(net.minecraft.tags.TagKey<T>);
+  public boolean is(net.minecraft.core.Holder<T>);
+  public boolean is(java.util.function.Predicate<net.minecraft.resources.ResourceKey<T>>);
+  public com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, T> unwrap();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<T>> unwrapKey();
+  public net.minecraft.core.Holder$Kind kind();
+  public java.lang.String toString();
+  public boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+  public java.util.stream.Stream<net.minecraft.tags.TagKey<T>> tags();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+  public net.minecraft.core.component.DataComponentMap components();
+}
+Compiled from "WritableRegistry.java"
+public interface net.minecraft.core.WritableRegistry<T> extends net.minecraft.core.Registry<T> {
+  public abstract net.minecraft.core.Holder$Reference<T> register(net.minecraft.resources.ResourceKey<T>, T, net.minecraft.core.RegistrationInfo);
+  public abstract void bindTags(java.util.Map<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>>);
+  public abstract boolean isEmpty();
+  public abstract net.minecraft.core.HolderGetter<T> createRegistrationLookup();
+}
+Compiled from "PositionAndRotation.java"
+public final class net.minecraft.core.PositionAndRotation$Immutable extends java.lang.Record implements net.minecraft.core.PositionAndRotation {
+  public net.minecraft.core.PositionAndRotation$Immutable(net.minecraft.world.phys.Vec3, float, float);
+  public net.minecraft.core.PositionAndRotation immutable();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.phys.Vec3 position();
+  public float yRot();
+  public float xRot();
+}
+Compiled from "RegistryAccess.java"
+public interface net.minecraft.core.RegistryAccess$Frozen extends net.minecraft.core.RegistryAccess {
+}
+Compiled from "FrontAndTop.java"
+public final class net.minecraft.core.FrontAndTop extends java.lang.Enum<net.minecraft.core.FrontAndTop> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.FrontAndTop DOWN_EAST;
+  public static final net.minecraft.core.FrontAndTop DOWN_NORTH;
+  public static final net.minecraft.core.FrontAndTop DOWN_SOUTH;
+  public static final net.minecraft.core.FrontAndTop DOWN_WEST;
+  public static final net.minecraft.core.FrontAndTop UP_EAST;
+  public static final net.minecraft.core.FrontAndTop UP_NORTH;
+  public static final net.minecraft.core.FrontAndTop UP_SOUTH;
+  public static final net.minecraft.core.FrontAndTop UP_WEST;
+  public static final net.minecraft.core.FrontAndTop WEST_UP;
+  public static final net.minecraft.core.FrontAndTop EAST_UP;
+  public static final net.minecraft.core.FrontAndTop NORTH_UP;
+  public static final net.minecraft.core.FrontAndTop SOUTH_UP;
+  public static net.minecraft.core.FrontAndTop[] values();
+  public static net.minecraft.core.FrontAndTop valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public static net.minecraft.core.FrontAndTop fromFrontAndTop(net.minecraft.core.Direction, net.minecraft.core.Direction);
+  public net.minecraft.core.Direction front();
+  public net.minecraft.core.Direction top();
+}
+Compiled from "ClientAsset.java"
+public final class net.minecraft.core.ClientAsset$DownloadedTexture extends java.lang.Record implements net.minecraft.core.ClientAsset$Texture {
+  public net.minecraft.core.ClientAsset$DownloadedTexture(net.minecraft.resources.Identifier, java.lang.String);
+  public net.minecraft.resources.Identifier id();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier texturePath();
+  public java.lang.String url();
+}
+Compiled from "RegistryAccess.java"
+public interface net.minecraft.core.RegistryAccess extends net.minecraft.core.HolderLookup$Provider {
+  public static final org.slf4j.Logger LOGGER;
+  public static final net.minecraft.core.RegistryAccess$Frozen EMPTY;
+  public abstract <E> java.util.Optional<net.minecraft.core.Registry<E>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public default <E> net.minecraft.core.Registry<E> lookupOrThrow(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public abstract java.util.stream.Stream<net.minecraft.core.RegistryAccess$RegistryEntry<?>> registries();
+  public default java.util.stream.Stream<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> listRegistryKeys();
+  public static net.minecraft.core.RegistryAccess$Frozen fromRegistryOfRegistries(net.minecraft.core.Registry<? extends net.minecraft.core.Registry<?>>);
+  public default net.minecraft.core.RegistryAccess$Frozen freeze();
+  public default net.minecraft.core.HolderLookup$RegistryLookup lookupOrThrow(net.minecraft.resources.ResourceKey);
+  public default net.minecraft.core.HolderGetter lookupOrThrow(net.minecraft.resources.ResourceKey);
+}
+Compiled from "Position.java"
+public interface net.minecraft.core.Position {
+  public abstract double x();
+  public abstract double y();
+  public abstract double z();
+}
+Compiled from "Rotations.java"
+public final class net.minecraft.core.Rotations extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Rotations> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.Rotations> STREAM_CODEC;
+  public net.minecraft.core.Rotations(float, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float x();
+  public float y();
+  public float z();
+}
+Compiled from "Vec3i.java"
+public class net.minecraft.core.Vec3i implements java.lang.Comparable<net.minecraft.core.Vec3i> {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Vec3i> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.Vec3i> STREAM_CODEC;
+  public static final net.minecraft.core.Vec3i ZERO;
+  public static com.mojang.serialization.Codec<net.minecraft.core.Vec3i> offsetCodec(int);
+  public net.minecraft.core.Vec3i(int, int, int);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public int compareTo(net.minecraft.core.Vec3i);
+  public int getX();
+  public int getY();
+  public int getZ();
+  protected net.minecraft.core.Vec3i setX(int);
+  protected net.minecraft.core.Vec3i setY(int);
+  protected net.minecraft.core.Vec3i setZ(int);
+  public net.minecraft.core.Vec3i offset(int, int, int);
+  public net.minecraft.core.Vec3i offset(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i subtract(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i multiply(int);
+  public net.minecraft.core.Vec3i multiply(int, int, int);
+  public net.minecraft.core.Vec3i above();
+  public net.minecraft.core.Vec3i above(int);
+  public net.minecraft.core.Vec3i below();
+  public net.minecraft.core.Vec3i below(int);
+  public net.minecraft.core.Vec3i north();
+  public net.minecraft.core.Vec3i north(int);
+  public net.minecraft.core.Vec3i south();
+  public net.minecraft.core.Vec3i south(int);
+  public net.minecraft.core.Vec3i west();
+  public net.minecraft.core.Vec3i west(int);
+  public net.minecraft.core.Vec3i east();
+  public net.minecraft.core.Vec3i east(int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction, int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction$Axis, int);
+  public net.minecraft.core.Vec3i cross(net.minecraft.core.Vec3i);
+  public boolean closerThan(net.minecraft.core.Vec3i, double);
+  public boolean closerToCenterThan(net.minecraft.core.Position, double);
+  public double distSqr(net.minecraft.core.Vec3i);
+  public double distToCenterSqr(net.minecraft.core.Position);
+  public double distToCenterSqr(double, double, double);
+  public double distToLowCornerSqr(double, double, double);
+  public int distManhattan(net.minecraft.core.Vec3i);
+  public int distChessboard(net.minecraft.core.Vec3i);
+  public boolean differsHorizontally(net.minecraft.core.Vec3i);
+  public int get(net.minecraft.core.Direction$Axis);
+  public org.joml.Vector3i toMutable();
+  public java.lang.String toString();
+  public java.lang.String toShortString();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "RegistryAccess.java"
+public class net.minecraft.core.RegistryAccess$ImmutableRegistryAccess implements net.minecraft.core.RegistryAccess {
+  public net.minecraft.core.RegistryAccess$ImmutableRegistryAccess(java.util.List<? extends net.minecraft.core.Registry<?>>);
+  public net.minecraft.core.RegistryAccess$ImmutableRegistryAccess(java.util.Map<? extends net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, ? extends net.minecraft.core.Registry<?>>);
+  public net.minecraft.core.RegistryAccess$ImmutableRegistryAccess(java.util.stream.Stream<net.minecraft.core.RegistryAccess$RegistryEntry<?>>);
+  public <E> java.util.Optional<net.minecraft.core.Registry<E>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public java.util.stream.Stream<net.minecraft.core.RegistryAccess$RegistryEntry<?>> registries();
+}
+Compiled from "HolderLookup.java"
+public interface net.minecraft.core.HolderLookup$RegistryLookup<T> extends net.minecraft.core.HolderLookup<T> {
+  public abstract net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>> key();
+  public abstract com.mojang.serialization.Lifecycle registryLifecycle();
+  public default net.minecraft.core.HolderLookup$RegistryLookup<T> filterFeatures(net.minecraft.world.flag.FeatureFlagSet);
+  public default net.minecraft.core.HolderLookup$RegistryLookup<T> filterElements(java.util.function.Predicate<T>);
+}
+Compiled from "Holder.java"
+public final class net.minecraft.core.Holder$Reference$Type extends java.lang.Enum<net.minecraft.core.Holder$Reference$Type> {
+  public static final net.minecraft.core.Holder$Reference$Type STAND_ALONE;
+  public static final net.minecraft.core.Holder$Reference$Type INTRUSIVE;
+  public static net.minecraft.core.Holder$Reference$Type[] values();
+  public static net.minecraft.core.Holder$Reference$Type valueOf(java.lang.String);
+}
+Compiled from "Registry.java"
+public interface net.minecraft.core.Registry<T> extends net.minecraft.core.IdMap<T>, com.mojang.serialization.Keyable, net.minecraft.core.HolderLookup$RegistryLookup<T>, net.fabricmc.fabric.api.event.registry.FabricRegistry {
+  public abstract net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> key();
+  public default com.mojang.serialization.Codec<T> byNameCodec();
+  public default com.mojang.serialization.Codec<net.minecraft.core.Holder<T>> holderByNameCodec();
+  public default <U> java.util.stream.Stream<U> keys(com.mojang.serialization.DynamicOps<U>);
+  public abstract net.minecraft.resources.Identifier getKey(T);
+  public abstract java.util.Optional<net.minecraft.resources.ResourceKey<T>> getResourceKey(T);
+  public abstract int getId(T);
+  public abstract T getValue(net.minecraft.resources.ResourceKey<T>);
+  public abstract T getValue(net.minecraft.resources.Identifier);
+  public abstract java.util.Optional<net.minecraft.core.RegistrationInfo> registrationInfo(net.minecraft.resources.ResourceKey<T>);
+  public default java.util.Optional<T> getOptional(net.minecraft.resources.Identifier);
+  public default java.util.Optional<T> getOptional(net.minecraft.resources.ResourceKey<T>);
+  public abstract java.util.Optional<net.minecraft.core.Holder$Reference<T>> getAny();
+  public default T getValueOrThrow(net.minecraft.resources.ResourceKey<T>);
+  public abstract java.util.Set<net.minecraft.resources.Identifier> keySet();
+  public abstract java.util.Set<java.util.Map$Entry<net.minecraft.resources.ResourceKey<T>, T>> entrySet();
+  public abstract java.util.Set<net.minecraft.resources.ResourceKey<T>> registryKeySet();
+  public abstract java.util.Optional<net.minecraft.core.Holder$Reference<T>> getRandom(net.minecraft.util.RandomSource);
+  public default java.util.stream.Stream<T> stream();
+  public abstract boolean containsKey(net.minecraft.resources.Identifier);
+  public abstract boolean containsKey(net.minecraft.resources.ResourceKey<T>);
+  public static <T> T register(net.minecraft.core.Registry<? super T>, java.lang.String, T);
+  public static <V, T extends V> T register(net.minecraft.core.Registry<V>, net.minecraft.resources.Identifier, T);
+  public static <V, T extends V> T register(net.minecraft.core.Registry<V>, net.minecraft.resources.ResourceKey<V>, T);
+  public static <R, T extends R> net.minecraft.core.Holder$Reference<T> registerForHolder(net.minecraft.core.Registry<R>, net.minecraft.resources.ResourceKey<R>, T);
+  public static <R, T extends R> net.minecraft.core.Holder$Reference<T> registerForHolder(net.minecraft.core.Registry<R>, net.minecraft.resources.Identifier, T);
+  public abstract net.minecraft.core.Registry<T> freeze();
+  public abstract net.minecraft.core.Holder$Reference<T> createIntrusiveHolder(T);
+  public abstract java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(int);
+  public abstract java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.Identifier);
+  public abstract net.minecraft.core.Holder<T> wrapAsHolder(T);
+  public default java.lang.Iterable<net.minecraft.core.Holder<T>> getTagOrEmpty(net.minecraft.tags.TagKey<T>);
+  public abstract java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> getTags();
+  public default net.minecraft.core.IdMap<net.minecraft.core.Holder<T>> asHolderIdMap();
+  public abstract net.minecraft.core.Registry$PendingTags<T> prepareTagReload(net.minecraft.tags.TagLoader$LoadResult<T>);
+  public abstract net.minecraft.core.component.DataComponentLookup<T> componentLookup();
+}
+Compiled from "Direction.java"
+public final class net.minecraft.core.Direction extends java.lang.Enum<net.minecraft.core.Direction> implements net.minecraft.core.Directional, net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.Direction DOWN;
+  public static final net.minecraft.core.Direction UP;
+  public static final net.minecraft.core.Direction NORTH;
+  public static final net.minecraft.core.Direction SOUTH;
+  public static final net.minecraft.core.Direction WEST;
+  public static final net.minecraft.core.Direction EAST;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.core.Direction> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Direction> VERTICAL_CODEC;
+  public static final java.util.function.IntFunction<net.minecraft.core.Direction> BY_ID;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.Direction> STREAM_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Direction> LEGACY_ID_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Direction> LEGACY_ID_CODEC_2D;
+  public static net.minecraft.core.Direction[] values();
+  public static net.minecraft.core.Direction valueOf(java.lang.String);
+  public static net.minecraft.core.Direction[] orderedByNearest(net.minecraft.world.entity.Entity);
+  public static net.minecraft.core.Direction rotate(org.joml.Matrix4fc, net.minecraft.core.Direction);
+  public static java.util.Collection<net.minecraft.core.Direction> allShuffled(net.minecraft.util.RandomSource);
+  public static java.util.stream.Stream<net.minecraft.core.Direction> stream();
+  public static float getYRot(net.minecraft.core.Direction);
+  public org.joml.Quaternionf getRotation();
+  public int get3DDataValue();
+  public int get2DDataValue();
+  public net.minecraft.core.Direction$AxisDirection getAxisDirection();
+  public static net.minecraft.core.Direction getFacingAxis(net.minecraft.world.entity.Entity, net.minecraft.core.Direction$Axis);
+  public net.minecraft.core.Direction getOpposite();
+  public net.minecraft.core.Direction getClockWise(net.minecraft.core.Direction$Axis);
+  public net.minecraft.core.Direction getCounterClockWise(net.minecraft.core.Direction$Axis);
+  public net.minecraft.core.Direction getClockWise();
+  public net.minecraft.core.Direction getCounterClockWise();
+  public int getStepX();
+  public int getStepY();
+  public int getStepZ();
+  public net.minecraft.core.Vec3i getStep();
+  public org.joml.Vector3f step();
+  public java.lang.String getName();
+  public net.minecraft.core.Direction$Axis getAxis();
+  public static net.minecraft.core.Direction byName(java.lang.String);
+  public static net.minecraft.core.Direction from3DDataValue(int);
+  public static net.minecraft.core.Direction from2DDataValue(int);
+  public static net.minecraft.core.Direction fromYRot(double);
+  public static net.minecraft.core.Direction fromAxisAndDirection(net.minecraft.core.Direction$Axis, net.minecraft.core.Direction$AxisDirection);
+  public float toYRot();
+  public static net.minecraft.core.Direction getRandom(net.minecraft.util.RandomSource);
+  public static net.minecraft.core.Direction getApproximateNearest(double, double, double);
+  public static net.minecraft.core.Direction getApproximateNearest(float, float, float);
+  public static net.minecraft.core.Direction getApproximateNearest(net.minecraft.world.phys.Vec3);
+  public static net.minecraft.core.Direction getNearest(int, int, int, net.minecraft.core.Direction);
+  public static net.minecraft.core.Direction getNearest(net.minecraft.core.Vec3i, net.minecraft.core.Direction);
+  public java.lang.String toString();
+  public java.lang.String getSerializedName();
+  public static net.minecraft.core.Direction get(net.minecraft.core.Direction$AxisDirection, net.minecraft.core.Direction$Axis);
+  public static com.google.common.collect.ImmutableList<net.minecraft.core.Direction$Axis> axisStepOrder(net.minecraft.world.phys.Vec3);
+  public net.minecraft.core.Vec3i getUnitVec3i();
+  public net.minecraft.world.phys.Vec3 getUnitVec3();
+  public org.joml.Vector3fc getUnitVec3f();
+  public boolean isFacingAngle(float);
+}
+Compiled from "DefaultedMappedRegistry.java"
+public class net.minecraft.core.DefaultedMappedRegistry<T> extends net.minecraft.core.MappedRegistry<T> implements net.minecraft.core.DefaultedRegistry<T> {
+  public net.minecraft.core.DefaultedMappedRegistry(java.lang.String, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Lifecycle, boolean);
+  public net.minecraft.core.Holder$Reference<T> register(net.minecraft.resources.ResourceKey<T>, T, net.minecraft.core.RegistrationInfo);
+  public int getId(T);
+  public net.minecraft.resources.Identifier getKey(T);
+  public T getValue(net.minecraft.resources.Identifier);
+  public java.util.Optional<T> getOptional(net.minecraft.resources.Identifier);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> getAny();
+  public T byId(int);
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> getRandom(net.minecraft.util.RandomSource);
+  public net.minecraft.resources.Identifier getDefaultKey();
+}
+Compiled from "HolderOwner.java"
+public interface net.minecraft.core.HolderOwner<T> {
+  public default boolean canSerialize(net.minecraft.core.HolderOwner<T>);
+}
+Compiled from "Cloner.java"
+public class net.minecraft.core.Cloner<T> {
+  public T clone(T, net.minecraft.core.HolderLookup$Provider, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "BlockPos.java"
+public class net.minecraft.core.BlockPos$MutableBlockPos extends net.minecraft.core.BlockPos {
+  public net.minecraft.core.BlockPos$MutableBlockPos();
+  public net.minecraft.core.BlockPos$MutableBlockPos(int, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos(double, double, double);
+  public net.minecraft.core.BlockPos offset(int, int, int);
+  public net.minecraft.core.BlockPos multiply(int);
+  public net.minecraft.core.BlockPos relative(net.minecraft.core.Direction, int);
+  public net.minecraft.core.BlockPos relative(net.minecraft.core.Direction$Axis, int);
+  public net.minecraft.core.BlockPos rotate(net.minecraft.world.level.block.Rotation);
+  public net.minecraft.core.BlockPos$MutableBlockPos set(int, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos set(double, double, double);
+  public net.minecraft.core.BlockPos$MutableBlockPos set(net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos$MutableBlockPos set(long);
+  public net.minecraft.core.BlockPos$MutableBlockPos set(net.minecraft.core.AxisCycle, int, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos setWithOffset(net.minecraft.core.Vec3i, net.minecraft.core.Direction);
+  public net.minecraft.core.BlockPos$MutableBlockPos setWithOffset(net.minecraft.core.Vec3i, int, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos setWithOffset(net.minecraft.core.Vec3i, net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos$MutableBlockPos move(net.minecraft.core.Direction);
+  public net.minecraft.core.BlockPos$MutableBlockPos move(net.minecraft.core.Direction, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos move(int, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos move(net.minecraft.core.Vec3i);
+  public net.minecraft.core.BlockPos$MutableBlockPos clamp(net.minecraft.core.Direction$Axis, int, int);
+  public net.minecraft.core.BlockPos$MutableBlockPos setX(int);
+  public net.minecraft.core.BlockPos$MutableBlockPos setY(int);
+  public net.minecraft.core.BlockPos$MutableBlockPos setZ(int);
+  public net.minecraft.core.BlockPos immutable();
+  public net.minecraft.core.Vec3i cross(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction$Axis, int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction, int);
+  public net.minecraft.core.Vec3i relative(net.minecraft.core.Direction);
+  public net.minecraft.core.Vec3i east(int);
+  public net.minecraft.core.Vec3i east();
+  public net.minecraft.core.Vec3i west(int);
+  public net.minecraft.core.Vec3i west();
+  public net.minecraft.core.Vec3i south(int);
+  public net.minecraft.core.Vec3i south();
+  public net.minecraft.core.Vec3i north(int);
+  public net.minecraft.core.Vec3i north();
+  public net.minecraft.core.Vec3i below(int);
+  public net.minecraft.core.Vec3i below();
+  public net.minecraft.core.Vec3i above(int);
+  public net.minecraft.core.Vec3i above();
+  public net.minecraft.core.Vec3i multiply(int);
+  public net.minecraft.core.Vec3i subtract(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i offset(net.minecraft.core.Vec3i);
+  public net.minecraft.core.Vec3i offset(int, int, int);
+  public net.minecraft.core.Vec3i setZ(int);
+  public net.minecraft.core.Vec3i setY(int);
+  public net.minecraft.core.Vec3i setX(int);
+}
+Compiled from "Holder.java"
+public class net.minecraft.core.Holder$Reference<T> implements net.minecraft.core.Holder<T> {
+  protected net.minecraft.core.Holder$Reference(net.minecraft.core.Holder$Reference$Type, net.minecraft.core.HolderOwner<T>, net.minecraft.resources.ResourceKey<T>, T);
+  public static <T> net.minecraft.core.Holder$Reference<T> createStandAlone(net.minecraft.core.HolderOwner<T>, net.minecraft.resources.ResourceKey<T>);
+  public static <T> net.minecraft.core.Holder$Reference<T> createIntrusive(net.minecraft.core.HolderOwner<T>, T);
+  public net.minecraft.resources.ResourceKey<T> key();
+  public T value();
+  public boolean is(net.minecraft.resources.Identifier);
+  public boolean is(net.minecraft.resources.ResourceKey<T>);
+  public boolean is(net.minecraft.tags.TagKey<T>);
+  public boolean is(net.minecraft.core.Holder<T>);
+  public boolean is(java.util.function.Predicate<net.minecraft.resources.ResourceKey<T>>);
+  public boolean canSerializeIn(net.minecraft.core.HolderOwner<T>);
+  public com.mojang.datafixers.util.Either<net.minecraft.resources.ResourceKey<T>, T> unwrap();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<T>> unwrapKey();
+  public net.minecraft.core.Holder$Kind kind();
+  public boolean isBound();
+  public boolean areComponentsBound();
+  protected void bindValue(T);
+  public void bindComponents(net.minecraft.core.component.DataComponentMap);
+  public java.util.stream.Stream<net.minecraft.tags.TagKey<T>> tags();
+  public net.minecraft.core.component.DataComponentMap components();
+  public java.lang.String toString();
+}
+Compiled from "RegistryAccess.java"
+public final class net.minecraft.core.RegistryAccess$RegistryEntry<T> extends java.lang.Record {
+  public net.minecraft.core.RegistryAccess$RegistryEntry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.core.Registry<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> key();
+  public net.minecraft.core.Registry<T> value();
+}

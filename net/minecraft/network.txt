@@ -1,0 +1,754 @@
+Compiled from "Connection.java"
+public class net.minecraft.network.Connection extends io.netty.channel.SimpleChannelInboundHandler<net.minecraft.network.protocol.Packet<?>> implements net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public static final org.slf4j.Marker ROOT_MARKER;
+  public static final org.slf4j.Marker PACKET_MARKER;
+  public static final org.slf4j.Marker PACKET_RECEIVED_MARKER;
+  public static final org.slf4j.Marker PACKET_SENT_MARKER;
+  public net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow);
+  public void channelActive(io.netty.channel.ChannelHandlerContext) throws java.lang.Exception;
+  public void channelInactive(io.netty.channel.ChannelHandlerContext);
+  public void exceptionCaught(io.netty.channel.ChannelHandlerContext, java.lang.Throwable);
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>);
+  public <T extends net.minecraft.network.PacketListener> void setupInboundProtocol(net.minecraft.network.ProtocolInfo<T>, T);
+  public void setupOutboundProtocol(net.minecraft.network.ProtocolInfo<?>);
+  public void setListenerForServerboundHandshake(net.minecraft.network.PacketListener);
+  public void initiateServerboundStatusConnection(java.lang.String, int, net.minecraft.network.protocol.status.ClientStatusPacketListener);
+  public void initiateServerboundPlayConnection(java.lang.String, int, net.minecraft.network.protocol.login.ClientLoginPacketListener);
+  public <S extends net.minecraft.network.ServerboundPacketListener, C extends net.minecraft.network.ClientboundPacketListener> void initiateServerboundPlayConnection(java.lang.String, int, net.minecraft.network.ProtocolInfo<S>, net.minecraft.network.ProtocolInfo<C>, C, boolean);
+  public void send(net.minecraft.network.protocol.Packet<?>);
+  public void send(net.minecraft.network.protocol.Packet<?>, io.netty.channel.ChannelFutureListener);
+  public void send(net.minecraft.network.protocol.Packet<?>, io.netty.channel.ChannelFutureListener, boolean);
+  public void runOnceConnected(java.util.function.Consumer<net.minecraft.network.Connection>);
+  public void flushChannel();
+  public void tick();
+  protected void tickSecond();
+  public java.net.SocketAddress getRemoteAddress();
+  public java.lang.String getLoggableAddress(boolean);
+  public void disconnect(net.minecraft.network.chat.Component);
+  public void disconnect(net.minecraft.network.DisconnectionDetails);
+  public boolean isMemoryConnection();
+  public net.minecraft.network.protocol.PacketFlow getReceiving();
+  public net.minecraft.network.protocol.PacketFlow getSending();
+  public static net.minecraft.network.Connection connectToServer(java.net.InetSocketAddress, net.minecraft.server.network.EventLoopGroupHolder, net.minecraft.util.debugchart.LocalSampleLogger);
+  public static io.netty.channel.ChannelFuture connect(java.net.InetSocketAddress, net.minecraft.server.network.EventLoopGroupHolder, net.minecraft.network.Connection);
+  public void configurePacketHandler(io.netty.channel.ChannelPipeline);
+  public static void configureSerialization(io.netty.channel.ChannelPipeline, net.minecraft.network.protocol.PacketFlow, boolean, net.minecraft.network.BandwidthDebugMonitor);
+  public static void configureInMemoryPipeline(io.netty.channel.ChannelPipeline, net.minecraft.network.protocol.PacketFlow);
+  public static net.minecraft.network.Connection connectToLocalServer(java.net.SocketAddress);
+  public static net.minecraft.network.Connection fromChannel(io.netty.channel.Channel, net.minecraft.network.protocol.PacketFlow, net.minecraft.util.debugchart.LocalSampleLogger);
+  public void setEncryptionKey(javax.crypto.Cipher, javax.crypto.Cipher);
+  public boolean isConnected();
+  public boolean isConnecting();
+  public net.minecraft.network.PacketListener getPacketListener();
+  public net.minecraft.network.DisconnectionDetails getDisconnectionDetails();
+  public void setReadOnly();
+  public void setupCompression(int, boolean);
+  public void handleDisconnection();
+  public float getAverageReceivedPackets();
+  public float getAverageSentPackets();
+  public void setBandwidthLogger(net.minecraft.util.debugchart.LocalSampleLogger);
+  protected void channelRead0(io.netty.channel.ChannelHandlerContext, java.lang.Object) throws java.lang.Exception;
+}
+Compiled from "MonitoredLocalFrameDecoder.java"
+public class net.minecraft.network.MonitoredLocalFrameDecoder extends io.netty.channel.ChannelInboundHandlerAdapter {
+  public net.minecraft.network.MonitoredLocalFrameDecoder(net.minecraft.network.BandwidthDebugMonitor);
+  public void channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object);
+}
+Compiled from "ServerboundPacketListener.java"
+public interface net.minecraft.network.ServerboundPacketListener extends net.minecraft.network.PacketListener {
+  public default net.minecraft.network.protocol.PacketFlow flow();
+}
+Compiled from "RegistryFriendlyByteBuf.java"
+public class net.minecraft.network.RegistryFriendlyByteBuf extends net.minecraft.network.FriendlyByteBuf {
+  public net.minecraft.network.RegistryFriendlyByteBuf(io.netty.buffer.ByteBuf, net.minecraft.core.RegistryAccess);
+  public net.minecraft.core.RegistryAccess registryAccess();
+  public static java.util.function.Function<io.netty.buffer.ByteBuf, net.minecraft.network.RegistryFriendlyByteBuf> decorator(net.minecraft.core.RegistryAccess);
+}
+Compiled from "PacketDecoder.java"
+public class net.minecraft.network.PacketDecoder<T extends net.minecraft.network.PacketListener> extends io.netty.handler.codec.ByteToMessageDecoder implements net.minecraft.network.ProtocolSwapHandler {
+  public net.minecraft.network.PacketDecoder(net.minecraft.network.ProtocolInfo<T>);
+  protected void decode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, java.util.List<java.lang.Object>) throws java.lang.Exception;
+}
+Compiled from "HandlerNames.java"
+public class net.minecraft.network.HandlerNames {
+  public static final java.lang.String DECOMPRESS;
+  public static final java.lang.String COMPRESS;
+  public static final java.lang.String DECODER;
+  public static final java.lang.String ENCODER;
+  public static final java.lang.String INBOUND_CONFIG;
+  public static final java.lang.String OUTBOUND_CONFIG;
+  public static final java.lang.String SPLITTER;
+  public static final java.lang.String PREPENDER;
+  public static final java.lang.String DECRYPT;
+  public static final java.lang.String ENCRYPT;
+  public static final java.lang.String UNBUNDLER;
+  public static final java.lang.String BUNDLER;
+  public static final java.lang.String PACKET_HANDLER;
+  public static final java.lang.String TIMEOUT;
+  public static final java.lang.String LEGACY_QUERY;
+  public static final java.lang.String LATENCY;
+  public net.minecraft.network.HandlerNames();
+}
+Compiled from "HiddenByteBuf.java"
+public final class net.minecraft.network.HiddenByteBuf extends java.lang.Record implements io.netty.util.ReferenceCounted {
+  public net.minecraft.network.HiddenByteBuf(io.netty.buffer.ByteBuf);
+  public static java.lang.Object pack(java.lang.Object);
+  public static java.lang.Object unpack(java.lang.Object);
+  public int refCnt();
+  public net.minecraft.network.HiddenByteBuf retain();
+  public net.minecraft.network.HiddenByteBuf retain(int);
+  public net.minecraft.network.HiddenByteBuf touch();
+  public net.minecraft.network.HiddenByteBuf touch(java.lang.Object);
+  public boolean release();
+  public boolean release(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public io.netty.buffer.ByteBuf contents();
+  public io.netty.util.ReferenceCounted touch(java.lang.Object);
+  public io.netty.util.ReferenceCounted touch();
+  public io.netty.util.ReferenceCounted retain(int);
+  public io.netty.util.ReferenceCounted retain();
+}
+Compiled from "CipherDecoder.java"
+public class net.minecraft.network.CipherDecoder extends io.netty.handler.codec.MessageToMessageDecoder<io.netty.buffer.ByteBuf> {
+  public net.minecraft.network.CipherDecoder(javax.crypto.Cipher);
+  protected void decode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  protected void decode(io.netty.channel.ChannelHandlerContext, java.lang.Object, java.util.List) throws java.lang.Exception;
+}
+Compiled from "ConnectionProtocol.java"
+public final class net.minecraft.network.ConnectionProtocol extends java.lang.Enum<net.minecraft.network.ConnectionProtocol> {
+  public static final net.minecraft.network.ConnectionProtocol HANDSHAKING;
+  public static final net.minecraft.network.ConnectionProtocol PLAY;
+  public static final net.minecraft.network.ConnectionProtocol STATUS;
+  public static final net.minecraft.network.ConnectionProtocol LOGIN;
+  public static final net.minecraft.network.ConnectionProtocol CONFIGURATION;
+  public static net.minecraft.network.ConnectionProtocol[] values();
+  public static net.minecraft.network.ConnectionProtocol valueOf(java.lang.String);
+  public java.lang.String id();
+}
+Compiled from "RateKickingConnection.java"
+public class net.minecraft.network.RateKickingConnection extends net.minecraft.network.Connection {
+  public net.minecraft.network.RateKickingConnection(int);
+  protected void tickSecond();
+}
+Compiled from "UnconfiguredPipelineHandler.java"
+public interface net.minecraft.network.UnconfiguredPipelineHandler$OutboundConfigurationTask {
+  public abstract void run(io.netty.channel.ChannelHandlerContext);
+  public default net.minecraft.network.UnconfiguredPipelineHandler$OutboundConfigurationTask andThen(net.minecraft.network.UnconfiguredPipelineHandler$OutboundConfigurationTask);
+}
+Compiled from "LocalFrameEncoder.java"
+public class net.minecraft.network.LocalFrameEncoder extends io.netty.channel.ChannelOutboundHandlerAdapter {
+  public net.minecraft.network.LocalFrameEncoder();
+  public void write(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.channel.ChannelPromise);
+}
+Compiled from "HashedPatchMap.java"
+public final class net.minecraft.network.HashedPatchMap extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.network.HashedPatchMap> STREAM_CODEC;
+  public net.minecraft.network.HashedPatchMap(java.util.Map<net.minecraft.core.component.DataComponentType<?>, java.lang.Integer>, java.util.Set<net.minecraft.core.component.DataComponentType<?>>);
+  public static net.minecraft.network.HashedPatchMap create(net.minecraft.core.component.DataComponentPatch, net.minecraft.network.HashedPatchMap$HashGenerator);
+  public boolean matches(net.minecraft.core.component.DataComponentPatch, net.minecraft.network.HashedPatchMap$HashGenerator);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.core.component.DataComponentType<?>, java.lang.Integer> addedComponents();
+  public java.util.Set<net.minecraft.core.component.DataComponentType<?>> removedComponents();
+}
+Compiled from "DisconnectionDetails.java"
+public final class net.minecraft.network.DisconnectionDetails extends java.lang.Record {
+  public net.minecraft.network.DisconnectionDetails(net.minecraft.network.chat.Component);
+  public net.minecraft.network.DisconnectionDetails(net.minecraft.network.chat.Component, java.util.Optional<java.nio.file.Path>, java.util.Optional<java.net.URI>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component reason();
+  public java.util.Optional<java.nio.file.Path> report();
+  public java.util.Optional<java.net.URI> bugReportLink();
+}
+Compiled from "CipherBase.java"
+public class net.minecraft.network.CipherBase {
+  protected net.minecraft.network.CipherBase(javax.crypto.Cipher);
+  protected io.netty.buffer.ByteBuf decipher(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf) throws javax.crypto.ShortBufferException;
+  protected void encipher(io.netty.buffer.ByteBuf, io.netty.buffer.ByteBuf) throws javax.crypto.ShortBufferException;
+}
+Compiled from "PacketBundlePacker.java"
+public class net.minecraft.network.PacketBundlePacker extends io.netty.handler.codec.MessageToMessageDecoder<net.minecraft.network.protocol.Packet<?>> {
+  public net.minecraft.network.PacketBundlePacker(net.minecraft.network.protocol.BundlerInfo);
+  protected void decode(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  protected void decode(io.netty.channel.ChannelHandlerContext, java.lang.Object, java.util.List) throws java.lang.Exception;
+}
+Compiled from "Utf8String.java"
+public class net.minecraft.network.Utf8String {
+  public net.minecraft.network.Utf8String();
+  public static java.lang.String read(io.netty.buffer.ByteBuf, int);
+  public static void write(io.netty.buffer.ByteBuf, java.lang.CharSequence, int);
+}
+Compiled from "PacketListener.java"
+public interface net.minecraft.network.PacketListener {
+  public abstract net.minecraft.network.protocol.PacketFlow flow();
+  public abstract net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void onDisconnect(net.minecraft.network.DisconnectionDetails);
+  public default void onPacketError(net.minecraft.network.protocol.Packet, java.lang.Exception) throws net.minecraft.ReportedException;
+  public default net.minecraft.network.DisconnectionDetails createDisconnectionInfo(net.minecraft.network.chat.Component, java.lang.Throwable);
+  public abstract boolean isAcceptingMessages();
+  public default boolean shouldHandleMessage(net.minecraft.network.protocol.Packet<?>);
+  public default void fillCrashReport(net.minecraft.CrashReport);
+  public default void fillListenerSpecificCrashDetails(net.minecraft.CrashReport, net.minecraft.CrashReportCategory);
+}
+Compiled from "UnconfiguredPipelineHandler.java"
+public class net.minecraft.network.UnconfiguredPipelineHandler$Inbound extends io.netty.channel.ChannelDuplexHandler {
+  public net.minecraft.network.UnconfiguredPipelineHandler$Inbound();
+  public void channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object);
+  public void write(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.channel.ChannelPromise) throws java.lang.Exception;
+}
+Compiled from "PacketProcessor.java"
+public class net.minecraft.network.PacketProcessor implements java.lang.AutoCloseable {
+  public net.minecraft.network.PacketProcessor(java.lang.Thread);
+  public boolean isSameThread();
+  public <T extends net.minecraft.network.PacketListener> void scheduleIfPossible(T, net.minecraft.network.protocol.Packet<T>);
+  public void processQueuedPackets();
+  public void close();
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.package-info {
+}
+Compiled from "UnconfiguredPipelineHandler.java"
+public class net.minecraft.network.UnconfiguredPipelineHandler {
+  public net.minecraft.network.UnconfiguredPipelineHandler();
+  public static <T extends net.minecraft.network.PacketListener> net.minecraft.network.UnconfiguredPipelineHandler$InboundConfigurationTask setupInboundProtocol(net.minecraft.network.ProtocolInfo<T>);
+  public static <T extends net.minecraft.network.PacketListener> net.minecraft.network.UnconfiguredPipelineHandler$OutboundConfigurationTask setupOutboundProtocol(net.minecraft.network.ProtocolInfo<T>);
+}
+Compiled from "LocalFrameDecoder.java"
+public class net.minecraft.network.LocalFrameDecoder extends io.netty.channel.ChannelInboundHandlerAdapter {
+  public net.minecraft.network.LocalFrameDecoder();
+  public void channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object);
+}
+Compiled from "SkipPacketDecoderException.java"
+public class net.minecraft.network.SkipPacketDecoderException extends io.netty.handler.codec.DecoderException implements net.minecraft.network.codec.IdDispatchCodec$DontDecorateException,net.minecraft.network.SkipPacketException {
+  public net.minecraft.network.SkipPacketDecoderException(java.lang.String);
+  public net.minecraft.network.SkipPacketDecoderException(java.lang.Throwable);
+}
+Compiled from "ProtocolSwapHandler.java"
+public interface net.minecraft.network.ProtocolSwapHandler {
+  public static void handleInboundTerminalPacket(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>);
+  public static void handleOutboundTerminalPacket(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>);
+}
+Compiled from "UnconfiguredPipelineHandler.java"
+public class net.minecraft.network.UnconfiguredPipelineHandler$Outbound extends io.netty.channel.ChannelOutboundHandlerAdapter {
+  public net.minecraft.network.UnconfiguredPipelineHandler$Outbound();
+  public void write(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.channel.ChannelPromise) throws java.lang.Exception;
+}
+Compiled from "BandwidthDebugMonitor.java"
+public class net.minecraft.network.BandwidthDebugMonitor {
+  public net.minecraft.network.BandwidthDebugMonitor(net.minecraft.util.debugchart.LocalSampleLogger);
+  public void onReceive(int);
+  public void tick();
+}
+Compiled from "ProtocolInfo.java"
+public interface net.minecraft.network.ProtocolInfo<T extends net.minecraft.network.PacketListener> {
+  public abstract net.minecraft.network.ConnectionProtocol id();
+  public abstract net.minecraft.network.protocol.PacketFlow flow();
+  public abstract net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.Packet<? super T>> codec();
+  public abstract net.minecraft.network.protocol.BundlerInfo bundlerInfo();
+}
+Compiled from "FriendlyByteBuf.java"
+public class net.minecraft.network.FriendlyByteBuf extends io.netty.buffer.ByteBuf {
+  public static final short MAX_STRING_LENGTH;
+  public static final int MAX_COMPONENT_STRING_LENGTH;
+  public net.minecraft.network.FriendlyByteBuf(io.netty.buffer.ByteBuf);
+  public <T> T readWithCodecTrusted(com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>, com.mojang.serialization.Codec<T>);
+  public <T> T readWithCodec(com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>, com.mojang.serialization.Codec<T>, net.minecraft.nbt.NbtAccounter);
+  public <T> net.minecraft.network.FriendlyByteBuf writeWithCodec(com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>, com.mojang.serialization.Codec<T>, T);
+  public <T> T readLenientJsonWithCodec(com.mojang.serialization.Codec<T>);
+  public <T> void writeJsonWithCodec(com.mojang.serialization.Codec<T>, T);
+  public void readWithCount(java.util.function.Consumer<net.minecraft.network.FriendlyByteBuf>);
+  public <E extends java.lang.Enum<E>> void writeEnumSet(java.util.EnumSet<E>, java.lang.Class<E>);
+  public <E extends java.lang.Enum<E>> java.util.EnumSet<E> readEnumSet(java.lang.Class<E>);
+  public <T> void writeOptional(java.util.Optional<T>, net.minecraft.network.codec.StreamEncoder<? super net.minecraft.network.FriendlyByteBuf, T>);
+  public <T> java.util.Optional<T> readOptional(net.minecraft.network.codec.StreamDecoder<? super net.minecraft.network.FriendlyByteBuf, T>);
+  public <L, R> void writeEither(com.mojang.datafixers.util.Either<L, R>, net.minecraft.network.codec.StreamEncoder<? super net.minecraft.network.FriendlyByteBuf, L>, net.minecraft.network.codec.StreamEncoder<? super net.minecraft.network.FriendlyByteBuf, R>);
+  public <L, R> com.mojang.datafixers.util.Either<L, R> readEither(net.minecraft.network.codec.StreamDecoder<? super net.minecraft.network.FriendlyByteBuf, L>, net.minecraft.network.codec.StreamDecoder<? super net.minecraft.network.FriendlyByteBuf, R>);
+  public <T> T readNullable(net.minecraft.network.codec.StreamDecoder<? super net.minecraft.network.FriendlyByteBuf, T>);
+  public static <T, B extends io.netty.buffer.ByteBuf> T readNullable(B, net.minecraft.network.codec.StreamDecoder<? super B, T>);
+  public <T> void writeNullable(T, net.minecraft.network.codec.StreamEncoder<? super net.minecraft.network.FriendlyByteBuf, T>);
+  public static <T, B extends io.netty.buffer.ByteBuf> void writeNullable(B, T, net.minecraft.network.codec.StreamEncoder<? super B, T>);
+  public byte[] readByteArray();
+  public static byte[] readByteArray(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf writeByteArray(byte[]);
+  public static void writeByteArray(io.netty.buffer.ByteBuf, byte[]);
+  public byte[] readByteArray(int);
+  public static byte[] readByteArray(io.netty.buffer.ByteBuf, int);
+  public net.minecraft.network.FriendlyByteBuf writeVarIntArray(int[]);
+  public int[] readVarIntArray();
+  public int[] readVarIntArray(int);
+  public net.minecraft.network.FriendlyByteBuf writeLongArray(long[]);
+  public static void writeLongArray(io.netty.buffer.ByteBuf, long[]);
+  public net.minecraft.network.FriendlyByteBuf writeFixedSizeLongArray(long[]);
+  public static void writeFixedSizeLongArray(io.netty.buffer.ByteBuf, long[]);
+  public long[] readLongArray();
+  public long[] readFixedSizeLongArray(long[]);
+  public static long[] readLongArray(io.netty.buffer.ByteBuf);
+  public static long[] readFixedSizeLongArray(io.netty.buffer.ByteBuf, long[]);
+  public net.minecraft.core.BlockPos readBlockPos();
+  public static net.minecraft.core.BlockPos readBlockPos(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf writeBlockPos(net.minecraft.core.BlockPos);
+  public static void writeBlockPos(io.netty.buffer.ByteBuf, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.ChunkPos readChunkPos();
+  public net.minecraft.network.FriendlyByteBuf writeChunkPos(net.minecraft.world.level.ChunkPos);
+  public static net.minecraft.world.level.ChunkPos readChunkPos(io.netty.buffer.ByteBuf);
+  public static void writeChunkPos(io.netty.buffer.ByteBuf, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.core.GlobalPos readGlobalPos();
+  public void writeGlobalPos(net.minecraft.core.GlobalPos);
+  public org.joml.Vector3f readVector3f();
+  public static org.joml.Vector3f readVector3f(io.netty.buffer.ByteBuf);
+  public void writeVector3f(org.joml.Vector3f);
+  public static void writeVector3f(io.netty.buffer.ByteBuf, org.joml.Vector3fc);
+  public org.joml.Quaternionf readQuaternion();
+  public static org.joml.Quaternionf readQuaternion(io.netty.buffer.ByteBuf);
+  public void writeQuaternion(org.joml.Quaternionf);
+  public static void writeQuaternion(io.netty.buffer.ByteBuf, org.joml.Quaternionfc);
+  public <T extends java.lang.Enum<T>> T readEnum(java.lang.Class<T>);
+  public net.minecraft.network.FriendlyByteBuf writeEnum(java.lang.Enum<?>);
+  public <T> T readById(java.util.function.IntFunction<T>);
+  public <T> net.minecraft.network.FriendlyByteBuf writeById(java.util.function.ToIntFunction<T>, T);
+  public int readVarInt();
+  public long readVarLong();
+  public net.minecraft.network.FriendlyByteBuf writeUUID(java.util.UUID);
+  public static void writeUUID(io.netty.buffer.ByteBuf, java.util.UUID);
+  public java.util.UUID readUUID();
+  public static java.util.UUID readUUID(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf writeVarInt(int);
+  public net.minecraft.network.FriendlyByteBuf writeVarLong(long);
+  public net.minecraft.network.FriendlyByteBuf writeNbt(net.minecraft.nbt.Tag);
+  public static void writeNbt(io.netty.buffer.ByteBuf, net.minecraft.nbt.Tag);
+  public net.minecraft.nbt.CompoundTag readNbt();
+  public static net.minecraft.nbt.CompoundTag readNbt(io.netty.buffer.ByteBuf);
+  public static net.minecraft.nbt.Tag readNbt(io.netty.buffer.ByteBuf, net.minecraft.nbt.NbtAccounter);
+  public net.minecraft.nbt.Tag readNbt(net.minecraft.nbt.NbtAccounter);
+  public java.lang.String readUtf();
+  public java.lang.String readUtf(int);
+  public net.minecraft.network.FriendlyByteBuf writeUtf(java.lang.String);
+  public net.minecraft.network.FriendlyByteBuf writeUtf(java.lang.String, int);
+  public net.minecraft.resources.Identifier readIdentifier();
+  public net.minecraft.network.FriendlyByteBuf writeIdentifier(net.minecraft.resources.Identifier);
+  public <T> net.minecraft.resources.ResourceKey<T> readResourceKey(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public void writeResourceKey(net.minecraft.resources.ResourceKey<?>);
+  public <T> net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> readRegistryKey();
+  public java.util.BitSet readBitSet();
+  public void writeBitSet(java.util.BitSet);
+  public java.util.BitSet readFixedBitSet(int);
+  public void writeFixedBitSet(java.util.BitSet, int);
+  public static java.util.BitSet readFixedBitSet(io.netty.buffer.ByteBuf, int);
+  public static void writeFixedBitSet(io.netty.buffer.ByteBuf, java.util.BitSet, int);
+  public static int readContainerId(io.netty.buffer.ByteBuf);
+  public int readContainerId();
+  public static void writeContainerId(io.netty.buffer.ByteBuf, int);
+  public void writeContainerId(int);
+  public boolean isContiguous();
+  public int maxFastWritableBytes();
+  public int capacity();
+  public net.minecraft.network.FriendlyByteBuf capacity(int);
+  public int maxCapacity();
+  public io.netty.buffer.ByteBufAllocator alloc();
+  public java.nio.ByteOrder order();
+  public io.netty.buffer.ByteBuf order(java.nio.ByteOrder);
+  public io.netty.buffer.ByteBuf unwrap();
+  public boolean isDirect();
+  public boolean isReadOnly();
+  public io.netty.buffer.ByteBuf asReadOnly();
+  public int readerIndex();
+  public net.minecraft.network.FriendlyByteBuf readerIndex(int);
+  public int writerIndex();
+  public net.minecraft.network.FriendlyByteBuf writerIndex(int);
+  public net.minecraft.network.FriendlyByteBuf setIndex(int, int);
+  public int readableBytes();
+  public int writableBytes();
+  public int maxWritableBytes();
+  public boolean isReadable();
+  public boolean isReadable(int);
+  public boolean isWritable();
+  public boolean isWritable(int);
+  public net.minecraft.network.FriendlyByteBuf clear();
+  public net.minecraft.network.FriendlyByteBuf markReaderIndex();
+  public net.minecraft.network.FriendlyByteBuf resetReaderIndex();
+  public net.minecraft.network.FriendlyByteBuf markWriterIndex();
+  public net.minecraft.network.FriendlyByteBuf resetWriterIndex();
+  public net.minecraft.network.FriendlyByteBuf discardReadBytes();
+  public net.minecraft.network.FriendlyByteBuf discardSomeReadBytes();
+  public net.minecraft.network.FriendlyByteBuf ensureWritable(int);
+  public int ensureWritable(int, boolean);
+  public boolean getBoolean(int);
+  public byte getByte(int);
+  public short getUnsignedByte(int);
+  public short getShort(int);
+  public short getShortLE(int);
+  public int getUnsignedShort(int);
+  public int getUnsignedShortLE(int);
+  public int getMedium(int);
+  public int getMediumLE(int);
+  public int getUnsignedMedium(int);
+  public int getUnsignedMediumLE(int);
+  public int getInt(int);
+  public int getIntLE(int);
+  public long getUnsignedInt(int);
+  public long getUnsignedIntLE(int);
+  public long getLong(int);
+  public long getLongLE(int);
+  public char getChar(int);
+  public float getFloat(int);
+  public double getDouble(int);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, io.netty.buffer.ByteBuf, int);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, io.netty.buffer.ByteBuf, int, int);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, byte[]);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, byte[], int, int);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, java.nio.ByteBuffer);
+  public net.minecraft.network.FriendlyByteBuf getBytes(int, java.io.OutputStream, int) throws java.io.IOException;
+  public int getBytes(int, java.nio.channels.GatheringByteChannel, int) throws java.io.IOException;
+  public int getBytes(int, java.nio.channels.FileChannel, long, int) throws java.io.IOException;
+  public java.lang.CharSequence getCharSequence(int, int, java.nio.charset.Charset);
+  public net.minecraft.network.FriendlyByteBuf setBoolean(int, boolean);
+  public net.minecraft.network.FriendlyByteBuf setByte(int, int);
+  public net.minecraft.network.FriendlyByteBuf setShort(int, int);
+  public net.minecraft.network.FriendlyByteBuf setShortLE(int, int);
+  public net.minecraft.network.FriendlyByteBuf setMedium(int, int);
+  public net.minecraft.network.FriendlyByteBuf setMediumLE(int, int);
+  public net.minecraft.network.FriendlyByteBuf setInt(int, int);
+  public net.minecraft.network.FriendlyByteBuf setIntLE(int, int);
+  public net.minecraft.network.FriendlyByteBuf setLong(int, long);
+  public net.minecraft.network.FriendlyByteBuf setLongLE(int, long);
+  public net.minecraft.network.FriendlyByteBuf setChar(int, int);
+  public net.minecraft.network.FriendlyByteBuf setFloat(int, float);
+  public net.minecraft.network.FriendlyByteBuf setDouble(int, double);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, io.netty.buffer.ByteBuf, int);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, io.netty.buffer.ByteBuf, int, int);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, byte[]);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, byte[], int, int);
+  public net.minecraft.network.FriendlyByteBuf setBytes(int, java.nio.ByteBuffer);
+  public int setBytes(int, java.io.InputStream, int) throws java.io.IOException;
+  public int setBytes(int, java.nio.channels.ScatteringByteChannel, int) throws java.io.IOException;
+  public int setBytes(int, java.nio.channels.FileChannel, long, int) throws java.io.IOException;
+  public net.minecraft.network.FriendlyByteBuf setZero(int, int);
+  public int setCharSequence(int, java.lang.CharSequence, java.nio.charset.Charset);
+  public boolean readBoolean();
+  public byte readByte();
+  public short readUnsignedByte();
+  public short readShort();
+  public short readShortLE();
+  public int readUnsignedShort();
+  public int readUnsignedShortLE();
+  public int readMedium();
+  public int readMediumLE();
+  public int readUnsignedMedium();
+  public int readUnsignedMediumLE();
+  public int readInt();
+  public int readIntLE();
+  public long readUnsignedInt();
+  public long readUnsignedIntLE();
+  public long readLong();
+  public long readLongLE();
+  public char readChar();
+  public float readFloat();
+  public double readDouble();
+  public io.netty.buffer.ByteBuf readBytes(int);
+  public io.netty.buffer.ByteBuf readSlice(int);
+  public io.netty.buffer.ByteBuf readRetainedSlice(int);
+  public net.minecraft.network.FriendlyByteBuf readBytes(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf readBytes(io.netty.buffer.ByteBuf, int);
+  public net.minecraft.network.FriendlyByteBuf readBytes(io.netty.buffer.ByteBuf, int, int);
+  public net.minecraft.network.FriendlyByteBuf readBytes(byte[]);
+  public net.minecraft.network.FriendlyByteBuf readBytes(byte[], int, int);
+  public net.minecraft.network.FriendlyByteBuf readBytes(java.nio.ByteBuffer);
+  public net.minecraft.network.FriendlyByteBuf readBytes(java.io.OutputStream, int) throws java.io.IOException;
+  public int readBytes(java.nio.channels.GatheringByteChannel, int) throws java.io.IOException;
+  public java.lang.CharSequence readCharSequence(int, java.nio.charset.Charset);
+  public java.lang.String readString(int, java.nio.charset.Charset);
+  public int readBytes(java.nio.channels.FileChannel, long, int) throws java.io.IOException;
+  public net.minecraft.network.FriendlyByteBuf skipBytes(int);
+  public net.minecraft.network.FriendlyByteBuf writeBoolean(boolean);
+  public net.minecraft.network.FriendlyByteBuf writeByte(int);
+  public net.minecraft.network.FriendlyByteBuf writeShort(int);
+  public net.minecraft.network.FriendlyByteBuf writeShortLE(int);
+  public net.minecraft.network.FriendlyByteBuf writeMedium(int);
+  public net.minecraft.network.FriendlyByteBuf writeMediumLE(int);
+  public net.minecraft.network.FriendlyByteBuf writeInt(int);
+  public net.minecraft.network.FriendlyByteBuf writeIntLE(int);
+  public net.minecraft.network.FriendlyByteBuf writeLong(long);
+  public net.minecraft.network.FriendlyByteBuf writeLongLE(long);
+  public net.minecraft.network.FriendlyByteBuf writeChar(int);
+  public net.minecraft.network.FriendlyByteBuf writeFloat(float);
+  public net.minecraft.network.FriendlyByteBuf writeDouble(double);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(io.netty.buffer.ByteBuf, int);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(io.netty.buffer.ByteBuf, int, int);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(byte[]);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(byte[], int, int);
+  public net.minecraft.network.FriendlyByteBuf writeBytes(java.nio.ByteBuffer);
+  public int writeBytes(java.io.InputStream, int) throws java.io.IOException;
+  public int writeBytes(java.nio.channels.ScatteringByteChannel, int) throws java.io.IOException;
+  public int writeBytes(java.nio.channels.FileChannel, long, int) throws java.io.IOException;
+  public net.minecraft.network.FriendlyByteBuf writeZero(int);
+  public int writeCharSequence(java.lang.CharSequence, java.nio.charset.Charset);
+  public int indexOf(int, int, byte);
+  public int bytesBefore(byte);
+  public int bytesBefore(int, byte);
+  public int bytesBefore(int, int, byte);
+  public int forEachByte(io.netty.util.ByteProcessor);
+  public int forEachByte(int, int, io.netty.util.ByteProcessor);
+  public int forEachByteDesc(io.netty.util.ByteProcessor);
+  public int forEachByteDesc(int, int, io.netty.util.ByteProcessor);
+  public io.netty.buffer.ByteBuf copy();
+  public io.netty.buffer.ByteBuf copy(int, int);
+  public io.netty.buffer.ByteBuf slice();
+  public io.netty.buffer.ByteBuf retainedSlice();
+  public io.netty.buffer.ByteBuf slice(int, int);
+  public io.netty.buffer.ByteBuf retainedSlice(int, int);
+  public io.netty.buffer.ByteBuf duplicate();
+  public io.netty.buffer.ByteBuf retainedDuplicate();
+  public int nioBufferCount();
+  public java.nio.ByteBuffer nioBuffer();
+  public java.nio.ByteBuffer nioBuffer(int, int);
+  public java.nio.ByteBuffer internalNioBuffer(int, int);
+  public java.nio.ByteBuffer[] nioBuffers();
+  public java.nio.ByteBuffer[] nioBuffers(int, int);
+  public boolean hasArray();
+  public byte[] array();
+  public int arrayOffset();
+  public boolean hasMemoryAddress();
+  public long memoryAddress();
+  public java.lang.String toString(java.nio.charset.Charset);
+  public java.lang.String toString(int, int, java.nio.charset.Charset);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+  public int compareTo(io.netty.buffer.ByteBuf);
+  public java.lang.String toString();
+  public net.minecraft.network.FriendlyByteBuf retain(int);
+  public net.minecraft.network.FriendlyByteBuf retain();
+  public net.minecraft.network.FriendlyByteBuf touch();
+  public net.minecraft.network.FriendlyByteBuf touch(java.lang.Object);
+  public int refCnt();
+  public boolean release();
+  public boolean release(int);
+  public io.netty.buffer.ByteBuf touch(java.lang.Object);
+  public io.netty.buffer.ByteBuf touch();
+  public io.netty.buffer.ByteBuf retain();
+  public io.netty.buffer.ByteBuf retain(int);
+  public io.netty.buffer.ByteBuf writeZero(int);
+  public io.netty.buffer.ByteBuf writeBytes(java.nio.ByteBuffer);
+  public io.netty.buffer.ByteBuf writeBytes(byte[], int, int);
+  public io.netty.buffer.ByteBuf writeBytes(byte[]);
+  public io.netty.buffer.ByteBuf writeBytes(io.netty.buffer.ByteBuf, int, int);
+  public io.netty.buffer.ByteBuf writeBytes(io.netty.buffer.ByteBuf, int);
+  public io.netty.buffer.ByteBuf writeBytes(io.netty.buffer.ByteBuf);
+  public io.netty.buffer.ByteBuf writeDouble(double);
+  public io.netty.buffer.ByteBuf writeFloat(float);
+  public io.netty.buffer.ByteBuf writeChar(int);
+  public io.netty.buffer.ByteBuf writeLongLE(long);
+  public io.netty.buffer.ByteBuf writeLong(long);
+  public io.netty.buffer.ByteBuf writeIntLE(int);
+  public io.netty.buffer.ByteBuf writeInt(int);
+  public io.netty.buffer.ByteBuf writeMediumLE(int);
+  public io.netty.buffer.ByteBuf writeMedium(int);
+  public io.netty.buffer.ByteBuf writeShortLE(int);
+  public io.netty.buffer.ByteBuf writeShort(int);
+  public io.netty.buffer.ByteBuf writeByte(int);
+  public io.netty.buffer.ByteBuf writeBoolean(boolean);
+  public io.netty.buffer.ByteBuf skipBytes(int);
+  public io.netty.buffer.ByteBuf readBytes(java.io.OutputStream, int) throws java.io.IOException;
+  public io.netty.buffer.ByteBuf readBytes(java.nio.ByteBuffer);
+  public io.netty.buffer.ByteBuf readBytes(byte[], int, int);
+  public io.netty.buffer.ByteBuf readBytes(byte[]);
+  public io.netty.buffer.ByteBuf readBytes(io.netty.buffer.ByteBuf, int, int);
+  public io.netty.buffer.ByteBuf readBytes(io.netty.buffer.ByteBuf, int);
+  public io.netty.buffer.ByteBuf readBytes(io.netty.buffer.ByteBuf);
+  public io.netty.buffer.ByteBuf setZero(int, int);
+  public io.netty.buffer.ByteBuf setBytes(int, java.nio.ByteBuffer);
+  public io.netty.buffer.ByteBuf setBytes(int, byte[], int, int);
+  public io.netty.buffer.ByteBuf setBytes(int, byte[]);
+  public io.netty.buffer.ByteBuf setBytes(int, io.netty.buffer.ByteBuf, int, int);
+  public io.netty.buffer.ByteBuf setBytes(int, io.netty.buffer.ByteBuf, int);
+  public io.netty.buffer.ByteBuf setBytes(int, io.netty.buffer.ByteBuf);
+  public io.netty.buffer.ByteBuf setDouble(int, double);
+  public io.netty.buffer.ByteBuf setFloat(int, float);
+  public io.netty.buffer.ByteBuf setChar(int, int);
+  public io.netty.buffer.ByteBuf setLongLE(int, long);
+  public io.netty.buffer.ByteBuf setLong(int, long);
+  public io.netty.buffer.ByteBuf setIntLE(int, int);
+  public io.netty.buffer.ByteBuf setInt(int, int);
+  public io.netty.buffer.ByteBuf setMediumLE(int, int);
+  public io.netty.buffer.ByteBuf setMedium(int, int);
+  public io.netty.buffer.ByteBuf setShortLE(int, int);
+  public io.netty.buffer.ByteBuf setShort(int, int);
+  public io.netty.buffer.ByteBuf setByte(int, int);
+  public io.netty.buffer.ByteBuf setBoolean(int, boolean);
+  public io.netty.buffer.ByteBuf getBytes(int, java.io.OutputStream, int) throws java.io.IOException;
+  public io.netty.buffer.ByteBuf getBytes(int, java.nio.ByteBuffer);
+  public io.netty.buffer.ByteBuf getBytes(int, byte[], int, int);
+  public io.netty.buffer.ByteBuf getBytes(int, byte[]);
+  public io.netty.buffer.ByteBuf getBytes(int, io.netty.buffer.ByteBuf, int, int);
+  public io.netty.buffer.ByteBuf getBytes(int, io.netty.buffer.ByteBuf, int);
+  public io.netty.buffer.ByteBuf getBytes(int, io.netty.buffer.ByteBuf);
+  public io.netty.buffer.ByteBuf ensureWritable(int);
+  public io.netty.buffer.ByteBuf discardSomeReadBytes();
+  public io.netty.buffer.ByteBuf discardReadBytes();
+  public io.netty.buffer.ByteBuf resetWriterIndex();
+  public io.netty.buffer.ByteBuf markWriterIndex();
+  public io.netty.buffer.ByteBuf resetReaderIndex();
+  public io.netty.buffer.ByteBuf markReaderIndex();
+  public io.netty.buffer.ByteBuf clear();
+  public io.netty.buffer.ByteBuf setIndex(int, int);
+  public io.netty.buffer.ByteBuf writerIndex(int);
+  public io.netty.buffer.ByteBuf readerIndex(int);
+  public io.netty.buffer.ByteBuf capacity(int);
+  public io.netty.util.ReferenceCounted touch(java.lang.Object);
+  public io.netty.util.ReferenceCounted touch();
+  public io.netty.util.ReferenceCounted retain(int);
+  public io.netty.util.ReferenceCounted retain();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "TickablePacketListener.java"
+public interface net.minecraft.network.TickablePacketListener extends net.minecraft.network.PacketListener {
+  public abstract void tick();
+}
+Compiled from "HashedStack.java"
+public interface net.minecraft.network.HashedStack {
+  public static final net.minecraft.network.HashedStack EMPTY;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.network.HashedStack> STREAM_CODEC;
+  public abstract boolean matches(net.minecraft.world.item.ItemStack, net.minecraft.network.HashedPatchMap$HashGenerator);
+  public static net.minecraft.network.HashedStack create(net.minecraft.world.item.ItemStack, net.minecraft.network.HashedPatchMap$HashGenerator);
+}
+Compiled from "PacketBundleUnpacker.java"
+public class net.minecraft.network.PacketBundleUnpacker extends io.netty.handler.codec.MessageToMessageEncoder<net.minecraft.network.protocol.Packet<?>> {
+  public net.minecraft.network.PacketBundleUnpacker(net.minecraft.network.protocol.BundlerInfo);
+  protected void encode(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, java.util.List) throws java.lang.Exception;
+}
+Compiled from "SkipPacketException.java"
+public interface net.minecraft.network.SkipPacketException {
+}
+Compiled from "CipherEncoder.java"
+public class net.minecraft.network.CipherEncoder extends io.netty.handler.codec.MessageToByteEncoder<io.netty.buffer.ByteBuf> {
+  public net.minecraft.network.CipherEncoder(javax.crypto.Cipher);
+  protected void encode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+}
+Compiled from "PacketProcessor.java"
+final class net.minecraft.network.PacketProcessor$ListenerAndPacket<T extends net.minecraft.network.PacketListener> extends java.lang.Record {
+  public void handle();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T listener();
+  public net.minecraft.network.protocol.Packet<T> packet();
+}
+Compiled from "SkipPacketEncoderException.java"
+public class net.minecraft.network.SkipPacketEncoderException extends io.netty.handler.codec.EncoderException implements net.minecraft.network.codec.IdDispatchCodec$DontDecorateException,net.minecraft.network.SkipPacketException {
+  public net.minecraft.network.SkipPacketEncoderException(java.lang.String);
+  public net.minecraft.network.SkipPacketEncoderException(java.lang.Throwable);
+}
+Compiled from "VarInt.java"
+public class net.minecraft.network.VarInt {
+  public static final int MAX_VARINT_SIZE;
+  public net.minecraft.network.VarInt();
+  public static int getByteSize(int);
+  public static boolean hasContinuationBit(byte);
+  public static int read(io.netty.buffer.ByteBuf);
+  public static io.netty.buffer.ByteBuf write(io.netty.buffer.ByteBuf, int);
+}
+Compiled from "HashedStack.java"
+public final class net.minecraft.network.HashedStack$ActualItem extends java.lang.Record implements net.minecraft.network.HashedStack {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.network.HashedStack$ActualItem> STREAM_CODEC;
+  public net.minecraft.network.HashedStack$ActualItem(net.minecraft.core.Holder<net.minecraft.world.item.Item>, int, net.minecraft.network.HashedPatchMap);
+  public boolean matches(net.minecraft.world.item.ItemStack, net.minecraft.network.HashedPatchMap$HashGenerator);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.item.Item> item();
+  public int count();
+  public net.minecraft.network.HashedPatchMap components();
+}
+Compiled from "ClientboundPacketListener.java"
+public interface net.minecraft.network.ClientboundPacketListener extends net.minecraft.network.PacketListener {
+  public default net.minecraft.network.protocol.PacketFlow flow();
+}
+Compiled from "ProtocolInfo.java"
+public interface net.minecraft.network.ProtocolInfo$Details {
+  public abstract net.minecraft.network.ConnectionProtocol id();
+  public abstract net.minecraft.network.protocol.PacketFlow flow();
+  public abstract void listPackets(net.minecraft.network.ProtocolInfo$Details$PacketVisitor);
+}
+Compiled from "PacketEncoder.java"
+public class net.minecraft.network.PacketEncoder<T extends net.minecraft.network.PacketListener> extends io.netty.handler.codec.MessageToByteEncoder<net.minecraft.network.protocol.Packet<T>> {
+  public net.minecraft.network.PacketEncoder(net.minecraft.network.ProtocolInfo<T>);
+  protected void encode(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<T>, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+}
+Compiled from "CompressionDecoder.java"
+public class net.minecraft.network.CompressionDecoder extends io.netty.handler.codec.ByteToMessageDecoder {
+  public static final int MAXIMUM_COMPRESSED_LENGTH;
+  public static final int MAXIMUM_UNCOMPRESSED_LENGTH;
+  public net.minecraft.network.CompressionDecoder(int, boolean);
+  protected void decode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  public void setThreshold(int, boolean);
+}
+Compiled from "CompressionEncoder.java"
+public class net.minecraft.network.CompressionEncoder extends io.netty.handler.codec.MessageToByteEncoder<io.netty.buffer.ByteBuf> {
+  public net.minecraft.network.CompressionEncoder(int);
+  protected void encode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, io.netty.buffer.ByteBuf);
+  public int getThreshold();
+  public void setThreshold(int);
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+}
+Compiled from "LpVec3.java"
+public class net.minecraft.network.LpVec3 {
+  public static final double ABS_MAX_VALUE;
+  public static final double ABS_MIN_VALUE;
+  public net.minecraft.network.LpVec3();
+  public static boolean hasContinuationBit(int);
+  public static net.minecraft.world.phys.Vec3 read(io.netty.buffer.ByteBuf);
+  public static void write(io.netty.buffer.ByteBuf, net.minecraft.world.phys.Vec3);
+}
+Compiled from "HashedPatchMap.java"
+public interface net.minecraft.network.HashedPatchMap$HashGenerator extends java.util.function.Function<net.minecraft.core.component.TypedDataComponent<?>, java.lang.Integer> {
+}
+Compiled from "ProtocolInfo.java"
+public interface net.minecraft.network.ProtocolInfo$DetailsProvider {
+  public abstract net.minecraft.network.ProtocolInfo$Details details();
+}
+Compiled from "VarLong.java"
+public class net.minecraft.network.VarLong {
+  public net.minecraft.network.VarLong();
+  public static int getByteSize(long);
+  public static boolean hasContinuationBit(byte);
+  public static long read(io.netty.buffer.ByteBuf);
+  public static io.netty.buffer.ByteBuf write(io.netty.buffer.ByteBuf, long);
+}
+Compiled from "ProtocolInfo.java"
+public interface net.minecraft.network.ProtocolInfo$Details$PacketVisitor {
+  public abstract void accept(net.minecraft.network.protocol.PacketType<?>, int);
+}
+Compiled from "Varint21LengthFieldPrepender.java"
+public class net.minecraft.network.Varint21LengthFieldPrepender extends io.netty.handler.codec.MessageToByteEncoder<io.netty.buffer.ByteBuf> {
+  public static final int MAX_VARINT21_BYTES;
+  public net.minecraft.network.Varint21LengthFieldPrepender();
+  protected void encode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, io.netty.buffer.ByteBuf);
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.buffer.ByteBuf) throws java.lang.Exception;
+}
+Compiled from "UnconfiguredPipelineHandler.java"
+public interface net.minecraft.network.UnconfiguredPipelineHandler$InboundConfigurationTask {
+  public abstract void run(io.netty.channel.ChannelHandlerContext);
+  public default net.minecraft.network.UnconfiguredPipelineHandler$InboundConfigurationTask andThen(net.minecraft.network.UnconfiguredPipelineHandler$InboundConfigurationTask);
+}
+Compiled from "Varint21FrameDecoder.java"
+public class net.minecraft.network.Varint21FrameDecoder extends io.netty.handler.codec.ByteToMessageDecoder {
+  public net.minecraft.network.Varint21FrameDecoder(net.minecraft.network.BandwidthDebugMonitor);
+  protected void handlerRemoved0(io.netty.channel.ChannelHandlerContext);
+  protected void decode(io.netty.channel.ChannelHandlerContext, io.netty.buffer.ByteBuf, java.util.List<java.lang.Object>);
+}
+Compiled from "PacketSendListener.java"
+public class net.minecraft.network.PacketSendListener {
+  public net.minecraft.network.PacketSendListener();
+  public static io.netty.channel.ChannelFutureListener thenRun(java.lang.Runnable);
+  public static io.netty.channel.ChannelFutureListener exceptionallySend(java.util.function.Supplier<net.minecraft.network.protocol.Packet<?>>);
+}

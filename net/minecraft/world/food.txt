@@ -1,0 +1,124 @@
+Compiled from "FoodData.java"
+public class net.minecraft.world.food.FoodData {
+  public net.minecraft.world.food.FoodData();
+  public void eat(int, float);
+  public void eat(net.minecraft.world.food.FoodProperties);
+  public void tick(net.minecraft.server.level.ServerPlayer);
+  public void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public int getFoodLevel();
+  public boolean hasEnoughFood();
+  public boolean needsFood();
+  public void addExhaustion(float);
+  public float getSaturationLevel();
+  public void setFoodLevel(int);
+  public void setSaturation(float);
+}
+Compiled from "FoodProperties.java"
+public final class net.minecraft.world.food.FoodProperties extends java.lang.Record implements net.minecraft.world.item.component.ConsumableListener {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.food.FoodProperties> DIRECT_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.food.FoodProperties> DIRECT_STREAM_CODEC;
+  public net.minecraft.world.food.FoodProperties(int, float, boolean);
+  public void onConsume(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack, net.minecraft.world.item.component.Consumable);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int nutrition();
+  public float saturation();
+  public boolean canAlwaysEat();
+}
+Compiled from "VillagerFood.java"
+public final class net.minecraft.world.food.VillagerFood extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.food.VillagerFood> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.food.VillagerFood> STREAM_CODEC;
+  public net.minecraft.world.food.VillagerFood(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int nutrition();
+}
+Compiled from "FoodProperties.java"
+public class net.minecraft.world.food.FoodProperties$Builder {
+  public net.minecraft.world.food.FoodProperties$Builder();
+  public net.minecraft.world.food.FoodProperties$Builder nutrition(int);
+  public net.minecraft.world.food.FoodProperties$Builder saturationModifier(float);
+  public net.minecraft.world.food.FoodProperties$Builder alwaysEdible();
+  public net.minecraft.world.food.FoodProperties build();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.food.package-info {
+}
+Compiled from "Foods.java"
+public class net.minecraft.world.food.Foods {
+  public static final net.minecraft.world.food.FoodProperties APPLE;
+  public static final net.minecraft.world.food.FoodProperties BAKED_POTATO;
+  public static final net.minecraft.world.food.FoodProperties BEEF;
+  public static final net.minecraft.world.food.FoodProperties BEETROOT;
+  public static final net.minecraft.world.food.FoodProperties BEETROOT_SOUP;
+  public static final net.minecraft.world.food.FoodProperties BREAD;
+  public static final net.minecraft.world.food.FoodProperties CARROT;
+  public static final net.minecraft.world.food.FoodProperties CHICKEN;
+  public static final net.minecraft.world.food.FoodProperties CHORUS_FRUIT;
+  public static final net.minecraft.world.food.FoodProperties COD;
+  public static final net.minecraft.world.food.FoodProperties COOKED_BEEF;
+  public static final net.minecraft.world.food.FoodProperties COOKED_CHICKEN;
+  public static final net.minecraft.world.food.FoodProperties COOKED_COD;
+  public static final net.minecraft.world.food.FoodProperties COOKED_MUTTON;
+  public static final net.minecraft.world.food.FoodProperties COOKED_PORKCHOP;
+  public static final net.minecraft.world.food.FoodProperties COOKED_RABBIT;
+  public static final net.minecraft.world.food.FoodProperties COOKED_SALMON;
+  public static final net.minecraft.world.food.FoodProperties COOKIE;
+  public static final net.minecraft.world.food.FoodProperties DRIED_KELP;
+  public static final net.minecraft.world.food.FoodProperties ENCHANTED_GOLDEN_APPLE;
+  public static final net.minecraft.world.food.FoodProperties GOLDEN_APPLE;
+  public static final net.minecraft.world.food.FoodProperties GOLDEN_CARROT;
+  public static final net.minecraft.world.food.FoodProperties HONEY_BOTTLE;
+  public static final net.minecraft.world.food.FoodProperties MELON_SLICE;
+  public static final net.minecraft.world.food.FoodProperties MUSHROOM_STEW;
+  public static final net.minecraft.world.food.FoodProperties MUTTON;
+  public static final net.minecraft.world.food.FoodProperties POISONOUS_POTATO;
+  public static final net.minecraft.world.food.FoodProperties PORKCHOP;
+  public static final net.minecraft.world.food.FoodProperties POTATO;
+  public static final net.minecraft.world.food.FoodProperties PUFFERFISH;
+  public static final net.minecraft.world.food.FoodProperties PUMPKIN_PIE;
+  public static final net.minecraft.world.food.FoodProperties RABBIT;
+  public static final net.minecraft.world.food.FoodProperties RABBIT_STEW;
+  public static final net.minecraft.world.food.FoodProperties ROTTEN_FLESH;
+  public static final net.minecraft.world.food.FoodProperties SALMON;
+  public static final net.minecraft.world.food.FoodProperties SPIDER_EYE;
+  public static final net.minecraft.world.food.FoodProperties SUSPICIOUS_STEW;
+  public static final net.minecraft.world.food.FoodProperties SWEET_BERRIES;
+  public static final net.minecraft.world.food.FoodProperties GLOW_BERRIES;
+  public static final net.minecraft.world.food.FoodProperties TROPICAL_FISH;
+  public net.minecraft.world.food.Foods();
+}
+Compiled from "FoodConstants.java"
+public class net.minecraft.world.food.FoodConstants {
+  public static final int MAX_FOOD;
+  public static final float MAX_SATURATION;
+  public static final float START_SATURATION;
+  public static final float SATURATION_FLOOR;
+  public static final float EXHAUSTION_DROP;
+  public static final int HEALTH_TICK_COUNT;
+  public static final int HEALTH_TICK_COUNT_SATURATED;
+  public static final int HEAL_LEVEL;
+  public static final int SPRINT_LEVEL;
+  public static final int STARVE_LEVEL;
+  public static final float FOOD_SATURATION_POOR;
+  public static final float FOOD_SATURATION_LOW;
+  public static final float FOOD_SATURATION_NORMAL;
+  public static final float FOOD_SATURATION_GOOD;
+  public static final float FOOD_SATURATION_MAX;
+  public static final float FOOD_SATURATION_SUPERNATURAL;
+  public static final float EXHAUSTION_HEAL;
+  public static final float EXHAUSTION_JUMP;
+  public static final float EXHAUSTION_SPRINT_JUMP;
+  public static final float EXHAUSTION_MINE;
+  public static final float EXHAUSTION_ATTACK;
+  public static final float EXHAUSTION_WALK;
+  public static final float EXHAUSTION_CROUCH;
+  public static final float EXHAUSTION_SPRINT;
+  public static final float EXHAUSTION_SWIM;
+  public net.minecraft.world.food.FoodConstants();
+  public static float saturationByModifier(int, float);
+}

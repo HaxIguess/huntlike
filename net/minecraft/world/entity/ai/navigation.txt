@@ -1,0 +1,126 @@
+Compiled from "AmphibiousPathNavigation.java"
+public class net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation extends net.minecraft.world.entity.ai.navigation.PathNavigation {
+  public net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+  protected boolean canUpdatePath();
+  protected net.minecraft.world.phys.Vec3 getTempMobPos();
+  protected double getGroundY(net.minecraft.world.phys.Vec3);
+  protected boolean canMoveDirectly(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public boolean isStableDestination(net.minecraft.core.BlockPos);
+  public void setCanFloat(boolean);
+  public boolean canNavigateGround();
+}
+Compiled from "FlyingPathNavigation.java"
+public class net.minecraft.world.entity.ai.navigation.FlyingPathNavigation extends net.minecraft.world.entity.ai.navigation.PathNavigation {
+  public net.minecraft.world.entity.ai.navigation.FlyingPathNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+  protected boolean canMoveDirectly(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  protected boolean canUpdatePath();
+  protected net.minecraft.world.phys.Vec3 getTempMobPos();
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.world.entity.Entity, int);
+  public void tick();
+  public boolean isStableDestination(net.minecraft.core.BlockPos);
+  public boolean canNavigateGround();
+}
+Compiled from "WallClimberNavigation.java"
+public class net.minecraft.world.entity.ai.navigation.WallClimberNavigation extends net.minecraft.world.entity.ai.navigation.GroundPathNavigation {
+  public net.minecraft.world.entity.ai.navigation.WallClimberNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.core.BlockPos, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.world.entity.Entity, int);
+  public boolean moveTo(net.minecraft.world.entity.Entity, double);
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.navigation.package-info {
+}
+Compiled from "WaterBoundPathNavigation.java"
+public class net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation extends net.minecraft.world.entity.ai.navigation.PathNavigation {
+  public net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+  protected boolean canUpdatePath();
+  protected net.minecraft.world.phys.Vec3 getTempMobPos();
+  protected double getGroundY(net.minecraft.world.phys.Vec3);
+  protected boolean canMoveDirectly(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public boolean isStableDestination(net.minecraft.core.BlockPos);
+  public void setCanFloat(boolean);
+  public boolean canNavigateGround();
+  public float getMaxVerticalDistanceToWaypoint();
+}
+Compiled from "GroundPathNavigation.java"
+public class net.minecraft.world.entity.ai.navigation.GroundPathNavigation extends net.minecraft.world.entity.ai.navigation.PathNavigation {
+  public net.minecraft.world.entity.ai.navigation.GroundPathNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  protected net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+  protected boolean canUpdatePath();
+  protected net.minecraft.world.phys.Vec3 getTempMobPos();
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.core.BlockPos, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.world.entity.Entity, int);
+  protected void trimPath();
+  public boolean canNavigateGround();
+  public void setAvoidSun(boolean);
+  public void setCanWalkOverFences(boolean);
+  public void setCanPathToTargetsBelowSurface(boolean);
+}
+Compiled from "PathNavigation.java"
+public abstract class net.minecraft.world.entity.ai.navigation.PathNavigation {
+  protected final net.minecraft.world.entity.Mob mob;
+  protected final net.minecraft.world.level.Level level;
+  protected net.minecraft.world.level.pathfinder.Path path;
+  protected double speedModifier;
+  protected int tick;
+  protected int lastStuckCheck;
+  protected net.minecraft.world.phys.Vec3 lastStuckCheckPos;
+  protected net.minecraft.core.Vec3i timeoutCachedNode;
+  protected long timeoutTimer;
+  protected long lastTimeoutCheck;
+  protected double timeoutLimit;
+  protected float maxDistanceToWaypoint;
+  protected boolean hasDelayedRecomputation;
+  protected long timeLastRecompute;
+  protected net.minecraft.world.level.pathfinder.NodeEvaluator nodeEvaluator;
+  public net.minecraft.world.entity.ai.navigation.PathNavigation(net.minecraft.world.entity.Mob, net.minecraft.world.level.Level);
+  public void updatePathfinderMaxVisitedNodes();
+  public void setRequiredPathLength(float);
+  public void resetMaxVisitedNodesMultiplier();
+  public void setMaxVisitedNodesMultiplier(float);
+  public net.minecraft.core.BlockPos getTargetPos();
+  protected abstract net.minecraft.world.level.pathfinder.PathFinder createPathFinder(int);
+  public void setSpeedModifier(double);
+  public void recomputePath();
+  public final net.minecraft.world.level.pathfinder.Path createPath(double, double, double, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(java.util.stream.Stream<net.minecraft.core.BlockPos>, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(java.util.Set<net.minecraft.core.BlockPos>, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.core.BlockPos, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.core.BlockPos, int, int);
+  public net.minecraft.world.level.pathfinder.Path createPath(net.minecraft.world.entity.Entity, int);
+  protected net.minecraft.world.level.pathfinder.Path createPath(java.util.Set<net.minecraft.core.BlockPos>, int, boolean, int);
+  protected net.minecraft.world.level.pathfinder.Path createPath(java.util.Set<net.minecraft.core.BlockPos>, int, boolean, int, float);
+  public boolean moveTo(double, double, double, double);
+  public boolean moveTo(double, double, double, int, double);
+  public boolean moveTo(net.minecraft.world.entity.Entity, double);
+  public boolean moveTo(net.minecraft.world.entity.Entity, int, double);
+  public boolean moveTo(net.minecraft.world.level.pathfinder.Path, double);
+  public net.minecraft.world.level.pathfinder.Path getPath();
+  public void tick();
+  protected double getGroundY(net.minecraft.world.phys.Vec3);
+  protected void followThePath();
+  protected void doStuckDetection(net.minecraft.world.phys.Vec3);
+  public boolean isDone();
+  public boolean isInProgress();
+  public void stop();
+  protected abstract net.minecraft.world.phys.Vec3 getTempMobPos();
+  protected abstract boolean canUpdatePath();
+  protected void trimPath();
+  protected boolean canMoveDirectly(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public boolean canCutCorner(net.minecraft.world.level.pathfinder.PathType);
+  protected static boolean isClearForMovementBetween(net.minecraft.world.entity.Mob, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, boolean);
+  public boolean isStableDestination(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.pathfinder.NodeEvaluator getNodeEvaluator();
+  public void setCanFloat(boolean);
+  public boolean canFloat();
+  public boolean shouldRecomputePath(net.minecraft.core.BlockPos);
+  public float getMaxDistanceToWaypoint();
+  public float getMaxVerticalDistanceToWaypoint();
+  public boolean isStuck();
+  public abstract boolean canNavigateGround();
+  public void setCanOpenDoors(boolean);
+}

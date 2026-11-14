@@ -1,0 +1,86 @@
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.selector.package-info {
+}
+Compiled from "EntitySelector.java"
+public class net.minecraft.commands.arguments.selector.EntitySelector {
+  public static final int INFINITE;
+  public static final java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>> ORDER_ARBITRARY;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.CompilableString<net.minecraft.commands.arguments.selector.EntitySelector>> COMPILABLE_CODEC;
+  public net.minecraft.commands.arguments.selector.EntitySelector(int, boolean, boolean, java.util.List<java.util.function.Predicate<net.minecraft.world.entity.Entity>>, net.minecraft.advancements.predicates.MinMaxBounds$Doubles, java.util.function.Function<net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3>, net.minecraft.world.phys.AABB, java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>>, boolean, java.lang.String, java.util.UUID, net.minecraft.world.entity.EntityType<?>, boolean);
+  public int getMaxResults();
+  public boolean includesEntities();
+  public boolean isSelfSelector();
+  public boolean isWorldLimited();
+  public boolean usesSelector();
+  public net.minecraft.world.entity.Entity findSingleEntity(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.List<? extends net.minecraft.world.entity.Entity> findEntities(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.server.level.ServerPlayer findSinglePlayer(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.List<net.minecraft.server.level.ServerPlayer> findPlayers(net.minecraft.commands.CommandSourceStack) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.network.chat.Component joinNames(java.util.List<? extends net.minecraft.world.entity.Entity>);
+}
+Compiled from "EntitySelectorParser.java"
+public class net.minecraft.commands.arguments.selector.EntitySelectorParser implements net.fabricmc.fabric.api.command.v2.FabricEntitySelectorParser {
+  public static final char SYNTAX_SELECTOR_START;
+  public static final char SYNTAX_OPTIONS_KEY_VALUE_SEPARATOR;
+  public static final char SYNTAX_NOT;
+  public static final char SYNTAX_TAG;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_INVALID_NAME_OR_UUID;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_UNKNOWN_SELECTOR_TYPE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_SELECTORS_NOT_ALLOWED;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_MISSING_SELECTOR_TYPE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_EXPECTED_END_OF_OPTIONS;
+  public static final com.mojang.brigadier.exceptions.DynamicCommandExceptionType ERROR_EXPECTED_OPTION_VALUE;
+  public static final java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>> ORDER_NEAREST;
+  public static final java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>> ORDER_FURTHEST;
+  public static final java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>> ORDER_RANDOM;
+  public static final java.util.function.BiFunction<com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Consumer<com.mojang.brigadier.suggestion.SuggestionsBuilder>, java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions>> SUGGEST_NOTHING;
+  public net.minecraft.commands.arguments.selector.EntitySelectorParser(com.mojang.brigadier.StringReader, boolean);
+  public static <S> boolean allowSelectors(S);
+  public static boolean allowSelectors(net.minecraft.server.permissions.PermissionSetSupplier);
+  public net.minecraft.commands.arguments.selector.EntitySelector getSelector();
+  protected void parseSelector() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  protected void parseNameOrUUID() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  protected void parseOptions() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public boolean shouldInvertValue();
+  public boolean isTag();
+  public com.mojang.brigadier.StringReader getReader();
+  public void addPredicate(java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+  public void setWorldLimited();
+  public net.minecraft.advancements.predicates.MinMaxBounds$Doubles getDistance();
+  public void setDistance(net.minecraft.advancements.predicates.MinMaxBounds$Doubles);
+  public net.minecraft.advancements.predicates.MinMaxBounds$Ints getLevel();
+  public void setLevel(net.minecraft.advancements.predicates.MinMaxBounds$Ints);
+  public net.minecraft.advancements.predicates.MinMaxBounds$FloatDegrees getRotX();
+  public void setRotX(net.minecraft.advancements.predicates.MinMaxBounds$FloatDegrees);
+  public net.minecraft.advancements.predicates.MinMaxBounds$FloatDegrees getRotY();
+  public void setRotY(net.minecraft.advancements.predicates.MinMaxBounds$FloatDegrees);
+  public java.lang.Double getX();
+  public java.lang.Double getY();
+  public java.lang.Double getZ();
+  public void setX(double);
+  public void setY(double);
+  public void setZ(double);
+  public void setDeltaX(double);
+  public void setDeltaY(double);
+  public void setDeltaZ(double);
+  public java.lang.Double getDeltaX();
+  public java.lang.Double getDeltaY();
+  public java.lang.Double getDeltaZ();
+  public void setMaxResults(int);
+  public void setIncludesEntities(boolean);
+  public java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>> getOrder();
+  public void setOrder(java.util.function.BiConsumer<net.minecraft.world.phys.Vec3, java.util.List<? extends net.minecraft.world.entity.Entity>>);
+  public net.minecraft.commands.arguments.selector.EntitySelector parse() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public boolean isCurrentEntity();
+  public void setSuggestions(java.util.function.BiFunction<com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Consumer<com.mojang.brigadier.suggestion.SuggestionsBuilder>, java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions>>);
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> fillSuggestions(com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Consumer<com.mojang.brigadier.suggestion.SuggestionsBuilder>);
+  public net.minecraft.commands.arguments.selector.options.InvertableSetOptionState nameOption();
+  public net.minecraft.commands.arguments.selector.options.SetOnceOptionState limitedOption();
+  public net.minecraft.commands.arguments.selector.options.SetOnceOptionState sortedOption();
+  public net.minecraft.commands.arguments.selector.options.InvertableSetOptionState gamemodeOption();
+  public net.minecraft.commands.arguments.selector.options.InvertableSetOptionState teamOption();
+  public void limitToType(net.minecraft.world.entity.EntityType<?>);
+  public net.minecraft.commands.arguments.selector.options.InvertableSetOptionState typeOption();
+  public net.minecraft.commands.arguments.selector.options.SetOnceOptionState scoresOption();
+  public net.minecraft.commands.arguments.selector.options.SetOnceOptionState advancementsOption();
+}

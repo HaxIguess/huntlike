@@ -1,0 +1,145 @@
+Compiled from "IAdvancedRegistration.java"
+public interface mezz.jei.api.registration.IAdvancedRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.recipe.advanced.IRecipeManagerPluginHelper getRecipeManagerPluginHelper();
+  public abstract void addRecipeManagerPlugin(mezz.jei.api.recipe.advanced.IRecipeManagerPlugin);
+  public abstract <T> void addSimpleRecipeManagerPlugin(mezz.jei.api.recipe.types.IRecipeType<T>, mezz.jei.api.recipe.advanced.ISimpleRecipeManagerPlugin<T>);
+  public default <T> void addTypedRecipeManagerPlugin(mezz.jei.api.recipe.types.IRecipeType<T>, mezz.jei.api.recipe.advanced.ISimpleRecipeManagerPlugin<T>);
+  public abstract <T> void addRecipeCategoryDecorator(mezz.jei.api.recipe.types.IRecipeType<T>, mezz.jei.api.recipe.category.extensions.IRecipeCategoryDecorator<T>);
+  public abstract void addRecipeButtonFactory(mezz.jei.api.recipe.advanced.IRecipeButtonControllerFactory);
+  public abstract mezz.jei.api.runtime.IJeiFeatures getJeiFeatures();
+}
+Compiled from "IAdvancedSearchRegistration.java"
+public interface mezz.jei.api.registration.IAdvancedSearchRegistration {
+  public abstract mezz.jei.api.search.ISearchStorageBuilderFactory getDefaultSearchStorageBuilderFactory();
+  public abstract void replaceSearchStorage(mezz.jei.api.search.ISearchStorageFactory);
+  public abstract void replaceSearchStorage(mezz.jei.api.search.ISearchStorageBuilderFactory);
+}
+Compiled from "IExtraIngredientRegistration.java"
+public interface mezz.jei.api.registration.IExtraIngredientRegistration {
+  public default void addExtraItemStacks(java.util.Collection<net.minecraft.world.item.ItemStack>);
+  public abstract <V> void addExtraIngredients(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>);
+}
+Compiled from "IGuiHandlerRegistration.java"
+public interface mezz.jei.api.registration.IGuiHandlerRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract <T extends net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>> void addGuiContainerHandler(java.lang.Class<? extends T>, mezz.jei.api.gui.handlers.IGuiContainerHandler<T>);
+  public abstract <T extends net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>> void addGenericGuiContainerHandler(java.lang.Class<? extends T>, mezz.jei.api.gui.handlers.IGuiContainerHandler<?>);
+  public abstract <T extends net.minecraft.client.gui.screens.Screen> void addGuiScreenHandler(java.lang.Class<T>, mezz.jei.api.gui.handlers.IScreenHandler<T>);
+  public abstract <T extends net.minecraft.client.gui.screens.Screen> void addGenericGuiScreenHandler(java.lang.Class<T>, mezz.jei.api.gui.handlers.IScreenHandler<?>);
+  public abstract void addGlobalGuiHandler(mezz.jei.api.gui.handlers.IGlobalGuiHandler);
+  public default <T extends net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<?>> void addRecipeClickArea(java.lang.Class<? extends T>, int, int, int, int, mezz.jei.api.recipe.types.IRecipeType<?>...);
+  public abstract <T extends net.minecraft.client.gui.screens.Screen> void addGhostIngredientHandler(java.lang.Class<T>, mezz.jei.api.gui.handlers.IGhostIngredientHandler<T>);
+}
+Compiled from "IIngredientAliasRegistration.java"
+public interface mezz.jei.api.registration.IIngredientAliasRegistration {
+  public default void addAlias(net.minecraft.world.item.ItemStack, java.lang.String);
+  public default void addAlias(net.minecraft.world.item.Item, java.lang.String);
+  public abstract void addAlias(net.minecraft.world.level.material.Fluid, java.lang.String);
+  public abstract <I> void addAlias(mezz.jei.api.ingredients.IIngredientType<I>, I, java.lang.String);
+  public abstract <B, I> void addAlias(mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, I>, B, java.lang.String);
+  public abstract <I> void addAlias(mezz.jei.api.ingredients.ITypedIngredient<I>, java.lang.String);
+  public abstract <I> void addAliases(mezz.jei.api.ingredients.IIngredientType<I>, I, java.util.Collection<java.lang.String>);
+  public default void addAliases(net.minecraft.world.item.Item, java.util.Collection<java.lang.String>);
+  public abstract void addAliases(net.minecraft.world.level.material.Fluid, java.util.Collection<java.lang.String>);
+  public abstract <B, I> void addAliases(mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, I>, B, java.util.Collection<java.lang.String>);
+  public abstract <I> void addAliases(mezz.jei.api.ingredients.ITypedIngredient<I>, java.util.Collection<java.lang.String>);
+  public abstract <I> void addAliases(mezz.jei.api.ingredients.IIngredientType<I>, java.util.Collection<I>, java.lang.String);
+  public abstract <I> void addAliases(java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<I>>, java.lang.String);
+  public abstract <I> void addAliases(mezz.jei.api.ingredients.IIngredientType<I>, java.util.Collection<I>, java.util.Collection<java.lang.String>);
+  public abstract <I> void addAliases(java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<I>>, java.util.Collection<java.lang.String>);
+}
+Compiled from "IModInfoRegistration.java"
+public interface mezz.jei.api.registration.IModInfoRegistration {
+  public abstract void addModAliases(java.lang.String, java.util.Collection<java.lang.String>);
+  public default void addModAliases(java.lang.String, java.lang.String...);
+}
+Compiled from "IModIngredientRegistration.java"
+public interface mezz.jei.api.registration.IModIngredientRegistration {
+  public abstract mezz.jei.api.ingredients.subtypes.ISubtypeManager getSubtypeManager();
+  public abstract mezz.jei.api.helpers.IColorHelper getColorHelper();
+  public abstract net.minecraft.util.context.ContextMap getContextMap();
+  public abstract <V> void register(mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>, mezz.jei.api.ingredients.IIngredientHelper<V>, mezz.jei.api.ingredients.IIngredientRenderer<V>, com.mojang.serialization.Codec<V>);
+}
+Compiled from "IRecipeCatalystRegistration.java"
+public interface mezz.jei.api.registration.IRecipeCatalystRegistration {
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract void addCraftingStation(mezz.jei.api.recipe.types.IRecipeType<?>, net.minecraft.world.level.ItemLike...);
+  public default void addCraftingStation(mezz.jei.api.recipe.types.IRecipeType<?>, net.minecraft.world.item.ItemStack...);
+  public abstract <T> void addCraftingStation(mezz.jei.api.recipe.types.IRecipeType<?>, mezz.jei.api.ingredients.IIngredientType<T>, T);
+  public abstract <T> void addCraftingStations(mezz.jei.api.recipe.types.IRecipeType<?>, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<T>);
+  public abstract void addCraftingStation(mezz.jei.api.recipe.types.IRecipeType<?>, net.minecraft.world.item.crafting.display.SlotDisplay);
+  public default void addRecipeCatalysts(mezz.jei.api.recipe.types.IRecipeType<?>, net.minecraft.world.level.ItemLike...);
+  public default void addRecipeCatalysts(mezz.jei.api.recipe.types.IRecipeType<?>, net.minecraft.world.item.ItemStack...);
+  public default <T> void addRecipeCatalysts(mezz.jei.api.recipe.types.IRecipeType<?>, mezz.jei.api.ingredients.IIngredientType<T>, java.util.List<T>);
+  public default void addRecipeCatalyst(net.minecraft.world.level.ItemLike, mezz.jei.api.recipe.types.IRecipeType<?>...);
+  public default void addRecipeCatalyst(net.minecraft.world.item.ItemStack, mezz.jei.api.recipe.types.IRecipeType<?>...);
+  public abstract <T> void addRecipeCatalyst(mezz.jei.api.ingredients.IIngredientType<T>, T, mezz.jei.api.recipe.types.IRecipeType<?>...);
+}
+Compiled from "IRecipeCategoryRegistration.java"
+public interface mezz.jei.api.registration.IRecipeCategoryRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract void addRecipeCategories(mezz.jei.api.recipe.category.IRecipeCategory<?>...);
+}
+Compiled from "IRecipeRegistration.java"
+public interface mezz.jei.api.registration.IRecipeRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory getVanillaRecipeFactory();
+  public abstract net.minecraft.util.context.ContextMap getContextMap();
+  public abstract <T> void addRecipes(mezz.jei.api.recipe.types.IRecipeType<T>, java.util.List<T>);
+  public abstract <T> void addIngredientInfo(T, mezz.jei.api.ingredients.IIngredientType<T>, net.minecraft.network.chat.Component...);
+  public abstract <T> void addIngredientInfo(java.util.List<T>, mezz.jei.api.ingredients.IIngredientType<T>, net.minecraft.network.chat.Component...);
+  public default void addIngredientInfo(net.minecraft.world.level.ItemLike, net.minecraft.network.chat.Component...);
+  public default void addItemStackInfo(net.minecraft.world.item.ItemStack, net.minecraft.network.chat.Component...);
+  public default void addItemStackInfo(java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.network.chat.Component...);
+}
+Compiled from "IRecipeTransferRegistration.java"
+public interface mezz.jei.api.registration.IRecipeTransferRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferHandlerHelper getTransferHelper();
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> void addRecipeTransferHandler(java.lang.Class<? extends C>, net.minecraft.world.inventory.MenuType<C>, mezz.jei.api.recipe.types.IRecipeType<R>, int, int, int, int);
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> void addRecipeTransferHandler(mezz.jei.api.recipe.transfer.IRecipeTransferInfo<C, R>);
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu, R> void addRecipeTransferHandler(mezz.jei.api.recipe.transfer.IRecipeTransferHandler<C, R>, mezz.jei.api.recipe.types.IRecipeType<R>);
+  public abstract <C extends net.minecraft.world.inventory.AbstractContainerMenu> void addUniversalRecipeTransferHandler(mezz.jei.api.recipe.transfer.IUniversalRecipeTransferHandler<C>);
+  public abstract void addRecipeTransferListener(mezz.jei.api.recipe.transfer.IRecipeTransferListener);
+}
+Compiled from "IRuntimeRegistration.java"
+public interface mezz.jei.api.registration.IRuntimeRegistration {
+  public abstract void setIngredientListOverlay(mezz.jei.api.runtime.IIngredientListOverlay);
+  public abstract void setBookmarkOverlay(mezz.jei.api.runtime.IBookmarkOverlay);
+  public abstract void setBookmarkManager(mezz.jei.api.runtime.IBookmarkManager);
+  public abstract void setRecipesGui(mezz.jei.api.runtime.IRecipesGui);
+  public abstract void setIngredientFilter(mezz.jei.api.runtime.IIngredientFilter);
+  public abstract mezz.jei.api.recipe.IRecipeManager getRecipeManager();
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.runtime.IScreenHelper getScreenHelper();
+  public abstract mezz.jei.api.recipe.transfer.IRecipeTransferManager getRecipeTransferManager();
+  public abstract mezz.jei.api.runtime.IEditModeConfig getEditModeConfig();
+  public abstract mezz.jei.api.search.ISearchStorageFactory getSearchStorageFactory();
+  public abstract mezz.jei.api.search.ISearchStorageBuilderFactory getSearchStorageBuilderFactory();
+}
+Compiled from "ISlotDisplayInterpreterRegistration.java"
+public interface mezz.jei.api.registration.ISlotDisplayInterpreterRegistration {
+  public abstract <D extends net.minecraft.world.item.crafting.display.SlotDisplay> void registerUniversal(net.minecraft.world.item.crafting.display.SlotDisplay$Type<D>, mezz.jei.api.ingredients.IUniversalSlotDisplayInterpreter<D>);
+  public default <D extends net.minecraft.world.item.crafting.display.SlotDisplay> void register(net.minecraft.world.item.crafting.display.SlotDisplay$Type<D>, mezz.jei.api.ingredients.ISlotDisplayInterpreter<D, net.minecraft.world.item.ItemStack>);
+  public abstract <D extends net.minecraft.world.item.crafting.display.SlotDisplay, T> void register(net.minecraft.world.item.crafting.display.SlotDisplay$Type<D>, mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.ingredients.ISlotDisplayInterpreter<D, T>);
+}
+Compiled from "ISubtypeRegistration.java"
+public interface mezz.jei.api.registration.ISubtypeRegistration {
+  public abstract <B, I> void registerSubtypeInterpreter(mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, I>, B, mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter<I>);
+  public default void registerSubtypeInterpreter(net.minecraft.world.item.Item, mezz.jei.api.ingredients.subtypes.ISubtypeInterpreter<net.minecraft.world.item.ItemStack>);
+  public abstract void registerFromDataComponentTypes(net.minecraft.world.item.Item, net.minecraft.core.component.DataComponentType<?>...);
+}
+Compiled from "IVanillaCategoryExtensionRegistration.java"
+public interface mezz.jei.api.registration.IVanillaCategoryExtensionRegistration {
+  public abstract mezz.jei.api.helpers.IJeiHelpers getJeiHelpers();
+  public abstract mezz.jei.api.recipe.category.extensions.vanilla.crafting.IExtendableCraftingRecipeCategory getCraftingCategory();
+  public abstract mezz.jei.api.recipe.category.extensions.vanilla.smithing.IExtendableSmithingRecipeCategory getSmithingCategory();
+  public abstract mezz.jei.api.recipe.category.extensions.vanilla.brewing.IExtendableBrewingRecipeCategory getBrewingCategory();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.registration.package-info {
+}

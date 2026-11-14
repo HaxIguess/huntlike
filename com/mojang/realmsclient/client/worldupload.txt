@@ -1,0 +1,52 @@
+Compiled from "package-info.java"
+interface com.mojang.realmsclient.client.worldupload.package-info {
+}
+Compiled from "RealmsWorldUploadStatusTracker.java"
+public interface com.mojang.realmsclient.client.worldupload.RealmsWorldUploadStatusTracker {
+  public abstract com.mojang.realmsclient.client.UploadStatus getUploadStatus();
+  public abstract void setUploading();
+  public static com.mojang.realmsclient.client.worldupload.RealmsWorldUploadStatusTracker noOp();
+}
+Compiled from "RealmsUploadCanceledException.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsUploadCanceledException extends com.mojang.realmsclient.client.worldupload.RealmsUploadException {
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadCanceledException();
+  public net.minecraft.network.chat.Component getStatusMessage();
+}
+Compiled from "RealmsUploadException.java"
+public abstract class com.mojang.realmsclient.client.worldupload.RealmsUploadException extends java.lang.RuntimeException {
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadException();
+  public net.minecraft.network.chat.Component getStatusMessage();
+  public net.minecraft.network.chat.Component[] getErrorMessages();
+}
+Compiled from "RealmsWorldUpload.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsWorldUpload {
+  public static final int UPLOAD_RETRIES;
+  public com.mojang.realmsclient.client.worldupload.RealmsWorldUpload(java.nio.file.Path, com.mojang.realmsclient.dto.RealmsSlot, net.minecraft.client.User, long, com.mojang.realmsclient.client.worldupload.RealmsWorldUploadStatusTracker);
+  public java.util.concurrent.CompletableFuture<?> packAndUpload();
+  public void cancel();
+}
+Compiled from "RealmsUploadFailedException.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsUploadFailedException extends com.mojang.realmsclient.client.worldupload.RealmsUploadException {
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadFailedException(net.minecraft.network.chat.Component);
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadFailedException(java.lang.String);
+  public net.minecraft.network.chat.Component getStatusMessage();
+}
+Compiled from "RealmsUploadWorldNotClosedException.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsUploadWorldNotClosedException extends com.mojang.realmsclient.client.worldupload.RealmsUploadException {
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadWorldNotClosedException();
+  public net.minecraft.network.chat.Component getStatusMessage();
+}
+Compiled from "RealmsUploadTooLargeException.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsUploadTooLargeException extends com.mojang.realmsclient.client.worldupload.RealmsUploadException {
+  public com.mojang.realmsclient.client.worldupload.RealmsUploadTooLargeException(long);
+  public net.minecraft.network.chat.Component[] getErrorMessages();
+}
+Compiled from "RealmsUploadWorldPacker.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsUploadWorldPacker {
+  public static java.io.File pack(java.nio.file.Path, java.util.function.BooleanSupplier) throws java.io.IOException;
+}
+Compiled from "RealmsCreateWorldFlow.java"
+public class com.mojang.realmsclient.client.worldupload.RealmsCreateWorldFlow {
+  public com.mojang.realmsclient.client.worldupload.RealmsCreateWorldFlow();
+  public static void createWorld(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.Screen, net.minecraft.client.gui.screens.Screen, int, com.mojang.realmsclient.dto.RealmsServer, com.mojang.realmsclient.util.task.RealmCreationTask);
+}

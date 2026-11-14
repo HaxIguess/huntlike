@@ -1,0 +1,136 @@
+Compiled from "ThrownItemRenderer.java"
+public class net.minecraft.client.renderer.entity.ThrownItemRenderer<T extends net.minecraft.world.entity.Entity & net.minecraft.world.entity.projectile.ItemSupplier> extends net.minecraft.client.renderer.entity.EntityRenderer<T, net.minecraft.client.renderer.entity.state.ThrownItemRenderState> {
+  private final net.minecraft.client.renderer.item.ItemModelResolver itemModelResolver;
+
+  private final float scale;
+
+  private final boolean fullBright;
+
+  public net.minecraft.client.renderer.entity.ThrownItemRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider$Context, float, boolean);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1                  // Method net/minecraft/client/renderer/entity/EntityRenderer."<init>":(Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;)V
+         5: aload_0
+         6: aload_1
+         7: invokevirtual #7                  // Method net/minecraft/client/renderer/entity/EntityRendererProvider$Context.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+        10: putfield      #13                 // Field itemModelResolver:Lnet/minecraft/client/renderer/item/ItemModelResolver;
+        13: aload_0
+        14: fload_2
+        15: putfield      #19                 // Field scale:F
+        18: aload_0
+        19: iload_3
+        20: putfield      #23                 // Field fullBright:Z
+        23: return
+
+  public net.minecraft.client.renderer.entity.ThrownItemRenderer(net.minecraft.client.renderer.entity.EntityRendererProvider$Context);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: fconst_1
+         3: iconst_0
+         4: invokespecial #27                 // Method "<init>":(Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;FZ)V
+         7: return
+
+  protected int getBlockLightLevel(T, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_0
+         1: getfield      #23                 // Field fullBright:Z
+         4: ifeq          12
+         7: bipush        15
+         9: goto          18
+        12: aload_0
+        13: aload_1
+        14: aload_2
+        15: invokespecial #32                 // Method net/minecraft/client/renderer/entity/EntityRenderer.getBlockLightLevel:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;)I
+        18: ireturn
+
+  public void submit(net.minecraft.client.renderer.entity.state.ThrownItemRenderState, com.mojang.blaze3d.vertex.PoseStack, net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState);
+    Code:
+         0: aload_2
+         1: invokevirtual #36                 // Method com/mojang/blaze3d/vertex/PoseStack.pushPose:()V
+         4: aload_2
+         5: aload_0
+         6: getfield      #19                 // Field scale:F
+         9: aload_0
+        10: getfield      #19                 // Field scale:F
+        13: aload_0
+        14: getfield      #19                 // Field scale:F
+        17: invokevirtual #42                 // Method com/mojang/blaze3d/vertex/PoseStack.scale:(FFF)V
+        20: aload_2
+        21: aload         4
+        23: getfield      #45                 // Field net/minecraft/client/renderer/state/level/CameraRenderState.orientation:Lorg/joml/Quaternionf;
+        26: invokevirtual #51                 // Method com/mojang/blaze3d/vertex/PoseStack.rotate:(Lorg/joml/Quaternionfc;)V
+        29: aload_1
+        30: getfield      #55                 // Field net/minecraft/client/renderer/entity/state/ThrownItemRenderState.item:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+        33: aload_2
+        34: aload_3
+        35: aload_1
+        36: getfield      #61                 // Field net/minecraft/client/renderer/entity/state/ThrownItemRenderState.lightCoords:I
+        39: getstatic     #65                 // Field net/minecraft/client/renderer/texture/OverlayTexture.NO_OVERLAY:I
+        42: aload_1
+        43: getfield      #70                 // Field net/minecraft/client/renderer/entity/state/ThrownItemRenderState.outlineColor:I
+        46: invokevirtual #73                 // Method net/minecraft/client/renderer/item/ItemStackRenderState.submit:(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;III)V
+        49: aload_2
+        50: invokevirtual #79                 // Method com/mojang/blaze3d/vertex/PoseStack.popPose:()V
+        53: aload_0
+        54: aload_1
+        55: aload_2
+        56: aload_3
+        57: aload         4
+        59: invokespecial #82                 // Method net/minecraft/client/renderer/entity/EntityRenderer.submit:(Lnet/minecraft/client/renderer/entity/state/EntityRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V
+        62: return
+
+  public net.minecraft.client.renderer.entity.state.ThrownItemRenderState createRenderState();
+    Code:
+         0: new           #56                 // class net/minecraft/client/renderer/entity/state/ThrownItemRenderState
+         3: dup
+         4: invokespecial #85                 // Method net/minecraft/client/renderer/entity/state/ThrownItemRenderState."<init>":()V
+         7: areturn
+
+  public void extractRenderState(T, net.minecraft.client.renderer.entity.state.ThrownItemRenderState, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: fload_3
+         4: invokespecial #87                 // Method net/minecraft/client/renderer/entity/EntityRenderer.extractRenderState:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/client/renderer/entity/state/EntityRenderState;F)V
+         7: aload_0
+         8: getfield      #13                 // Field itemModelResolver:Lnet/minecraft/client/renderer/item/ItemModelResolver;
+        11: aload_2
+        12: getfield      #55                 // Field net/minecraft/client/renderer/entity/state/ThrownItemRenderState.item:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+        15: aload_1
+        16: checkcast     #91                 // class net/minecraft/world/entity/projectile/ItemSupplier
+        19: invokeinterface #93,  1           // InterfaceMethod net/minecraft/world/entity/projectile/ItemSupplier.getItem:()Lnet/minecraft/world/item/ItemStack;
+        24: getstatic     #97                 // Field net/minecraft/world/item/ItemDisplayContext.GROUND:Lnet/minecraft/world/item/ItemDisplayContext;
+        27: aload_1
+        28: invokevirtual #103                // Method net/minecraft/client/renderer/item/ItemModelResolver.updateForNonLiving:(Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lnet/minecraft/world/entity/Entity;)V
+        31: return
+
+  public void extractRenderState(net.minecraft.world.entity.Entity, net.minecraft.client.renderer.entity.state.EntityRenderState, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: checkcast     #56                 // class net/minecraft/client/renderer/entity/state/ThrownItemRenderState
+         6: fload_3
+         7: invokevirtual #109                // Method extractRenderState:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/client/renderer/entity/state/ThrownItemRenderState;F)V
+        10: return
+
+  public net.minecraft.client.renderer.entity.state.EntityRenderState createRenderState();
+    Code:
+         0: aload_0
+         1: invokevirtual #112                // Method createRenderState:()Lnet/minecraft/client/renderer/entity/state/ThrownItemRenderState;
+         4: areturn
+
+  public void submit(net.minecraft.client.renderer.entity.state.EntityRenderState, com.mojang.blaze3d.vertex.PoseStack, net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #56                 // class net/minecraft/client/renderer/entity/state/ThrownItemRenderState
+         5: aload_2
+         6: aload_3
+         7: aload         4
+         9: invokevirtual #116                // Method submit:(Lnet/minecraft/client/renderer/entity/state/ThrownItemRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V
+        12: return
+}

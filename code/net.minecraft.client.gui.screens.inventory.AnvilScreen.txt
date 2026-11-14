@@ -1,0 +1,447 @@
+Compiled from "AnvilScreen.java"
+public class net.minecraft.client.gui.screens.inventory.AnvilScreen extends net.minecraft.client.gui.screens.inventory.ItemCombinerScreen<net.minecraft.world.inventory.AnvilMenu> {
+  private static final net.minecraft.resources.Identifier TEXT_FIELD_SPRITE;
+
+  private static final net.minecraft.resources.Identifier TEXT_FIELD_DISABLED_SPRITE;
+
+  private static final net.minecraft.resources.Identifier ERROR_SPRITE;
+
+  private static final net.minecraft.resources.Identifier ANVIL_LOCATION;
+
+  private static final net.minecraft.network.chat.Component TOO_EXPENSIVE_TEXT;
+
+  private net.minecraft.client.gui.components.EditBox name;
+
+  private final net.minecraft.world.entity.player.Player player;
+
+  public net.minecraft.client.gui.screens.inventory.AnvilScreen(net.minecraft.world.inventory.AnvilMenu, net.minecraft.world.entity.player.Inventory, net.minecraft.network.chat.Component);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: getstatic     #1                  // Field ANVIL_LOCATION:Lnet/minecraft/resources/Identifier;
+         7: invokespecial #7                  // Method net/minecraft/client/gui/screens/inventory/ItemCombinerScreen."<init>":(Lnet/minecraft/world/inventory/ItemCombinerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;Lnet/minecraft/resources/Identifier;)V
+        10: aload_0
+        11: aload_2
+        12: getfield      #13                 // Field net/minecraft/world/entity/player/Inventory.player:Lnet/minecraft/world/entity/player/Player;
+        15: putfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+        18: aload_0
+        19: bipush        60
+        21: putfield      #20                 // Field titleLabelX:I
+        24: return
+
+  protected void subInit();
+    Code:
+         0: aload_0
+         1: getfield      #24                 // Field width:I
+         4: aload_0
+         5: getfield      #27                 // Field imageWidth:I
+         8: isub
+         9: iconst_2
+        10: idiv
+        11: istore_1
+        12: aload_0
+        13: getfield      #30                 // Field height:I
+        16: aload_0
+        17: getfield      #33                 // Field imageHeight:I
+        20: isub
+        21: iconst_2
+        22: idiv
+        23: istore_2
+        24: aload_0
+        25: new           #36                 // class net/minecraft/client/gui/components/EditBox
+        28: dup
+        29: aload_0
+        30: getfield      #38                 // Field font:Lnet/minecraft/client/gui/Font;
+        33: iload_1
+        34: bipush        62
+        36: iadd
+        37: iload_2
+        38: bipush        24
+        40: iadd
+        41: bipush        103
+        43: bipush        12
+        45: ldc           #42                 // String container.repair
+        47: invokestatic  #44                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        50: invokespecial #50                 // Method net/minecraft/client/gui/components/EditBox."<init>":(Lnet/minecraft/client/gui/Font;IIIILnet/minecraft/network/chat/Component;)V
+        53: putfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        56: aload_0
+        57: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        60: iconst_0
+        61: invokevirtual #57                 // Method net/minecraft/client/gui/components/EditBox.setCanLoseFocus:(Z)V
+        64: aload_0
+        65: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        68: iconst_m1
+        69: invokevirtual #63                 // Method net/minecraft/client/gui/components/EditBox.setTextColor:(I)V
+        72: aload_0
+        73: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        76: iconst_m1
+        77: invokevirtual #67                 // Method net/minecraft/client/gui/components/EditBox.setTextColorUneditable:(I)V
+        80: aload_0
+        81: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        84: iconst_0
+        85: invokevirtual #70                 // Method net/minecraft/client/gui/components/EditBox.setInvertHighlightedTextColor:(Z)V
+        88: aload_0
+        89: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        92: iconst_0
+        93: invokevirtual #73                 // Method net/minecraft/client/gui/components/EditBox.setBordered:(Z)V
+        96: aload_0
+        97: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+       100: bipush        50
+       102: invokevirtual #78                 // Method net/minecraft/client/gui/components/EditBox.setMaxLength:(I)V
+       105: aload_0
+       106: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+       109: aload_0
+       110: invokedynamic #81,  0             // InvokeDynamic #0:accept:(Lnet/minecraft/client/gui/screens/inventory/AnvilScreen;)Ljava/util/function/Consumer;
+       115: invokevirtual #85                 // Method net/minecraft/client/gui/components/EditBox.setResponder:(Ljava/util/function/Consumer;)V
+       118: aload_0
+       119: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+       122: ldc           #89                 // String
+       124: invokevirtual #91                 // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+       127: aload_0
+       128: aload_0
+       129: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+       132: invokevirtual #95                 // Method addRenderableWidget:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)Lnet/minecraft/client/gui/components/events/GuiEventListener;
+       135: pop
+       136: aload_0
+       137: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+       140: aload_0
+       141: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       144: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+       147: iconst_0
+       148: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+       151: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+       154: invokevirtual #113                // Method net/minecraft/client/gui/components/EditBox.setEditable:(Z)V
+       157: return
+
+  protected void containerTick();
+    Code:
+         0: aload_0
+         1: invokespecial #116                // Method net/minecraft/client/gui/screens/inventory/ItemCombinerScreen.containerTick:()V
+         4: aload_0
+         5: getfield      #120                // Field minecraft:Lnet/minecraft/client/Minecraft;
+         8: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+        11: aload_0
+        12: getfield      #120                // Field minecraft:Lnet/minecraft/client/Minecraft;
+        15: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+        18: getfield      #129                // Field net/minecraft/client/player/LocalPlayer.tickCount:I
+        21: putfield      #134                // Field net/minecraft/client/player/LocalPlayer.experienceDisplayStartTick:I
+        24: return
+
+  protected void setInitialFocus();
+    Code:
+         0: aload_0
+         1: aload_0
+         2: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+         5: invokevirtual #137                // Method setInitialFocus:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+         8: return
+
+  public void resize(int, int);
+    Code:
+         0: aload_0
+         1: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+         4: invokevirtual #141                // Method net/minecraft/client/gui/components/EditBox.getValue:()Ljava/lang/String;
+         7: astore_3
+         8: aload_0
+         9: iload_1
+        10: iload_2
+        11: invokevirtual #145                // Method init:(II)V
+        14: aload_0
+        15: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        18: aload_3
+        19: invokevirtual #91                 // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+        22: return
+
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+    Code:
+         0: aload_1
+         1: invokevirtual #149                // Method net/minecraft/client/input/KeyEvent.isEscape:()Z
+         4: ifeq          19
+         7: aload_0
+         8: getfield      #120                // Field minecraft:Lnet/minecraft/client/Minecraft;
+        11: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+        14: invokevirtual #154                // Method net/minecraft/client/player/LocalPlayer.closeContainer:()V
+        17: iconst_1
+        18: ireturn
+        19: aload_0
+        20: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        23: aload_1
+        24: invokevirtual #157                // Method net/minecraft/client/gui/components/EditBox.keyPressed:(Lnet/minecraft/client/input/KeyEvent;)Z
+        27: ifne          40
+        30: aload_0
+        31: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        34: invokevirtual #161                // Method net/minecraft/client/gui/components/EditBox.canConsumeInput:()Z
+        37: ifeq          42
+        40: iconst_1
+        41: ireturn
+        42: aload_0
+        43: aload_1
+        44: invokespecial #164                // Method net/minecraft/client/gui/screens/inventory/ItemCombinerScreen.keyPressed:(Lnet/minecraft/client/input/KeyEvent;)Z
+        47: ireturn
+
+  private void onNameChanged(java.lang.String);
+    Code:
+         0: aload_0
+         1: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+         4: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+         7: iconst_0
+         8: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        11: astore_2
+        12: aload_2
+        13: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        16: ifne          20
+        19: return
+        20: aload_1
+        21: astore_3
+        22: aload_2
+        23: invokevirtual #165                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+        26: getstatic     #169                // Field net/minecraft/core/component/DataComponents.CUSTOM_NAME:Lnet/minecraft/core/component/DataComponentType;
+        29: invokevirtual #175                // Method net/minecraft/world/item/ItemStack.has:(Lnet/minecraft/core/component/DataComponentType;)Z
+        32: ifne          57
+        35: aload_3
+        36: aload_2
+        37: invokevirtual #165                // Method net/minecraft/world/inventory/Slot.getItem:()Lnet/minecraft/world/item/ItemStack;
+        40: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+        43: invokeinterface #185,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+        48: invokevirtual #188                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        51: ifeq          57
+        54: ldc           #89                 // String
+        56: astore_3
+        57: aload_0
+        58: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        61: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        64: aload_3
+        65: invokevirtual #194                // Method net/minecraft/world/inventory/AnvilMenu.setItemName:(Ljava/lang/String;)Z
+        68: ifeq          92
+        71: aload_0
+        72: getfield      #120                // Field minecraft:Lnet/minecraft/client/Minecraft;
+        75: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+        78: getfield      #198                // Field net/minecraft/client/player/LocalPlayer.connection:Lnet/minecraft/client/multiplayer/ClientPacketListener;
+        81: new           #202                // class net/minecraft/network/protocol/game/ServerboundRenameItemPacket
+        84: dup
+        85: aload_3
+        86: invokespecial #204                // Method net/minecraft/network/protocol/game/ServerboundRenameItemPacket."<init>":(Ljava/lang/String;)V
+        89: invokevirtual #206                // Method net/minecraft/client/multiplayer/ClientPacketListener.send:(Lnet/minecraft/network/protocol/Packet;)V
+        92: return
+
+  protected void extractLabels(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: invokespecial #212                // Method net/minecraft/client/gui/screens/inventory/ItemCombinerScreen.extractLabels:(Lnet/minecraft/client/gui/GuiGraphicsExtractor;II)V
+         7: aload_0
+         8: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        11: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        14: invokevirtual #216                // Method net/minecraft/world/inventory/AnvilMenu.getCost:()I
+        17: istore        4
+        19: iload         4
+        21: ifle          194
+        24: ldc           #220                // int -8323296
+        26: istore        5
+        28: iload         4
+        30: bipush        40
+        32: if_icmplt     60
+        35: aload_0
+        36: getfield      #120                // Field minecraft:Lnet/minecraft/client/Minecraft;
+        39: getfield      #124                // Field net/minecraft/client/Minecraft.player:Lnet/minecraft/client/player/LocalPlayer;
+        42: invokevirtual #221                // Method net/minecraft/client/player/LocalPlayer.hasInfiniteMaterials:()Z
+        45: ifne          60
+        48: getstatic     #224                // Field TOO_EXPENSIVE_TEXT:Lnet/minecraft/network/chat/Component;
+        51: astore        6
+        53: ldc           #228                // int -40864
+        55: istore        5
+        57: goto          127
+        60: aload_0
+        61: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        64: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        67: iconst_2
+        68: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        71: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        74: ifne          83
+        77: aconst_null
+        78: astore        6
+        80: goto          127
+        83: ldc           #229                // String container.repair.cost
+        85: iconst_1
+        86: anewarray     #231                // class java/lang/Object
+        89: dup
+        90: iconst_0
+        91: iload         4
+        93: invokestatic  #233                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        96: aastore
+        97: invokestatic  #239                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+       100: astore        6
+       102: aload_0
+       103: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+       106: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+       109: iconst_2
+       110: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+       113: aload_0
+       114: getfield      #19                 // Field player:Lnet/minecraft/world/entity/player/Player;
+       117: invokevirtual #242                // Method net/minecraft/world/inventory/Slot.mayPickup:(Lnet/minecraft/world/entity/player/Player;)Z
+       120: ifne          127
+       123: ldc           #228                // int -40864
+       125: istore        5
+       127: aload         6
+       129: ifnull        194
+       132: aload_0
+       133: getfield      #27                 // Field imageWidth:I
+       136: bipush        8
+       138: isub
+       139: aload_0
+       140: getfield      #38                 // Field font:Lnet/minecraft/client/gui/Font;
+       143: aload         6
+       145: invokevirtual #246                // Method net/minecraft/client/gui/Font.width:(Lnet/minecraft/network/chat/FormattedText;)I
+       148: isub
+       149: iconst_2
+       150: isub
+       151: istore        7
+       153: bipush        69
+       155: istore        8
+       157: aload_1
+       158: iload         7
+       160: iconst_2
+       161: isub
+       162: bipush        67
+       164: aload_0
+       165: getfield      #27                 // Field imageWidth:I
+       168: bipush        8
+       170: isub
+       171: bipush        79
+       173: ldc           #251                // int 1325400064
+       175: invokevirtual #252                // Method net/minecraft/client/gui/GuiGraphicsExtractor.fill:(IIIII)V
+       178: aload_1
+       179: aload_0
+       180: getfield      #38                 // Field font:Lnet/minecraft/client/gui/Font;
+       183: aload         6
+       185: iload         7
+       187: bipush        69
+       189: iload         5
+       191: invokevirtual #258                // Method net/minecraft/client/gui/GuiGraphicsExtractor.text:(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V
+       194: return
+
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: fload         4
+         6: invokespecial #262                // Method net/minecraft/client/gui/screens/inventory/ItemCombinerScreen.extractBackground:(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V
+         9: aload_1
+        10: getstatic     #266                // Field net/minecraft/client/renderer/RenderPipelines.GUI_TEXTURED:Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+        13: aload_0
+        14: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        17: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        20: iconst_0
+        21: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        24: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        27: ifeq          36
+        30: getstatic     #272                // Field TEXT_FIELD_SPRITE:Lnet/minecraft/resources/Identifier;
+        33: goto          39
+        36: getstatic     #275                // Field TEXT_FIELD_DISABLED_SPRITE:Lnet/minecraft/resources/Identifier;
+        39: aload_0
+        40: getfield      #278                // Field leftPos:I
+        43: bipush        59
+        45: iadd
+        46: aload_0
+        47: getfield      #281                // Field topPos:I
+        50: bipush        20
+        52: iadd
+        53: bipush        110
+        55: bipush        16
+        57: invokevirtual #284                // Method net/minecraft/client/gui/GuiGraphicsExtractor.blitSprite:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V
+        60: return
+
+  protected void extractErrorIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+    Code:
+         0: aload_0
+         1: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+         4: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+         7: iconst_0
+         8: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        11: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        14: ifne          34
+        17: aload_0
+        18: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        21: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        24: iconst_1
+        25: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        28: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        31: ifeq          82
+        34: aload_0
+        35: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        38: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        41: aload_0
+        42: getfield      #99                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        45: checkcast     #76                 // class net/minecraft/world/inventory/AnvilMenu
+        48: invokevirtual #288                // Method net/minecraft/world/inventory/AnvilMenu.getResultSlot:()I
+        51: invokevirtual #103                // Method net/minecraft/world/inventory/AnvilMenu.getSlot:(I)Lnet/minecraft/world/inventory/Slot;
+        54: invokevirtual #107                // Method net/minecraft/world/inventory/Slot.hasItem:()Z
+        57: ifne          82
+        60: aload_1
+        61: getstatic     #266                // Field net/minecraft/client/renderer/RenderPipelines.GUI_TEXTURED:Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+        64: getstatic     #291                // Field ERROR_SPRITE:Lnet/minecraft/resources/Identifier;
+        67: iload_2
+        68: bipush        99
+        70: iadd
+        71: iload_3
+        72: bipush        45
+        74: iadd
+        75: bipush        28
+        77: bipush        21
+        79: invokevirtual #284                // Method net/minecraft/client/gui/GuiGraphicsExtractor.blitSprite:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V
+        82: return
+
+  public void slotChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+    Code:
+         0: iload_2
+         1: ifne          59
+         4: aload_0
+         5: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+         8: aload_3
+         9: invokevirtual #294                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        12: ifeq          20
+        15: ldc           #89                 // String
+        17: goto          29
+        20: aload_3
+        21: invokevirtual #181                // Method net/minecraft/world/item/ItemStack.getHoverName:()Lnet/minecraft/network/chat/Component;
+        24: invokeinterface #185,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+        29: invokevirtual #91                 // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+        32: aload_0
+        33: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        36: aload_3
+        37: invokevirtual #294                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        40: ifne          47
+        43: iconst_1
+        44: goto          48
+        47: iconst_0
+        48: invokevirtual #113                // Method net/minecraft/client/gui/components/EditBox.setEditable:(Z)V
+        51: aload_0
+        52: aload_0
+        53: getfield      #53                 // Field name:Lnet/minecraft/client/gui/components/EditBox;
+        56: invokevirtual #297                // Method setFocused:(Lnet/minecraft/client/gui/components/events/GuiEventListener;)V
+        59: return
+
+  static {};
+    Code:
+         0: ldc_w         #300                // String container/anvil/text_field
+         3: invokestatic  #302                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         6: putstatic     #272                // Field TEXT_FIELD_SPRITE:Lnet/minecraft/resources/Identifier;
+         9: ldc_w         #308                // String container/anvil/text_field_disabled
+        12: invokestatic  #302                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        15: putstatic     #275                // Field TEXT_FIELD_DISABLED_SPRITE:Lnet/minecraft/resources/Identifier;
+        18: ldc_w         #310                // String container/anvil/error
+        21: invokestatic  #302                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        24: putstatic     #291                // Field ERROR_SPRITE:Lnet/minecraft/resources/Identifier;
+        27: ldc_w         #312                // String textures/gui/container/anvil.png
+        30: invokestatic  #302                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        33: putstatic     #1                  // Field ANVIL_LOCATION:Lnet/minecraft/resources/Identifier;
+        36: ldc_w         #314                // String container.repair.expensive
+        39: invokestatic  #44                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: putstatic     #224                // Field TOO_EXPENSIVE_TEXT:Lnet/minecraft/network/chat/Component;
+        45: return
+}

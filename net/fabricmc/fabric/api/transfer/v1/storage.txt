@@ -1,0 +1,66 @@
+Compiled from "SlottedStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage<T> extends net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> {
+  public abstract int getSlotCount();
+  public abstract net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> getSlot(int);
+  public default java.util.List<net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T>> getSlots();
+}
+Compiled from "Storage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> extends java.lang.Iterable<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> {
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> empty();
+  public default boolean supportsInsertion();
+  public abstract long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public default boolean supportsExtraction();
+  public abstract long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public abstract java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> iterator();
+  public default java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> nonEmptyIterator();
+  public default java.lang.Iterable<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> nonEmptyViews();
+  public default long getVersion();
+  public static <T> java.lang.Class<net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>> asClass();
+}
+Compiled from "StoragePreconditions.java"
+public final class net.fabricmc.fabric.api.transfer.v1.storage.StoragePreconditions {
+  public static void notBlank(net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>);
+  public static void notNegative(long);
+  public static void notBlankNotNegative(net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>, long);
+}
+Compiled from "StorageUtil.java"
+public final class net.fabricmc.fabric.api.transfer.v1.storage.StorageUtil {
+  public static <T> long move(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, java.util.function.Predicate<T>, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> long simulateInsert(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> long simulateExtract(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> long simulateExtract(net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T, S extends net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> & net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> long simulateExtract(S, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T> extractAny(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> long insertStacking(java.util.List<? extends net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T>>, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> long tryInsertStacking(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> T findStoredResource(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+  public static <T> T findStoredResource(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, java.util.function.Predicate<T>);
+  public static <T> T findExtractableResource(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> T findExtractableResource(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, java.util.function.Predicate<T>, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T> findExtractableContent(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T> findExtractableContent(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, java.util.function.Predicate<T>, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static <T> int getRedstoneSignal(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+}
+Compiled from "StorageView.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> {
+  public abstract long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public abstract boolean isResourceBlank();
+  public abstract T getResource();
+  public abstract long getAmount();
+  public abstract long getCapacity();
+  public default net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> getUnderlyingView();
+}
+Compiled from "TransferVariant.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<O> extends net.minecraft.core.component.DataComponentHolder, net.minecraft.core.TypedInstance<O> {
+  public abstract boolean isBlank();
+  public abstract O getObject();
+  public abstract net.minecraft.core.component.DataComponentPatch getComponentsPatch();
+  public abstract net.minecraft.core.component.DataComponentMap getComponents();
+  public default boolean hasComponents();
+  public default boolean componentsMatch(net.minecraft.core.component.DataComponentPatch);
+  public default boolean isOf(O);
+  public default net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<O> withComponents(net.minecraft.core.component.DataComponentPatch);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.storage.package-info {
+}

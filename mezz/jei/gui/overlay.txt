@@ -1,0 +1,114 @@
+Compiled from "ConfigButtonController.java"
+public class mezz.jei.gui.overlay.ConfigButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.overlay.ConfigButtonController(java.util.function.BooleanSupplier, mezz.jei.common.config.IClientToggleState, mezz.jei.common.input.IInternalKeyMappings);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+}
+Compiled from "GuiPropertiesCache.java"
+public interface mezz.jei.gui.overlay.GuiPropertiesCache$GuiPropertiesGetter<T> {
+  public abstract mezz.jei.api.gui.handlers.IGuiProperties getGuiProperties(T);
+}
+Compiled from "GuiPropertiesCache.java"
+class mezz.jei.gui.overlay.GuiPropertiesCache$Updater<T> implements mezz.jei.gui.overlay.IScreenPropertiesUpdater {
+  public mezz.jei.gui.overlay.GuiPropertiesCache$Updater(mezz.jei.gui.overlay.GuiPropertiesCache<T>, java.lang.Runnable);
+  public mezz.jei.gui.overlay.GuiPropertiesCache$Updater<T> updateScreen(net.minecraft.client.gui.screens.Screen);
+  public mezz.jei.gui.overlay.GuiPropertiesCache$Updater<T> updateGuiProperties(mezz.jei.api.gui.handlers.IGuiProperties);
+  public mezz.jei.gui.overlay.GuiPropertiesCache$Updater<T> updateExclusionAreas(java.util.Set<mezz.jei.common.util.ImmutableRect2i>);
+  public mezz.jei.gui.overlay.GuiPropertiesCache$Updater<T> updateMouseExclusionArea(mezz.jei.common.util.ImmutablePoint2i);
+  public void update();
+  public void forceUpdate();
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater updateMouseExclusionArea(mezz.jei.common.util.ImmutablePoint2i);
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater updateExclusionAreas(java.util.Set);
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater updateGuiProperties(mezz.jei.api.gui.handlers.IGuiProperties);
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater updateScreen(net.minecraft.client.gui.screens.Screen);
+}
+Compiled from "GuiPropertiesCache.java"
+public class mezz.jei.gui.overlay.GuiPropertiesCache<T> implements mezz.jei.gui.overlay.IGuiPropertiesCache {
+  public mezz.jei.gui.overlay.GuiPropertiesCache(mezz.jei.gui.overlay.GuiPropertiesCache$GuiPropertiesGetter<T>);
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater createUpdater(java.lang.Runnable);
+  public boolean hasValidScreen();
+  public mezz.jei.api.gui.handlers.IGuiProperties getGuiProperties();
+  public java.util.Set<mezz.jei.common.util.ImmutableRect2i> getGuiExclusionAreas();
+  public mezz.jei.common.util.ImmutablePoint2i getMouseExclusionArea();
+}
+Compiled from "IConfigButton.java"
+public interface mezz.jei.gui.overlay.IConfigButton {
+  public abstract void updateBounds(mezz.jei.common.util.ImmutableRect2i);
+}
+Compiled from "IGuiPropertiesCache.java"
+public interface mezz.jei.gui.overlay.IGuiPropertiesCache {
+  public abstract mezz.jei.gui.overlay.IScreenPropertiesUpdater createUpdater(java.lang.Runnable);
+  public abstract mezz.jei.api.gui.handlers.IGuiProperties getGuiProperties();
+  public abstract java.util.Set<mezz.jei.common.util.ImmutableRect2i> getGuiExclusionAreas();
+}
+Compiled from "IScreenPropertiesUpdater.java"
+public interface mezz.jei.gui.overlay.IScreenPropertiesUpdater {
+  public abstract mezz.jei.gui.overlay.IScreenPropertiesUpdater updateScreen(net.minecraft.client.gui.screens.Screen);
+  public abstract mezz.jei.gui.overlay.IScreenPropertiesUpdater updateGuiProperties(mezz.jei.api.gui.handlers.IGuiProperties);
+  public abstract mezz.jei.gui.overlay.IScreenPropertiesUpdater updateExclusionAreas(java.util.Set<mezz.jei.common.util.ImmutableRect2i>);
+  public abstract mezz.jei.gui.overlay.IScreenPropertiesUpdater updateMouseExclusionArea(mezz.jei.common.util.ImmutablePoint2i);
+  public abstract void update();
+  public abstract void forceUpdate();
+}
+Compiled from "ISearchField.java"
+public interface mezz.jei.gui.overlay.ISearchField {
+  public abstract void setValue(java.lang.String);
+  public abstract void setFocused(boolean);
+  public abstract void updateBounds(mezz.jei.common.util.ImmutableRect2i);
+}
+Compiled from "IngredientListOverlay.java"
+public class mezz.jei.gui.overlay.IngredientListOverlay implements mezz.jei.api.runtime.IIngredientListOverlay,mezz.jei.gui.input.IRecipeFocusSource,mezz.jei.gui.input.ICharTypedHandler {
+  public mezz.jei.gui.overlay.IngredientListOverlay(mezz.jei.gui.overlay.ingredients.IIngredientGridSource, mezz.jei.gui.filter.IFilterTextSource, mezz.jei.api.runtime.IScreenHelper, mezz.jei.gui.overlay.ingredients.IIngredientListOverlayContents, mezz.jei.gui.overlay.bookmarks.history.LookupHistoryOverlay, mezz.jei.common.config.IIngredientGridConfig, mezz.jei.common.config.IClientConfig, mezz.jei.common.config.IClientToggleState, mezz.jei.common.input.IInternalKeyMappings);
+  public boolean isListDisplayed();
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater getScreenPropertiesUpdater();
+  public void drawScreen(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void drawBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void drawForeground(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void drawTooltips(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void drawOnForeground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void tick();
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public mezz.jei.gui.input.IUserInputHandler createDeleteItemInputHandler();
+  public mezz.jei.gui.input.IDragHandler createDragHandler();
+  public boolean hasKeyboardFocus();
+  public boolean onCharTyped(net.minecraft.client.input.CharacterEvent);
+  public java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredientUnderMouse();
+  public <T> T getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public <T> java.util.List<T> getVisibleIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+}
+Compiled from "IngredientListOverlayController.java"
+interface mezz.jei.gui.overlay.IngredientListOverlayController$Config {
+  public abstract boolean isCenterSearchBarEnabled();
+  public abstract boolean isLookupHistoryEnabled();
+}
+Compiled from "IngredientListOverlayController.java"
+class mezz.jei.gui.overlay.IngredientListOverlayController {
+}
+Compiled from "IngredientListOverlayLayout.java"
+final class mezz.jei.gui.overlay.IngredientListOverlayLayout$Layout extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.api.gui.handlers.IGuiProperties guiProperties();
+  public mezz.jei.common.util.ImmutableRect2i displayArea();
+  public mezz.jei.common.util.ImmutableRect2i availableContentsArea();
+  public java.util.Optional<mezz.jei.common.util.ImmutableRect2i> lookupHistoryArea();
+  public boolean searchBarCentered();
+}
+Compiled from "IngredientListOverlayLayout.java"
+final class mezz.jei.gui.overlay.IngredientListOverlayLayout$SearchAndConfigAreas extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.common.util.ImmutableRect2i searchArea();
+  public mezz.jei.common.util.ImmutableRect2i configButtonArea();
+}
+Compiled from "IngredientListOverlayLayout.java"
+class mezz.jei.gui.overlay.IngredientListOverlayLayout {
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.overlay.package-info {
+}

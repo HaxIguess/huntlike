@@ -1,0 +1,53 @@
+Compiled from "ListMultiMap.java"
+public class mezz.jei.common.collect.ListMultiMap<K, V> extends mezz.jei.common.collect.MultiMap<K, V, java.util.List<V>> {
+  public mezz.jei.common.collect.ListMultiMap();
+  public mezz.jei.common.collect.ListMultiMap(java.util.function.Supplier<java.util.List<V>>);
+  public mezz.jei.common.collect.ListMultiMap(java.util.Map<K, java.util.List<V>>, java.util.function.Supplier<java.util.List<V>>);
+  public java.util.List<V> get(K);
+  public com.google.common.collect.ImmutableListMultimap<K, V> toImmutable();
+  public com.google.common.collect.ImmutableMultimap toImmutable();
+  public java.util.Collection get(java.lang.Object);
+}
+Compiled from "MultiMap.java"
+public class mezz.jei.common.collect.MultiMap<K, V, T extends java.util.Collection<V>> {
+  protected final java.util.Map<K, T> map;
+  public mezz.jei.common.collect.MultiMap(java.util.function.Supplier<T>);
+  public mezz.jei.common.collect.MultiMap(java.util.Map<K, T>, java.util.function.Supplier<T>);
+  public java.util.Collection<V> get(K);
+  public boolean put(K, V);
+  public boolean putAll(K, java.util.Collection<V>);
+  public boolean remove(K, V);
+  public boolean containsKey(K);
+  public boolean contains(K, V);
+  public java.util.Set<java.util.Map$Entry<K, T>> entrySet();
+  public java.util.Set<K> keySet();
+  public java.util.Collection<V> allValues();
+  public void clear();
+  public com.google.common.collect.ImmutableMultimap<K, V> toImmutable();
+}
+Compiled from "SetMultiMap.java"
+public class mezz.jei.common.collect.SetMultiMap<K, V> extends mezz.jei.common.collect.MultiMap<K, V, java.util.Set<V>> {
+  public mezz.jei.common.collect.SetMultiMap();
+  public mezz.jei.common.collect.SetMultiMap(java.util.function.Supplier<java.util.Set<V>>);
+  public mezz.jei.common.collect.SetMultiMap(java.util.Map<K, java.util.Set<V>>, java.util.function.Supplier<java.util.Set<V>>);
+  public java.util.Set<V> get(K);
+  public com.google.common.collect.ImmutableSetMultimap<K, V> toImmutable();
+  public com.google.common.collect.ImmutableMultimap toImmutable();
+  public java.util.Collection get(java.lang.Object);
+}
+Compiled from "Table.java"
+public class mezz.jei.common.collect.Table<R, C, V> {
+  public static <R, C, V> mezz.jei.common.collect.Table<R, C, V> hashBasedTable();
+  public static <R, C, V> mezz.jei.common.collect.Table<R, C, V> identityHashBasedTable();
+  public mezz.jei.common.collect.Table(java.util.Map<R, java.util.Map<C, V>>, java.util.function.Supplier<java.util.Map<C, V>>);
+  public V get(R, C);
+  public V computeIfAbsent(R, C, java.util.function.Supplier<V>);
+  public V put(R, C, V);
+  public java.util.Map<C, V> getRow(R);
+  public boolean contains(R, C);
+  public void clear();
+  public com.google.common.collect.ImmutableTable<R, C, V> toImmutable();
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.collect.package-info {
+}

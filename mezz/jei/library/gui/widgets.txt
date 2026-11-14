@@ -1,0 +1,55 @@
+Compiled from "AbstractScrollWidget.java"
+public abstract class mezz.jei.library.gui.widgets.AbstractScrollWidget implements mezz.jei.api.gui.widgets.IRecipeWidget,mezz.jei.api.gui.inputs.IJeiInputHandler {
+  protected mezz.jei.common.util.ImmutableRect2i area;
+  protected final mezz.jei.common.util.ImmutableRect2i contentsArea;
+  public static int getScrollBoxScrollbarExtraWidth();
+  protected static mezz.jei.common.util.ImmutableRect2i calculateScrollArea(int, int);
+  public mezz.jei.library.gui.widgets.AbstractScrollWidget(mezz.jei.common.util.ImmutableRect2i);
+  protected abstract int getVisibleAmount();
+  protected abstract int getHiddenAmount();
+  protected abstract void drawContents(net.minecraft.client.gui.GuiGraphicsExtractor, double, double, float);
+  protected float getScrollOffsetY();
+  public final net.minecraft.client.gui.navigation.ScreenRectangle getArea();
+  public final net.minecraft.client.gui.navigation.ScreenPosition getPosition();
+  public net.minecraft.client.gui.navigation.ScreenRectangle getScreenRectangle();
+  public final void drawWidget(net.minecraft.client.gui.GuiGraphicsExtractor, double, double);
+  public final boolean handleInput(double, double, mezz.jei.api.gui.inputs.IJeiUserInput);
+  public final boolean handleMouseScrolled(double, double, double, double);
+  public final boolean handleMouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+  protected abstract float calculateScrollAmount(double);
+}
+Compiled from "ScrollBoxRecipeWidget.java"
+public class mezz.jei.library.gui.widgets.ScrollBoxRecipeWidget extends mezz.jei.library.gui.widgets.AbstractScrollWidget implements mezz.jei.api.gui.widgets.IScrollBoxWidget,mezz.jei.api.gui.inputs.IJeiInputHandler {
+  public mezz.jei.library.gui.widgets.ScrollBoxRecipeWidget(int, int, int, int);
+  public int getContentAreaWidth();
+  public int getContentAreaHeight();
+  public mezz.jei.api.gui.widgets.IScrollBoxWidget setContents(mezz.jei.api.gui.drawable.IDrawable);
+  public mezz.jei.api.gui.widgets.IScrollBoxWidget setContents(java.util.List<net.minecraft.network.chat.FormattedText>);
+  protected int getVisibleAmount();
+  protected int getHiddenAmount();
+  protected void drawContents(net.minecraft.client.gui.GuiGraphicsExtractor, double, double, float);
+  protected float calculateScrollAmount(double);
+}
+Compiled from "ScrollGridRecipeWidget.java"
+public class mezz.jei.library.gui.widgets.ScrollGridRecipeWidget extends mezz.jei.library.gui.widgets.AbstractScrollWidget implements mezz.jei.api.gui.widgets.IScrollGridWidget,mezz.jei.api.gui.widgets.ISlottedRecipeWidget,mezz.jei.api.gui.inputs.IJeiInputHandler {
+  public static mezz.jei.common.util.ImmutableSize2i calculateSize(int, int);
+  public static mezz.jei.library.gui.widgets.ScrollGridRecipeWidget create(java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable>, int, int);
+  public mezz.jei.library.gui.widgets.ScrollGridRecipeWidget(mezz.jei.common.util.ImmutableRect2i, int, int, java.util.List<mezz.jei.api.gui.ingredient.IRecipeSlotDrawable>);
+  public mezz.jei.library.gui.widgets.ScrollGridRecipeWidget setPosition(int, int);
+  public mezz.jei.library.gui.widgets.ScrollGridRecipeWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public int getWidth();
+  public int getHeight();
+  public net.minecraft.client.gui.navigation.ScreenRectangle getScreenRectangle();
+  protected int getVisibleAmount();
+  protected int getHiddenAmount();
+  protected void drawContents(net.minecraft.client.gui.GuiGraphicsExtractor, double, double, float);
+  public java.util.Optional<mezz.jei.api.gui.inputs.RecipeSlotUnderMouse> getSlotUnderMouse(double, double);
+  protected float calculateScrollAmount(double);
+  public mezz.jei.api.gui.widgets.IScrollGridWidget setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.widgets.IScrollGridWidget setPosition(int, int);
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "package-info.java"
+interface mezz.jei.library.gui.widgets.package-info {
+}

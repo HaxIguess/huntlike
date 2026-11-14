@@ -1,0 +1,45 @@
+Compiled from "LanguageInfo.java"
+public final class net.minecraft.client.resources.language.LanguageInfo extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.language.LanguageInfo> CODEC;
+  public net.minecraft.client.resources.language.LanguageInfo(java.lang.String, java.lang.String, boolean);
+  public net.minecraft.network.chat.Component toComponent();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String region();
+  public java.lang.String name();
+  public boolean bidirectional();
+}
+Compiled from "EmptyTranslationsException.java"
+class net.minecraft.client.resources.language.EmptyTranslationsException extends java.lang.RuntimeException {
+  public java.lang.String getLanguageCode();
+}
+Compiled from "I18n.java"
+public class net.minecraft.client.resources.language.I18n {
+  public static java.lang.String get(java.lang.String, java.lang.Object...);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.resources.language.package-info {
+}
+Compiled from "ClientLanguage.java"
+public class net.minecraft.client.resources.language.ClientLanguage extends net.minecraft.locale.Language {
+  public static net.minecraft.client.resources.language.ClientLanguage loadFrom(net.minecraft.server.packs.resources.ResourceManager, java.util.List<java.lang.String>, boolean);
+  public java.lang.String getOrDefault(java.lang.String, java.lang.String);
+  public boolean has(java.lang.String);
+  public boolean isDefaultRightToLeft();
+  public net.minecraft.util.FormattedCharSequence getVisualOrder(net.minecraft.network.chat.FormattedText);
+}
+Compiled from "LanguageManager.java"
+public class net.minecraft.client.resources.language.LanguageManager implements net.minecraft.server.packs.resources.ResourceManagerReloadListener {
+  public net.minecraft.client.resources.language.LanguageManager(net.minecraft.client.Minecraft, java.lang.String, java.util.function.Consumer<net.minecraft.client.resources.language.ClientLanguage>);
+  public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager);
+  public void setSelected(java.lang.String);
+  public java.lang.String getSelected();
+  public java.util.SortedMap<java.lang.String, net.minecraft.client.resources.language.LanguageInfo> getLanguages();
+  public net.minecraft.client.resources.language.LanguageInfo getLanguage(java.lang.String);
+}
+Compiled from "FormattedBidiReorder.java"
+public class net.minecraft.client.resources.language.FormattedBidiReorder {
+  public net.minecraft.client.resources.language.FormattedBidiReorder();
+  public static net.minecraft.util.FormattedCharSequence reorder(net.minecraft.network.chat.FormattedText, boolean);
+}

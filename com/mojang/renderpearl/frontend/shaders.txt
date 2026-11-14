@@ -1,0 +1,56 @@
+Compiled from "PipelineBuilder.java"
+final class com.mojang.renderpearl.frontend.shaders.PipelineBuilder$InterfaceVariableInfo extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int baseType();
+  public int vectorLength();
+  public boolean flatInterpolated();
+}
+Compiled from "SPIRVModule.java"
+public class com.mojang.renderpearl.frontend.shaders.SPIRVModule implements com.mojang.renderpearl.backend.api.SpvModule {
+  public com.mojang.renderpearl.frontend.shaders.SPIRVModule(java.nio.ByteBuffer, com.mojang.renderpearl.api.pipeline.ShaderType);
+  public void close();
+  public java.nio.ByteBuffer spv();
+  public com.mojang.renderpearl.api.pipeline.ShaderType type();
+  public com.mojang.renderpearl.backend.api.SpvModule$Reflection reflect() throws com.mojang.renderpearl.util.ShaderCompileException;
+  public com.mojang.renderpearl.backend.api.SpvModule$Reflection getReflectionInfoIfAvailable();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.frontend.shaders.package-info {
+}
+Compiled from "PipelineBuilder.java"
+public class com.mojang.renderpearl.frontend.shaders.PipelineBuilder implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.frontend.shaders.PipelineBuilder(com.mojang.renderpearl.backend.api.GpuDeviceBackend);
+  public void close();
+  public java.util.concurrent.CompletableFuture<com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline$Pending> compilePipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.ShaderSource, java.util.concurrent.Executor);
+}
+Compiled from "SPIRVModule.java"
+final class com.mojang.renderpearl.frontend.shaders.SPIRVModule$TypeHandle extends java.lang.Record implements com.mojang.renderpearl.backend.api.SpvModule$Reflection$Type {
+  public int baseType();
+  public int dimensions();
+  public int vectorSize();
+  public int arrayDimensions();
+  public int arrayLength(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long typeHandle();
+}
+Compiled from "GlslCompiler.java"
+public class com.mojang.renderpearl.frontend.shaders.GlslCompiler implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.frontend.shaders.GlslCompiler(boolean, boolean);
+  public void close();
+  public com.mojang.renderpearl.backend.api.SpvModule compileToSpv(java.lang.String, java.lang.String, com.mojang.renderpearl.api.pipeline.ShaderType, net.minecraft.client.renderer.ShaderDefines, com.mojang.renderpearl.api.pipeline.ShaderSource) throws com.mojang.renderpearl.util.ShaderCompileException;
+}
+Compiled from "SpvUtil.java"
+public class com.mojang.renderpearl.frontend.shaders.SpvUtil {
+  public static final it.unimi.dsi.fastutil.ints.IntList DESCRIPTOR_TYPES;
+  public com.mojang.renderpearl.frontend.shaders.SpvUtil();
+  public static void crashIfError(int, java.lang.String);
+  public static void throwIfError(int, java.lang.String) throws com.mojang.renderpearl.util.ShaderCompileException;
+  public static java.lang.String spvcErrorString(int);
+  public static int getDecorationOffset(long, org.lwjgl.util.spvc.SpvcReflectedResource, int, java.nio.IntBuffer) throws com.mojang.renderpearl.util.ShaderCompileException;
+  public static int resourceType(com.mojang.renderpearl.api.pipeline.UniformType);
+  public static java.lang.String baseTypeString(int);
+}

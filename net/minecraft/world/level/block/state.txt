@@ -1,0 +1,348 @@
+Compiled from "StateDefinition.java"
+public interface net.minecraft.world.level.block.state.StateDefinition$Factory<O, S> {
+  public abstract S create(O, net.minecraft.world.level.block.state.properties.Property<?>[], java.lang.Comparable<?>[]);
+}
+Compiled from "SolidDebugger.java"
+public class net.minecraft.world.level.block.state.SolidDebugger {
+  public net.minecraft.world.level.block.state.SolidDebugger();
+  public static boolean logAndGet(net.minecraft.core.Holder<net.minecraft.world.level.block.Block>, net.minecraft.world.level.block.state.SolidDebugger$Reason);
+  public void dump();
+  public static void runAndDump(java.lang.Runnable);
+}
+Compiled from "BlockBehaviour.java"
+public interface net.minecraft.world.level.block.state.BlockBehaviour$OffsetFunction {
+  public abstract net.minecraft.world.phys.Vec3 evaluate(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+}
+Compiled from "StateDefinition.java"
+final class net.minecraft.world.level.block.state.StateDefinition$StateCollection<S extends net.minecraft.world.level.block.state.StateHolder<?, ?>> extends java.lang.Record {
+  public S[][] fillNeighborsForState(net.minecraft.world.level.block.state.properties.Property<?>[], java.util.List<java.lang.Comparable<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.util.List<java.lang.Comparable<?>>, S> statesByValues();
+  public java.util.Map<java.util.List<java.lang.Comparable<?>>, S[]> statesByPivotCache();
+}
+Compiled from "StateDefinition.java"
+public class net.minecraft.world.level.block.state.StateDefinition$Builder<O, S extends net.minecraft.world.level.block.state.StateHolder<O, S>> {
+  public net.minecraft.world.level.block.state.StateDefinition$Builder(O);
+  public net.minecraft.world.level.block.state.StateDefinition$Builder<O, S> add(net.minecraft.world.level.block.state.properties.Property<?>...);
+  public net.minecraft.world.level.block.state.StateDefinition<O, S> create(java.util.function.Function<O, S>, net.minecraft.world.level.block.state.StateDefinition$Factory<O, S>);
+}
+Compiled from "StateHolder.java"
+public abstract class net.minecraft.world.level.block.state.StateHolder<O, S> {
+  public static final java.lang.String ID_TAG;
+  public static final java.lang.String PROPERTIES_TAG;
+  protected final O owner;
+  protected net.minecraft.world.level.block.state.StateHolder(O, net.minecraft.world.level.block.state.properties.Property<?>[], java.lang.Comparable<?>[]);
+  public <T extends java.lang.Comparable<T>> S cycle(net.minecraft.world.level.block.state.properties.Property<T>);
+  protected static <T> T findNextInCollection(java.util.List<T>, T);
+  public java.lang.String toString();
+  public final boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.util.Collection<net.minecraft.world.level.block.state.properties.Property<?>> getProperties();
+  public boolean hasProperty(net.minecraft.world.level.block.state.properties.Property<?>);
+  public <T extends java.lang.Comparable<T>> T getValue(net.minecraft.world.level.block.state.properties.Property<T>);
+  public <T extends java.lang.Comparable<T>> java.util.Optional<T> getOptionalValue(net.minecraft.world.level.block.state.properties.Property<T>);
+  public <T extends java.lang.Comparable<T>> T getValueOrElse(net.minecraft.world.level.block.state.properties.Property<T>, T);
+  public <T extends java.lang.Comparable<T>, V extends T> S setValue(net.minecraft.world.level.block.state.properties.Property<T>, V);
+  public <T extends java.lang.Comparable<T>, V extends T> S trySetValue(net.minecraft.world.level.block.state.properties.Property<T>, V);
+  public boolean isSingletonState();
+  public java.util.stream.Stream<net.minecraft.world.level.block.state.properties.Property$Value<?>> getValues();
+  protected static <O, S extends net.minecraft.world.level.block.state.StateHolder<O, S>> com.mojang.serialization.Codec<S> codec(com.mojang.serialization.Codec<O>, java.util.function.Function<O, S>, java.util.function.Function<O, net.minecraft.world.level.block.state.StateDefinition<O, S>>);
+}
+Compiled from "BlockBehaviour.java"
+public interface net.minecraft.world.level.block.state.BlockBehaviour$StateArgumentPredicate<A> {
+  public abstract boolean test(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, A);
+}
+Compiled from "BlockBehaviour.java"
+public final class net.minecraft.world.level.block.state.BlockBehaviour$OffsetType extends java.lang.Enum<net.minecraft.world.level.block.state.BlockBehaviour$OffsetType> {
+  public static final net.minecraft.world.level.block.state.BlockBehaviour$OffsetType NONE;
+  public static final net.minecraft.world.level.block.state.BlockBehaviour$OffsetType XZ;
+  public static final net.minecraft.world.level.block.state.BlockBehaviour$OffsetType XYZ;
+  public static net.minecraft.world.level.block.state.BlockBehaviour$OffsetType[] values();
+  public static net.minecraft.world.level.block.state.BlockBehaviour$OffsetType valueOf(java.lang.String);
+}
+Compiled from "BlockBehaviour.java"
+public abstract class net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase extends net.minecraft.world.level.block.state.StateHolder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState> implements net.minecraft.core.TypedInstance<net.minecraft.world.level.block.Block> {
+  protected net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.properties.Property<?>[], java.lang.Comparable<?>[]);
+  public void initCache();
+  public net.minecraft.world.level.block.Block getBlock();
+  public net.minecraft.core.Holder<net.minecraft.world.level.block.Block> typeHolder();
+  public boolean isSolid();
+  public boolean isValidSpawn(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<?>);
+  public boolean propagatesSkylightDown();
+  public int getLightDampening();
+  public net.minecraft.world.phys.shapes.VoxelShape getFaceOcclusionShape(net.minecraft.core.Direction);
+  public net.minecraft.world.phys.shapes.VoxelShape getOcclusionShape();
+  public boolean hasLargeCollisionShape();
+  public boolean useShapeForLightOcclusion();
+  public int getLightEmission();
+  public boolean isAir();
+  public boolean ignitedByLava();
+  public boolean liquid();
+  public net.minecraft.world.level.material.MapColor getMapColor(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState rotate(net.minecraft.world.level.block.Rotation);
+  public net.minecraft.world.level.block.state.BlockState mirror(net.minecraft.world.level.block.Mirror);
+  public net.minecraft.world.level.block.RenderShape getRenderShape();
+  public boolean emissiveRendering();
+  public float getShadeBrightness(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public boolean isRedstoneConductor(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public boolean isSignalSource();
+  public boolean shouldRedstoneWireConnectTo(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public int getOwnSignal(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public int getSignal(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public boolean hasAnalogOutputSignal();
+  public int getAnalogOutputSignal(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public float getDestroySpeed(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public float getDestroyProgress(net.minecraft.world.entity.player.Player, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public int getDirectSignal(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public net.minecraft.world.level.material.PushReaction getPistonPushReaction();
+  public boolean isSolidRender();
+  public boolean canOcclude();
+  public boolean skipRendering(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  public net.minecraft.world.phys.shapes.VoxelShape getEntityInsideCollisionShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity);
+  public net.minecraft.world.phys.shapes.VoxelShape getBlockSupportShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.shapes.VoxelShape getVisualShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  public net.minecraft.world.phys.shapes.VoxelShape getInteractionShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public final boolean entityCanStandOn(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity);
+  public final boolean entityCanStandOnFace(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.core.Direction);
+  public net.minecraft.world.phys.Vec3 getOffset(net.minecraft.core.BlockPos);
+  public boolean hasOffsetFunction();
+  public boolean triggerEvent(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, int, int);
+  public void handleNeighborChanged(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.world.level.redstone.Orientation, boolean);
+  public final void updateNeighbourShapes(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int);
+  public final void updateNeighbourShapes(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int, int);
+  public final void updateIndirectNeighbourShapes(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int);
+  public void updateIndirectNeighbourShapes(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int, int);
+  public void onPlace(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  public void affectNeighborsAfterRemoval(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, boolean);
+  public void onExplosionHit(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.Explosion, java.util.function.BiConsumer<net.minecraft.world.item.ItemStack, net.minecraft.core.BlockPos>);
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public void randomTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier, boolean);
+  public void spawnAfterBreak(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.item.ItemStack, boolean);
+  public java.util.List<net.minecraft.world.item.ItemStack> getDrops(net.minecraft.world.level.storage.loot.LootParams$Builder);
+  public net.minecraft.world.InteractionResult useItemOn(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.BlockHitResult);
+  public net.minecraft.world.InteractionResult useWithoutItem(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+  public boolean showAsInteractableInSpectatorMode(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.phys.BlockHitResult);
+  public void attack(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public boolean isSuffocating(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public boolean isLightPermeable();
+  public boolean isViewBlocking(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.AABB);
+  public net.minecraft.world.level.block.state.BlockState updateShape(net.minecraft.world.level.LevelReader, net.minecraft.world.level.ScheduledTickAccess, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.util.RandomSource);
+  public boolean isPathfindable(net.minecraft.world.level.pathfinder.PathComputationType);
+  public boolean canBeReplaced(net.minecraft.world.item.context.BlockPlaceContext);
+  public boolean canBeReplaced(net.minecraft.world.level.material.Fluid);
+  public boolean canBeReplaced();
+  public boolean canSurvive(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos getPostProcessPos(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.MenuProvider getMenuProvider(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public boolean is(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase>);
+  public boolean hasBlockEntity();
+  public boolean shouldChangedStateKeepBlockEntity(net.minecraft.world.level.block.state.BlockState);
+  public <T extends net.minecraft.world.level.block.entity.BlockEntity> net.minecraft.world.level.block.entity.BlockEntityTicker<T> getTicker(net.minecraft.world.level.Level, net.minecraft.world.level.block.entity.BlockEntityType<T>);
+  public net.minecraft.world.level.material.FluidState getFluidState();
+  public boolean isRandomlyTicking();
+  public long getSeed(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.SoundType getSoundType();
+  public void onProjectileHit(net.minecraft.world.level.Level, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.BlockHitResult, net.minecraft.world.entity.projectile.Projectile);
+  public boolean isFaceSturdy(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public boolean isFaceSturdy(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.world.level.block.SupportType);
+  public boolean isCollisionShapeFullBlock(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public net.minecraft.world.item.ItemStack getCloneItemStack(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, boolean);
+  protected abstract net.minecraft.world.level.block.state.BlockState asState();
+  public boolean requiresCorrectToolForDrops();
+  public boolean shouldSpawnTerrainParticles();
+  public net.minecraft.world.level.block.state.BlockState withPropertiesOf(net.minecraft.world.level.block.state.BlockState);
+  public static <T extends java.lang.Comparable<T>> net.minecraft.world.level.block.state.BlockState copyProperty(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.properties.Property<T>);
+  public net.minecraft.world.level.block.state.properties.NoteBlockInstrument instrument();
+}
+Compiled from "BlockBehaviour.java"
+public abstract class net.minecraft.world.level.block.state.BlockBehaviour implements net.minecraft.world.flag.FeatureElement {
+  protected static final net.minecraft.core.Direction[] UPDATE_SHAPE_ORDER;
+  protected final boolean hasCollision;
+  protected final float explosionResistance;
+  protected final boolean isRandomlyTicking;
+  protected final net.minecraft.world.level.block.SoundType soundType;
+  protected final float friction;
+  protected final float speedFactor;
+  protected final float jumpFactor;
+  protected final float bounceRestitution;
+  protected final float fallDistanceReduction;
+  protected final boolean dynamicShape;
+  protected final net.minecraft.world.flag.FeatureFlagSet requiredFeatures;
+  protected final net.minecraft.world.level.block.state.BlockBehaviour$Properties properties;
+  protected final java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> drops;
+  protected final java.lang.String descriptionId;
+  public net.minecraft.world.level.block.state.BlockBehaviour(net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties properties();
+  protected void updateIndirectNeighbourShapes(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int, int);
+  protected boolean isPathfindable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.pathfinder.PathComputationType);
+  protected net.minecraft.world.level.block.state.BlockState updateShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelReader, net.minecraft.world.level.ScheduledTickAccess, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.util.RandomSource);
+  protected boolean skipRendering(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction);
+  protected void neighborChanged(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.world.level.redstone.Orientation, boolean);
+  protected void onPlace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  protected void affectNeighborsAfterRemoval(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, boolean);
+  protected void onExplosionHit(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.Explosion, java.util.function.BiConsumer<net.minecraft.world.item.ItemStack, net.minecraft.core.BlockPos>);
+  protected net.minecraft.world.InteractionResult useWithoutItem(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+  protected net.minecraft.world.InteractionResult useItemOn(net.minecraft.world.item.ItemStack, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.BlockHitResult);
+  protected boolean showAsInteractableInSpectatorMode(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.phys.BlockHitResult);
+  protected boolean triggerEvent(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, int, int);
+  protected net.minecraft.world.level.block.RenderShape getRenderShape(net.minecraft.world.level.block.state.BlockState);
+  protected boolean useShapeForLightOcclusion(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.level.material.FluidState getFluidState(net.minecraft.world.level.block.state.BlockState);
+  protected boolean hasAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState);
+  protected float getMaxHorizontalOffset();
+  protected float getMaxVerticalOffset();
+  public net.minecraft.world.flag.FeatureFlagSet requiredFeatures();
+  protected boolean shouldChangedStateKeepBlockEntity(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.level.block.state.BlockState rotate(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Rotation);
+  protected net.minecraft.world.level.block.state.BlockState mirror(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Mirror);
+  protected boolean canBeReplaced(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.item.context.BlockPlaceContext);
+  protected boolean canBeReplaced(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.Fluid);
+  protected java.util.List<net.minecraft.world.item.ItemStack> getDrops(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.storage.loot.LootParams$Builder);
+  protected long getSeed(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  protected net.minecraft.world.phys.shapes.VoxelShape getOcclusionShape(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.phys.shapes.VoxelShape getBlockSupportShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected net.minecraft.world.phys.shapes.VoxelShape getInteractionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected int getLightDampening(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.MenuProvider getMenuProvider(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  protected boolean canSurvive(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  protected float getShadeBrightness(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected int getAnalogOutputSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  protected net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  protected net.minecraft.world.phys.shapes.VoxelShape getEntityInsideCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity);
+  protected boolean isCollisionShapeFullBlock(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected net.minecraft.world.phys.shapes.VoxelShape getVisualShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  protected void randomTick(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected void tick(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected float getDestroyProgress(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.entity.player.Player, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected void spawnAfterBreak(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.item.ItemStack, boolean);
+  protected void attack(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  protected boolean isSignalSource(net.minecraft.world.level.block.state.BlockState);
+  protected boolean shouldRedstoneWireConnectTo(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected int getSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  protected int ownSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected void entityInside(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier, boolean);
+  protected int getDirectSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public final java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> getLootTable();
+  public final java.lang.String getDescriptionId();
+  protected void onProjectileHit(net.minecraft.world.level.Level, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.BlockHitResult, net.minecraft.world.entity.projectile.Projectile);
+  protected boolean propagatesSkylightDown(net.minecraft.world.level.block.state.BlockState);
+  protected boolean isRandomlyTicking(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.level.block.SoundType getSoundType(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.item.ItemStack getCloneItemStack(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  public abstract net.minecraft.world.item.Item asItem();
+  protected abstract net.minecraft.world.level.block.Block asBlock();
+  public net.minecraft.world.level.material.MapColor defaultMapColor();
+  public float defaultDestroyTime();
+}
+Compiled from "BlockBehaviour.java"
+final class net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase$Cache {
+  public final net.minecraft.world.phys.shapes.VoxelShape collisionShape;
+  public final boolean largeCollisionShape;
+  public final boolean isCollisionShapeFullBlock;
+  public boolean isFaceSturdy(net.minecraft.core.Direction, net.minecraft.world.level.block.SupportType);
+}
+Compiled from "SolidDebugger.java"
+public final class net.minecraft.world.level.block.state.SolidDebugger$Reason extends java.lang.Enum<net.minecraft.world.level.block.state.SolidDebugger$Reason> {
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason FORCE_SOLID_ON;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason LARGE_ENOUGH_COLLISION_SHAPE;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason HIGH_ENOUGH_COLLISION_SHAPE;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason FORCE_SOLID_OFF;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason NULL_CACHE;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason EMPTY_COLLISION_SHAPE;
+  public static final net.minecraft.world.level.block.state.SolidDebugger$Reason FALLTHROUGH;
+  public static net.minecraft.world.level.block.state.SolidDebugger$Reason[] values();
+  public static net.minecraft.world.level.block.state.SolidDebugger$Reason valueOf(java.lang.String);
+}
+Compiled from "BlockBehaviour.java"
+public interface net.minecraft.world.level.block.state.BlockBehaviour$PostProcess {
+  public abstract net.minecraft.core.BlockPos getPostProcessPos(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "BlockBehaviour.java"
+public class net.minecraft.world.level.block.state.BlockBehaviour$Properties implements net.fabricmc.fabric.api.block.v1.FabricBlock$FabricProperties {
+  public static net.minecraft.world.level.block.state.BlockBehaviour$Properties of();
+  public static net.minecraft.world.level.block.state.BlockBehaviour$Properties ofFullCopy(net.minecraft.world.level.block.state.BlockBehaviour);
+  public static net.minecraft.world.level.block.state.BlockBehaviour$Properties ofLegacyCopy(net.minecraft.world.level.block.state.BlockBehaviour);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties mapColor(net.minecraft.world.item.DyeColor);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties mapColor(net.minecraft.world.level.material.MapColor);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties mapColor(java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.MapColor>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties noCollision();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties noOcclusion();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties friction(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties speedFactor(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties jumpFactor(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties bounceRestitution(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties fallDistanceReduction(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties sound(net.minecraft.world.level.block.SoundType);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties lightLevel(java.util.function.ToIntFunction<net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties strength(float, float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties instabreak();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties strength(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties randomTicks();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties dynamicShape();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties noLootTable();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties overrideLootTable(java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>>);
+  protected java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> effectiveDrops();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties ignitedByLava();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties liquid();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties forceSolidOn();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties forceSolidOff();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties pushReaction(net.minecraft.world.level.material.PushReaction);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties air();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties isValidSpawn(net.minecraft.world.level.block.state.BlockBehaviour$StateArgumentPredicate<net.minecraft.world.entity.EntityType<?>>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties isRedstoneConductor(net.minecraft.world.level.block.state.BlockBehaviour$StatePredicate);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties isSuffocating(net.minecraft.world.level.block.state.BlockBehaviour$StatePredicate);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties isViewBlocking(net.minecraft.world.level.block.state.BlockBehaviour$StateArgumentPredicate<net.minecraft.world.phys.AABB>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties postProcess(net.minecraft.world.level.block.state.BlockBehaviour$PostProcess);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties emissiveRendering(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties requiresCorrectToolForDrops();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties destroyTime(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties explosionResistance(float);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties offsetType(net.minecraft.world.level.block.state.BlockBehaviour$OffsetType);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties noTerrainParticles();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties requiredFeatures(net.minecraft.world.flag.FeatureFlag...);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties instrument(net.minecraft.world.level.block.state.properties.NoteBlockInstrument);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties replaceable();
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties setId(net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.Block>);
+  public net.minecraft.world.level.block.state.BlockBehaviour$Properties overrideDescription(java.lang.String);
+  protected java.lang.String effectiveDescriptionId();
+}
+Compiled from "StateDefinition.java"
+final class net.minecraft.world.level.block.state.StateDefinition$StateCollection$Wildcard extends java.lang.Enum<net.minecraft.world.level.block.state.StateDefinition$StateCollection$Wildcard> {
+  public static final net.minecraft.world.level.block.state.StateDefinition$StateCollection$Wildcard INSTANCE;
+  public static net.minecraft.world.level.block.state.StateDefinition$StateCollection$Wildcard[] values();
+  public static net.minecraft.world.level.block.state.StateDefinition$StateCollection$Wildcard valueOf(java.lang.String);
+}
+Compiled from "StateDefinition.java"
+public class net.minecraft.world.level.block.state.StateDefinition<O, S extends net.minecraft.world.level.block.state.StateHolder<O, S>> {
+  protected net.minecraft.world.level.block.state.StateDefinition(java.util.function.Function<O, S>, O, net.minecraft.world.level.block.state.StateDefinition$Factory<O, S>, java.util.Map<java.lang.String, net.minecraft.world.level.block.state.properties.Property<?>>);
+  public com.google.common.collect.ImmutableList<S> getPossibleStates();
+  public S any();
+  public com.mojang.serialization.MapCodec<S> propertiesCodec();
+  public O getOwner();
+  public java.util.Collection<net.minecraft.world.level.block.state.properties.Property<?>> getProperties();
+  public java.lang.String toString();
+  public net.minecraft.world.level.block.state.properties.Property<?> getProperty(java.lang.String);
+  public boolean isSingletonState();
+}
+Compiled from "BlockState.java"
+public class net.minecraft.world.level.block.state.BlockState extends net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase implements net.fabricmc.fabric.api.block.v1.FabricBlockState {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.state.BlockState> FULL_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.block.state.BlockState> CODEC;
+  public net.minecraft.world.level.block.state.BlockState(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.properties.Property<?>[], java.lang.Comparable<?>[]);
+  protected net.minecraft.world.level.block.state.BlockState asState();
+}
+Compiled from "BlockBehaviour.java"
+public interface net.minecraft.world.level.block.state.BlockBehaviour$StatePredicate {
+  public abstract boolean test(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.block.state.package-info {
+}

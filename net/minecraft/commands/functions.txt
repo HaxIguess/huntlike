@@ -1,0 +1,67 @@
+Compiled from "CommandFunction.java"
+public interface net.minecraft.commands.functions.CommandFunction<T> {
+  public abstract net.minecraft.resources.Identifier id();
+  public abstract net.minecraft.commands.functions.InstantiatedFunction<T> instantiate(net.minecraft.nbt.CompoundTag, com.mojang.brigadier.CommandDispatcher<T>) throws net.minecraft.commands.FunctionInstantiationException;
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> net.minecraft.commands.functions.CommandFunction<T> fromLines(net.minecraft.resources.Identifier, com.mojang.brigadier.CommandDispatcher<T>, T, java.util.List<java.lang.String>);
+  public static void checkCommandLineLength(java.lang.CharSequence);
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> net.minecraft.commands.execution.UnboundEntryAction<T> parseCommand(com.mojang.brigadier.CommandDispatcher<T>, T, com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "PlainTextFunction.java"
+public final class net.minecraft.commands.functions.PlainTextFunction<T> extends java.lang.Record implements net.minecraft.commands.functions.CommandFunction<T>, net.minecraft.commands.functions.InstantiatedFunction<T> {
+  public net.minecraft.commands.functions.PlainTextFunction(net.minecraft.resources.Identifier, java.util.List<net.minecraft.commands.execution.UnboundEntryAction<T>>);
+  public net.minecraft.commands.functions.InstantiatedFunction<T> instantiate(net.minecraft.nbt.CompoundTag, com.mojang.brigadier.CommandDispatcher<T>) throws net.minecraft.commands.FunctionInstantiationException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public java.util.List<net.minecraft.commands.execution.UnboundEntryAction<T>> entries();
+}
+Compiled from "StringTemplate.java"
+public final class net.minecraft.commands.functions.StringTemplate extends java.lang.Record {
+  public net.minecraft.commands.functions.StringTemplate(java.util.List<java.lang.String>, java.util.List<java.lang.String>);
+  public static net.minecraft.commands.functions.StringTemplate fromString(java.lang.String);
+  public static boolean isValidVariableName(java.lang.String);
+  public java.lang.String substitute(java.util.List<java.lang.String>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.lang.String> segments();
+  public java.util.List<java.lang.String> variables();
+}
+Compiled from "MacroFunction.java"
+class net.minecraft.commands.functions.MacroFunction$PlainTextEntry<T> implements net.minecraft.commands.functions.MacroFunction$Entry<T> {
+  public net.minecraft.commands.functions.MacroFunction$PlainTextEntry(net.minecraft.commands.execution.UnboundEntryAction<T>);
+  public it.unimi.dsi.fastutil.ints.IntList parameters();
+  public net.minecraft.commands.execution.UnboundEntryAction<T> instantiate(java.util.List<java.lang.String>, com.mojang.brigadier.CommandDispatcher<T>, net.minecraft.resources.Identifier);
+}
+Compiled from "MacroFunction.java"
+interface net.minecraft.commands.functions.MacroFunction$Entry<T> {
+  public abstract it.unimi.dsi.fastutil.ints.IntList parameters();
+  public abstract net.minecraft.commands.execution.UnboundEntryAction<T> instantiate(java.util.List<java.lang.String>, com.mojang.brigadier.CommandDispatcher<T>, net.minecraft.resources.Identifier) throws net.minecraft.commands.FunctionInstantiationException;
+}
+Compiled from "FunctionBuilder.java"
+class net.minecraft.commands.functions.FunctionBuilder<T extends net.minecraft.commands.ExecutionCommandSource<T>> {
+  public void addCommand(net.minecraft.commands.execution.UnboundEntryAction<T>);
+  public void addMacro(java.lang.String, int, T);
+  public net.minecraft.commands.functions.CommandFunction<T> build(net.minecraft.resources.Identifier);
+}
+Compiled from "InstantiatedFunction.java"
+public interface net.minecraft.commands.functions.InstantiatedFunction<T> {
+  public abstract net.minecraft.resources.Identifier id();
+  public abstract java.util.List<net.minecraft.commands.execution.UnboundEntryAction<T>> entries();
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.functions.package-info {
+}
+Compiled from "MacroFunction.java"
+class net.minecraft.commands.functions.MacroFunction$MacroEntry<T extends net.minecraft.commands.ExecutionCommandSource<T>> implements net.minecraft.commands.functions.MacroFunction$Entry<T> {
+  public net.minecraft.commands.functions.MacroFunction$MacroEntry(net.minecraft.commands.functions.StringTemplate, it.unimi.dsi.fastutil.ints.IntList, T);
+  public it.unimi.dsi.fastutil.ints.IntList parameters();
+  public net.minecraft.commands.execution.UnboundEntryAction<T> instantiate(java.util.List<java.lang.String>, com.mojang.brigadier.CommandDispatcher<T>, net.minecraft.resources.Identifier) throws net.minecraft.commands.FunctionInstantiationException;
+}
+Compiled from "MacroFunction.java"
+public class net.minecraft.commands.functions.MacroFunction<T extends net.minecraft.commands.ExecutionCommandSource<T>> implements net.minecraft.commands.functions.CommandFunction<T> {
+  public net.minecraft.commands.functions.MacroFunction(net.minecraft.resources.Identifier, java.util.List<net.minecraft.commands.functions.MacroFunction$Entry<T>>, java.util.List<java.lang.String>);
+  public net.minecraft.resources.Identifier id();
+  public net.minecraft.commands.functions.InstantiatedFunction<T> instantiate(net.minecraft.nbt.CompoundTag, com.mojang.brigadier.CommandDispatcher<T>) throws net.minecraft.commands.FunctionInstantiationException;
+}

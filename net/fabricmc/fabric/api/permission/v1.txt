@@ -1,0 +1,89 @@
+Compiled from "MutablePermissionContext.java"
+public interface net.fabricmc.fabric.api.permission.v1.MutablePermissionContext extends net.fabricmc.fabric.api.permission.v1.PermissionContext {
+  public abstract <T> net.fabricmc.fabric.api.permission.v1.MutablePermissionContext set(net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<T>, T);
+}
+Compiled from "PermissionContext.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<T> {
+  public abstract net.minecraft.resources.Identifier id();
+}
+Compiled from "PermissionContext.java"
+public final class net.fabricmc.fabric.api.permission.v1.PermissionContext$Type extends java.lang.Enum<net.fabricmc.fabric.api.permission.v1.PermissionContext$Type> {
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Type PLAYER;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Type ENTITY;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Type SYSTEM;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Type OTHER;
+  public static net.fabricmc.fabric.api.permission.v1.PermissionContext$Type[] values();
+  public static net.fabricmc.fabric.api.permission.v1.PermissionContext$Type valueOf(java.lang.String);
+}
+Compiled from "PermissionContext.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionContext extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner {
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<java.lang.String> NAME;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.world.phys.Vec3> POSITION;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.core.BlockPos> BLOCK_POSITION;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.world.entity.Entity> ENTITY;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.commands.CommandSourceStack> COMMAND_SOURCE_STACK;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.world.level.Level> LEVEL;
+  public static final net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<net.minecraft.server.MinecraftServer> SERVER;
+  public static net.fabricmc.fabric.api.permission.v1.MutablePermissionContext create(java.util.UUID, net.fabricmc.fabric.api.permission.v1.PermissionContext$Type, net.minecraft.server.permissions.PermissionLevel);
+  public static java.util.concurrent.CompletableFuture<net.fabricmc.fabric.api.permission.v1.MutablePermissionContext> offlinePlayer(java.util.UUID, net.minecraft.server.MinecraftServer);
+  public static java.util.concurrent.CompletableFuture<net.fabricmc.fabric.api.permission.v1.MutablePermissionContext> offlinePlayer(net.minecraft.server.players.NameAndId, net.minecraft.server.MinecraftServer);
+  public static <T> net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<T> key(net.minecraft.resources.Identifier);
+  public abstract java.util.UUID uuid();
+  public abstract net.fabricmc.fabric.api.permission.v1.PermissionContext$Type type();
+  public abstract <T> T get(net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<T>);
+  public default <T> T orElse(net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<T>, T);
+  public default net.fabricmc.fabric.api.permission.v1.MutablePermissionContext mutable();
+  public abstract net.minecraft.server.permissions.PermissionLevel permissionLevel();
+  public abstract java.util.Set<net.fabricmc.fabric.api.permission.v1.PermissionContext$Key<?>> keys();
+  public default net.fabricmc.fabric.api.permission.v1.PermissionContext getPermissionContext();
+}
+Compiled from "PermissionContextOwner.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionContextOwner {
+  public default net.fabricmc.fabric.api.permission.v1.PermissionContext getPermissionContext();
+  public default net.fabricmc.fabric.api.util.TriState checkPermission(net.minecraft.resources.Identifier);
+  public default boolean checkPermission(net.minecraft.resources.Identifier, boolean);
+  public default boolean checkPermission(net.minecraft.resources.Identifier, net.minecraft.server.permissions.PermissionLevel);
+  public default <T> T checkPermission(net.fabricmc.fabric.api.permission.v1.PermissionNode<T>);
+  public default <T> T checkPermission(net.fabricmc.fabric.api.permission.v1.PermissionNode<T>, T);
+}
+Compiled from "PermissionEvents.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionEvents$OnRequest {
+  public abstract <T> T handlePermissionRequest(net.fabricmc.fabric.api.permission.v1.PermissionContext, net.fabricmc.fabric.api.permission.v1.PermissionNode<T>);
+}
+Compiled from "PermissionEvents.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionEvents$PrepareOfflinePlayer {
+  public abstract java.util.concurrent.CompletableFuture<java.util.function.Consumer<net.fabricmc.fabric.api.permission.v1.MutablePermissionContext>> prepareOfflinePlayer(net.fabricmc.fabric.api.permission.v1.PermissionContext, net.minecraft.server.MinecraftServer);
+}
+Compiled from "PermissionEvents.java"
+public final class net.fabricmc.fabric.api.permission.v1.PermissionEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.permission.v1.PermissionEvents$OnRequest> ON_REQUEST;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.permission.v1.PermissionEvents$PrepareOfflinePlayer> PREPARE_OFFLINE_PLAYER;
+}
+Compiled from "PermissionNode.java"
+public interface net.fabricmc.fabric.api.permission.v1.PermissionNode<T> {
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Boolean> of(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Boolean> of(java.lang.String, java.lang.String);
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Integer> ofInteger(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Integer> ofInteger(java.lang.String, java.lang.String);
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.String> ofString(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.String> ofString(java.lang.String, java.lang.String);
+  public static <T> net.fabricmc.fabric.api.permission.v1.PermissionNode<T> ofCustom(net.minecraft.resources.Identifier, com.mojang.serialization.Codec<T>, java.lang.Class<T>);
+  public static <T> net.fabricmc.fabric.api.permission.v1.PermissionNode<T> ofCustom(java.lang.String, java.lang.String, com.mojang.serialization.Codec<T>, java.lang.Class<T>);
+  public static <T> net.fabricmc.fabric.api.permission.v1.PermissionNode<T> ofCustom(net.minecraft.resources.Identifier, com.mojang.serialization.Codec<T>, java.util.function.Predicate<java.lang.Object>);
+  public static <T> net.fabricmc.fabric.api.permission.v1.PermissionNode<T> ofCustom(java.lang.String, java.lang.String, com.mojang.serialization.Codec<T>, java.util.function.Predicate<java.lang.Object>);
+  public abstract T cast(java.lang.Object);
+  public abstract net.minecraft.resources.Identifier key();
+  public abstract com.mojang.serialization.Codec<T> codec();
+}
+Compiled from "PermissionPredicates.java"
+public final class net.fabricmc.fabric.api.permission.v1.PermissionPredicates {
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.minecraft.resources.Identifier);
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.minecraft.resources.Identifier, boolean);
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.minecraft.resources.Identifier, net.minecraft.server.permissions.PermissionLevel);
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Boolean>);
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Boolean>, boolean);
+  public static <T extends net.fabricmc.fabric.api.permission.v1.PermissionContextOwner> java.util.function.Predicate<T> require(net.fabricmc.fabric.api.permission.v1.PermissionNode<java.lang.Boolean>, net.minecraft.server.permissions.PermissionLevel);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.permission.v1.package-info {
+}

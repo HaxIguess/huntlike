@@ -1,0 +1,211 @@
+Compiled from "WouldSurvivePredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.WouldSurvivePredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.WouldSurvivePredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.WouldSurvivePredicate(net.minecraft.core.Vec3i, net.minecraft.world.level.block.state.BlockState);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "HeightRangePredicate.java"
+public final class net.minecraft.world.level.levelgen.blockpredicates.HeightRangePredicate extends java.lang.Record implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.HeightRangePredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.HeightRangePredicate(net.minecraft.world.level.levelgen.VerticalAnchor, net.minecraft.world.level.levelgen.VerticalAnchor);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.VerticalAnchor minInclusive();
+  public net.minecraft.world.level.levelgen.VerticalAnchor maxInclusive();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "ReplaceablePredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.ReplaceablePredicate extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.ReplaceablePredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.ReplaceablePredicate(net.minecraft.core.Vec3i);
+  protected boolean test(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+}
+Compiled from "BlockPredicate.java"
+public interface net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate extends java.util.function.BiPredicate<net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate> CODEC;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate ONLY_IN_AIR_PREDICATE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate ONLY_IN_AIR_OR_WATER_PREDICATE;
+  public abstract net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate allOf(java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate allOf(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate allOf(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate anyOf(java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate anyOf(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate anyOf(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesBlocks(net.minecraft.core.Vec3i, java.util.List<net.minecraft.world.level.block.Block>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesBlocks(net.minecraft.core.Directional, net.minecraft.world.level.block.Block...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesBlocks(net.minecraft.world.level.block.Block...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesTag(net.minecraft.core.Vec3i, net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesTag(net.minecraft.core.Directional, net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesTag(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesFluids(net.minecraft.core.Directional, net.minecraft.world.level.material.Fluid...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesFluids(net.minecraft.core.Vec3i, java.util.List<net.minecraft.world.level.material.Fluid>);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate matchesFluids(net.minecraft.world.level.material.Fluid...);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate not(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate replaceable();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate wouldSurvive(net.minecraft.world.level.block.Block);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate hasSturdyFace(net.minecraft.core.Direction);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate hasSturdyFace(net.minecraft.core.Directional, net.minecraft.core.Direction);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate solid(net.minecraft.core.Directional);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate solid();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate noFluid();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate insideWorld(net.minecraft.core.Vec3i);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate alwaysTrue();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate unobstructed();
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate heightRange(net.minecraft.world.level.levelgen.VerticalAnchor, net.minecraft.world.level.levelgen.VerticalAnchor);
+  public static net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate volumeMatch(net.minecraft.core.Vec3i, net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+}
+Compiled from "AllOfPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.AllOfPredicate extends net.minecraft.world.level.levelgen.blockpredicates.CombiningPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.AllOfPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.AllOfPredicate(java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "HasSturdyFacePredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.HasSturdyFacePredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.HasSturdyFacePredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.HasSturdyFacePredicate(net.minecraft.core.Vec3i, net.minecraft.core.Direction);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "TrueBlockPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.TrueBlockPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final net.minecraft.world.level.levelgen.blockpredicates.TrueBlockPredicate INSTANCE;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.TrueBlockPredicate> CODEC;
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "UnobstructedPredicate.java"
+public final class net.minecraft.world.level.levelgen.blockpredicates.UnobstructedPredicate extends java.lang.Record implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.UnobstructedPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.UnobstructedPredicate(net.minecraft.core.Vec3i);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Vec3i offset();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "AnyOfPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.AnyOfPredicate extends net.minecraft.world.level.levelgen.blockpredicates.CombiningPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.AnyOfPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.AnyOfPredicate(java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "NotPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.NotPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.NotPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.NotPredicate(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "VolumeMatchPredicate.java"
+public final class net.minecraft.world.level.levelgen.blockpredicates.VolumeMatchPredicate extends java.lang.Record implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.VolumeMatchPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.VolumeMatchPredicate(net.minecraft.core.Vec3i, net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.VolumeMatchPredicate> type();
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Vec3i min();
+  public net.minecraft.core.Vec3i max();
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate match();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.blockpredicates.package-info {
+}
+Compiled from "InsideWorldBoundsPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.InsideWorldBoundsPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.InsideWorldBoundsPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.InsideWorldBoundsPredicate(net.minecraft.core.Vec3i);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "MatchingFluidsPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.MatchingFluidsPredicate extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.MatchingFluidsPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.MatchingFluidsPredicate(net.minecraft.core.Vec3i, net.minecraft.core.HolderSet<net.minecraft.world.level.material.Fluid>);
+  protected boolean test(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+}
+Compiled from "MatchingBlockTagPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.MatchingBlockTagPredicate extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.MatchingBlockTagPredicate> CODEC;
+  protected net.minecraft.world.level.levelgen.blockpredicates.MatchingBlockTagPredicate(net.minecraft.core.Vec3i, net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>);
+  protected boolean test(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+}
+Compiled from "MatchingBiomesPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.MatchingBiomesPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.MatchingBiomesPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.MatchingBiomesPredicate(net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>);
+  public boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "CombiningPredicate.java"
+public abstract class net.minecraft.world.level.levelgen.blockpredicates.CombiningPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  protected final java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate> predicates;
+  protected net.minecraft.world.level.levelgen.blockpredicates.CombiningPredicate(java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>);
+  public static <T extends net.minecraft.world.level.levelgen.blockpredicates.CombiningPredicate> com.mojang.serialization.MapCodec<T> codec(java.util.function.Function<java.util.List<net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate>, T>);
+}
+Compiled from "BlockPredicateType.java"
+public interface net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<P extends net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate> {
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate> MATCHING_BLOCKS;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.MatchingBlockTagPredicate> MATCHING_BLOCK_TAG;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.MatchingFluidsPredicate> MATCHING_FLUIDS;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.MatchingBiomesPredicate> MATCHING_BIOMES;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.HasSturdyFacePredicate> HAS_STURDY_FACE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.SolidPredicate> SOLID;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.ReplaceablePredicate> REPLACEABLE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.WouldSurvivePredicate> WOULD_SURVIVE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.InsideWorldBoundsPredicate> INSIDE_WORLD_BOUNDS;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.AnyOfPredicate> ANY_OF;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.AllOfPredicate> ALL_OF;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.NotPredicate> NOT;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.TrueBlockPredicate> TRUE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.UnobstructedPredicate> UNOBSTRUCTED;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.HeightRangePredicate> HEIGHT_RANGE;
+  public static final net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<net.minecraft.world.level.levelgen.blockpredicates.VolumeMatchPredicate> VOLUME_MATCH;
+  public abstract com.mojang.serialization.MapCodec<P> codec();
+}
+Compiled from "SolidPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.SolidPredicate extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.SolidPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.SolidPredicate(net.minecraft.core.Vec3i);
+  protected boolean test(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+}
+Compiled from "StateTestingPredicate.java"
+public abstract class net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate implements net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate {
+  protected final net.minecraft.core.Vec3i offset;
+  protected static <P extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate> com.mojang.datafixers.Products$P1<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<P>, net.minecraft.core.Vec3i> stateTestingCodec(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<P>);
+  protected net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate(net.minecraft.core.Vec3i);
+  public final boolean test(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  protected abstract boolean test(net.minecraft.world.level.block.state.BlockState);
+  public boolean test(java.lang.Object, java.lang.Object);
+}
+Compiled from "MatchingBlocksPredicate.java"
+public class net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate extends net.minecraft.world.level.levelgen.blockpredicates.StateTestingPredicate {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate> CODEC;
+  public net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate(net.minecraft.core.Vec3i, net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>);
+  protected boolean test(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType<?> type();
+}

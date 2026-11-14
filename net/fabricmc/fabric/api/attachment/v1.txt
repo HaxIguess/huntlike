@@ -1,0 +1,62 @@
+Compiled from "AttachmentRegistry.java"
+public interface net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> {
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> persistent(com.mojang.serialization.Codec<A>);
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> copyOnDeath();
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> initializer(java.util.function.Supplier<A>);
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> syncWith(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A>, net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate);
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> syncWith(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A>, net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate, int);
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> buildAndRegister(net.minecraft.resources.Identifier);
+}
+Compiled from "AttachmentRegistry.java"
+public final class net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry {
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> create(net.minecraft.resources.Identifier, java.util.function.Consumer<net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A>>);
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> create(net.minecraft.resources.Identifier);
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> createDefaulted(net.minecraft.resources.Identifier, java.util.function.Supplier<A>);
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> createPersistent(net.minecraft.resources.Identifier, com.mojang.serialization.Codec<A>);
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> builder();
+}
+Compiled from "AttachmentSyncPredicate.java"
+public interface net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate extends java.util.function.BiPredicate<net.fabricmc.fabric.api.attachment.v1.AttachmentTarget, net.minecraft.server.level.ServerPlayer> {
+  public static net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate all();
+  public static net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate targetOnly();
+  public static net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate allButTarget();
+}
+Compiled from "AttachmentTarget.java"
+public interface net.fabricmc.fabric.api.attachment.v1.AttachmentTarget$OnAttachedSet<A> {
+  public abstract void onAttachedSet(A, A);
+}
+Compiled from "AttachmentTarget.java"
+public interface net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
+  public static final java.lang.String NBT_ATTACHMENT_KEY;
+  public default <A> A getAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public default <A> A getAttachedOrThrow(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public default <A> A getAttachedOrSet(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, A);
+  public default <A> A getAttachedOrCreate(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, java.util.function.Supplier<A>);
+  public default <A> A getAttachedOrCreate(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public default <A> A getAttachedOrElse(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, A);
+  public default <A> A getAttachedOrGet(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, java.util.function.Supplier<A>);
+  public default <A> A setAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, A);
+  public default boolean hasAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public default <A> A removeAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public default <A> net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.attachment.v1.AttachmentTarget$OnAttachedSet<A>> onAttachedSet(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public default <A> A modifyAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>, java.util.function.UnaryOperator<A>);
+}
+Compiled from "AttachmentType.java"
+public interface net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> {
+  public abstract net.minecraft.resources.Identifier identifier();
+  public abstract com.mojang.serialization.Codec<A> persistenceCodec();
+  public default boolean isPersistent();
+  public abstract java.util.function.Supplier<A> initializer();
+  public abstract boolean isSynced();
+  public abstract boolean copyOnDeath();
+}
+Compiled from "GlobalAttachments.java"
+public interface net.fabricmc.fabric.api.attachment.v1.GlobalAttachments extends net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
+}
+Compiled from "GlobalAttachmentsProvider.java"
+public interface net.fabricmc.fabric.api.attachment.v1.GlobalAttachmentsProvider {
+  public default net.fabricmc.fabric.api.attachment.v1.GlobalAttachments globalAttachments();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.attachment.v1.package-info {
+}

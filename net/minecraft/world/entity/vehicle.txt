@@ -1,0 +1,63 @@
+Compiled from "VehicleEntity.java"
+public abstract class net.minecraft.world.entity.vehicle.VehicleEntity extends net.minecraft.world.entity.Entity {
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> DATA_ID_HURT;
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Integer> DATA_ID_HURTDIR;
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Float> DATA_ID_DAMAGE;
+  public net.minecraft.world.entity.vehicle.VehicleEntity(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected boolean shouldSourceDestroy(net.minecraft.world.damagesource.DamageSource);
+  public boolean ignoreExplosion(net.minecraft.world.level.Explosion);
+  public void destroy(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.Item);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void setHurtTime(int);
+  public void setHurtDir(int);
+  public void setDamage(float);
+  public float getDamage();
+  public int getHurtTime();
+  public int getHurtDir();
+  protected void destroy(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  public int getDimensionChangingDelay();
+  protected abstract net.minecraft.world.item.Item getDropItem();
+}
+Compiled from "ContainerEntity.java"
+public interface net.minecraft.world.entity.vehicle.ContainerEntity extends net.minecraft.world.Container,net.minecraft.world.MenuProvider {
+  public abstract net.minecraft.world.phys.Vec3 position();
+  public abstract net.minecraft.world.phys.AABB getBoundingBox();
+  public abstract net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getContainerLootTable();
+  public abstract void setContainerLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public abstract long getContainerLootTableSeed();
+  public abstract void setContainerLootTableSeed(long);
+  public abstract net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItemStacks();
+  public abstract void clearItemStacks();
+  public abstract net.minecraft.world.level.Level level();
+  public abstract boolean isRemoved();
+  public default boolean isEmpty();
+  public default void addChestVehicleSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public default void readChestVehicleSaveData(net.minecraft.world.level.storage.ValueInput);
+  public default void chestVehicleDestroyed(net.minecraft.world.damagesource.DamageSource, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public default net.minecraft.world.InteractionResult interactWithContainerVehicle(net.minecraft.world.entity.player.Player);
+  public default void unpackChestVehicleLootTable(net.minecraft.world.entity.player.Player);
+  public default void clearChestVehicleContent();
+  public default boolean isChestVehicleEmpty();
+  public default net.minecraft.world.item.ItemStack removeChestVehicleItemNoUpdate(int);
+  public default net.minecraft.world.item.ItemStack getChestVehicleItem(int);
+  public default net.minecraft.world.item.ItemStack removeChestVehicleItem(int, int);
+  public default void setChestVehicleItem(int, net.minecraft.world.item.ItemStack);
+  public default net.minecraft.world.entity.SlotAccess getChestVehicleSlot(int);
+  public default boolean isChestVehicleStillValid(net.minecraft.world.entity.player.Player);
+}
+Compiled from "DismountHelper.java"
+public class net.minecraft.world.entity.vehicle.DismountHelper {
+  public net.minecraft.world.entity.vehicle.DismountHelper();
+  public static int[][] offsetsForDirection(net.minecraft.core.Direction);
+  public static boolean isBlockFloorValid(double);
+  public static boolean canDismountTo(net.minecraft.world.level.CollisionGetter, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.AABB);
+  public static boolean canDismountTo(net.minecraft.world.level.CollisionGetter, net.minecraft.world.phys.Vec3, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.Pose);
+  public static net.minecraft.world.phys.shapes.VoxelShape nonClimbableShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public static double findCeilingFrom(net.minecraft.core.BlockPos, int, java.util.function.Function<net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.VoxelShape>);
+  public static net.minecraft.world.phys.Vec3 findSafeDismountLocation(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.CollisionGetter, net.minecraft.core.BlockPos, boolean);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.vehicle.package-info {
+}

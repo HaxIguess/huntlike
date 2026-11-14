@@ -1,0 +1,28 @@
+Compiled from "ClientCommandRegistrationCallback.java"
+public interface net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback> EVENT;
+  public abstract void register(com.mojang.brigadier.CommandDispatcher<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>, net.minecraft.commands.CommandBuildContext);
+}
+Compiled from "ClientCommands.java"
+public final class net.fabricmc.fabric.api.client.command.v2.ClientCommands {
+  public static com.mojang.brigadier.CommandDispatcher<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource> getActiveDispatcher();
+  public static void refreshCommandCompletions();
+  public static com.mojang.brigadier.builder.LiteralArgumentBuilder<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource> literal(java.lang.String);
+  public static <T> com.mojang.brigadier.builder.RequiredArgumentBuilder<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource, T> argument(java.lang.String, com.mojang.brigadier.arguments.ArgumentType<T>);
+}
+Compiled from "FabricClientCommandSource.java"
+public interface net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource extends net.minecraft.commands.SharedSuggestionProvider {
+  public abstract void sendFeedback(net.minecraft.network.chat.Component);
+  public abstract void sendError(net.minecraft.network.chat.Component);
+  public abstract net.minecraft.client.Minecraft getClient();
+  public abstract net.minecraft.client.player.LocalPlayer getPlayer();
+  public default net.minecraft.world.entity.Entity getEntity();
+  public default net.minecraft.world.phys.Vec3 getPosition();
+  public default net.minecraft.world.phys.Vec2 getRotation();
+  public abstract net.minecraft.client.multiplayer.ClientLevel getLevel();
+  public default java.lang.Object getMeta(java.lang.String);
+  public abstract boolean attended();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.client.command.v2.package-info {
+}

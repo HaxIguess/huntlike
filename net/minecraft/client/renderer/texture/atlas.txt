@@ -1,0 +1,41 @@
+Compiled from "SpriteSource.java"
+public interface net.minecraft.client.renderer.texture.atlas.SpriteSource {
+  public static final net.minecraft.resources.FileToIdConverter TEXTURE_ID_CONVERTER;
+  public abstract void run(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.client.renderer.texture.atlas.SpriteSource$Output);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.client.renderer.texture.atlas.SpriteSource> codec();
+}
+Compiled from "SpriteSource.java"
+public interface net.minecraft.client.renderer.texture.atlas.SpriteSource$Output {
+  public default void add(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource);
+  public abstract void add(net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.atlas.SpriteSource$DiscardableLoader);
+  public abstract void removeAll(java.util.function.Predicate<net.minecraft.resources.Identifier>);
+}
+Compiled from "SpriteSources.java"
+public class net.minecraft.client.renderer.texture.atlas.SpriteSources {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.renderer.texture.atlas.SpriteSource> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.client.renderer.texture.atlas.SpriteSource>> FILE_CODEC;
+  public net.minecraft.client.renderer.texture.atlas.SpriteSources();
+  public static void bootstrap();
+}
+Compiled from "SpriteResourceLoader.java"
+public interface net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader {
+  public static final org.slf4j.Logger LOGGER;
+  public static net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader create(java.util.Set<net.minecraft.server.packs.metadata.MetadataSectionType<?>>);
+  public abstract net.minecraft.client.renderer.texture.SpriteContents loadSprite(net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource);
+}
+Compiled from "SpriteSource.java"
+public interface net.minecraft.client.renderer.texture.atlas.SpriteSource$DiscardableLoader extends net.minecraft.client.renderer.texture.atlas.SpriteSource$Loader {
+  public default void discard();
+}
+Compiled from "SpriteSourceList.java"
+public class net.minecraft.client.renderer.texture.atlas.SpriteSourceList {
+  public java.util.List<net.minecraft.client.renderer.texture.atlas.SpriteSource$Loader> list(net.minecraft.server.packs.resources.ResourceManager);
+  public static net.minecraft.client.renderer.texture.atlas.SpriteSourceList load(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.resources.Identifier);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.texture.atlas.package-info {
+}
+Compiled from "SpriteSource.java"
+public interface net.minecraft.client.renderer.texture.atlas.SpriteSource$Loader {
+  public abstract net.minecraft.client.renderer.texture.SpriteContents get(net.minecraft.client.renderer.texture.atlas.SpriteResourceLoader);
+}

@@ -1,0 +1,107 @@
+Compiled from "AttachmentChange.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentChange extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange> PACKET_CODEC;
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentChange(net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?>, net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, java.lang.Object);
+  public void tryApply(net.minecraft.world.level.Level) throws net.fabricmc.fabric.impl.attachment.sync.AttachmentSyncException;
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentChange withNewTarget(net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> targetInfo();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentType<?> type();
+  public java.lang.Object value();
+}
+Compiled from "AttachmentSync.java"
+final class net.fabricmc.fabric.impl.attachment.sync.AttachmentSync$AttachmentSyncTask extends java.lang.Record implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type KEY;
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "AttachmentSync.java"
+public class net.fabricmc.fabric.impl.attachment.sync.AttachmentSync implements net.fabricmc.api.ModInitializer {
+  public static final int MAX_IDENTIFIER_SIZE;
+  public static final int MAX_PADDING_SIZE_IN_BYTES;
+  public static final int DEFAULT_MAX_DATA_SIZE;
+  public static final int DEFAULT_ATTACHMENT_SYNC_PACKET_SIZE;
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentSync();
+  public static net.fabricmc.fabric.impl.attachment.sync.serverbound.ServerboundAcceptedAttachmentsPayload createResponsePayload();
+  public static void trySync(net.fabricmc.fabric.impl.attachment.sync.AttachmentChange, net.minecraft.server.level.ServerPlayer);
+  public static void trySync(java.util.List<net.fabricmc.fabric.impl.attachment.sync.AttachmentChange>, net.minecraft.server.level.ServerPlayer);
+  public void onInitialize();
+}
+Compiled from "AttachmentSyncException.java"
+public class net.fabricmc.fabric.impl.attachment.sync.AttachmentSyncException extends java.lang.Exception {
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentSyncException(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getComponent();
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$BlockEntityTarget extends java.lang.Record implements net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<net.minecraft.world.level.block.entity.BlockEntity> {
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$BlockEntityTarget(net.minecraft.core.BlockPos);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<net.minecraft.world.level.block.entity.BlockEntity> getType();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$ChunkTarget extends java.lang.Record implements net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<net.minecraft.world.level.chunk.ChunkAccess> {
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$ChunkTarget(net.minecraft.world.level.ChunkPos);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<net.minecraft.world.level.chunk.ChunkAccess> getType();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.ChunkPos pos();
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$EntityTarget extends java.lang.Record implements net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<net.minecraft.world.entity.Entity> {
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$EntityTarget(int);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<net.minecraft.world.entity.Entity> getType();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int networkId();
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$GlobalTarget implements net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<net.fabricmc.fabric.api.attachment.v1.GlobalAttachments> {
+  public static final net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$GlobalTarget INSTANCE;
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<net.fabricmc.fabric.api.attachment.v1.GlobalAttachments> getType();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$LevelTarget implements net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<net.minecraft.world.level.Level> {
+  public static final net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$LevelTarget INSTANCE;
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<net.minecraft.world.level.Level> getType();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+}
+Compiled from "AttachmentTargetInfo.java"
+public final class net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<T> extends java.lang.Record {
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type(byte, net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, ? extends net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public byte id();
+  public net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, ? extends net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>> streamCodec();
+}
+Compiled from "AttachmentTargetInfo.java"
+public interface net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T> {
+  public static final int MAX_SIZE_IN_BYTES;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?>> PACKET_CODEC;
+  public abstract net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo$Type<T> getType();
+  public default byte getId();
+  public abstract net.fabricmc.fabric.api.attachment.v1.AttachmentTarget getTarget(net.minecraft.world.level.Level);
+  public abstract void appendDebugInformation(net.minecraft.network.chat.MutableComponent);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.attachment.sync.package-info {
+}

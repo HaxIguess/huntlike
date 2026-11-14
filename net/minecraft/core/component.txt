@@ -1,0 +1,483 @@
+Compiled from "DataComponentPatch.java"
+public final class net.minecraft.core.component.DataComponentPatch {
+  public static final net.minecraft.core.component.DataComponentPatch EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentPatch> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.DataComponentPatch> STREAM_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.DataComponentPatch> DELIMITED_STREAM_CODEC;
+  public static net.minecraft.core.component.DataComponentPatch$Builder builder();
+  public <T> T get(net.minecraft.core.component.DataComponentGetter, net.minecraft.core.component.DataComponentType<? extends T>);
+  public int size();
+  public net.minecraft.core.component.DataComponentPatch forget(java.util.function.Predicate<net.minecraft.core.component.DataComponentType<?>>);
+  public boolean isEmpty();
+  public net.minecraft.core.component.DataComponentPatch$SplitResult split();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "BlockTransformer.java"
+public interface net.minecraft.core.component.BlockTransformer$DropStrategy$ResourcePopper {
+  public static final net.minecraft.core.component.BlockTransformer$DropStrategy$ResourcePopper FROM_FACE;
+  public static final net.minecraft.core.component.BlockTransformer$DropStrategy$ResourcePopper FROM_MIDDLE;
+  public abstract void pop(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.world.item.ItemStack);
+}
+Compiled from "DataComponentExactPredicate.java"
+public class net.minecraft.core.component.DataComponentExactPredicate$Builder {
+  public <T> net.minecraft.core.component.DataComponentExactPredicate$Builder expect(net.minecraft.core.component.TypedDataComponent<T>);
+  public <T> net.minecraft.core.component.DataComponentExactPredicate$Builder expect(net.minecraft.core.component.DataComponentType<? super T>, T);
+  public net.minecraft.core.component.DataComponentExactPredicate build();
+}
+Compiled from "BlockTransformer.java"
+public final class net.minecraft.core.component.BlockTransformer extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.BlockTransformer> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.core.component.BlockTransformer>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.core.component.BlockTransformer>> STREAM_CODEC;
+  public net.minecraft.core.component.BlockTransformer(java.util.List<net.minecraft.core.component.BlockTransformer$BlockTransformData>);
+  public net.minecraft.world.InteractionResult transformBlock(net.minecraft.world.item.context.UseOnContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.core.component.BlockTransformer$BlockTransformData> transforms();
+}
+Compiled from "DataComponentPatch.java"
+final class net.minecraft.core.component.DataComponentPatch$PatchKey extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentPatch$PatchKey> CODEC;
+  public com.mojang.serialization.Codec<?> valueCodec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.component.DataComponentType<?> type();
+  public boolean removed();
+}
+Compiled from "TypedDataComponent.java"
+public final class net.minecraft.core.component.TypedDataComponent<T> extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.TypedDataComponent<?>> STREAM_CODEC;
+  public net.minecraft.core.component.TypedDataComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public static <T> net.minecraft.core.component.TypedDataComponent<T> createUnchecked(net.minecraft.core.component.DataComponentType<T>, java.lang.Object);
+  public void applyTo(net.minecraft.core.component.PatchedDataComponentMap);
+  public <D> com.mojang.serialization.DataResult<D> encodeValue(com.mojang.serialization.DynamicOps<D>);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.component.DataComponentType<T> type();
+  public T value();
+}
+Compiled from "BlockTransformer.java"
+public final class net.minecraft.core.component.BlockTransformer$BlockTransformData extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.BlockTransformer$BlockTransformData> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.BlockTransformer$BlockTransformData> STREAM_CODEC;
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.component.BlockTransformer$TransformParticle, java.util.List<net.minecraft.core.Direction>, java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>>, net.minecraft.core.component.BlockTransformer$DropStrategy, boolean, net.minecraft.core.component.BlockTransformer$TransformType, boolean, int);
+  public static net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder builder(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>);
+  public static net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder builder(net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider);
+  public static net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder builder(net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate, net.minecraft.world.level.block.Block);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> blockStateProvider();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> sound();
+  public net.minecraft.core.component.BlockTransformer$TransformParticle particle();
+  public java.util.List<net.minecraft.core.Direction> disallowedFaces();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> loot();
+  public net.minecraft.core.component.BlockTransformer$DropStrategy dropStrategy();
+  public boolean updateFromNeighbors();
+  public net.minecraft.core.component.BlockTransformer$TransformType transformType();
+  public boolean consumeOnUse();
+  public int itemDamagePerUse();
+}
+Compiled from "DataComponentLookup.java"
+final class net.minecraft.core.component.DataComponentLookup$ComponentStorage<C, T> extends java.lang.Record {
+  public java.util.Collection<net.minecraft.core.Holder<T>> findAll(C);
+  public java.util.stream.Stream<net.minecraft.core.Holder<T>> findMatching(java.util.function.Predicate<C>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.google.common.collect.Multimap<C, net.minecraft.core.Holder<T>> valueToComponent();
+}
+Compiled from "BlockTransformer.java"
+public final class net.minecraft.core.component.BlockTransformer$DropStrategy extends java.lang.Enum<net.minecraft.core.component.BlockTransformer$DropStrategy> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.component.BlockTransformer$DropStrategy CLICKED_FACE;
+  public static final net.minecraft.core.component.BlockTransformer$DropStrategy FROM_MIDDLE;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.BlockTransformer$DropStrategy> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.component.BlockTransformer$DropStrategy> STREAM_CODEC;
+  public static net.minecraft.core.component.BlockTransformer$DropStrategy[] values();
+  public static net.minecraft.core.component.BlockTransformer$DropStrategy valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public int getId();
+  public void pop(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.world.item.ItemStack);
+}
+Compiled from "DataComponentInitializers.java"
+public interface net.minecraft.core.component.DataComponentInitializers$Initializer<T> {
+  public abstract void run(net.minecraft.core.component.DataComponentMap$Builder, net.minecraft.core.HolderLookup$Provider, net.minecraft.resources.ResourceKey<T>);
+  public default net.minecraft.core.component.DataComponentInitializers$Initializer<T> andThen(net.minecraft.core.component.DataComponentInitializers$Initializer<T>);
+  public default <C> net.minecraft.core.component.DataComponentInitializers$Initializer<T> add(net.minecraft.core.component.DataComponentType<C>, C);
+}
+Compiled from "DataComponentType.java"
+public class net.minecraft.core.component.DataComponentType$Builder<T> {
+  public net.minecraft.core.component.DataComponentType$Builder();
+  public net.minecraft.core.component.DataComponentType$Builder<T> persistent(com.mojang.serialization.Codec<T>);
+  public net.minecraft.core.component.DataComponentType$Builder<T> networkSynchronized(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T>);
+  public net.minecraft.core.component.DataComponentType$Builder<T> cacheEncoding();
+  public net.minecraft.core.component.DataComponentType<T> build();
+  public net.minecraft.core.component.DataComponentType$Builder<T> ignoreSwapAnimation();
+}
+Compiled from "DataComponentType.java"
+public interface net.minecraft.core.component.DataComponentType<T> {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentType<?>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.DataComponentType<?>> STREAM_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentType<?>> PERSISTENT_CODEC;
+  public static final com.mojang.serialization.Codec<java.util.Map<net.minecraft.core.component.DataComponentType<?>, java.lang.Object>> VALUE_MAP_CODEC;
+  public static <T> net.minecraft.core.component.DataComponentType$Builder<T> builder();
+  public abstract com.mojang.serialization.Codec<T> codec();
+  public default com.mojang.serialization.Codec<T> codecOrThrow();
+  public default boolean isTransient();
+  public abstract boolean ignoreSwapAnimation();
+  public abstract net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> streamCodec();
+}
+Compiled from "BlockTransformer.java"
+public class net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder {
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder sound(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder particle(net.minecraft.core.component.BlockTransformer$TransformParticle);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder disallowedFaces(java.util.List<net.minecraft.core.Direction>);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder loot(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder dropStrategy(net.minecraft.core.component.BlockTransformer$DropStrategy);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder updateFromNeighbors(boolean);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder transformType(net.minecraft.core.component.BlockTransformer$TransformType);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder consumeOnUse(boolean);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData$Builder itemDamagePerUse(int);
+  public net.minecraft.core.component.BlockTransformer$BlockTransformData build();
+}
+Compiled from "DataComponentHolder.java"
+public interface net.minecraft.core.component.DataComponentHolder extends net.minecraft.core.component.DataComponentGetter {
+  public abstract net.minecraft.core.component.DataComponentMap getComponents();
+  public default <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  public default <T> java.util.stream.Stream<T> getAllOfType(java.lang.Class<? extends T>);
+  public default <T> T getOrDefault(net.minecraft.core.component.DataComponentType<? extends T>, T);
+  public default boolean has(net.minecraft.core.component.DataComponentType<?>);
+}
+Compiled from "DataComponentGetter.java"
+public interface net.minecraft.core.component.DataComponentGetter {
+  public abstract <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  public default <T> T getOrDefault(net.minecraft.core.component.DataComponentType<? extends T>, T);
+  public default <T> net.minecraft.core.component.TypedDataComponent<T> getTyped(net.minecraft.core.component.DataComponentType<T>);
+}
+Compiled from "DataComponentInitializers.java"
+public interface net.minecraft.core.component.DataComponentInitializers$PendingComponents<T> {
+  public abstract net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>> key();
+  public abstract void forEach(java.util.function.BiConsumer<net.minecraft.core.Holder$Reference<T>, net.minecraft.core.component.DataComponentMap>);
+  public abstract void apply();
+}
+Compiled from "DataComponentLookup.java"
+public class net.minecraft.core.component.DataComponentLookup<T> {
+  public net.minecraft.core.component.DataComponentLookup(java.lang.Iterable<? extends net.minecraft.core.Holder<T>>);
+  public <C> java.util.stream.Stream<net.minecraft.core.Holder<T>> findMatching(net.minecraft.core.component.DataComponentType<C>, java.util.function.Predicate<C>);
+  public <C> java.util.Collection<net.minecraft.core.Holder<T>> findAll(net.minecraft.core.component.DataComponentType<C>, C);
+  public <C> java.util.Collection<net.minecraft.core.Holder<T>> findAll(net.minecraft.core.component.DataComponentType<C>);
+}
+Compiled from "DataComponentPatch.java"
+interface net.minecraft.core.component.DataComponentPatch$CodecGetter {
+  public abstract <T> net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> apply(net.minecraft.core.component.DataComponentType<T>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.core.component.package-info {
+}
+Compiled from "DataComponentInitializers.java"
+final class net.minecraft.core.component.DataComponentInitializers$BakedEntry<T> extends java.lang.Record {
+  public void apply();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder$Reference<T> element();
+  public net.minecraft.core.component.DataComponentMap components();
+}
+Compiled from "DataComponentInitializers.java"
+public class net.minecraft.core.component.DataComponentInitializers {
+  public net.minecraft.core.component.DataComponentInitializers();
+  public <T> void add(net.minecraft.resources.ResourceKey<T>, net.minecraft.core.component.DataComponentInitializers$Initializer<T>);
+  public java.util.List<net.minecraft.core.component.DataComponentInitializers$PendingComponents<?>> build(net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "DataComponentInitializers.java"
+public interface net.minecraft.core.component.DataComponentInitializers$SingleComponentInitializer<C> {
+  public abstract C create(net.minecraft.core.HolderLookup$Provider);
+  public default <T> net.minecraft.core.component.DataComponentInitializers$Initializer<T> asInitializer(net.minecraft.core.component.DataComponentType<C>);
+}
+Compiled from "BlockTransformer.java"
+public final class net.minecraft.core.component.BlockTransformer$TransformParticle extends java.lang.Enum<net.minecraft.core.component.BlockTransformer$TransformParticle> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.component.BlockTransformer$TransformParticle NONE;
+  public static final net.minecraft.core.component.BlockTransformer$TransformParticle SCRAPE;
+  public static final net.minecraft.core.component.BlockTransformer$TransformParticle WAX_ON;
+  public static final net.minecraft.core.component.BlockTransformer$TransformParticle WAX_OFF;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.BlockTransformer$TransformParticle> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.component.BlockTransformer$TransformParticle> STREAM_CODEC;
+  public static net.minecraft.core.component.BlockTransformer$TransformParticle[] values();
+  public static net.minecraft.core.component.BlockTransformer$TransformParticle valueOf(java.lang.String);
+  public void send(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.core.BlockPos);
+  public java.lang.String getSerializedName();
+  public int getId();
+  public int getLevelEvent();
+}
+Compiled from "PatchedDataComponentMap.java"
+public final class net.minecraft.core.component.PatchedDataComponentMap implements net.minecraft.core.component.DataComponentMap {
+  public net.minecraft.core.component.PatchedDataComponentMap(net.minecraft.core.component.DataComponentMap);
+  public static net.minecraft.core.component.PatchedDataComponentMap fromPatch(net.minecraft.core.component.DataComponentMap, net.minecraft.core.component.DataComponentPatch);
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  public boolean hasNonDefault(net.minecraft.core.component.DataComponentType<?>);
+  public <T> T set(net.minecraft.core.component.DataComponentType<T>, T);
+  public <T> T set(net.minecraft.core.component.TypedDataComponent<T>);
+  public <T> T remove(net.minecraft.core.component.DataComponentType<? extends T>);
+  public void applyPatch(net.minecraft.core.component.DataComponentPatch);
+  public void restorePatch(net.minecraft.core.component.DataComponentPatch);
+  public void clearPatch();
+  public void setAll(net.minecraft.core.component.DataComponentMap);
+  public java.util.Set<net.minecraft.core.component.DataComponentType<?>> keySet();
+  public java.util.Iterator<net.minecraft.core.component.TypedDataComponent<?>> iterator();
+  public int size();
+  public net.minecraft.core.component.DataComponentPatch asPatch();
+  public net.minecraft.core.component.PatchedDataComponentMap copy();
+  public net.minecraft.core.component.DataComponentMap toImmutableMap();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "DataComponentType.java"
+class net.minecraft.core.component.DataComponentType$Builder$SimpleType<T> implements net.minecraft.core.component.DataComponentType<T> {
+  public boolean ignoreSwapAnimation();
+  public com.mojang.serialization.Codec<T> codec();
+  public net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> streamCodec();
+  public java.lang.String toString();
+}
+Compiled from "BlockTransformer.java"
+public final class net.minecraft.core.component.BlockTransformer$TransformType extends java.lang.Enum<net.minecraft.core.component.BlockTransformer$TransformType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.core.component.BlockTransformer$TransformType SINGLE_BLOCK;
+  public static final net.minecraft.core.component.BlockTransformer$TransformType COPPER_CHEST;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.BlockTransformer$TransformType> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.core.component.BlockTransformer$TransformType> STREAM_CODEC;
+  public static net.minecraft.core.component.BlockTransformer$TransformType[] values();
+  public static net.minecraft.core.component.BlockTransformer$TransformType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public int getId();
+}
+Compiled from "Removed.java"
+final class net.minecraft.core.component.Removed {
+  public static final net.minecraft.core.component.Removed INSTANCE;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.Removed> CODEC;
+  public java.lang.String toString();
+  public static boolean isNotRemoved(java.lang.Object);
+  public static boolean isRemoved(java.lang.Object);
+  public static java.lang.Object nullToRemoved(java.lang.Object);
+  public static java.lang.Object removedToNull(java.lang.Object);
+}
+Compiled from "DataComponentInitializers.java"
+final class net.minecraft.core.component.DataComponentInitializers$InitializerEntry<T> extends java.lang.Record {
+  public void run(net.minecraft.core.component.DataComponentMap$Builder, net.minecraft.core.HolderLookup$Provider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<T> key();
+  public net.minecraft.core.component.DataComponentInitializers$Initializer<T> initializer();
+}
+Compiled from "DataComponentPatch.java"
+public class net.minecraft.core.component.DataComponentPatch$Builder {
+  public <T> net.minecraft.core.component.DataComponentPatch$Builder set(net.minecraft.core.component.DataComponentType<T>, T);
+  public <T> net.minecraft.core.component.DataComponentPatch$Builder remove(net.minecraft.core.component.DataComponentType<T>);
+  public <T> net.minecraft.core.component.DataComponentPatch$Builder set(net.minecraft.core.component.TypedDataComponent<T>);
+  public <T> net.minecraft.core.component.DataComponentPatch$Builder set(java.lang.Iterable<net.minecraft.core.component.TypedDataComponent<?>>);
+  public net.minecraft.core.component.DataComponentPatch build();
+}
+Compiled from "DataComponents.java"
+public class net.minecraft.core.component.DataComponents {
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.CustomData> CUSTOM_DATA;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Integer> MAX_STACK_SIZE;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Integer> MAX_DAMAGE;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Integer> DAMAGE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> UNBREAKABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.UseEffects> USE_EFFECTS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.network.chat.Component> CUSTOM_NAME;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Float> MINIMUM_ATTACK_CHARGE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.damagesource.DamageType>> DAMAGE_TYPE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.network.chat.Component> ITEM_NAME;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.resources.Identifier> ITEM_MODEL;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.ItemLore> LORE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.Rarity> RARITY;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.ItemEnchantments> ENCHANTMENTS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.AdventureModePredicate> CAN_PLACE_ON;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.AdventureModePredicate> CAN_BREAK;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.ItemAttributeModifiers> ATTRIBUTE_MODIFIERS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.CustomModelData> CUSTOM_MODEL_DATA;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.TooltipDisplay> TOOLTIP_DISPLAY;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Integer> REPAIR_COST;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> CREATIVE_SLOT_LOCK;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Boolean> ENCHANTMENT_GLINT_OVERRIDE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> INTANGIBLE_PROJECTILE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.food.FoodProperties> FOOD;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Consumable> CONSUMABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.UseRemainder> USE_REMAINDER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.UseCooldown> USE_COOLDOWN;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.DamageResistant> DAMAGE_RESISTANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Tool> TOOL;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Weapon> WEAPON;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.AttackRange> ATTACK_RANGE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.Enchantable> ENCHANTABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.equipment.Equippable> EQUIPPABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.Repairable> REPAIRABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> GLIDER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.resources.Identifier> TOOLTIP_STYLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.DeathProtection> DEATH_PROTECTION;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.BlocksAttacks> BLOCKS_ATTACKS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.PiercingWeapon> PIERCING_WEAPON;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.KineticWeapon> KINETIC_WEAPON;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.SwingAnimation> ATTACK_ANIMATION;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.SwingAnimation> INTERACT_ANIMATION;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Integer> ADDITIONAL_TRADE_COST;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.core.component.BlockTransformer>> BLOCK_TRANSFORMER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.food.VillagerFood> VILLAGER_FOOD;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.ItemEnchantments> STORED_ENCHANTMENTS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> DYE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.DyedItemColor> DYED_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.level.saveddata.maps.MapId> MAP_ID;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.MapDecorations> MAP_DECORATIONS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.MapPostProcessing> MAP_POST_PROCESSING;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.ChargedProjectiles> CHARGED_PROJECTILES;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.BundleContents> BUNDLE_CONTENTS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.alchemy.PotionContents> POTION_CONTENTS;
+  public static final net.minecraft.core.component.DataComponentType<java.lang.Float> POTION_DURATION_SCALE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.SuspiciousStewEffects> SUSPICIOUS_STEW_EFFECTS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.WritableBookContent> WRITABLE_BOOK_CONTENT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.WrittenBookContent> WRITTEN_BOOK_CONTENT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.equipment.trim.ArmorTrim> TRIM;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.DebugStickState> DEBUG_STICK_STATE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.entity.EntityType<?>>> ENTITY_DATA;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.CustomData> BUCKET_ENTITY_DATA;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.TypedEntityData<net.minecraft.world.level.block.entity.BlockEntityType<?>>> BLOCK_ENTITY_DATA;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.InstrumentComponent> INSTRUMENT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.item.equipment.trim.TrimMaterial>> PROVIDES_TRIM_MATERIAL;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.OminousBottleAmplifier> OMINOUS_BOTTLE_AMPLIFIER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.JukeboxPlayable> JUKEBOX_PLAYABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.HolderSet<net.minecraft.world.level.block.entity.BannerPattern>> PROVIDES_BANNER_PATTERNS;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>>> RECIPES;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.LodestoneTracker> LODESTONE_TRACKER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.FireworkExplosion> FIREWORK_EXPLOSION;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Fireworks> FIREWORKS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.ResolvableProfile> PROFILE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.resources.Identifier> NOTE_BLOCK_SOUND;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.level.block.entity.BannerPatternLayers> BANNER_PATTERNS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> BASE_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.level.block.entity.PotDecorations> POT_DECORATIONS;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.ItemContainerContents> CONTAINER;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.BlockItemStateProperties> BLOCK_STATE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Bees> BEES;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.SulfurCubeContent> SULFUR_CUBE_CONTENT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.LockCode> LOCK;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.SeededContainerLoot> CONTAINER_LOOT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>> BREAK_SOUND;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.Compostable> COMPOSTABLE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.CookingFuel> COOKING_FUEL;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.BrewingFuel> BREWING_FUEL;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.component.MobVisibility> MOB_VISIBILITY;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.npc.villager.VillagerType>> VILLAGER_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.wolf.WolfVariant>> WOLF_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.wolf.WolfSoundVariant>> WOLF_SOUND_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> WOLF_COLLAR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.fox.Fox$Variant> FOX_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.fish.Salmon$Variant> SALMON_SIZE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.parrot.Parrot$Variant> PARROT_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.fish.TropicalFish$Pattern> TROPICAL_FISH_PATTERN;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> TROPICAL_FISH_BASE_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> TROPICAL_FISH_PATTERN_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.cow.MushroomCow$Variant> MOOSHROOM_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.rabbit.Rabbit$Variant> RABBIT_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.pig.PigVariant>> PIG_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.pig.PigSoundVariant>> PIG_SOUND_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.cow.CowVariant>> COW_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.cow.CowSoundVariant>> COW_SOUND_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant>> CHICKEN_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant>> CHICKEN_SOUND_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>> ZOMBIE_NAUTILUS_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.frog.FrogVariant>> FROG_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.equine.Variant> HORSE_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.decoration.painting.PaintingVariant>> PAINTING_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.equine.Llama$Variant> LLAMA_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.entity.animal.axolotl.Axolotl$Variant> AXOLOTL_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatVariant>> CAT_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.entity.animal.feline.CatSoundVariant>> CAT_SOUND_VARIANT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> CAT_COLLAR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> SHEEP_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> SHULKER_COLOR;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.core.Holder<net.minecraft.world.level.block.entity.DecoratedPotPattern>> PROVIDES_POTTERY_PATTERN;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.level.block.entity.SignText> SIGN_TEXT_FRONT;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.level.block.entity.SignText> SIGN_TEXT_BACK;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> WAXED;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.DyeColor> CUSHION_COLOR;
+  public static final net.minecraft.core.component.DataComponentMap COMMON_ITEM_COMPONENTS;
+  public net.minecraft.core.component.DataComponents();
+  public static net.minecraft.core.component.DataComponentType<?> bootstrap(net.minecraft.core.Registry<net.minecraft.core.component.DataComponentType<?>>);
+}
+Compiled from "DataComponentMap.java"
+final class net.minecraft.core.component.DataComponentMap$Builder$SimpleMap extends java.lang.Record implements net.minecraft.core.component.DataComponentMap {
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  public boolean has(net.minecraft.core.component.DataComponentType<?>);
+  public java.util.Set<net.minecraft.core.component.DataComponentType<?>> keySet();
+  public java.util.Iterator<net.minecraft.core.component.TypedDataComponent<?>> iterator();
+  public int size();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public it.unimi.dsi.fastutil.objects.Reference2ObjectMap<net.minecraft.core.component.DataComponentType<?>, java.lang.Object> map();
+}
+Compiled from "DataComponentMap.java"
+public interface net.minecraft.core.component.DataComponentMap extends java.lang.Iterable<net.minecraft.core.component.TypedDataComponent<?>>, net.minecraft.core.component.DataComponentGetter {
+  public static final net.minecraft.core.component.DataComponentMap EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentMap> CODEC;
+  public static com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentMap> makeCodec(com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentType<?>>);
+  public static com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentMap> makeCodecFromMap(com.mojang.serialization.Codec<java.util.Map<net.minecraft.core.component.DataComponentType<?>, java.lang.Object>>);
+  public static net.minecraft.core.component.DataComponentMap composite(net.minecraft.core.component.DataComponentMap, net.minecraft.core.component.DataComponentMap);
+  public static net.minecraft.core.component.DataComponentMap$Builder builder();
+  public abstract java.util.Set<net.minecraft.core.component.DataComponentType<?>> keySet();
+  public default boolean has(net.minecraft.core.component.DataComponentType<?>);
+  public default java.util.Iterator<net.minecraft.core.component.TypedDataComponent<?>> iterator();
+  public default java.util.stream.Stream<net.minecraft.core.component.TypedDataComponent<?>> stream();
+  public default int size();
+  public default boolean isEmpty();
+  public default net.minecraft.core.component.DataComponentMap filter(java.util.function.Predicate<net.minecraft.core.component.DataComponentType<?>>);
+}
+Compiled from "DataComponentInitializers.java"
+final class net.minecraft.core.component.DataComponentInitializers$PendingComponentBuilders<T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> registryKey();
+  public java.util.Map<net.minecraft.resources.ResourceKey<T>, net.minecraft.core.component.DataComponentMap$Builder> builders();
+}
+Compiled from "DataComponentExactPredicate.java"
+public final class net.minecraft.core.component.DataComponentExactPredicate implements java.util.function.Predicate<net.minecraft.core.component.DataComponentGetter> {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentExactPredicate> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.component.DataComponentExactPredicate> STREAM_CODEC;
+  public static final net.minecraft.core.component.DataComponentExactPredicate EMPTY;
+  public static net.minecraft.core.component.DataComponentExactPredicate$Builder builder();
+  public static <T> net.minecraft.core.component.DataComponentExactPredicate expect(net.minecraft.core.component.DataComponentType<T>, T);
+  public static net.minecraft.core.component.DataComponentExactPredicate allOf(net.minecraft.core.component.DataComponentMap);
+  public static net.minecraft.core.component.DataComponentExactPredicate someOf(net.minecraft.core.component.DataComponentMap, net.minecraft.core.component.DataComponentType<?>...);
+  public boolean isEmpty();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public boolean test(net.minecraft.core.component.DataComponentGetter);
+  public boolean alwaysMatches();
+  public net.minecraft.core.component.DataComponentPatch asPatch();
+  public boolean test(java.lang.Object);
+}
+Compiled from "DataComponentMap.java"
+public class net.minecraft.core.component.DataComponentMap$Builder implements net.fabricmc.fabric.api.item.v1.FabricComponentMapBuilder {
+  public <T> net.minecraft.core.component.DataComponentMap$Builder set(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.core.component.DataComponentMap$Builder addAll(net.minecraft.core.component.DataComponentMap);
+  public net.minecraft.core.component.DataComponentMap$Builder addValidator(java.util.function.Consumer<net.minecraft.core.component.DataComponentMap>);
+  public net.minecraft.core.component.DataComponentMap build();
+}
+Compiled from "DataComponentPatch.java"
+public final class net.minecraft.core.component.DataComponentPatch$SplitResult extends java.lang.Record {
+  public static final net.minecraft.core.component.DataComponentPatch$SplitResult EMPTY;
+  public net.minecraft.core.component.DataComponentPatch$SplitResult(net.minecraft.core.component.DataComponentMap, java.util.Set<net.minecraft.core.component.DataComponentType<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.component.DataComponentMap added();
+  public java.util.Set<net.minecraft.core.component.DataComponentType<?>> removed();
+}

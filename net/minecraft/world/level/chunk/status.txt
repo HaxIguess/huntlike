@@ -1,0 +1,123 @@
+Compiled from "ChunkPyramid.java"
+public final class net.minecraft.world.level.chunk.status.ChunkPyramid extends java.lang.Record {
+  public static final net.minecraft.world.level.chunk.status.ChunkPyramid GENERATION_PYRAMID;
+  public static final net.minecraft.world.level.chunk.status.ChunkPyramid LOADING_PYRAMID;
+  public static final int MAX_CHUNK_COORDINATE_VALUE;
+  public net.minecraft.world.level.chunk.status.ChunkPyramid(com.google.common.collect.ImmutableList<net.minecraft.world.level.chunk.status.ChunkStep>);
+  public net.minecraft.world.level.chunk.status.ChunkStep getStepTo(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.google.common.collect.ImmutableList<net.minecraft.world.level.chunk.status.ChunkStep> steps();
+}
+Compiled from "ChunkStatus.java"
+public class net.minecraft.world.level.chunk.status.ChunkStatus {
+  public static final int MAX_STRUCTURE_DISTANCE;
+  public static final java.util.EnumSet<net.minecraft.world.level.levelgen.Heightmap$Types> FINAL_HEIGHTMAPS;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus EMPTY;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus STRUCTURE_STARTS;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus STRUCTURE_REFERENCES;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus BIOMES;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus TERRAIN;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus FEATURES;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus INITIALIZE_LIGHT;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus LIGHT;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus SPAWN;
+  public static final net.minecraft.world.level.chunk.status.ChunkStatus FULL;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.chunk.status.ChunkStatus> CODEC;
+  public static java.util.List<net.minecraft.world.level.chunk.status.ChunkStatus> getStatusList();
+  protected net.minecraft.world.level.chunk.status.ChunkStatus(net.minecraft.world.level.chunk.status.ChunkStatus, java.util.EnumSet<net.minecraft.world.level.levelgen.Heightmap$Types>, net.minecraft.world.level.chunk.status.ChunkType);
+  public int getIndex();
+  public net.minecraft.world.level.chunk.status.ChunkStatus getParent();
+  public net.minecraft.world.level.chunk.status.ChunkType getChunkType();
+  public static net.minecraft.world.level.chunk.status.ChunkStatus byName(java.lang.String);
+  public java.util.EnumSet<net.minecraft.world.level.levelgen.Heightmap$Types> heightmapsAfter();
+  public boolean isOrAfter(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public boolean isAfter(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public boolean isOrBefore(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public boolean isBefore(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public static net.minecraft.world.level.chunk.status.ChunkStatus max(net.minecraft.world.level.chunk.status.ChunkStatus, net.minecraft.world.level.chunk.status.ChunkStatus);
+  public java.lang.String toString();
+  public java.lang.String getName();
+}
+Compiled from "ChunkPyramid.java"
+public class net.minecraft.world.level.chunk.status.ChunkPyramid$Builder {
+  public net.minecraft.world.level.chunk.status.ChunkPyramid$Builder();
+  public net.minecraft.world.level.chunk.status.ChunkPyramid build();
+  public net.minecraft.world.level.chunk.status.ChunkPyramid$Builder step(net.minecraft.world.level.chunk.status.ChunkStatus, java.util.function.UnaryOperator<net.minecraft.world.level.chunk.status.ChunkStep$Builder>);
+}
+Compiled from "ChunkStep.java"
+public class net.minecraft.world.level.chunk.status.ChunkStep$Builder {
+  protected net.minecraft.world.level.chunk.status.ChunkStep$Builder(net.minecraft.world.level.chunk.status.ChunkStatus);
+  protected net.minecraft.world.level.chunk.status.ChunkStep$Builder(net.minecraft.world.level.chunk.status.ChunkStatus, net.minecraft.world.level.chunk.status.ChunkStep);
+  public net.minecraft.world.level.chunk.status.ChunkStep$Builder addRequirement(net.minecraft.world.level.chunk.status.ChunkStatus, int);
+  public net.minecraft.world.level.chunk.status.ChunkStep$Builder blockStateWriteRadius(int);
+  public net.minecraft.world.level.chunk.status.ChunkStep$Builder setTask(net.minecraft.world.level.chunk.status.ChunkStatusTask);
+  public net.minecraft.world.level.chunk.status.ChunkStep build();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.chunk.status.package-info {
+}
+Compiled from "WorldGenContext.java"
+public final class net.minecraft.world.level.chunk.status.WorldGenContext extends java.lang.Record {
+  public net.minecraft.world.level.chunk.status.WorldGenContext(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager, net.minecraft.server.level.ThreadedLevelLightEngine, java.util.concurrent.Executor, net.minecraft.world.level.chunk.LevelChunk$UnsavedListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.level.ServerLevel level();
+  public net.minecraft.world.level.chunk.ChunkGenerator generator();
+  public net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager structureManager();
+  public net.minecraft.server.level.ThreadedLevelLightEngine lightEngine();
+  public java.util.concurrent.Executor mainThreadExecutor();
+  public net.minecraft.world.level.chunk.LevelChunk$UnsavedListener unsavedListener();
+}
+Compiled from "ChunkDependencies.java"
+public final class net.minecraft.world.level.chunk.status.ChunkDependencies {
+  public net.minecraft.world.level.chunk.status.ChunkDependencies(com.google.common.collect.ImmutableList<net.minecraft.world.level.chunk.status.ChunkStatus>);
+  public com.google.common.collect.ImmutableList<net.minecraft.world.level.chunk.status.ChunkStatus> asList();
+  public int size();
+  public int getRadiusOf(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public int getRadius();
+  public net.minecraft.world.level.chunk.status.ChunkStatus get(int);
+  public java.lang.String toString();
+}
+Compiled from "ChunkStep.java"
+public final class net.minecraft.world.level.chunk.status.ChunkStep extends java.lang.Record {
+  public net.minecraft.world.level.chunk.status.ChunkStep(net.minecraft.world.level.chunk.status.ChunkStatus, net.minecraft.world.level.chunk.status.ChunkDependencies, net.minecraft.world.level.chunk.status.ChunkDependencies, int, net.minecraft.world.level.chunk.status.ChunkStatusTask);
+  public int getAccumulatedRadiusOf(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> apply(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.status.ChunkStatus targetStatus();
+  public net.minecraft.world.level.chunk.status.ChunkDependencies directDependencies();
+  public net.minecraft.world.level.chunk.status.ChunkDependencies accumulatedDependencies();
+  public int blockStateWriteRadius();
+  public net.minecraft.world.level.chunk.status.ChunkStatusTask task();
+}
+Compiled from "ChunkType.java"
+public final class net.minecraft.world.level.chunk.status.ChunkType extends java.lang.Enum<net.minecraft.world.level.chunk.status.ChunkType> {
+  public static final net.minecraft.world.level.chunk.status.ChunkType PROTOCHUNK;
+  public static final net.minecraft.world.level.chunk.status.ChunkType LEVELCHUNK;
+  public static net.minecraft.world.level.chunk.status.ChunkType[] values();
+  public static net.minecraft.world.level.chunk.status.ChunkType valueOf(java.lang.String);
+}
+Compiled from "ChunkStatusTask.java"
+public interface net.minecraft.world.level.chunk.status.ChunkStatusTask {
+  public abstract java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> doWork(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+}
+Compiled from "ChunkStatusTasks.java"
+public class net.minecraft.world.level.chunk.status.ChunkStatusTasks {
+  public net.minecraft.world.level.chunk.status.ChunkStatusTasks();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> passThrough(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateStructureStarts(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> loadStructureStarts(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateStructureReferences(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateBiomes(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateFeatures(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> initializeLight(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> light(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> generateSpawn(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> full(net.minecraft.world.level.chunk.status.WorldGenContext, net.minecraft.world.level.chunk.status.ChunkStep, net.minecraft.util.StaticCache2D<net.minecraft.server.level.GenerationChunkHolder>, net.minecraft.world.level.chunk.ChunkAccess);
+}

@@ -1,0 +1,135 @@
+Compiled from "RenderPassDescriptor.java"
+public final class com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<T> extends java.lang.Record {
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment(com.mojang.renderpearl.api.textures.GpuTextureView, T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.textures.GpuTextureView textureView();
+  public T clearValue();
+}
+Compiled from "GpuQueryPool.java"
+public interface com.mojang.renderpearl.api.commands.GpuQueryPool extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract int size();
+  public abstract java.util.OptionalLong getValue(int);
+  public abstract java.util.OptionalLong[] getValues(int, int);
+}
+Compiled from "RenderPass.java"
+public final class com.mojang.renderpearl.api.commands.RenderPass$RenderArea extends java.lang.Record {
+  public com.mojang.renderpearl.api.commands.RenderPass$RenderArea(int, int, int, int);
+  public boolean fillsTexture(com.mojang.renderpearl.api.textures.GpuTextureView);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+  public int width();
+  public int height();
+}
+Compiled from "GpuFence.java"
+public interface com.mojang.renderpearl.api.commands.GpuFence extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final long NO_TIMEOUT;
+  public abstract void close();
+  public abstract boolean awaitCompletion(long);
+}
+Compiled from "RenderPass.java"
+public interface com.mojang.renderpearl.api.commands.RenderPass extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final int MAX_VERTEX_BUFFERS;
+  public static final int INDIRECT_DRAW_SIZE;
+  public static final int INDIRECT_INDEXED_DRAW_SIZE;
+  public abstract void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public abstract void popDebugGroup();
+  public abstract void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+  public abstract void setPipeline(com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline);
+  public abstract void setUniform(java.lang.String, com.mojang.renderpearl.api.textures.GpuTextureView, com.mojang.renderpearl.api.textures.GpuSampler);
+  public abstract void setUniform(java.lang.String, com.mojang.renderpearl.api.buffers.GpuBuffer);
+  public abstract void setUniform(java.lang.String, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void pushConstants(java.nio.ByteBuffer);
+  public abstract void enableScissor(int, int, int, int);
+  public abstract void disableScissor();
+  public abstract void setVertexBuffer(int, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void setIndexBuffer(com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType);
+  public abstract void drawIndexed(int, int, int, int, int);
+  public abstract void multiDrawIndexed(java.nio.IntBuffer, int, int, int);
+  public abstract void multiDrawIndexed(org.lwjgl.PointerBuffer, java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public abstract void drawIndexedIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public abstract <T> void drawMultipleIndexed(java.util.Collection<com.mojang.renderpearl.api.commands.RenderPass$Draw<T>>, com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType, java.util.Collection<java.lang.String>, T);
+  public abstract void draw(int, int, int, int);
+  public abstract void multiDraw(java.nio.IntBuffer, int, int, int);
+  public abstract void multiDraw(java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public abstract void drawIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+}
+Compiled from "RenderPassDescriptor.java"
+public class com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder {
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withColorAttachment(com.mojang.renderpearl.api.textures.GpuTextureView);
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withColorAttachment(com.mojang.renderpearl.api.textures.GpuTextureView, java.util.Optional<org.joml.Vector4fc>);
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withUnusedColorAttachment();
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withDepthAttachment(com.mojang.renderpearl.api.textures.GpuTextureView);
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withDepthAttachment(com.mojang.renderpearl.api.textures.GpuTextureView, java.util.OptionalDouble);
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder withRenderArea(com.mojang.renderpearl.api.commands.RenderPass$RenderArea);
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor build();
+}
+Compiled from "RenderPass.java"
+public interface com.mojang.renderpearl.api.commands.RenderPass$UniformUploader {
+  public abstract void setUniform(java.lang.String, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void pushConstants(java.nio.ByteBuffer);
+}
+Compiled from "RenderPass.java"
+public final class com.mojang.renderpearl.api.commands.RenderPass$Draw<T> extends java.lang.Record {
+  public com.mojang.renderpearl.api.commands.RenderPass$Draw(int, com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType, int, int, int);
+  public com.mojang.renderpearl.api.commands.RenderPass$Draw(int, com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType, int, int, int, java.util.function.BiConsumer<T, com.mojang.renderpearl.api.commands.RenderPass$UniformUploader>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int slot();
+  public com.mojang.renderpearl.api.buffers.GpuBuffer vertexBuffer();
+  public com.mojang.renderpearl.api.buffers.GpuBuffer indexBuffer();
+  public com.mojang.renderpearl.api.pipeline.IndexType indexType();
+  public int firstIndex();
+  public int indexCount();
+  public int baseVertex();
+  public java.util.function.BiConsumer<T, com.mojang.renderpearl.api.commands.RenderPass$UniformUploader> uniformUploaderConsumer();
+}
+Compiled from "GpuQuery.java"
+public interface com.mojang.renderpearl.api.commands.GpuQuery extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract java.util.OptionalLong getValue();
+  public abstract void close();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.api.commands.package-info {
+}
+Compiled from "RenderPassDescriptor.java"
+public final class com.mojang.renderpearl.api.commands.RenderPassDescriptor extends java.lang.Record {
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor(java.util.function.Supplier<java.lang.String>, java.util.List<com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<java.util.Optional<org.joml.Vector4fc>>>, com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<java.util.OptionalDouble>, com.mojang.renderpearl.api.commands.RenderPass$RenderArea);
+  public static com.mojang.renderpearl.api.commands.RenderPassDescriptor$Builder builder(java.util.function.Supplier<java.lang.String>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.Supplier<java.lang.String> label();
+  public java.util.List<com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<java.util.Optional<org.joml.Vector4fc>>> colorAttachments();
+  public com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<java.util.OptionalDouble> depthAttachment();
+  public com.mojang.renderpearl.api.commands.RenderPass$RenderArea renderArea();
+}
+Compiled from "CommandEncoder.java"
+public interface com.mojang.renderpearl.api.commands.CommandEncoder {
+  public abstract void submit();
+  public abstract com.mojang.renderpearl.api.buffers.TransientMemory transientMemory();
+  public default com.mojang.renderpearl.api.commands.RenderPass createRenderPass(java.util.function.Supplier<java.lang.String>, com.mojang.renderpearl.api.textures.GpuTextureView, java.util.Optional<org.joml.Vector4fc>);
+  public default com.mojang.renderpearl.api.commands.RenderPass createRenderPass(java.util.function.Supplier<java.lang.String>, com.mojang.renderpearl.api.textures.GpuTextureView, java.util.Optional<org.joml.Vector4fc>, com.mojang.renderpearl.api.textures.GpuTextureView, java.util.OptionalDouble);
+  public default com.mojang.renderpearl.api.commands.RenderPass createRenderPass(java.util.function.Supplier<java.lang.String>, com.mojang.renderpearl.api.textures.GpuTextureView, java.util.Optional<org.joml.Vector4fc>, com.mojang.renderpearl.api.textures.GpuTextureView, java.util.OptionalDouble, com.mojang.renderpearl.api.commands.RenderPass$RenderArea);
+  public abstract com.mojang.renderpearl.api.commands.RenderPass createRenderPass(com.mojang.renderpearl.api.commands.RenderPassDescriptor);
+  public abstract void clearColorTexture(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc);
+  public abstract void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public abstract void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double, int, int, int, int, int);
+  public abstract void clearDepthTexture(com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public abstract void writeToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, java.nio.ByteBuffer);
+  public abstract void copyToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public abstract void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.blaze3d.platform.NativeImage);
+  public abstract void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.blaze3d.platform.NativeImage, int, int, int, int);
+  public abstract void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, java.nio.ByteBuffer, int, int, int, int, int, int);
+  public abstract void copyBufferToTexture(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int, int, int, int, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int);
+  public abstract void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int);
+  public abstract void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int, int, int, int, int);
+  public abstract void copyTextureToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int, int);
+  public abstract com.mojang.renderpearl.api.commands.GpuFence createFence();
+  public abstract void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+}

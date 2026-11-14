@@ -1,0 +1,100 @@
+Compiled from "LanServerPinger.java"
+public class net.minecraft.client.server.LanServerPinger extends java.lang.Thread {
+  public static final java.lang.String MULTICAST_GROUP;
+  public static final int PING_PORT;
+  public net.minecraft.client.server.LanServerPinger(java.lang.String, java.lang.String) throws java.io.IOException;
+  public void run();
+  public void interrupt();
+  public static java.lang.String createPingString(java.lang.String, java.lang.String);
+  public static java.lang.String parseMotd(java.lang.String);
+  public static java.lang.String parseAddress(java.lang.String);
+}
+Compiled from "LanServerDetection.java"
+public class net.minecraft.client.server.LanServerDetection$LanServerDetector extends java.lang.Thread {
+  public net.minecraft.client.server.LanServerDetection$LanServerDetector(net.minecraft.client.server.LanServerDetection$LanServerList) throws java.io.IOException;
+  public void run();
+}
+Compiled from "IntegratedPlayerList.java"
+public class net.minecraft.client.server.IntegratedPlayerList extends net.minecraft.server.players.PlayerList {
+  public net.minecraft.client.server.IntegratedPlayerList(net.minecraft.client.server.IntegratedServer, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.PlayerDataStorage);
+  public net.minecraft.network.chat.Component canPlayerLogin(java.net.SocketAddress, net.minecraft.server.players.NameAndId);
+  public net.minecraft.client.server.IntegratedServer getServer();
+  public net.minecraft.server.MinecraftServer getServer();
+}
+Compiled from "LanServerDetection.java"
+public class net.minecraft.client.server.LanServerDetection$LanServerList {
+  public net.minecraft.client.server.LanServerDetection$LanServerList();
+  public synchronized java.util.List<net.minecraft.client.server.LanServer> takeDirtyServers();
+  public synchronized void addServer(java.lang.String, java.net.InetAddress);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.server.package-info {
+}
+Compiled from "LanServerDetection.java"
+public class net.minecraft.client.server.LanServerDetection {
+  public net.minecraft.client.server.LanServerDetection();
+}
+Compiled from "LanServer.java"
+public class net.minecraft.client.server.LanServer {
+  public net.minecraft.client.server.LanServer(java.lang.String, java.lang.String);
+  public java.lang.String getMotd();
+  public java.lang.String getAddress();
+  public void updatePingTime();
+}
+Compiled from "IntegratedServer.java"
+public class net.minecraft.client.server.IntegratedServer extends net.minecraft.server.MinecraftServer {
+  public static final int MAX_PLAYERS;
+  public net.minecraft.client.server.IntegratedServer(java.lang.Thread, net.minecraft.client.Minecraft, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.packs.repository.PackRepository, net.minecraft.server.WorldStem, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>, net.minecraft.server.Services, net.minecraft.server.level.progress.LevelLoadListener);
+  protected boolean initServer();
+  public boolean isPaused();
+  protected void processPacketsAndTick(boolean);
+  protected void tickServer(java.util.function.BooleanSupplier);
+  protected net.minecraft.util.debugchart.LocalSampleLogger getTickTimeLogger();
+  public boolean isTickTimeLoggingEnabled();
+  public boolean shouldRconBroadcast();
+  public boolean shouldInformAdmins();
+  public java.nio.file.Path getServerDirectory();
+  public boolean isDedicatedServer();
+  public int getRateLimitPacketsPerSecond();
+  public int getCommandSpamThresholdSeconds();
+  public int getChatSpamThresholdSeconds();
+  public boolean useNativeTransport();
+  protected void onServerCrash(net.minecraft.CrashReport);
+  public net.minecraft.SystemReport fillServerSystemReport(net.minecraft.SystemReport);
+  public net.minecraft.util.ModCheck getModdedStatus();
+  public boolean publishServer(net.minecraft.server.MinecraftServer$MultiplayerScope, boolean, int);
+  public boolean publishServer(net.minecraft.server.MinecraftServer$MultiplayerScope, int);
+  public void setWorldGameType(net.minecraft.world.level.GameType);
+  public void setPersonalGameType(net.minecraft.world.level.GameType);
+  public int enforceGameTypeForPlayers(net.minecraft.world.level.GameType);
+  public void setWorldAllowCommands(boolean);
+  public net.minecraft.world.level.GameType getPersonalGameMode();
+  public net.minecraft.server.permissions.LevelBasedPermissionSet getProfilePermissions(net.minecraft.server.players.NameAndId);
+  protected net.minecraft.server.permissions.LevelBasedPermissionSet getCustomPermissionLevel();
+  public boolean getGuestCommandAccess();
+  public void setGuestCommandAccess(boolean);
+  public boolean unpublishServer();
+  public void stopServer();
+  public void halt(boolean);
+  public boolean isPublished();
+  public void setDefaultGameType(net.minecraft.world.level.GameType);
+  public int getPort();
+  public net.minecraft.server.permissions.LevelBasedPermissionSet operatorUserPermissions();
+  public net.minecraft.server.permissions.LevelBasedPermissionSet getFunctionCompilationPermissions();
+  public void setUUID(java.util.UUID);
+  public boolean isSingleplayerOwner(net.minecraft.server.players.NameAndId);
+  public int getScaledTrackingDistance(int);
+  public boolean forceSynchronousWrites();
+  public net.minecraft.world.level.GameType getForcedGameType();
+  public boolean forceGameMode();
+  public void setForceGameMode(boolean);
+  protected net.minecraft.core.GlobalPos selectLevelLoadFocusPos();
+  public void sendLowDiskSpaceWarning();
+  public void reportChunkLoadFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public void reportChunkSaveFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public int getMaxPlayers();
+  public java.util.Collection<net.minecraft.gizmos.SimpleGizmoCollector$GizmoInstance> getPerTickGizmos();
+  public net.minecraft.server.MinecraftServer$MultiplayerScope getMultiplayerScope();
+  protected net.minecraft.util.debugchart.SampleLogger getTickTimeLogger();
+  public net.minecraft.server.permissions.PermissionSet getFunctionCompilationPermissions();
+}

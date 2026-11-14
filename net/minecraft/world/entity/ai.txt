@@ -1,0 +1,82 @@
+Compiled from "Brain.java"
+public final class net.minecraft.world.entity.ai.Brain$Packed extends java.lang.Record {
+  public static final net.minecraft.world.entity.ai.Brain$Packed EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.Brain$Packed> CODEC;
+  public net.minecraft.world.entity.ai.Brain$Packed(net.minecraft.world.entity.ai.memory.MemoryMap);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.ai.memory.MemoryMap memories();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.package-info {
+}
+Compiled from "Brain.java"
+public interface net.minecraft.world.entity.ai.Brain$ActivitySupplier<E extends net.minecraft.world.entity.LivingEntity> {
+  public abstract java.util.List<net.minecraft.world.entity.ai.ActivityData<E>> createActivities(E);
+}
+Compiled from "Brain.java"
+public interface net.minecraft.world.entity.ai.Brain$Visitor {
+  public abstract <U> void acceptEmpty(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public abstract <U> void accept(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, U);
+  public abstract <U> void accept(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, U, long);
+}
+Compiled from "Brain.java"
+public final class net.minecraft.world.entity.ai.Brain$Provider<E extends net.minecraft.world.entity.LivingEntity> {
+  public net.minecraft.world.entity.ai.Brain<E> makeBrain(E, net.minecraft.world.entity.ai.Brain$Packed);
+}
+Compiled from "ActivityData.java"
+public final class net.minecraft.world.entity.ai.ActivityData<E extends net.minecraft.world.entity.LivingEntity> extends java.lang.Record {
+  public net.minecraft.world.entity.ai.ActivityData(net.minecraft.world.entity.schedule.Activity, com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>>, java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>>, java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, int, com.google.common.collect.ImmutableList<? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, int, com.google.common.collect.ImmutableList<? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>, net.minecraft.world.entity.ai.memory.MemoryModuleType<?>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, int, com.google.common.collect.ImmutableList<? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>, java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>>, java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.ActivityData<E> create(net.minecraft.world.entity.schedule.Activity, com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>>, java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>>, java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>> createPriorityPairs(int, com.google.common.collect.ImmutableList<? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.schedule.Activity activityType();
+  public com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>> behaviorPriorityPairs();
+  public java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>> conditions();
+  public java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>> memoriesToEraseWhenStopped();
+}
+Compiled from "Brain.java"
+public class net.minecraft.world.entity.ai.Brain<E extends net.minecraft.world.entity.LivingEntity> {
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.Brain$Provider<E> provider(java.util.Collection<? extends net.minecraft.world.entity.ai.sensing.SensorType<? extends net.minecraft.world.entity.ai.sensing.Sensor<? super E>>>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.Brain$Provider<E> provider(java.util.Collection<? extends net.minecraft.world.entity.ai.sensing.SensorType<? extends net.minecraft.world.entity.ai.sensing.Sensor<? super E>>>, net.minecraft.world.entity.ai.Brain$ActivitySupplier<E>);
+  public static <E extends net.minecraft.world.entity.LivingEntity> net.minecraft.world.entity.ai.Brain$Provider<E> provider(java.util.Collection<? extends net.minecraft.world.entity.ai.memory.MemoryModuleType<?>>, java.util.Collection<? extends net.minecraft.world.entity.ai.sensing.SensorType<? extends net.minecraft.world.entity.ai.sensing.Sensor<? super E>>>, net.minecraft.world.entity.ai.Brain$ActivitySupplier<E>);
+  protected net.minecraft.world.entity.ai.Brain(java.util.Collection<? extends net.minecraft.world.entity.ai.memory.MemoryModuleType<?>>, java.util.Collection<? extends net.minecraft.world.entity.ai.sensing.SensorType<? extends net.minecraft.world.entity.ai.sensing.Sensor<? super E>>>, java.util.List<net.minecraft.world.entity.ai.ActivityData<E>>, net.minecraft.world.entity.ai.memory.MemoryMap, net.minecraft.util.RandomSource);
+  public net.minecraft.world.entity.ai.Brain();
+  public net.minecraft.world.entity.ai.Brain$Packed pack();
+  public boolean hasMemoryValue(net.minecraft.world.entity.ai.memory.MemoryModuleType<?>);
+  public void clearMemories();
+  public <U> void eraseMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public <U> void setMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, U);
+  public <U> void setMemoryWithExpiry(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, U, long);
+  public <U> void setMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, java.util.Optional<? extends U>);
+  public <U> java.util.Optional<U> getMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public <U> java.util.Optional<U> getMemoryInternal(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public <U> long getTimeUntilExpiry(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public void forEach(net.minecraft.world.entity.ai.Brain$Visitor);
+  public <U> boolean isMemoryValue(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, U);
+  public boolean checkMemory(net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus);
+  public void setSchedule(net.minecraft.world.attribute.EnvironmentAttribute<net.minecraft.world.entity.schedule.Activity>);
+  public void setCoreActivities(java.util.Set<net.minecraft.world.entity.schedule.Activity>);
+  public java.util.Set<net.minecraft.world.entity.schedule.Activity> getActiveActivities();
+  public java.util.List<net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>> getRunningBehaviors();
+  public void useDefaultActivity();
+  public java.util.Optional<net.minecraft.world.entity.schedule.Activity> getActiveNonCoreActivity();
+  public void setActiveActivityIfPossible(net.minecraft.world.entity.schedule.Activity);
+  public void updateActivityFromSchedule(net.minecraft.world.attribute.EnvironmentAttributeSystem, long, net.minecraft.world.phys.Vec3);
+  public void setActiveActivityToFirstValid(java.util.List<net.minecraft.world.entity.schedule.Activity>);
+  public void setDefaultActivity(net.minecraft.world.entity.schedule.Activity);
+  public void addActivity(net.minecraft.world.entity.schedule.Activity, com.google.common.collect.ImmutableList<? extends com.mojang.datafixers.util.Pair<java.lang.Integer, ? extends net.minecraft.world.entity.ai.behavior.BehaviorControl<? super E>>>, java.util.Set<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>, net.minecraft.world.entity.ai.memory.MemoryStatus>>, java.util.Set<net.minecraft.world.entity.ai.memory.MemoryModuleType<?>>);
+  public void removeAllBehaviors();
+  public boolean isActive(net.minecraft.world.entity.schedule.Activity);
+  public void tick(net.minecraft.server.level.ServerLevel, E);
+  public void stopAll(net.minecraft.server.level.ServerLevel, E);
+  public boolean isBrainDead();
+}

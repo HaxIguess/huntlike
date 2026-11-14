@@ -1,0 +1,42 @@
+Compiled from "IJeiGuiEventListener.java"
+public interface mezz.jei.api.gui.inputs.IJeiGuiEventListener {
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle getArea();
+  public default void mouseMoved(double, double);
+  public default boolean mouseClicked(double, double, int);
+  public default boolean mouseReleased(double, double, int);
+  public default boolean mouseDragged(double, double, int, double, double);
+  public default boolean mouseScrolled(double, double, double, double);
+  public default boolean keyPressed(double, double, int, int, int);
+}
+Compiled from "IJeiInputHandler.java"
+public interface mezz.jei.api.gui.inputs.IJeiInputHandler {
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle getArea();
+  public default boolean handleInput(double, double, mezz.jei.api.gui.inputs.IJeiUserInput);
+  public default boolean handleMouseScrolled(double, double, double, double);
+  public default boolean handleMouseDragged(double, double, com.mojang.blaze3d.platform.InputConstants$Key, double, double);
+  public default void handleMouseMoved(double, double);
+}
+Compiled from "IJeiUserInput.java"
+public interface mezz.jei.api.gui.inputs.IJeiUserInput {
+  public abstract com.mojang.blaze3d.platform.InputConstants$Key getKey();
+  public abstract int getModifiers();
+  public abstract net.minecraft.client.input.InputWithModifiers getInputWithModifiers();
+  public abstract boolean isSimulate();
+  public abstract boolean is(net.minecraft.client.KeyMapping);
+  public abstract boolean is(mezz.jei.api.runtime.IJeiKeyMapping);
+}
+Compiled from "RecipeSlotUnderMouse.java"
+public final class mezz.jei.api.gui.inputs.RecipeSlotUnderMouse extends java.lang.Record {
+  public mezz.jei.api.gui.inputs.RecipeSlotUnderMouse(mezz.jei.api.gui.ingredient.IRecipeSlotDrawable, int, int);
+  public mezz.jei.api.gui.inputs.RecipeSlotUnderMouse(mezz.jei.api.gui.ingredient.IRecipeSlotDrawable, net.minecraft.client.gui.navigation.ScreenPosition);
+  public mezz.jei.api.gui.inputs.RecipeSlotUnderMouse addOffset(int, int);
+  public boolean isMouseOver(double, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.api.gui.ingredient.IRecipeSlotDrawable slot();
+  public net.minecraft.client.gui.navigation.ScreenPosition offset();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.inputs.package-info {
+}

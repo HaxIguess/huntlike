@@ -1,0 +1,405 @@
+Compiled from "VillagerTrade.java"
+public class net.minecraft.world.item.trading.VillagerTrade implements net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.trading.VillagerTrade> CODEC;
+
+  private final net.minecraft.world.item.trading.TradeCost wants;
+
+  private final java.util.Optional<net.minecraft.world.item.trading.TradeCost> additionalWants;
+
+  private final net.minecraft.world.item.ItemStackTemplate gives;
+
+  private final java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> merchantPredicate;
+
+  private final java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>> givenItemModifier;
+
+  private final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> maxUses;
+
+  private final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> xp;
+
+  private final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> reputationDiscount;
+
+  private final java.util.Optional<net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment>> doubleTradePriceEnchantments;
+
+  private net.minecraft.world.item.trading.VillagerTrade(net.minecraft.world.item.trading.TradeCost, java.util.Optional<net.minecraft.world.item.trading.TradeCost>, net.minecraft.world.item.ItemStackTemplate, net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>, net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>, net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider>, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>>, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>>, java.util.Optional<net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment>>);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field wants:Lnet/minecraft/world/item/trading/TradeCost;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field additionalWants:Ljava/util/Optional;
+        14: aload_0
+        15: aload_3
+        16: putfield      #17                 // Field gives:Lnet/minecraft/world/item/ItemStackTemplate;
+        19: aload_0
+        20: aload         4
+        22: putfield      #21                 // Field maxUses:Lnet/minecraft/core/Holder;
+        25: aload_0
+        26: aload         5
+        28: putfield      #25                 // Field xp:Lnet/minecraft/core/Holder;
+        31: aload_0
+        32: aload         6
+        34: putfield      #28                 // Field reputationDiscount:Lnet/minecraft/core/Holder;
+        37: aload_0
+        38: aload         7
+        40: putfield      #31                 // Field merchantPredicate:Ljava/util/Optional;
+        43: aload_0
+        44: aload         8
+        46: putfield      #34                 // Field givenItemModifier:Ljava/util/Optional;
+        49: aload_0
+        50: aload         9
+        52: putfield      #37                 // Field doubleTradePriceEnchantments:Ljava/util/Optional;
+        55: return
+
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+    Code:
+         0: aload_1
+         1: ldc           #40                 // String wants
+         3: aload_0
+         4: getfield      #7                  // Field wants:Lnet/minecraft/world/item/trading/TradeCost;
+         7: invokestatic  #41                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validate:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Lnet/minecraft/world/level/storage/loot/Validatable;)V
+        10: aload_1
+        11: ldc           #47                 // String additional_wants
+        13: aload_0
+        14: getfield      #13                 // Field additionalWants:Ljava/util/Optional;
+        17: invokestatic  #49                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validate:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Ljava/util/Optional;)V
+        20: aload_1
+        21: ldc           #52                 // String max_uses
+        23: aload_0
+        24: getfield      #21                 // Field maxUses:Lnet/minecraft/core/Holder;
+        27: invokestatic  #54                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Lnet/minecraft/core/Holder;)V
+        30: aload_1
+        31: ldc           #58                 // String reputation_discount
+        33: aload_0
+        34: getfield      #28                 // Field reputationDiscount:Lnet/minecraft/core/Holder;
+        37: invokestatic  #54                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Lnet/minecraft/core/Holder;)V
+        40: aload_1
+        41: ldc           #60                 // String xp
+        43: aload_0
+        44: getfield      #25                 // Field xp:Lnet/minecraft/core/Holder;
+        47: invokestatic  #54                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Lnet/minecraft/core/Holder;)V
+        50: aload_1
+        51: ldc           #61                 // String merchant_predicate
+        53: aload_0
+        54: getfield      #31                 // Field merchantPredicate:Ljava/util/Optional;
+        57: invokestatic  #63                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Ljava/util/Optional;)V
+        60: aload_1
+        61: ldc           #65                 // String given_item_modifier
+        63: aload_0
+        64: getfield      #34                 // Field givenItemModifier:Ljava/util/Optional;
+        67: invokestatic  #63                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Ljava/util/Optional;)V
+        70: return
+
+  public net.minecraft.world.item.trading.MerchantOffer getOffer(net.minecraft.world.level.storage.loot.LootContext);
+    Code:
+         0: aload_0
+         1: getfield      #31                 // Field merchantPredicate:Ljava/util/Optional;
+         4: invokevirtual #67                 // Method java/util/Optional.isPresent:()Z
+         7: ifeq          39
+        10: aload_0
+        11: getfield      #31                 // Field merchantPredicate:Ljava/util/Optional;
+        14: invokevirtual #73                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        17: checkcast     #77                 // class net/minecraft/core/Holder
+        20: invokeinterface #79,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        25: checkcast     #82                 // class net/minecraft/world/level/storage/loot/predicates/LootItemCondition
+        28: aload_1
+        29: invokeinterface #84,  2           // InterfaceMethod net/minecraft/world/level/storage/loot/predicates/LootItemCondition.test:(Ljava/lang/Object;)Z
+        34: ifne          39
+        37: aconst_null
+        38: areturn
+        39: aload_0
+        40: getfield      #17                 // Field gives:Lnet/minecraft/world/item/ItemStackTemplate;
+        43: invokevirtual #88                 // Method net/minecraft/world/item/ItemStackTemplate.create:()Lnet/minecraft/world/item/ItemStack;
+        46: astore_2
+        47: iconst_0
+        48: istore_3
+        49: aload_0
+        50: getfield      #34                 // Field givenItemModifier:Ljava/util/Optional;
+        53: invokevirtual #67                 // Method java/util/Optional.isPresent:()Z
+        56: ifeq          97
+        59: aload_0
+        60: getfield      #34                 // Field givenItemModifier:Ljava/util/Optional;
+        63: invokevirtual #73                 // Method java/util/Optional.get:()Ljava/lang/Object;
+        66: checkcast     #77                 // class net/minecraft/core/Holder
+        69: invokeinterface #79,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        74: checkcast     #94                 // class net/minecraft/world/level/storage/loot/functions/LootItemFunction
+        77: aload_2
+        78: aload_1
+        79: invokeinterface #96,  3           // InterfaceMethod net/minecraft/world/level/storage/loot/functions/LootItemFunction.apply:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        84: checkcast     #100                // class net/minecraft/world/item/ItemStack
+        87: astore_2
+        88: aload_2
+        89: invokevirtual #102                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        92: ifeq          97
+        95: aconst_null
+        96: areturn
+        97: aload_2
+        98: getstatic     #105                // Field net/minecraft/core/component/DataComponents.ADDITIONAL_TRADE_COST:Lnet/minecraft/core/component/DataComponentType;
+       101: invokevirtual #111                // Method net/minecraft/world/item/ItemStack.remove:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+       104: checkcast     #115                // class java/lang/Integer
+       107: astore        4
+       109: aload         4
+       111: ifnull        122
+       114: iload_3
+       115: aload         4
+       117: invokevirtual #117                // Method java/lang/Integer.intValue:()I
+       120: iadd
+       121: istore_3
+       122: aload_0
+       123: getfield      #37                 // Field doubleTradePriceEnchantments:Ljava/util/Optional;
+       126: invokevirtual #67                 // Method java/util/Optional.isPresent:()Z
+       129: ifeq          195
+       132: aload_0
+       133: getfield      #37                 // Field doubleTradePriceEnchantments:Ljava/util/Optional;
+       136: invokevirtual #73                 // Method java/util/Optional.get:()Ljava/lang/Object;
+       139: checkcast     #121                // class net/minecraft/core/HolderSet
+       142: astore        5
+       144: aload_2
+       145: getstatic     #123                // Field net/minecraft/core/component/DataComponents.STORED_ENCHANTMENTS:Lnet/minecraft/core/component/DataComponentType;
+       148: invokevirtual #126                // Method net/minecraft/world/item/ItemStack.get:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+       151: checkcast     #128                // class net/minecraft/world/item/enchantment/ItemEnchantments
+       154: astore        6
+       156: aload         6
+       158: ifnull        195
+       161: aload         6
+       163: invokevirtual #130                // Method net/minecraft/world/item/enchantment/ItemEnchantments.keySet:()Ljava/util/Set;
+       166: invokeinterface #134,  1          // InterfaceMethod java/util/Set.stream:()Ljava/util/stream/Stream;
+       171: aload         5
+       173: dup
+       174: invokestatic  #140                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+       177: pop
+       178: invokedynamic #146,  0            // InvokeDynamic #0:test:(Lnet/minecraft/core/HolderSet;)Ljava/util/function/Predicate;
+       183: invokeinterface #149,  2          // InterfaceMethod java/util/stream/Stream.anyMatch:(Ljava/util/function/Predicate;)Z
+       188: ifeq          195
+       191: iload_3
+       192: iconst_2
+       193: imul
+       194: istore_3
+       195: aload_0
+       196: getfield      #7                  // Field wants:Lnet/minecraft/world/item/trading/TradeCost;
+       199: aload_1
+       200: iload_3
+       201: invokevirtual #155                // Method net/minecraft/world/item/trading/TradeCost.toItemCost:(Lnet/minecraft/world/level/storage/loot/LootContext;I)Lnet/minecraft/world/item/trading/ItemCost;
+       204: astore        5
+       206: aload         5
+       208: invokevirtual #161                // Method net/minecraft/world/item/trading/ItemCost.count:()I
+       211: iconst_1
+       212: if_icmpge     217
+       215: aconst_null
+       216: areturn
+       217: aload_0
+       218: getfield      #13                 // Field additionalWants:Ljava/util/Optional;
+       221: aload_1
+       222: invokedynamic #166,  0            // InvokeDynamic #1:apply:(Lnet/minecraft/world/level/storage/loot/LootContext;)Ljava/util/function/Function;
+       227: invokevirtual #169                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+       230: astore        6
+       232: aload         6
+       234: invokevirtual #67                 // Method java/util/Optional.isPresent:()Z
+       237: ifeq          257
+       240: aload         6
+       242: invokevirtual #73                 // Method java/util/Optional.get:()Ljava/lang/Object;
+       245: checkcast     #162                // class net/minecraft/world/item/trading/ItemCost
+       248: invokevirtual #161                // Method net/minecraft/world/item/trading/ItemCost.count:()I
+       251: iconst_1
+       252: if_icmpge     257
+       255: aconst_null
+       256: areturn
+       257: new           #173                // class net/minecraft/world/item/trading/MerchantOffer
+       260: dup
+       261: aload         5
+       263: aload         6
+       265: aload_2
+       266: aload_0
+       267: getfield      #21                 // Field maxUses:Lnet/minecraft/core/Holder;
+       270: invokeinterface #79,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       275: checkcast     #175                // class net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider
+       278: aload_1
+       279: invokeinterface #177,  2          // InterfaceMethod net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider.getInt:(Lnet/minecraft/world/level/storage/loot/LootContext;)I
+       284: iconst_1
+       285: invokestatic  #181                // Method java/lang/Math.max:(II)I
+       288: aload_0
+       289: getfield      #25                 // Field xp:Lnet/minecraft/core/Holder;
+       292: invokeinterface #79,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       297: checkcast     #175                // class net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider
+       300: aload_1
+       301: invokeinterface #177,  2          // InterfaceMethod net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider.getInt:(Lnet/minecraft/world/level/storage/loot/LootContext;)I
+       306: iconst_0
+       307: invokestatic  #181                // Method java/lang/Math.max:(II)I
+       310: aload_0
+       311: getfield      #28                 // Field reputationDiscount:Lnet/minecraft/core/Holder;
+       314: invokeinterface #79,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+       319: checkcast     #187                // class net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProvider
+       322: aload_1
+       323: invokeinterface #189,  2          // InterfaceMethod net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProvider.getFloat:(Lnet/minecraft/world/level/storage/loot/LootContext;)F
+       328: fconst_0
+       329: invokestatic  #193                // Method java/lang/Math.max:(FF)F
+       332: invokespecial #196                // Method net/minecraft/world/item/trading/MerchantOffer."<init>":(Lnet/minecraft/world/item/trading/ItemCost;Ljava/util/Optional;Lnet/minecraft/world/item/ItemStack;IIF)V
+       335: areturn
+
+  public static net.minecraft.world.item.trading.VillagerTrade$Builder builder(net.minecraft.world.item.trading.TradeCost, net.minecraft.world.item.ItemStackTemplate, int, int, float);
+    Code:
+         0: new           #199                // class net/minecraft/world/item/trading/VillagerTrade$Builder
+         3: dup
+         4: aload_0
+         5: aload_1
+         6: iload_2
+         7: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        10: iload_3
+        11: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        14: fload         4
+        16: invokestatic  #207                // Method net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProviders.exactly:(F)Lnet/minecraft/core/Holder;
+        19: invokespecial #212                // Method net/minecraft/world/item/trading/VillagerTrade$Builder."<init>":(Lnet/minecraft/world/item/trading/TradeCost;Lnet/minecraft/world/item/ItemStackTemplate;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V
+        22: areturn
+
+  public static net.minecraft.world.item.trading.VillagerTrade$Builder builder(net.minecraft.world.item.trading.TradeCost, net.minecraft.world.item.trading.TradeCost, net.minecraft.world.item.ItemStackTemplate, int, int, float);
+    Code:
+         0: new           #199                // class net/minecraft/world/item/trading/VillagerTrade$Builder
+         3: dup
+         4: aload_0
+         5: aload_2
+         6: iload_3
+         7: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        10: iload         4
+        12: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        15: fload         5
+        17: invokestatic  #207                // Method net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProviders.exactly:(F)Lnet/minecraft/core/Holder;
+        20: invokespecial #212                // Method net/minecraft/world/item/trading/VillagerTrade$Builder."<init>":(Lnet/minecraft/world/item/trading/TradeCost;Lnet/minecraft/world/item/ItemStackTemplate;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;)V
+        23: aload_1
+        24: invokevirtual #215                // Method net/minecraft/world/item/trading/VillagerTrade$Builder.additionalWants:(Lnet/minecraft/world/item/trading/TradeCost;)Lnet/minecraft/world/item/trading/VillagerTrade$Builder;
+        27: areturn
+
+  private static net.minecraft.world.item.trading.ItemCost lambda$getOffer$0(net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.item.trading.TradeCost);
+    Code:
+         0: aload_1
+         1: aload_0
+         2: iconst_0
+         3: invokevirtual #155                // Method net/minecraft/world/item/trading/TradeCost.toItemCost:(Lnet/minecraft/world/level/storage/loot/LootContext;I)Lnet/minecraft/world/item/trading/ItemCost;
+         6: areturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$0(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+         0: aload_0
+         1: getstatic     #218                // Field net/minecraft/world/item/trading/TradeCost.CODEC:Lcom/mojang/serialization/Codec;
+         4: ldc           #40                 // String wants
+         6: invokeinterface #222,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        11: invokedynamic #228,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+        16: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        19: getstatic     #218                // Field net/minecraft/world/item/trading/TradeCost.CODEC:Lcom/mojang/serialization/Codec;
+        22: ldc           #47                 // String additional_wants
+        24: invokeinterface #237,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        29: invokedynamic #240,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+        34: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        37: getstatic     #241                // Field net/minecraft/world/item/ItemStackTemplate.CODEC:Lcom/mojang/serialization/Codec;
+        40: ldc           #242                // String gives
+        42: invokeinterface #222,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        47: invokedynamic #243,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+        52: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        55: getstatic     #244                // Field net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.CODEC:Lcom/mojang/serialization/Codec;
+        58: ldc           #52                 // String max_uses
+        60: iconst_4
+        61: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        64: invokeinterface #245,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+        69: invokedynamic #248,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+        74: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        77: getstatic     #244                // Field net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.CODEC:Lcom/mojang/serialization/Codec;
+        80: ldc           #60                 // String xp
+        82: iconst_1
+        83: invokestatic  #201                // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        86: invokeinterface #245,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+        91: invokedynamic #249,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+        96: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        99: getstatic     #250                // Field net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProviders.CODEC:Lcom/mojang/serialization/Codec;
+       102: ldc           #58                 // String reputation_discount
+       104: fconst_0
+       105: invokestatic  #207                // Method net/minecraft/world/level/storage/loot/providers/number/floats/ContextFloatProviders.exactly:(F)Lnet/minecraft/core/Holder;
+       108: invokeinterface #245,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+       113: invokedynamic #251,  0            // InvokeDynamic #7:apply:()Ljava/util/function/Function;
+       118: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+       121: getstatic     #252                // Field net/minecraft/world/level/storage/loot/predicates/LootItemCondition.CODEC:Lcom/mojang/serialization/Codec;
+       124: ldc           #61                 // String merchant_predicate
+       126: invokeinterface #237,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+       131: invokedynamic #253,  0            // InvokeDynamic #8:apply:()Ljava/util/function/Function;
+       136: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+       139: getstatic     #254                // Field net/minecraft/world/level/storage/loot/functions/LootItemFunctions.CODEC:Lcom/mojang/serialization/Codec;
+       142: ldc           #65                 // String given_item_modifier
+       144: invokeinterface #237,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+       149: invokedynamic #257,  0            // InvokeDynamic #9:apply:()Ljava/util/function/Function;
+       154: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+       157: getstatic     #258                // Field net/minecraft/core/registries/Registries.ENCHANTMENT:Lnet/minecraft/resources/ResourceKey;
+       160: invokestatic  #264                // Method net/minecraft/core/registries/codec/RegistryCodecs.holderSet:(Lnet/minecraft/resources/ResourceKey;)Lcom/mojang/serialization/Codec;
+       163: ldc_w         #270                // String double_trade_price_enchantments
+       166: invokeinterface #237,  2          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+       171: invokedynamic #272,  0            // InvokeDynamic #10:apply:()Ljava/util/function/Function;
+       176: invokevirtual #231                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+       179: invokevirtual #273                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P9;
+       182: aload_0
+       183: invokedynamic #279,  0            // InvokeDynamic #11:apply:()Lcom/mojang/datafixers/util/Function9;
+       188: invokevirtual #282                // Method com/mojang/datafixers/Products$P9.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function9;)Lcom/mojang/datafixers/kinds/App;
+       191: areturn
+
+  private static java.util.Optional lambda$static$9(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #37                 // Field doubleTradePriceEnchantments:Ljava/util/Optional;
+         4: areturn
+
+  private static java.util.Optional lambda$static$8(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #34                 // Field givenItemModifier:Ljava/util/Optional;
+         4: areturn
+
+  private static java.util.Optional lambda$static$7(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #31                 // Field merchantPredicate:Ljava/util/Optional;
+         4: areturn
+
+  private static net.minecraft.core.Holder lambda$static$6(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #28                 // Field reputationDiscount:Lnet/minecraft/core/Holder;
+         4: areturn
+
+  private static net.minecraft.core.Holder lambda$static$5(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #25                 // Field xp:Lnet/minecraft/core/Holder;
+         4: areturn
+
+  private static net.minecraft.core.Holder lambda$static$4(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #21                 // Field maxUses:Lnet/minecraft/core/Holder;
+         4: areturn
+
+  private static net.minecraft.world.item.ItemStackTemplate lambda$static$3(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #17                 // Field gives:Lnet/minecraft/world/item/ItemStackTemplate;
+         4: areturn
+
+  private static java.util.Optional lambda$static$2(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field additionalWants:Ljava/util/Optional;
+         4: areturn
+
+  private static net.minecraft.world.item.trading.TradeCost lambda$static$1(net.minecraft.world.item.trading.VillagerTrade);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field wants:Lnet/minecraft/world/item/trading/TradeCost;
+         4: areturn
+
+  static {};
+    Code:
+         0: invokedynamic #287,  0            // InvokeDynamic #12:apply:()Ljava/util/function/Function;
+         5: invokestatic  #288                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+         8: getstatic     #293                // Field net/minecraft/world/level/storage/loot/parameters/LootContextParamSets.VILLAGER_TRADE:Lnet/minecraft/util/context/ContextKeySet;
+        11: invokestatic  #299                // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validatorForContext:(Lnet/minecraft/util/context/ContextKeySet;)Ljava/util/function/Function;
+        14: invokeinterface #303,  2          // InterfaceMethod com/mojang/serialization/Codec.validate:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+        19: putstatic     #305                // Field CODEC:Lcom/mojang/serialization/Codec;
+        22: return
+}

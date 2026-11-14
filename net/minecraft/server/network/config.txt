@@ -1,0 +1,57 @@
+Compiled from "PrepareSpawnTask.java"
+interface net.minecraft.server.network.config.PrepareSpawnTask$State {
+}
+Compiled from "SynchronizeRegistriesTask.java"
+public class net.minecraft.server.network.config.SynchronizeRegistriesTask implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type TYPE;
+  public net.minecraft.server.network.config.SynchronizeRegistriesTask(java.util.List<net.minecraft.server.packs.repository.KnownPack>, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>);
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public void handleResponse(java.util.List<net.minecraft.server.packs.repository.KnownPack>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+}
+Compiled from "JoinWorldTask.java"
+public class net.minecraft.server.network.config.JoinWorldTask implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type TYPE;
+  public net.minecraft.server.network.config.JoinWorldTask();
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+}
+Compiled from "PrepareSpawnTask.java"
+final class net.minecraft.server.network.config.PrepareSpawnTask$Ready implements net.minecraft.server.network.config.PrepareSpawnTask$State {
+  public void keepAlive();
+  public net.minecraft.server.level.ServerPlayer spawn(net.minecraft.network.Connection, net.minecraft.server.network.CommonListenerCookie);
+}
+Compiled from "PrepareSpawnTask.java"
+final class net.minecraft.server.network.config.PrepareSpawnTask$Preparing implements net.minecraft.server.network.config.PrepareSpawnTask$State {
+  public void cancel();
+  public net.minecraft.server.network.config.PrepareSpawnTask$Ready tick();
+}
+Compiled from "ServerResourcePackConfigurationTask.java"
+public class net.minecraft.server.network.config.ServerResourcePackConfigurationTask implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type TYPE;
+  public net.minecraft.server.network.config.ServerResourcePackConfigurationTask(net.minecraft.server.MinecraftServer$ServerResourcePackInfo);
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+}
+Compiled from "PrepareSpawnTask.java"
+public class net.minecraft.server.network.config.PrepareSpawnTask implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type TYPE;
+  public static final int PREPARE_CHUNK_RADIUS;
+  public net.minecraft.server.network.config.PrepareSpawnTask(net.minecraft.server.MinecraftServer, net.minecraft.server.players.NameAndId);
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public boolean tick();
+  public net.minecraft.server.level.ServerPlayer spawnPlayer(net.minecraft.network.Connection, net.minecraft.server.network.CommonListenerCookie);
+  public void keepAlive();
+  public void close();
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.network.config.package-info {
+}
+Compiled from "ServerCodeOfConductConfigurationTask.java"
+public class net.minecraft.server.network.config.ServerCodeOfConductConfigurationTask implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type TYPE;
+  public net.minecraft.server.network.config.ServerCodeOfConductConfigurationTask(java.util.function.Supplier<java.lang.String>);
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+}

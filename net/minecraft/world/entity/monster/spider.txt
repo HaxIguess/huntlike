@@ -1,0 +1,48 @@
+Compiled from "Spider.java"
+public class net.minecraft.world.entity.monster.spider.Spider$SpiderEffectsGroupData implements net.minecraft.world.entity.SpawnGroupData {
+  public net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect;
+  public net.minecraft.world.entity.monster.spider.Spider$SpiderEffectsGroupData();
+  public void setRandomEffect(net.minecraft.util.RandomSource);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.spider.package-info {
+}
+Compiled from "Spider.java"
+public class net.minecraft.world.entity.monster.spider.Spider extends net.minecraft.world.entity.monster.Monster {
+  public net.minecraft.world.entity.monster.spider.Spider(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.spider.Spider>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void tick();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean onClimbable();
+  public void makeStuckInBlock(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.Vec3);
+  public boolean canBeAffected(net.minecraft.world.effect.MobEffectInstance);
+  public boolean isClimbing();
+  public void setClimbing(boolean);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.phys.Vec3 getVehicleAttachmentPoint(net.minecraft.world.entity.Entity);
+}
+Compiled from "CaveSpider.java"
+public class net.minecraft.world.entity.monster.spider.CaveSpider extends net.minecraft.world.entity.monster.spider.Spider {
+  public net.minecraft.world.entity.monster.spider.CaveSpider(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.spider.CaveSpider>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createCaveSpider();
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.phys.Vec3 getVehicleAttachmentPoint(net.minecraft.world.entity.Entity);
+}
+Compiled from "Spider.java"
+class net.minecraft.world.entity.monster.spider.Spider$SpiderTargetGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<T> {
+  public net.minecraft.world.entity.monster.spider.Spider$SpiderTargetGoal(net.minecraft.world.entity.monster.spider.Spider, java.lang.Class<T>);
+  public boolean canUse();
+}
+Compiled from "Spider.java"
+class net.minecraft.world.entity.monster.spider.Spider$SpiderAttackGoal extends net.minecraft.world.entity.ai.goal.MeleeAttackGoal {
+  public net.minecraft.world.entity.monster.spider.Spider$SpiderAttackGoal(net.minecraft.world.entity.monster.spider.Spider);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}

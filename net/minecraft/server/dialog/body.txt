@@ -1,0 +1,42 @@
+Compiled from "package-info.java"
+interface net.minecraft.server.dialog.body.package-info {
+}
+Compiled from "DialogBody.java"
+public interface net.minecraft.server.dialog.body.DialogBody {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.body.DialogBody> DIALOG_BODY_CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.minecraft.server.dialog.body.DialogBody>> COMPACT_LIST_CODEC;
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.body.DialogBody> mapCodec();
+}
+Compiled from "ItemBody.java"
+public final class net.minecraft.server.dialog.body.ItemBody extends java.lang.Record implements net.minecraft.server.dialog.body.DialogBody {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.body.ItemBody> MAP_CODEC;
+  public net.minecraft.server.dialog.body.ItemBody(net.minecraft.world.item.ItemStackTemplate, java.util.Optional<net.minecraft.server.dialog.body.PlainMessage>, boolean, boolean, int, int);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.body.ItemBody> mapCodec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.ItemStackTemplate item();
+  public java.util.Optional<net.minecraft.server.dialog.body.PlainMessage> description();
+  public boolean showDecorations();
+  public boolean showTooltip();
+  public int width();
+  public int height();
+}
+Compiled from "PlainMessage.java"
+public final class net.minecraft.server.dialog.body.PlainMessage extends java.lang.Record implements net.minecraft.server.dialog.body.DialogBody {
+  public static final int DEFAULT_WIDTH;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.body.PlainMessage> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.body.PlainMessage> CODEC;
+  public net.minecraft.server.dialog.body.PlainMessage(net.minecraft.network.chat.Component, int);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.body.PlainMessage> mapCodec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component contents();
+  public int width();
+}
+Compiled from "DialogBodyTypes.java"
+public class net.minecraft.server.dialog.body.DialogBodyTypes {
+  public net.minecraft.server.dialog.body.DialogBodyTypes();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.body.DialogBody> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.body.DialogBody>>);
+}

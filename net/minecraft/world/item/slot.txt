@@ -1,0 +1,179 @@
+Compiled from "ContentsSlotSource.java"
+public class net.minecraft.world.item.slot.ContentsSlotSource extends net.minecraft.world.item.slot.TransformedSlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.ContentsSlotSource> MAP_CODEC;
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.ContentsSlotSource> codec();
+  protected net.minecraft.world.item.slot.SlotCollection transform(net.minecraft.world.item.slot.SlotCollection);
+}
+Compiled from "SlotCollection.java"
+public final class net.minecraft.world.item.slot.SlotCollection$Limited extends java.lang.Record implements net.minecraft.world.item.slot.SlotCollection {
+  public net.minecraft.world.item.slot.SlotCollection$Limited(net.minecraft.world.item.slot.SlotCollection, int);
+  public java.util.stream.Stream<net.minecraft.world.item.ItemStack> itemCopies();
+  public int size();
+  public int replaceSlotItems(net.minecraft.world.item.ItemProvider, net.minecraft.world.item.slot.SlotSelector);
+  public void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>, net.minecraft.world.item.slot.SlotSelector);
+  public net.minecraft.world.item.slot.SlotCollection limit(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.slot.SlotCollection slots();
+  public int limit();
+}
+Compiled from "GroupSlotSource.java"
+public class net.minecraft.world.item.slot.GroupSlotSource extends net.minecraft.world.item.slot.CompositeSlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.GroupSlotSource> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.slot.GroupSlotSource> INLINE_CODEC;
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.GroupSlotSource> codec();
+}
+Compiled from "CompositeSlotSource.java"
+public abstract class net.minecraft.world.item.slot.CompositeSlotSource implements net.minecraft.world.item.slot.SlotSource {
+  protected final net.minecraft.core.HolderSet<net.minecraft.world.item.slot.SlotSource> terms;
+  protected net.minecraft.world.item.slot.CompositeSlotSource(net.minecraft.core.HolderSet<net.minecraft.world.item.slot.SlotSource>);
+  protected static <T extends net.minecraft.world.item.slot.CompositeSlotSource> com.mojang.serialization.MapCodec<T> createCodec(java.util.function.Function<net.minecraft.core.HolderSet<net.minecraft.world.item.slot.SlotSource>, T>);
+  protected static <T extends net.minecraft.world.item.slot.CompositeSlotSource> com.mojang.serialization.Codec<T> createInlineCodec(java.util.function.Function<net.minecraft.core.HolderSet<net.minecraft.world.item.slot.SlotSource>, T>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.slot.CompositeSlotSource> codec();
+  public net.minecraft.world.item.slot.SlotCollection provide(net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "SlotCollection.java"
+public final class net.minecraft.world.item.slot.SlotCollection$Filtered extends java.lang.Record implements net.minecraft.world.item.slot.SlotCollection {
+  public net.minecraft.world.item.slot.SlotCollection$Filtered(net.minecraft.world.item.slot.SlotCollection, java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public java.util.stream.Stream<net.minecraft.world.item.ItemStack> itemCopies();
+  public int size();
+  public int replaceSlotItems(net.minecraft.world.item.ItemProvider, net.minecraft.world.item.slot.SlotSelector);
+  public void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>, net.minecraft.world.item.slot.SlotSelector);
+  public net.minecraft.world.item.slot.SlotCollection filter(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.slot.SlotCollection slots();
+  public java.util.function.Predicate<? super net.minecraft.world.item.ItemStack> filter();
+}
+Compiled from "SlotSelector.java"
+public final class net.minecraft.world.item.slot.SlotSelector$TrackingSelector extends java.lang.Record implements net.minecraft.world.item.slot.SlotSelector {
+  public net.minecraft.world.item.slot.SlotSelector$TrackingSelector(net.minecraft.world.item.slot.SlotSelector, int, org.apache.commons.lang3.mutable.MutableInt);
+  public boolean trySelectSlot(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.slot.SlotSelector filter(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public net.minecraft.world.item.slot.SlotSelector limit(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.slot.SlotSelector slotSelector();
+  public int limit();
+  public org.apache.commons.lang3.mutable.MutableInt selectedCount();
+}
+Compiled from "FilteredSlotSource.java"
+public class net.minecraft.world.item.slot.FilteredSlotSource extends net.minecraft.world.item.slot.TransformedSlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.FilteredSlotSource> MAP_CODEC;
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.FilteredSlotSource> codec();
+  protected net.minecraft.world.item.slot.SlotCollection transform(net.minecraft.world.item.slot.SlotCollection);
+}
+Compiled from "SlotCollection.java"
+public interface net.minecraft.world.item.slot.SlotCollection {
+  public static final net.minecraft.world.item.slot.SlotCollection EMPTY;
+  public abstract java.util.stream.Stream<net.minecraft.world.item.ItemStack> itemCopies();
+  public abstract int size();
+  public abstract int replaceSlotItems(net.minecraft.world.item.ItemProvider, net.minecraft.world.item.slot.SlotSelector);
+  public default int replaceSlotItems(net.minecraft.world.item.ItemProvider);
+  public abstract void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>, net.minecraft.world.item.slot.SlotSelector);
+  public default void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>);
+  public default net.minecraft.world.item.slot.SlotCollection filter(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public default net.minecraft.world.item.slot.SlotCollection flatMap(java.util.function.Function<net.minecraft.world.item.ItemStack, ? extends net.minecraft.world.item.slot.SlotCollection>);
+  public default net.minecraft.world.item.slot.SlotCollection limit(int);
+  public static net.minecraft.world.item.slot.SlotCollection of(net.minecraft.world.entity.SlotAccess);
+  public static net.minecraft.world.item.slot.SlotCollection of(java.util.Collection<? extends net.minecraft.world.entity.SlotAccess>);
+  public static net.minecraft.world.item.slot.SlotCollection concat(net.minecraft.world.item.slot.SlotCollection, net.minecraft.world.item.slot.SlotCollection);
+  public static net.minecraft.world.item.slot.SlotCollection concat(java.util.List<? extends net.minecraft.world.item.slot.SlotCollection>);
+}
+Compiled from "LimitSlotSource.java"
+public class net.minecraft.world.item.slot.LimitSlotSource extends net.minecraft.world.item.slot.TransformedSlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.LimitSlotSource> MAP_CODEC;
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.LimitSlotSource> codec();
+  protected net.minecraft.world.item.slot.SlotCollection transform(net.minecraft.world.item.slot.SlotCollection);
+}
+Compiled from "CountingModifier.java"
+public class net.minecraft.world.item.slot.CountingModifier implements java.util.function.Consumer<net.minecraft.world.entity.SlotAccess> {
+  public net.minecraft.world.item.slot.CountingModifier(java.util.function.UnaryOperator<net.minecraft.world.item.ItemStack>);
+  public void accept(net.minecraft.world.entity.SlotAccess);
+  public int updatedCount();
+  public void accept(java.lang.Object);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.item.slot.package-info {
+}
+Compiled from "SlotSource.java"
+public interface net.minecraft.world.item.slot.SlotSource extends net.minecraft.world.level.storage.loot.LootContextUser {
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.slot.SlotSource> codec();
+  public abstract net.minecraft.world.item.slot.SlotCollection provide(net.minecraft.world.level.storage.loot.LootContext);
+}
+Compiled from "SlotSources.java"
+public interface net.minecraft.world.item.slot.SlotSources {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.slot.SlotSource> TYPED_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.slot.SlotSource> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource>> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.item.slot.SlotSource>> LIST_CODEC;
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.slot.SlotSource> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.slot.SlotSource>>);
+}
+Compiled from "SlotCollection.java"
+public final class net.minecraft.world.item.slot.SlotCollection$FlatMapped extends java.lang.Record implements net.minecraft.world.item.slot.SlotCollection {
+  public net.minecraft.world.item.slot.SlotCollection$FlatMapped(net.minecraft.world.item.slot.SlotCollection, java.util.function.Function<net.minecraft.world.item.ItemStack, ? extends net.minecraft.world.item.slot.SlotCollection>);
+  public java.util.stream.Stream<net.minecraft.world.item.ItemStack> itemCopies();
+  public int size();
+  public int replaceSlotItems(net.minecraft.world.item.ItemProvider, net.minecraft.world.item.slot.SlotSelector);
+  public void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>, net.minecraft.world.item.slot.SlotSelector);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.slot.SlotCollection slots();
+  public java.util.function.Function<net.minecraft.world.item.ItemStack, ? extends net.minecraft.world.item.slot.SlotCollection> mapper();
+}
+Compiled from "SlotSelector.java"
+public final class net.minecraft.world.item.slot.SlotSelector$FilteringSelector extends java.lang.Record implements net.minecraft.world.item.slot.SlotSelector {
+  public net.minecraft.world.item.slot.SlotSelector$FilteringSelector(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public boolean trySelectSlot(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.slot.SlotSelector filter(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public net.minecraft.world.item.slot.SlotSelector limit(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.function.Predicate<? super net.minecraft.world.item.ItemStack> filter();
+}
+Compiled from "RangeSlotSource.java"
+public class net.minecraft.world.item.slot.RangeSlotSource implements net.minecraft.world.item.slot.SlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.RangeSlotSource> MAP_CODEC;
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.RangeSlotSource> codec();
+  public java.util.Set<net.minecraft.util.context.ContextKey<?>> getReferencedContextParams();
+  public final net.minecraft.world.item.slot.SlotCollection provide(net.minecraft.world.level.storage.loot.LootContext);
+  public static net.minecraft.world.item.slot.RangeSlotSource slotRange(net.minecraft.world.inventory.SlotRange);
+}
+Compiled from "EmptySlotSource.java"
+public final class net.minecraft.world.item.slot.EmptySlotSource extends java.lang.Record implements net.minecraft.world.item.slot.SlotSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.EmptySlotSource> MAP_CODEC;
+  public net.minecraft.world.item.slot.EmptySlotSource();
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.slot.EmptySlotSource> codec();
+  public net.minecraft.world.item.slot.SlotCollection provide(net.minecraft.world.level.storage.loot.LootContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "SlotSelector.java"
+public interface net.minecraft.world.item.slot.SlotSelector {
+  public static final net.minecraft.world.item.slot.SlotSelector ANY_SLOT;
+  public static final net.minecraft.world.item.slot.SlotSelector EMPTY_SLOTS;
+  public static final net.minecraft.world.item.slot.SlotSelector NON_EMPTY_SLOTS;
+  public abstract boolean trySelectSlot(net.minecraft.world.item.ItemStack);
+  public abstract net.minecraft.world.item.slot.SlotSelector filter(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public abstract net.minecraft.world.item.slot.SlotSelector limit(int);
+  public static net.minecraft.world.item.slot.SlotSelector selecting(java.util.function.Predicate<? super net.minecraft.world.item.ItemStack>);
+  public static net.minecraft.world.item.slot.SlotSelector tracking(net.minecraft.world.item.slot.SlotSelector, org.apache.commons.lang3.mutable.MutableInt);
+  public static net.minecraft.world.item.slot.SlotSelector tracking(org.apache.commons.lang3.mutable.MutableInt);
+}
+Compiled from "TransformedSlotSource.java"
+public abstract class net.minecraft.world.item.slot.TransformedSlotSource implements net.minecraft.world.item.slot.SlotSource {
+  protected final net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource> slotSource;
+  protected net.minecraft.world.item.slot.TransformedSlotSource(net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource>);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.slot.TransformedSlotSource> codec();
+  protected static <T extends net.minecraft.world.item.slot.TransformedSlotSource> com.mojang.datafixers.Products$P1<com.mojang.serialization.codecs.RecordCodecBuilder$Mu<T>, net.minecraft.core.Holder<net.minecraft.world.item.slot.SlotSource>> commonFields(com.mojang.serialization.codecs.RecordCodecBuilder$Instance<T>);
+  protected abstract net.minecraft.world.item.slot.SlotCollection transform(net.minecraft.world.item.slot.SlotCollection);
+  public final net.minecraft.world.item.slot.SlotCollection provide(net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}

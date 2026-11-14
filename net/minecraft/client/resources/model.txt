@@ -1,0 +1,356 @@
+Compiled from "BlockStateModelLoader.java"
+public final class net.minecraft.client.resources.model.BlockStateModelLoader$LoadedModels extends java.lang.Record {
+  public net.minecraft.client.resources.model.BlockStateModelLoader$LoadedModels(java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel$UnbakedRoot>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel$UnbakedRoot> models();
+}
+Compiled from "ModelBaker.java"
+public interface net.minecraft.client.resources.model.ModelBaker {
+  public abstract net.minecraft.client.resources.model.ResolvedModel getModel(net.minecraft.resources.Identifier);
+  public abstract net.minecraft.client.renderer.block.dispatch.BlockStateModelPart missingBlockModelPart();
+  public abstract net.minecraft.client.resources.model.sprite.MaterialBaker materials();
+  public abstract net.minecraft.client.resources.model.ModelBaker$Interner interner();
+  public abstract <T> T compute(net.minecraft.client.resources.model.ModelBaker$SharedOperationKey<T>);
+}
+Compiled from "EquipmentAssetManager.java"
+public class net.minecraft.client.resources.model.EquipmentAssetManager extends net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener<net.minecraft.client.resources.model.EquipmentClientInfo> {
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo MISSING;
+  public net.minecraft.client.resources.model.EquipmentAssetManager();
+  protected void apply(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.model.EquipmentClientInfo>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  public net.minecraft.client.resources.model.EquipmentClientInfo get(net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.EquipmentAsset>);
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "SimpleModelWrapper.java"
+public final class net.minecraft.client.resources.model.SimpleModelWrapper extends java.lang.Record implements net.minecraft.client.renderer.block.dispatch.BlockStateModelPart {
+  public net.minecraft.client.resources.model.SimpleModelWrapper(net.minecraft.client.resources.model.geometry.QuadCollection, boolean, net.minecraft.client.resources.model.sprite.Material$Baked);
+  public static net.minecraft.client.renderer.block.dispatch.BlockStateModelPart bake(net.minecraft.client.resources.model.ModelBaker, net.minecraft.resources.Identifier, net.minecraft.client.renderer.block.dispatch.ModelState);
+  public static com.google.common.collect.Multimap<net.minecraft.resources.Identifier, net.minecraft.resources.Identifier> findNonBlockSprites(net.minecraft.client.resources.model.geometry.QuadCollection);
+  public java.util.List<net.minecraft.client.resources.model.geometry.BakedQuad> getQuads(net.minecraft.core.Direction);
+  public int materialFlags();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.resources.model.geometry.QuadCollection quads();
+  public boolean useAmbientOcclusion();
+  public net.minecraft.client.resources.model.sprite.Material$Baked particleMaterial();
+}
+Compiled from "ClientItemInfoLoader.java"
+public class net.minecraft.client.resources.model.ClientItemInfoLoader {
+  public net.minecraft.client.resources.model.ClientItemInfoLoader();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.client.resources.model.ClientItemInfoLoader$LoadedClientInfos> scheduleLoad(net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+}
+Compiled from "ModelBaker.java"
+public interface net.minecraft.client.resources.model.ModelBaker$Interner {
+  public abstract org.joml.Vector3fc vector(org.joml.Vector3fc);
+  public abstract net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo materialInfo(net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo);
+}
+Compiled from "ModelBakery.java"
+public final class net.minecraft.client.resources.model.ModelBakery$MissingModels extends java.lang.Record {
+  public net.minecraft.client.resources.model.ModelBakery$MissingModels(net.minecraft.client.renderer.block.dispatch.BlockStateModelPart, net.minecraft.client.renderer.block.dispatch.BlockStateModel, net.minecraft.client.renderer.item.MissingItemModel, net.minecraft.client.renderer.block.FluidModel);
+  public static net.minecraft.client.resources.model.ModelBakery$MissingModels bake(net.minecraft.client.resources.model.ResolvedModel, net.minecraft.client.resources.model.sprite.MaterialBaker, net.minecraft.client.resources.model.ModelBaker$Interner);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModelPart blockPart();
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModel block();
+  public net.minecraft.client.renderer.item.MissingItemModel item();
+  public net.minecraft.client.renderer.block.FluidModel fluid();
+}
+Compiled from "UnbakedModel.java"
+public final class net.minecraft.client.resources.model.UnbakedModel$GuiLight extends java.lang.Enum<net.minecraft.client.resources.model.UnbakedModel$GuiLight> {
+  public static final net.minecraft.client.resources.model.UnbakedModel$GuiLight FRONT;
+  public static final net.minecraft.client.resources.model.UnbakedModel$GuiLight SIDE;
+  public static net.minecraft.client.resources.model.UnbakedModel$GuiLight[] values();
+  public static net.minecraft.client.resources.model.UnbakedModel$GuiLight valueOf(java.lang.String);
+  public static net.minecraft.client.resources.model.UnbakedModel$GuiLight getByName(java.lang.String);
+  public boolean lightLikeBlock();
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo> CODEC;
+  public net.minecraft.client.resources.model.EquipmentClientInfo(java.util.Map<net.minecraft.client.resources.model.EquipmentClientInfo$LayerType, java.util.List<net.minecraft.client.resources.model.EquipmentClientInfo$Layer>>, java.util.List<net.minecraft.client.resources.model.EquipmentClientInfo$TrimOverride>);
+  public static net.minecraft.client.resources.model.EquipmentClientInfo$Builder builder();
+  public java.util.List<net.minecraft.client.resources.model.EquipmentClientInfo$Layer> getLayers(net.minecraft.client.resources.model.EquipmentClientInfo$LayerType);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.client.resources.model.EquipmentClientInfo$LayerType, java.util.List<net.minecraft.client.resources.model.EquipmentClientInfo$Layer>> layers();
+  public java.util.List<net.minecraft.client.resources.model.EquipmentClientInfo$TrimOverride> trimOverrides();
+}
+Compiled from "ModelDiscovery.java"
+final class net.minecraft.client.resources.model.ModelDiscovery$Slot<T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo$TrimOverride extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo$TrimOverride> CODEC;
+  public net.minecraft.client.resources.model.EquipmentClientInfo$TrimOverride(net.minecraft.client.resources.model.EquipmentClientInfo$TrimPredicate, java.util.Optional<net.minecraft.resources.Identifier>, java.util.Optional<net.minecraft.resources.Identifier>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$TrimPredicate predicate();
+  public java.util.Optional<net.minecraft.resources.Identifier> textureId();
+  public java.util.Optional<net.minecraft.resources.Identifier> paletteId();
+}
+Compiled from "UnbakedModel.java"
+public interface net.minecraft.client.resources.model.UnbakedModel {
+  public static final java.lang.String PARTICLE_TEXTURE_REFERENCE;
+  public default java.lang.Boolean ambientOcclusion();
+  public default net.minecraft.client.resources.model.UnbakedModel$GuiLight guiLight();
+  public default net.minecraft.client.resources.model.cuboid.ItemTransforms transforms();
+  public default net.minecraft.client.resources.model.sprite.TextureSlots$Data textureSlots();
+  public default net.minecraft.client.resources.model.geometry.UnbakedGeometry geometry();
+  public default net.minecraft.resources.Identifier parent();
+}
+Compiled from "ModelBakery.java"
+class net.minecraft.client.resources.model.ModelBakery$ModelBakerImpl implements net.minecraft.client.resources.model.ModelBaker {
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModelPart missingBlockModelPart();
+  public net.minecraft.client.resources.model.sprite.MaterialBaker materials();
+  public net.minecraft.client.resources.model.ModelBaker$Interner interner();
+  public net.minecraft.client.resources.model.ResolvedModel getModel(net.minecraft.resources.Identifier);
+  public <T> T compute(net.minecraft.client.resources.model.ModelBaker$SharedOperationKey<T>);
+}
+Compiled from "ClientItemInfoLoader.java"
+final class net.minecraft.client.resources.model.ClientItemInfoLoader$PendingLoad extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public net.minecraft.client.renderer.item.ClientItem clientItemInfo();
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo$TrimPredicate extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo$TrimPredicate> CODEC;
+  public net.minecraft.client.resources.model.EquipmentClientInfo$TrimPredicate(java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimMaterial>>, java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimPattern>>);
+  public boolean matches(net.minecraft.world.item.equipment.trim.ArmorTrim);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimMaterial>> material();
+  public java.util.Optional<net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimPattern>> pattern();
+}
+Compiled from "ModelManager.java"
+final class net.minecraft.client.resources.model.ModelManager$ResolvedModels extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.resources.model.ResolvedModel missing();
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.model.ResolvedModel> models();
+}
+Compiled from "ModelBaker.java"
+public interface net.minecraft.client.resources.model.ModelBaker$SharedOperationKey<T> {
+  public abstract T compute(net.minecraft.client.resources.model.ModelBaker);
+}
+Compiled from "ResolvableModel.java"
+public interface net.minecraft.client.resources.model.ResolvableModel {
+  public abstract void resolveDependencies(net.minecraft.client.resources.model.ResolvableModel$Resolver);
+}
+Compiled from "EquipmentClientInfo.java"
+public class net.minecraft.client.resources.model.EquipmentClientInfo$Builder {
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Builder addHumanoidLayers(net.minecraft.resources.Identifier);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Builder addHumanoidLayers(net.minecraft.resources.Identifier, boolean);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Builder addMainHumanoidLayer(net.minecraft.resources.Identifier, boolean);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Builder addLayers(net.minecraft.client.resources.model.EquipmentClientInfo$LayerType, net.minecraft.client.resources.model.EquipmentClientInfo$Layer...);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Builder replaceTrimPalette(net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimMaterial>, net.minecraft.resources.Identifier);
+  public net.minecraft.client.resources.model.EquipmentClientInfo build();
+}
+Compiled from "ModelDebugName.java"
+public interface net.minecraft.client.resources.model.ModelDebugName {
+  public abstract java.lang.String debugName();
+}
+Compiled from "ModelBakery.java"
+class net.minecraft.client.resources.model.ModelBakery$InternerImpl implements net.minecraft.client.resources.model.ModelBaker$Interner {
+  public org.joml.Vector3fc vector(org.joml.Vector3fc);
+  public net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo materialInfo(net.minecraft.client.resources.model.geometry.BakedQuad$MaterialInfo);
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo$LayerType extends java.lang.Enum<net.minecraft.client.resources.model.EquipmentClientInfo$LayerType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HUMANOID;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HUMANOID_LEGGINGS;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HUMANOID_BABY;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType WINGS;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType WOLF_BODY;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HORSE_BODY;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType LLAMA_BODY;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType PIG_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType STRIDER_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType CAMEL_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType CAMEL_HUSK_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HORSE_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType DONKEY_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType MULE_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType ZOMBIE_HORSE_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType SKELETON_HORSE_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType HAPPY_GHAST_BODY;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType NAUTILUS_SADDLE;
+  public static final net.minecraft.client.resources.model.EquipmentClientInfo$LayerType NAUTILUS_BODY;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo$LayerType> CODEC;
+  public static net.minecraft.client.resources.model.EquipmentClientInfo$LayerType[] values();
+  public static net.minecraft.client.resources.model.EquipmentClientInfo$LayerType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public java.lang.String trimAssetPrefix();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.resources.model.package-info {
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo$Dyeable extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo$Dyeable> CODEC;
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Dyeable(java.util.Optional<java.lang.Integer>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<java.lang.Integer> colorWhenUndyed();
+}
+Compiled from "ClientItemInfoLoader.java"
+public final class net.minecraft.client.resources.model.ClientItemInfoLoader$LoadedClientInfos extends java.lang.Record {
+  public net.minecraft.client.resources.model.ClientItemInfoLoader$LoadedClientInfos(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ClientItem>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ClientItem> contents();
+}
+Compiled from "ModelBakery.java"
+public class net.minecraft.client.resources.model.ModelBakery {
+  public static final net.minecraft.client.resources.model.sprite.SpriteId FIRE_0;
+  public static final net.minecraft.client.resources.model.sprite.SpriteId FIRE_1;
+  public static final java.util.List<net.minecraft.client.renderer.rendertype.RenderType> DESTROY_TYPES;
+  public static final java.util.List<net.minecraft.client.renderer.rendertype.RenderType> DESTROY_TYPES_OIT;
+  public net.minecraft.client.resources.model.ModelBakery(net.minecraft.client.model.geom.EntityModelSet, net.minecraft.client.resources.model.sprite.SpriteGetter, net.minecraft.client.renderer.PlayerSkinRenderCache, java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel$UnbakedRoot>, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ClientItem>, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.model.ResolvedModel>, net.minecraft.client.resources.model.ResolvedModel);
+  public java.util.concurrent.CompletableFuture<net.minecraft.client.resources.model.ModelBakery$BakingResult> bakeModels(net.minecraft.client.resources.model.sprite.MaterialBaker, java.util.concurrent.Executor);
+}
+Compiled from "EquipmentClientInfo.java"
+public final class net.minecraft.client.resources.model.EquipmentClientInfo$Layer extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.resources.model.EquipmentClientInfo$Layer> CODEC;
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Layer(net.minecraft.resources.Identifier);
+  public net.minecraft.client.resources.model.EquipmentClientInfo$Layer(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.client.resources.model.EquipmentClientInfo$Dyeable>, boolean);
+  public static net.minecraft.client.resources.model.EquipmentClientInfo$Layer leatherDyeable(net.minecraft.resources.Identifier, boolean);
+  public static net.minecraft.client.resources.model.EquipmentClientInfo$Layer onlyIfDyed(net.minecraft.resources.Identifier, boolean);
+  public net.minecraft.resources.Identifier getTextureLocation(net.minecraft.client.resources.model.EquipmentClientInfo$LayerType);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier textureId();
+  public java.util.Optional<net.minecraft.client.resources.model.EquipmentClientInfo$Dyeable> dyeable();
+  public boolean usePlayerTexture();
+}
+Compiled from "ModelManager.java"
+public class net.minecraft.client.resources.model.ModelManager implements net.minecraft.server.packs.resources.PreparableReloadListener,net.fabricmc.fabric.api.client.model.loading.v1.FabricModelManager {
+  public net.minecraft.client.resources.model.ModelManager(net.minecraft.client.color.block.BlockColors, net.minecraft.client.resources.model.sprite.AtlasManager, net.minecraft.client.renderer.PlayerSkinRenderCache);
+  public net.minecraft.client.renderer.item.ItemModel getItemModel(net.minecraft.resources.Identifier);
+  public net.minecraft.client.renderer.item.ClientItem$Properties getItemProperties(net.minecraft.resources.Identifier);
+  public net.minecraft.client.renderer.block.BlockStateModelSet getBlockStateModelSet();
+  public net.minecraft.client.renderer.block.BlockModelSet getBlockModelSet();
+  public net.minecraft.client.renderer.block.FluidStateModelSet getFluidStateModelSet();
+  public final java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  public boolean requiresRender(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState);
+  public java.util.function.Supplier<net.minecraft.client.model.geom.EntityModelSet> entityModels();
+}
+Compiled from "ResolvableModel.java"
+public interface net.minecraft.client.resources.model.ResolvableModel$Resolver {
+  public abstract void markDependency(net.minecraft.resources.Identifier);
+}
+Compiled from "ModelDiscovery.java"
+public class net.minecraft.client.resources.model.ModelDiscovery {
+  public net.minecraft.client.resources.model.ModelDiscovery(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.model.UnbakedModel>, net.minecraft.client.resources.model.UnbakedModel);
+  public void addRoot(net.minecraft.client.resources.model.ResolvableModel);
+  public void addSpecialModel(net.minecraft.resources.Identifier, net.minecraft.client.resources.model.UnbakedModel);
+  public net.minecraft.client.resources.model.ResolvedModel missingModel();
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.resources.model.ResolvedModel> resolve();
+}
+Compiled from "ModelBakery.java"
+public final class net.minecraft.client.resources.model.ModelBakery$BakingResult extends java.lang.Record {
+  public net.minecraft.client.resources.model.ModelBakery$BakingResult(net.minecraft.client.resources.model.ModelBakery$MissingModels, java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel>, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ItemModel>, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ClientItem$Properties>);
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModel getBlockStateModel(net.minecraft.world.level.block.state.BlockState);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.resources.model.ModelBakery$MissingModels missingModels();
+  public java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel> blockStateModels();
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ItemModel> itemStackModels();
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.item.ClientItem$Properties> itemProperties();
+}
+Compiled from "ModelGroupCollector.java"
+public class net.minecraft.client.resources.model.ModelGroupCollector {
+  public net.minecraft.client.resources.model.ModelGroupCollector();
+  public static it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.level.block.state.BlockState> build(net.minecraft.client.color.block.BlockColors, net.minecraft.client.resources.model.BlockStateModelLoader$LoadedModels);
+}
+Compiled from "BlockStateModelLoader.java"
+final class net.minecraft.client.resources.model.BlockStateModelLoader$LoadedBlockStateModelDispatcher extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String source();
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModelDispatcher contents();
+}
+Compiled from "ModelManager.java"
+final class net.minecraft.client.resources.model.ModelManager$ReloadState extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.resources.model.ModelBakery$BakingResult bakedModels();
+  public it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.level.block.state.BlockState> modelGroups();
+  public java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel> blockStateModels();
+  public java.util.Map<net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.model.BlockModel> blockModels();
+  public java.util.Map<net.minecraft.world.level.material.Fluid, net.minecraft.client.renderer.block.FluidModel> fluidModels();
+  public net.minecraft.client.model.geom.EntityModelSet entityModelSet();
+}
+Compiled from "ModelGroupCollector.java"
+final class net.minecraft.client.resources.model.ModelGroupCollector$GroupKey extends java.lang.Record {
+  public static net.minecraft.client.resources.model.ModelGroupCollector$GroupKey create(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel$UnbakedRoot, java.util.List<net.minecraft.world.level.block.state.properties.Property<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Object equalityGroup();
+  public java.util.List<java.lang.Object> coloringValues();
+}
+Compiled from "ResolvedModel.java"
+public interface net.minecraft.client.resources.model.ResolvedModel extends net.minecraft.client.resources.model.ModelDebugName {
+  public static final boolean DEFAULT_AMBIENT_OCCLUSION;
+  public static final net.minecraft.client.resources.model.UnbakedModel$GuiLight DEFAULT_GUI_LIGHT;
+  public abstract net.minecraft.client.resources.model.UnbakedModel wrapped();
+  public abstract net.minecraft.client.resources.model.ResolvedModel parent();
+  public static net.minecraft.client.resources.model.sprite.TextureSlots findTopTextureSlots(net.minecraft.client.resources.model.ResolvedModel);
+  public default net.minecraft.client.resources.model.sprite.TextureSlots getTopTextureSlots();
+  public static boolean findTopAmbientOcclusion(net.minecraft.client.resources.model.ResolvedModel);
+  public default boolean getTopAmbientOcclusion();
+  public static net.minecraft.client.resources.model.UnbakedModel$GuiLight findTopGuiLight(net.minecraft.client.resources.model.ResolvedModel);
+  public default net.minecraft.client.resources.model.UnbakedModel$GuiLight getTopGuiLight();
+  public static net.minecraft.client.resources.model.geometry.UnbakedGeometry findTopGeometry(net.minecraft.client.resources.model.ResolvedModel);
+  public default net.minecraft.client.resources.model.geometry.UnbakedGeometry getTopGeometry();
+  public default net.minecraft.client.resources.model.geometry.QuadCollection bakeTopGeometry(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker, net.minecraft.client.renderer.block.dispatch.ModelState);
+  public static net.minecraft.client.resources.model.sprite.Material$Baked resolveParticleMaterial(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker, net.minecraft.client.resources.model.ModelDebugName);
+  public default net.minecraft.client.resources.model.sprite.Material$Baked resolveParticleMaterial(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker);
+  public static net.minecraft.client.resources.model.cuboid.ItemTransform findTopTransform(net.minecraft.client.resources.model.ResolvedModel, net.minecraft.world.item.ItemDisplayContext);
+  public static net.minecraft.client.resources.model.cuboid.ItemTransforms findTopTransforms(net.minecraft.client.resources.model.ResolvedModel);
+  public default net.minecraft.client.resources.model.cuboid.ItemTransforms getTopTransforms();
+}
+Compiled from "BlockStateModelLoader.java"
+public class net.minecraft.client.resources.model.BlockStateModelLoader {
+  public net.minecraft.client.resources.model.BlockStateModelLoader();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.client.resources.model.BlockStateModelLoader$LoadedModels> loadBlockStates(net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+}
+Compiled from "BlockStateDefinitions.java"
+public class net.minecraft.client.resources.model.BlockStateDefinitions {
+  public net.minecraft.client.resources.model.BlockStateDefinitions();
+  public static net.minecraft.world.level.block.state.BlockState getItemFrameFakeState(boolean, boolean);
+  public static java.util.function.Function<net.minecraft.resources.Identifier, net.minecraft.world.level.block.state.StateDefinition<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>> definitionLocationToBlockStateMapper();
+}
+Compiled from "ModelDiscovery.java"
+class net.minecraft.client.resources.model.ModelDiscovery$ModelWrapper implements net.minecraft.client.resources.model.ResolvedModel {
+  public net.minecraft.client.resources.model.UnbakedModel wrapped();
+  public net.minecraft.client.resources.model.ResolvedModel parent();
+  public java.lang.String debugName();
+  public boolean getTopAmbientOcclusion();
+  public net.minecraft.client.resources.model.UnbakedModel$GuiLight getTopGuiLight();
+  public net.minecraft.client.resources.model.cuboid.ItemTransforms getTopTransforms();
+  public net.minecraft.client.resources.model.geometry.UnbakedGeometry getTopGeometry();
+  public net.minecraft.client.resources.model.sprite.TextureSlots getTopTextureSlots();
+  public net.minecraft.client.resources.model.sprite.Material$Baked resolveParticleMaterial(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker);
+  public net.minecraft.client.resources.model.geometry.QuadCollection bakeTopGeometry(net.minecraft.client.resources.model.sprite.TextureSlots, net.minecraft.client.resources.model.ModelBaker, net.minecraft.client.renderer.block.dispatch.ModelState);
+}

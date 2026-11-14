@@ -1,0 +1,133 @@
+Compiled from "AngerLevel.java"
+public final class net.minecraft.world.entity.monster.warden.AngerLevel extends java.lang.Enum<net.minecraft.world.entity.monster.warden.AngerLevel> {
+  public static final net.minecraft.world.entity.monster.warden.AngerLevel CALM;
+  public static final net.minecraft.world.entity.monster.warden.AngerLevel AGITATED;
+  public static final net.minecraft.world.entity.monster.warden.AngerLevel ANGRY;
+  public static net.minecraft.world.entity.monster.warden.AngerLevel[] values();
+  public static net.minecraft.world.entity.monster.warden.AngerLevel valueOf(java.lang.String);
+  public int getMinimumAnger();
+  public net.minecraft.sounds.SoundEvent getAmbientSound();
+  public net.minecraft.sounds.SoundEvent getListeningSound();
+  public static net.minecraft.world.entity.monster.warden.AngerLevel byAnger(int);
+  public boolean isAngry();
+}
+Compiled from "WardenAi.java"
+public class net.minecraft.world.entity.monster.warden.WardenAi {
+  public static final int EMERGE_DURATION;
+  public static final int ROAR_DURATION;
+  public static final int DIGGING_COOLDOWN;
+  public net.minecraft.world.entity.monster.warden.WardenAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.monster.warden.Warden>> getActivities(net.minecraft.world.entity.monster.warden.Warden);
+  public static void updateActivity(net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.warden.Warden>);
+  public static void setDigCooldown(net.minecraft.world.entity.LivingEntity);
+  public static void setDisturbanceLocation(net.minecraft.world.entity.monster.warden.Warden, net.minecraft.core.BlockPos);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.warden.package-info {
+}
+Compiled from "WardenSpawnTracker.java"
+public class net.minecraft.world.entity.monster.warden.WardenSpawnTracker {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.monster.warden.WardenSpawnTracker> CODEC;
+  public static final int MAX_WARNING_LEVEL;
+  public net.minecraft.world.entity.monster.warden.WardenSpawnTracker(int, int, int);
+  public net.minecraft.world.entity.monster.warden.WardenSpawnTracker();
+  public void tick();
+  public void reset();
+  public static java.util.OptionalInt tryWarn(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.server.level.ServerPlayer);
+  public void setWarningLevel(int);
+  public int getWarningLevel();
+}
+Compiled from "AngerManagement.java"
+public class net.minecraft.world.entity.monster.warden.AngerManagement {
+  protected static final int CONVERSION_DELAY;
+  protected static final int MAX_ANGER;
+  protected final java.util.ArrayList<net.minecraft.world.entity.Entity> suspects;
+  protected final it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.entity.Entity> angerBySuspect;
+  protected final it.unimi.dsi.fastutil.objects.Object2IntMap<java.util.UUID> angerByUuid;
+  public static com.mojang.serialization.Codec<net.minecraft.world.entity.monster.warden.AngerManagement> codec(java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+  public net.minecraft.world.entity.monster.warden.AngerManagement(java.util.function.Predicate<net.minecraft.world.entity.Entity>, java.util.List<com.mojang.datafixers.util.Pair<java.util.UUID, java.lang.Integer>>);
+  public void tick(net.minecraft.server.level.ServerLevel, java.util.function.Predicate<net.minecraft.world.entity.Entity>);
+  public int increaseAnger(net.minecraft.world.entity.Entity, int);
+  public void clearAnger(net.minecraft.world.entity.Entity);
+  public int getActiveAnger(net.minecraft.world.entity.Entity);
+  public java.util.Optional<net.minecraft.world.entity.LivingEntity> getActiveEntity();
+}
+Compiled from "Warden.java"
+public class net.minecraft.world.entity.monster.warden.Warden extends net.minecraft.world.entity.monster.Monster implements net.minecraft.world.level.gameevent.vibrations.VibrationSystem {
+  public final net.minecraft.world.entity.AnimationState roarAnimationState;
+  public final net.minecraft.world.entity.AnimationState sniffAnimationState;
+  public final net.minecraft.world.entity.AnimationState emergeAnimationState;
+  public final net.minecraft.world.entity.AnimationState diggingAnimationState;
+  public final net.minecraft.world.entity.AnimationState attackAnimationState;
+  public final net.minecraft.world.entity.AnimationState sonicBoomAnimationState;
+  public net.minecraft.world.entity.monster.warden.Warden(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.Monster>, net.minecraft.world.level.Level);
+  public net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.game.ClientGamePacketListener> getAddEntityPacket(net.minecraft.server.level.ServerEntity);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  public boolean isInvulnerableTo(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  protected boolean canRide(net.minecraft.world.entity.Entity);
+  public float getSecondsToDisableBlocking();
+  protected float nextStep();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean dampensVibrations();
+  protected float getSoundVolume();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public int getClientAngerLevel();
+  public void tick();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void handleEntityEvent(byte);
+  public float getTendrilAnimation(float);
+  public float getHeartAnimation(float);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public boolean ignoreExplosion(net.minecraft.world.level.Explosion);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.warden.Warden> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.monster.warden.Warden> getBrain();
+  public void updateDynamicGameEventListener(java.util.function.BiConsumer<net.minecraft.world.level.gameevent.DynamicGameEventListener<?>, net.minecraft.server.level.ServerLevel>);
+  public boolean canAttack(net.minecraft.world.entity.LivingEntity);
+  public boolean canTargetEntity(net.minecraft.world.entity.Entity);
+  public static void applyDarknessAround(net.minecraft.server.level.ServerLevel, net.minecraft.world.phys.Vec3, net.minecraft.world.entity.Entity, int);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.monster.warden.AngerLevel getAngerLevel();
+  public void clearAnger(net.minecraft.world.entity.Entity);
+  public void increaseAngerAt(net.minecraft.world.entity.Entity);
+  public void increaseAngerAt(net.minecraft.world.entity.Entity, int, boolean);
+  public java.util.Optional<net.minecraft.world.entity.LivingEntity> getEntityAngryAt();
+  public net.minecraft.world.entity.LivingEntity getTarget();
+  public boolean removeWhenFarAway(double);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void setAttackTarget(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public boolean isPushable();
+  protected void doPush(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.monster.warden.AngerManagement getAngerManagement();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data getVibrationData();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User getVibrationUser();
+}
+Compiled from "AngerManagement.java"
+public final class net.minecraft.world.entity.monster.warden.AngerManagement$Sorter extends java.lang.Record implements java.util.Comparator<net.minecraft.world.entity.Entity> {
+  protected net.minecraft.world.entity.monster.warden.AngerManagement$Sorter(net.minecraft.world.entity.monster.warden.AngerManagement);
+  public int compare(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.monster.warden.AngerManagement angerManagement();
+  public int compare(java.lang.Object, java.lang.Object);
+}
+Compiled from "Warden.java"
+class net.minecraft.world.entity.monster.warden.Warden$VibrationUser implements net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User {
+  public int getListenerRadius();
+  public net.minecraft.world.level.gameevent.PositionSource getPositionSource();
+  public net.minecraft.tags.TagKey<net.minecraft.world.level.gameevent.GameEvent> getListenableEvents();
+  public boolean canTriggerAvoidVibration();
+  public boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public void onReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, float);
+}

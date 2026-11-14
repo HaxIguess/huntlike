@@ -1,0 +1,162 @@
+Compiled from "AbstractNautilus.java"
+public abstract class net.minecraft.world.entity.animal.nautilus.AbstractNautilus extends net.minecraft.world.entity.TamableAnimal implements net.minecraft.world.entity.PlayerRideableJumping,net.minecraft.world.entity.HasCustomInventoryScreen {
+  public static final int INVENTORY_SLOT_OFFSET;
+  public static final int INVENTORY_ROWS;
+  public static final int SMALL_RESTRICTION_RADIUS;
+  public static final int LARGE_RESTRICTION_RADIUS;
+  public static final int RESTRICTION_RADIUS_BUFFER;
+  protected float playerJumpPendingScale;
+  protected net.minecraft.world.SimpleContainer inventory;
+  protected net.minecraft.world.entity.animal.nautilus.AbstractNautilus(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.nautilus.AbstractNautilus>, net.minecraft.world.level.Level);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected void usePlayerItem(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.item.ItemStack);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public boolean isPushedByFluid();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  public static boolean checkNautilusSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.nautilus.AbstractNautilus>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected boolean canAddPassenger(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.entity.LivingEntity getControllingPassenger();
+  protected net.minecraft.world.phys.Vec3 getRiddenInput(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.phys.Vec2 getRiddenRotation(net.minecraft.world.entity.LivingEntity);
+  protected void tickRidden(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+  protected void travelInWater(net.minecraft.world.phys.Vec3, double, boolean, double);
+  protected float getRiddenSpeed(net.minecraft.world.entity.player.Player);
+  protected void doPlayerRide(net.minecraft.world.entity.player.Player);
+  protected void checkRestriction();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void tick();
+  public boolean canJump();
+  public void onPlayerJump(int);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean isDashing();
+  public void setDashing(boolean);
+  protected void executeRidersJump(float, net.minecraft.world.entity.player.Player);
+  public void handleStartJump(int);
+  public int getJumpCooldown();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public void handleStopJump();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.sounds.SoundEvent getDashSound();
+  protected net.minecraft.sounds.SoundEvent getDashReadySound();
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean removeWhenFarAway(double);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean canBeAffected(net.minecraft.world.effect.MobEffectInstance);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> getEquipSound(net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack, net.minecraft.world.item.equipment.Equippable);
+  public final int getInventorySize();
+  protected void createInventory();
+  public void openCustomInventoryScreen(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public boolean hasInventoryChanged(net.minecraft.world.Container);
+  public int getInventoryColumns();
+  protected boolean isMobControlled();
+  protected boolean isAggravated();
+  public boolean requiresCustomPersistence();
+}
+Compiled from "Nautilus.java"
+public class net.minecraft.world.entity.animal.nautilus.Nautilus extends net.minecraft.world.entity.animal.nautilus.AbstractNautilus {
+  public net.minecraft.world.entity.animal.nautilus.Nautilus(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.nautilus.Nautilus>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.nautilus.Nautilus> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.nautilus.Nautilus> getBrain();
+  public net.minecraft.world.entity.animal.nautilus.Nautilus getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getDashSound();
+  protected net.minecraft.sounds.SoundEvent getDashReadySound();
+  protected void playEatingSound();
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  public int getMaxAirSupply();
+  protected void handleAirSupply(net.minecraft.server.level.ServerLevel, int);
+  public void baseTick();
+  public boolean canBeLeashed();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "ZombieNautilusVariant.java"
+public final class net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant extends java.lang.Record implements net.minecraft.world.entity.variant.PriorityProvider<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant(net.minecraft.world.entity.variant.ModelAndTexture<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType>, net.minecraft.world.entity.variant.SpawnPrioritySelectors);
+  public java.util.List<net.minecraft.world.entity.variant.PriorityProvider$Selector<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition>> selectors();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.variant.ModelAndTexture<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType> modelAndTexture();
+  public net.minecraft.world.entity.variant.SpawnPrioritySelectors spawnConditions();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.nautilus.package-info {
+}
+Compiled from "ZombieNautilusVariant.java"
+public final class net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType extends java.lang.Enum<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType NORMAL;
+  public static final net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType WARM;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType> CODEC;
+  public static net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType[] values();
+  public static net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant$ModelType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "ZombieNautilusAi.java"
+public class net.minecraft.world.entity.animal.nautilus.ZombieNautilusAi {
+  public net.minecraft.world.entity.animal.nautilus.ZombieNautilusAi();
+  public static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.nautilus.ZombieNautilus>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.nautilus.ZombieNautilus);
+}
+Compiled from "ZombieNautilusVariants.java"
+public class net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> TEMPERATE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> WARM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> DEFAULT;
+  public net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariants();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>);
+}
+Compiled from "NautilusAi.java"
+public class net.minecraft.world.entity.animal.nautilus.NautilusAi {
+  protected static final net.minecraft.world.entity.ai.targeting.TargetingConditions ATTACK_TARGET_CONDITIONS;
+  public net.minecraft.world.entity.animal.nautilus.NautilusAi();
+  protected static void initMemories(net.minecraft.world.entity.animal.nautilus.AbstractNautilus, net.minecraft.util.RandomSource);
+  public static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.nautilus.Nautilus>> getActivities();
+  protected static java.util.Optional<? extends net.minecraft.world.entity.LivingEntity> findNearestValidAttackTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.nautilus.AbstractNautilus);
+  protected static void setAngerTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.nautilus.AbstractNautilus, net.minecraft.world.entity.LivingEntity);
+  public static void updateActivity(net.minecraft.world.entity.animal.nautilus.Nautilus);
+  public static java.util.function.Predicate<net.minecraft.world.item.ItemStack> getTemptations();
+}
+Compiled from "ZombieNautilus.java"
+public class net.minecraft.world.entity.animal.nautilus.ZombieNautilus extends net.minecraft.world.entity.animal.nautilus.AbstractNautilus {
+  public net.minecraft.world.entity.animal.nautilus.ZombieNautilus(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.nautilus.ZombieNautilus>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.animal.nautilus.ZombieNautilus getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  protected net.minecraft.world.entity.EquipmentSlot sunProtectionSlot();
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.nautilus.ZombieNautilus> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.nautilus.ZombieNautilus> getBrain();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getDashSound();
+  protected net.minecraft.sounds.SoundEvent getDashReadySound();
+  protected void playEatingSound();
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void setVariant(net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant>);
+  public net.minecraft.core.Holder<net.minecraft.world.entity.animal.nautilus.ZombieNautilusVariant> getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public boolean canBeLeashed();
+  protected boolean canBeABaby();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}

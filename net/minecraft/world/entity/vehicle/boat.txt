@@ -1,0 +1,123 @@
+Compiled from "AbstractChestBoat.java"
+public abstract class net.minecraft.world.entity.vehicle.boat.AbstractChestBoat extends net.minecraft.world.entity.vehicle.boat.AbstractBoat implements net.minecraft.world.entity.HasCustomInventoryScreen,net.minecraft.world.entity.vehicle.ContainerEntity {
+  public net.minecraft.world.entity.vehicle.boat.AbstractChestBoat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.AbstractChestBoat>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  protected float getSinglePassengerXOffset();
+  protected int getMaxPassengers();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void destroy(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public void openCustomInventoryScreen(net.minecraft.world.entity.player.Player);
+  public void clearContent();
+  public int getContainerSize();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public void setChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  public void unpackLootTable(net.minecraft.world.entity.player.Player);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getContainerLootTable();
+  public void setContainerLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public long getContainerLootTableSeed();
+  public void setContainerLootTableSeed(long);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItemStacks();
+  public void clearItemStacks();
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.vehicle.boat.package-info {
+}
+Compiled from "ChestRaft.java"
+public class net.minecraft.world.entity.vehicle.boat.ChestRaft extends net.minecraft.world.entity.vehicle.boat.AbstractChestBoat {
+  public net.minecraft.world.entity.vehicle.boat.ChestRaft(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.ChestRaft>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  protected double rideHeight(net.minecraft.world.entity.EntityDimensions);
+}
+Compiled from "Raft.java"
+public class net.minecraft.world.entity.vehicle.boat.Raft extends net.minecraft.world.entity.vehicle.boat.AbstractBoat {
+  public net.minecraft.world.entity.vehicle.boat.Raft(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.Raft>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  protected double rideHeight(net.minecraft.world.entity.EntityDimensions);
+}
+Compiled from "Boat.java"
+public class net.minecraft.world.entity.vehicle.boat.Boat extends net.minecraft.world.entity.vehicle.boat.AbstractBoat {
+  public net.minecraft.world.entity.vehicle.boat.Boat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.Boat>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  protected double rideHeight(net.minecraft.world.entity.EntityDimensions);
+}
+Compiled from "ChestBoat.java"
+public class net.minecraft.world.entity.vehicle.boat.ChestBoat extends net.minecraft.world.entity.vehicle.boat.AbstractChestBoat {
+  public net.minecraft.world.entity.vehicle.boat.ChestBoat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.ChestBoat>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  protected double rideHeight(net.minecraft.world.entity.EntityDimensions);
+}
+Compiled from "AbstractBoat.java"
+public final class net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status extends java.lang.Enum<net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status> {
+  public static final net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status IN_WATER;
+  public static final net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status UNDER_WATER;
+  public static final net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status UNDER_FLOWING_WATER;
+  public static final net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status ON_LAND;
+  public static final net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status IN_AIR;
+  public static net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status[] values();
+  public static net.minecraft.world.entity.vehicle.boat.AbstractBoat$Status valueOf(java.lang.String);
+}
+Compiled from "AbstractBoat.java"
+public abstract class net.minecraft.world.entity.vehicle.boat.AbstractBoat extends net.minecraft.world.entity.vehicle.VehicleEntity implements net.minecraft.world.entity.Leashable {
+  public static final int PADDLE_LEFT;
+  public static final int PADDLE_RIGHT;
+  public static final double PADDLE_SOUND_TIME;
+  public static final int BUBBLE_TIME;
+  public net.minecraft.world.entity.vehicle.boat.AbstractBoat(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.boat.AbstractBoat>, net.minecraft.world.level.Level, java.util.function.Supplier<net.minecraft.world.item.Item>);
+  public void setInitialPos(double, double, double);
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean canCollideWith(net.minecraft.world.entity.Entity);
+  public static boolean canVehicleCollide(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity);
+  public boolean canBeCollidedWith(net.minecraft.world.entity.Entity);
+  public boolean isPushable();
+  public net.minecraft.world.phys.Vec3 getRelativePortalPosition(net.minecraft.core.Direction$Axis, net.minecraft.util.BlockUtil$FoundRectangle);
+  protected abstract double rideHeight(net.minecraft.world.entity.EntityDimensions);
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+  public void onAboveBubbleColumn(boolean, net.minecraft.core.BlockPos);
+  public void push(net.minecraft.world.entity.Entity);
+  public void animateHurt(float);
+  public boolean isPickable();
+  protected net.minecraft.world.entity.InterpolationHandler createInterpolationHandler();
+  public net.minecraft.core.Direction getMotionDirection();
+  public void tick();
+  public void handleEntityEvent(byte);
+  protected void handleBubbleColumnEffect(boolean);
+  protected net.minecraft.sounds.SoundEvent getPaddleSound();
+  public void setPaddleState(boolean, boolean);
+  public float getRowingTime(int, float);
+  public net.minecraft.world.entity.Leashable$LeashData getLeashData();
+  public void setLeashData(net.minecraft.world.entity.Leashable$LeashData);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public boolean supportQuadLeash();
+  public net.minecraft.world.phys.Vec3[] getQuadLeashOffsets();
+  public float getWaterLevelAbove();
+  public float getGroundFriction();
+  protected double getDefaultGravity();
+  protected float getAirDrag();
+  protected float getSinglePassengerXOffset();
+  public boolean hasEnoughSpaceFor(net.minecraft.world.entity.Entity);
+  protected void positionRider(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity$MoveFunction);
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+  protected float clampRotation(net.minecraft.world.entity.Entity);
+  public void onPassengerTurned(net.minecraft.world.entity.Entity);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  public boolean getPaddleState(int);
+  public float getBubbleAngle(float);
+  protected boolean canAddPassenger(net.minecraft.world.entity.Entity);
+  protected int getMaxPassengers();
+  public net.minecraft.world.entity.LivingEntity getControllingPassenger();
+  public void setInput(boolean, boolean, boolean, boolean);
+  public boolean isUnderWater();
+  protected final net.minecraft.world.item.Item getDropItem();
+  public final net.minecraft.world.item.ItemStack getPickResult();
+  protected net.minecraft.world.phys.AABB modifyPassengerFluidInteractionBox(net.minecraft.world.phys.AABB);
+}

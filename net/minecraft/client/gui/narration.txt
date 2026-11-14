@@ -1,0 +1,82 @@
+Compiled from "ScreenNarrationCollector.java"
+class net.minecraft.client.gui.narration.ScreenNarrationCollector$Output implements net.minecraft.client.gui.narration.NarrationElementOutput {
+  public void add(net.minecraft.client.gui.narration.NarratedElementType, net.minecraft.client.gui.narration.NarrationThunk<?>);
+  public net.minecraft.client.gui.narration.NarrationElementOutput nest();
+  public net.minecraft.client.gui.narration.NarrationTrigger narrationTrigger();
+}
+Compiled from "ScreenNarrationCollector.java"
+final class net.minecraft.client.gui.narration.ScreenNarrationCollector$EntryKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.gui.narration.NarratedElementType type();
+  public int depth();
+}
+Compiled from "NarrationElementOutput.java"
+public interface net.minecraft.client.gui.narration.NarrationElementOutput {
+  public default void add(net.minecraft.client.gui.narration.NarratedElementType, net.minecraft.network.chat.Component);
+  public default void add(net.minecraft.client.gui.narration.NarratedElementType, java.lang.String);
+  public default void add(net.minecraft.client.gui.narration.NarratedElementType, net.minecraft.network.chat.Component...);
+  public abstract void add(net.minecraft.client.gui.narration.NarratedElementType, net.minecraft.client.gui.narration.NarrationThunk<?>);
+  public abstract net.minecraft.client.gui.narration.NarrationElementOutput nest();
+  public abstract net.minecraft.client.gui.narration.NarrationTrigger narrationTrigger();
+}
+Compiled from "ScreenNarrationCollector.java"
+class net.minecraft.client.gui.narration.ScreenNarrationCollector$NarrationEntry {
+  public net.minecraft.client.gui.narration.ScreenNarrationCollector$NarrationEntry update(int, net.minecraft.client.gui.narration.NarrationThunk<?>);
+}
+Compiled from "NarratableEntry.java"
+public final class net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority extends java.lang.Enum<net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority> {
+  public static final net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority NONE;
+  public static final net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority HOVERED;
+  public static final net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority FOCUSED;
+  public static net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority[] values();
+  public static net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority valueOf(java.lang.String);
+  public boolean isTerminal();
+}
+Compiled from "NarrationThunk.java"
+public class net.minecraft.client.gui.narration.NarrationThunk<T> {
+  public static final net.minecraft.client.gui.narration.NarrationThunk<?> EMPTY;
+  public static net.minecraft.client.gui.narration.NarrationThunk<?> from(java.lang.String);
+  public static net.minecraft.client.gui.narration.NarrationThunk<?> from(net.minecraft.network.chat.Component);
+  public static net.minecraft.client.gui.narration.NarrationThunk<?> from(java.util.List<net.minecraft.network.chat.Component>);
+  public void getText(java.util.function.Consumer<java.lang.String>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "NarratedElementType.java"
+public final class net.minecraft.client.gui.narration.NarratedElementType extends java.lang.Enum<net.minecraft.client.gui.narration.NarratedElementType> {
+  public static final net.minecraft.client.gui.narration.NarratedElementType TITLE;
+  public static final net.minecraft.client.gui.narration.NarratedElementType POSITION;
+  public static final net.minecraft.client.gui.narration.NarratedElementType HINT;
+  public static final net.minecraft.client.gui.narration.NarratedElementType USAGE;
+  public static net.minecraft.client.gui.narration.NarratedElementType[] values();
+  public static net.minecraft.client.gui.narration.NarratedElementType valueOf(java.lang.String);
+}
+Compiled from "NarrationSupplier.java"
+public interface net.minecraft.client.gui.narration.NarrationSupplier {
+  public abstract void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.narration.package-info {
+}
+Compiled from "NarratableEntry.java"
+public interface net.minecraft.client.gui.narration.NarratableEntry extends net.minecraft.client.gui.narration.NarrationSupplier,net.minecraft.client.gui.components.TabOrderedElement {
+  public abstract net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  public default boolean isActive();
+  public default java.util.Collection<? extends net.minecraft.client.gui.narration.NarratableEntry> getNarratables();
+}
+Compiled from "NarrationTrigger.java"
+public final class net.minecraft.client.gui.narration.NarrationTrigger extends java.lang.Enum<net.minecraft.client.gui.narration.NarrationTrigger> {
+  public static final net.minecraft.client.gui.narration.NarrationTrigger MOUSE;
+  public static final net.minecraft.client.gui.narration.NarrationTrigger KEYBOARD;
+  public static final net.minecraft.client.gui.narration.NarrationTrigger SYSTEM;
+  public static net.minecraft.client.gui.narration.NarrationTrigger[] values();
+  public static net.minecraft.client.gui.narration.NarrationTrigger valueOf(java.lang.String);
+}
+Compiled from "ScreenNarrationCollector.java"
+public class net.minecraft.client.gui.narration.ScreenNarrationCollector {
+  public net.minecraft.client.gui.narration.ScreenNarrationCollector();
+  public void update(java.util.function.Consumer<net.minecraft.client.gui.narration.NarrationElementOutput>, net.minecraft.client.gui.narration.NarrationTrigger);
+  public java.lang.String collectNarrationText(boolean);
+}

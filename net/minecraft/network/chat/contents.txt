@@ -1,0 +1,119 @@
+Compiled from "ScoreContents.java"
+public final class net.minecraft.network.chat.contents.ScoreContents extends java.lang.Record implements net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.ScoreContents> INNER_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.ScoreContents> MAP_CODEC;
+  public net.minecraft.network.chat.contents.ScoreContents(com.mojang.datafixers.util.Either<net.minecraft.util.CompilableString<net.minecraft.commands.arguments.selector.EntitySelector>, java.lang.String>, java.lang.String);
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.ScoreContents> codec();
+  public net.minecraft.network.chat.MutableComponent resolve(net.minecraft.network.chat.ResolutionContext, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.datafixers.util.Either<net.minecraft.util.CompilableString<net.minecraft.commands.arguments.selector.EntitySelector>, java.lang.String> name();
+  public java.lang.String objective();
+}
+Compiled from "KeybindResolver.java"
+public class net.minecraft.network.chat.contents.KeybindResolver {
+  public net.minecraft.network.chat.contents.KeybindResolver();
+  public static void setKeyResolver(java.util.function.Function<java.lang.String, java.util.function.Supplier<net.minecraft.network.chat.Component>>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.chat.contents.package-info {
+}
+Compiled from "NbtContents.java"
+public final class net.minecraft.network.chat.contents.NbtContents extends java.lang.Record implements net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.CompilableString<net.minecraft.commands.arguments.NbtPathArgument$NbtPath>> NBT_PATH_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.NbtContents> MAP_CODEC;
+  public net.minecraft.network.chat.contents.NbtContents(net.minecraft.util.CompilableString<net.minecraft.commands.arguments.NbtPathArgument$NbtPath>, boolean, boolean, java.util.Optional<net.minecraft.network.chat.Component>, net.minecraft.network.chat.contents.data.DataSource);
+  public net.minecraft.network.chat.MutableComponent resolve(net.minecraft.network.chat.ResolutionContext, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.NbtContents> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.CompilableString<net.minecraft.commands.arguments.NbtPathArgument$NbtPath> nbtPath();
+  public boolean interpreting();
+  public boolean plain();
+  public java.util.Optional<net.minecraft.network.chat.Component> separator();
+  public net.minecraft.network.chat.contents.data.DataSource dataSource();
+}
+Compiled from "PlainTextContents.java"
+public interface net.minecraft.network.chat.contents.PlainTextContents extends net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.PlainTextContents> MAP_CODEC;
+  public static final net.minecraft.network.chat.contents.PlainTextContents EMPTY;
+  public static net.minecraft.network.chat.contents.PlainTextContents create(java.lang.String);
+  public abstract java.lang.String text();
+  public default com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.PlainTextContents> codec();
+}
+Compiled from "SelectorContents.java"
+public final class net.minecraft.network.chat.contents.SelectorContents extends java.lang.Record implements net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.SelectorContents> MAP_CODEC;
+  public net.minecraft.network.chat.contents.SelectorContents(net.minecraft.util.CompilableString<net.minecraft.commands.arguments.selector.EntitySelector>, java.util.Optional<net.minecraft.network.chat.Component>);
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.SelectorContents> codec();
+  public net.minecraft.network.chat.MutableComponent resolve(net.minecraft.network.chat.ResolutionContext, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.CompilableString<net.minecraft.commands.arguments.selector.EntitySelector> selector();
+  public java.util.Optional<net.minecraft.network.chat.Component> separator();
+}
+Compiled from "KeybindContents.java"
+public class net.minecraft.network.chat.contents.KeybindContents implements net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.KeybindContents> MAP_CODEC;
+  public net.minecraft.network.chat.contents.KeybindContents(java.lang.String);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public java.lang.String getName();
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.KeybindContents> codec();
+}
+Compiled from "ObjectContents.java"
+public final class net.minecraft.network.chat.contents.ObjectContents extends java.lang.Record implements net.minecraft.network.chat.ComponentContents {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.ObjectContents> MAP_CODEC;
+  public net.minecraft.network.chat.contents.ObjectContents(net.minecraft.network.chat.contents.objects.ObjectInfo, java.util.Optional<net.minecraft.network.chat.Component>);
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.ObjectContents> codec();
+  public net.minecraft.network.chat.MutableComponent resolve(net.minecraft.network.chat.ResolutionContext, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.contents.objects.ObjectInfo contents();
+  public java.util.Optional<net.minecraft.network.chat.Component> fallback();
+}
+Compiled from "TranslatableFormatException.java"
+public class net.minecraft.network.chat.contents.TranslatableFormatException extends java.lang.IllegalArgumentException {
+  public net.minecraft.network.chat.contents.TranslatableFormatException(net.minecraft.network.chat.contents.TranslatableContents, java.lang.String);
+  public net.minecraft.network.chat.contents.TranslatableFormatException(net.minecraft.network.chat.contents.TranslatableContents, int);
+  public net.minecraft.network.chat.contents.TranslatableFormatException(net.minecraft.network.chat.contents.TranslatableContents, java.lang.Throwable);
+}
+Compiled from "PlainTextContents.java"
+public final class net.minecraft.network.chat.contents.PlainTextContents$LiteralContents extends java.lang.Record implements net.minecraft.network.chat.contents.PlainTextContents {
+  public net.minecraft.network.chat.contents.PlainTextContents$LiteralContents(java.lang.String);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String text();
+}
+Compiled from "TranslatableContents.java"
+public class net.minecraft.network.chat.contents.TranslatableContents implements net.minecraft.network.chat.ComponentContents {
+  public static final java.lang.Object[] NO_ARGS;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.TranslatableContents> MAP_CODEC;
+  public static boolean isAllowedPrimitiveArgument(java.lang.Object);
+  public net.minecraft.network.chat.contents.TranslatableContents(java.lang.String, java.lang.String, java.lang.Object[]);
+  public com.mojang.serialization.MapCodec<net.minecraft.network.chat.contents.TranslatableContents> codec();
+  public final net.minecraft.network.chat.FormattedText getArgument(int);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$StyledContentConsumer<T>, net.minecraft.network.chat.Style);
+  public <T> java.util.Optional<T> visit(net.minecraft.network.chat.FormattedText$ContentConsumer<T>);
+  public net.minecraft.network.chat.MutableComponent resolve(net.minecraft.network.chat.ResolutionContext, int) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public java.lang.String getKey();
+  public java.lang.String getFallback();
+  public java.lang.Object[] getArgs();
+}

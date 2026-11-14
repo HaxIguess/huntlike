@@ -1,0 +1,845 @@
+Compiled from "RandomSupport.java"
+public final class net.minecraft.world.level.levelgen.RandomSupport$Seed128bit extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.RandomSupport$Seed128bit(long, long);
+  public net.minecraft.world.level.levelgen.RandomSupport$Seed128bit xor(long, long);
+  public net.minecraft.world.level.levelgen.RandomSupport$Seed128bit xor(net.minecraft.world.level.levelgen.RandomSupport$Seed128bit);
+  public net.minecraft.world.level.levelgen.RandomSupport$Seed128bit mixed();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long seedLo();
+  public long seedHi();
+}
+Compiled from "Density.java"
+public class net.minecraft.world.level.levelgen.Density {
+  public static final float SURFACE;
+  public static final float UNRECOVERABLY_DENSE;
+  public static final float UNRECOVERABLY_THIN;
+  public net.minecraft.world.level.levelgen.Density();
+}
+Compiled from "BitRandomSource.java"
+public interface net.minecraft.world.level.levelgen.BitRandomSource extends net.minecraft.util.RandomSource {
+  public static final float FLOAT_MULTIPLIER;
+  public static final double DOUBLE_MULTIPLIER;
+  public abstract int next(int);
+  public default int nextInt();
+  public default int nextInt(int);
+  public default long nextLong();
+  public default boolean nextBoolean();
+  public default float nextFloat();
+  public default double nextDouble();
+}
+Compiled from "Aquifer.java"
+public final class net.minecraft.world.level.levelgen.Aquifer$Config extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.Aquifer$Config> CODEC;
+  public net.minecraft.world.level.levelgen.Aquifer$Config(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public net.minecraft.world.level.levelgen.Aquifer create(net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet, net.minecraft.world.level.levelgen.PositionalRandomFactory, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, net.minecraft.world.level.levelgen.Aquifer$FluidPicker);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction barrierNoise();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction fluidLevelFloodednessNoise();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction fluidLevelSpreadNoise();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction lavaNoise();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction exclusion();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction surfaceLevel();
+}
+Compiled from "Aquifer.java"
+public class net.minecraft.world.level.levelgen.Aquifer$NoiseBasedAquifer implements net.minecraft.world.level.levelgen.Aquifer {
+  public net.minecraft.world.level.block.state.BlockState computeSubstance(int, int, int, double);
+  public boolean shouldScheduleFluidUpdate();
+}
+Compiled from "NoiseRouterData.java"
+public final class net.minecraft.world.level.levelgen.NoiseRouterData$QuantizedSpaghettiRarity {
+  protected net.minecraft.world.level.levelgen.NoiseRouterData$QuantizedSpaghettiRarity();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction wrapRarity2d(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction wrapRarity3d(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+}
+Compiled from "WorldDimensions.java"
+public final class net.minecraft.world.level.levelgen.WorldDimensions extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.WorldDimensions> CODEC;
+  public net.minecraft.world.level.levelgen.WorldDimensions(java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem>);
+  public net.minecraft.world.level.levelgen.WorldDimensions(net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>);
+  public static java.util.stream.Stream<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>> keysInOrder(java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>>);
+  public net.minecraft.world.level.levelgen.WorldDimensions replaceOverworldGenerator(net.minecraft.core.HolderLookup$Provider, net.minecraft.world.level.chunk.ChunkGenerator);
+  public static java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem> withOverworld(net.minecraft.core.HolderLookup<net.minecraft.world.level.dimension.DimensionType>, java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.chunk.ChunkGenerator);
+  public static java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem> withOverworld(java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem>, net.minecraft.core.Holder<net.minecraft.world.level.dimension.DimensionType>, net.minecraft.world.level.chunk.ChunkGenerator);
+  public net.minecraft.world.level.chunk.ChunkGenerator overworld();
+  public java.util.Optional<net.minecraft.world.level.dimension.LevelStem> get(net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>);
+  public com.google.common.collect.ImmutableSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public boolean isDebug();
+  public net.minecraft.world.level.levelgen.WorldDimensions$Complete bake(net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.dimension.LevelStem> dimensions();
+}
+Compiled from "NoiseSpawnFinder.java"
+final class net.minecraft.world.level.levelgen.NoiseSpawnFinder$Result extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos location();
+  public long fitness();
+}
+Compiled from "Column.java"
+public final class net.minecraft.world.level.levelgen.Column$Ray extends net.minecraft.world.level.levelgen.Column {
+  public net.minecraft.world.level.levelgen.Column$Ray(int, boolean);
+  public java.util.OptionalInt getCeiling();
+  public java.util.OptionalInt getFloor();
+  public java.util.OptionalInt getHeight();
+  public java.lang.String toString();
+}
+Compiled from "GeodeLayerSettings.java"
+public class net.minecraft.world.level.levelgen.GeodeLayerSettings {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.GeodeLayerSettings> CODEC;
+  public final double filling;
+  public final double innerLayer;
+  public final double middleLayer;
+  public final double outerLayer;
+  public net.minecraft.world.level.levelgen.GeodeLayerSettings(double, double, double, double);
+}
+Compiled from "NoiseRouter.java"
+public final class net.minecraft.world.level.levelgen.NoiseRouter extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.NoiseRouter> CODEC;
+  public net.minecraft.world.level.levelgen.NoiseRouter(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public net.minecraft.world.level.biome.Climate$Sampler createClimateSampler(net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction temperature();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction vegetation();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction continents();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction erosion();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction depth();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction ridges();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction chunkSurfaceLevel();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction finalDensity();
+}
+Compiled from "OverworldFunctionSet.java"
+public final class net.minecraft.world.level.levelgen.OverworldFunctionSet<T> extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.OverworldFunctionSet(T, T, T, T, T, T, T, T, T, T, T, T);
+  public <U> net.minecraft.world.level.levelgen.OverworldFunctionSet<U> map(java.util.function.Function<T, U>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T temperature();
+  public T vegetation();
+  public T continents();
+  public T erosion();
+  public T offset();
+  public T factor();
+  public T jaggedness();
+  public T depth();
+  public T slopedCheese();
+  public T preliminarySurfaceLevel();
+  public T chunkSurfaceLevel();
+  public T finalDensity();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.package-info {
+}
+Compiled from "PositionalRandomFactory.java"
+public interface net.minecraft.world.level.levelgen.PositionalRandomFactory {
+  public default net.minecraft.util.RandomSource at(net.minecraft.core.BlockPos);
+  public default net.minecraft.util.RandomSource fromHashOf(net.minecraft.resources.Identifier);
+  public abstract net.minecraft.util.RandomSource fromHashOf(java.lang.String);
+  public abstract net.minecraft.util.RandomSource fromSeed(long);
+  public abstract net.minecraft.util.RandomSource at(int, int, int);
+  public abstract void parityConfigString(java.lang.StringBuilder);
+}
+Compiled from "GenerationStep.java"
+public final class net.minecraft.world.level.levelgen.GenerationStep$Decoration extends java.lang.Enum<net.minecraft.world.level.levelgen.GenerationStep$Decoration> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration RAW_GENERATION;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration LAKES;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration LOCAL_MODIFICATIONS;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration UNDERGROUND_STRUCTURES;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration SURFACE_STRUCTURES;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration STRONGHOLDS;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration UNDERGROUND_ORES;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration UNDERGROUND_DECORATION;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration FLUID_SPRINGS;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration VEGETAL_DECORATION;
+  public static final net.minecraft.world.level.levelgen.GenerationStep$Decoration TOP_LAYER_MODIFICATION;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.GenerationStep$Decoration> CODEC;
+  public static net.minecraft.world.level.levelgen.GenerationStep$Decoration[] values();
+  public static net.minecraft.world.level.levelgen.GenerationStep$Decoration valueOf(java.lang.String);
+  public java.lang.String getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "VerticalAnchor.java"
+public final class net.minecraft.world.level.levelgen.VerticalAnchor$RelativeToSeaLevel extends java.lang.Record implements net.minecraft.world.level.levelgen.VerticalAnchor {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor$RelativeToSeaLevel> CODEC;
+  public net.minecraft.world.level.levelgen.VerticalAnchor$RelativeToSeaLevel(int);
+  public int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int offset();
+}
+Compiled from "GeodeCrackSettings.java"
+public class net.minecraft.world.level.levelgen.GeodeCrackSettings {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.GeodeCrackSettings> CODEC;
+  public final double generateCrackChance;
+  public final double baseCrackSize;
+  public final int crackPointOffset;
+  public net.minecraft.world.level.levelgen.GeodeCrackSettings(double, double, int);
+}
+Compiled from "ThreadSafeLegacyRandomSource.java"
+public class net.minecraft.world.level.levelgen.ThreadSafeLegacyRandomSource implements net.minecraft.world.level.levelgen.BitRandomSource {
+  public net.minecraft.world.level.levelgen.ThreadSafeLegacyRandomSource(long);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int next(int);
+  public double nextGaussian();
+}
+Compiled from "NoiseChunk.java"
+public class net.minecraft.world.level.levelgen.NoiseChunk implements java.lang.AutoCloseable {
+  public net.minecraft.world.level.levelgen.NoiseChunk(net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.Beardifier, net.minecraft.world.level.levelgen.NoiseGeneratorSettings, net.minecraft.world.level.levelgen.Aquifer$FluidPicker, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityVolume volume();
+  public net.minecraft.world.level.levelgen.Aquifer aquifer();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet cachingSamplers();
+  public void close();
+}
+Compiled from "Xoroshiro128PlusPlus.java"
+public class net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus> CODEC;
+  public net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus(net.minecraft.world.level.levelgen.RandomSupport$Seed128bit);
+  public net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus(long, long);
+  public long nextLong();
+}
+Compiled from "SingleThreadedRandomSource.java"
+public class net.minecraft.world.level.levelgen.SingleThreadedRandomSource implements net.minecraft.world.level.levelgen.BitRandomSource {
+  public net.minecraft.world.level.levelgen.SingleThreadedRandomSource(long);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int next(int);
+  public double nextGaussian();
+}
+Compiled from "WorldgenRandom.java"
+public class net.minecraft.world.level.levelgen.WorldgenRandom extends net.minecraft.world.level.levelgen.LegacyRandomSource {
+  public net.minecraft.world.level.levelgen.WorldgenRandom(net.minecraft.util.RandomSource);
+  public int getCount();
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public int next(int);
+  public synchronized void setSeed(long);
+  public long setDecorationSeed(long, int, int);
+  public void setFeatureSeed(long, int, int);
+  public void setLargeFeatureSeed(long, int, int);
+  public void setLargeFeatureWithSalt(long, int, int, int);
+  public static net.minecraft.util.RandomSource seedSlimeChunk(int, int, long, long);
+}
+Compiled from "WorldDimensions.java"
+public final class net.minecraft.world.level.levelgen.WorldDimensions$Complete extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.WorldDimensions$Complete(net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty);
+  public com.mojang.serialization.Lifecycle lifecycle();
+  public net.minecraft.core.RegistryAccess$Frozen dimensionsRegistryAccess();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem> dimensions();
+  public net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty specialWorldProperty();
+}
+Compiled from "LegacyRandomSource.java"
+public class net.minecraft.world.level.levelgen.LegacyRandomSource$LegacyPositionalRandomFactory implements net.minecraft.world.level.levelgen.PositionalRandomFactory {
+  public net.minecraft.world.level.levelgen.LegacyRandomSource$LegacyPositionalRandomFactory(long);
+  public net.minecraft.util.RandomSource at(int, int, int);
+  public net.minecraft.util.RandomSource fromHashOf(java.lang.String);
+  public net.minecraft.util.RandomSource fromSeed(long);
+  public void parityConfigString(java.lang.StringBuilder);
+}
+Compiled from "Beardifier.java"
+public class net.minecraft.world.level.levelgen.Beardifier implements net.minecraft.world.level.levelgen.densityfunction.DensitySampler {
+  public static final net.minecraft.util.Interval RANGE;
+  public static final net.minecraft.util.context.ContextKey<net.minecraft.world.level.levelgen.Beardifier> CONTEXT_KEY;
+  public static final int BEARD_KERNEL_RADIUS;
+  public static final net.minecraft.world.level.levelgen.Beardifier EMPTY;
+  public static net.minecraft.world.level.levelgen.Beardifier forStructuresInChunk(net.minecraft.world.level.StructureManager, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.level.levelgen.Beardifier(java.util.List<net.minecraft.world.level.levelgen.Beardifier$Rigid>, java.util.List<net.minecraft.world.level.levelgen.structure.pools.JigsawJunction>, net.minecraft.world.level.levelgen.structure.BoundingBox);
+  public void sampleVolume(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public float sampleValue(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, int, int, int);
+}
+Compiled from "Aquifer.java"
+public interface net.minecraft.world.level.levelgen.Aquifer {
+  public static net.minecraft.world.level.levelgen.Aquifer createDisabled(net.minecraft.world.level.levelgen.Aquifer$FluidPicker);
+  public abstract net.minecraft.world.level.block.state.BlockState computeSubstance(int, int, int, double);
+  public abstract boolean shouldScheduleFluidUpdate();
+}
+Compiled from "NoiseRouterData.java"
+public class net.minecraft.world.level.levelgen.NoiseRouterData {
+  public static final float GLOBAL_OFFSET;
+  public static final float ORE_THICKNESS;
+  public static final float VEININESS_FREQUENCY;
+  public static final float NOODLE_SPACING_AND_STRAIGHTNESS;
+  public static final float SURFACE_DENSITY_THRESHOLD;
+  public static final float CHEESE_NOISE_TARGET;
+  public static final float NOISE_ZERO;
+  public static final int ISLAND_CHUNK_DISTANCE;
+  public static final long ISLAND_CHUNK_DISTANCE_SQR;
+  public static final int DENSITY_Y_ANCHOR_BOTTOM;
+  public static final int DENSITY_Y_ANCHOR_TOP;
+  public static final float DENSITY_Y_BOTTOM;
+  public static final float DENSITY_Y_TOP;
+  public static final int OVERWORLD_BOTTOM_SLIDE_HEIGHT;
+  public static final float BASE_DENSITY_MULTIPLIER;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DensityFunction BLENDING_FACTOR;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DensityFunction BLENDING_JAGGEDNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ZERO;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> Y;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SHIFT_X;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SHIFT_Z;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> BASE_3D_NOISE_OVERWORLD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> BASE_3D_NOISE_NETHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> BASE_3D_NOISE_END;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> RIDGES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> RIDGES_FOLDED;
+  public static final net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>> OVERWORLD_FUNCTIONS;
+  public static final net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>> AMPLIFIED_OVERWORLD_FUNCTIONS;
+  public static final net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>> LARGE_OVERWORLD_FUNCTIONS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> END_ISLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SLOPED_CHEESE_END;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SPAGHETTI_ROUGHNESS_FUNCTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ENTRANCES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> NOODLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> PILLARS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SPAGHETTI_2D_THICKNESS_MODULATOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> SPAGHETTI_2D;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_MASK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_TOGGLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_RICHNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_COPPER_DENSITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_IRON_DENSITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> ORE_VEIN_GAP;
+  public net.minecraft.world.level.levelgen.NoiseRouterData();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction createEndIslands();
+  public static void registerTerrainNoises(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>>, boolean);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction offsetToDepth(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction registerAndWrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction getFunction(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction peaksAndValleys(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static float peaksAndValleys(float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction spaghettiRoughnessFunction(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction entrances(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction noodle(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction pillars(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction spaghetti2D(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction underground(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction postProcess(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int);
+  public static net.minecraft.world.level.levelgen.NoiseRouter overworld(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>>);
+  public static net.minecraft.world.level.levelgen.Aquifer$Config overworldAquifers(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>>);
+  public static void registerOreVeins(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction createBaseOreVeinMask(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction createOreVeinDensity(net.minecraft.world.level.levelgen.material.rule.OreVeinRule$VeinType, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, boolean);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slideOverworld(boolean, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slideNetherLike(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, int, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slideEndLike(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int);
+  public static net.minecraft.world.level.levelgen.NoiseRouter nether(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.NoiseRouter caves(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.NoiseRouter floatingIslands(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slideEnd(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.NoiseRouter end(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.NoiseRouter simpleRouter(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.NoiseRouter none();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction splineWithBlending(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction noiseGradientDensity(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction preliminarySurfaceLevel(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, boolean);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction yLimitedInterpolatable(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int, int, int, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slide(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int, int, int, float, int, int, float);
+}
+Compiled from "Noises.java"
+public class net.minecraft.world.level.levelgen.Noises {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> TEMPERATURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> VEGETATION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CONTINENTALNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> EROSION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> TEMPERATURE_LARGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> VEGETATION_LARGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CONTINENTALNESS_LARGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> EROSION_LARGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> RIDGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SHIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> TEMPERATURE_NETHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> VEGETATION_NETHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> AQUIFER_BARRIER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> AQUIFER_FLUID_LEVEL_FLOODEDNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> AQUIFER_LAVA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> AQUIFER_FLUID_LEVEL_SPREAD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> PILLAR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> PILLAR_RARENESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> PILLAR_THICKNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_2D;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_2D_ELEVATION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_2D_MODULATOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_2D_THICKNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_3D_1;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_3D_2;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_3D_RARITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_3D_THICKNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_ROUGHNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SPAGHETTI_ROUGHNESS_MODULATOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CAVE_ENTRANCE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CAVE_LAYER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CAVE_CHEESE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ORE_VEININESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ORE_VEIN_A;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ORE_VEIN_B;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ORE_GAP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NOODLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NOODLE_THICKNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NOODLE_RIDGE_A;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NOODLE_RIDGE_B;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> JAGGED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SURFACE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SURFACE_SECONDARY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CLAY_BANDS_OFFSET;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> BADLANDS_PILLAR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> BADLANDS_PILLAR_ROOF;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> BADLANDS_SURFACE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ICEBERG_PILLAR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ICEBERG_PILLAR_ROOF;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ICEBERG_SURFACE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SULFUR_CAVE_GRADIENT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SWAMP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> CALCITE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> GRAVEL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> POWDER_SNOW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> PACKED_ICE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> ICE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SOUL_SAND_LAYER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> GRAVEL_LAYER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> PATCH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> SMALL_PATCH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NETHERRACK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NETHER_WART;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise> NETHER_STATE_SELECTOR;
+  public net.minecraft.world.level.levelgen.Noises();
+  public static net.minecraft.world.level.levelgen.synth.Noise instantiate(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, net.minecraft.world.level.levelgen.PositionalRandomFactory, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+}
+Compiled from "PhantomSpawner.java"
+public class net.minecraft.world.level.levelgen.PhantomSpawner implements net.minecraft.world.level.CustomSpawner {
+  public net.minecraft.world.level.levelgen.PhantomSpawner();
+  public void tick(net.minecraft.server.level.ServerLevel, boolean);
+}
+Compiled from "SpawnTargetPoint.java"
+public final class net.minecraft.world.level.levelgen.SpawnTargetPoint extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.SpawnTargetPoint> CODEC;
+  public net.minecraft.world.level.levelgen.SpawnTargetPoint(java.util.Map<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.world.level.biome.Climate$Parameter>);
+  public long sampleFitness(net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>, net.minecraft.world.level.biome.Climate$Parameter> parameters();
+}
+Compiled from "NoiseSettings.java"
+public final class net.minecraft.world.level.levelgen.NoiseSettings extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.NoiseSettings> CODEC;
+  public net.minecraft.world.level.levelgen.NoiseSettings(int, int);
+  public static net.minecraft.world.level.levelgen.NoiseSettings create(int, int);
+  public net.minecraft.world.level.levelgen.NoiseSettings clampToHeightAccessor(net.minecraft.world.level.LevelHeightAccessor);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int minY();
+  public int height();
+}
+Compiled from "FlatLevelSource.java"
+public class net.minecraft.world.level.levelgen.FlatLevelSource extends net.minecraft.world.level.chunk.ChunkGenerator {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.FlatLevelSource> CODEC;
+  public net.minecraft.world.level.levelgen.FlatLevelSource(net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings);
+  public net.minecraft.world.level.chunk.ChunkGeneratorStructureState createState(net.minecraft.core.HolderLookup<net.minecraft.world.level.levelgen.structure.StructureSet>, net.minecraft.world.level.levelgen.RandomState, long);
+  protected com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> codec();
+  public net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings settings();
+  public int getSpawnHeight(net.minecraft.world.level.LevelHeightAccessor);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public int getBaseHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public net.minecraft.world.level.NoiseColumn getBaseColumn(int, int, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public void addDebugScreenInfo(java.util.List<java.lang.String>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+  public int getMinY();
+  public int getGenDepth();
+  public int getSeaLevel();
+}
+Compiled from "XoroshiroRandomSource.java"
+public class net.minecraft.world.level.levelgen.XoroshiroRandomSource implements net.minecraft.util.RandomSource {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.XoroshiroRandomSource> CODEC;
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(long);
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(net.minecraft.world.level.levelgen.RandomSupport$Seed128bit);
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource(long, long);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int nextInt();
+  public int nextInt(int);
+  public long nextLong();
+  public boolean nextBoolean();
+  public float nextFloat();
+  public double nextDouble();
+  public double nextGaussian();
+  public void consumeCount(int);
+}
+Compiled from "LegacyRandomSource.java"
+public class net.minecraft.world.level.levelgen.LegacyRandomSource implements net.minecraft.world.level.levelgen.BitRandomSource {
+  public net.minecraft.world.level.levelgen.LegacyRandomSource(long);
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int next(int);
+  public double nextGaussian();
+}
+Compiled from "Beardifier.java"
+public final class net.minecraft.world.level.levelgen.Beardifier$Rigid extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.Beardifier$Rigid(net.minecraft.world.level.levelgen.structure.BoundingBox, net.minecraft.world.level.levelgen.structure.TerrainAdjustment, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.structure.BoundingBox box();
+  public net.minecraft.world.level.levelgen.structure.TerrainAdjustment terrainAdjustment();
+  public int groundLevelDelta();
+}
+Compiled from "GenerationStep.java"
+public class net.minecraft.world.level.levelgen.GenerationStep {
+  public net.minecraft.world.level.levelgen.GenerationStep();
+}
+Compiled from "Heightmap.java"
+public final class net.minecraft.world.level.levelgen.Heightmap$Types extends java.lang.Enum<net.minecraft.world.level.levelgen.Heightmap$Types> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types WORLD_SURFACE_WG;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types WORLD_SURFACE;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types OCEAN_FLOOR_WG;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types OCEAN_FLOOR;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types MOTION_BLOCKING;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Types MOTION_BLOCKING_NO_LEAVES;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.Heightmap$Types> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.levelgen.Heightmap$Types> STREAM_CODEC;
+  public static net.minecraft.world.level.levelgen.Heightmap$Types[] values();
+  public static net.minecraft.world.level.levelgen.Heightmap$Types valueOf(java.lang.String);
+  public java.lang.String getSerializationKey();
+  public boolean sendToClient();
+  public boolean keepAfterWorldgen();
+  public java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState> isOpaque();
+  public java.lang.String getSerializedName();
+}
+Compiled from "VerticalAnchor.java"
+public interface net.minecraft.world.level.levelgen.VerticalAnchor {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor> CODEC;
+  public static final net.minecraft.world.level.levelgen.VerticalAnchor BOTTOM;
+  public static final net.minecraft.world.level.levelgen.VerticalAnchor TOP;
+  public static net.minecraft.world.level.levelgen.VerticalAnchor absolute(int);
+  public static net.minecraft.world.level.levelgen.VerticalAnchor aboveBottom(int);
+  public static net.minecraft.world.level.levelgen.VerticalAnchor belowTop(int);
+  public static net.minecraft.world.level.levelgen.VerticalAnchor bottom();
+  public static net.minecraft.world.level.levelgen.VerticalAnchor top();
+  public static net.minecraft.world.level.levelgen.VerticalAnchor relativeToSeaLevel(int);
+  public static net.minecraft.world.level.levelgen.VerticalAnchor seaLevel();
+  public abstract int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext);
+}
+Compiled from "NoiseGeneratorSettings.java"
+public final class net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions extends java.lang.Record {
+  public static final net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions> CODEC;
+  public net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions(java.util.List<net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctionEntry>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctionEntry> functions();
+}
+Compiled from "WorldOptions.java"
+public class net.minecraft.world.level.levelgen.WorldOptions {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.WorldOptions> CODEC;
+  public static final net.minecraft.world.level.levelgen.WorldOptions DEMO_OPTIONS;
+  public net.minecraft.world.level.levelgen.WorldOptions(long, boolean, boolean);
+  public static net.minecraft.world.level.levelgen.WorldOptions defaultWithRandomSeed();
+  public static net.minecraft.world.level.levelgen.WorldOptions testWorldWithRandomSeed();
+  public long seed();
+  public boolean generateStructures();
+  public boolean generateBonusChest();
+  public boolean isOldCustomizedWorld();
+  public net.minecraft.world.level.levelgen.WorldOptions withBonusChest(boolean);
+  public net.minecraft.world.level.levelgen.WorldOptions withStructures(boolean);
+  public net.minecraft.world.level.levelgen.WorldOptions withSeed(java.util.OptionalLong);
+  public static java.util.OptionalLong parseSeed(java.lang.String);
+  public static long randomSeed();
+}
+Compiled from "DebugLevelSource.java"
+public class net.minecraft.world.level.levelgen.DebugLevelSource extends net.minecraft.world.level.chunk.ChunkGenerator {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.DebugLevelSource> CODEC;
+  protected static final net.minecraft.world.level.block.state.BlockState AIR;
+  protected static final net.minecraft.world.level.block.state.BlockState BARRIER;
+  public static final int HEIGHT;
+  public static final int BARRIER_HEIGHT;
+  public net.minecraft.world.level.levelgen.DebugLevelSource(net.minecraft.core.Holder$Reference<net.minecraft.world.level.biome.Biome>);
+  protected com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> codec();
+  public void applyBiomeDecoration(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.StructureManager);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public int getBaseHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public net.minecraft.world.level.NoiseColumn getBaseColumn(int, int, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public void addDebugScreenInfo(java.util.List<java.lang.String>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public static net.minecraft.world.level.block.state.BlockState getBlockStateFor(int, int);
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+  public int getMinY();
+  public int getGenDepth();
+  public int getSeaLevel();
+}
+Compiled from "WorldGenerationContext.java"
+public class net.minecraft.world.level.levelgen.WorldGenerationContext {
+  public static net.minecraft.world.level.levelgen.WorldGenerationContext of(net.minecraft.world.level.LevelAccessor);
+  public net.minecraft.world.level.levelgen.WorldGenerationContext(net.minecraft.world.level.chunk.ChunkGenerator, net.minecraft.world.level.LevelHeightAccessor);
+  public int getMinGenY();
+  public int getGenDepth();
+  public int seaLevel();
+}
+Compiled from "WorldgenRandom.java"
+public final class net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm extends java.lang.Enum<net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm> {
+  public static final net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm LEGACY;
+  public static final net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm XOROSHIRO;
+  public static net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm[] values();
+  public static net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm valueOf(java.lang.String);
+  public net.minecraft.util.RandomSource newInstance(long);
+}
+Compiled from "VerticalAnchor.java"
+public final class net.minecraft.world.level.levelgen.VerticalAnchor$AboveBottom extends java.lang.Record implements net.minecraft.world.level.levelgen.VerticalAnchor {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor$AboveBottom> CODEC;
+  public net.minecraft.world.level.levelgen.VerticalAnchor$AboveBottom(int);
+  public int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int offset();
+}
+Compiled from "Column.java"
+public final class net.minecraft.world.level.levelgen.Column$Range extends net.minecraft.world.level.levelgen.Column {
+  public net.minecraft.world.level.levelgen.Column$Range(int, int);
+  public java.util.OptionalInt getCeiling();
+  public java.util.OptionalInt getFloor();
+  public java.util.OptionalInt getHeight();
+  public int ceiling();
+  public int floor();
+  public int height();
+  public java.lang.String toString();
+}
+Compiled from "GeodeBlockSettings.java"
+public final class net.minecraft.world.level.levelgen.GeodeBlockSettings extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.GeodeBlockSettings> CODEC;
+  public net.minecraft.world.level.levelgen.GeodeBlockSettings(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider>, java.util.List<net.minecraft.world.level.block.state.BlockState>, net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>, net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> fillingProvider();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> innerLayerProvider();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> alternateInnerLayerProvider();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> middleLayerProvider();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider> outerLayerProvider();
+  public java.util.List<net.minecraft.world.level.block.state.BlockState> innerPlacements();
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> cannotReplace();
+  public net.minecraft.core.HolderSet<net.minecraft.world.level.block.Block> invalidBlocks();
+}
+Compiled from "Heightmap.java"
+public final class net.minecraft.world.level.levelgen.Heightmap$Usage extends java.lang.Enum<net.minecraft.world.level.levelgen.Heightmap$Usage> {
+  public static final net.minecraft.world.level.levelgen.Heightmap$Usage WORLDGEN;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Usage LIVE_WORLD;
+  public static final net.minecraft.world.level.levelgen.Heightmap$Usage CLIENT;
+  public static net.minecraft.world.level.levelgen.Heightmap$Usage[] values();
+  public static net.minecraft.world.level.levelgen.Heightmap$Usage valueOf(java.lang.String);
+}
+Compiled from "MarsagliaPolarGaussian.java"
+public class net.minecraft.world.level.levelgen.MarsagliaPolarGaussian {
+  public final net.minecraft.util.RandomSource randomSource;
+  public net.minecraft.world.level.levelgen.MarsagliaPolarGaussian(net.minecraft.util.RandomSource);
+  public void reset();
+  public double nextGaussian();
+}
+Compiled from "XoroshiroRandomSource.java"
+public class net.minecraft.world.level.levelgen.XoroshiroRandomSource$XoroshiroPositionalRandomFactory implements net.minecraft.world.level.levelgen.PositionalRandomFactory {
+  public net.minecraft.world.level.levelgen.XoroshiroRandomSource$XoroshiroPositionalRandomFactory(long, long);
+  public net.minecraft.util.RandomSource at(int, int, int);
+  public net.minecraft.util.RandomSource fromHashOf(java.lang.String);
+  public net.minecraft.util.RandomSource fromSeed(long);
+  public void parityConfigString(java.lang.StringBuilder);
+}
+Compiled from "NoiseBasedChunkGenerator.java"
+public final class net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator extends net.minecraft.world.level.chunk.ChunkGenerator {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator> CODEC;
+  public net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator(net.minecraft.world.level.biome.BiomeSource, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>);
+  protected net.minecraft.world.level.biome.BiomeResolver decorateBiomeResolver(net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.biome.BiomeResolver);
+  public net.minecraft.world.level.ChunkPos getOrigin(net.minecraft.world.level.levelgen.RandomState);
+  protected com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> codec();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> generatorSettings();
+  public boolean stable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>);
+  public int getBaseHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public net.minecraft.world.level.NoiseColumn getBaseColumn(int, int, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public void addDebugScreenInfo(java.util.List<java.lang.String>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public int getGenDepth();
+  public int getSeaLevel();
+  public int getMinY();
+  public void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+}
+Compiled from "NoiseSpawnFinder.java"
+public class net.minecraft.world.level.levelgen.NoiseSpawnFinder {
+  public static net.minecraft.core.BlockPos findSpawnPosition(java.util.List<net.minecraft.world.level.levelgen.SpawnTargetPoint>, net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet);
+}
+Compiled from "RandomSupport.java"
+public final class net.minecraft.world.level.levelgen.RandomSupport {
+  public static final long GOLDEN_RATIO_64;
+  public static final long SILVER_RATIO_64;
+  public net.minecraft.world.level.levelgen.RandomSupport();
+  public static long mixStafford13(long);
+  public static net.minecraft.world.level.levelgen.RandomSupport$Seed128bit upgradeSeedTo128bitUnmixed(long);
+  public static net.minecraft.world.level.levelgen.RandomSupport$Seed128bit upgradeSeedTo128bit(long);
+  public static net.minecraft.world.level.levelgen.RandomSupport$Seed128bit seedFromHashOf(java.lang.String);
+  public static long generateUniqueSeed();
+}
+Compiled from "Column.java"
+public abstract class net.minecraft.world.level.levelgen.Column {
+  public net.minecraft.world.level.levelgen.Column();
+  public static net.minecraft.world.level.levelgen.Column$Range around(int, int);
+  public static net.minecraft.world.level.levelgen.Column$Range inside(int, int);
+  public static net.minecraft.world.level.levelgen.Column below(int);
+  public static net.minecraft.world.level.levelgen.Column fromHighest(int);
+  public static net.minecraft.world.level.levelgen.Column above(int);
+  public static net.minecraft.world.level.levelgen.Column fromLowest(int);
+  public static net.minecraft.world.level.levelgen.Column line();
+  public static net.minecraft.world.level.levelgen.Column create(java.util.OptionalInt, java.util.OptionalInt);
+  public abstract java.util.OptionalInt getCeiling();
+  public abstract java.util.OptionalInt getFloor();
+  public abstract java.util.OptionalInt getHeight();
+  public net.minecraft.world.level.levelgen.Column withFloor(java.util.OptionalInt);
+  public net.minecraft.world.level.levelgen.Column withCeiling(java.util.OptionalInt);
+  public static java.util.Optional<net.minecraft.world.level.levelgen.Column> scan(net.minecraft.world.level.LevelSimulatedReader, net.minecraft.core.BlockPos, int, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+}
+Compiled from "NoiseGeneratorSettings.java"
+public final class net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctionEntry extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctionEntry> CODEC;
+  public net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctionEntry(java.lang.String, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String label();
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction function();
+}
+Compiled from "VerticalAnchor.java"
+public final class net.minecraft.world.level.levelgen.VerticalAnchor$Absolute extends java.lang.Record implements net.minecraft.world.level.levelgen.VerticalAnchor {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor$Absolute> CODEC;
+  public net.minecraft.world.level.levelgen.VerticalAnchor$Absolute(int);
+  public int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int y();
+}
+Compiled from "VerticalAnchor.java"
+public final class net.minecraft.world.level.levelgen.VerticalAnchor$BelowTop extends java.lang.Record implements net.minecraft.world.level.levelgen.VerticalAnchor {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.VerticalAnchor$BelowTop> CODEC;
+  public net.minecraft.world.level.levelgen.VerticalAnchor$BelowTop(int);
+  public int resolveY(net.minecraft.world.level.levelgen.WorldGenerationContext);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int offset();
+}
+Compiled from "Heightmap.java"
+public class net.minecraft.world.level.levelgen.Heightmap {
+  public net.minecraft.world.level.levelgen.Heightmap(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.Heightmap$Types);
+  public static void primeHeightmaps(net.minecraft.world.level.chunk.ChunkAccess, java.util.Set<net.minecraft.world.level.levelgen.Heightmap$Types>);
+  public boolean update(int, int, int, net.minecraft.world.level.block.state.BlockState);
+  public int getFirstAvailable(int, int);
+  public int getHighestTaken(int, int);
+  public void setRawData(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.Heightmap$Types, long[]);
+  public long[] getRawData();
+}
+Compiled from "WorldGenSettings.java"
+public final class net.minecraft.world.level.levelgen.WorldGenSettings extends net.minecraft.world.level.saveddata.SavedData {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.WorldGenSettings> CODEC;
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.level.levelgen.WorldGenSettings> TYPE;
+  public net.minecraft.world.level.levelgen.WorldGenSettings(net.minecraft.world.level.levelgen.WorldOptions, net.minecraft.world.level.levelgen.WorldDimensions);
+  public static net.minecraft.world.level.levelgen.WorldGenSettings of(net.minecraft.world.level.levelgen.WorldOptions, net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.level.levelgen.WorldOptions options();
+  public net.minecraft.world.level.levelgen.WorldDimensions dimensions();
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "NoiseGeneratorSettings.java"
+public final class net.minecraft.world.level.levelgen.NoiseGeneratorSettings extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>> CODEC;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> OVERWORLD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> LARGE_BIOMES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> AMPLIFIED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> NETHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> END;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> CAVES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.NoiseGeneratorSettings> FLOATING_ISLANDS;
+  public net.minecraft.world.level.levelgen.NoiseGeneratorSettings(net.minecraft.world.level.levelgen.NoiseSettings, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.levelgen.NoiseRouter, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.material.rule.MaterialRule>, java.util.List<net.minecraft.world.level.levelgen.SpawnTargetPoint>, int, boolean, java.util.Optional<net.minecraft.world.level.levelgen.Aquifer$Config>, boolean, net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions);
+  public boolean disableMobGeneration();
+  public net.minecraft.world.level.levelgen.WorldgenRandom$Algorithm getRandomSource();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.levelgen.NoiseGeneratorSettings>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.NoiseSettings noiseSettings();
+  public net.minecraft.world.level.block.state.BlockState defaultBlock();
+  public net.minecraft.world.level.block.state.BlockState defaultFluid();
+  public net.minecraft.world.level.levelgen.NoiseRouter noiseRouter();
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.material.rule.MaterialRule> materialRule();
+  public java.util.List<net.minecraft.world.level.levelgen.SpawnTargetPoint> spawnTarget();
+  public int seaLevel();
+  public java.util.Optional<net.minecraft.world.level.levelgen.Aquifer$Config> aquifers();
+  public boolean useLegacyRandomSource();
+  public net.minecraft.world.level.levelgen.NoiseGeneratorSettings$DebugFunctions debugFunctions();
+}
+Compiled from "Aquifer.java"
+public interface net.minecraft.world.level.levelgen.Aquifer$FluidPicker {
+  public abstract net.minecraft.world.level.levelgen.Aquifer$FluidStatus computeFluid(int, int, int);
+}
+Compiled from "Column.java"
+public final class net.minecraft.world.level.levelgen.Column$Line extends net.minecraft.world.level.levelgen.Column {
+  public java.util.OptionalInt getCeiling();
+  public java.util.OptionalInt getFloor();
+  public java.util.OptionalInt getHeight();
+  public java.lang.String toString();
+}
+Compiled from "Aquifer.java"
+public final class net.minecraft.world.level.levelgen.Aquifer$FluidStatus extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.Aquifer$FluidStatus(int, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.state.BlockState at(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int fluidLevel();
+  public net.minecraft.world.level.block.state.BlockState fluidType();
+}
+Compiled from "PatrolSpawner.java"
+public class net.minecraft.world.level.levelgen.PatrolSpawner implements net.minecraft.world.level.CustomSpawner {
+  public net.minecraft.world.level.levelgen.PatrolSpawner();
+  public void tick(net.minecraft.server.level.ServerLevel, boolean);
+}
+Compiled from "BelowZeroRetrogen.java"
+public final class net.minecraft.world.level.levelgen.BelowZeroRetrogen {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.BelowZeroRetrogen> CODEC;
+  public static final net.minecraft.world.level.LevelHeightAccessor UPGRADE_HEIGHT_ACCESSOR;
+  public static void replaceOldBedrock(net.minecraft.world.level.chunk.ProtoChunk);
+  public void applyBedrockMask(net.minecraft.world.level.chunk.ProtoChunk);
+  public net.minecraft.world.level.chunk.status.ChunkStatus targetStatus();
+  public boolean hasBedrockHoles();
+  public boolean hasBedrockHole(int, int);
+  public static net.minecraft.world.level.biome.BiomeResolver getBiomeResolver(net.minecraft.world.level.biome.BiomeResolver, net.minecraft.world.level.chunk.ChunkAccess);
+}
+Compiled from "RandomState.java"
+public final class net.minecraft.world.level.levelgen.RandomState {
+  public static net.minecraft.world.level.levelgen.RandomState create(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, long, net.minecraft.world.level.levelgen.NoiseGeneratorSettings);
+  public static net.minecraft.world.level.levelgen.RandomState create(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.synth.NormalNoise>, long, boolean, net.minecraft.world.level.block.state.BlockState, int, net.minecraft.world.level.levelgen.NoiseRouter);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet samplersWithContext(net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public net.minecraft.world.level.biome.Climate$Sampler createClimateSampler(net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public net.minecraft.world.level.levelgen.synth.Noise getOrCreateNoise(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory getOrCreateRandomFactory(net.minecraft.resources.Identifier);
+  public net.minecraft.world.level.levelgen.material.MaterialSystem surfaceSystem();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler getSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public float sampleBlockValueUncached(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int, int);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool acquireDensityBufferPool();
+  public void releaseDensityBufferPool(net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool);
+  public void garbageCollect();
+  public long seed();
+}

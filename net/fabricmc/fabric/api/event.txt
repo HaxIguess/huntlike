@@ -1,0 +1,25 @@
+Compiled from "AutoInvokingEvent.java"
+public interface net.fabricmc.fabric.api.event.AutoInvokingEvent extends java.lang.annotation.Annotation {
+}
+Compiled from "Event.java"
+public abstract class net.fabricmc.fabric.api.event.Event<T> {
+  protected volatile T invoker;
+  public static final net.minecraft.resources.Identifier DEFAULT_PHASE;
+  public net.fabricmc.fabric.api.event.Event();
+  public final T invoker();
+  public abstract void register(T);
+  public void register(net.minecraft.resources.Identifier, T);
+  public void addPhaseOrdering(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+}
+Compiled from "EventFactory.java"
+public final class net.fabricmc.fabric.api.event.EventFactory {
+  public static <T> net.fabricmc.fabric.api.event.Event<T> createArrayBacked(java.lang.Class<? super T>, java.util.function.Function<T[], T>);
+  public static <T> net.fabricmc.fabric.api.event.Event<T> createArrayBacked(java.lang.Class<T>, T, java.util.function.Function<T[], T>);
+  public static <T> net.fabricmc.fabric.api.event.Event<T> createWithPhases(java.lang.Class<? super T>, java.util.function.Function<T[], T>, net.minecraft.resources.Identifier...);
+  public static java.lang.String getHandlerName(java.lang.Object);
+  public static boolean isProfilingEnabled();
+  public static void invalidate();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.event.package-info {
+}

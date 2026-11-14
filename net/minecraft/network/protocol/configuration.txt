@@ -1,0 +1,140 @@
+Compiled from "ConfigurationPacketTypes.java"
+public class net.minecraft.network.protocol.configuration.ConfigurationPacketTypes {
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket> CLIENTBOUND_CODE_OF_CONDUCT;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket> CLIENTBOUND_FINISH_CONFIGURATION;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket> CLIENTBOUND_REGISTRY_DATA;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundResetChatPacket> CLIENTBOUND_RESET_CHAT;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks> CLIENTBOUND_SELECT_KNOWN_PACKS;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket> CLIENTBOUND_UPDATE_ENABLED_FEATURES;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket> SERVERBOUND_ACCEPT_CODE_OF_CONDUCT;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket> SERVERBOUND_FINISH_CONFIGURATION;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks> SERVERBOUND_SELECT_KNOWN_PACKS;
+  public net.minecraft.network.protocol.configuration.ConfigurationPacketTypes();
+}
+Compiled from "ServerConfigurationPacketListener.java"
+public interface net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener extends net.minecraft.network.protocol.common.ServerCommonPacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleConfigurationFinished(net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket);
+  public abstract void handleSelectKnownPacks(net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks);
+  public abstract void handleAcceptCodeOfConduct(net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket);
+}
+Compiled from "ServerboundFinishConfigurationPacket.java"
+public class net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener> {
+  public static final net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundFinishConfigurationPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener);
+  public boolean isTerminal();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundResetChatPacket.java"
+public class net.minecraft.network.protocol.configuration.ClientboundResetChatPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.protocol.configuration.ClientboundResetChatPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ClientboundResetChatPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundResetChatPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientConfigurationPacketListener.java"
+public interface net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener extends net.minecraft.network.protocol.common.ClientCommonPacketListener {
+  public default net.minecraft.network.ConnectionProtocol protocol();
+  public abstract void handleCodeOfConduct(net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket);
+  public abstract void handleConfigurationFinished(net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket);
+  public abstract void handleRegistryData(net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket);
+  public abstract void handleEnabledFeatures(net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket);
+  public abstract void handleSelectKnownPacks(net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks);
+  public abstract void handleResetChat(net.minecraft.network.protocol.configuration.ClientboundResetChatPacket);
+}
+Compiled from "ClientboundRegistryDataPacket.java"
+public final class net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry>);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>> registry();
+  public java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry> entries();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundFinishConfigurationPacket.java"
+public class net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundFinishConfigurationPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public boolean isTerminal();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundUpdateEnabledFeaturesPacket.java"
+public final class net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket(java.util.Set<net.minecraft.resources.Identifier>);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundUpdateEnabledFeaturesPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Set<net.minecraft.resources.Identifier> features();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ClientboundCodeOfConductPacket.java"
+public final class net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket(java.lang.String);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundCodeOfConductPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String codeOfConduct();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundAcceptCodeOfConductPacket.java"
+public final class net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener> {
+  public static final net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket INSTANCE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket();
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundAcceptCodeOfConductPacket> type();
+  public void handle(net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.configuration.package-info {
+}
+Compiled from "ClientboundSelectKnownPacks.java"
+public final class net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks(java.util.List<net.minecraft.server.packs.repository.KnownPack>);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ClientboundSelectKnownPacks> type();
+  public void handle(net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.server.packs.repository.KnownPack> knownPacks();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundSelectKnownPacks.java"
+public final class net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks> STREAM_CODEC;
+  public net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks(java.util.List<net.minecraft.server.packs.repository.KnownPack>);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.configuration.ServerboundSelectKnownPacks> type();
+  public void handle(net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.server.packs.repository.KnownPack> knownPacks();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ConfigurationProtocols.java"
+public class net.minecraft.network.protocol.configuration.ConfigurationProtocols {
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener, net.minecraft.network.FriendlyByteBuf> SERVERBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.configuration.ServerConfigurationPacketListener> SERVERBOUND;
+  public static final net.minecraft.network.protocol.SimpleUnboundProtocol<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener, net.minecraft.network.FriendlyByteBuf> CLIENTBOUND_TEMPLATE;
+  public static final net.minecraft.network.ProtocolInfo<net.minecraft.network.protocol.configuration.ClientConfigurationPacketListener> CLIENTBOUND;
+  public net.minecraft.network.protocol.configuration.ConfigurationProtocols();
+}

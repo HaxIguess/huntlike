@@ -1,0 +1,119 @@
+Compiled from "DisplayNameUtil.java"
+public final class mezz.jei.gui.ingredients.DisplayNameUtil {
+  public static <T> java.lang.String getLowercaseDisplayNameForSearch(T, mezz.jei.api.ingredients.IIngredientHelper<T>);
+}
+Compiled from "GuiIngredientProperties.java"
+public final class mezz.jei.gui.ingredients.GuiIngredientProperties {
+  public mezz.jei.gui.ingredients.GuiIngredientProperties();
+  public static int getWidth(int);
+  public static int getHeight(int);
+}
+Compiled from "IListElement.java"
+public interface mezz.jei.gui.ingredients.IListElement<V> {
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public abstract int getSortedIndex();
+  public abstract void setSortedIndex(int);
+  public abstract int getCreatedIndex();
+  public abstract boolean isVisible();
+  public abstract void setVisible(boolean);
+}
+Compiled from "IListElementInfo.java"
+public interface mezz.jei.gui.ingredients.IListElementInfo<V> {
+  public abstract java.util.List<java.lang.String> getNames();
+  public abstract java.lang.String getModNameForSorting();
+  public abstract java.util.Collection<java.lang.String> getModNames(mezz.jei.common.config.IIngredientFilterConfig);
+  public abstract java.util.Set<java.lang.String> getTooltipStrings(mezz.jei.common.config.IIngredientFilterConfig, mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.util.Collection<java.lang.String> getTagStrings(mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> getTagIds(mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.lang.Iterable<java.lang.Integer> getColors(mezz.jei.api.runtime.IIngredientManager);
+  public abstract java.util.Collection<java.lang.String> getColorNames(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IColorHelper);
+  public abstract java.util.Collection<java.lang.String> getCreativeTabsStrings(mezz.jei.api.runtime.IIngredientManager);
+  public abstract net.minecraft.resources.Identifier getIdentifier();
+  public abstract mezz.jei.gui.ingredients.IListElement<V> getElement();
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public abstract int getCreatedIndex();
+}
+Compiled from "IngredientFilter.java"
+final class mezz.jei.gui.ingredients.IngredientFilter$SearchTokens extends java.lang.Record {
+  public boolean isEmpty();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<mezz.jei.gui.search.ElementPrefixParser$TokenInfo> toSearch();
+  public java.util.List<mezz.jei.gui.search.ElementPrefixParser$TokenInfo> toRemove();
+}
+Compiled from "IngredientFilter.java"
+public class mezz.jei.gui.ingredients.IngredientFilter implements mezz.jei.gui.overlay.ingredients.IIngredientGridSource,mezz.jei.api.runtime.IIngredientManager$IIngredientListener,mezz.jei.api.runtime.IIngredientVisibility$IListener,mezz.jei.common.config.IClientToggleState$IEditModeListener {
+  public mezz.jei.gui.ingredients.IngredientFilter(mezz.jei.gui.filter.IFilterTextSource, mezz.jei.common.config.IClientConfig, mezz.jei.common.config.IIngredientFilterConfig, mezz.jei.api.runtime.IIngredientManager, java.util.function.Function<java.util.List<mezz.jei.gui.ingredients.IListElementInfo<?>>, java.util.Comparator<mezz.jei.gui.ingredients.IListElement<?>>>, java.util.List<mezz.jei.gui.ingredients.IListElementInfo<?>>, mezz.jei.api.helpers.IModIdHelper, mezz.jei.api.runtime.IIngredientVisibility, mezz.jei.api.helpers.IColorHelper, mezz.jei.api.search.ISearchStorageBuilderFactory, mezz.jei.common.config.IClientToggleState);
+  public <V> void addIngredient(mezz.jei.gui.ingredients.IListElementInfo<V>);
+  public void invalidateCache();
+  public void rebuildItemFilter();
+  public void onEditModeChanged();
+  public void updateHidden();
+  public <V> void onIngredientVisibilityChanged(mezz.jei.api.ingredients.ITypedIngredient<V>, boolean);
+  public <V> void onIngredientsVisibilityChanged(java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>, boolean);
+  public java.util.List<mezz.jei.gui.overlay.elements.IElement<?>> getElements();
+  public <T> java.util.List<T> getFilteredIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+  public <V> void onIngredientsAdded(mezz.jei.api.ingredients.IIngredientHelper<V>, java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>);
+  public <V> void onIngredientsRemoved(mezz.jei.api.ingredients.IIngredientHelper<V>, java.util.Collection<mezz.jei.api.ingredients.ITypedIngredient<V>>);
+  public void addSourceListChangedListener(mezz.jei.gui.overlay.ingredients.IIngredientGridSource$SourceListChangedListener);
+}
+Compiled from "IngredientFilterApi.java"
+public class mezz.jei.gui.ingredients.IngredientFilterApi implements mezz.jei.api.runtime.IIngredientFilter {
+  public mezz.jei.gui.ingredients.IngredientFilterApi(mezz.jei.gui.ingredients.IngredientFilter, mezz.jei.gui.filter.IFilterTextSource);
+  public java.lang.String getFilterText();
+  public void setFilterText(java.lang.String);
+  public <T> java.util.List<T> getFilteredIngredients(mezz.jei.api.ingredients.IIngredientType<T>);
+}
+Compiled from "IngredientListElementFactory.java"
+public final class mezz.jei.gui.ingredients.IngredientListElementFactory {
+  public static java.util.List<mezz.jei.gui.ingredients.IListElementInfo<?>> createBaseList(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IModIdHelper);
+  public static <V> java.util.List<mezz.jei.gui.ingredients.IListElementInfo<V>> createTestList(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.ingredients.IIngredientType<V>, java.util.Collection<V>, mezz.jei.api.helpers.IModIdHelper);
+  public static java.util.List<mezz.jei.gui.ingredients.IListElementInfo<?>> rebuildList(mezz.jei.api.runtime.IIngredientManager, java.util.Collection<mezz.jei.gui.ingredients.IListElement<?>>, mezz.jei.api.helpers.IModIdHelper);
+}
+Compiled from "IngredientSorter.java"
+public final class mezz.jei.gui.ingredients.IngredientSorter {
+  public mezz.jei.gui.ingredients.IngredientSorter();
+  public static java.util.Comparator<mezz.jei.gui.ingredients.IListElement<?>> sortIngredients(mezz.jei.common.config.IClientConfig, mezz.jei.gui.config.ModNameSortingConfig, mezz.jei.gui.config.IngredientTypeSortingConfig, mezz.jei.api.runtime.IIngredientManager, java.util.List<mezz.jei.gui.ingredients.IListElementInfo<?>>);
+}
+Compiled from "IngredientSorterComparators.java"
+public class mezz.jei.gui.ingredients.IngredientSorterComparators {
+  public mezz.jei.gui.ingredients.IngredientSorterComparators(mezz.jei.api.runtime.IIngredientManager, mezz.jei.gui.config.ModNameSortingConfig, mezz.jei.gui.config.IngredientTypeSortingConfig, java.util.Set<java.lang.String>);
+  public java.util.Comparator<mezz.jei.gui.ingredients.IListElementInfo<?>> getComparator(java.util.List<mezz.jei.common.config.IngredientSortStage>);
+  public java.util.Comparator<mezz.jei.gui.ingredients.IListElementInfo<?>> getComparator(mezz.jei.common.config.IngredientSortStage);
+  public java.util.Comparator<mezz.jei.gui.ingredients.IListElementInfo<?>> getDefault();
+  public static <V> net.minecraft.world.item.ItemStack getItemStack(mezz.jei.gui.ingredients.IListElementInfo<V>);
+}
+Compiled from "ListElement.java"
+public class mezz.jei.gui.ingredients.ListElement<V> implements mezz.jei.gui.ingredients.IListElement<V> {
+  public mezz.jei.gui.ingredients.ListElement(mezz.jei.api.ingredients.ITypedIngredient<V>, int);
+  public final mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public int getSortedIndex();
+  public void setSortedIndex(int);
+  public int getCreatedIndex();
+  public boolean isVisible();
+  public void setVisible(boolean);
+}
+Compiled from "ListElementInfo.java"
+public class mezz.jei.gui.ingredients.ListElementInfo<V> implements mezz.jei.gui.ingredients.IListElementInfo<V> {
+  public static <V> mezz.jei.gui.ingredients.IListElementInfo<V> create(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IModIdHelper);
+  public static <V> mezz.jei.gui.ingredients.IListElementInfo<V> createFromElement(mezz.jei.gui.ingredients.IListElement<V>, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IModIdHelper);
+  protected mezz.jei.gui.ingredients.ListElementInfo(mezz.jei.gui.ingredients.IListElement<V>, mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IModIdHelper);
+  public java.util.List<java.lang.String> getNames();
+  public java.lang.String getModNameForSorting();
+  public java.util.Collection<java.lang.String> getModNames(mezz.jei.common.config.IIngredientFilterConfig);
+  public final java.util.Set<java.lang.String> getTooltipStrings(mezz.jei.common.config.IIngredientFilterConfig, mezz.jei.api.runtime.IIngredientManager);
+  public static java.util.Set<java.lang.String> getStrings(java.util.List<net.minecraft.network.chat.Component>);
+  public java.util.Collection<java.lang.String> getTagStrings(mezz.jei.api.runtime.IIngredientManager);
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getTagIds(mezz.jei.api.runtime.IIngredientManager);
+  public java.lang.Iterable<java.lang.Integer> getColors(mezz.jei.api.runtime.IIngredientManager);
+  public java.util.Collection<java.lang.String> getColorNames(mezz.jei.api.runtime.IIngredientManager, mezz.jei.api.helpers.IColorHelper);
+  public java.util.Collection<java.lang.String> getCreativeTabsStrings(mezz.jei.api.runtime.IIngredientManager);
+  public net.minecraft.resources.Identifier getIdentifier();
+  public mezz.jei.gui.ingredients.IListElement<V> getElement();
+  public mezz.jei.api.ingredients.ITypedIngredient<V> getTypedIngredient();
+  public int getCreatedIndex();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.ingredients.package-info {
+}

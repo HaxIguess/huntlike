@@ -1,0 +1,146 @@
+Compiled from "BlankVariantView.java"
+public class net.fabricmc.fabric.api.transfer.v1.storage.base.BlankVariantView<T extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>> implements net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> {
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.BlankVariantView(T, long);
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean isResourceBlank();
+  public T getResource();
+  public long getAmount();
+  public long getCapacity();
+  public java.lang.Object getResource();
+  public long extract(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+}
+Compiled from "CombinedSlottedStorage.java"
+public class net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedSlottedStorage<T, S extends net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage<T>> extends net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage<T, S> implements net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage<T> {
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedSlottedStorage(java.util.List<S>);
+  public int getSlotCount();
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> getSlot(int);
+  public java.lang.String toString();
+}
+Compiled from "CombinedStorage.java"
+class net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage$CombinedIterator implements java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> {
+  public boolean hasNext();
+  public net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> next();
+  public java.lang.Object next();
+}
+Compiled from "CombinedStorage.java"
+public class net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage<T, S extends net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>> implements net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> {
+  public java.util.List<S> parts;
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.CombinedStorage(java.util.List<S>);
+  public boolean supportsInsertion();
+  public long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean supportsExtraction();
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> iterator();
+  public java.lang.String toString();
+}
+Compiled from "ExtractionOnlyStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.base.ExtractionOnlyStorage<T> extends net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> {
+  public default boolean supportsInsertion();
+  public default long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+}
+Compiled from "FilteringStorage.java"
+class net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage$FilteringStorageView implements net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> {
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean isResourceBlank();
+  public T getResource();
+  public long getAmount();
+  public long getCapacity();
+  public net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> getUnderlyingView();
+}
+Compiled from "FilteringStorage.java"
+public abstract class net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage<T> implements net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> {
+  protected final java.util.function.Supplier<net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>> backingStorage;
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> insertOnlyOf(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> extractOnlyOf(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> readOnlyOf(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+  public static <T> net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> of(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>, boolean, boolean);
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage(net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>);
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.FilteringStorage(java.util.function.Supplier<net.fabricmc.fabric.api.transfer.v1.storage.Storage<T>>);
+  protected boolean canInsert(T);
+  protected boolean canExtract(T);
+  public boolean supportsInsertion();
+  public long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean supportsExtraction();
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> iterator();
+  public long getVersion();
+  public java.lang.String toString();
+}
+Compiled from "InsertionOnlyStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.base.InsertionOnlyStorage<T> extends net.fabricmc.fabric.api.transfer.v1.storage.Storage<T> {
+  public default boolean supportsExtraction();
+  public default long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public default java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> iterator();
+}
+Compiled from "ResourceAmount.java"
+public final class net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T> extends java.lang.Record {
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount(T, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T resource();
+  public long amount();
+}
+Compiled from "SidedStorageBlockEntity.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.base.SidedStorageBlockEntity {
+  public default net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant> getFluidStorage(net.minecraft.core.Direction);
+  public default net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.item.ItemVariant> getItemStorage(net.minecraft.core.Direction);
+}
+Compiled from "SingleSlotStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> extends net.fabricmc.fabric.api.transfer.v1.storage.SlottedStorage<T>, net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T> {
+  public default java.util.Iterator<net.fabricmc.fabric.api.transfer.v1.storage.StorageView<T>> iterator();
+  public default int getSlotCount();
+  public default net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> getSlot(int);
+}
+Compiled from "SingleVariantItemStorage.java"
+public abstract class net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantItemStorage<T extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>> implements net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> {
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantItemStorage(net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext);
+  protected abstract T getBlankResource();
+  protected abstract T getResource(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant);
+  protected abstract long getAmount(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant);
+  protected abstract long getCapacity(T);
+  protected abstract net.fabricmc.fabric.api.transfer.v1.item.ItemVariant getUpdatedVariant(net.fabricmc.fabric.api.transfer.v1.item.ItemVariant, T, long);
+  protected boolean canInsert(T);
+  protected boolean canExtract(T);
+  public boolean supportsInsertion();
+  public long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean supportsExtraction();
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean isResourceBlank();
+  public T getResource();
+  public long getAmount();
+  public long getCapacity();
+  public java.lang.String toString();
+  public long extract(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public long insert(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public java.lang.Object getResource();
+}
+Compiled from "SingleVariantStorage.java"
+public abstract class net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage<T extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>> extends net.fabricmc.fabric.api.transfer.v1.transaction.base.SnapshotParticipant<net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T>> implements net.fabricmc.fabric.api.transfer.v1.storage.base.SingleSlotStorage<T> {
+  public T variant;
+  public long amount;
+  public net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage();
+  protected abstract T getBlankVariant();
+  protected abstract long getCapacity(T);
+  protected boolean canInsert(T);
+  protected boolean canExtract(T);
+  public long insert(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public long extract(T, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public boolean isResourceBlank();
+  public T getResource();
+  public long getAmount();
+  public long getCapacity();
+  protected net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T> createSnapshot();
+  protected void readSnapshot(net.fabricmc.fabric.api.transfer.v1.storage.base.ResourceAmount<T>);
+  public java.lang.String toString();
+  public static <T extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>> void readValue(net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage<T>, com.mojang.serialization.Codec<T>, java.util.function.Supplier<T>, net.minecraft.world.level.storage.ValueInput);
+  public static <T extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<?>> void writeValue(net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage<T>, com.mojang.serialization.Codec<T>, net.minecraft.world.level.storage.ValueOutput);
+  protected void readSnapshot(java.lang.Object);
+  protected java.lang.Object createSnapshot();
+  public long extract(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public long insert(java.lang.Object, long, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public java.lang.Object getResource();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.storage.base.package-info {
+}

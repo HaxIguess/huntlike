@@ -1,0 +1,56 @@
+Compiled from "FabricPacketMerger.java"
+class net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger$Merger {
+}
+Compiled from "FabricPacketMerger.java"
+public class net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger extends io.netty.handler.codec.MessageToMessageDecoder<net.minecraft.network.protocol.Packet<?>> {
+  public net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger(net.minecraft.network.PacketDecoder<?>, net.fabricmc.fabric.impl.networking.PayloadTypeRegistryImpl<?>, net.fabricmc.fabric.impl.networking.VanillaPacketTypes);
+  protected void decode(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  protected void decode(io.netty.channel.ChannelHandlerContext, java.lang.Object, java.util.List) throws java.lang.Exception;
+}
+Compiled from "FabricPacketSplitter.java"
+public class net.fabricmc.fabric.impl.networking.splitter.FabricPacketSplitter extends io.netty.handler.codec.MessageToMessageEncoder<net.minecraft.network.protocol.Packet<?>> {
+  public static final int SAFE_S2C_SPLIT_SIZE;
+  public static final int SAFE_C2S_SPLIT_SIZE;
+  public net.fabricmc.fabric.impl.networking.splitter.FabricPacketSplitter(net.minecraft.network.PacketEncoder<?>, net.fabricmc.fabric.impl.networking.PayloadTypeRegistryImpl<?>);
+  protected void encode(io.netty.channel.ChannelHandlerContext, net.minecraft.network.protocol.Packet<?>, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  public static void genericPacketSplitter(net.minecraft.resources.Identifier, io.netty.channel.ChannelHandlerContext, net.minecraft.network.PacketEncoder<?>, net.minecraft.network.protocol.Packet<?>, java.util.function.Function<net.minecraft.network.protocol.common.custom.CustomPacketPayload, net.minecraft.network.protocol.Packet<?>>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>, int, int) throws java.lang.Exception;
+  protected void encode(io.netty.channel.ChannelHandlerContext, java.lang.Object, java.util.List) throws java.lang.Exception;
+}
+Compiled from "FabricSplitPacketPayload.java"
+public final class net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload> TYPE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload> CODEC;
+  public net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public io.netty.buffer.ByteBuf byteBuf();
+}
+Compiled from "PassthroughPacket.java"
+public final class net.fabricmc.fabric.impl.networking.splitter.PassthroughPacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.PacketListener> {
+  public net.fabricmc.fabric.impl.networking.splitter.PassthroughPacket(io.netty.buffer.ByteBuf);
+  public net.minecraft.network.protocol.PacketType<? extends net.minecraft.network.protocol.Packet<net.minecraft.network.PacketListener>> type();
+  public void handle(net.minecraft.network.PacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public io.netty.buffer.ByteBuf buf();
+}
+Compiled from "SplittablePacket.java"
+public interface net.fabricmc.fabric.impl.networking.splitter.SplittablePacket {
+  public abstract void fabric_split(net.fabricmc.fabric.impl.networking.PayloadTypeRegistryImpl<?>, io.netty.channel.ChannelHandlerContext, net.minecraft.network.PacketEncoder<?>, net.minecraft.network.protocol.Packet<?>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>) throws java.lang.Exception;
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.networking.splitter.package-info {
+}
+Compiled from "FabricPacketMerger.java"
+class net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger$MergerImpl implements net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger$Merger {
+  public boolean add(io.netty.channel.ChannelHandlerContext, net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  public void release();
+}
+Compiled from "FabricPacketMerger.java"
+class net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger$MergerNoOp implements net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger$Merger {
+  public boolean add(io.netty.channel.ChannelHandlerContext, net.fabricmc.fabric.impl.networking.splitter.FabricSplitPacketPayload, java.util.List<java.lang.Object>) throws java.lang.Exception;
+  public void release();
+}

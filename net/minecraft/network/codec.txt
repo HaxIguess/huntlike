@@ -1,0 +1,144 @@
+Compiled from "package-info.java"
+interface net.minecraft.network.codec.package-info {
+}
+Compiled from "ByteBufCodecs.java"
+public interface net.minecraft.network.codec.ByteBufCodecs {
+  public static final int MAX_INITIAL_COLLECTION_SIZE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Boolean> BOOL;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Byte> BYTE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Float> ROTATION_BYTE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Short> SHORT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Integer> UNSIGNED_SHORT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Integer> INT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Integer> VAR_INT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.OptionalInt> OPTIONAL_VAR_INT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Long> LONG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Long> VAR_LONG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Float> FLOAT;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Double> DOUBLE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, byte[]> BYTE_ARRAY;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, long[]> LONG_ARRAY;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.BitSet> BIT_SET;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.String> STRING_UTF8;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.Tag> TAG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.Tag> TRUSTED_TAG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.CompoundTag> COMPOUND_TAG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.CompoundTag> TRUSTED_COMPOUND_TAG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.Optional<net.minecraft.nbt.CompoundTag>> OPTIONAL_COMPOUND_TAG;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, org.joml.Vector3fc> VECTOR3F;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, org.joml.Quaternionfc> QUATERNIONF;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Integer> CONTAINER_ID;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, com.mojang.authlib.properties.PropertyMap> GAME_PROFILE_PROPERTIES;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.String> PLAYER_NAME;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, com.mojang.authlib.GameProfile> GAME_PROFILE;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.Integer> RGB_COLOR;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.time.Instant> INSTANT;
+  public static final int PUBLIC_KEY_SIZE;
+  public static final int MAX_PUBLIC_KEY_HEADER_SIZE;
+  public static final int MAX_PUBLIC_KEY_LENGTH;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.security.PublicKey> PUBLIC_KEY;
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, byte[]> byteArray(int);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.lang.String> stringUtf8(int);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.BitSet> fixedBitSet(int);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.Optional<net.minecraft.nbt.Tag>> optionalTagCodec(java.util.function.Supplier<net.minecraft.nbt.NbtAccounter>);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.Tag> tagCodec(java.util.function.Supplier<net.minecraft.nbt.NbtAccounter>);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.nbt.CompoundTag> compoundTagCodec(java.util.function.Supplier<net.minecraft.nbt.NbtAccounter>);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, T> fromCodecTrusted(com.mojang.serialization.Codec<T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, T> fromCodec(com.mojang.serialization.Codec<T>);
+  public static <T, B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec$CodecOperation<B, T, V> fromCodec(com.mojang.serialization.DynamicOps<T>, com.mojang.serialization.Codec<V>);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, T> fromCodec(com.mojang.serialization.Codec<T>, java.util.function.Supplier<net.minecraft.nbt.NbtAccounter>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> fromCodecWithRegistriesTrusted(com.mojang.serialization.Codec<T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> fromCodecWithRegistries(com.mojang.serialization.Codec<T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> fromCodecWithRegistries(com.mojang.serialization.Codec<T>, java.util.function.Supplier<net.minecraft.nbt.NbtAccounter>);
+  public static <B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec<B, java.util.Optional<V>> optional(net.minecraft.network.codec.StreamCodec<? super B, V>);
+  public static int readCount(io.netty.buffer.ByteBuf, int);
+  public static void writeCount(io.netty.buffer.ByteBuf, int, int);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec<B, C> collection(java.util.function.IntFunction<C>, net.minecraft.network.codec.StreamCodec<? super B, V>);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec<B, C> collection(java.util.function.IntFunction<C>, net.minecraft.network.codec.StreamCodec<? super B, V>, int);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, C> collection(java.util.function.IntFunction<C>);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, C> collection(java.util.function.IntFunction<C>, int);
+  public static <B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, java.util.List<V>> list();
+  public static <B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, java.util.List<V>> list(int);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec<B, C> fixedSizeCollection(java.util.function.IntFunction<C>, net.minecraft.network.codec.StreamCodec<? super B, V>, int);
+  public static <B extends io.netty.buffer.ByteBuf, V, C extends java.util.Collection<V>> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, C> fixedSizeCollection(java.util.function.IntFunction<C>, int);
+  public static <B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, java.util.List<V>> fixedSizeList(int);
+  public static <B extends io.netty.buffer.ByteBuf, K, V, M extends java.util.Map<K, V>> net.minecraft.network.codec.StreamCodec<B, M> map(java.util.function.IntFunction<? extends M>, net.minecraft.network.codec.StreamCodec<? super B, K>, net.minecraft.network.codec.StreamCodec<? super B, V>);
+  public static <B extends io.netty.buffer.ByteBuf, K, V, M extends java.util.Map<K, V>> net.minecraft.network.codec.StreamCodec<B, M> map(java.util.function.IntFunction<? extends M>, net.minecraft.network.codec.StreamCodec<? super B, K>, net.minecraft.network.codec.StreamCodec<? super B, V>, int);
+  public static <B extends io.netty.buffer.ByteBuf, L, R> net.minecraft.network.codec.StreamCodec<B, com.mojang.datafixers.util.Either<L, R>> either(net.minecraft.network.codec.StreamCodec<? super B, L>, net.minecraft.network.codec.StreamCodec<? super B, R>);
+  public static <B extends io.netty.buffer.ByteBuf, V> net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, V> lengthPrefixed(int, java.util.function.BiFunction<B, io.netty.buffer.ByteBuf, B>);
+  public static <V> net.minecraft.network.codec.StreamCodec$CodecOperation<io.netty.buffer.ByteBuf, V, V> lengthPrefixed(int);
+  public static <V> net.minecraft.network.codec.StreamCodec$CodecOperation<net.minecraft.network.RegistryFriendlyByteBuf, V, V> registryFriendlyLengthPrefixed(int);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, T> idMapper(java.util.function.IntFunction<T>, java.util.function.ToIntFunction<T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, T> idMapper(net.minecraft.core.IdMap<T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> registry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<T>> holderRegistry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<T>> holder(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T>);
+  public static <T> net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.HolderSet<T>> holderSet(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, com.google.gson.JsonElement> lenientJson(int);
+}
+Compiled from "StreamEncoder.java"
+public interface net.minecraft.network.codec.StreamEncoder<O, T> {
+  public abstract void encode(O, T);
+}
+Compiled from "IdDispatchCodec.java"
+public interface net.minecraft.network.codec.IdDispatchCodec$DontDecorateException {
+}
+Compiled from "StreamMemberEncoder.java"
+public interface net.minecraft.network.codec.StreamMemberEncoder<O, T> {
+  public abstract void encode(T, O);
+}
+Compiled from "StreamCodec.java"
+public interface net.minecraft.network.codec.StreamCodec<B, V> extends net.minecraft.network.codec.StreamEncoder<B, V>, net.minecraft.network.codec.StreamDecoder<B, V> {
+  public static <B, V> net.minecraft.network.codec.StreamCodec<B, V> of(net.minecraft.network.codec.StreamEncoder<B, V>, net.minecraft.network.codec.StreamDecoder<B, V>);
+  public static <B, V> net.minecraft.network.codec.StreamCodec<B, V> ofMember(net.minecraft.network.codec.StreamMemberEncoder<B, V>, net.minecraft.network.codec.StreamDecoder<B, V>);
+  public static <B, V> net.minecraft.network.codec.StreamCodec<B, V> unit(V);
+  public default <O> net.minecraft.network.codec.StreamCodec<B, O> apply(net.minecraft.network.codec.StreamCodec$CodecOperation<B, V, O>);
+  public default <O> net.minecraft.network.codec.StreamCodec<B, O> map(java.util.function.Function<? super V, ? extends O>, java.util.function.Function<? super O, ? extends V>);
+  public default <O extends io.netty.buffer.ByteBuf> net.minecraft.network.codec.StreamCodec<O, V> mapStream(java.util.function.Function<O, ? extends B>);
+  public default <U> net.minecraft.network.codec.StreamCodec<B, U> dispatch(java.util.function.Function<? super U, ? extends V>, java.util.function.Function<? super V, ? extends net.minecraft.network.codec.StreamCodec<? super B, ? extends U>>);
+  public static <B, C, T1> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, java.util.function.Function<T1, C>);
+  public static <B, C, T1, T2> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, java.util.function.BiFunction<T1, T2, C>);
+  public static <B, C, T1, T2, T3> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, com.mojang.datafixers.util.Function3<T1, T2, T3, C>);
+  public static <B, C, T1, T2, T3, T4> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, com.mojang.datafixers.util.Function4<T1, T2, T3, T4, C>);
+  public static <B, C, T1, T2, T3, T4, T5> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, com.mojang.datafixers.util.Function5<T1, T2, T3, T4, T5, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, com.mojang.datafixers.util.Function6<T1, T2, T3, T4, T5, T6, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, com.mojang.datafixers.util.Function7<T1, T2, T3, T4, T5, T6, T7, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, com.mojang.datafixers.util.Function8<T1, T2, T3, T4, T5, T6, T7, T8, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, com.mojang.datafixers.util.Function9<T1, T2, T3, T4, T5, T6, T7, T8, T9, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, net.minecraft.network.codec.StreamCodec<? super B, T10>, java.util.function.Function<C, T10>, com.mojang.datafixers.util.Function10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, net.minecraft.network.codec.StreamCodec<? super B, T10>, java.util.function.Function<C, T10>, net.minecraft.network.codec.StreamCodec<? super B, T11>, java.util.function.Function<C, T11>, com.mojang.datafixers.util.Function11<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, net.minecraft.network.codec.StreamCodec<? super B, T10>, java.util.function.Function<C, T10>, net.minecraft.network.codec.StreamCodec<? super B, T11>, java.util.function.Function<C, T11>, net.minecraft.network.codec.StreamCodec<? super B, T12>, java.util.function.Function<C, T12>, com.mojang.datafixers.util.Function12<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, net.minecraft.network.codec.StreamCodec<? super B, T10>, java.util.function.Function<C, T10>, net.minecraft.network.codec.StreamCodec<? super B, T11>, java.util.function.Function<C, T11>, net.minecraft.network.codec.StreamCodec<? super B, T12>, java.util.function.Function<C, T12>, net.minecraft.network.codec.StreamCodec<? super B, T13>, java.util.function.Function<C, T13>, com.mojang.datafixers.util.Function13<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, C>);
+  public static <B, C, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> net.minecraft.network.codec.StreamCodec<B, C> composite(net.minecraft.network.codec.StreamCodec<? super B, T1>, java.util.function.Function<C, T1>, net.minecraft.network.codec.StreamCodec<? super B, T2>, java.util.function.Function<C, T2>, net.minecraft.network.codec.StreamCodec<? super B, T3>, java.util.function.Function<C, T3>, net.minecraft.network.codec.StreamCodec<? super B, T4>, java.util.function.Function<C, T4>, net.minecraft.network.codec.StreamCodec<? super B, T5>, java.util.function.Function<C, T5>, net.minecraft.network.codec.StreamCodec<? super B, T6>, java.util.function.Function<C, T6>, net.minecraft.network.codec.StreamCodec<? super B, T7>, java.util.function.Function<C, T7>, net.minecraft.network.codec.StreamCodec<? super B, T8>, java.util.function.Function<C, T8>, net.minecraft.network.codec.StreamCodec<? super B, T9>, java.util.function.Function<C, T9>, net.minecraft.network.codec.StreamCodec<? super B, T10>, java.util.function.Function<C, T10>, net.minecraft.network.codec.StreamCodec<? super B, T11>, java.util.function.Function<C, T11>, net.minecraft.network.codec.StreamCodec<? super B, T12>, java.util.function.Function<C, T12>, net.minecraft.network.codec.StreamCodec<? super B, T13>, java.util.function.Function<C, T13>, net.minecraft.network.codec.StreamCodec<? super B, T14>, java.util.function.Function<C, T14>, com.mojang.datafixers.util.Function14<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, C>);
+  public static <B, T> net.minecraft.network.codec.StreamCodec<B, T> recursive(java.util.function.UnaryOperator<net.minecraft.network.codec.StreamCodec<B, T>>);
+  public default <S extends B> net.minecraft.network.codec.StreamCodec<S, V> cast();
+}
+Compiled from "StreamDecoder.java"
+public interface net.minecraft.network.codec.StreamDecoder<I, T> {
+  public abstract T decode(I);
+}
+Compiled from "IdDispatchCodec.java"
+public class net.minecraft.network.codec.IdDispatchCodec<B extends io.netty.buffer.ByteBuf, V, T> implements net.minecraft.network.codec.StreamCodec<B, V> {
+  public V decode(B);
+  public void encode(B, V);
+  public static <B extends io.netty.buffer.ByteBuf, V, T> net.minecraft.network.codec.IdDispatchCodec$Builder<B, V, T> builder(java.util.function.Function<V, ? extends T>);
+  public void encode(java.lang.Object, java.lang.Object);
+  public java.lang.Object decode(java.lang.Object);
+}
+Compiled from "StreamCodec.java"
+public interface net.minecraft.network.codec.StreamCodec$CodecOperation<B, S, T> {
+  public abstract net.minecraft.network.codec.StreamCodec<B, T> apply(net.minecraft.network.codec.StreamCodec<B, S>);
+}
+Compiled from "IdDispatchCodec.java"
+public class net.minecraft.network.codec.IdDispatchCodec$Builder<B extends io.netty.buffer.ByteBuf, V, T> {
+  public net.minecraft.network.codec.IdDispatchCodec$Builder<B, V, T> add(T, net.minecraft.network.codec.StreamCodec<? super B, ? extends V>);
+  public net.minecraft.network.codec.IdDispatchCodec<B, V, T> build();
+}
+Compiled from "IdDispatchCodec.java"
+final class net.minecraft.network.codec.IdDispatchCodec$Entry<B, V, T> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.codec.StreamCodec<? super B, ? extends V> serializer();
+  public T type();
+}

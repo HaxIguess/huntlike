@@ -1,0 +1,673 @@
+Compiled from "BulkSectionAccess.java"
+public class net.minecraft.world.level.chunk.BulkSectionAccess implements java.lang.AutoCloseable {
+  public net.minecraft.world.level.chunk.BulkSectionAccess(net.minecraft.world.level.LevelAccessor);
+  public net.minecraft.world.level.chunk.LevelChunkSection getSection(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public void close();
+}
+Compiled from "PalettedContainerRO.java"
+public interface net.minecraft.world.level.chunk.PalettedContainerRO<T> {
+  public abstract T get(int, int, int);
+  public abstract void getAll(java.util.function.Consumer<T>);
+  public abstract void write(net.minecraft.network.FriendlyByteBuf);
+  public abstract int getSerializedSize();
+  public abstract int bitsPerEntry();
+  public abstract boolean maybeHas(java.util.function.Predicate<T>);
+  public abstract void forEachInPalette(java.util.function.Consumer<T>);
+  public abstract void count(net.minecraft.world.level.chunk.PalettedContainer$CountConsumer<T>);
+  public abstract net.minecraft.world.level.chunk.PalettedContainer<T> copy();
+  public abstract net.minecraft.world.level.chunk.PalettedContainer<T> recreate();
+  public abstract net.minecraft.world.level.chunk.PalettedContainerRO$PackedData<T> pack(net.minecraft.world.level.chunk.Strategy<T>);
+}
+Compiled from "StructureAccess.java"
+public interface net.minecraft.world.level.chunk.StructureAccess {
+  public abstract net.minecraft.world.level.levelgen.structure.StructureStart getStartForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public abstract void setStartForStructure(net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart);
+  public abstract it.unimi.dsi.fastutil.longs.LongSet getReferencesForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public abstract void addReferenceForStructure(net.minecraft.world.level.levelgen.structure.Structure, long);
+  public abstract java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet> getAllReferences();
+  public abstract void setAllReferences(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet>);
+}
+Compiled from "PaletteResize.java"
+public interface net.minecraft.world.level.chunk.PaletteResize<T> {
+  public abstract int onResize(int, T);
+  public static <T> net.minecraft.world.level.chunk.PaletteResize<T> noResizeExpected();
+}
+Compiled from "LevelChunk.java"
+public interface net.minecraft.world.level.chunk.LevelChunk$UnsavedListener {
+  public abstract void setUnsaved(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "ChunkGenerator.java"
+public abstract class net.minecraft.world.level.chunk.ChunkGenerator {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.chunk.ChunkGenerator> CODEC;
+  protected final net.minecraft.world.level.biome.BiomeSource biomeSource;
+  public net.minecraft.world.level.chunk.ChunkGenerator(net.minecraft.world.level.biome.BiomeSource);
+  public net.minecraft.world.level.chunk.ChunkGenerator(net.minecraft.world.level.biome.BiomeSource, java.util.function.Function<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>, net.minecraft.world.level.biome.BiomeGenerationSettings>);
+  public void validate();
+  public net.minecraft.world.level.ChunkPos getOrigin(net.minecraft.world.level.levelgen.RandomState);
+  protected abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> codec();
+  public net.minecraft.world.level.chunk.ChunkGeneratorStructureState createState(net.minecraft.core.HolderLookup<net.minecraft.world.level.levelgen.structure.StructureSet>, net.minecraft.world.level.levelgen.RandomState, long);
+  public java.util.Optional<net.minecraft.resources.Identifier> getTypeNameForDataFixer();
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> createBiomes(net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkAccess);
+  protected net.minecraft.world.level.biome.BiomeResolver decorateBiomeResolver(net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.biome.BiomeResolver);
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>> findNearestMapStructure(net.minecraft.server.level.ServerLevel, net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.structure.Structure>, net.minecraft.core.BlockPos, int, boolean);
+  public void applyBiomeDecoration(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.StructureManager);
+  public abstract void spawnOriginalMobs(net.minecraft.server.level.WorldGenRegion);
+  public int getSpawnHeight(net.minecraft.world.level.LevelHeightAccessor);
+  public net.minecraft.world.level.biome.BiomeSource getBiomeSource();
+  public abstract int getGenDepth();
+  public net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> getMobsAt(net.minecraft.world.level.Level, net.minecraft.world.level.StructureManager, net.minecraft.world.entity.MobCategory, net.minecraft.core.BlockPos);
+  public void createStructures(net.minecraft.core.RegistryAccess, net.minecraft.world.level.chunk.ChunkGeneratorStructureState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public void createReferences(net.minecraft.world.level.WorldGenLevel, net.minecraft.world.level.StructureManager, net.minecraft.world.level.chunk.ChunkAccess);
+  public abstract java.util.concurrent.CompletableFuture<net.minecraft.world.level.chunk.ChunkAccess> buildTerrain(net.minecraft.world.level.chunk.ChunkAccess, net.minecraft.world.level.levelgen.blending.Blender, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.StructureManager, net.minecraft.world.level.biome.BiomeManager, net.minecraft.server.level.WorldGenRegion, java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public abstract int getSeaLevel();
+  public abstract int getMinY();
+  public abstract int getBaseHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public abstract net.minecraft.world.level.NoiseColumn getBaseColumn(int, int, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public int getFirstFreeHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public int getFirstOccupiedHeight(int, int, net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.levelgen.RandomState);
+  public abstract void addDebugScreenInfo(java.util.List<java.lang.String>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.core.BlockPos, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings getBiomeGenerationSettings(net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>);
+}
+Compiled from "PalettedContainerFactory.java"
+public final class net.minecraft.world.level.chunk.PalettedContainerFactory extends java.lang.Record {
+  public net.minecraft.world.level.chunk.PalettedContainerFactory(net.minecraft.world.level.chunk.Strategy<net.minecraft.world.level.block.state.BlockState>, net.minecraft.world.level.block.state.BlockState, com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.world.level.block.state.BlockState>>, net.minecraft.world.level.chunk.Strategy<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>, com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainerRO<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>>);
+  public static net.minecraft.world.level.chunk.PalettedContainerFactory create(net.minecraft.core.RegistryAccess);
+  public net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.world.level.block.state.BlockState> createForBlockStates();
+  public net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> createForBiomes();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.Strategy<net.minecraft.world.level.block.state.BlockState> blockStatesStrategy();
+  public net.minecraft.world.level.block.state.BlockState defaultBlockState();
+  public com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.world.level.block.state.BlockState>> blockStatesContainerCodec();
+  public net.minecraft.world.level.chunk.Strategy<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> biomeStrategy();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> defaultBiome();
+  public com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainerRO<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>> biomeContainerCodec();
+}
+Compiled from "Configuration.java"
+public final class net.minecraft.world.level.chunk.Configuration$Simple extends java.lang.Record implements net.minecraft.world.level.chunk.Configuration {
+  public net.minecraft.world.level.chunk.Configuration$Simple(net.minecraft.world.level.chunk.Palette$Factory, int);
+  public boolean alwaysRepack();
+  public <T> net.minecraft.world.level.chunk.Palette<T> createPalette(net.minecraft.world.level.chunk.Strategy<T>, java.util.List<T>);
+  public int bitsInMemory();
+  public int bitsInStorage();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.Palette$Factory factory();
+  public int bits();
+}
+Compiled from "MissingPaletteEntryException.java"
+public class net.minecraft.world.level.chunk.MissingPaletteEntryException extends java.lang.RuntimeException {
+  public net.minecraft.world.level.chunk.MissingPaletteEntryException(int);
+}
+Compiled from "Configuration.java"
+public final class net.minecraft.world.level.chunk.Configuration$Global extends java.lang.Record implements net.minecraft.world.level.chunk.Configuration {
+  public net.minecraft.world.level.chunk.Configuration$Global(int, int);
+  public boolean alwaysRepack();
+  public <T> net.minecraft.world.level.chunk.Palette<T> createPalette(net.minecraft.world.level.chunk.Strategy<T>, java.util.List<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int bitsInMemory();
+  public int bitsInStorage();
+}
+Compiled from "CarvingMask.java"
+public interface net.minecraft.world.level.chunk.CarvingMask$Filter {
+  public abstract boolean test(int, int, int);
+}
+Compiled from "LightChunkGetter.java"
+public interface net.minecraft.world.level.chunk.LightChunkGetter {
+  public abstract net.minecraft.world.level.chunk.LightChunk getChunkForLighting(int, int);
+  public default void onLightUpdate(net.minecraft.world.level.LightLayer, net.minecraft.core.SectionPos);
+  public abstract net.minecraft.world.level.BlockGetter getLevel();
+}
+Compiled from "Palette.java"
+public interface net.minecraft.world.level.chunk.Palette$Factory {
+  public abstract <A> net.minecraft.world.level.chunk.Palette<A> create(int, java.util.List<A>);
+}
+Compiled from "ChunkAccess.java"
+public final class net.minecraft.world.level.chunk.ChunkAccess$PackedTicks extends java.lang.Record {
+  public net.minecraft.world.level.chunk.ChunkAccess$PackedTicks(java.util.List<net.minecraft.world.ticks.SavedTick<net.minecraft.world.level.block.Block>>, java.util.List<net.minecraft.world.ticks.SavedTick<net.minecraft.world.level.material.Fluid>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.ticks.SavedTick<net.minecraft.world.level.block.Block>> blocks();
+  public java.util.List<net.minecraft.world.ticks.SavedTick<net.minecraft.world.level.material.Fluid>> fluids();
+}
+Compiled from "ChunkSource.java"
+public abstract class net.minecraft.world.level.chunk.ChunkSource implements java.lang.AutoCloseable,net.minecraft.world.level.chunk.LightChunkGetter {
+  public net.minecraft.world.level.chunk.ChunkSource();
+  public net.minecraft.world.level.chunk.LevelChunk getChunk(int, int, boolean);
+  public net.minecraft.world.level.chunk.LevelChunk getChunkNow(int, int);
+  public net.minecraft.world.level.chunk.LightChunk getChunkForLighting(int, int);
+  public boolean hasChunk(int, int);
+  public abstract net.minecraft.world.level.chunk.ChunkAccess getChunk(int, int, net.minecraft.world.level.chunk.status.ChunkStatus, boolean);
+  public abstract void tick(java.util.function.BooleanSupplier, boolean);
+  public void onSectionEmptinessChanged(int, int, int, boolean);
+  public abstract java.lang.String gatherStats();
+  public abstract int getLoadedChunksCount();
+  public void close() throws java.io.IOException;
+  public abstract net.minecraft.world.level.lighting.LevelLightEngine getLightEngine();
+  public void setSpawnSettings(boolean);
+  public boolean updateChunkForced(net.minecraft.world.level.ChunkPos, boolean);
+  public it.unimi.dsi.fastutil.longs.LongSet getForceLoadedChunks();
+}
+Compiled from "HashMapPalette.java"
+public class net.minecraft.world.level.chunk.HashMapPalette<T> implements net.minecraft.world.level.chunk.Palette<T> {
+  public net.minecraft.world.level.chunk.HashMapPalette(int, java.util.List<T>);
+  public net.minecraft.world.level.chunk.HashMapPalette(int);
+  public static <A> net.minecraft.world.level.chunk.Palette<A> create(int, java.util.List<A>);
+  public int idFor(T, net.minecraft.world.level.chunk.PaletteResize<T>);
+  public boolean maybeHas(java.util.function.Predicate<T>);
+  public T valueFor(int);
+  public void read(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public java.util.List<T> getEntries();
+  public int getSize();
+  public net.minecraft.world.level.chunk.Palette<T> copy();
+}
+Compiled from "PalettedContainer.java"
+final class net.minecraft.world.level.chunk.PalettedContainer$Data<T> extends java.lang.Record {
+  public void copyFrom(net.minecraft.world.level.chunk.Palette<T>, net.minecraft.util.BitStorage);
+  public int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public net.minecraft.world.level.chunk.PalettedContainer$Data<T> copy();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.Configuration configuration();
+  public net.minecraft.util.BitStorage storage();
+  public net.minecraft.world.level.chunk.Palette<T> palette();
+}
+Compiled from "Palette.java"
+public interface net.minecraft.world.level.chunk.Palette<T> {
+  public abstract int idFor(T, net.minecraft.world.level.chunk.PaletteResize<T>);
+  public abstract boolean maybeHas(java.util.function.Predicate<T>);
+  public abstract T valueFor(int);
+  public abstract void read(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public abstract void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public abstract int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public abstract int getSize();
+  public abstract net.minecraft.world.level.chunk.Palette<T> copy();
+}
+Compiled from "ChunkGenerators.java"
+public class net.minecraft.world.level.chunk.ChunkGenerators {
+  public net.minecraft.world.level.chunk.ChunkGenerators();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.chunk.ChunkGenerator>>);
+}
+Compiled from "Strategy.java"
+public abstract class net.minecraft.world.level.chunk.Strategy<T> {
+  protected final int globalPaletteBitsInMemory;
+  public static <T> net.minecraft.world.level.chunk.Strategy<T> createForBlockStates(net.minecraft.core.IdMap<T>);
+  public static <T> net.minecraft.world.level.chunk.Strategy<T> createForBiomes(net.minecraft.core.IdMap<T>);
+  public int entryCount();
+  public int getIndex(int, int, int);
+  public net.minecraft.core.IdMap<T> globalMap();
+  public net.minecraft.world.level.chunk.GlobalPalette<T> globalPalette();
+  protected abstract net.minecraft.world.level.chunk.Configuration getConfigurationForBitCount(int);
+  protected net.minecraft.world.level.chunk.Configuration getConfigurationForPaletteSize(int);
+}
+Compiled from "LevelChunk.java"
+public interface net.minecraft.world.level.chunk.LevelChunk$PostLoadProcessor {
+  public abstract void run(net.minecraft.world.level.chunk.LevelChunk);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.chunk.package-info {
+}
+Compiled from "PalettedContainerRO.java"
+public interface net.minecraft.world.level.chunk.PalettedContainerRO$Unpacker<T, C extends net.minecraft.world.level.chunk.PalettedContainerRO<T>> {
+  public abstract com.mojang.serialization.DataResult<C> read(net.minecraft.world.level.chunk.Strategy<T>, net.minecraft.world.level.chunk.PalettedContainerRO$PackedData<T>);
+}
+Compiled from "ChunkGeneratorStructureState.java"
+public class net.minecraft.world.level.chunk.ChunkGeneratorStructureState {
+  public static net.minecraft.world.level.chunk.ChunkGeneratorStructureState createForFlat(net.minecraft.world.level.levelgen.RandomState, long, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.biome.BiomeSource, java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.StructureSet>>);
+  public static net.minecraft.world.level.chunk.ChunkGeneratorStructureState createForNormal(net.minecraft.world.level.levelgen.RandomState, long, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.biome.BiomeSource, net.minecraft.core.HolderLookup<net.minecraft.world.level.levelgen.structure.StructureSet>);
+  public java.util.List<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.StructureSet>> possibleStructureSets();
+  public net.minecraft.world.level.ChunkPos getDimensionOrigin();
+  public void ensureStructuresGenerated();
+  public java.util.List<net.minecraft.world.level.ChunkPos> getRingPositionsFor(net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStructurePlacement);
+  public java.util.List<net.minecraft.world.level.levelgen.structure.placement.StructurePlacement> getPlacementsForStructure(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>);
+  public net.minecraft.world.level.levelgen.RandomState randomState();
+  public boolean hasStructureChunkInRange(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.StructureSet>, int, int, int);
+  public long getLevelSeed();
+}
+Compiled from "LevelChunk.java"
+public class net.minecraft.world.level.chunk.LevelChunk extends net.minecraft.world.level.chunk.ChunkAccess implements net.minecraft.util.debug.DebugValueSource {
+  public net.minecraft.world.level.chunk.LevelChunk(net.minecraft.world.level.Level, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.level.chunk.LevelChunk(net.minecraft.world.level.Level, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.UpgradeData, net.minecraft.world.ticks.LevelChunkTicks<net.minecraft.world.level.block.Block>, net.minecraft.world.ticks.LevelChunkTicks<net.minecraft.world.level.material.Fluid>, long, net.minecraft.world.level.chunk.LevelChunkSection[], net.minecraft.world.level.chunk.LevelChunk$PostLoadProcessor, net.minecraft.world.level.levelgen.blending.BlendingData);
+  public net.minecraft.world.level.chunk.LevelChunk(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.ProtoChunk, net.minecraft.world.level.chunk.LevelChunk$PostLoadProcessor);
+  public void setUnsavedListener(net.minecraft.world.level.chunk.LevelChunk$UnsavedListener);
+  public void markUnsaved();
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.block.Block> getBlockTicks();
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.material.Fluid> getFluidTicks();
+  public net.minecraft.world.level.chunk.ChunkAccess$PackedTicks getTicksForSerialization(long);
+  public net.minecraft.world.level.gameevent.GameEventListenerRegistry getListenerRegistry(int);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.material.FluidState getFluidState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.material.FluidState getFluidState(int, int, int);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public void addEntity(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.chunk.LevelChunk$EntityCreationType);
+  public void addAndRegisterBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public void setBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public net.minecraft.nbt.CompoundTag getBlockEntityNbtForSaving(net.minecraft.core.BlockPos, net.minecraft.core.HolderLookup$Provider);
+  public void removeBlockEntity(net.minecraft.core.BlockPos);
+  public void runPostLoad();
+  public boolean isEmpty();
+  public void replaceWithPacketData(int, int, net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData);
+  public void replaceBiomes(net.minecraft.network.FriendlyByteBuf);
+  public void setLoaded(boolean);
+  public net.minecraft.world.level.Level getLevel();
+  public java.util.Map<net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntity> getBlockEntities();
+  public void postProcessGeneration(net.minecraft.server.level.ServerLevel);
+  public void unpackTicks(long);
+  public void registerTickContainerInLevel(net.minecraft.server.level.ServerLevel);
+  public void unregisterTickContainerFromLevel(net.minecraft.server.level.ServerLevel);
+  public void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+  public net.minecraft.world.level.chunk.status.ChunkStatus getPersistedStatus();
+  public net.minecraft.server.level.FullChunkStatus getFullStatus();
+  public void setFullStatus(java.util.function.Supplier<net.minecraft.server.level.FullChunkStatus>);
+  public void clearAllBlockEntities();
+  public void registerAllBlockEntitiesAfterLevelLoad();
+}
+Compiled from "BlockColumn.java"
+public interface net.minecraft.world.level.chunk.BlockColumn {
+  public abstract net.minecraft.world.level.block.state.BlockState getBlock(int);
+  public abstract void setBlock(int, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "ChunkAccess.java"
+public abstract class net.minecraft.world.level.chunk.ChunkAccess implements net.minecraft.world.level.chunk.LightChunk,net.minecraft.world.level.chunk.StructureAccess,net.minecraft.world.level.biome.BiomeResolver,net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
+  public static final int NO_FILLED_SECTION;
+  protected final it.unimi.dsi.fastutil.shorts.ShortList[] postProcessing;
+  protected final net.minecraft.world.level.ChunkPos chunkPos;
+  protected final net.minecraft.world.level.chunk.UpgradeData upgradeData;
+  protected final net.minecraft.world.level.levelgen.blending.BlendingData blendingData;
+  protected final java.util.Map<net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.levelgen.Heightmap> heightmaps;
+  protected net.minecraft.world.level.lighting.ChunkSkyLightSources skyLightSources;
+  protected final java.util.Map<net.minecraft.core.BlockPos, net.minecraft.nbt.CompoundTag> pendingBlockEntities;
+  protected final java.util.Map<net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntity> blockEntities;
+  protected final net.minecraft.world.level.LevelHeightAccessor levelHeightAccessor;
+  protected final net.minecraft.world.level.chunk.LevelChunkSection[] sections;
+  public net.minecraft.world.level.chunk.ChunkAccess(net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.UpgradeData, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.chunk.PalettedContainerFactory, long, net.minecraft.world.level.chunk.LevelChunkSection[], net.minecraft.world.level.levelgen.blending.BlendingData);
+  public net.minecraft.world.level.gameevent.GameEventListenerRegistry getListenerRegistry(int);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public abstract net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public abstract void setBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public abstract void addEntity(net.minecraft.world.entity.Entity);
+  public int getHighestFilledSectionIndex();
+  public int getHighestSectionPosition();
+  public java.util.Set<net.minecraft.core.BlockPos> getBlockEntitiesPos();
+  public net.minecraft.world.level.chunk.LevelChunkSection[] getSections();
+  public net.minecraft.world.level.chunk.LevelChunkSection getSection(int);
+  public java.util.Collection<java.util.Map$Entry<net.minecraft.world.level.levelgen.Heightmap$Types, net.minecraft.world.level.levelgen.Heightmap>> getHeightmaps();
+  public void setHeightmap(net.minecraft.world.level.levelgen.Heightmap$Types, long[]);
+  public net.minecraft.world.level.levelgen.Heightmap getOrCreateHeightmapUnprimed(net.minecraft.world.level.levelgen.Heightmap$Types);
+  public boolean hasPrimedHeightmap(net.minecraft.world.level.levelgen.Heightmap$Types);
+  public int getHeight(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public net.minecraft.world.level.ChunkPos getPos();
+  public net.minecraft.world.level.levelgen.structure.StructureStart getStartForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public void setStartForStructure(net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart);
+  public java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart> getAllStarts();
+  public void setAllStarts(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart>);
+  public it.unimi.dsi.fastutil.longs.LongSet getReferencesForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public void addReferenceForStructure(net.minecraft.world.level.levelgen.structure.Structure, long);
+  public java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet> getAllReferences();
+  public void setAllReferences(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet>);
+  public boolean isYSpaceEmpty(int, int);
+  public void markUnsaved();
+  public boolean tryMarkSaved();
+  public boolean isUnsaved();
+  public abstract net.minecraft.world.level.chunk.status.ChunkStatus getPersistedStatus();
+  public net.minecraft.world.level.chunk.status.ChunkStatus getHighestGeneratedStatus();
+  public abstract void removeBlockEntity(net.minecraft.core.BlockPos);
+  public void markPosForPostProcessing(net.minecraft.core.BlockPos);
+  public it.unimi.dsi.fastutil.shorts.ShortList[] getPostProcessing();
+  public void addPackedPostProcess(it.unimi.dsi.fastutil.shorts.ShortList, int);
+  public void setBlockEntityNbt(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag getBlockEntityNbt(net.minecraft.core.BlockPos);
+  public abstract net.minecraft.nbt.CompoundTag getBlockEntityNbtForSaving(net.minecraft.core.BlockPos, net.minecraft.core.HolderLookup$Provider);
+  public final void findBlockLightSources(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public void findBlocks(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public abstract net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.block.Block> getBlockTicks();
+  public abstract net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.material.Fluid> getFluidTicks();
+  public void collectBiomesInPalette(java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public boolean canBeSerialized();
+  public abstract net.minecraft.world.level.chunk.ChunkAccess$PackedTicks getTicksForSerialization(long);
+  public net.minecraft.world.level.chunk.UpgradeData getUpgradeData();
+  public boolean isOldNoiseGeneration();
+  public net.minecraft.world.level.levelgen.blending.BlendingData getBlendingData();
+  public long getInhabitedTime();
+  public void incrementInhabitedTime();
+  public void setInhabitedTime(long);
+  public static it.unimi.dsi.fastutil.shorts.ShortList getOrCreateOffsetList(it.unimi.dsi.fastutil.shorts.ShortList[], int);
+  public boolean isLightCorrect();
+  public void setLightCorrect(boolean);
+  public int getMinY();
+  public int getHeight();
+  public net.minecraft.world.level.biome.BiomeGenerationSettings carverBiome(java.util.function.Supplier<net.minecraft.world.level.biome.BiomeGenerationSettings>);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public void fillBiomesFromNoise(net.minecraft.world.level.biome.BiomeResolver);
+  public net.minecraft.world.level.levelgen.BelowZeroRetrogen getBelowZeroRetrogen();
+  public boolean isUpgrading();
+  public net.minecraft.world.level.LevelHeightAccessor getHeightAccessorForGeneration();
+  public void initializeLightSources();
+  public net.minecraft.world.level.lighting.ChunkSkyLightSources getSkyLightSources();
+  public static net.minecraft.util.ProblemReporter$PathElement problemPath(net.minecraft.world.level.ChunkPos);
+  public net.minecraft.util.ProblemReporter$PathElement problemPath();
+}
+Compiled from "PalettedContainer.java"
+public interface net.minecraft.world.level.chunk.PalettedContainer$CountConsumer<T> {
+  public abstract void accept(T, int);
+}
+Compiled from "UpgradeData.java"
+public interface net.minecraft.world.level.chunk.UpgradeData$BlockFixer {
+  public abstract net.minecraft.world.level.block.state.BlockState updateShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public default void processChunk(net.minecraft.world.level.LevelAccessor);
+}
+Compiled from "PalettedContainer.java"
+public class net.minecraft.world.level.chunk.PalettedContainer<T> implements net.minecraft.world.level.chunk.PaletteResize<T>, net.minecraft.world.level.chunk.PalettedContainerRO<T> {
+  public void acquire();
+  public void release();
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainer<T>> codecRW(com.mojang.serialization.Codec<T>, net.minecraft.world.level.chunk.Strategy<T>, T);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.level.chunk.PalettedContainerRO<T>> codecRO(com.mojang.serialization.Codec<T>, net.minecraft.world.level.chunk.Strategy<T>, T);
+  public net.minecraft.world.level.chunk.PalettedContainer(T, net.minecraft.world.level.chunk.Strategy<T>);
+  public int onResize(int, T);
+  public T getAndSet(int, int, int, T);
+  public T getAndSetUnchecked(int, int, int, T);
+  public void set(int, int, int, T);
+  public T get(int, int, int);
+  protected T get(int);
+  public void getAll(java.util.function.Consumer<T>);
+  public void read(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public static <T> com.mojang.serialization.DataResult<net.minecraft.world.level.chunk.PalettedContainer<T>> unpack(net.minecraft.world.level.chunk.Strategy<T>, net.minecraft.world.level.chunk.PalettedContainerRO$PackedData<T>);
+  public net.minecraft.world.level.chunk.PalettedContainerRO$PackedData<T> pack(net.minecraft.world.level.chunk.Strategy<T>);
+  public int getSerializedSize();
+  public int bitsPerEntry();
+  public boolean maybeHas(java.util.function.Predicate<T>);
+  public void forEachInPalette(java.util.function.Consumer<T>);
+  public net.minecraft.world.level.chunk.PalettedContainer<T> copy();
+  public net.minecraft.world.level.chunk.PalettedContainer<T> recreate();
+  public void count(net.minecraft.world.level.chunk.PalettedContainer$CountConsumer<T>);
+}
+Compiled from "CarverOutput.java"
+public interface net.minecraft.world.level.chunk.CarverOutput {
+  public abstract void carve(int, int, int);
+  public abstract int minY();
+  public abstract int maxY();
+}
+Compiled from "DataLayer.java"
+public class net.minecraft.world.level.chunk.DataLayer {
+  public static final int LAYER_COUNT;
+  public static final int LAYER_SIZE;
+  public static final int SIZE;
+  protected byte[] data;
+  public net.minecraft.world.level.chunk.DataLayer();
+  public net.minecraft.world.level.chunk.DataLayer(int);
+  public net.minecraft.world.level.chunk.DataLayer(byte[]);
+  public int get(int, int, int);
+  public void set(int, int, int, int);
+  public void fill(int);
+  public byte[] getData();
+  public net.minecraft.world.level.chunk.DataLayer copy();
+  public java.lang.String toString();
+  public java.lang.String layerToString(int);
+  public boolean isDefinitelyHomogenous();
+  public boolean isDefinitelyFilledWith(int);
+  public boolean isEmpty();
+}
+Compiled from "LightChunk.java"
+public interface net.minecraft.world.level.chunk.LightChunk extends net.minecraft.world.level.BlockGetter {
+  public abstract void findBlockLightSources(java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public abstract net.minecraft.world.level.lighting.ChunkSkyLightSources getSkyLightSources();
+}
+Compiled from "CarvingMask.java"
+public interface net.minecraft.world.level.chunk.CarvingMask$Visitor {
+  public abstract void visitColumn(int, int, int, int);
+}
+Compiled from "Configuration.java"
+public interface net.minecraft.world.level.chunk.Configuration {
+  public abstract boolean alwaysRepack();
+  public abstract int bitsInMemory();
+  public abstract int bitsInStorage();
+  public abstract <T> net.minecraft.world.level.chunk.Palette<T> createPalette(net.minecraft.world.level.chunk.Strategy<T>, java.util.List<T>);
+}
+Compiled from "LevelChunk.java"
+public final class net.minecraft.world.level.chunk.LevelChunk$EntityCreationType extends java.lang.Enum<net.minecraft.world.level.chunk.LevelChunk$EntityCreationType> {
+  public static final net.minecraft.world.level.chunk.LevelChunk$EntityCreationType IMMEDIATE;
+  public static final net.minecraft.world.level.chunk.LevelChunk$EntityCreationType QUEUED;
+  public static final net.minecraft.world.level.chunk.LevelChunk$EntityCreationType CHECK;
+  public static net.minecraft.world.level.chunk.LevelChunk$EntityCreationType[] values();
+  public static net.minecraft.world.level.chunk.LevelChunk$EntityCreationType valueOf(java.lang.String);
+}
+Compiled from "LevelChunk.java"
+class net.minecraft.world.level.chunk.LevelChunk$BoundTickingBlockEntity<T extends net.minecraft.world.level.block.entity.BlockEntity> implements net.minecraft.world.level.block.entity.TickingBlockEntity {
+  public void tick();
+  public boolean isRemoved();
+  public net.minecraft.core.BlockPos getPos();
+  public java.lang.String getType();
+  public java.lang.String toString();
+}
+Compiled from "LevelChunkSection.java"
+public class net.minecraft.world.level.chunk.LevelChunkSection {
+  public static final int BIOME_CONTAINER_BITS;
+  public net.minecraft.world.level.chunk.LevelChunkSection(net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.world.level.block.state.BlockState>, net.minecraft.world.level.chunk.PalettedContainerRO<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public net.minecraft.world.level.chunk.LevelChunkSection(net.minecraft.world.level.chunk.PalettedContainerFactory);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(int, int, int);
+  public net.minecraft.world.level.material.FluidState getFluidState(int, int, int);
+  public void acquire();
+  public void release();
+  public net.minecraft.world.level.block.state.BlockState setBlockState(int, int, int, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(int, int, int, net.minecraft.world.level.block.state.BlockState, boolean);
+  public boolean hasOnlyAir();
+  public boolean hasFluid();
+  public boolean isRandomlyTicking();
+  public boolean isRandomlyTickingBlocks();
+  public boolean isRandomlyTickingFluids();
+  public void recalcBlockCounts();
+  public net.minecraft.world.level.chunk.PalettedContainer<net.minecraft.world.level.block.state.BlockState> getStates();
+  public net.minecraft.world.level.chunk.PalettedContainerRO<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> getBiomes();
+  public void read(net.minecraft.network.FriendlyByteBuf);
+  public void readBiomes(net.minecraft.network.FriendlyByteBuf);
+  public void write(net.minecraft.network.FriendlyByteBuf);
+  public int getSerializedSize();
+  public boolean maybeHas(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public void fillBiomesFromNoise(net.minecraft.world.level.biome.BiomeResolver, int, int, int);
+  public net.minecraft.world.level.chunk.LevelChunkSection copy();
+}
+Compiled from "ChunkAccess.java"
+final class net.minecraft.world.level.chunk.ChunkAccess$ChunkPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.ChunkPos pos();
+}
+Compiled from "SingleValuePalette.java"
+public class net.minecraft.world.level.chunk.SingleValuePalette<T> implements net.minecraft.world.level.chunk.Palette<T> {
+  public net.minecraft.world.level.chunk.SingleValuePalette(java.util.List<T>);
+  public static <A> net.minecraft.world.level.chunk.Palette<A> create(int, java.util.List<A>);
+  public int idFor(T, net.minecraft.world.level.chunk.PaletteResize<T>);
+  public boolean maybeHas(java.util.function.Predicate<T>);
+  public T valueFor(int);
+  public void read(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public int getSize();
+  public net.minecraft.world.level.chunk.Palette<T> copy();
+}
+Compiled from "UpgradeData.java"
+abstract class net.minecraft.world.level.chunk.UpgradeData$BlockFixers extends java.lang.Enum<net.minecraft.world.level.chunk.UpgradeData$BlockFixers> implements net.minecraft.world.level.chunk.UpgradeData$BlockFixer {
+  public static final net.minecraft.world.level.chunk.UpgradeData$BlockFixers BLACKLIST;
+  public static final net.minecraft.world.level.chunk.UpgradeData$BlockFixers DEFAULT;
+  public static final net.minecraft.world.level.chunk.UpgradeData$BlockFixers CHEST;
+  public static final net.minecraft.world.level.chunk.UpgradeData$BlockFixers LEAVES;
+  public static final net.minecraft.world.level.chunk.UpgradeData$BlockFixers STEM_BLOCK;
+  public static final net.minecraft.core.Direction[] DIRECTIONS;
+  public static net.minecraft.world.level.chunk.UpgradeData$BlockFixers[] values();
+  public static net.minecraft.world.level.chunk.UpgradeData$BlockFixers valueOf(java.lang.String);
+}
+Compiled from "LevelChunk.java"
+class net.minecraft.world.level.chunk.LevelChunk$RebindableTickingBlockEntityWrapper implements net.minecraft.world.level.block.entity.TickingBlockEntity {
+  public void tick();
+  public boolean isRemoved();
+  public net.minecraft.core.BlockPos getPos();
+  public java.lang.String getType();
+  public java.lang.String toString();
+}
+Compiled from "ProtoChunk.java"
+public class net.minecraft.world.level.chunk.ProtoChunk extends net.minecraft.world.level.chunk.ChunkAccess {
+  public net.minecraft.world.level.chunk.ProtoChunk(net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.UpgradeData, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.chunk.PalettedContainerFactory, net.minecraft.world.level.levelgen.blending.BlendingData);
+  public net.minecraft.world.level.chunk.ProtoChunk(net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.UpgradeData, net.minecraft.world.level.chunk.LevelChunkSection[], net.minecraft.world.ticks.ProtoChunkTicks<net.minecraft.world.level.block.Block>, net.minecraft.world.ticks.ProtoChunkTicks<net.minecraft.world.level.material.Fluid>, net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.chunk.PalettedContainerFactory, net.minecraft.world.level.levelgen.blending.BlendingData);
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.block.Block> getBlockTicks();
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.material.Fluid> getFluidTicks();
+  public net.minecraft.world.level.chunk.ChunkAccess$PackedTicks getTicksForSerialization(long);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.material.FluidState getFluidState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public void setBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(net.minecraft.core.BlockPos);
+  public java.util.Map<net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntity> getBlockEntities();
+  public void addEntity(net.minecraft.nbt.CompoundTag);
+  public void addEntity(net.minecraft.world.entity.Entity);
+  public void setStartForStructure(net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart);
+  public java.util.List<net.minecraft.nbt.CompoundTag> getEntities();
+  public net.minecraft.world.level.chunk.status.ChunkStatus getPersistedStatus();
+  public void setPersistedStatus(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public static short packOffsetCoordinates(net.minecraft.core.BlockPos);
+  public static net.minecraft.core.BlockPos unpackOffsetCoordinates(short, int, net.minecraft.world.level.ChunkPos);
+  public void markPosForPostProcessing(net.minecraft.core.BlockPos);
+  public void addPackedPostProcess(it.unimi.dsi.fastutil.shorts.ShortList, int);
+  public java.util.Map<net.minecraft.core.BlockPos, net.minecraft.nbt.CompoundTag> getBlockEntityNbts();
+  public net.minecraft.nbt.CompoundTag getBlockEntityNbtForSaving(net.minecraft.core.BlockPos, net.minecraft.core.HolderLookup$Provider);
+  public void removeBlockEntity(net.minecraft.core.BlockPos);
+  public void setLightEngine(net.minecraft.world.level.lighting.LevelLightEngine);
+  public void setBelowZeroRetrogen(net.minecraft.world.level.levelgen.BelowZeroRetrogen);
+  public net.minecraft.world.level.levelgen.BelowZeroRetrogen getBelowZeroRetrogen();
+  public net.minecraft.world.ticks.LevelChunkTicks<net.minecraft.world.level.block.Block> unpackBlockTicks();
+  public net.minecraft.world.ticks.LevelChunkTicks<net.minecraft.world.level.material.Fluid> unpackFluidTicks();
+  public net.minecraft.world.level.LevelHeightAccessor getHeightAccessorForGeneration();
+}
+Compiled from "UpgradeData.java"
+public class net.minecraft.world.level.chunk.UpgradeData {
+  public static final net.minecraft.world.level.chunk.UpgradeData EMPTY;
+  public net.minecraft.world.level.chunk.UpgradeData(net.minecraft.nbt.CompoundTag, net.minecraft.world.level.LevelHeightAccessor);
+  public void upgrade(net.minecraft.world.level.chunk.LevelChunk);
+  public boolean isEmpty();
+  public net.minecraft.nbt.CompoundTag write();
+  public net.minecraft.world.level.chunk.UpgradeData copy();
+}
+Compiled from "LinearPalette.java"
+public class net.minecraft.world.level.chunk.LinearPalette<T> implements net.minecraft.world.level.chunk.Palette<T> {
+  public static <A> net.minecraft.world.level.chunk.Palette<A> create(int, java.util.List<A>);
+  public int idFor(T, net.minecraft.world.level.chunk.PaletteResize<T>);
+  public boolean maybeHas(java.util.function.Predicate<T>);
+  public T valueFor(int);
+  public void read(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public int getSize();
+  public net.minecraft.world.level.chunk.Palette<T> copy();
+}
+Compiled from "GlobalPalette.java"
+public class net.minecraft.world.level.chunk.GlobalPalette<T> implements net.minecraft.world.level.chunk.Palette<T> {
+  public net.minecraft.world.level.chunk.GlobalPalette(net.minecraft.core.IdMap<T>);
+  public int idFor(T, net.minecraft.world.level.chunk.PaletteResize<T>);
+  public boolean maybeHas(java.util.function.Predicate<T>);
+  public T valueFor(int);
+  public void read(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.core.IdMap<T>);
+  public int getSerializedSize(net.minecraft.core.IdMap<T>);
+  public int getSize();
+  public net.minecraft.world.level.chunk.Palette<T> copy();
+}
+Compiled from "PalettedContainerRO.java"
+public final class net.minecraft.world.level.chunk.PalettedContainerRO$PackedData<T> extends java.lang.Record {
+  public static final int UNKNOWN_BITS_PER_ENTRY;
+  public net.minecraft.world.level.chunk.PalettedContainerRO$PackedData(java.util.List<T>, java.util.Optional<java.util.stream.LongStream>);
+  public net.minecraft.world.level.chunk.PalettedContainerRO$PackedData(java.util.List<T>, java.util.Optional<java.util.stream.LongStream>, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<T> paletteEntries();
+  public java.util.Optional<java.util.stream.LongStream> storage();
+  public int bitsPerEntry();
+}
+Compiled from "CarvingMask.java"
+public class net.minecraft.world.level.chunk.CarvingMask implements net.minecraft.world.level.chunk.CarverOutput {
+  public net.minecraft.world.level.chunk.CarvingMask(int, int);
+  public int minY();
+  public int maxY();
+  public void carve(int, int, int);
+  public void visit(net.minecraft.world.level.chunk.CarvingMask$Visitor);
+  public boolean isEmpty();
+}
+Compiled from "ImposterProtoChunk.java"
+public class net.minecraft.world.level.chunk.ImposterProtoChunk extends net.minecraft.world.level.chunk.ProtoChunk {
+  public net.minecraft.world.level.chunk.ImposterProtoChunk(net.minecraft.world.level.chunk.LevelChunk, boolean);
+  public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.material.FluidState getFluidState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.chunk.LevelChunkSection getSection(int);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public void setBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public void addEntity(net.minecraft.world.entity.Entity);
+  public void setPersistedStatus(net.minecraft.world.level.chunk.status.ChunkStatus);
+  public net.minecraft.world.level.chunk.LevelChunkSection[] getSections();
+  public void setHeightmap(net.minecraft.world.level.levelgen.Heightmap$Types, long[]);
+  public net.minecraft.world.level.levelgen.Heightmap getOrCreateHeightmapUnprimed(net.minecraft.world.level.levelgen.Heightmap$Types);
+  public int getHeight(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public net.minecraft.world.level.ChunkPos getPos();
+  public net.minecraft.world.level.levelgen.structure.StructureStart getStartForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public void setStartForStructure(net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart);
+  public java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart> getAllStarts();
+  public void setAllStarts(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, net.minecraft.world.level.levelgen.structure.StructureStart>);
+  public it.unimi.dsi.fastutil.longs.LongSet getReferencesForStructure(net.minecraft.world.level.levelgen.structure.Structure);
+  public void addReferenceForStructure(net.minecraft.world.level.levelgen.structure.Structure, long);
+  public java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet> getAllReferences();
+  public void setAllReferences(java.util.Map<net.minecraft.world.level.levelgen.structure.Structure, it.unimi.dsi.fastutil.longs.LongSet>);
+  public void markUnsaved();
+  public boolean canBeSerialized();
+  public boolean tryMarkSaved();
+  public boolean isUnsaved();
+  public net.minecraft.world.level.chunk.status.ChunkStatus getPersistedStatus();
+  public void removeBlockEntity(net.minecraft.core.BlockPos);
+  public void markPosForPostProcessing(net.minecraft.core.BlockPos);
+  public void setBlockEntityNbt(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag getBlockEntityNbt(net.minecraft.core.BlockPos);
+  public net.minecraft.nbt.CompoundTag getBlockEntityNbtForSaving(net.minecraft.core.BlockPos, net.minecraft.core.HolderLookup$Provider);
+  public void findBlocks(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>, java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState>);
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.block.Block> getBlockTicks();
+  public net.minecraft.world.ticks.TickContainerAccess<net.minecraft.world.level.material.Fluid> getFluidTicks();
+  public net.minecraft.world.level.chunk.ChunkAccess$PackedTicks getTicksForSerialization(long);
+  public net.minecraft.world.level.levelgen.blending.BlendingData getBlendingData();
+  public net.minecraft.world.level.chunk.LevelChunk getWrapped();
+  public boolean isLightCorrect();
+  public void setLightCorrect(boolean);
+  public void fillBiomesFromNoise(net.minecraft.world.level.biome.BiomeResolver);
+  public void initializeLightSources();
+  public net.minecraft.world.level.lighting.ChunkSkyLightSources getSkyLightSources();
+}
+Compiled from "EmptyLevelChunk.java"
+public class net.minecraft.world.level.chunk.EmptyLevelChunk extends net.minecraft.world.level.chunk.LevelChunk {
+  public net.minecraft.world.level.chunk.EmptyLevelChunk(net.minecraft.world.level.Level, net.minecraft.world.level.ChunkPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.state.BlockState setBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, int);
+  public net.minecraft.world.level.material.FluidState getFluidState(net.minecraft.core.BlockPos);
+  public int getLightEmission(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.chunk.LevelChunk$EntityCreationType);
+  public void addAndRegisterBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public void setBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public void removeBlockEntity(net.minecraft.core.BlockPos);
+  public boolean isEmpty();
+  public boolean isYSpaceEmpty(int, int);
+  public net.minecraft.server.level.FullChunkStatus getFullStatus();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+}

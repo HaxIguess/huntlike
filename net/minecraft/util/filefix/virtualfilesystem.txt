@@ -1,0 +1,163 @@
+Compiled from "DirectoryNode.java"
+final class net.minecraft.util.filefix.virtualfilesystem.DirectoryNode extends net.minecraft.util.filefix.virtualfilesystem.Node {
+  public net.minecraft.util.filefix.virtualfilesystem.DirectoryNode(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath);
+  public java.util.Collection<net.minecraft.util.filefix.virtualfilesystem.Node> children();
+  public void addChild(net.minecraft.util.filefix.virtualfilesystem.Node);
+  public net.minecraft.util.filefix.virtualfilesystem.Node getChild(java.lang.String);
+  public net.minecraft.util.filefix.virtualfilesystem.DirectoryNode directoryByPath(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath) throws net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNoSuchFileException, net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNotDirectoryException;
+  public net.minecraft.util.filefix.virtualfilesystem.FileNode fileByPath(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath) throws net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNoSuchFileException;
+  public net.minecraft.util.filefix.virtualfilesystem.Node byPath(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath) throws net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNoSuchFileException;
+  public net.minecraft.util.filefix.virtualfilesystem.Node byPathOrNull(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath);
+}
+Compiled from "CopyOnWriteFileStore.java"
+public class net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileStore extends java.nio.file.FileStore {
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileStore(java.lang.String, net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem);
+  public java.lang.String name();
+  public java.lang.String type();
+  public boolean isReadOnly();
+  public long getTotalSpace() throws java.io.IOException;
+  public long getUsableSpace() throws java.io.IOException;
+  public long getUnallocatedSpace() throws java.io.IOException;
+  public boolean supportsFileAttributeView(java.lang.Class<? extends java.nio.file.attribute.FileAttributeView>);
+  public boolean supportsFileAttributeView(java.lang.String);
+  public <V extends java.nio.file.attribute.FileStoreAttributeView> V getFileStoreAttributeView(java.lang.Class<V>);
+  public java.lang.Object getAttribute(java.lang.String) throws java.io.IOException;
+}
+Compiled from "FileMove.java"
+public final class net.minecraft.util.filefix.virtualfilesystem.FileMove extends java.lang.Record {
+  public net.minecraft.util.filefix.virtualfilesystem.FileMove(java.nio.file.Path, java.nio.file.Path);
+  public static com.mojang.serialization.Codec<net.minecraft.util.filefix.virtualfilesystem.FileMove> moveCodec(java.nio.file.Path, java.nio.file.Path);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path from();
+  public java.nio.file.Path to();
+}
+Compiled from "FileNode.java"
+final class net.minecraft.util.filefix.virtualfilesystem.FileNode extends net.minecraft.util.filefix.virtualfilesystem.Node {
+  public void ensureCopy() throws java.io.IOException;
+  public void deleteCopy() throws java.io.IOException;
+  public java.nio.file.Path storagePath();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.filefix.virtualfilesystem.package-info {
+}
+Compiled from "CopyOnWriteFileSystem.java"
+public final class net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$Moves extends java.lang.Record {
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$Moves(java.util.List<java.nio.file.Path>, java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>, java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.nio.file.Path> directories();
+  public java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove> copiedFiles();
+  public java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove> preexistingFiles();
+}
+Compiled from "CopyOnWriteFSPath.java"
+public class net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath implements java.nio.file.Path {
+  protected static net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath of(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem, java.lang.String, java.lang.String...);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem getFileSystem();
+  public boolean isAbsolute();
+  public java.nio.file.Path getRoot();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath getFileName();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath getParent();
+  public int getNameCount();
+  public java.nio.file.Path getName(int);
+  public java.nio.file.Path subpath(int, int);
+  public boolean startsWith(java.nio.file.Path);
+  public boolean endsWith(java.nio.file.Path);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath normalize();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath resolve(java.nio.file.Path);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath resolve(java.lang.String);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath resolve(java.lang.String, java.lang.String...);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath relativize(java.nio.file.Path);
+  public java.net.URI toUri();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath toAbsolutePath();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath toRealPath(java.nio.file.LinkOption...) throws net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNoSuchFileException;
+  public java.nio.file.WatchKey register(java.nio.file.WatchService, java.nio.file.WatchEvent$Kind<?>[], java.nio.file.WatchEvent$Modifier...) throws java.io.IOException;
+  public int compareTo(java.nio.file.Path);
+  public java.lang.String toString();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  protected boolean isRoot();
+  protected static net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath asCow(java.nio.file.Path);
+  public java.nio.file.Path toRealPath(java.nio.file.LinkOption[]) throws java.io.IOException;
+  public java.nio.file.Path toAbsolutePath();
+  public java.nio.file.Path relativize(java.nio.file.Path);
+  public java.nio.file.Path resolve(java.lang.String, java.lang.String[]);
+  public java.nio.file.Path resolve(java.lang.String);
+  public java.nio.file.Path resolve(java.nio.file.Path);
+  public java.nio.file.Path normalize();
+  public java.nio.file.Path getParent();
+  public java.nio.file.Path getFileName();
+  public java.nio.file.FileSystem getFileSystem();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "CopyOnWriteFSProvider.java"
+public class net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSProvider extends java.nio.file.spi.FileSystemProvider {
+  public static final java.lang.String SCHEME;
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSProvider(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem);
+  public java.lang.String getScheme();
+  public java.nio.file.FileSystem newFileSystem(java.net.URI, java.util.Map<java.lang.String, ?>) throws java.io.IOException;
+  public java.nio.file.FileSystem getFileSystem(java.net.URI);
+  public java.nio.file.Path getPath(java.net.URI);
+  public java.nio.channels.SeekableByteChannel newByteChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) throws java.io.IOException;
+  public java.nio.channels.FileChannel newFileChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) throws java.io.IOException;
+  public synchronized java.nio.file.DirectoryStream<java.nio.file.Path> newDirectoryStream(java.nio.file.Path, java.nio.file.DirectoryStream$Filter<? super java.nio.file.Path>) throws java.io.IOException;
+  public synchronized void createDirectory(java.nio.file.Path, java.nio.file.attribute.FileAttribute<?>...) throws java.io.IOException;
+  public synchronized void delete(java.nio.file.Path) throws java.io.IOException;
+  public void copy(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...) throws java.io.IOException;
+  public synchronized void move(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...) throws java.io.IOException;
+  public boolean isSameFile(java.nio.file.Path, java.nio.file.Path);
+  public boolean isHidden(java.nio.file.Path);
+  public java.nio.file.FileStore getFileStore(java.nio.file.Path);
+  public synchronized void checkAccess(java.nio.file.Path, java.nio.file.AccessMode...) throws java.io.IOException;
+  public synchronized <V extends java.nio.file.attribute.FileAttributeView> V getFileAttributeView(java.nio.file.Path, java.lang.Class<V>, java.nio.file.LinkOption...);
+  public synchronized <A extends java.nio.file.attribute.BasicFileAttributes> A readAttributes(java.nio.file.Path, java.lang.Class<A>, java.nio.file.LinkOption...) throws java.io.IOException;
+  public java.util.Map<java.lang.String, java.lang.Object> readAttributes(java.nio.file.Path, java.lang.String, java.nio.file.LinkOption...);
+  public void setAttribute(java.nio.file.Path, java.lang.String, java.lang.Object, java.nio.file.LinkOption...);
+  public synchronized net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath getRealPath(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath) throws net.minecraft.util.filefix.virtualfilesystem.exception.CowFSNoSuchFileException;
+}
+Compiled from "Node.java"
+abstract class net.minecraft.util.filefix.virtualfilesystem.Node {
+  protected net.minecraft.util.filefix.virtualfilesystem.DirectoryNode parent;
+  protected net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath path;
+  protected net.minecraft.util.filefix.virtualfilesystem.Node(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath);
+  public java.lang.String name();
+  protected void setParent(net.minecraft.util.filefix.virtualfilesystem.DirectoryNode);
+  protected void setPath(net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath);
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath path();
+}
+Compiled from "CopyOnWriteFileSystem.java"
+public class net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem extends java.nio.file.FileSystem {
+  public static net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem create(java.lang.String, java.nio.file.Path, java.nio.file.Path, java.nio.file.PathMatcher) throws java.io.IOException;
+  protected void resetFileTreeToBaseFolderContent() throws java.io.IOException;
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSProvider provider();
+  public void close() throws java.io.IOException;
+  public boolean isOpen();
+  public boolean isReadOnly();
+  public java.lang.String getSeparator();
+  public java.lang.Iterable<java.nio.file.Path> getRootDirectories();
+  public java.lang.Iterable<java.nio.file.FileStore> getFileStores();
+  public java.util.Set<java.lang.String> supportedFileAttributeViews();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath getPath(java.lang.String, java.lang.String...);
+  public java.nio.file.PathMatcher getPathMatcher(java.lang.String);
+  public java.nio.file.attribute.UserPrincipalLookupService getUserPrincipalLookupService();
+  public java.nio.file.WatchService newWatchService();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileStore store();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSPath rootPath();
+  public java.nio.file.Path baseDirectory();
+  public java.nio.file.Path tmpDirectory();
+  public java.nio.file.FileSystem backingFileSystem();
+  public net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$Moves collectMoveOperations(java.nio.file.Path);
+  public static void createDirectories(java.util.List<java.nio.file.Path>) throws java.io.IOException;
+  public static void hardLinkFiles(java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>) throws java.io.IOException;
+  public static void moveFiles(java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>) throws java.io.IOException;
+  public static void moveFilesWithRetry(java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>, java.nio.file.CopyOption...) throws java.io.IOException;
+  public static java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove> tryRevertMoves(java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>, java.nio.file.CopyOption...);
+  public java.nio.file.Path getPath(java.lang.String, java.lang.String[]);
+  public java.nio.file.spi.FileSystemProvider provider();
+}
+Compiled from "CopyOnWriteFSProvider.java"
+interface net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFSProvider$ChannelFactory<C> {
+  public abstract C newChannel(java.nio.file.Path, java.util.Set<? extends java.nio.file.OpenOption>, java.nio.file.attribute.FileAttribute<?>...) throws java.io.IOException;
+}

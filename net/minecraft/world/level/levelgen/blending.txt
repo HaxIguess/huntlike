@@ -1,0 +1,94 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.blending.package-info {
+}
+Compiled from "Blender.java"
+public interface net.minecraft.world.level.levelgen.blending.Blender$DistanceGetter {
+  public abstract double getDistance(double, double, double);
+}
+Compiled from "Blender.java"
+interface net.minecraft.world.level.levelgen.blending.Blender$CellValueGetter {
+  public abstract float get(net.minecraft.world.level.levelgen.blending.BlendingData, int, int, int);
+}
+Compiled from "BlendingData.java"
+public interface net.minecraft.world.level.levelgen.blending.BlendingData$BiomeConsumer {
+  public abstract void consume(int, int, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>);
+}
+Compiled from "BlendingData.java"
+public final class net.minecraft.world.level.levelgen.blending.BlendingData$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.blending.BlendingData$Packed> CODEC;
+  public net.minecraft.world.level.levelgen.blending.BlendingData$Packed(int, int, java.util.Optional<float[]>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int minSection();
+  public int maxSection();
+  public java.util.Optional<float[]> heights();
+}
+Compiled from "Blender.java"
+public final class net.minecraft.world.level.levelgen.blending.Blender$OutputBuffer extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.blending.Blender$OutputBuffer(net.minecraft.world.level.levelgen.blending.Blender, int, int, int, int, float[], float[]);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler createAlphaSampler();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler createOffsetSampler();
+  public float getAlpha(int, int);
+  public float getOffset(int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.blending.Blender blender();
+  public int minCellX();
+  public int minCellZ();
+  public int cellCountX();
+  public int cellCountZ();
+  public float[] alphas();
+  public float[] offsets();
+}
+Compiled from "BlendingData.java"
+public interface net.minecraft.world.level.levelgen.blending.BlendingData$DensityConsumer {
+  public abstract void consume(int, int, int, float);
+}
+Compiled from "Blender.java"
+public class net.minecraft.world.level.levelgen.blending.Blender {
+  public static final net.minecraft.util.context.ContextKey<net.minecraft.world.level.levelgen.blending.Blender> CONTEXT_KEY;
+  public static final net.minecraft.util.context.ContextKey<net.minecraft.world.level.levelgen.densityfunction.DensitySampler> ALPHA_KEY;
+  public static final net.minecraft.util.context.ContextKey<net.minecraft.world.level.levelgen.densityfunction.DensitySampler> OFFSET_KEY;
+  public static net.minecraft.world.level.levelgen.blending.Blender empty();
+  public static net.minecraft.world.level.levelgen.blending.Blender of(net.minecraft.server.level.WorldGenRegion);
+  public boolean isEmpty();
+  public net.minecraft.world.level.levelgen.blending.Blender$OutputBuffer blendOffsetAndFactor(net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  protected net.minecraft.world.level.levelgen.blending.Blender$BlendingOutput blendOffsetAndFactor(int, int);
+  public float blendDensity(int, int, int, float);
+  public net.minecraft.world.level.biome.BiomeResolver getBiomeResolver(net.minecraft.world.level.biome.BiomeResolver);
+  public static void generateBorderTicks(net.minecraft.server.level.WorldGenRegion, net.minecraft.world.level.chunk.ChunkAccess);
+  public net.minecraft.world.level.chunk.CarvingMask$Filter getCarvingFilter();
+  public static net.minecraft.world.level.levelgen.blending.Blender$DistanceGetter makeOldChunkDistanceGetter(net.minecraft.world.level.levelgen.blending.BlendingData, java.util.Map<net.minecraft.core.CompositeDirection$Direction8, net.minecraft.world.level.levelgen.blending.BlendingData>);
+}
+Compiled from "BlendingData.java"
+public class net.minecraft.world.level.levelgen.blending.BlendingData {
+  protected static final int CELL_WIDTH;
+  protected static final int CELL_HEIGHT;
+  protected static final int CELL_RATIO;
+  protected static final float NO_VALUE;
+  public static net.minecraft.world.level.levelgen.blending.BlendingData unpack(net.minecraft.world.level.levelgen.blending.BlendingData$Packed);
+  public net.minecraft.world.level.levelgen.blending.BlendingData$Packed pack();
+  public static net.minecraft.world.level.levelgen.blending.BlendingData getOrUpdateBlendingData(net.minecraft.server.level.WorldGenRegion, int, int);
+  public static java.util.Set<net.minecraft.core.CompositeDirection$Direction8> sideByGenerationAge(net.minecraft.world.level.WorldGenLevel, int, int, boolean);
+  protected float getHeight(int, int, int);
+  protected float getDensity(int, int, int);
+  protected void iterateBiomes(int, int, int, net.minecraft.world.level.levelgen.blending.BlendingData$BiomeConsumer);
+  protected void iterateHeights(int, int, net.minecraft.world.level.levelgen.blending.BlendingData$HeightConsumer);
+  protected void iterateDensities(int, int, int, int, net.minecraft.world.level.levelgen.blending.BlendingData$DensityConsumer);
+  public net.minecraft.world.level.LevelHeightAccessor getAreaWithOldGeneration();
+}
+Compiled from "BlendingData.java"
+public interface net.minecraft.world.level.levelgen.blending.BlendingData$HeightConsumer {
+  public abstract void consume(int, int, float);
+}
+Compiled from "Blender.java"
+public final class net.minecraft.world.level.levelgen.blending.Blender$BlendingOutput extends java.lang.Record {
+  protected net.minecraft.world.level.levelgen.blending.Blender$BlendingOutput(float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float alpha();
+  public float blendingOffset();
+}

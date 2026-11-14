@@ -1,0 +1,55 @@
+Compiled from "HudElementRegistryImpl.java"
+interface net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl$LayerVisitor {
+  public abstract boolean visit(net.fabricmc.fabric.impl.client.rendering.hud.HudLayer, java.util.ListIterator<net.fabricmc.fabric.impl.client.rendering.hud.HudLayer>);
+}
+Compiled from "HudElementRegistryImpl.java"
+public final class net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl$RootLayer extends java.lang.Record {
+  public net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl$RootLayer(net.minecraft.resources.Identifier, java.util.List<net.fabricmc.fabric.impl.client.rendering.hud.HudLayer>);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.DeltaTracker, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public java.util.List<net.fabricmc.fabric.impl.client.rendering.hud.HudLayer> layers();
+}
+Compiled from "HudElementRegistryImpl.java"
+public class net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl {
+  public static final java.util.Map<net.minecraft.resources.Identifier, net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl$RootLayer> ROOT_ELEMENTS;
+  public net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl();
+  public static net.fabricmc.fabric.impl.client.rendering.hud.HudElementRegistryImpl$RootLayer getRoot(net.minecraft.resources.Identifier);
+  public static void addFirst(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public static void addLast(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public static void attachElementBefore(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public static void attachElementAfter(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public static void removeElement(net.minecraft.resources.Identifier);
+  public static void replaceElement(net.minecraft.resources.Identifier, java.util.function.Function<net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement>);
+}
+Compiled from "HudLayer.java"
+public interface net.fabricmc.fabric.impl.client.rendering.hud.HudLayer {
+  public abstract net.minecraft.resources.Identifier id();
+  public abstract net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement element(net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public abstract boolean isRemoved();
+  public static net.fabricmc.fabric.impl.client.rendering.hud.HudLayer ofVanilla(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.impl.client.rendering.hud.HudLayer ofElement(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement);
+  public static net.fabricmc.fabric.impl.client.rendering.hud.HudLayer of(net.minecraft.resources.Identifier, java.util.function.Function<net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement, net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement>, boolean);
+}
+Compiled from "HudStatusBarHeightRegistryImpl.java"
+public interface net.fabricmc.fabric.impl.client.rendering.hud.HudStatusBarHeightRegistryImpl$YPosProvider extends java.util.function.ToIntFunction<net.minecraft.world.entity.player.Player> {
+  public static final net.fabricmc.fabric.impl.client.rendering.hud.HudStatusBarHeightRegistryImpl$YPosProvider ZERO;
+  public abstract int getYPos(net.minecraft.world.entity.player.Player);
+  public default int applyAsInt(net.minecraft.world.entity.player.Player);
+  public default int applyAsInt(java.lang.Object);
+}
+Compiled from "HudStatusBarHeightRegistryImpl.java"
+public final class net.fabricmc.fabric.impl.client.rendering.hud.HudStatusBarHeightRegistryImpl implements net.fabricmc.api.ClientModInitializer {
+  public static final org.slf4j.Logger LOGGER;
+  public net.fabricmc.fabric.impl.client.rendering.hud.HudStatusBarHeightRegistryImpl();
+  public void onInitializeClient();
+  public static void addLeft(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.StatusBarHeightProvider);
+  public static void addRight(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.client.rendering.v1.hud.StatusBarHeightProvider);
+  public static int getHeight(net.minecraft.resources.Identifier);
+  public static int getElementHeight(net.minecraft.resources.Identifier);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.client.rendering.hud.package-info {
+}

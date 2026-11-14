@@ -1,0 +1,31 @@
+Compiled from "ResourceManagerTemplateSource.java"
+public class net.minecraft.world.level.levelgen.structure.templatesystem.loader.ResourceManagerTemplateSource extends net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplateSource {
+  public net.minecraft.world.level.levelgen.structure.templatesystem.loader.ResourceManagerTemplateSource(com.mojang.datafixers.DataFixer, net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.resources.FileToIdConverter);
+  public void setResourceManager(net.minecraft.server.packs.resources.ResourceManager);
+  public java.util.Optional<net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate> load(net.minecraft.resources.Identifier);
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> list();
+}
+Compiled from "DirectoryTemplateSource.java"
+public class net.minecraft.world.level.levelgen.structure.templatesystem.loader.DirectoryTemplateSource extends net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplateSource {
+  public net.minecraft.world.level.levelgen.structure.templatesystem.loader.DirectoryTemplateSource(com.mojang.datafixers.DataFixer, net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block>, java.nio.file.Path, net.minecraft.server.packs.PackType, net.minecraft.resources.FileToIdConverter, boolean);
+  public net.minecraft.world.level.levelgen.structure.templatesystem.loader.DirectoryTemplateSource(com.mojang.datafixers.DataFixer, net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block>, java.nio.file.Path, net.minecraft.resources.FileToIdConverter, boolean);
+  public java.util.Optional<net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate> load(net.minecraft.resources.Identifier);
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> list();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.structure.templatesystem.loader.package-info {
+}
+Compiled from "TemplateSource.java"
+public abstract class net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplateSource {
+  protected net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplateSource(com.mojang.datafixers.DataFixer, net.minecraft.core.HolderGetter<net.minecraft.world.level.block.Block>);
+  public abstract java.util.Optional<net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate> load(net.minecraft.resources.Identifier);
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> list();
+  protected java.util.Optional<net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate> load(net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream>, boolean, java.util.function.Consumer<java.lang.Throwable>);
+}
+Compiled from "TemplatePathFactory.java"
+public class net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplatePathFactory {
+  public net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplatePathFactory(java.nio.file.Path, net.minecraft.server.packs.PackType);
+  public net.minecraft.world.level.levelgen.structure.templatesystem.loader.TemplatePathFactory(java.nio.file.Path);
+  public java.nio.file.Path createAndValidatePathToStructure(net.minecraft.resources.Identifier, net.minecraft.resources.FileToIdConverter);
+  public java.nio.file.Path createAndValidatePathToStructure(net.minecraft.resources.Identifier);
+}

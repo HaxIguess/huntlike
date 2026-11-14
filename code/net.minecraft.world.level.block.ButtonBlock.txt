@@ -1,0 +1,448 @@
+Compiled from "ButtonBlock.java"
+public class net.minecraft.world.level.block.ButtonBlock extends net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock {
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty POWERED;
+
+  private final net.minecraft.world.level.block.state.properties.BlockSetType type;
+
+  private final int ticksToStayPressed;
+
+  private final java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.shapes.VoxelShape> shapes;
+
+  public net.minecraft.world.level.block.ButtonBlock(net.minecraft.world.level.block.state.properties.BlockSetType, int, net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+    Code:
+         0: aload_0
+         1: aload_3
+         2: aload_1
+         3: invokevirtual #53                 // Method net/minecraft/world/level/block/state/properties/BlockSetType.soundType:()Lnet/minecraft/world/level/block/SoundType;
+         6: invokevirtual #57                 // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.sound:(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+         9: invokespecial #60                 // Method net/minecraft/world/level/block/FaceAttachedHorizontalDirectionalBlock."<init>":(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+        12: aload_0
+        13: aload_1
+        14: putfield      #62                 // Field type:Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+        17: aload_0
+        18: aload_0
+        19: getfield      #66                 // Field stateDefinition:Lnet/minecraft/world/level/block/state/StateDefinition;
+        22: invokevirtual #70                 // Method net/minecraft/world/level/block/state/StateDefinition.any:()Lnet/minecraft/world/level/block/state/StateHolder;
+        25: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+        28: getstatic     #76                 // Field FACING:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        31: getstatic     #80                 // Field net/minecraft/core/Direction.NORTH:Lnet/minecraft/core/Direction;
+        34: invokevirtual #84                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        37: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+        40: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        43: iconst_0
+        44: invokestatic  #92                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        47: invokevirtual #84                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        50: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+        53: getstatic     #95                 // Field FACE:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        56: getstatic     #101                // Field net/minecraft/world/level/block/state/properties/AttachFace.WALL:Lnet/minecraft/world/level/block/state/properties/AttachFace;
+        59: invokevirtual #84                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        62: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+        65: invokevirtual #105                // Method registerDefaultState:(Lnet/minecraft/world/level/block/state/BlockState;)V
+        68: aload_0
+        69: iload_2
+        70: putfield      #107                // Field ticksToStayPressed:I
+        73: aload_0
+        74: aload_0
+        75: invokevirtual #111                // Method makeShapes:()Ljava/util/function/Function;
+        78: putfield      #113                // Field shapes:Ljava/util/function/Function;
+        81: return
+
+  private java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.world.phys.shapes.VoxelShape> makeShapes();
+    Code:
+         0: ldc2_w        #118                // double 14.0d
+         3: invokestatic  #125                // Method net/minecraft/world/level/block/Block.cube:(D)Lnet/minecraft/world/phys/shapes/VoxelShape;
+         6: astore_1
+         7: ldc2_w        #126                // double 12.0d
+        10: invokestatic  #125                // Method net/minecraft/world/level/block/Block.cube:(D)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        13: astore_2
+        14: ldc2_w        #128                // double 6.0d
+        17: ldc2_w        #130                // double 4.0d
+        20: ldc2_w        #132                // double 8.0d
+        23: ldc2_w        #134                // double 16.0d
+        26: invokestatic  #139                // Method net/minecraft/world/level/block/Block.boxZ:(DDDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        29: invokestatic  #145                // Method net/minecraft/world/phys/shapes/Shapes.rotateAttachFace:(Lnet/minecraft/world/phys/shapes/VoxelShape;)Ljava/util/Map;
+        32: astore_3
+        33: aload_0
+        34: aload_3
+        35: aload_1
+        36: aload_2
+        37: invokedynamic #165,  0            // InvokeDynamic #0:apply:(Ljava/util/Map;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;)Ljava/util/function/Function;
+        42: invokevirtual #169                // Method getShapeForEachState:(Ljava/util/function/Function;)Ljava/util/function/Function;
+        45: areturn
+
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+    Code:
+         0: aload_0
+         1: getfield      #113                // Field shapes:Ljava/util/function/Function;
+         4: aload_1
+         5: invokeinterface #185,  2          // InterfaceMethod java/util/function/Function.apply:(Ljava/lang/Object;)Ljava/lang/Object;
+        10: checkcast     #187                // class net/minecraft/world/phys/shapes/VoxelShape
+        13: areturn
+
+  protected net.minecraft.world.InteractionResult useWithoutItem(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+    Code:
+         0: aload_1
+         1: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         4: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+         7: checkcast     #88                 // class java/lang/Boolean
+        10: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        13: ifeq          20
+        16: getstatic     #207                // Field net/minecraft/world/InteractionResult.CONSUME:Lnet/minecraft/world/InteractionResult$Success;
+        19: areturn
+        20: aload_0
+        21: aload_1
+        22: aload_2
+        23: aload_3
+        24: aload         4
+        26: invokevirtual #211                // Method press:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
+        29: getstatic     #214                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult$Success;
+        32: areturn
+
+  protected void onExplosionHit(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.Explosion, java.util.function.BiConsumer<net.minecraft.world.item.ItemStack, net.minecraft.core.BlockPos>);
+    Code:
+         0: aload         4
+         2: invokeinterface #227,  1          // InterfaceMethod net/minecraft/world/level/Explosion.canTriggerBlocks:()Z
+         7: ifeq          34
+        10: aload_1
+        11: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        14: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        17: checkcast     #88                 // class java/lang/Boolean
+        20: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        23: ifne          34
+        26: aload_0
+        27: aload_1
+        28: aload_2
+        29: aload_3
+        30: aconst_null
+        31: invokevirtual #211                // Method press:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;)V
+        34: aload_0
+        35: aload_1
+        36: aload_2
+        37: aload_3
+        38: aload         4
+        40: aload         5
+        42: invokespecial #229                // Method net/minecraft/world/level/block/FaceAttachedHorizontalDirectionalBlock.onExplosionHit:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/Explosion;Ljava/util/function/BiConsumer;)V
+        45: return
+
+  public void press(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+    Code:
+         0: aload_2
+         1: aload_3
+         2: aload_1
+         3: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         6: iconst_1
+         7: invokestatic  #92                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        10: invokevirtual #84                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        13: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+        16: invokevirtual #240                // Method net/minecraft/world/level/Level.setBlockAndUpdate:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+        19: pop
+        20: aload_0
+        21: aload_1
+        22: aload_2
+        23: aload_3
+        24: invokevirtual #244                // Method updateNeighbours:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+        27: aload_2
+        28: aload_3
+        29: aload_0
+        30: aload_0
+        31: getfield      #107                // Field ticksToStayPressed:I
+        34: invokevirtual #248                // Method net/minecraft/world/level/Level.scheduleTick:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;I)V
+        37: aload_0
+        38: aload         4
+        40: aload_2
+        41: aload_3
+        42: iconst_1
+        43: invokevirtual #252                // Method playSound:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Z)V
+        46: aload_2
+        47: aload         4
+        49: getstatic     #258                // Field net/minecraft/world/level/gameevent/GameEvent.BLOCK_ACTIVATE:Lnet/minecraft/core/Holder$Reference;
+        52: aload_3
+        53: invokevirtual #262                // Method net/minecraft/world/level/Level.gameEvent:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;)V
+        56: return
+
+  protected void playSound(net.minecraft.world.entity.player.Player, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, boolean);
+    Code:
+         0: aload_2
+         1: iload         4
+         3: ifeq          10
+         6: aload_1
+         7: goto          11
+        10: aconst_null
+        11: aload_3
+        12: aload_0
+        13: iload         4
+        15: invokevirtual #273                // Method getSound:(Z)Lnet/minecraft/sounds/SoundEvent;
+        18: getstatic     #279                // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+        21: invokeinterface #282,  5          // InterfaceMethod net/minecraft/world/level/LevelAccessor.playSound:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;)V
+        26: return
+
+  protected net.minecraft.sounds.SoundEvent getSound(boolean);
+    Code:
+         0: iload_1
+         1: ifeq          14
+         4: aload_0
+         5: getfield      #62                 // Field type:Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+         8: invokevirtual #288                // Method net/minecraft/world/level/block/state/properties/BlockSetType.buttonClickOn:()Lnet/minecraft/sounds/SoundEvent;
+        11: goto          21
+        14: aload_0
+        15: getfield      #62                 // Field type:Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+        18: invokevirtual #291                // Method net/minecraft/world/level/block/state/properties/BlockSetType.buttonClickOff:()Lnet/minecraft/sounds/SoundEvent;
+        21: areturn
+
+  protected void affectNeighborsAfterRemoval(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, boolean);
+    Code:
+         0: iload         4
+         2: ifne          28
+         5: aload_1
+         6: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         9: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        12: checkcast     #88                 // class java/lang/Boolean
+        15: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        18: ifeq          28
+        21: aload_0
+        22: aload_1
+        23: aload_2
+        24: aload_3
+        25: invokevirtual #244                // Method updateNeighbours:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+        28: return
+
+  protected int getDirectSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+    Code:
+         0: aload_1
+         1: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         4: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+         7: checkcast     #88                 // class java/lang/Boolean
+        10: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        13: ifeq          28
+        16: aload_1
+        17: invokestatic  #303                // Method getConnectedDirection:(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+        20: aload         4
+        22: if_acmpne     28
+        25: bipush        15
+        27: ireturn
+        28: iconst_0
+        29: ireturn
+
+  protected boolean isSignalSource(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  protected int ownSignal(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_1
+         1: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         4: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+         7: checkcast     #88                 // class java/lang/Boolean
+        10: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        13: ifeq          21
+        16: bipush        15
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+
+  protected void tick(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+    Code:
+         0: aload_1
+         1: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         4: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+         7: checkcast     #88                 // class java/lang/Boolean
+        10: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        13: ifne          17
+        16: return
+        17: aload_0
+        18: aload_1
+        19: aload_2
+        20: aload_3
+        21: invokevirtual #313                // Method checkPressed:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+        24: return
+
+  protected void entityInside(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier, boolean);
+    Code:
+         0: aload_2
+         1: invokevirtual #322                // Method net/minecraft/world/level/Level.isClientSide:()Z
+         4: ifne          33
+         7: aload_0
+         8: getfield      #62                 // Field type:Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+        11: invokevirtual #325                // Method net/minecraft/world/level/block/state/properties/BlockSetType.canButtonBeActivatedByArrows:()Z
+        14: ifeq          33
+        17: aload_1
+        18: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        21: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        24: checkcast     #88                 // class java/lang/Boolean
+        27: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        30: ifeq          34
+        33: return
+        34: aload_0
+        35: aload_1
+        36: aload_2
+        37: aload_3
+        38: invokevirtual #313                // Method checkPressed:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+        41: return
+
+  protected void checkPressed(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_0
+         1: getfield      #62                 // Field type:Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+         4: invokevirtual #325                // Method net/minecraft/world/level/block/state/properties/BlockSetType.canButtonBeActivatedByArrows:()Z
+         7: ifeq          50
+        10: aload_2
+        11: ldc_w         #329                // class net/minecraft/world/entity/projectile/arrow/AbstractArrow
+        14: aload_1
+        15: aload_2
+        16: aload_3
+        17: invokevirtual #332                // Method net/minecraft/world/level/block/state/BlockState.getShape:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        20: invokevirtual #336                // Method net/minecraft/world/phys/shapes/VoxelShape.bounds:()Lnet/minecraft/world/phys/AABB;
+        23: aload_3
+        24: invokevirtual #342                // Method net/minecraft/world/phys/AABB.move:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/AABB;
+        27: invokevirtual #346                // Method net/minecraft/world/level/Level.getEntitiesOfClass:(Ljava/lang/Class;Lnet/minecraft/world/phys/AABB;)Ljava/util/List;
+        30: invokeinterface #352,  1          // InterfaceMethod java/util/List.stream:()Ljava/util/stream/Stream;
+        35: invokeinterface #358,  1          // InterfaceMethod java/util/stream/Stream.findFirst:()Ljava/util/Optional;
+        40: aconst_null
+        41: invokevirtual #363                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+        44: checkcast     #329                // class net/minecraft/world/entity/projectile/arrow/AbstractArrow
+        47: goto          51
+        50: aconst_null
+        51: astore        4
+        53: aload         4
+        55: ifnull        62
+        58: iconst_1
+        59: goto          63
+        62: iconst_0
+        63: istore        5
+        65: aload_1
+        66: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        69: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        72: checkcast     #88                 // class java/lang/Boolean
+        75: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        78: istore        6
+        80: iload         5
+        82: iload         6
+        84: if_icmpeq     145
+        87: aload_2
+        88: aload_3
+        89: aload_1
+        90: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        93: iload         5
+        95: invokestatic  #92                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        98: invokevirtual #84                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+       101: checkcast     #72                 // class net/minecraft/world/level/block/state/BlockState
+       104: invokevirtual #240                // Method net/minecraft/world/level/Level.setBlockAndUpdate:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+       107: pop
+       108: aload_0
+       109: aload_1
+       110: aload_2
+       111: aload_3
+       112: invokevirtual #244                // Method updateNeighbours:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
+       115: aload_0
+       116: aconst_null
+       117: aload_2
+       118: aload_3
+       119: iload         5
+       121: invokevirtual #252                // Method playSound:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Z)V
+       124: aload_2
+       125: aload         4
+       127: iload         5
+       129: ifeq          138
+       132: getstatic     #258                // Field net/minecraft/world/level/gameevent/GameEvent.BLOCK_ACTIVATE:Lnet/minecraft/core/Holder$Reference;
+       135: goto          141
+       138: getstatic     #366                // Field net/minecraft/world/level/gameevent/GameEvent.BLOCK_DEACTIVATE:Lnet/minecraft/core/Holder$Reference;
+       141: aload_3
+       142: invokevirtual #262                // Method net/minecraft/world/level/Level.gameEvent:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;)V
+       145: iload         5
+       147: ifeq          160
+       150: aload_2
+       151: aload_3
+       152: aload_0
+       153: aload_0
+       154: getfield      #107                // Field ticksToStayPressed:I
+       157: invokevirtual #248                // Method net/minecraft/world/level/Level.scheduleTick:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;I)V
+       160: return
+
+  private void updateNeighbours(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_1
+         1: invokestatic  #303                // Method getConnectedDirection:(Lnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/core/Direction;
+         4: invokevirtual #374                // Method net/minecraft/core/Direction.getOpposite:()Lnet/minecraft/core/Direction;
+         7: astore        4
+         9: aload_2
+        10: aload         4
+        12: aload         4
+        14: invokevirtual #378                // Method net/minecraft/core/Direction.getAxis:()Lnet/minecraft/core/Direction$Axis;
+        17: invokevirtual #381                // Method net/minecraft/core/Direction$Axis.isHorizontal:()Z
+        20: ifeq          29
+        23: getstatic     #384                // Field net/minecraft/core/Direction.UP:Lnet/minecraft/core/Direction;
+        26: goto          39
+        29: aload_1
+        30: getstatic     #76                 // Field FACING:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        33: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        36: checkcast     #24                 // class net/minecraft/core/Direction
+        39: invokestatic  #390                // Method net/minecraft/world/level/redstone/ExperimentalRedstoneUtils.initialOrientation:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/Direction;Lnet/minecraft/core/Direction;)Lnet/minecraft/world/level/redstone/Orientation;
+        42: astore        5
+        44: aload_2
+        45: aload_3
+        46: aload_0
+        47: aload         5
+        49: invokevirtual #394                // Method net/minecraft/world/level/Level.updateNeighborsAt:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/redstone/Orientation;)V
+        52: aload_2
+        53: aload_3
+        54: aload         4
+        56: invokevirtual #398                // Method net/minecraft/core/BlockPos.relative:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+        59: aload_0
+        60: aload         5
+        62: invokevirtual #394                // Method net/minecraft/world/level/Level.updateNeighborsAt:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/redstone/Orientation;)V
+        65: return
+
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+    Code:
+         0: aload_1
+         1: iconst_3
+         2: anewarray     #407                // class net/minecraft/world/level/block/state/properties/Property
+         5: dup
+         6: iconst_0
+         7: getstatic     #76                 // Field FACING:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        10: aastore
+        11: dup
+        12: iconst_1
+        13: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        16: aastore
+        17: dup
+        18: iconst_2
+        19: getstatic     #95                 // Field FACE:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        22: aastore
+        23: invokevirtual #411                // Method net/minecraft/world/level/block/state/StateDefinition$Builder.add:([Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/StateDefinition$Builder;
+        26: pop
+        27: return
+
+  private static net.minecraft.world.phys.shapes.VoxelShape lambda$makeShapes$0(java.util.Map, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.phys.shapes.VoxelShape, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_0
+         1: aload_3
+         2: getstatic     #95                 // Field FACE:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+         5: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+         8: invokeinterface #418,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        13: checkcast     #415                // class java/util/Map
+        16: aload_3
+        17: getstatic     #76                 // Field FACING:Lnet/minecraft/world/level/block/state/properties/EnumProperty;
+        20: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        23: invokeinterface #418,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        28: checkcast     #187                // class net/minecraft/world/phys/shapes/VoxelShape
+        31: aload_3
+        32: getstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        35: invokevirtual #199                // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        38: checkcast     #88                 // class java/lang/Boolean
+        41: invokevirtual #203                // Method java/lang/Boolean.booleanValue:()Z
+        44: ifeq          51
+        47: aload_1
+        48: goto          52
+        51: aload_2
+        52: getstatic     #424                // Field net/minecraft/world/phys/shapes/BooleanOp.ONLY_FIRST:Lnet/minecraft/world/phys/shapes/BooleanOp;
+        55: invokestatic  #428                // Method net/minecraft/world/phys/shapes/Shapes.join:(Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/VoxelShape;Lnet/minecraft/world/phys/shapes/BooleanOp;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        58: areturn
+
+  static {};
+    Code:
+         0: getstatic     #433                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         3: putstatic     #86                 // Field POWERED:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         6: return
+}

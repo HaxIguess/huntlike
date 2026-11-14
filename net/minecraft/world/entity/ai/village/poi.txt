@@ -1,0 +1,143 @@
+Compiled from "PoiTypes.java"
+public class net.minecraft.world.entity.ai.village.poi.PoiTypes {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> ARMORER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> BUTCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> CARTOGRAPHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> CLERIC;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> FARMER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> FISHERMAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> FLETCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> LEATHERWORKER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> LIBRARIAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> MASON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> SHEPHERD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> TOOLSMITH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> WEAPONSMITH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> HOME;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> MEETING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> BEEHIVE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> BEE_NEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> NETHER_PORTAL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> LODESTONE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> LIGHTNING_ROD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType> TEST_INSTANCE;
+  public net.minecraft.world.entity.ai.village.poi.PoiTypes();
+  public static java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> forState(net.minecraft.world.level.block.state.BlockState);
+  public static boolean hasPoi(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.entity.ai.village.poi.PoiType bootstrap(net.minecraft.core.Registry<net.minecraft.world.entity.ai.village.poi.PoiType>);
+}
+Compiled from "PoiManager.java"
+public class net.minecraft.world.entity.ai.village.poi.PoiManager extends net.minecraft.world.level.chunk.storage.SectionStorage<net.minecraft.world.entity.ai.village.poi.PoiSection, net.minecraft.world.entity.ai.village.poi.PoiSection$Packed> {
+  public static final int MAX_VILLAGE_DISTANCE;
+  public static final int VILLAGE_SECTION_SIZE;
+  public net.minecraft.world.entity.ai.village.poi.PoiManager(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, com.mojang.datafixers.DataFixer, boolean, net.minecraft.core.RegistryAccess, net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter, net.minecraft.world.level.LevelHeightAccessor);
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord add(net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>);
+  public void remove(net.minecraft.core.BlockPos);
+  public long getCountInRange(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public boolean existsAtPosition(net.minecraft.resources.ResourceKey<net.minecraft.world.entity.ai.village.poi.PoiType>, net.minecraft.core.BlockPos);
+  public java.util.stream.Stream<net.minecraft.world.entity.ai.village.poi.PoiRecord> getInSquare(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.stream.Stream<net.minecraft.world.entity.ai.village.poi.PoiRecord> getInRange(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.stream.Stream<net.minecraft.world.entity.ai.village.poi.PoiRecord> getInChunk(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.world.level.ChunkPos, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.stream.Stream<net.minecraft.core.BlockPos> findAll(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.stream.Stream<com.mojang.datafixers.util.Pair<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, net.minecraft.core.BlockPos>> findAllWithType(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.stream.Stream<com.mojang.datafixers.util.Pair<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, net.minecraft.core.BlockPos>> findAllClosestFirstWithType(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.Optional<net.minecraft.core.BlockPos> find(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.Optional<net.minecraft.core.BlockPos> findClosest(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.Optional<com.mojang.datafixers.util.Pair<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, net.minecraft.core.BlockPos>> findClosestWithType(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.Optional<net.minecraft.core.BlockPos> findClosest(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public java.util.Optional<net.minecraft.core.BlockPos> take(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.BiPredicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, net.minecraft.core.BlockPos>, net.minecraft.core.BlockPos, int);
+  public java.util.Optional<net.minecraft.core.BlockPos> getRandom(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, java.util.function.Predicate<net.minecraft.core.BlockPos>, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy, net.minecraft.core.BlockPos, int, net.minecraft.util.RandomSource);
+  public boolean release(net.minecraft.core.BlockPos);
+  public boolean exists(net.minecraft.core.BlockPos, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>);
+  public java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> getType(net.minecraft.core.BlockPos);
+  public net.minecraft.util.debug.DebugPoiInfo getDebugPoiInfo(net.minecraft.core.BlockPos);
+  public int sectionsToVillage(net.minecraft.core.SectionPos);
+  public void tick(java.util.function.BooleanSupplier);
+  protected void setDirty(long);
+  protected void onSectionLoad(long);
+  public void checkConsistencyWithBlocks(net.minecraft.core.SectionPos, net.minecraft.world.level.chunk.LevelChunkSection);
+  public void ensureLoadedAndValid(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, int);
+}
+Compiled from "PoiType.java"
+public final class net.minecraft.world.entity.ai.village.poi.PoiType extends java.lang.Record {
+  public static final java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> NONE;
+  public net.minecraft.world.entity.ai.village.poi.PoiType(java.util.Set<net.minecraft.world.level.block.state.BlockState>, int, int);
+  public boolean is(net.minecraft.world.level.block.state.BlockState);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Set<net.minecraft.world.level.block.state.BlockState> matchingStates();
+  public int maxTickets();
+  public int validRange();
+}
+Compiled from "PoiRecord.java"
+public final class net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed> CODEC;
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed(net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, int);
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord unpack(java.lang.Runnable);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType> poiType();
+  public int freeTickets();
+}
+Compiled from "PoiSection.java"
+public class net.minecraft.world.entity.ai.village.poi.PoiSection {
+  public net.minecraft.world.entity.ai.village.poi.PoiSection(java.lang.Runnable);
+  public net.minecraft.world.entity.ai.village.poi.PoiSection$Packed pack();
+  public java.util.stream.Stream<net.minecraft.world.entity.ai.village.poi.PoiRecord> getRecords(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>, net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy);
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord add(net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>);
+  public void remove(net.minecraft.core.BlockPos);
+  public int getFreeTickets(net.minecraft.core.BlockPos);
+  public boolean release(net.minecraft.core.BlockPos);
+  public boolean exists(net.minecraft.core.BlockPos, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>);
+  public java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>> getType(net.minecraft.core.BlockPos);
+  public java.util.Optional<net.minecraft.util.debug.DebugPoiInfo> getDebugPoiInfo(net.minecraft.core.BlockPos);
+  public void refresh(java.util.function.Consumer<java.util.function.BiConsumer<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>>>);
+  public boolean isValid();
+}
+Compiled from "PoiManager.java"
+public final class net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy extends java.lang.Enum<net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy> {
+  public static final net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy HAS_SPACE;
+  public static final net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy IS_OCCUPIED;
+  public static final net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy ANY;
+  public static net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy[] values();
+  public static net.minecraft.world.entity.ai.village.poi.PoiManager$Occupancy valueOf(java.lang.String);
+  public java.util.function.Predicate<? super net.minecraft.world.entity.ai.village.poi.PoiRecord> getTest();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.village.poi.package-info {
+}
+Compiled from "PoiManager.java"
+final class net.minecraft.world.entity.ai.village.poi.PoiManager$DistanceTracker extends net.minecraft.server.level.SectionTracker {
+  protected int getLevelFromSource(long);
+  protected int getLevel(long);
+  protected void setLevel(long, int);
+  public void runAllUpdates();
+}
+Compiled from "PoiRecord.java"
+public class net.minecraft.world.entity.ai.village.poi.PoiRecord {
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord(net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, java.lang.Runnable);
+  public net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed pack();
+  public int getFreeTickets();
+  protected boolean acquireTicket();
+  protected boolean releaseTicket();
+  public boolean hasSpace();
+  public boolean isOccupied();
+  public net.minecraft.core.BlockPos getPos();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType> getPoiType();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "PoiSection.java"
+public final class net.minecraft.world.entity.ai.village.poi.PoiSection$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.village.poi.PoiSection$Packed> CODEC;
+  public net.minecraft.world.entity.ai.village.poi.PoiSection$Packed(boolean, java.util.List<net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed>);
+  public net.minecraft.world.entity.ai.village.poi.PoiSection unpack(java.lang.Runnable);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean isValid();
+  public java.util.List<net.minecraft.world.entity.ai.village.poi.PoiRecord$Packed> records();
+}

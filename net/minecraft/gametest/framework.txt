@@ -1,0 +1,856 @@
+Compiled from "TestCommand.java"
+final class net.minecraft.gametest.framework.TestCommand$Info extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.level.ServerPlayer player();
+  public net.minecraft.core.BlockPos playerPos();
+  public net.minecraft.core.BlockPos testPos();
+  public int surfaceY();
+}
+Compiled from "TestReporter.java"
+public interface net.minecraft.gametest.framework.TestReporter {
+  public abstract void onTestFailed(net.minecraft.gametest.framework.GameTestInfo);
+  public abstract void onTestSuccess(net.minecraft.gametest.framework.GameTestInfo);
+  public default void finish();
+}
+Compiled from "GameTestRunner.java"
+public interface net.minecraft.gametest.framework.GameTestRunner$GameTestBatcher {
+  public abstract java.util.Collection<net.minecraft.gametest.framework.GameTestBatch> batch(java.util.Collection<net.minecraft.gametest.framework.GameTestInfo>);
+}
+Compiled from "GameTestServer.java"
+class net.minecraft.gametest.framework.GameTestServer$MockProfileResolver implements net.minecraft.server.players.ProfileResolver {
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchByName(java.lang.String);
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchById(java.util.UUID);
+}
+Compiled from "GameTestEntityBuilder.java"
+public class net.minecraft.gametest.framework.GameTestEntityBuilder<E extends net.minecraft.world.entity.Entity> {
+  protected final net.minecraft.gametest.framework.GameTestHelper testHelper;
+  public net.minecraft.gametest.framework.GameTestEntityBuilder(net.minecraft.gametest.framework.GameTestHelper, net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public net.minecraft.gametest.framework.GameTestEntityBuilder<E> spawnReason(net.minecraft.world.entity.EntitySpawnReason);
+  public net.minecraft.gametest.framework.GameTestEntityBuilder<E> rotation(net.minecraft.world.level.block.Rotation);
+  public net.minecraft.gametest.framework.GameTestEntityBuilder<E> requirePersistence(boolean);
+  public E spawn();
+  public java.util.List<E> spawn(int);
+}
+Compiled from "GameTestRunner.java"
+public interface net.minecraft.gametest.framework.GameTestRunner$StructureSpawner {
+  public static final net.minecraft.gametest.framework.GameTestRunner$StructureSpawner IN_PLACE;
+  public static final net.minecraft.gametest.framework.GameTestRunner$StructureSpawner NOT_SET;
+  public abstract java.util.Optional<net.minecraft.gametest.framework.GameTestInfo> spawnStructure(net.minecraft.gametest.framework.GameTestInfo);
+  public default void onBatchStart(net.minecraft.server.MinecraftServer);
+}
+Compiled from "StructureGridSpawner.java"
+public class net.minecraft.gametest.framework.StructureGridSpawner implements net.minecraft.gametest.framework.GameTestRunner$StructureSpawner {
+  public net.minecraft.gametest.framework.StructureGridSpawner(java.util.function.Function<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.BlockPos>, int, boolean);
+  public void onBatchStart(net.minecraft.server.MinecraftServer);
+  public java.util.Optional<net.minecraft.gametest.framework.GameTestInfo> spawnStructure(net.minecraft.gametest.framework.GameTestInfo);
+}
+Compiled from "TestFunctionLoader.java"
+public interface net.minecraft.gametest.framework.TestFunctionLoader {
+  public static final java.util.List<net.minecraft.gametest.framework.TestFunctionLoader> ALL_LOADERS;
+  public static void registerLoader(net.minecraft.gametest.framework.TestFunctionLoader);
+  public static void runLoaders(net.minecraft.core.Registry<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>);
+  public abstract void load(java.util.function.BiConsumer<net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>, java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>);
+}
+Compiled from "GameTestException.java"
+public abstract class net.minecraft.gametest.framework.GameTestException extends java.lang.RuntimeException {
+  public net.minecraft.gametest.framework.GameTestException(java.lang.String);
+  public abstract net.minecraft.network.chat.Component getDescription();
+}
+Compiled from "GameTestAssertException.java"
+public class net.minecraft.gametest.framework.GameTestAssertException extends net.minecraft.gametest.framework.GameTestException {
+  protected final net.minecraft.network.chat.Component message;
+  protected final int tick;
+  public net.minecraft.gametest.framework.GameTestAssertException(net.minecraft.network.chat.Component, int);
+  public net.minecraft.network.chat.Component getDescription();
+  public java.lang.String getMessage();
+}
+Compiled from "GameTestBatchFactory.java"
+public class net.minecraft.gametest.framework.GameTestBatchFactory {
+  public static final net.minecraft.gametest.framework.GameTestBatchFactory$TestDecorator DIRECT;
+  public net.minecraft.gametest.framework.GameTestBatchFactory();
+  public static java.util.List<net.minecraft.gametest.framework.GameTestBatch> divideIntoBatches(java.util.Collection<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>>, net.minecraft.gametest.framework.GameTestBatchFactory$TestDecorator, net.minecraft.server.MinecraftServer);
+  public static net.minecraft.gametest.framework.GameTestRunner$GameTestBatcher fromGameTestInfo();
+  public static net.minecraft.gametest.framework.GameTestRunner$GameTestBatcher fromGameTestInfo(int);
+  public static net.minecraft.gametest.framework.GameTestBatch toGameTestBatch(java.util.Collection<net.minecraft.gametest.framework.GameTestInfo>, net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>, int, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+}
+Compiled from "TestData.java"
+public final class net.minecraft.gametest.framework.TestData<EnvironmentType> extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestData<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>> CODEC;
+  public net.minecraft.gametest.framework.TestData(EnvironmentType, net.minecraft.resources.Identifier, int, int, boolean, net.minecraft.world.level.block.Rotation);
+  public net.minecraft.gametest.framework.TestData(EnvironmentType, net.minecraft.resources.Identifier, int, int, boolean);
+  public net.minecraft.gametest.framework.TestData(EnvironmentType, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.resources.Identifier, int, int, boolean, net.minecraft.world.level.block.Rotation, boolean, int, int, boolean, int);
+  public <T> net.minecraft.gametest.framework.TestData<T> map(java.util.function.Function<EnvironmentType, T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public EnvironmentType environment();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+  public net.minecraft.resources.Identifier structure();
+  public int maxTicks();
+  public int setupTicks();
+  public boolean required();
+  public net.minecraft.world.level.block.Rotation rotation();
+  public boolean manualOnly();
+  public int maxAttempts();
+  public int requiredSuccesses();
+  public boolean skyAccess();
+  public int padding();
+}
+Compiled from "package-info.java"
+interface net.minecraft.gametest.framework.package-info {
+}
+Compiled from "GameTestMainUtil.java"
+public class net.minecraft.gametest.framework.GameTestMainUtil {
+  public net.minecraft.gametest.framework.GameTestMainUtil();
+  public static void runGameTestServer(java.lang.String[], java.util.function.Consumer<java.lang.String>) throws java.lang.Exception;
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$AllOf extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<java.util.List<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition$Activation<?>>> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$AllOf> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$AllOf(net.minecraft.gametest.framework.TestEnvironmentDefinition<?>...);
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$AllOf(java.util.List<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>);
+  public java.util.List<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition$Activation<?>> setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, java.util.List<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition$Activation<?>>);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$AllOf> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>> definitions();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "RetryOptions.java"
+public final class net.minecraft.gametest.framework.RetryOptions extends java.lang.Record {
+  public net.minecraft.gametest.framework.RetryOptions(int, boolean);
+  public static net.minecraft.gametest.framework.RetryOptions noRetries();
+  public boolean unlimitedTries();
+  public boolean hasTriesLeft(int, int);
+  public boolean hasRetries();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int numberOfTries();
+  public boolean haltOnFailure();
+}
+Compiled from "FunctionGameTestInstance.java"
+public class net.minecraft.gametest.framework.FunctionGameTestInstance extends net.minecraft.gametest.framework.GameTestInstance {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.FunctionGameTestInstance> CODEC;
+  public net.minecraft.gametest.framework.FunctionGameTestInstance(net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>, net.minecraft.gametest.framework.TestData<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>);
+  public void run(net.minecraft.gametest.framework.GameTestHelper);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.FunctionGameTestInstance> codec();
+  protected net.minecraft.network.chat.MutableComponent typeDescription();
+  public net.minecraft.network.chat.Component describe();
+}
+Compiled from "GameTestInfo.java"
+public class net.minecraft.gametest.framework.GameTestInfo {
+  public net.minecraft.gametest.framework.GameTestInfo(net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>, net.minecraft.world.level.block.Rotation, net.minecraft.server.level.ServerLevel, net.minecraft.gametest.framework.RetryOptions);
+  public void setTestBlockPos(net.minecraft.core.BlockPos);
+  public net.minecraft.gametest.framework.GameTestInfo startExecution(int);
+  public void placeStructure();
+  public void tick(net.minecraft.gametest.framework.GameTestRunner);
+  public void setRunAtTickTime(long, java.lang.Runnable);
+  public net.minecraft.resources.Identifier id();
+  public net.minecraft.core.BlockPos getTestBlockPos();
+  public net.minecraft.core.BlockPos getTestOrigin();
+  public net.minecraft.world.phys.AABB getStructureBounds();
+  public net.minecraft.world.level.block.entity.TestInstanceBlockEntity getTestInstanceBlockEntity();
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public boolean hasSucceeded();
+  public boolean hasFailed();
+  public boolean hasStarted();
+  public boolean isDone();
+  public long getRunTime();
+  public void succeed();
+  public void fail(net.minecraft.network.chat.Component);
+  public void fail(net.minecraft.gametest.framework.GameTestException);
+  public net.minecraft.gametest.framework.GameTestException getError();
+  public java.lang.String toString();
+  public void addListener(net.minecraft.gametest.framework.GameTestListener);
+  public net.minecraft.gametest.framework.GameTestInfo prepareTestStructure();
+  public int getTick();
+  public net.minecraft.gametest.framework.GameTestSequence createSequence();
+  public boolean isRequired();
+  public boolean isOptional();
+  public net.minecraft.resources.Identifier getStructure();
+  public net.minecraft.world.level.block.Rotation getRotation();
+  public net.minecraft.gametest.framework.GameTestInstance getTest();
+  public net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance> getTestHolder();
+  public int getTimeoutTicks();
+  public boolean isFlaky();
+  public int maxAttempts();
+  public int requiredSuccesses();
+  public net.minecraft.gametest.framework.RetryOptions retryOptions();
+  public java.util.stream.Stream<net.minecraft.gametest.framework.GameTestListener> getListeners();
+  public net.minecraft.gametest.framework.GameTestInfo copyReset();
+}
+Compiled from "GameTestInstance.java"
+public abstract class net.minecraft.gametest.framework.GameTestInstance {
+  public static final com.mojang.serialization.Codec<net.minecraft.gametest.framework.GameTestInstance> DIRECT_CODEC;
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.GameTestInstance> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.GameTestInstance>>);
+  protected net.minecraft.gametest.framework.GameTestInstance(net.minecraft.gametest.framework.TestData<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>);
+  public abstract void run(net.minecraft.gametest.framework.GameTestHelper);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.GameTestInstance> codec();
+  public net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> batch();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+  public net.minecraft.resources.Identifier structure();
+  public int maxTicks();
+  public int setupTicks();
+  public boolean required();
+  public boolean manualOnly();
+  public int maxAttempts();
+  public int requiredSuccesses();
+  public boolean skyAccess();
+  public net.minecraft.world.level.block.Rotation rotation();
+  public int padding();
+  protected net.minecraft.gametest.framework.TestData<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>> info();
+  protected abstract net.minecraft.network.chat.MutableComponent typeDescription();
+  public net.minecraft.network.chat.Component describe();
+  protected net.minecraft.network.chat.MutableComponent describeType();
+  protected net.minecraft.network.chat.Component describeInfo();
+  protected net.minecraft.network.chat.MutableComponent descriptionRow(java.lang.String, java.lang.String);
+  protected net.minecraft.network.chat.MutableComponent descriptionRow(java.lang.String, net.minecraft.network.chat.MutableComponent);
+}
+Compiled from "StructureUtils.java"
+public class net.minecraft.gametest.framework.StructureUtils {
+  public static final int DEFAULT_Y_SEARCH_RADIUS;
+  public static java.nio.file.Path testStructuresTargetDir;
+  public static java.nio.file.Path testStructuresSourceDir;
+  public net.minecraft.gametest.framework.StructureUtils();
+  public static net.minecraft.world.level.block.Rotation getRotationForRotationSteps(int);
+  public static int getRotationStepsForRotation(net.minecraft.world.level.block.Rotation);
+  public static net.minecraft.world.level.block.entity.TestInstanceBlockEntity createNewEmptyTest(net.minecraft.resources.Identifier, net.minecraft.core.BlockPos, net.minecraft.core.Vec3i, net.minecraft.world.level.block.Rotation, net.minecraft.server.level.ServerLevel);
+  public static void clearSpaceForStructure(net.minecraft.world.level.levelgen.structure.BoundingBox, net.minecraft.server.level.ServerLevel);
+  public static net.minecraft.core.BlockPos getTransformedFarCorner(net.minecraft.core.BlockPos, net.minecraft.core.Vec3i, net.minecraft.world.level.block.Rotation);
+  public static net.minecraft.world.level.levelgen.structure.BoundingBox getStructureBoundingBox(net.minecraft.core.BlockPos, net.minecraft.core.Vec3i, net.minecraft.world.level.block.Rotation);
+  public static java.util.Optional<net.minecraft.core.BlockPos> findTestContainingPos(net.minecraft.core.BlockPos, int, net.minecraft.server.level.ServerLevel);
+  public static java.util.Optional<net.minecraft.core.BlockPos> findNearestTest(net.minecraft.core.BlockPos, int, net.minecraft.server.level.ServerLevel);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> findTestBlocks(net.minecraft.core.BlockPos, int, net.minecraft.server.level.ServerLevel);
+  public static java.util.stream.Stream<net.minecraft.core.BlockPos> lookedAtTestPos(net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.server.level.ServerLevel);
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$SetDifficulty extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<net.minecraft.world.Difficulty> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$SetDifficulty> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$SetDifficulty(net.minecraft.world.Difficulty);
+  public net.minecraft.world.Difficulty setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, net.minecraft.world.Difficulty);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$SetDifficulty> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.Difficulty difficulty();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "TestCommand.java"
+public final class net.minecraft.gametest.framework.TestCommand$TestSummaryDisplayer implements net.minecraft.gametest.framework.GameTestListener {
+  public net.minecraft.gametest.framework.TestCommand$TestSummaryDisplayer(net.minecraft.commands.CommandSourceStack, net.minecraft.gametest.framework.MultipleTestTracker);
+  public void testStructureLoaded(net.minecraft.gametest.framework.GameTestInfo);
+  public void testPassed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public void testFailed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public void testAddedForRerun(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+}
+Compiled from "BlockBasedTestInstance.java"
+public class net.minecraft.gametest.framework.BlockBasedTestInstance extends net.minecraft.gametest.framework.GameTestInstance {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.BlockBasedTestInstance> CODEC;
+  public net.minecraft.gametest.framework.BlockBasedTestInstance(net.minecraft.gametest.framework.TestData<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>);
+  public void run(net.minecraft.gametest.framework.GameTestHelper);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.BlockBasedTestInstance> codec();
+  protected net.minecraft.network.chat.MutableComponent typeDescription();
+}
+Compiled from "GameTestTicker.java"
+public class net.minecraft.gametest.framework.GameTestTicker {
+  public static final net.minecraft.gametest.framework.GameTestTicker SINGLETON;
+  public void add(net.minecraft.gametest.framework.GameTestInfo);
+  public void clear();
+  public void setRunner(net.minecraft.gametest.framework.GameTestRunner);
+  public void tick();
+}
+Compiled from "GameTestBatchFactory.java"
+final class net.minecraft.gametest.framework.GameTestBatchFactory$BatchKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> environment();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+}
+Compiled from "GameTestBatchFactory.java"
+public interface net.minecraft.gametest.framework.GameTestBatchFactory$TestDecorator {
+  public abstract java.util.stream.Stream<net.minecraft.gametest.framework.GameTestInfo> decorate(net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>, net.minecraft.server.level.ServerLevel);
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$SetGameRules extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<net.minecraft.world.level.gamerules.GameRuleMap> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$SetGameRules> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$SetGameRules(net.minecraft.world.level.gamerules.GameRuleMap);
+  public net.minecraft.world.level.gamerules.GameRuleMap setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.gamerules.GameRuleMap);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$SetGameRules> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.gamerules.GameRuleMap gameRulesMap();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "GameTestBatchListener.java"
+public interface net.minecraft.gametest.framework.GameTestBatchListener {
+  public abstract void testBatchStarting(net.minecraft.gametest.framework.GameTestBatch);
+  public abstract void testBatchFinished(net.minecraft.gametest.framework.GameTestBatch);
+}
+Compiled from "GameTestRunner.java"
+public class net.minecraft.gametest.framework.GameTestRunner$Builder {
+  public static net.minecraft.gametest.framework.GameTestRunner$Builder fromBatches(java.util.Collection<net.minecraft.gametest.framework.GameTestBatch>, net.minecraft.server.MinecraftServer);
+  public static net.minecraft.gametest.framework.GameTestRunner$Builder fromInfo(java.util.Collection<net.minecraft.gametest.framework.GameTestInfo>, net.minecraft.server.MinecraftServer);
+  public net.minecraft.gametest.framework.GameTestRunner$Builder haltOnError();
+  public net.minecraft.gametest.framework.GameTestRunner$Builder clearBetweenBatches();
+  public net.minecraft.gametest.framework.GameTestRunner$Builder newStructureSpawner(net.minecraft.gametest.framework.GameTestRunner$StructureSpawner);
+  public net.minecraft.gametest.framework.GameTestRunner$Builder existingStructureSpawner(net.minecraft.gametest.framework.StructureGridSpawner);
+  public net.minecraft.gametest.framework.GameTestRunner$Builder batcher(net.minecraft.gametest.framework.GameTestRunner$GameTestBatcher);
+  public net.minecraft.gametest.framework.GameTestRunner build();
+}
+Compiled from "ExhaustedAttemptsException.java"
+public class net.minecraft.gametest.framework.ExhaustedAttemptsException extends java.lang.Throwable {
+  public net.minecraft.gametest.framework.ExhaustedAttemptsException(int, int, net.minecraft.gametest.framework.GameTestInfo);
+}
+Compiled from "GameTestBatch.java"
+public final class net.minecraft.gametest.framework.GameTestBatch extends java.lang.Record {
+  public net.minecraft.gametest.framework.GameTestBatch(int, java.util.Collection<net.minecraft.gametest.framework.GameTestInfo>, net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+  public java.util.Collection<net.minecraft.gametest.framework.GameTestInfo> gameTestInfos();
+  public net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> environment();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+}
+Compiled from "TestEnvironmentDefinition.java"
+public interface net.minecraft.gametest.framework.TestEnvironmentDefinition<SavedDataType> {
+  public static final com.mojang.serialization.Codec<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>> CODEC;
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>);
+  public abstract SavedDataType setup(net.minecraft.server.level.ServerLevel);
+  public abstract void teardown(net.minecraft.server.level.ServerLevel, SavedDataType);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.gametest.framework.TestEnvironmentDefinition<SavedDataType>> codec();
+  public static <T> net.minecraft.gametest.framework.TestEnvironmentDefinition$Activation<T> activate(net.minecraft.gametest.framework.TestEnvironmentDefinition<T>, net.minecraft.server.level.ServerLevel);
+}
+Compiled from "LogTestReporter.java"
+public class net.minecraft.gametest.framework.LogTestReporter implements net.minecraft.gametest.framework.TestReporter {
+  public net.minecraft.gametest.framework.LogTestReporter();
+  public void onTestFailed(net.minecraft.gametest.framework.GameTestInfo);
+  public void onTestSuccess(net.minecraft.gametest.framework.GameTestInfo);
+}
+Compiled from "GameTestTicker.java"
+final class net.minecraft.gametest.framework.GameTestTicker$State extends java.lang.Enum<net.minecraft.gametest.framework.GameTestTicker$State> {
+  public static final net.minecraft.gametest.framework.GameTestTicker$State IDLE;
+  public static final net.minecraft.gametest.framework.GameTestTicker$State RUNNING;
+  public static final net.minecraft.gametest.framework.GameTestTicker$State HALTING;
+  public static net.minecraft.gametest.framework.GameTestTicker$State[] values();
+  public static net.minecraft.gametest.framework.GameTestTicker$State valueOf(java.lang.String);
+}
+Compiled from "FailedTestTracker.java"
+public class net.minecraft.gametest.framework.FailedTestTracker {
+  public net.minecraft.gametest.framework.FailedTestTracker();
+  public static java.util.stream.Stream<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>> getLastFailedTests();
+  public static void rememberFailedTest(net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>);
+  public static void forgetFailedTests();
+}
+Compiled from "MultipleTestTracker.java"
+public class net.minecraft.gametest.framework.MultipleTestTracker {
+  public net.minecraft.gametest.framework.MultipleTestTracker();
+  public net.minecraft.gametest.framework.MultipleTestTracker(java.util.Collection<net.minecraft.gametest.framework.GameTestInfo>);
+  public void addTestToTrack(net.minecraft.gametest.framework.GameTestInfo);
+  public void addListener(net.minecraft.gametest.framework.GameTestListener);
+  public void addFailureListener(java.util.function.Consumer<net.minecraft.gametest.framework.GameTestInfo>);
+  public int getFailedRequiredCount();
+  public int getFailedOptionalCount();
+  public int getDoneCount();
+  public boolean hasFailedRequired();
+  public boolean hasFailedOptional();
+  public java.util.Collection<net.minecraft.gametest.framework.GameTestInfo> getFailedRequired();
+  public java.util.Collection<net.minecraft.gametest.framework.GameTestInfo> getFailedOptional();
+  public int getTotalCount();
+  public boolean isDone();
+  public java.lang.String getProgressBar();
+  public java.lang.String toString();
+  public void remove(net.minecraft.gametest.framework.GameTestInfo);
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$ClockTime extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<java.lang.Long> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$ClockTime> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$ClockTime(net.minecraft.core.Holder<net.minecraft.world.clock.WorldClock>, int);
+  public java.lang.Long setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Long);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$ClockTime> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.clock.WorldClock> clock();
+  public int time();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "GameTestEvent.java"
+public class net.minecraft.gametest.framework.GameTestEvent {
+  public final java.lang.Long expectedDelay;
+  public final java.lang.Long minimumDelay;
+  public final java.lang.Runnable assertion;
+  public static net.minecraft.gametest.framework.GameTestEvent create(java.lang.Runnable);
+  public static net.minecraft.gametest.framework.GameTestEvent create(long, java.lang.Runnable);
+  public static net.minecraft.gametest.framework.GameTestEvent createWithMinimumDelay(long, java.lang.Runnable);
+}
+Compiled from "GlobalTestReporter.java"
+public class net.minecraft.gametest.framework.GlobalTestReporter {
+  public net.minecraft.gametest.framework.GlobalTestReporter();
+  public static void replaceWith(net.minecraft.gametest.framework.TestReporter);
+  public static void onTestFailed(net.minecraft.gametest.framework.GameTestInfo);
+  public static void onTestSuccess(net.minecraft.gametest.framework.GameTestInfo);
+  public static void finish();
+}
+Compiled from "GeneratedTest.java"
+public final class net.minecraft.gametest.framework.GeneratedTest extends java.lang.Record {
+  public net.minecraft.gametest.framework.GeneratedTest(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.gametest.framework.TestData<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>>, net.minecraft.resources.Identifier, java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>);
+  public net.minecraft.gametest.framework.GeneratedTest(net.minecraft.resources.Identifier, net.minecraft.gametest.framework.TestData<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>, java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>);
+  public net.minecraft.gametest.framework.GeneratedTest(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.gametest.framework.TestData<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>>, net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>, java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.gametest.framework.TestData<net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>>> tests();
+  public net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>> functionKey();
+  public java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper> function();
+}
+Compiled from "TestPosFinder.java"
+public interface net.minecraft.gametest.framework.TestPosFinder {
+  public abstract java.util.stream.Stream<net.minecraft.core.GlobalPos> findTestPos();
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather(net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type);
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type weather();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "GameTestTimeoutException.java"
+public class net.minecraft.gametest.framework.GameTestTimeoutException extends net.minecraft.gametest.framework.GameTestException {
+  protected final net.minecraft.network.chat.Component message;
+  public net.minecraft.gametest.framework.GameTestTimeoutException(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getDescription();
+}
+Compiled from "TestFinder.java"
+public class net.minecraft.gametest.framework.TestFinder$Builder {
+  public net.minecraft.gametest.framework.TestFinder$Builder();
+  public net.minecraft.gametest.framework.TestFinder$Builder createMultipleCopies(int);
+  public net.minecraft.gametest.framework.TestFinder radius(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, int);
+  public net.minecraft.gametest.framework.TestFinder nearest(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>);
+  public net.minecraft.gametest.framework.TestFinder allNearby(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>);
+  public net.minecraft.gametest.framework.TestFinder lookedAt(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>);
+  public net.minecraft.gametest.framework.TestFinder failedTests(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, boolean);
+  public net.minecraft.gametest.framework.TestFinder byResourceSelection(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.util.Collection<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>>);
+  public net.minecraft.gametest.framework.TestFinder failedTests(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>);
+}
+Compiled from "StructureGridSpawner.java"
+final class net.minecraft.gametest.framework.StructureGridSpawner$DimensionGridState {
+}
+Compiled from "TestCommand.java"
+final class net.minecraft.gametest.framework.TestCommand$TestBatchSummaryDisplayer extends java.lang.Record implements net.minecraft.gametest.framework.GameTestBatchListener {
+  public void testBatchStarting(net.minecraft.gametest.framework.GameTestBatch);
+  public void testBatchFinished(net.minecraft.gametest.framework.GameTestBatch);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.commands.CommandSourceStack source();
+}
+Compiled from "TestCommand.java"
+public class net.minecraft.gametest.framework.TestCommand {
+  public static final int TEST_NEARBY_SEARCH_RADIUS;
+  public static final int TEST_FULL_SEARCH_RADIUS;
+  public static final int VERIFY_TEST_GRID_AXIS_SIZE;
+  public static final int VERIFY_TEST_BATCH_SIZE;
+  public net.minecraft.gametest.framework.TestCommand();
+  public static void register(com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack>, net.minecraft.commands.CommandBuildContext);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestTestFunction(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static int trackAndStartRunner(net.minecraft.commands.CommandSourceStack, net.minecraft.gametest.framework.GameTestRunner);
+}
+Compiled from "GameTestServer.java"
+class net.minecraft.gametest.framework.GameTestServer$MockUserNameToIdResolver implements net.minecraft.server.players.UserNameToIdResolver {
+  public void add(net.minecraft.server.players.NameAndId);
+  public java.util.Optional<net.minecraft.server.players.NameAndId> get(java.lang.String);
+  public java.util.Optional<net.minecraft.server.players.NameAndId> get(java.util.UUID);
+  public void resolveOfflineUsers(boolean);
+  public void save();
+}
+Compiled from "GameTestMobBuilder.java"
+public class net.minecraft.gametest.framework.GameTestMobBuilder<E extends net.minecraft.world.entity.Mob> extends net.minecraft.gametest.framework.GameTestEntityBuilder<E> {
+  public net.minecraft.gametest.framework.GameTestMobBuilder(net.minecraft.gametest.framework.GameTestHelper, net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public net.minecraft.gametest.framework.GameTestMobBuilder<E> withNoFreeWill();
+  public E spawn();
+  public net.minecraft.world.entity.Entity spawn();
+}
+Compiled from "TestEnvironmentDefinition.java"
+public class net.minecraft.gametest.framework.TestEnvironmentDefinition$Activation<T> {
+  public void teardown();
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type extends java.lang.Enum<net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type CLEAR;
+  public static final net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type RAIN;
+  public static final net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type THUNDER;
+  public static final com.mojang.serialization.Codec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type> CODEC;
+  public static net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type[] values();
+  public static net.minecraft.gametest.framework.TestEnvironmentDefinition$Weather$Type valueOf(java.lang.String);
+  public void apply(net.minecraft.server.level.ServerLevel);
+  public java.lang.String getSerializedName();
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$Timelines extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<net.minecraft.world.attribute.EnvironmentAttributeSystem> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Timelines> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$Timelines(java.util.List<net.minecraft.core.Holder<net.minecraft.world.timeline.Timeline>>);
+  public net.minecraft.world.attribute.EnvironmentAttributeSystem setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, net.minecraft.world.attribute.EnvironmentAttributeSystem);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Timelines> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.core.Holder<net.minecraft.world.timeline.Timeline>> timelines();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "GameTestInstances.java"
+public interface net.minecraft.gametest.framework.GameTestInstances {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.GameTestInstance> ALWAYS_PASS;
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.gametest.framework.GameTestInstance>);
+}
+Compiled from "GameTestListener.java"
+public interface net.minecraft.gametest.framework.GameTestListener {
+  public abstract void testStructureLoaded(net.minecraft.gametest.framework.GameTestInfo);
+  public abstract void testPassed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public abstract void testFailed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public abstract void testAddedForRerun(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+}
+Compiled from "TestEnvironmentDefinition.java"
+public final class net.minecraft.gametest.framework.TestEnvironmentDefinition$Functions extends java.lang.Record implements net.minecraft.gametest.framework.TestEnvironmentDefinition<net.minecraft.util.Unit> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Functions> CODEC;
+  public net.minecraft.gametest.framework.TestEnvironmentDefinition$Functions(java.util.Optional<net.minecraft.resources.Identifier>, java.util.Optional<net.minecraft.resources.Identifier>);
+  public net.minecraft.util.Unit setup(net.minecraft.server.level.ServerLevel);
+  public void teardown(net.minecraft.server.level.ServerLevel, net.minecraft.util.Unit);
+  public com.mojang.serialization.MapCodec<net.minecraft.gametest.framework.TestEnvironmentDefinition$Functions> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.resources.Identifier> setupFunction();
+  public java.util.Optional<net.minecraft.resources.Identifier> teardownFunction();
+  public void teardown(net.minecraft.server.level.ServerLevel, java.lang.Object);
+  public java.lang.Object setup(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "BuiltinTestFunctions.java"
+public class net.minecraft.gametest.framework.BuiltinTestFunctions implements net.minecraft.gametest.framework.TestFunctionLoader {
+  public static final net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>> ALWAYS_PASS;
+  public static final java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper> ALWAYS_PASS_INSTANCE;
+  public net.minecraft.gametest.framework.BuiltinTestFunctions();
+  public static java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper> bootstrap(net.minecraft.core.Registry<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>);
+  public void load(java.util.function.BiConsumer<net.minecraft.resources.ResourceKey<java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>, java.util.function.Consumer<net.minecraft.gametest.framework.GameTestHelper>>);
+}
+Compiled from "GameTestHelper.java"
+class net.minecraft.gametest.framework.GameTestHelper$TestBlockPlaceContext extends net.minecraft.world.item.context.BlockPlaceContext {
+  public net.minecraft.gametest.framework.GameTestHelper$TestBlockPlaceContext(net.minecraft.gametest.framework.GameTestHelper, net.minecraft.world.level.Level, net.minecraft.world.InteractionHand, net.minecraft.world.item.ItemStack, net.minecraft.world.phys.BlockHitResult, net.minecraft.core.Direction);
+  public net.minecraft.core.Direction getNearestLookingDirection();
+  public net.minecraft.core.Direction[] getNearestLookingDirections();
+}
+Compiled from "GameTestServer.java"
+public class net.minecraft.gametest.framework.GameTestServer extends net.minecraft.server.MinecraftServer {
+  public static net.minecraft.gametest.framework.GameTestServer create(java.lang.Thread, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.packs.repository.PackRepository, java.util.Optional<java.lang.String>, boolean, int);
+  protected boolean initServer();
+  public static java.util.stream.Stream<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>> getTestsForSelection(net.minecraft.core.RegistryAccess, java.lang.String);
+  protected void tickServer(java.util.function.BooleanSupplier);
+  protected net.minecraft.util.debugchart.SampleLogger getTickTimeLogger();
+  public boolean isTickTimeLoggingEnabled();
+  protected void waitUntilNextTick();
+  public net.minecraft.SystemReport fillServerSystemReport(net.minecraft.SystemReport);
+  protected void onServerExit();
+  protected void onServerCrash(net.minecraft.CrashReport);
+  public boolean isHardcore();
+  public net.minecraft.server.permissions.LevelBasedPermissionSet operatorUserPermissions();
+  public net.minecraft.server.permissions.PermissionSet getFunctionCompilationPermissions();
+  public boolean shouldRconBroadcast();
+  public boolean isDedicatedServer();
+  public int getRateLimitPacketsPerSecond();
+  public int getCommandSpamThresholdSeconds();
+  public int getChatSpamThresholdSeconds();
+  public boolean useNativeTransport();
+  public boolean isPublished();
+  public boolean shouldInformAdmins();
+  public boolean isSingleplayerOwner(net.minecraft.server.players.NameAndId);
+  public int getMaxPlayers();
+}
+Compiled from "GameTestRunner.java"
+public class net.minecraft.gametest.framework.GameTestRunner {
+  public static final int DEFAULT_TESTS_PER_ROW;
+  protected net.minecraft.gametest.framework.GameTestRunner(net.minecraft.gametest.framework.GameTestRunner$GameTestBatcher, java.util.Collection<net.minecraft.gametest.framework.GameTestBatch>, net.minecraft.server.MinecraftServer, net.minecraft.gametest.framework.GameTestTicker, net.minecraft.gametest.framework.GameTestRunner$StructureSpawner, net.minecraft.gametest.framework.GameTestRunner$StructureSpawner, boolean, boolean);
+  public java.util.List<net.minecraft.gametest.framework.GameTestInfo> getTestInfos();
+  public void start();
+  public void stop();
+  public void rerunTest(net.minecraft.gametest.framework.GameTestInfo);
+  public void addListener(net.minecraft.gametest.framework.GameTestBatchListener);
+}
+Compiled from "GameTestSequence.java"
+public class net.minecraft.gametest.framework.GameTestSequence {
+  public net.minecraft.gametest.framework.GameTestSequence(net.minecraft.gametest.framework.GameTestInfo);
+  public net.minecraft.gametest.framework.GameTestSequence thenWaitUntil(java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence thenWaitUntil(long, java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence thenWaitAtLeast(long, java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence thenIdle(int);
+  public net.minecraft.gametest.framework.GameTestSequence thenExecute(java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence thenExecuteAfter(int, java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence thenExecuteFor(int, java.lang.Runnable);
+  public void thenSucceed();
+  public void thenFail(java.util.function.Supplier<net.minecraft.gametest.framework.GameTestException>);
+  public net.minecraft.gametest.framework.GameTestSequence$Condition thenTrigger();
+  public void tickAndContinue(int);
+  public void tickAndFailIfNotComplete(int);
+}
+Compiled from "GameTestEnvironments.java"
+public interface net.minecraft.gametest.framework.GameTestEnvironments {
+  public static final java.lang.String DEFAULT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>> DEFAULT_KEY;
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.gametest.framework.TestEnvironmentDefinition<?>>);
+}
+Compiled from "TestFinder.java"
+public class net.minecraft.gametest.framework.TestFinder implements net.minecraft.gametest.framework.TestInstanceFinder,net.minecraft.gametest.framework.TestPosFinder {
+  public java.util.stream.Stream<net.minecraft.core.GlobalPos> findTestPos();
+  public static net.minecraft.gametest.framework.TestFinder$Builder builder();
+  public net.minecraft.commands.CommandSourceStack source();
+  public java.util.stream.Stream<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>> findTests();
+}
+Compiled from "TestInstanceFinder.java"
+public interface net.minecraft.gametest.framework.TestInstanceFinder {
+  public abstract java.util.stream.Stream<net.minecraft.core.Holder$Reference<net.minecraft.gametest.framework.GameTestInstance>> findTests();
+}
+Compiled from "UnknownGameTestException.java"
+public class net.minecraft.gametest.framework.UnknownGameTestException extends net.minecraft.gametest.framework.GameTestException {
+  public net.minecraft.gametest.framework.UnknownGameTestException(java.lang.Throwable);
+  public net.minecraft.network.chat.Component getDescription();
+}
+Compiled from "GameTestHelper.java"
+public class net.minecraft.gametest.framework.GameTestHelper {
+  public net.minecraft.gametest.framework.GameTestHelper(net.minecraft.gametest.framework.GameTestInfo);
+  public net.minecraft.gametest.framework.GameTestAssertException assertionException(net.minecraft.network.chat.Component);
+  public net.minecraft.gametest.framework.GameTestAssertException assertionException(java.lang.String, java.lang.Object...);
+  public net.minecraft.gametest.framework.GameTestAssertPosException assertionException(net.minecraft.core.BlockPos, net.minecraft.network.chat.Component);
+  public net.minecraft.gametest.framework.GameTestAssertPosException assertionException(net.minecraft.core.BlockPos, java.lang.String, java.lang.Object...);
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public <T extends net.minecraft.world.level.block.entity.BlockEntity> T getBlockEntity(net.minecraft.core.BlockPos, java.lang.Class<T>);
+  public void killAllEntities();
+  public void killAllEntitiesOfClass(java.lang.Class<? extends net.minecraft.world.entity.Entity>);
+  public net.minecraft.world.entity.item.ItemEntity spawnItem(net.minecraft.world.item.Item, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.entity.item.ItemEntity spawnItem(net.minecraft.world.item.Item, float, float, float);
+  public net.minecraft.world.entity.item.ItemEntity spawnItem(net.minecraft.world.item.Item, net.minecraft.core.BlockPos);
+  public void despawnItem(net.minecraft.core.BlockPos, double);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos);
+  public <E extends net.minecraft.world.entity.Entity> java.util.List<E> spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos, int);
+  public <E extends net.minecraft.world.entity.Entity> java.util.List<E> spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3, int);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public <E extends net.minecraft.world.entity.Mob> E spawn(net.minecraft.world.entity.EntityType<E>, double, double, double, net.minecraft.world.entity.EntitySpawnReason);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos, net.minecraft.world.entity.EntitySpawnReason);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3, net.minecraft.world.entity.EntitySpawnReason);
+  public <E extends net.minecraft.world.entity.Entity> net.minecraft.gametest.framework.GameTestEntityBuilder<E> spawnEntity(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public <E extends net.minecraft.world.entity.Entity> net.minecraft.gametest.framework.GameTestEntityBuilder<E> spawnEntity(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos);
+  public <E extends net.minecraft.world.entity.Entity> net.minecraft.gametest.framework.GameTestEntityBuilder<E> spawnEntity(net.minecraft.world.entity.EntityType<E>, int, int, int);
+  public <E extends net.minecraft.world.entity.Entity> net.minecraft.gametest.framework.GameTestEntityBuilder<E> spawnEntity(net.minecraft.world.entity.EntityType<E>, float, float, float);
+  public <E extends net.minecraft.world.entity.Mob> net.minecraft.gametest.framework.GameTestMobBuilder<E> spawnMob(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public <E extends net.minecraft.world.entity.Mob> net.minecraft.gametest.framework.GameTestMobBuilder<E> spawnMob(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos);
+  public <E extends net.minecraft.world.entity.Mob> net.minecraft.gametest.framework.GameTestMobBuilder<E> spawnMob(net.minecraft.world.entity.EntityType<E>, int, int, int);
+  public <E extends net.minecraft.world.entity.Mob> net.minecraft.gametest.framework.GameTestMobBuilder<E> spawnMob(net.minecraft.world.entity.EntityType<E>, float, float, float);
+  public void hurt(net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, float);
+  public void kill(net.minecraft.world.entity.Entity);
+  public void discard(net.minecraft.world.entity.Entity);
+  public <E extends net.minecraft.world.entity.Entity> E findOneEntity(net.minecraft.world.entity.EntityType<E>);
+  public <E extends net.minecraft.world.entity.Entity> E findClosestEntity(net.minecraft.world.entity.EntityType<E>, int, int, int, double);
+  public <E extends net.minecraft.world.entity.Entity> java.util.List<E> findEntities(net.minecraft.world.entity.EntityType<E>, int, int, int, double);
+  public <E extends net.minecraft.world.entity.Entity> java.util.List<E> findEntities(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3, double);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, int, int, int);
+  public <E extends net.minecraft.world.entity.Entity> E spawn(net.minecraft.world.entity.EntityType<E>, float, float, float);
+  public <E extends net.minecraft.world.entity.Mob> E spawnWithNoFreeWill(net.minecraft.world.entity.EntityType<E>, net.minecraft.core.BlockPos);
+  public <E extends net.minecraft.world.entity.Mob> E spawnWithNoFreeWill(net.minecraft.world.entity.EntityType<E>, int, int, int);
+  public <E extends net.minecraft.world.entity.Mob> E spawnWithNoFreeWill(net.minecraft.world.entity.EntityType<E>, net.minecraft.world.phys.Vec3);
+  public <E extends net.minecraft.world.entity.Mob> E spawnWithNoFreeWill(net.minecraft.world.entity.EntityType<E>, float, float, float);
+  public void moveTo(net.minecraft.world.entity.Mob, float, float, float);
+  public void moveTo(net.minecraft.world.entity.Mob, net.minecraft.core.BlockPos);
+  public void moveTo(net.minecraft.world.entity.Mob, net.minecraft.world.phys.Vec3);
+  public net.minecraft.gametest.framework.GameTestSequence walkTo(net.minecraft.world.entity.Mob, net.minecraft.core.BlockPos, float);
+  public void pressButton(int, int, int);
+  public void pressButton(net.minecraft.core.BlockPos);
+  public void useBlock(net.minecraft.core.BlockPos);
+  public void useBlock(net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public void useBlock(net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+  public net.minecraft.world.entity.LivingEntity makeAboutToDrown(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.entity.LivingEntity withLowHealth(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.entity.player.Player makeMockPlayer(net.minecraft.world.level.GameType);
+  public net.minecraft.world.entity.player.Player makeMockServerPlayer(net.minecraft.world.level.GameType);
+  public void rotateEntityWithTest(net.minecraft.world.entity.Entity);
+  public net.minecraft.server.level.ServerPlayer makeMockServerPlayerInLevel();
+  public void pullLever(int, int, int);
+  public void pullLever(net.minecraft.core.BlockPos);
+  public void placeBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.core.Direction);
+  public void placeBlock(int, int, int, net.minecraft.world.level.block.Block, net.minecraft.core.Direction);
+  public void pulseRedstone(net.minecraft.core.BlockPos, long);
+  public void destroyBlock(net.minecraft.core.BlockPos);
+  public void setBlock(int, int, int, net.minecraft.world.level.block.Block);
+  public void setBlock(int, int, int, net.minecraft.world.level.block.state.BlockState);
+  public void setBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block);
+  public void setBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void setBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.core.Direction);
+  public void setBlock(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction);
+  public void placeAt(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack, net.minecraft.core.BlockPos, net.minecraft.core.Direction);
+  public void useItemOnBlock(net.minecraft.world.entity.player.Player, net.minecraft.world.item.Item, net.minecraft.core.BlockPos);
+  public void assertBlockPresent(net.minecraft.world.level.block.Block, int, int, int);
+  public void assertBlockPresent(net.minecraft.world.level.block.Block, net.minecraft.core.BlockPos);
+  public void assertBlockPresent(net.minecraft.world.level.block.Block);
+  public void assertBlockNotPresent(net.minecraft.world.level.block.Block, int, int, int);
+  public void assertBlockNotPresent(net.minecraft.world.level.block.Block, net.minecraft.core.BlockPos);
+  public void assertBlockTag(net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block>, net.minecraft.core.BlockPos);
+  public void succeedWhenBlockPresent(net.minecraft.world.level.block.Block, int, int, int);
+  public void succeedWhenBlockPresent(net.minecraft.world.level.block.Block, net.minecraft.core.BlockPos);
+  public void assertBlock(net.minecraft.core.BlockPos, java.util.function.Predicate<net.minecraft.world.level.block.Block>, java.util.function.Function<net.minecraft.world.level.block.Block, net.minecraft.network.chat.Component>);
+  public <T extends java.lang.Comparable<T>> void assertBlockProperty(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.Property<T>, T);
+  public <T extends java.lang.Comparable<T>> void assertBlockProperty(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.Property<T>, java.util.function.Predicate<T>, net.minecraft.network.chat.Component);
+  public void assertBlockState(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public void assertBlockState(net.minecraft.core.BlockPos, java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>, java.util.function.Function<net.minecraft.world.level.block.state.BlockState, net.minecraft.network.chat.Component>);
+  public <T extends net.minecraft.world.level.block.entity.BlockEntity> void assertBlockEntityData(net.minecraft.core.BlockPos, java.lang.Class<T>, java.util.function.Predicate<T>, java.util.function.Supplier<net.minecraft.network.chat.Component>);
+  public void assertRedstoneSignal(net.minecraft.core.BlockPos, net.minecraft.core.Direction, java.util.function.IntPredicate, java.util.function.Supplier<net.minecraft.network.chat.Component>);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>, int, int, int);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.phys.AABB);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.phys.AABB, net.minecraft.network.chat.Component);
+  public void assertEntitiesPresent(net.minecraft.world.entity.EntityType<?>, int);
+  public void assertEntitiesPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos, int, double);
+  public void assertEntityPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos, double);
+  public <T extends net.minecraft.world.entity.Entity> java.util.List<T> getEntities(net.minecraft.world.entity.EntityType<T>, net.minecraft.core.BlockPos, double);
+  public <T extends net.minecraft.world.entity.Entity> java.util.List<T> getEntities(net.minecraft.world.entity.EntityType<T>);
+  public void assertEntityInstancePresent(net.minecraft.world.entity.Entity, int, int, int);
+  public void assertEntityInstancePresent(net.minecraft.world.entity.Entity, net.minecraft.core.BlockPos);
+  public void assertEntityInstancePresent(net.minecraft.world.entity.Entity, net.minecraft.core.BlockPos, double);
+  public void assertItemEntityCountIs(net.minecraft.world.item.Item, net.minecraft.core.BlockPos, double, int);
+  public void assertItemEntityPresent(net.minecraft.world.item.Item, net.minecraft.core.BlockPos, double);
+  public void assertItemEntityNotPresent(net.minecraft.world.item.Item, net.minecraft.core.BlockPos, double);
+  public void assertItemEntityPresent(net.minecraft.world.item.Item);
+  public void assertItemEntityNotPresent(net.minecraft.world.item.Item);
+  public void assertEntityNotPresent(net.minecraft.world.entity.EntityType<?>);
+  public void assertEntityNotPresent(net.minecraft.world.entity.EntityType<?>, int, int, int);
+  public void assertEntityNotPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos);
+  public void assertEntityNotPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.phys.AABB);
+  public void assertEntityTouching(net.minecraft.world.entity.EntityType<?>, double, double, double);
+  public void assertEntityNotTouching(net.minecraft.world.entity.EntityType<?>, double, double, double);
+  public <E extends net.minecraft.world.entity.Entity, T> void assertEntityData(net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<E>, java.util.function.Predicate<E>);
+  public <E extends net.minecraft.world.entity.Entity, T> void assertEntityData(net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<E>, java.util.function.Function<? super E, T>, T);
+  public <E extends net.minecraft.world.entity.Entity, T> void assertEntityData(net.minecraft.world.phys.AABB, net.minecraft.world.entity.EntityType<E>, java.util.function.Function<? super E, T>, T);
+  public <E extends net.minecraft.world.entity.LivingEntity> void assertEntityIsHolding(net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<E>, net.minecraft.world.item.Item);
+  public <E extends net.minecraft.world.entity.Entity & net.minecraft.world.entity.npc.InventoryCarrier> void assertEntityInventoryContains(net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<E>, net.minecraft.world.item.Item);
+  public void assertContainerEmpty(net.minecraft.core.BlockPos);
+  public void assertContainerContainsSingle(net.minecraft.core.BlockPos, net.minecraft.world.item.Item);
+  public void assertContainerContains(net.minecraft.core.BlockPos, net.minecraft.world.item.Item);
+  public void assertSameBlockStates(net.minecraft.world.level.levelgen.structure.BoundingBox, net.minecraft.core.BlockPos);
+  public void assertSameBlockState(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos);
+  public void assertAtTickTimeContainerContains(long, net.minecraft.core.BlockPos, net.minecraft.world.item.Item);
+  public void assertAtTickTimeContainerEmpty(long, net.minecraft.core.BlockPos);
+  public <E extends net.minecraft.world.entity.Entity, T> void succeedWhenEntityData(net.minecraft.core.BlockPos, net.minecraft.world.entity.EntityType<E>, java.util.function.Function<E, T>, T);
+  public <E extends net.minecraft.world.entity.Entity> void assertEntityProperty(E, java.util.function.Predicate<E>, net.minecraft.network.chat.Component);
+  public <E extends net.minecraft.world.entity.Entity, T> void assertEntityProperty(E, java.util.function.Function<E, T>, T, net.minecraft.network.chat.Component);
+  public void assertLivingEntityHasMobEffect(net.minecraft.world.entity.LivingEntity, net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>, int);
+  public void succeedWhenEntityPresent(net.minecraft.world.entity.EntityType<?>, int, int, int);
+  public void succeedWhenEntityPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos);
+  public void succeedWhenEntityNotPresent(net.minecraft.world.entity.EntityType<?>, int, int, int);
+  public void succeedWhenEntityNotPresent(net.minecraft.world.entity.EntityType<?>, net.minecraft.core.BlockPos);
+  public void succeed();
+  public void succeedIf(java.lang.Runnable);
+  public void succeedWhen(java.lang.Runnable);
+  public void succeedOnTickWhen(int, java.lang.Runnable);
+  public void runAtTickTime(long, java.lang.Runnable);
+  public void runBeforeTestEnd(java.lang.Runnable);
+  public void runAfterDelay(long, java.lang.Runnable);
+  public void setTime(long);
+  public void randomTick(net.minecraft.core.BlockPos);
+  public void tickBlock(net.minecraft.core.BlockPos);
+  public void tickPrecipitation(net.minecraft.core.BlockPos);
+  public void tickPrecipitation();
+  public int getHeight(net.minecraft.world.level.levelgen.Heightmap$Types, int, int);
+  public void fail(net.minecraft.network.chat.Component, net.minecraft.core.BlockPos);
+  public void fail(net.minecraft.network.chat.Component, net.minecraft.world.entity.Entity);
+  public void fail(net.minecraft.network.chat.Component);
+  public void fail(java.lang.String);
+  public void failIf(java.lang.Runnable);
+  public void failIfEver(java.lang.Runnable);
+  public net.minecraft.gametest.framework.GameTestSequence startSequence();
+  public net.minecraft.core.BlockPos absolutePos(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos relativePos(net.minecraft.core.BlockPos);
+  public net.minecraft.world.phys.AABB absoluteAABB(net.minecraft.world.phys.AABB);
+  public net.minecraft.world.phys.AABB relativeAABB(net.minecraft.world.phys.AABB);
+  public net.minecraft.world.phys.Vec3 absoluteVec(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.phys.Vec3 relativeVec(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.level.block.Rotation getTestRotation();
+  public net.minecraft.core.Direction getTestDirection();
+  public net.minecraft.core.Direction getAbsoluteDirection(net.minecraft.core.Direction);
+  public void assertTrue(boolean, net.minecraft.network.chat.Component);
+  public void assertTrue(boolean, java.lang.String);
+  public <N> void assertValueEqual(N, N, java.lang.String);
+  public <N> void assertValueEqual(N, N, net.minecraft.network.chat.Component);
+  public <N extends java.lang.Comparable<N>> void assertValueInBetween(N, N, N, java.lang.String);
+  public <N extends java.lang.Comparable<N>> void assertValueInBetween(N, N, N, net.minecraft.network.chat.Component);
+  public void assertFalse(boolean, net.minecraft.network.chat.Component);
+  public void assertFalse(boolean, java.lang.String);
+  public long getTick();
+  public net.minecraft.world.phys.AABB getBounds();
+  public net.minecraft.world.phys.AABB getBoundsWithPadding();
+  public net.minecraft.world.phys.AABB getRelativeBounds();
+  public void forEveryBlockInStructure(java.util.function.Consumer<net.minecraft.core.BlockPos>);
+  public void onEachTick(java.lang.Runnable);
+  public void setBiome(net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>);
+}
+Compiled from "GameTestDimensions.java"
+public interface net.minecraft.gametest.framework.GameTestDimensions {
+  public static final java.lang.String DEFAULT;
+  public static final java.lang.String NETHER;
+  public static final java.lang.String END;
+}
+Compiled from "JUnitLikeTestReporter.java"
+public class net.minecraft.gametest.framework.JUnitLikeTestReporter implements net.minecraft.gametest.framework.TestReporter {
+  public net.minecraft.gametest.framework.JUnitLikeTestReporter(java.io.File) throws javax.xml.parsers.ParserConfigurationException;
+  public void onTestFailed(net.minecraft.gametest.framework.GameTestInfo);
+  public void onTestSuccess(net.minecraft.gametest.framework.GameTestInfo);
+  public void finish();
+  public void save(java.io.File) throws javax.xml.transform.TransformerException;
+}
+Compiled from "GameTestSequence.java"
+public class net.minecraft.gametest.framework.GameTestSequence$Condition {
+  public net.minecraft.gametest.framework.GameTestSequence$Condition(net.minecraft.gametest.framework.GameTestSequence);
+  public void trigger(int);
+  public void assertTriggeredThisTick();
+}
+Compiled from "ReportGameListener.java"
+public class net.minecraft.gametest.framework.ReportGameListener implements net.minecraft.gametest.framework.GameTestListener {
+  public net.minecraft.gametest.framework.ReportGameListener();
+  public void testStructureLoaded(net.minecraft.gametest.framework.GameTestInfo);
+  public void testPassed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public void testFailed(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public void testAddedForRerun(net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestInfo, net.minecraft.gametest.framework.GameTestRunner);
+  public static void reportPassed(net.minecraft.gametest.framework.GameTestInfo, java.lang.String);
+  protected static void reportFailure(net.minecraft.gametest.framework.GameTestInfo, java.lang.Throwable);
+  protected static void visualizeFailedTest(net.minecraft.gametest.framework.GameTestInfo, java.lang.Throwable);
+  protected static void say(net.minecraft.server.level.ServerLevel, net.minecraft.ChatFormatting, java.lang.String);
+}
+Compiled from "GameTestAssertPosException.java"
+public class net.minecraft.gametest.framework.GameTestAssertPosException extends net.minecraft.gametest.framework.GameTestAssertException {
+  public net.minecraft.gametest.framework.GameTestAssertPosException(net.minecraft.network.chat.Component, net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, int);
+  public net.minecraft.network.chat.Component getDescription();
+  public net.minecraft.network.chat.Component getMessageToShowAtBlock();
+  public net.minecraft.core.BlockPos getRelativePos();
+  public net.minecraft.core.BlockPos getAbsolutePos();
+}

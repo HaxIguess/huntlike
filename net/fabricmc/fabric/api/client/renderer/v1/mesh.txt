@@ -1,0 +1,210 @@
+Compiled from "Mesh.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.Mesh extends net.fabricmc.fabric.api.client.renderer.v1.mesh.MeshView {
+}
+Compiled from "MeshView.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.MeshView {
+  public abstract int size();
+  public abstract void forEach(java.util.function.Consumer<? super net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView>);
+  public abstract void outputTo(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter);
+}
+Compiled from "MutableMesh.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableMesh extends net.fabricmc.fabric.api.client.renderer.v1.mesh.MeshView {
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emitter();
+  public abstract void forEachMutable(java.util.function.Consumer<? super net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView>);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.Mesh immutableCopy();
+  public abstract void clear();
+}
+Compiled from "MutableQuadView.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView extends net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView {
+  public static final int BAKE_ROTATE_NONE;
+  public static final int BAKE_ROTATE_90;
+  public static final int BAKE_ROTATE_180;
+  public static final int BAKE_ROTATE_270;
+  public static final int BAKE_LOCK_UV;
+  public static final int BAKE_FLIP_U;
+  public static final int BAKE_FLIP_V;
+  public static final int BAKE_NORMALIZED;
+  public static final float CULL_FACE_EPSILON;
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, org.joml.Vector3fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView translate(float, float, float);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView color(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView color(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView multiplyColor(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, org.joml.Vector2f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, org.joml.Vector2fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uvUnitSquare();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView materialBake(net.minecraft.client.resources.model.sprite.Material$Baked, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView postMaterialBake(net.minecraft.client.resources.model.sprite.Material$Baked);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView lightmap(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView lightmap(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView minLightmap(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, org.joml.Vector3fc);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView nominalFace(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView cullFace(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView emissive(boolean);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeDirectionOverride(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView animated(boolean);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tintIndex(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tag(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView clear();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView square(net.minecraft.core.Direction, float, float, float, float, float);
+}
+Compiled from "QuadAtlas.java"
+public final class net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas extends java.lang.Enum<net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas> {
+  public static final net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas BLOCK;
+  public static final net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas ITEM;
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas[] values();
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas valueOf(java.lang.String);
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas ofLocation(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas ofId(net.minecraft.resources.Identifier);
+  public net.minecraft.resources.Identifier getTextureLocation();
+  public net.minecraft.resources.Identifier getId();
+}
+Compiled from "QuadEmitter.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter extends net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView {
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter pos(int, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter pos(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter pos(int, org.joml.Vector3fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter translate(float, float, float);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter color(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter color(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter multiplyColor(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter uv(int, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter uv(int, org.joml.Vector2f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter uv(int, org.joml.Vector2fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uvUnitSquare();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter materialBake(net.minecraft.client.resources.model.sprite.Material$Baked, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter postMaterialBake(net.minecraft.client.resources.model.sprite.Material$Baked);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter lightmap(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter lightmap(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter minLightmap(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter normal(int, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter normal(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter normal(int, org.joml.Vector3fc);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter nominalFace(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter cullFace(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emissive(boolean);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter shadeDirectionOverride(net.minecraft.core.Direction);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter animated(boolean);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter tintIndex(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter tag(int);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter clear();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter square(net.minecraft.core.Direction, float, float, float, float, float);
+  public abstract void pushTransform(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadTransform);
+  public abstract void popTransform();
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadEmitter emit();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView square(net.minecraft.core.Direction, float, float, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView clear();
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView fromBakedQuad(net.minecraft.client.resources.model.geometry.BakedQuad);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView copyFrom(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tag(int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView tintIndex(int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView animated(boolean);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeMode(net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView foilType(net.minecraft.client.renderer.item.ItemStackRenderState$FoilType);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView ambientOcclusion(net.fabricmc.fabric.api.util.TriState);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView shadeDirectionOverride(net.minecraft.core.Direction);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView emissive(boolean);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintSpecialRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemGlintRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView itemRenderType(net.minecraft.client.renderer.rendertype.RenderType);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView chunkLayer(net.minecraft.client.renderer.chunk.ChunkSectionLayer);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView atlas(net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView cullFace(net.minecraft.core.Direction);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView nominalFace(net.minecraft.core.Direction);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, org.joml.Vector3fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView normal(int, float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView minLightmap(int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView lightmap(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView lightmap(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView postMaterialBake(net.minecraft.client.resources.model.sprite.Material$Baked);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView materialBake(net.minecraft.client.resources.model.sprite.Material$Baked, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, org.joml.Vector2fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, org.joml.Vector2f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView uv(int, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView multiplyColor(int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView color(int, int, int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView color(int, int);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView translate(float, float, float);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, org.joml.Vector3fc);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, org.joml.Vector3f);
+  public default net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView pos(int, float, float, float);
+}
+Compiled from "QuadTransform.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadTransform {
+  public abstract boolean transform(net.fabricmc.fabric.api.client.renderer.v1.mesh.MutableQuadView);
+}
+Compiled from "QuadView.java"
+public interface net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadView {
+  public abstract float x(int);
+  public abstract float y(int);
+  public abstract float z(int);
+  public abstract float posByIndex(int, int);
+  public abstract org.joml.Vector3f copyPos(int, org.joml.Vector3f);
+  public abstract int color(int);
+  public abstract float u(int);
+  public abstract float v(int);
+  public abstract org.joml.Vector2f copyUv(int, org.joml.Vector2f);
+  public abstract int lightmap(int);
+  public abstract boolean hasNormal(int);
+  public abstract float normalX(int);
+  public abstract float normalY(int);
+  public abstract float normalZ(int);
+  public abstract org.joml.Vector3f copyNormal(int, org.joml.Vector3f);
+  public abstract org.joml.Vector3fc faceNormal();
+  public abstract net.minecraft.core.Direction lightFace();
+  public abstract net.minecraft.core.Direction nominalFace();
+  public abstract net.minecraft.core.Direction cullFace();
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.QuadAtlas atlas();
+  public abstract net.minecraft.client.renderer.chunk.ChunkSectionLayer chunkLayer();
+  public abstract net.minecraft.client.renderer.rendertype.RenderType itemRenderType();
+  public abstract net.minecraft.client.renderer.rendertype.RenderType itemGlintRenderType();
+  public abstract net.minecraft.client.renderer.rendertype.RenderType itemGlintSpecialRenderType();
+  public abstract boolean emissive();
+  public abstract net.minecraft.core.Direction shadeDirectionOverride();
+  public abstract net.fabricmc.fabric.api.util.TriState ambientOcclusion();
+  public abstract net.minecraft.client.renderer.item.ItemStackRenderState$FoilType foilType();
+  public abstract net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode shadeMode();
+  public abstract boolean animated();
+  public abstract int tintIndex();
+  public abstract int tag();
+  public default net.minecraft.client.resources.model.geometry.BakedQuad toBakedQuad(net.minecraft.client.renderer.texture.TextureAtlasSprite);
+  public abstract void buffer(int, com.mojang.blaze3d.vertex.VertexConsumer);
+  public abstract void buffer(int, com.mojang.blaze3d.vertex.PoseStack$Pose, com.mojang.blaze3d.vertex.VertexConsumer);
+}
+Compiled from "ShadeMode.java"
+public final class net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode extends java.lang.Enum<net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode> {
+  public static final net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode ENHANCED;
+  public static final net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode VANILLA;
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode[] values();
+  public static net.fabricmc.fabric.api.client.renderer.v1.mesh.ShadeMode valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.client.renderer.v1.mesh.package-info {
+}

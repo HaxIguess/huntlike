@@ -1,0 +1,659 @@
+Compiled from "LevelStorageSource.java"
+public class net.minecraft.world.level.storage.LevelStorageSource {
+  public static final java.lang.String TAG_DATA;
+  public static final java.lang.String ALLOWED_SYMLINKS_CONFIG_NAME;
+  public net.minecraft.world.level.storage.LevelStorageSource(java.nio.file.Path, java.nio.file.Path, net.minecraft.world.level.validation.DirectoryValidator, com.mojang.datafixers.DataFixer);
+  public static net.minecraft.world.level.validation.DirectoryValidator parseValidator(java.nio.file.Path);
+  public static net.minecraft.world.level.storage.LevelStorageSource createDefault(java.nio.file.Path);
+  public static net.minecraft.world.level.WorldDataConfiguration readDataConfig(com.mojang.serialization.Dynamic<?>);
+  public static net.minecraft.server.WorldLoader$PackConfig getPackConfig(com.mojang.serialization.Dynamic<?>, net.minecraft.server.packs.repository.PackRepository, boolean);
+  public static net.minecraft.world.level.storage.LevelDataAndDimensions getLevelDataAndDimensions(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.serialization.Dynamic<?>, net.minecraft.world.level.WorldDataConfiguration, net.minecraft.core.Registry<net.minecraft.world.level.dimension.LevelStem>, net.minecraft.core.HolderLookup$Provider);
+  public static <T extends net.minecraft.world.level.saveddata.SavedData> com.mojang.serialization.DataResult<T> readExistingSavedData(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.core.HolderLookup$Provider, net.minecraft.world.level.saveddata.SavedDataType<T>);
+  public static void writeGameRules(net.minecraft.world.level.storage.WorldData, java.nio.file.Path, net.minecraft.world.level.gamerules.GameRules) throws java.io.IOException;
+  public static void writeWorldGenSettings(net.minecraft.core.RegistryAccess, java.nio.file.Path, net.minecraft.world.level.levelgen.WorldGenSettings) throws java.io.IOException;
+  public java.lang.String getName();
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelCandidates findLevelCandidates() throws net.minecraft.world.level.storage.LevelStorageException;
+  public java.util.concurrent.CompletableFuture<java.util.List<net.minecraft.world.level.storage.LevelSummary>> loadLevelSummaries(net.minecraft.world.level.storage.LevelStorageSource$LevelCandidates);
+  public boolean isNewLevelIdAcceptable(java.lang.String);
+  public boolean levelExists(java.lang.String);
+  public java.nio.file.Path getLevelPath(java.lang.String);
+  public java.nio.file.Path getBaseDir();
+  public java.nio.file.Path getBackupPath();
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess validateAndCreateAccess(java.lang.String) throws java.io.IOException, net.minecraft.world.level.validation.ContentValidationException;
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess createAccess(java.lang.String) throws java.io.IOException;
+  public net.minecraft.world.level.validation.DirectoryValidator getWorldDirValidator();
+}
+Compiled from "TagValueInput.java"
+class net.minecraft.world.level.storage.TagValueInput$TypedListWrapper<T> implements net.minecraft.world.level.storage.ValueInput$TypedInputList<T> {
+  public boolean isEmpty();
+  public java.util.stream.Stream<T> stream();
+  public java.util.Iterator<T> iterator();
+}
+Compiled from "TagValueInput.java"
+class net.minecraft.world.level.storage.TagValueInput$ListWrapper implements net.minecraft.world.level.storage.ValueInput$ValueInputList {
+  public boolean isEmpty();
+  public java.util.stream.Stream<net.minecraft.world.level.storage.ValueInput> stream();
+  public java.util.Iterator<net.minecraft.world.level.storage.ValueInput> iterator();
+}
+Compiled from "LevelResource.java"
+public final class net.minecraft.world.level.storage.LevelResource extends java.lang.Record {
+  public static final net.minecraft.world.level.storage.LevelResource PLAYER_ADVANCEMENTS_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource PLAYER_STATS_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource PLAYER_DATA_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource PLAYER_OLD_DATA_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource LEVEL_DATA_FILE;
+  public static final net.minecraft.world.level.storage.LevelResource OLD_LEVEL_DATA_FILE;
+  public static final net.minecraft.world.level.storage.LevelResource ICON_FILE;
+  public static final net.minecraft.world.level.storage.LevelResource LOCK_FILE;
+  public static final net.minecraft.world.level.storage.LevelResource GENERATED_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource DATAPACK_DIR;
+  public static final net.minecraft.world.level.storage.LevelResource MAP_RESOURCE_FILE;
+  public static final net.minecraft.world.level.storage.LevelResource DATA;
+  public static final net.minecraft.world.level.storage.LevelResource ROOT;
+  public net.minecraft.world.level.storage.LevelResource(java.lang.String);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String id();
+}
+Compiled from "LevelDataAndDimensions.java"
+public final class net.minecraft.world.level.storage.LevelDataAndDimensions extends java.lang.Record {
+  public net.minecraft.world.level.storage.LevelDataAndDimensions(net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings, net.minecraft.world.level.levelgen.WorldDimensions$Complete);
+  public static net.minecraft.world.level.storage.LevelDataAndDimensions create(net.minecraft.world.level.storage.WorldData, net.minecraft.world.level.levelgen.WorldGenSettings, net.minecraft.world.level.levelgen.WorldDimensions$Complete);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings worldDataAndGenSettings();
+  public net.minecraft.world.level.levelgen.WorldDimensions$Complete dimensions();
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$UnexpectedNonNumberProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$UnexpectedNonNumberProblem(java.lang.String, net.minecraft.nbt.TagType<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.nbt.TagType<?> actual();
+}
+Compiled from "PrimaryLevelData.java"
+public final class net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty extends java.lang.Enum<net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty> {
+  public static final net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty NONE;
+  public static final net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty FLAT;
+  public static final net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty DEBUG;
+  public static net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty[] values();
+  public static net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty valueOf(java.lang.String);
+}
+Compiled from "ValueInputContextHelper.java"
+public class net.minecraft.world.level.storage.ValueInputContextHelper {
+  public net.minecraft.world.level.storage.ValueInputContextHelper(net.minecraft.core.HolderLookup$Provider, com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>);
+  public com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag> ops();
+  public net.minecraft.core.HolderLookup$Provider lookup();
+  public net.minecraft.world.level.storage.ValueInput empty();
+  public net.minecraft.world.level.storage.ValueInput$ValueInputList emptyList();
+  public <T> net.minecraft.world.level.storage.ValueInput$TypedInputList<T> emptyTypedList();
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$DecodeFromMapFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$DecodeFromMapFailedProblem(com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.serialization.DataResult$Error<?> error();
+}
+Compiled from "DerivedLevelData.java"
+public class net.minecraft.world.level.storage.DerivedLevelData implements net.minecraft.world.level.storage.ServerLevelData {
+  public net.minecraft.world.level.storage.DerivedLevelData(net.minecraft.world.level.storage.WorldData, net.minecraft.world.level.storage.ServerLevelData);
+  public net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public long getGameTime();
+  public java.lang.String getLevelName();
+  public net.minecraft.world.level.GameType getGameType();
+  public void setGameTime(long);
+  public void setSpawn(net.minecraft.world.level.storage.LevelData$RespawnData);
+  public void setGameType(net.minecraft.world.level.GameType);
+  public boolean isHardcore();
+  public boolean isAllowCommands();
+  public void setAllowCommands(boolean);
+  public boolean isInitialized();
+  public void setInitialized(boolean);
+  public net.minecraft.world.Difficulty getDifficulty();
+  public boolean isDifficultyLocked();
+  public void fillCrashReportCategory(net.minecraft.CrashReportCategory, net.minecraft.world.level.LevelHeightAccessor);
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$UnexpectedListElementTypeProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$UnexpectedListElementTypeProblem(java.lang.String, int, net.minecraft.nbt.TagType<?>, net.minecraft.nbt.TagType<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public int index();
+  public net.minecraft.nbt.TagType<?> expected();
+  public net.minecraft.nbt.TagType<?> actual();
+}
+Compiled from "LevelSummary.java"
+public class net.minecraft.world.level.storage.LevelSummary$SymlinkLevelSummary extends net.minecraft.world.level.storage.LevelSummary {
+  public net.minecraft.world.level.storage.LevelSummary$SymlinkLevelSummary(java.lang.String, java.nio.file.Path);
+  public java.lang.String getLevelName();
+  public net.minecraft.network.chat.Component getInfo();
+  public long getLastPlayed();
+  public boolean isDisabled();
+  public net.minecraft.network.chat.Component primaryActionMessage();
+  public boolean primaryActionActive();
+  public boolean canUpload();
+  public boolean canEdit();
+  public boolean canRecreate();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "DataVersion.java"
+public final class net.minecraft.world.level.storage.DataVersion extends java.lang.Record {
+  public static final java.lang.String MAIN_SERIES;
+  public net.minecraft.world.level.storage.DataVersion(int, java.lang.String);
+  public boolean isSideSeries();
+  public boolean isCompatible(net.minecraft.world.level.storage.DataVersion);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int version();
+  public java.lang.String series();
+}
+Compiled from "TagValueInput.java"
+class net.minecraft.world.level.storage.TagValueInput$CompoundListWrapper implements net.minecraft.world.level.storage.ValueInput$ValueInputList {
+  public net.minecraft.world.level.storage.TagValueInput$CompoundListWrapper(net.minecraft.util.ProblemReporter, net.minecraft.world.level.storage.ValueInputContextHelper, java.util.List<net.minecraft.nbt.CompoundTag>);
+  public boolean isEmpty();
+  public java.util.stream.Stream<net.minecraft.world.level.storage.ValueInput> stream();
+  public java.util.Iterator<net.minecraft.world.level.storage.ValueInput> iterator();
+}
+Compiled from "ValueInput.java"
+public interface net.minecraft.world.level.storage.ValueInput$ValueInputList extends java.lang.Iterable<net.minecraft.world.level.storage.ValueInput> {
+  public abstract boolean isEmpty();
+  public abstract java.util.stream.Stream<net.minecraft.world.level.storage.ValueInput> stream();
+}
+Compiled from "PlayerDataStorage.java"
+public class net.minecraft.world.level.storage.PlayerDataStorage {
+  protected final com.mojang.datafixers.DataFixer fixerUpper;
+  public net.minecraft.world.level.storage.PlayerDataStorage(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.datafixers.DataFixer);
+  public void save(net.minecraft.world.entity.player.Player);
+  public java.util.Optional<net.minecraft.nbt.CompoundTag> load(net.minecraft.server.players.NameAndId);
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$UnexpectedTypeProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$UnexpectedTypeProblem(java.lang.String, net.minecraft.nbt.TagType<?>, net.minecraft.nbt.TagType<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.nbt.TagType<?> expected();
+  public net.minecraft.nbt.TagType<?> actual();
+}
+Compiled from "TagValueOutput.java"
+public class net.minecraft.world.level.storage.TagValueOutput implements net.minecraft.world.level.storage.ValueOutput {
+  public static net.minecraft.world.level.storage.TagValueOutput createWithContext(net.minecraft.util.ProblemReporter, net.minecraft.core.HolderLookup$Provider);
+  public static net.minecraft.world.level.storage.TagValueOutput createWithoutContext(net.minecraft.util.ProblemReporter);
+  public <T> void store(java.lang.String, com.mojang.serialization.Codec<T>, T);
+  public <T> void storeNullable(java.lang.String, com.mojang.serialization.Codec<T>, T);
+  public <T> void store(com.mojang.serialization.MapCodec<T>, T);
+  public void putBoolean(java.lang.String, boolean);
+  public void putByte(java.lang.String, byte);
+  public void putShort(java.lang.String, short);
+  public void putInt(java.lang.String, int);
+  public void putLong(java.lang.String, long);
+  public void putFloat(java.lang.String, float);
+  public void putDouble(java.lang.String, double);
+  public void putString(java.lang.String, java.lang.String);
+  public void putIntArray(java.lang.String, int[]);
+  public net.minecraft.world.level.storage.ValueOutput child(java.lang.String);
+  public net.minecraft.world.level.storage.ValueOutput$ValueOutputList childrenList(java.lang.String);
+  public <T> net.minecraft.world.level.storage.ValueOutput$TypedOutputList<T> list(java.lang.String, com.mojang.serialization.Codec<T>);
+  public void discard(java.lang.String);
+  public boolean isEmpty();
+  public net.minecraft.nbt.CompoundTag buildResult();
+}
+Compiled from "LevelStorageException.java"
+public class net.minecraft.world.level.storage.LevelStorageException extends java.lang.RuntimeException {
+  public net.minecraft.world.level.storage.LevelStorageException(net.minecraft.network.chat.Component);
+  public net.minecraft.world.level.storage.LevelStorageException(net.minecraft.network.chat.Component, java.lang.Exception);
+  public net.minecraft.network.chat.Component getMessageComponent();
+}
+Compiled from "TagValueOutput.java"
+class net.minecraft.world.level.storage.TagValueOutput$TypedListWrapper<T> implements net.minecraft.world.level.storage.ValueOutput$TypedOutputList<T> {
+  public void add(T);
+  public boolean isEmpty();
+}
+Compiled from "FileNameDateFormatter.java"
+public class net.minecraft.world.level.storage.FileNameDateFormatter {
+  public static final java.time.format.DateTimeFormatter FORMATTER;
+  public net.minecraft.world.level.storage.FileNameDateFormatter();
+}
+Compiled from "LevelData.java"
+public interface net.minecraft.world.level.storage.LevelData {
+  public abstract net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public abstract long getGameTime();
+  public abstract boolean isHardcore();
+  public abstract net.minecraft.world.Difficulty getDifficulty();
+  public abstract boolean isDifficultyLocked();
+  public default void fillCrashReportCategory(net.minecraft.CrashReportCategory, net.minecraft.world.level.LevelHeightAccessor);
+}
+Compiled from "ValueInput.java"
+public interface net.minecraft.world.level.storage.ValueInput$TypedInputList<T> extends java.lang.Iterable<T> {
+  public abstract boolean isEmpty();
+  public abstract java.util.stream.Stream<T> stream();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.storage.package-info {
+}
+Compiled from "LevelVersion.java"
+public class net.minecraft.world.level.storage.LevelVersion {
+  public static net.minecraft.world.level.storage.LevelVersion parse(com.mojang.serialization.Dynamic<?>);
+  public int levelDataVersion();
+  public long lastPlayed();
+  public java.lang.String minecraftVersionName();
+  public net.minecraft.world.level.storage.DataVersion minecraftVersion();
+  public boolean snapshot();
+}
+Compiled from "TagValueInput.java"
+public class net.minecraft.world.level.storage.TagValueInput implements net.minecraft.world.level.storage.ValueInput {
+  public static net.minecraft.world.level.storage.ValueInput create(net.minecraft.util.ProblemReporter, net.minecraft.core.HolderLookup$Provider, net.minecraft.nbt.CompoundTag);
+  public static net.minecraft.world.level.storage.ValueInput$ValueInputList create(net.minecraft.util.ProblemReporter, net.minecraft.core.HolderLookup$Provider, java.util.List<net.minecraft.nbt.CompoundTag>);
+  public <T> java.util.Optional<T> read(java.lang.String, com.mojang.serialization.Codec<T>);
+  public <T> java.util.Optional<T> read(com.mojang.serialization.MapCodec<T>);
+  public java.util.Optional<net.minecraft.world.level.storage.ValueInput> child(java.lang.String);
+  public net.minecraft.world.level.storage.ValueInput childOrEmpty(java.lang.String);
+  public java.util.Optional<net.minecraft.world.level.storage.ValueInput$ValueInputList> childrenList(java.lang.String);
+  public net.minecraft.world.level.storage.ValueInput$ValueInputList childrenListOrEmpty(java.lang.String);
+  public <T> java.util.Optional<net.minecraft.world.level.storage.ValueInput$TypedInputList<T>> list(java.lang.String, com.mojang.serialization.Codec<T>);
+  public <T> net.minecraft.world.level.storage.ValueInput$TypedInputList<T> listOrEmpty(java.lang.String, com.mojang.serialization.Codec<T>);
+  public boolean getBooleanOr(java.lang.String, boolean);
+  public byte getByteOr(java.lang.String, byte);
+  public int getShortOr(java.lang.String, short);
+  public java.util.Optional<java.lang.Integer> getInt(java.lang.String);
+  public int getIntOr(java.lang.String, int);
+  public long getLongOr(java.lang.String, long);
+  public java.util.Optional<java.lang.Long> getLong(java.lang.String);
+  public float getFloatOr(java.lang.String, float);
+  public double getDoubleOr(java.lang.String, double);
+  public java.util.Optional<java.lang.String> getString(java.lang.String);
+  public java.lang.String getStringOr(java.lang.String, java.lang.String);
+  public java.util.Optional<int[]> getIntArray(java.lang.String);
+  public net.minecraft.core.HolderLookup$Provider lookup();
+}
+Compiled from "TagValueOutput.java"
+public final class net.minecraft.world.level.storage.TagValueOutput$EncodeToMapFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueOutput$EncodeToMapFailedProblem(java.lang.Object, com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Object value();
+  public com.mojang.serialization.DataResult$Error<?> error();
+}
+Compiled from "WorldData.java"
+public interface net.minecraft.world.level.storage.WorldData {
+  public static final int ANVIL_VERSION_ID;
+  public static final int MCREGION_VERSION_ID;
+  public abstract net.minecraft.world.level.WorldDataConfiguration getDataConfiguration();
+  public abstract void setDataConfiguration(net.minecraft.world.level.WorldDataConfiguration);
+  public abstract boolean wasModded();
+  public abstract java.util.Set<java.lang.String> getKnownServerBrands();
+  public abstract java.util.Set<java.lang.String> getRemovedFeatureFlags();
+  public abstract void setModdedInfo(java.lang.String, boolean);
+  public default void fillCrashReportCategory(net.minecraft.CrashReportCategory);
+  public default java.lang.String getStorageVersionName(int);
+  public abstract net.minecraft.world.level.storage.ServerLevelData overworldData();
+  public abstract net.minecraft.world.level.LevelSettings getLevelSettings();
+  public abstract net.minecraft.nbt.CompoundTag createTag(java.util.UUID);
+  public abstract boolean isHardcore();
+  public abstract int getVersion();
+  public abstract java.lang.String getLevelName();
+  public abstract net.minecraft.world.level.GameType getGameType();
+  public abstract void setGameType(net.minecraft.world.level.GameType);
+  public abstract boolean isAllowCommands();
+  public abstract void setAllowCommands(boolean);
+  public abstract net.minecraft.world.Difficulty getDifficulty();
+  public abstract void setDifficulty(net.minecraft.world.Difficulty);
+  public abstract boolean isDifficultyLocked();
+  public abstract void setDifficultyLocked(boolean);
+  public abstract java.util.UUID getSinglePlayerUUID();
+  public abstract boolean isFlatWorld();
+  public abstract boolean isDebugWorld();
+  public abstract com.mojang.serialization.Lifecycle worldGenSettingsLifecycle();
+  public default net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$DecodeFromFieldFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$DecodeFromFieldFailedProblem(java.lang.String, net.minecraft.nbt.Tag, com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.nbt.Tag tag();
+  public com.mojang.serialization.DataResult$Error<?> error();
+}
+Compiled from "TagValueOutput.java"
+class net.minecraft.world.level.storage.TagValueOutput$ListWrapper implements net.minecraft.world.level.storage.ValueOutput$ValueOutputList {
+  public net.minecraft.world.level.storage.ValueOutput addChild();
+  public void discardLast();
+  public boolean isEmpty();
+}
+Compiled from "LevelStorageSource.java"
+public final class net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory extends java.lang.Record {
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory(java.nio.file.Path);
+  public java.lang.String directoryName();
+  public java.nio.file.Path dataFile();
+  public java.nio.file.Path oldDataFile();
+  public java.nio.file.Path corruptedDataFile(java.time.ZonedDateTime);
+  public java.nio.file.Path rawDataFile(java.time.ZonedDateTime);
+  public java.nio.file.Path iconFile();
+  public java.nio.file.Path lockFile();
+  public java.nio.file.Path resourcePath(net.minecraft.world.level.storage.LevelResource);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path path();
+}
+Compiled from "ServerLevelData.java"
+public interface net.minecraft.world.level.storage.ServerLevelData extends net.minecraft.world.level.storage.WritableLevelData {
+  public abstract java.lang.String getLevelName();
+  public default void fillCrashReportCategory(net.minecraft.CrashReportCategory, net.minecraft.world.level.LevelHeightAccessor);
+  public abstract net.minecraft.world.level.GameType getGameType();
+  public abstract boolean isInitialized();
+  public abstract void setInitialized(boolean);
+  public abstract boolean isAllowCommands();
+  public abstract void setAllowCommands(boolean);
+  public abstract void setGameType(net.minecraft.world.level.GameType);
+  public abstract void setGameTime(long);
+}
+Compiled from "SavedDataStorage.java"
+public class net.minecraft.world.level.storage.SavedDataStorage implements java.lang.AutoCloseable {
+  public net.minecraft.world.level.storage.SavedDataStorage(java.nio.file.Path, com.mojang.datafixers.DataFixer, net.minecraft.core.HolderLookup$Provider);
+  public <T extends net.minecraft.world.level.saveddata.SavedData> T computeIfAbsent(net.minecraft.world.level.saveddata.SavedDataType<T>);
+  public <T extends net.minecraft.world.level.saveddata.SavedData> T get(net.minecraft.world.level.saveddata.SavedDataType<T>);
+  public <T extends net.minecraft.world.level.saveddata.SavedData> void set(net.minecraft.world.level.saveddata.SavedDataType<T>, T);
+  public net.minecraft.nbt.CompoundTag readTagFromDisk(java.nio.file.Path, net.minecraft.util.datafix.DataFixTypes, int) throws java.io.IOException;
+  public java.util.concurrent.CompletableFuture<?> scheduleSave();
+  public void saveAndJoin();
+  public void close();
+}
+Compiled from "TagValueOutput.java"
+public final class net.minecraft.world.level.storage.TagValueOutput$EncodeToFieldFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueOutput$EncodeToFieldFailedProblem(java.lang.String, java.lang.Object, com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.Object value();
+  public com.mojang.serialization.DataResult$Error<?> error();
+}
+Compiled from "CommandStorage.java"
+class net.minecraft.world.level.storage.CommandStorage$Container extends net.minecraft.world.level.saveddata.SavedData {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.CommandStorage$Container> CODEC;
+  public static net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.level.storage.CommandStorage$Container> type(java.lang.String);
+  public net.minecraft.nbt.CompoundTag get(java.lang.String);
+  public void put(java.lang.String, net.minecraft.nbt.CompoundTag);
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getKeys(java.lang.String);
+}
+Compiled from "CommandStorage.java"
+public class net.minecraft.world.level.storage.CommandStorage {
+  public net.minecraft.world.level.storage.CommandStorage(net.minecraft.world.level.storage.SavedDataStorage);
+  public net.minecraft.nbt.CompoundTag get(net.minecraft.resources.Identifier);
+  public void set(net.minecraft.resources.Identifier, net.minecraft.nbt.CompoundTag);
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> keys();
+}
+Compiled from "ValueInput.java"
+public interface net.minecraft.world.level.storage.ValueInput extends net.fabricmc.fabric.api.serialization.v1.value.FabricValueInput {
+  public abstract <T> java.util.Optional<T> read(java.lang.String, com.mojang.serialization.Codec<T>);
+  public abstract <T> java.util.Optional<T> read(com.mojang.serialization.MapCodec<T>);
+  public abstract java.util.Optional<net.minecraft.world.level.storage.ValueInput> child(java.lang.String);
+  public abstract net.minecraft.world.level.storage.ValueInput childOrEmpty(java.lang.String);
+  public abstract java.util.Optional<net.minecraft.world.level.storage.ValueInput$ValueInputList> childrenList(java.lang.String);
+  public abstract net.minecraft.world.level.storage.ValueInput$ValueInputList childrenListOrEmpty(java.lang.String);
+  public abstract <T> java.util.Optional<net.minecraft.world.level.storage.ValueInput$TypedInputList<T>> list(java.lang.String, com.mojang.serialization.Codec<T>);
+  public abstract <T> net.minecraft.world.level.storage.ValueInput$TypedInputList<T> listOrEmpty(java.lang.String, com.mojang.serialization.Codec<T>);
+  public abstract boolean getBooleanOr(java.lang.String, boolean);
+  public abstract byte getByteOr(java.lang.String, byte);
+  public abstract int getShortOr(java.lang.String, short);
+  public abstract java.util.Optional<java.lang.Integer> getInt(java.lang.String);
+  public abstract int getIntOr(java.lang.String, int);
+  public abstract long getLongOr(java.lang.String, long);
+  public abstract java.util.Optional<java.lang.Long> getLong(java.lang.String);
+  public abstract float getFloatOr(java.lang.String, float);
+  public abstract double getDoubleOr(java.lang.String, double);
+  public abstract java.util.Optional<java.lang.String> getString(java.lang.String);
+  public abstract java.lang.String getStringOr(java.lang.String, java.lang.String);
+  public abstract java.util.Optional<int[]> getIntArray(java.lang.String);
+  public abstract net.minecraft.core.HolderLookup$Provider lookup();
+}
+Compiled from "TagValueOutput.java"
+public final class net.minecraft.world.level.storage.TagValueOutput$EncodeToListFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueOutput$EncodeToListFailedProblem(java.lang.String, java.lang.Object, com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.Object value();
+  public com.mojang.serialization.DataResult$Error<?> error();
+}
+Compiled from "LevelStorageSource.java"
+public class net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess implements java.lang.AutoCloseable {
+  public void releaseTemporarilyAndRun(org.apache.commons.io.function.IORunnable) throws java.io.IOException;
+  public long estimateDiskSpace();
+  public boolean checkForLowDiskSpace();
+  public void safeClose();
+  public net.minecraft.world.level.storage.LevelStorageSource parent();
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory getLevelDirectory();
+  public java.lang.String getLevelId();
+  public java.nio.file.Path getLevelPath(net.minecraft.world.level.storage.LevelResource);
+  public java.nio.file.Path getDimensionPath(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public net.minecraft.world.level.storage.PlayerDataStorage createPlayerStorage();
+  public void collectIssues(boolean) throws java.io.IOException;
+  public net.minecraft.world.level.storage.LevelSummary fixAndGetSummary() throws java.io.IOException;
+  public net.minecraft.world.level.storage.LevelSummary fixAndGetSummaryFromTag(com.mojang.serialization.Dynamic<?>);
+  public com.mojang.serialization.Dynamic<?> getUnfixedDataTagWithFallback() throws java.io.IOException;
+  public com.mojang.serialization.Dynamic<?> getUnfixedDataTag(boolean) throws java.io.IOException;
+  public void saveDataTag(net.minecraft.world.level.storage.WorldData);
+  public void saveDataTag(net.minecraft.world.level.storage.WorldData, java.util.UUID);
+  public void saveLevelData(com.mojang.serialization.Dynamic<?>);
+  public java.util.Optional<java.nio.file.Path> getIconFile();
+  public void deleteLevel() throws java.io.IOException;
+  public void renameLevel(java.lang.String) throws java.io.IOException;
+  public void renameAndDropPlayer(java.lang.String) throws java.io.IOException;
+  public long makeWorldBackup() throws java.io.IOException;
+  public boolean hasWorldData();
+  public void close() throws java.io.IOException;
+  public boolean restoreLevelDataFromOld();
+  public java.time.Instant getFileModificationTime(boolean);
+}
+Compiled from "LevelStorageSource.java"
+public final class net.minecraft.world.level.storage.LevelStorageSource$LevelCandidates extends java.lang.Record implements java.lang.Iterable<net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory> {
+  public net.minecraft.world.level.storage.LevelStorageSource$LevelCandidates(java.util.List<net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory>);
+  public boolean isEmpty();
+  public java.util.Iterator<net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory> iterator();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.storage.LevelStorageSource$LevelDirectory> levels();
+}
+Compiled from "ValueOutput.java"
+public interface net.minecraft.world.level.storage.ValueOutput$TypedOutputList<T> {
+  public abstract void add(T);
+  public abstract boolean isEmpty();
+}
+Compiled from "WritableLevelData.java"
+public interface net.minecraft.world.level.storage.WritableLevelData extends net.minecraft.world.level.storage.LevelData {
+  public abstract void setSpawn(net.minecraft.world.level.storage.LevelData$RespawnData);
+}
+Compiled from "LevelData.java"
+public final class net.minecraft.world.level.storage.LevelData$RespawnData extends java.lang.Record {
+  public static final net.minecraft.world.level.storage.LevelData$RespawnData DEFAULT;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.storage.LevelData$RespawnData> MAP_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.LevelData$RespawnData> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.storage.LevelData$RespawnData> STREAM_CODEC;
+  public net.minecraft.world.level.storage.LevelData$RespawnData(net.minecraft.core.GlobalPos, float, float);
+  public static net.minecraft.world.level.storage.LevelData$RespawnData of(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.BlockPos, float, float);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+  public net.minecraft.core.BlockPos pos();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.GlobalPos globalPos();
+  public float yaw();
+  public float pitch();
+}
+Compiled from "LevelSummary.java"
+public class net.minecraft.world.level.storage.LevelSummary implements java.lang.Comparable<net.minecraft.world.level.storage.LevelSummary> {
+  public static final net.minecraft.network.chat.Component PLAY_WORLD;
+  public static final net.minecraft.network.chat.Component UPGRADE_AND_PLAY_WORLD;
+  public net.minecraft.world.level.storage.LevelSummary(net.minecraft.world.level.LevelSettings, net.minecraft.world.level.storage.LevelVersion, java.lang.String, boolean, boolean, boolean, boolean, java.nio.file.Path);
+  public java.lang.String getLevelId();
+  public java.lang.String getLevelName();
+  public java.nio.file.Path getIcon();
+  public boolean requiresManualConversion();
+  public boolean requiresFileFixing();
+  public boolean isExperimental();
+  public long getLastPlayed();
+  public int compareTo(net.minecraft.world.level.storage.LevelSummary);
+  public net.minecraft.world.level.LevelSettings getSettings();
+  public net.minecraft.world.level.GameType getGameMode();
+  public boolean isHardcore();
+  public boolean hasCommands();
+  public net.minecraft.network.chat.MutableComponent getWorldVersionName();
+  public net.minecraft.world.level.storage.LevelVersion levelVersion();
+  public boolean shouldBackup();
+  public boolean isDowngrade();
+  public net.minecraft.world.level.storage.LevelSummary$BackupStatus backupStatus();
+  public boolean isLocked();
+  public boolean isDisabled();
+  public boolean isCompatible();
+  public net.minecraft.network.chat.Component getInfo();
+  public net.minecraft.network.chat.Component primaryActionMessage();
+  public boolean primaryActionActive();
+  public boolean canUpload();
+  public boolean canEdit();
+  public boolean canRecreate();
+  public boolean canDelete();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "PrimaryLevelData.java"
+public class net.minecraft.world.level.storage.PrimaryLevelData implements net.minecraft.world.level.storage.ServerLevelData,net.minecraft.world.level.storage.WorldData {
+  public static final java.lang.String LEVEL_NAME;
+  protected static final java.lang.String OLD_PLAYER;
+  protected static final java.lang.String SINGLEPLAYER_UUID;
+  protected static final java.lang.String OLD_WORLD_GEN_SETTINGS;
+  public net.minecraft.world.level.storage.PrimaryLevelData(net.minecraft.world.level.LevelSettings, net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty, com.mojang.serialization.Lifecycle);
+  public static <T> net.minecraft.world.level.storage.PrimaryLevelData parse(com.mojang.serialization.Dynamic<T>, net.minecraft.world.level.LevelSettings, net.minecraft.world.level.storage.PrimaryLevelData$SpecialWorldProperty, com.mojang.serialization.Lifecycle);
+  public net.minecraft.nbt.CompoundTag createTag(java.util.UUID);
+  public static void writeLastPlayed(net.minecraft.nbt.CompoundTag);
+  public static com.mojang.serialization.Dynamic<?> writeLastPlayed(com.mojang.serialization.Dynamic<?>);
+  public static void writeVersionTag(net.minecraft.nbt.CompoundTag);
+  public static com.mojang.serialization.Dynamic<?> writeVersionTag(com.mojang.serialization.Dynamic<?>);
+  public void writeVersionHistory(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public long getGameTime();
+  public java.util.UUID getSinglePlayerUUID();
+  public void setGameTime(long);
+  public void setSpawn(net.minecraft.world.level.storage.LevelData$RespawnData);
+  public java.lang.String getLevelName();
+  public int getVersion();
+  public net.minecraft.world.level.GameType getGameType();
+  public void setGameType(net.minecraft.world.level.GameType);
+  public boolean isHardcore();
+  public boolean isAllowCommands();
+  public void setAllowCommands(boolean);
+  public boolean isInitialized();
+  public void setInitialized(boolean);
+  public net.minecraft.world.Difficulty getDifficulty();
+  public void setDifficulty(net.minecraft.world.Difficulty);
+  public boolean isDifficultyLocked();
+  public void setDifficultyLocked(boolean);
+  public void fillCrashReportCategory(net.minecraft.CrashReportCategory, net.minecraft.world.level.LevelHeightAccessor);
+  public boolean isFlatWorld();
+  public boolean isDebugWorld();
+  public com.mojang.serialization.Lifecycle worldGenSettingsLifecycle();
+  public net.minecraft.world.level.WorldDataConfiguration getDataConfiguration();
+  public void setDataConfiguration(net.minecraft.world.level.WorldDataConfiguration);
+  public void setModdedInfo(java.lang.String, boolean);
+  public boolean wasModded();
+  public java.util.Set<java.lang.String> getKnownServerBrands();
+  public java.util.Set<java.lang.String> getRemovedFeatureFlags();
+  public net.minecraft.world.level.storage.ServerLevelData overworldData();
+  public net.minecraft.world.level.LevelSettings getLevelSettings();
+}
+Compiled from "LevelSummary.java"
+public class net.minecraft.world.level.storage.LevelSummary$CorruptedLevelSummary extends net.minecraft.world.level.storage.LevelSummary {
+  public net.minecraft.world.level.storage.LevelSummary$CorruptedLevelSummary(java.lang.String, java.nio.file.Path, long);
+  public java.lang.String getLevelName();
+  public net.minecraft.network.chat.Component getInfo();
+  public long getLastPlayed();
+  public boolean isDisabled();
+  public net.minecraft.network.chat.Component primaryActionMessage();
+  public boolean primaryActionActive();
+  public boolean canUpload();
+  public boolean canEdit();
+  public boolean canRecreate();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "LevelSummary.java"
+public final class net.minecraft.world.level.storage.LevelSummary$BackupStatus extends java.lang.Enum<net.minecraft.world.level.storage.LevelSummary$BackupStatus> {
+  public static final net.minecraft.world.level.storage.LevelSummary$BackupStatus NONE;
+  public static final net.minecraft.world.level.storage.LevelSummary$BackupStatus DOWNGRADE;
+  public static final net.minecraft.world.level.storage.LevelSummary$BackupStatus UPGRADE_TO_SNAPSHOT;
+  public static final net.minecraft.world.level.storage.LevelSummary$BackupStatus FILE_FIXING_REQUIRED;
+  public static net.minecraft.world.level.storage.LevelSummary$BackupStatus[] values();
+  public static net.minecraft.world.level.storage.LevelSummary$BackupStatus valueOf(java.lang.String);
+  public boolean shouldBackup();
+  public boolean isSevere();
+  public java.lang.String getTranslationKey();
+}
+Compiled from "ValueOutput.java"
+public interface net.minecraft.world.level.storage.ValueOutput extends net.fabricmc.fabric.api.serialization.v1.value.FabricValueOutput {
+  public abstract <T> void store(java.lang.String, com.mojang.serialization.Codec<T>, T);
+  public abstract <T> void storeNullable(java.lang.String, com.mojang.serialization.Codec<T>, T);
+  public abstract <T> void store(com.mojang.serialization.MapCodec<T>, T);
+  public abstract void putBoolean(java.lang.String, boolean);
+  public abstract void putByte(java.lang.String, byte);
+  public abstract void putShort(java.lang.String, short);
+  public abstract void putInt(java.lang.String, int);
+  public abstract void putLong(java.lang.String, long);
+  public abstract void putFloat(java.lang.String, float);
+  public abstract void putDouble(java.lang.String, double);
+  public abstract void putString(java.lang.String, java.lang.String);
+  public abstract void putIntArray(java.lang.String, int[]);
+  public abstract net.minecraft.world.level.storage.ValueOutput child(java.lang.String);
+  public abstract net.minecraft.world.level.storage.ValueOutput$ValueOutputList childrenList(java.lang.String);
+  public abstract <T> net.minecraft.world.level.storage.ValueOutput$TypedOutputList<T> list(java.lang.String, com.mojang.serialization.Codec<T>);
+  public abstract void discard(java.lang.String);
+  public abstract boolean isEmpty();
+}
+Compiled from "LevelDataAndDimensions.java"
+public final class net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings extends java.lang.Record {
+  public net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings(net.minecraft.world.level.storage.WorldData, net.minecraft.world.level.levelgen.WorldGenSettings);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.storage.WorldData data();
+  public net.minecraft.world.level.levelgen.WorldGenSettings genSettings();
+}
+Compiled from "ValueOutput.java"
+public interface net.minecraft.world.level.storage.ValueOutput$ValueOutputList {
+  public abstract net.minecraft.world.level.storage.ValueOutput addChild();
+  public abstract void discardLast();
+  public abstract boolean isEmpty();
+}
+Compiled from "TagValueInput.java"
+public final class net.minecraft.world.level.storage.TagValueInput$DecodeFromListFailedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.TagValueInput$DecodeFromListFailedProblem(java.lang.String, int, net.minecraft.nbt.Tag, com.mojang.serialization.DataResult$Error<?>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public int index();
+  public net.minecraft.nbt.Tag tag();
+  public com.mojang.serialization.DataResult$Error<?> error();
+}

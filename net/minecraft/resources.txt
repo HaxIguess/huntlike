@@ -1,0 +1,268 @@
+Compiled from "RegistryOps.java"
+final class net.minecraft.resources.RegistryOps$HolderLookupAdapter implements net.minecraft.resources.RegistryOps$RegistryInfoLookup {
+  public net.minecraft.resources.RegistryOps$HolderLookupAdapter(net.minecraft.core.HolderLookup$Provider);
+  public <E> java.util.Optional<net.minecraft.core.HolderGetter<E>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "ResourceKey.java"
+public class net.minecraft.resources.ResourceKey<T> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> REGISTRY_STREAM_CODEC;
+  public static <T> com.mojang.serialization.Codec<net.minecraft.resources.ResourceKey<T>> codec(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.resources.ResourceKey<T>> streamCodec(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>);
+  public static <T> net.minecraft.resources.ResourceKey<T> create(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.resources.Identifier);
+  public static <T> net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>> createRegistryKey(net.minecraft.resources.Identifier);
+  public java.lang.String toString();
+  public boolean isFor(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+  public <E> java.util.Optional<net.minecraft.resources.ResourceKey<E>> cast(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>);
+  public <E> net.minecraft.resources.ResourceKey<E> dependent(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, java.lang.String);
+  public <E> net.minecraft.resources.ResourceKey<E> dependent(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, java.util.function.UnaryOperator<java.lang.String>);
+  public net.minecraft.resources.Identifier identifier();
+  public net.minecraft.resources.Identifier registry();
+  public net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>> registryKey();
+}
+Compiled from "DelegatingOps.java"
+public class net.minecraft.resources.DelegatingOps$DelegateRecordBuilder implements com.mojang.serialization.RecordBuilder<T> {
+  protected net.minecraft.resources.DelegatingOps$DelegateRecordBuilder(com.mojang.serialization.RecordBuilder<T>);
+  public com.mojang.serialization.DynamicOps<T> ops();
+  public com.mojang.serialization.RecordBuilder<T> add(T, T);
+  public com.mojang.serialization.RecordBuilder<T> add(T, com.mojang.serialization.DataResult<T>);
+  public com.mojang.serialization.RecordBuilder<T> add(com.mojang.serialization.DataResult<T>, com.mojang.serialization.DataResult<T>);
+  public com.mojang.serialization.RecordBuilder<T> add(java.lang.String, T);
+  public com.mojang.serialization.RecordBuilder<T> add(java.lang.String, com.mojang.serialization.DataResult<T>);
+  public <E> com.mojang.serialization.RecordBuilder<T> add(java.lang.String, E, com.mojang.serialization.Encoder<E>);
+  public com.mojang.serialization.RecordBuilder<T> withErrorsFrom(com.mojang.serialization.DataResult<?>);
+  public com.mojang.serialization.RecordBuilder<T> setLifecycle(com.mojang.serialization.Lifecycle);
+  public com.mojang.serialization.RecordBuilder<T> mapError(java.util.function.UnaryOperator<java.lang.String>);
+  public com.mojang.serialization.DataResult<T> build(T);
+  public com.mojang.serialization.DataResult<T> build(com.mojang.serialization.DataResult<T>);
+}
+Compiled from "NetworkRegistryLoadTask.java"
+public class net.minecraft.resources.NetworkRegistryLoadTask<T> extends net.minecraft.resources.RegistryLoadTask<T> {
+  public net.minecraft.resources.NetworkRegistryLoadTask(net.minecraft.resources.RegistryDataLoader$RegistryData<T>, com.mojang.serialization.Lifecycle, java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>, java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.resources.RegistryDataLoader$NetworkedRegistryData>, net.minecraft.server.packs.resources.ResourceProvider);
+  public java.util.concurrent.CompletableFuture<?> load(net.minecraft.resources.RegistryOps$RegistryInfoLookup, java.util.concurrent.Executor);
+}
+Compiled from "RegistryDataLoader.java"
+public class net.minecraft.resources.RegistryDataLoader {
+  public static final java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> WORLD_REGISTRIES;
+  public static final java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> DIMENSION_REGISTRIES;
+  public static final java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> RELOADABLE_REGISTRIES;
+  public static final java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>> SYNCHRONIZED_REGISTRIES;
+  public net.minecraft.resources.RegistryDataLoader();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.core.RegistryAccess$Frozen> load(net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.core.HolderLookup$RegistryLookup<?>>, java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>>, java.util.concurrent.Executor);
+  public static java.util.concurrent.CompletableFuture<net.minecraft.core.RegistryAccess$Frozen> load(java.util.Map<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>, net.minecraft.resources.RegistryDataLoader$NetworkedRegistryData>, net.minecraft.server.packs.resources.ResourceProvider, java.util.List<net.minecraft.core.HolderLookup$RegistryLookup<?>>, java.util.List<net.minecraft.resources.RegistryDataLoader$RegistryData<?>>, java.util.concurrent.Executor);
+}
+Compiled from "Identifier.java"
+public final class net.minecraft.resources.Identifier implements java.lang.Comparable<net.minecraft.resources.Identifier> {
+  public static final com.mojang.serialization.Codec<net.minecraft.resources.Identifier> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.resources.Identifier> STREAM_CODEC;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_INVALID;
+  public static final char NAMESPACE_SEPARATOR;
+  public static final java.lang.String DEFAULT_NAMESPACE;
+  public static final java.lang.String REALMS_NAMESPACE;
+  public static final java.lang.String ALLOWED_NAMESPACE_CHARACTERS;
+  public static net.minecraft.resources.Identifier fromNamespaceAndPath(java.lang.String, java.lang.String);
+  public static net.minecraft.resources.Identifier parse(java.lang.String);
+  public static net.minecraft.resources.Identifier withDefaultNamespace(java.lang.String);
+  public static net.minecraft.resources.Identifier tryParse(java.lang.String);
+  public static net.minecraft.resources.Identifier tryBuild(java.lang.String, java.lang.String);
+  public static net.minecraft.resources.Identifier bySeparator(java.lang.String, char);
+  public static net.minecraft.resources.Identifier tryBySeparator(java.lang.String, char);
+  public static com.mojang.serialization.DataResult<net.minecraft.resources.Identifier> read(java.lang.String);
+  public java.lang.String getPath();
+  public java.lang.String getNamespace();
+  public net.minecraft.resources.Identifier withPath(java.lang.String);
+  public net.minecraft.resources.Identifier withPath(java.util.function.UnaryOperator<java.lang.String>);
+  public net.minecraft.resources.Identifier withPrefix(java.lang.String);
+  public net.minecraft.resources.Identifier withSuffix(java.lang.String);
+  public java.lang.String toString();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public int compareTo(net.minecraft.resources.Identifier);
+  public java.nio.file.Path resolveAgainst(java.nio.file.Path);
+  public java.lang.String toDebugFileName();
+  public java.lang.String toLanguageKey();
+  public java.lang.String toShortLanguageKey();
+  public java.lang.String toShortString();
+  public java.lang.String toLanguageKey(java.lang.String);
+  public java.lang.String toLanguageKey(java.lang.String, java.lang.String);
+  public static net.minecraft.resources.Identifier read(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.resources.Identifier readNonEmpty(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static boolean isAllowedInIdentifier(char);
+  public static boolean isValidPath(java.lang.String);
+  public static boolean isValidNamespace(java.lang.String);
+  public static boolean validPathChar(char);
+  public int compareTo(java.lang.Object);
+}
+Compiled from "DelegatingOps.java"
+public abstract class net.minecraft.resources.DelegatingOps<T> implements com.mojang.serialization.DynamicOps<T> {
+  protected final com.mojang.serialization.DynamicOps<T> delegate;
+  protected net.minecraft.resources.DelegatingOps(com.mojang.serialization.DynamicOps<T>);
+  public T empty();
+  public T emptyMap();
+  public T emptyList();
+  public <U> U convertTo(com.mojang.serialization.DynamicOps<U>, T);
+  public com.mojang.serialization.DataResult<java.lang.Number> getNumberValue(T);
+  public T createNumeric(java.lang.Number);
+  public T createByte(byte);
+  public T createShort(short);
+  public T createInt(int);
+  public T createLong(long);
+  public T createFloat(float);
+  public T createDouble(double);
+  public com.mojang.serialization.DataResult<java.lang.Boolean> getBooleanValue(T);
+  public T createBoolean(boolean);
+  public com.mojang.serialization.DataResult<java.lang.String> getStringValue(T);
+  public T createString(java.lang.String);
+  public com.mojang.serialization.DataResult<T> mergeToList(T, T);
+  public com.mojang.serialization.DataResult<T> mergeToList(T, java.util.List<T>);
+  public com.mojang.serialization.DataResult<T> mergeToMap(T, T, T);
+  public com.mojang.serialization.DataResult<T> mergeToMap(T, com.mojang.serialization.MapLike<T>);
+  public com.mojang.serialization.DataResult<T> mergeToMap(T, java.util.Map<T, T>);
+  public com.mojang.serialization.DataResult<T> mergeToPrimitive(T, T);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<com.mojang.datafixers.util.Pair<T, T>>> getMapValues(T);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.BiConsumer<T, T>>> getMapEntries(T);
+  public T createMap(java.util.Map<T, T>);
+  public T createMap(java.util.stream.Stream<com.mojang.datafixers.util.Pair<T, T>>);
+  public com.mojang.serialization.DataResult<com.mojang.serialization.MapLike<T>> getMap(T);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<T>> getStream(T);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.Consumer<T>>> getList(T);
+  public T createList(java.util.stream.Stream<T>);
+  public com.mojang.serialization.DataResult<java.nio.ByteBuffer> getByteBuffer(T);
+  public T createByteList(java.nio.ByteBuffer);
+  public com.mojang.serialization.DataResult<java.util.stream.IntStream> getIntStream(T);
+  public T createIntList(java.util.stream.IntStream);
+  public com.mojang.serialization.DataResult<java.util.stream.LongStream> getLongStream(T);
+  public T createLongList(java.util.stream.LongStream);
+  public T remove(T, java.lang.String);
+  public boolean compressMaps();
+  public com.mojang.serialization.ListBuilder<T> listBuilder();
+  public com.mojang.serialization.RecordBuilder<T> mapBuilder();
+}
+Compiled from "RegistryOps.java"
+public interface net.minecraft.resources.RegistryOps$RegistryInfoLookup {
+  public abstract <T> java.util.Optional<net.minecraft.core.HolderGetter<T>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+}
+Compiled from "ResourceKey.java"
+final class net.minecraft.resources.ResourceKey$InternKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier registry();
+  public net.minecraft.resources.Identifier identifier();
+}
+Compiled from "RegistryDataLoader.java"
+public final class net.minecraft.resources.RegistryDataLoader$RegistryData<T> extends java.lang.Record {
+  public net.minecraft.resources.RegistryDataLoader$RegistryData(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>, net.minecraft.resources.RegistryValidator<T>);
+  public void runWithArguments(java.util.function.BiConsumer<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, com.mojang.serialization.Codec<T>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> key();
+  public com.mojang.serialization.Codec<T> elementCodec();
+  public net.minecraft.resources.RegistryValidator<T> validator();
+}
+Compiled from "RegistryLoadTask.java"
+public abstract class net.minecraft.resources.RegistryLoadTask<T> {
+  protected final net.minecraft.resources.RegistryDataLoader$RegistryData<T> data;
+  protected final net.minecraft.core.registries.ConcurrentHolderGetter<T> concurrentRegistrationGetter;
+  protected final java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception> loadingErrors;
+  protected net.minecraft.resources.RegistryLoadTask(net.minecraft.resources.RegistryDataLoader$RegistryData<T>, com.mojang.serialization.Lifecycle, java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>);
+  protected net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>> registryKey();
+  protected net.minecraft.core.Registry<T> readOnlyRegistry();
+  public abstract java.util.concurrent.CompletableFuture<?> load(net.minecraft.resources.RegistryOps$RegistryInfoLookup, java.util.concurrent.Executor);
+  protected void registerElements(java.util.stream.Stream<net.minecraft.resources.RegistryLoadTask$PendingRegistration<T>>);
+  protected void registerTags(java.util.Map<net.minecraft.tags.TagKey<T>, java.util.List<net.minecraft.core.Holder<T>>>);
+  public boolean freezeRegistry(java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>);
+  public java.util.Optional<net.minecraft.core.Registry<T>> validateRegistry(java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>);
+}
+Compiled from "ResourceManagerRegistryLoadTask.java"
+public class net.minecraft.resources.ResourceManagerRegistryLoadTask<T> extends net.minecraft.resources.RegistryLoadTask<T> {
+  public net.minecraft.resources.ResourceManagerRegistryLoadTask(net.minecraft.resources.RegistryDataLoader$RegistryData<T>, com.mojang.serialization.Lifecycle, java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>, net.minecraft.server.packs.resources.ResourceManager);
+  public java.util.concurrent.CompletableFuture<?> load(net.minecraft.resources.RegistryOps$RegistryInfoLookup, java.util.concurrent.Executor);
+}
+Compiled from "RegistryDataLoader.java"
+interface net.minecraft.resources.RegistryDataLoader$LoaderFactory {
+  public abstract <T> net.minecraft.resources.RegistryLoadTask<T> create(net.minecraft.resources.RegistryDataLoader$RegistryData<T>, java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.resources.package-info {
+}
+Compiled from "DependantName.java"
+public interface net.minecraft.resources.DependantName<T, V> {
+  public abstract V get(net.minecraft.resources.ResourceKey<T>);
+  public static <T, V> net.minecraft.resources.DependantName<T, V> fixed(V);
+}
+Compiled from "FileToIdConverter.java"
+public final class net.minecraft.resources.FileToIdConverter extends java.lang.Record {
+  public net.minecraft.resources.FileToIdConverter(java.lang.String, java.lang.String);
+  public static net.minecraft.resources.FileToIdConverter json(java.lang.String);
+  public static net.minecraft.resources.FileToIdConverter registry(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>);
+  public net.minecraft.resources.Identifier idToFile(net.minecraft.resources.Identifier);
+  public net.minecraft.resources.Identifier fileToId(net.minecraft.resources.Identifier);
+  public boolean extensionMatches(net.minecraft.resources.Identifier);
+  public boolean prefixMatches(net.minecraft.resources.Identifier);
+  public boolean matches(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listMatchingResources(net.minecraft.server.packs.resources.ResourceManager);
+  public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listMatchingResourceStacks(net.minecraft.server.packs.resources.ResourceManager);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String prefix();
+  public java.lang.String extension();
+}
+Compiled from "RegistryOps.java"
+public class net.minecraft.resources.RegistryOps<T> extends net.minecraft.resources.DelegatingOps<T> {
+  public static <T> net.minecraft.resources.RegistryOps<T> create(com.mojang.serialization.DynamicOps<T>, net.minecraft.core.HolderLookup$Provider);
+  public static <T> net.minecraft.resources.RegistryOps<T> create(com.mojang.serialization.DynamicOps<T>, net.minecraft.resources.RegistryOps$RegistryInfoLookup);
+  public static <T> com.mojang.serialization.Dynamic<T> injectRegistryContext(com.mojang.serialization.Dynamic<T>, net.minecraft.core.HolderLookup$Provider);
+  public <U> net.minecraft.resources.RegistryOps<U> withParent(com.mojang.serialization.DynamicOps<U>);
+  public <E> java.util.Optional<net.minecraft.core.HolderGetter<E>> getter(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public static <E, O> com.mojang.serialization.codecs.RecordCodecBuilder<O, net.minecraft.core.HolderGetter<E>> retrieveGetter(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends E>>);
+  public static <E, O> com.mojang.serialization.codecs.RecordCodecBuilder<O, net.minecraft.core.Holder$Reference<E>> retrieveElement(net.minecraft.resources.ResourceKey<E>);
+}
+Compiled from "DelegatingOps.java"
+public class net.minecraft.resources.DelegatingOps$DelegateListBuilder implements com.mojang.serialization.ListBuilder<T> {
+  protected net.minecraft.resources.DelegatingOps$DelegateListBuilder(com.mojang.serialization.ListBuilder<T>);
+  public com.mojang.serialization.DynamicOps<T> ops();
+  public com.mojang.serialization.DataResult<T> build(T);
+  public com.mojang.serialization.ListBuilder<T> add(T);
+  public com.mojang.serialization.ListBuilder<T> add(com.mojang.serialization.DataResult<T>);
+  public <E> com.mojang.serialization.ListBuilder<T> add(E, com.mojang.serialization.Encoder<E>);
+  public <E> com.mojang.serialization.ListBuilder<T> addAll(java.lang.Iterable<E>, com.mojang.serialization.Encoder<E>);
+  public com.mojang.serialization.ListBuilder<T> withErrorsFrom(com.mojang.serialization.DataResult<?>);
+  public com.mojang.serialization.ListBuilder<T> mapError(java.util.function.UnaryOperator<java.lang.String>);
+  public com.mojang.serialization.DataResult<T> build(com.mojang.serialization.DataResult<T>);
+}
+Compiled from "RegistryValidator.java"
+public interface net.minecraft.resources.RegistryValidator<T> {
+  public static final net.minecraft.resources.RegistryValidator<?> NONE;
+  public static final net.minecraft.resources.RegistryValidator<?> NON_EMPTY;
+  public static <T> net.minecraft.resources.RegistryValidator<T> none();
+  public static <T> net.minecraft.resources.RegistryValidator<T> nonEmpty();
+  public abstract void validate(net.minecraft.core.Registry<T>, java.util.Map<net.minecraft.resources.ResourceKey<?>, java.lang.Exception>);
+}
+Compiled from "RegistryLoadTask.java"
+public final class net.minecraft.resources.RegistryLoadTask$PendingRegistration<T> extends java.lang.Record {
+  protected net.minecraft.resources.RegistryLoadTask$PendingRegistration(net.minecraft.resources.ResourceKey<T>, com.mojang.datafixers.util.Either<T, java.lang.Exception>, net.minecraft.core.RegistrationInfo);
+  public static <T> com.mojang.datafixers.util.Either<T, java.lang.Exception> loadFromResource(com.mojang.serialization.Decoder<T>, net.minecraft.resources.RegistryOps<com.google.gson.JsonElement>, net.minecraft.resources.ResourceKey<T>, net.minecraft.server.packs.resources.Resource);
+  public static <T> com.mojang.datafixers.util.Either<T, java.lang.Exception> findAndLoadFromResource(com.mojang.serialization.Decoder<T>, net.minecraft.resources.RegistryOps<com.google.gson.JsonElement>, net.minecraft.resources.ResourceKey<T>, net.minecraft.resources.FileToIdConverter, net.minecraft.server.packs.resources.ResourceProvider);
+  public static <T> com.mojang.datafixers.util.Either<T, java.lang.Exception> loadFromNetwork(com.mojang.serialization.Decoder<T>, net.minecraft.resources.RegistryOps<net.minecraft.nbt.Tag>, net.minecraft.resources.ResourceKey<T>, net.minecraft.nbt.Tag);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<T> key();
+  public com.mojang.datafixers.util.Either<T, java.lang.Exception> value();
+  public net.minecraft.core.RegistrationInfo registrationInfo();
+}
+Compiled from "RegistryDataLoader.java"
+public final class net.minecraft.resources.RegistryDataLoader$NetworkedRegistryData extends java.lang.Record {
+  public net.minecraft.resources.RegistryDataLoader$NetworkedRegistryData(java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry>, net.minecraft.tags.TagNetworkSerialization$NetworkPayload);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.core.RegistrySynchronization$PackedRegistryEntry> elements();
+  public net.minecraft.tags.TagNetworkSerialization$NetworkPayload tags();
+}

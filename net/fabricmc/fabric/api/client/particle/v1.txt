@@ -1,0 +1,36 @@
+Compiled from "FabricSpriteSet.java"
+public interface net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet extends net.minecraft.client.particle.SpriteSet {
+  public abstract net.minecraft.client.renderer.texture.TextureAtlas getAtlas();
+  public abstract java.util.List<net.minecraft.client.renderer.texture.TextureAtlasSprite> getSprites();
+}
+Compiled from "ParticleGroupRegistry.java"
+public final class net.fabricmc.fabric.api.client.particle.v1.ParticleGroupRegistry {
+  public static void register(net.minecraft.client.particle.ParticleRenderType, java.util.function.Function<net.minecraft.client.particle.ParticleEngine, net.minecraft.client.particle.ParticleGroup<?>>);
+  public static void registerOrdering(net.minecraft.client.particle.ParticleRenderType, net.minecraft.resources.Identifier);
+  public static void registerOrdering(net.minecraft.client.particle.ParticleRenderType, net.minecraft.client.particle.ParticleRenderType);
+  public static void registerOrdering(net.minecraft.resources.Identifier, net.minecraft.client.particle.ParticleRenderType);
+  public static void registerOrdering(net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public static net.minecraft.client.particle.ParticleRenderType getParticleRenderType(net.minecraft.resources.Identifier);
+  public static net.minecraft.resources.Identifier getId(net.minecraft.client.particle.ParticleRenderType);
+}
+Compiled from "ParticleProviderRegistry.java"
+public interface net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry$PendingParticleProvider<T extends net.minecraft.core.particles.ParticleOptions> {
+  public abstract net.minecraft.client.particle.ParticleProvider<T> create(net.fabricmc.fabric.api.client.particle.v1.FabricSpriteSet);
+}
+Compiled from "ParticleProviderRegistry.java"
+public interface net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry {
+  public static net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry getInstance();
+  public abstract <T extends net.minecraft.core.particles.ParticleOptions> void register(net.minecraft.core.particles.ParticleType<T>, net.minecraft.client.particle.ParticleProvider<T>);
+  public abstract <T extends net.minecraft.core.particles.ParticleOptions> void register(net.minecraft.core.particles.ParticleType<T>, net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry$PendingParticleProvider<T>);
+}
+Compiled from "ParticleRenderEvents.java"
+public interface net.fabricmc.fabric.api.client.particle.v1.ParticleRenderEvents$AllowTerrainParticleTint {
+  public abstract boolean allowTerrainParticleTint(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.multiplayer.ClientLevel, net.minecraft.core.BlockPos);
+}
+Compiled from "ParticleRenderEvents.java"
+public final class net.fabricmc.fabric.api.client.particle.v1.ParticleRenderEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.client.particle.v1.ParticleRenderEvents$AllowTerrainParticleTint> ALLOW_TERRAIN_PARTICLE_TINT;
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.client.particle.v1.package-info {
+}

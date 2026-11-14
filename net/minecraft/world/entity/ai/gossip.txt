@@ -1,0 +1,61 @@
+Compiled from "GossipContainer.java"
+final class net.minecraft.world.entity.ai.gossip.GossipContainer$GossipEntry extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.gossip.GossipContainer$GossipEntry> CODEC;
+  public int weightedValue();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID target();
+  public net.minecraft.world.entity.ai.gossip.GossipType type();
+  public int value();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.gossip.package-info {
+}
+Compiled from "GossipContainer.java"
+public class net.minecraft.world.entity.ai.gossip.GossipContainer {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.gossip.GossipContainer> CODEC;
+  public static final int DISCARD_THRESHOLD;
+  public net.minecraft.world.entity.ai.gossip.GossipContainer();
+  public java.util.Map<java.util.UUID, it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.entity.ai.gossip.GossipType>> getGossipEntries();
+  public void decay();
+  public int transferFrom(net.minecraft.world.entity.ai.gossip.GossipContainer, net.minecraft.util.RandomSource, int);
+  public int getReputation(java.util.UUID, java.util.function.Predicate<net.minecraft.world.entity.ai.gossip.GossipType>);
+  public long getCountForType(net.minecraft.world.entity.ai.gossip.GossipType, java.util.function.DoublePredicate);
+  public void add(java.util.UUID, net.minecraft.world.entity.ai.gossip.GossipType, int);
+  public void remove(java.util.UUID, net.minecraft.world.entity.ai.gossip.GossipType, int);
+  public void remove(java.util.UUID, net.minecraft.world.entity.ai.gossip.GossipType);
+  public void remove(net.minecraft.world.entity.ai.gossip.GossipType);
+  public void clear();
+  public void putAll(net.minecraft.world.entity.ai.gossip.GossipContainer);
+  public net.minecraft.world.entity.ai.gossip.GossipContainer copy();
+}
+Compiled from "GossipContainer.java"
+class net.minecraft.world.entity.ai.gossip.GossipContainer$EntityGossips {
+  public int weightedValue(java.util.function.Predicate<net.minecraft.world.entity.ai.gossip.GossipType>);
+  public java.util.stream.Stream<net.minecraft.world.entity.ai.gossip.GossipContainer$GossipEntry> unpack(java.util.UUID);
+  public void decay();
+  public boolean isEmpty();
+  public void makeSureValueIsntTooLowOrTooHigh(net.minecraft.world.entity.ai.gossip.GossipType);
+  public void remove(net.minecraft.world.entity.ai.gossip.GossipType);
+}
+Compiled from "GossipType.java"
+public final class net.minecraft.world.entity.ai.gossip.GossipType extends java.lang.Enum<net.minecraft.world.entity.ai.gossip.GossipType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.ai.gossip.GossipType MAJOR_NEGATIVE;
+  public static final net.minecraft.world.entity.ai.gossip.GossipType MINOR_NEGATIVE;
+  public static final net.minecraft.world.entity.ai.gossip.GossipType MINOR_POSITIVE;
+  public static final net.minecraft.world.entity.ai.gossip.GossipType MAJOR_POSITIVE;
+  public static final net.minecraft.world.entity.ai.gossip.GossipType TRADING;
+  public static final int REPUTATION_CHANGE_PER_EVENT;
+  public static final int REPUTATION_CHANGE_PER_EVERLASTING_MEMORY;
+  public static final int REPUTATION_CHANGE_PER_TRADE;
+  public final java.lang.String id;
+  public final int weight;
+  public final int max;
+  public final int decayPerDay;
+  public final int decayPerTransfer;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.gossip.GossipType> CODEC;
+  public static net.minecraft.world.entity.ai.gossip.GossipType[] values();
+  public static net.minecraft.world.entity.ai.gossip.GossipType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}

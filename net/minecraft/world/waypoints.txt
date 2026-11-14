@@ -1,0 +1,179 @@
+Compiled from "Waypoint.java"
+public interface net.minecraft.world.waypoints.Waypoint {
+  public static final net.minecraft.world.entity.ai.attributes.AttributeModifier WAYPOINT_TRANSMIT_RANGE_HIDE_MODIFIER;
+  public static net.minecraft.world.item.Item$Properties addHideAttribute(net.minecraft.world.item.Item$Properties);
+}
+Compiled from "WaypointManager.java"
+public interface net.minecraft.world.waypoints.WaypointManager<T extends net.minecraft.world.waypoints.Waypoint> {
+  public abstract void trackWaypoint(T);
+  public abstract void updateWaypoint(T);
+  public abstract void untrackWaypoint(T);
+}
+Compiled from "WaypointStyleAsset.java"
+public final class net.minecraft.world.waypoints.WaypointStyleAsset {
+  public net.minecraft.world.waypoints.WaypointStyleAsset();
+}
+Compiled from "TrackedWaypoint.java"
+class net.minecraft.world.waypoints.TrackedWaypoint$AzimuthWaypoint extends net.minecraft.world.waypoints.TrackedWaypoint {
+  public net.minecraft.world.waypoints.TrackedWaypoint$AzimuthWaypoint(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, float);
+  public net.minecraft.world.waypoints.TrackedWaypoint$AzimuthWaypoint(com.mojang.datafixers.util.Either<java.util.UUID, java.lang.String>, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.network.FriendlyByteBuf);
+  public void update(net.minecraft.world.waypoints.TrackedWaypoint);
+  public void writeContents(io.netty.buffer.ByteBuf);
+  public double yawAngleToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Camera, net.minecraft.world.waypoints.PartialTickSupplier);
+  public net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection pitchDirectionToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Projector, net.minecraft.world.waypoints.PartialTickSupplier);
+  public double distanceSquared(net.minecraft.world.entity.Entity);
+}
+Compiled from "Waypoint.java"
+public class net.minecraft.world.waypoints.Waypoint$Icon {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.waypoints.Waypoint$Icon> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.waypoints.Waypoint$Icon> STREAM_CODEC;
+  public static final net.minecraft.world.waypoints.Waypoint$Icon NULL;
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.waypoints.WaypointStyleAsset> style;
+  public java.util.Optional<java.lang.Integer> color;
+  public net.minecraft.world.waypoints.Waypoint$Icon();
+  public boolean hasData();
+  public net.minecraft.world.waypoints.Waypoint$Icon cloneAndAssignStyle(net.minecraft.world.entity.LivingEntity);
+  public void copyFrom(net.minecraft.world.waypoints.Waypoint$Icon);
+}
+Compiled from "WaypointStyleAssets.java"
+public interface net.minecraft.world.waypoints.WaypointStyleAssets {
+  public static final net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<net.minecraft.world.waypoints.WaypointStyleAsset>> ROOT_ID;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.waypoints.WaypointStyleAsset> DEFAULT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.waypoints.WaypointStyleAsset> BOWTIE;
+  public static net.minecraft.resources.ResourceKey<net.minecraft.world.waypoints.WaypointStyleAsset> createId(java.lang.String);
+}
+Compiled from "TrackedWaypoint.java"
+class net.minecraft.world.waypoints.TrackedWaypoint$EmptyWaypoint extends net.minecraft.world.waypoints.TrackedWaypoint {
+  public void update(net.minecraft.world.waypoints.TrackedWaypoint);
+  public void writeContents(io.netty.buffer.ByteBuf);
+  public double yawAngleToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Camera, net.minecraft.world.waypoints.PartialTickSupplier);
+  public net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection pitchDirectionToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Projector, net.minecraft.world.waypoints.PartialTickSupplier);
+  public double distanceSquared(net.minecraft.world.entity.Entity);
+}
+Compiled from "WaypointTransmitter.java"
+public interface net.minecraft.world.waypoints.WaypointTransmitter$ChunkConnection extends net.minecraft.world.waypoints.WaypointTransmitter$Connection {
+  public abstract int distanceChessboard();
+  public default boolean isBroken();
+}
+Compiled from "TrackedWaypoint.java"
+public final class net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection extends java.lang.Enum<net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection> {
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection NONE;
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection UP;
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection DOWN;
+  public static net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection[] values();
+  public static net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.waypoints.package-info {
+}
+Compiled from "TrackedWaypoint.java"
+class net.minecraft.world.waypoints.TrackedWaypoint$ChunkWaypoint extends net.minecraft.world.waypoints.TrackedWaypoint {
+  public net.minecraft.world.waypoints.TrackedWaypoint$ChunkWaypoint(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.world.level.ChunkPos);
+  public net.minecraft.world.waypoints.TrackedWaypoint$ChunkWaypoint(com.mojang.datafixers.util.Either<java.util.UUID, java.lang.String>, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.network.FriendlyByteBuf);
+  public void update(net.minecraft.world.waypoints.TrackedWaypoint);
+  public void writeContents(io.netty.buffer.ByteBuf);
+  public double yawAngleToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Camera, net.minecraft.world.waypoints.PartialTickSupplier);
+  public net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection pitchDirectionToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Projector, net.minecraft.world.waypoints.PartialTickSupplier);
+  public double distanceSquared(net.minecraft.world.entity.Entity);
+}
+Compiled from "PartialTickSupplier.java"
+public interface net.minecraft.world.waypoints.PartialTickSupplier {
+  public abstract float apply(net.minecraft.world.entity.Entity);
+}
+Compiled from "WaypointTransmitter.java"
+public class net.minecraft.world.waypoints.WaypointTransmitter$EntityChunkConnection implements net.minecraft.world.waypoints.WaypointTransmitter$ChunkConnection {
+  public net.minecraft.world.waypoints.WaypointTransmitter$EntityChunkConnection(net.minecraft.world.entity.LivingEntity, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.server.level.ServerPlayer);
+  public int distanceChessboard();
+  public void connect();
+  public void disconnect();
+  public void update();
+  public boolean isBroken();
+}
+Compiled from "TrackedWaypoint.java"
+public interface net.minecraft.world.waypoints.TrackedWaypoint$Projector {
+  public abstract net.minecraft.world.phys.Vec3 projectPointToScreen(net.minecraft.world.phys.Vec3);
+  public abstract double projectHorizonToScreen();
+}
+Compiled from "WaypointTransmitter.java"
+public class net.minecraft.world.waypoints.WaypointTransmitter$EntityAzimuthConnection implements net.minecraft.world.waypoints.WaypointTransmitter$Connection {
+  public net.minecraft.world.waypoints.WaypointTransmitter$EntityAzimuthConnection(net.minecraft.world.entity.LivingEntity, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.server.level.ServerPlayer);
+  public boolean isBroken();
+  public void connect();
+  public void disconnect();
+  public void update();
+}
+Compiled from "WaypointTransmitter.java"
+public interface net.minecraft.world.waypoints.WaypointTransmitter extends net.minecraft.world.waypoints.Waypoint {
+  public static final int REALLY_FAR_DISTANCE;
+  public abstract boolean isTransmittingWaypoint();
+  public abstract java.util.Optional<net.minecraft.world.waypoints.WaypointTransmitter$Connection> makeWaypointConnectionWith(net.minecraft.server.level.ServerPlayer);
+  public abstract net.minecraft.world.waypoints.Waypoint$Icon waypointIcon();
+  public static boolean doesSourceIgnoreReceiver(net.minecraft.world.entity.LivingEntity, net.minecraft.server.level.ServerPlayer);
+  public static boolean isChunkVisible(net.minecraft.world.level.ChunkPos, net.minecraft.server.level.ServerPlayer);
+  public static boolean isReallyFar(net.minecraft.world.entity.LivingEntity, net.minecraft.server.level.ServerPlayer);
+}
+Compiled from "TrackedWaypointManager.java"
+public interface net.minecraft.world.waypoints.TrackedWaypointManager extends net.minecraft.world.waypoints.WaypointManager<net.minecraft.world.waypoints.TrackedWaypoint> {
+}
+Compiled from "WaypointTransmitter.java"
+public interface net.minecraft.world.waypoints.WaypointTransmitter$Connection {
+  public abstract void connect();
+  public abstract void disconnect();
+  public abstract void update();
+  public abstract boolean isBroken();
+}
+Compiled from "TrackedWaypoint.java"
+public interface net.minecraft.world.waypoints.TrackedWaypoint$Camera {
+  public abstract float yaw();
+  public abstract net.minecraft.world.phys.Vec3 position();
+}
+Compiled from "TrackedWaypoint.java"
+final class net.minecraft.world.waypoints.TrackedWaypoint$Type extends java.lang.Enum<net.minecraft.world.waypoints.TrackedWaypoint$Type> {
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$Type EMPTY;
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$Type VEC3I;
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$Type CHUNK;
+  public static final net.minecraft.world.waypoints.TrackedWaypoint$Type AZIMUTH;
+  public static net.minecraft.world.waypoints.TrackedWaypoint$Type[] values();
+  public static net.minecraft.world.waypoints.TrackedWaypoint$Type valueOf(java.lang.String);
+}
+Compiled from "TrackedWaypoint.java"
+public abstract class net.minecraft.world.waypoints.TrackedWaypoint implements net.minecraft.world.waypoints.Waypoint {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.waypoints.TrackedWaypoint> STREAM_CODEC;
+  protected final com.mojang.datafixers.util.Either<java.util.UUID, java.lang.String> identifier;
+  public com.mojang.datafixers.util.Either<java.util.UUID, java.lang.String> id();
+  public abstract void update(net.minecraft.world.waypoints.TrackedWaypoint);
+  public void write(io.netty.buffer.ByteBuf);
+  public abstract void writeContents(io.netty.buffer.ByteBuf);
+  public static net.minecraft.world.waypoints.TrackedWaypoint setPosition(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.core.Vec3i);
+  public static net.minecraft.world.waypoints.TrackedWaypoint setChunk(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.world.level.ChunkPos);
+  public static net.minecraft.world.waypoints.TrackedWaypoint setAzimuth(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, float);
+  public static net.minecraft.world.waypoints.TrackedWaypoint empty(java.util.UUID);
+  public abstract double yawAngleToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Camera, net.minecraft.world.waypoints.PartialTickSupplier);
+  public abstract net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection pitchDirectionToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Projector, net.minecraft.world.waypoints.PartialTickSupplier);
+  public abstract double distanceSquared(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.waypoints.Waypoint$Icon icon();
+}
+Compiled from "WaypointTransmitter.java"
+public class net.minecraft.world.waypoints.WaypointTransmitter$EntityBlockConnection implements net.minecraft.world.waypoints.WaypointTransmitter$BlockConnection {
+  public net.minecraft.world.waypoints.WaypointTransmitter$EntityBlockConnection(net.minecraft.world.entity.LivingEntity, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.server.level.ServerPlayer);
+  public void connect();
+  public void disconnect();
+  public void update();
+  public int distanceManhattan();
+  public boolean isBroken();
+}
+Compiled from "WaypointTransmitter.java"
+public interface net.minecraft.world.waypoints.WaypointTransmitter$BlockConnection extends net.minecraft.world.waypoints.WaypointTransmitter$Connection {
+  public abstract int distanceManhattan();
+  public default boolean isBroken();
+}
+Compiled from "TrackedWaypoint.java"
+class net.minecraft.world.waypoints.TrackedWaypoint$Vec3iWaypoint extends net.minecraft.world.waypoints.TrackedWaypoint {
+  public net.minecraft.world.waypoints.TrackedWaypoint$Vec3iWaypoint(java.util.UUID, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.core.Vec3i);
+  public net.minecraft.world.waypoints.TrackedWaypoint$Vec3iWaypoint(com.mojang.datafixers.util.Either<java.util.UUID, java.lang.String>, net.minecraft.world.waypoints.Waypoint$Icon, net.minecraft.network.FriendlyByteBuf);
+  public void update(net.minecraft.world.waypoints.TrackedWaypoint);
+  public void writeContents(io.netty.buffer.ByteBuf);
+  public double yawAngleToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Camera, net.minecraft.world.waypoints.PartialTickSupplier);
+  public net.minecraft.world.waypoints.TrackedWaypoint$PitchDirection pitchDirectionToCamera(net.minecraft.world.level.Level, net.minecraft.world.waypoints.TrackedWaypoint$Projector, net.minecraft.world.waypoints.PartialTickSupplier);
+  public double distanceSquared(net.minecraft.world.entity.Entity);
+}

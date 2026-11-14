@@ -1,0 +1,80 @@
+Compiled from "SummaryReporter.java"
+public class net.minecraft.util.profiling.jfr.SummaryReporter {
+  protected net.minecraft.util.profiling.jfr.SummaryReporter(java.lang.Runnable);
+  public void recordingStopped(java.nio.file.Path);
+}
+Compiled from "Environment.java"
+public final class net.minecraft.util.profiling.jfr.Environment extends java.lang.Enum<net.minecraft.util.profiling.jfr.Environment> {
+  public static final net.minecraft.util.profiling.jfr.Environment CLIENT;
+  public static final net.minecraft.util.profiling.jfr.Environment SERVER;
+  public static net.minecraft.util.profiling.jfr.Environment[] values();
+  public static net.minecraft.util.profiling.jfr.Environment valueOf(java.lang.String);
+  public static net.minecraft.util.profiling.jfr.Environment from(net.minecraft.server.MinecraftServer);
+  public java.lang.String getDescription();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.profiling.jfr.package-info {
+}
+Compiled from "JvmProfiler.java"
+public class net.minecraft.util.profiling.jfr.JvmProfiler$NoOpProfiler implements net.minecraft.util.profiling.jfr.JvmProfiler {
+  public net.minecraft.util.profiling.jfr.JvmProfiler$NoOpProfiler();
+  public boolean start(net.minecraft.util.profiling.jfr.Environment);
+  public java.nio.file.Path stop();
+  public boolean isRunning();
+  public boolean isAvailable();
+  public void onPacketReceived(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public void onPacketSent(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public void onRegionFileRead(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public void onRegionFileWrite(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public void onServerTick(float);
+  public void onClientTick(int);
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onWorldLoadedStarted();
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onChunkGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, java.lang.String);
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onStructureGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>);
+}
+Compiled from "Percentiles.java"
+public class net.minecraft.util.profiling.jfr.Percentiles {
+  public static final com.google.common.math.Quantiles$ScaleAndIndexes DEFAULT_INDEXES;
+  public static java.util.Map<java.lang.Integer, java.lang.Double> evaluate(long[]);
+  public static java.util.Map<java.lang.Integer, java.lang.Double> evaluate(int[]);
+  public static java.util.Map<java.lang.Integer, java.lang.Double> evaluate(double[]);
+}
+Compiled from "JvmProfiler.java"
+public interface net.minecraft.util.profiling.jfr.JvmProfiler {
+  public static final net.minecraft.util.profiling.jfr.JvmProfiler INSTANCE;
+  public abstract boolean start(net.minecraft.util.profiling.jfr.Environment);
+  public abstract java.nio.file.Path stop();
+  public abstract boolean isRunning();
+  public abstract boolean isAvailable();
+  public abstract void onServerTick(float);
+  public abstract void onClientTick(int);
+  public abstract void onPacketReceived(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public abstract void onPacketSent(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public abstract void onRegionFileRead(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public abstract void onRegionFileWrite(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public abstract net.minecraft.util.profiling.jfr.callback.ProfiledDuration onWorldLoadedStarted();
+  public abstract net.minecraft.util.profiling.jfr.callback.ProfiledDuration onChunkGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, java.lang.String);
+  public abstract net.minecraft.util.profiling.jfr.callback.ProfiledDuration onStructureGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>);
+}
+Compiled from "JfrProfiler.java"
+public class net.minecraft.util.profiling.jfr.JfrProfiler implements net.minecraft.util.profiling.jfr.JvmProfiler {
+  public static final java.lang.String ROOT_CATEGORY;
+  public static final java.lang.String WORLD_GEN_CATEGORY;
+  public static final java.lang.String TICK_CATEGORY;
+  public static final java.lang.String NETWORK_CATEGORY;
+  public static final java.lang.String STORAGE_CATEGORY;
+  public static net.minecraft.util.profiling.jfr.JfrProfiler getInstance();
+  public boolean start(net.minecraft.util.profiling.jfr.Environment);
+  public java.nio.file.Path stop();
+  public boolean isRunning();
+  public boolean isAvailable();
+  public void onClientTick(int);
+  public void onServerTick(float);
+  public void onPacketReceived(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public void onPacketSent(net.minecraft.network.ConnectionProtocol, net.minecraft.network.protocol.PacketType<?>, java.net.SocketAddress, int);
+  public void onRegionFileRead(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public void onRegionFileWrite(net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionFileVersion, int);
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onWorldLoadedStarted();
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onChunkGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, java.lang.String);
+  public net.minecraft.util.profiling.jfr.callback.ProfiledDuration onStructureGenerate(net.minecraft.world.level.ChunkPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.structure.Structure>);
+}

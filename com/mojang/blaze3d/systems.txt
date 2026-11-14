@@ -1,0 +1,117 @@
+Compiled from "RenderSystem.java"
+interface com.mojang.blaze3d.systems.RenderSystem$AutoStorageIndexBuffer$IndexGenerator {
+  public abstract void accept(it.unimi.dsi.fastutil.ints.IntConsumer, int);
+}
+Compiled from "SamplerCache.java"
+public class com.mojang.blaze3d.systems.SamplerCache {
+  public com.mojang.blaze3d.systems.SamplerCache();
+  public void initialize();
+  public com.mojang.renderpearl.api.textures.GpuSampler getSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, boolean);
+  public com.mojang.renderpearl.api.textures.GpuSampler getClampToEdge(com.mojang.renderpearl.api.textures.FilterMode);
+  public com.mojang.renderpearl.api.textures.GpuSampler getClampToEdge(com.mojang.renderpearl.api.textures.FilterMode, boolean);
+  public com.mojang.renderpearl.api.textures.GpuSampler getRepeat(com.mojang.renderpearl.api.textures.FilterMode);
+  public com.mojang.renderpearl.api.textures.GpuSampler getRepeat(com.mojang.renderpearl.api.textures.FilterMode, boolean);
+  public void close();
+}
+Compiled from "RenderSystem.java"
+final class com.mojang.blaze3d.systems.RenderSystem$GpuAsyncTask extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Runnable callback();
+  public com.mojang.renderpearl.api.commands.GpuFence fence();
+}
+Compiled from "TimerQuery.java"
+public final class com.mojang.blaze3d.systems.TimerQuery$Status extends java.lang.Enum<com.mojang.blaze3d.systems.TimerQuery$Status> {
+  public static final com.mojang.blaze3d.systems.TimerQuery$Status NOT_RECORDING;
+  public static final com.mojang.blaze3d.systems.TimerQuery$Status STARTED;
+  public static final com.mojang.blaze3d.systems.TimerQuery$Status AWAITING_VALUES;
+  public static com.mojang.blaze3d.systems.TimerQuery$Status[] values();
+  public static com.mojang.blaze3d.systems.TimerQuery$Status valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface com.mojang.blaze3d.systems.package-info {
+}
+Compiled from "RenderSystem.java"
+public class com.mojang.blaze3d.systems.RenderSystem {
+  public static final double DEFAULT_DEPTH_CLEAR_VALUE;
+  public static final int MINIMUM_ATLAS_TEXTURE_SIZE;
+  public static final int PROJECTION_MATRIX_UBO_SIZE;
+  public static boolean isRenderingLevel;
+  public com.mojang.blaze3d.systems.RenderSystem();
+  public static com.mojang.blaze3d.systems.SamplerCache getSamplerCache();
+  public static void setFallbackPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+  public static com.mojang.blaze3d.pipeline.PipelineCache setCurrentPipelineCache(com.mojang.blaze3d.pipeline.PipelineCache);
+  public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipelineNullable(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+  public static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline getCompiledPipeline(com.mojang.renderpearl.api.pipeline.RenderPipeline);
+  public static void initRenderThread();
+  public static boolean isOnRenderThread();
+  public static void assertOnRenderThread();
+  public static void pollEvents(com.mojang.blaze3d.platform.SDLEventHandler);
+  public static boolean isFrozenAtPollEvents();
+  public static void pumpEvents(com.mojang.blaze3d.platform.SDLEventHandler);
+  public static void setShaderFog(com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public static com.mojang.renderpearl.api.buffers.GpuBufferSlice getShaderFog();
+  public static void setShaderLights(com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public static com.mojang.renderpearl.api.buffers.GpuBufferSlice getShaderLights();
+  public static void enableScissorForRenderTypeDraws(int, int, int, int);
+  public static void disableScissorForRenderTypeDraws();
+  public static com.mojang.blaze3d.systems.ScissorState getScissorStateForRenderTypeDraws();
+  public static java.lang.String getBackendDescription();
+  public static net.minecraft.util.TimeSource$NanoTimeSource initBackendSystem();
+  public static void initRenderer(com.mojang.renderpearl.api.device.GpuDevice);
+  public static void shutdownRenderer();
+  public static void trackBackendLibraryForShutdown(com.mojang.renderpearl.api.device.GpuBackend);
+  public static void unloadTrackedBackendLibrary();
+  public static void setupDefaultState();
+  public static void setProjectionMatrix(com.mojang.renderpearl.api.buffers.GpuBufferSlice, com.mojang.blaze3d.ProjectionType);
+  public static void backupProjectionMatrix();
+  public static void restoreProjectionMatrix();
+  public static com.mojang.renderpearl.api.buffers.GpuBufferSlice getProjectionMatrixBuffer();
+  public static org.joml.Matrix4f getModelViewMatrixCopy();
+  public static org.joml.Matrix4fStack getModelViewStack();
+  public static com.mojang.blaze3d.systems.RenderSystem$AutoStorageIndexBuffer getSequentialBuffer(com.mojang.renderpearl.api.pipeline.PrimitiveTopology);
+  public static void setGlobalSettingsUniform(com.mojang.renderpearl.api.buffers.GpuBuffer);
+  public static com.mojang.renderpearl.api.buffers.GpuBuffer getGlobalSettingsUniform();
+  public static com.mojang.blaze3d.ProjectionType getProjectionType();
+  public static void queueFencedTask(java.lang.Runnable);
+  public static void executePendingTasks();
+  public static com.mojang.renderpearl.api.device.GpuDevice getDevice();
+  public static com.mojang.renderpearl.api.device.GpuDevice tryGetDevice();
+  public static boolean isWireframeAvailable();
+  public static net.minecraft.client.renderer.DynamicGpuData getDynamicUniforms();
+  public static void bindDefaultUniforms(com.mojang.renderpearl.api.commands.RenderPass);
+  public static void resizeAllAutoStorageIndexBuffers();
+}
+Compiled from "TimerQuery.java"
+public class com.mojang.blaze3d.systems.TimerQuery implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.systems.TimerQuery();
+  public void beginProfile();
+  public void endProfile();
+  public long get();
+  public void close();
+  public com.mojang.blaze3d.systems.TimerQuery$Status getStatus();
+}
+Compiled from "ScissorState.java"
+public class com.mojang.blaze3d.systems.ScissorState {
+  public com.mojang.blaze3d.systems.ScissorState();
+  public com.mojang.blaze3d.systems.ScissorState(com.mojang.blaze3d.systems.ScissorState);
+  public void enable(int, int, int, int);
+  public void disable();
+  public boolean enabled();
+  public int x();
+  public int y();
+  public int width();
+  public int height();
+  public void setFrom(com.mojang.blaze3d.systems.ScissorState);
+}
+Compiled from "RenderSystem.java"
+public final class com.mojang.blaze3d.systems.RenderSystem$AutoStorageIndexBuffer implements java.lang.AutoCloseable {
+  public void close();
+  public boolean hasStorage(int);
+  public void requestIndexCount(int);
+  public void resizeToRequestedIndexCount();
+  public com.mojang.renderpearl.api.buffers.GpuBuffer getBuffer(int);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer getBuffer();
+  public com.mojang.renderpearl.api.pipeline.IndexType type();
+}

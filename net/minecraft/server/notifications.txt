@@ -1,0 +1,86 @@
+Compiled from "NotificationService.java"
+public interface net.minecraft.server.notifications.NotificationService {
+  public abstract void playerJoined(net.minecraft.server.level.ServerPlayer);
+  public abstract void playerLeft(net.minecraft.server.level.ServerPlayer);
+  public abstract void serverStarted();
+  public abstract void serverShuttingDown();
+  public abstract void serverSaveStarted();
+  public abstract void serverSaveCompleted();
+  public abstract void serverActivityOccured();
+  public abstract void worldUpgradeStarted();
+  public abstract void worldUpgradeProgress(float);
+  public abstract void worldUpgradeFinished();
+  public abstract void worldUpgradeFailed(java.lang.String);
+  public abstract void playerOped(net.minecraft.server.players.ServerOpListEntry);
+  public abstract void playerDeoped(net.minecraft.server.players.ServerOpListEntry);
+  public abstract void playerAddedToAllowlist(net.minecraft.server.players.NameAndId);
+  public abstract void playerRemovedFromAllowlist(net.minecraft.server.players.NameAndId);
+  public abstract void ipBanned(net.minecraft.server.players.IpBanListEntry);
+  public abstract void ipUnbanned(java.lang.String);
+  public abstract void playerBanned(net.minecraft.server.players.UserBanListEntry);
+  public abstract void playerUnbanned(net.minecraft.server.players.NameAndId);
+  public abstract <T> void onGameRuleChanged(net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public abstract void statusHeartbeat();
+}
+Compiled from "EmptyNotificationService.java"
+public class net.minecraft.server.notifications.EmptyNotificationService implements net.minecraft.server.notifications.NotificationService {
+  public net.minecraft.server.notifications.EmptyNotificationService();
+  public void playerJoined(net.minecraft.server.level.ServerPlayer);
+  public void playerLeft(net.minecraft.server.level.ServerPlayer);
+  public void serverStarted();
+  public void serverShuttingDown();
+  public void serverSaveStarted();
+  public void serverSaveCompleted();
+  public void serverActivityOccured();
+  public void worldUpgradeStarted();
+  public void worldUpgradeProgress(float);
+  public void worldUpgradeFinished();
+  public void worldUpgradeFailed(java.lang.String);
+  public void playerOped(net.minecraft.server.players.ServerOpListEntry);
+  public void playerDeoped(net.minecraft.server.players.ServerOpListEntry);
+  public void playerAddedToAllowlist(net.minecraft.server.players.NameAndId);
+  public void playerRemovedFromAllowlist(net.minecraft.server.players.NameAndId);
+  public void ipBanned(net.minecraft.server.players.IpBanListEntry);
+  public void ipUnbanned(java.lang.String);
+  public void playerBanned(net.minecraft.server.players.UserBanListEntry);
+  public void playerUnbanned(net.minecraft.server.players.NameAndId);
+  public <T> void onGameRuleChanged(net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public void statusHeartbeat();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.notifications.package-info {
+}
+Compiled from "NotificationManager.java"
+public class net.minecraft.server.notifications.NotificationManager implements net.minecraft.server.notifications.NotificationService {
+  public net.minecraft.server.notifications.NotificationManager();
+  public void registerService(net.minecraft.server.notifications.NotificationService);
+  public void setServer(net.minecraft.server.dedicated.DedicatedServer);
+  public net.minecraft.server.dedicated.DedicatedServer server();
+  public void playerJoined(net.minecraft.server.level.ServerPlayer);
+  public void playerLeft(net.minecraft.server.level.ServerPlayer);
+  public void serverStarted();
+  public void serverShuttingDown();
+  public void serverSaveStarted();
+  public void serverSaveCompleted();
+  public void serverActivityOccured();
+  public void worldUpgradeStarted();
+  public void worldUpgradeProgress(float);
+  public void worldUpgradeFinished();
+  public void worldUpgradeFailed(java.lang.String);
+  public void playerOped(net.minecraft.server.players.ServerOpListEntry);
+  public void playerDeoped(net.minecraft.server.players.ServerOpListEntry);
+  public void playerAddedToAllowlist(net.minecraft.server.players.NameAndId);
+  public void playerRemovedFromAllowlist(net.minecraft.server.players.NameAndId);
+  public void ipBanned(net.minecraft.server.players.IpBanListEntry);
+  public void ipUnbanned(java.lang.String);
+  public void playerBanned(net.minecraft.server.players.UserBanListEntry);
+  public void playerUnbanned(net.minecraft.server.players.NameAndId);
+  public <T> void onGameRuleChanged(net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public void statusHeartbeat();
+}
+Compiled from "ServerActivityMonitor.java"
+public class net.minecraft.server.notifications.ServerActivityMonitor {
+  public net.minecraft.server.notifications.ServerActivityMonitor(net.minecraft.server.notifications.NotificationManager, int);
+  public void tick();
+  public void reportLoginActivity();
+}

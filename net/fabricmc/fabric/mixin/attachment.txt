@@ -1,0 +1,128 @@
+Compiled from "AttachmentTargetsMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.AttachmentTargetsMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  public <T> T getAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<T>);
+  public <T> T setAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<T>, T);
+  public boolean hasAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public <A> net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.attachment.v1.AttachmentTarget$OnAttachedSet<A>> onAttachedSet(net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public void fabric_writeAttachmentsToNbt(net.minecraft.world.level.storage.ValueOutput);
+  public void fabric_readAttachmentsFromNbt(net.minecraft.world.level.storage.ValueInput);
+  public boolean fabric_hasPersistentAttachments();
+  public java.util.Map<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, ?> fabric_getAttachments();
+  public void fabric_computeInitialSyncChanges(net.minecraft.server.level.ServerPlayer, java.util.function.Consumer<net.fabricmc.fabric.impl.attachment.sync.AttachmentChange>);
+  public void fabric_sendAndClearDeferredSyncChanges(java.util.List<net.minecraft.server.level.ServerPlayer>);
+  public void fabric_clearDeferredSyncChanges();
+  public <T> void fabric_updateSyncTarget(net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>, net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>);
+}
+Compiled from "BannerBlockEntityMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.BannerBlockEntityMixin {
+}
+Compiled from "BlockDataAccessorMixin.java"
+public abstract class net.fabricmc.fabric.mixin.attachment.BlockDataAccessorMixin implements net.minecraft.server.commands.data.DataAccessor {
+  public net.fabricmc.fabric.mixin.attachment.BlockDataAccessorMixin();
+  public void setData(net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.world.level.storage.ValueInput, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+}
+Compiled from "BlockEntityMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.BlockEntityMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  protected net.minecraft.core.BlockPos worldPosition;
+  protected net.minecraft.world.level.Level level;
+  public abstract void setChanged();
+  public abstract boolean hasLevel();
+  public void fabric_markChanged(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public boolean fabric_shouldTryToSync();
+  public boolean fabric_shouldDeferSync();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "ChunkAccessMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.ChunkAccessMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  protected net.minecraft.world.level.ChunkPos chunkPos;
+  public abstract net.minecraft.world.level.ChunkPos getPos();
+  public abstract void markUnsaved();
+  public abstract net.minecraft.world.level.chunk.status.ChunkStatus getPersistedStatus();
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public void fabric_markChanged(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public boolean fabric_shouldTryToSync();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "ChunkHolderMixin.java"
+public class net.fabricmc.fabric.mixin.attachment.ChunkHolderMixin {
+  public net.fabricmc.fabric.mixin.attachment.ChunkHolderMixin();
+}
+Compiled from "ClientboundCustomPayloadPacketAccessor.java"
+public interface net.fabricmc.fabric.mixin.attachment.ClientboundCustomPayloadPacketAccessor {
+  public static int getMaxPayloadSize();
+}
+Compiled from "DimensionStorageFileFixMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.DimensionStorageFileFixMixin {
+}
+Compiled from "EntityDataAccessorMixin.java"
+public abstract class net.fabricmc.fabric.mixin.attachment.EntityDataAccessorMixin implements net.minecraft.server.commands.data.DataAccessor {
+  public net.fabricmc.fabric.mixin.attachment.EntityDataAccessorMixin();
+  public void setData(net.minecraft.world.entity.Entity, net.minecraft.world.level.storage.ValueInput, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+}
+Compiled from "EntityMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.EntityMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  public abstract net.minecraft.world.level.Level level();
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public boolean fabric_shouldTryToSync();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "ImposterProtoChunkMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.ImposterProtoChunkMixin extends net.fabricmc.fabric.mixin.attachment.AttachmentTargetsMixin {
+  public <T> T getAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<T>);
+  public <T> T setAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<T>, T);
+  public boolean hasAttached(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public void fabric_writeAttachmentsToNbt(net.minecraft.world.level.storage.ValueOutput);
+  public void fabric_readAttachmentsFromNbt(net.minecraft.world.level.storage.ValueInput);
+  public boolean fabric_hasPersistentAttachments();
+  public java.util.Map<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, ?> fabric_getAttachments();
+  public boolean fabric_shouldTryToSync();
+  public void fabric_computeInitialSyncChanges(net.minecraft.server.level.ServerPlayer, java.util.function.Consumer<net.fabricmc.fabric.impl.attachment.sync.AttachmentChange>);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public void fabric_markChanged(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "LevelChunkMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.LevelChunkMixin extends net.fabricmc.fabric.mixin.attachment.AttachmentTargetsMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  public abstract java.util.Map<net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntity> getBlockEntities();
+  public void fabric_computeInitialSyncChanges(net.minecraft.server.level.ServerPlayer, java.util.function.Consumer<net.fabricmc.fabric.impl.attachment.sync.AttachmentChange>);
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public boolean fabric_shouldTryToSync();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "LevelMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.LevelMixin implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl,net.fabricmc.fabric.api.attachment.v1.GlobalAttachmentsProvider {
+  public abstract boolean isClientSide();
+  public abstract net.minecraft.core.RegistryAccess registryAccess();
+  public boolean fabric_shouldTryToSync();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "MinecraftServerMixin.java"
+public abstract class net.fabricmc.fabric.mixin.attachment.MinecraftServerMixin implements net.fabricmc.fabric.api.attachment.v1.GlobalAttachmentsProvider {
+  public net.fabricmc.fabric.mixin.attachment.MinecraftServerMixin();
+  public net.fabricmc.fabric.api.attachment.v1.GlobalAttachments globalAttachments();
+}
+Compiled from "PlayerChunkSenderMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.PlayerChunkSenderMixin {
+}
+Compiled from "SerializableChunkDataMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.SerializableChunkDataMixin {
+}
+Compiled from "ServerLevelMixin.java"
+abstract class net.fabricmc.fabric.mixin.attachment.ServerLevelMixin extends net.minecraft.world.level.Level implements net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  protected net.fabricmc.fabric.mixin.attachment.ServerLevelMixin(net.minecraft.world.level.storage.WritableLevelData, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, net.minecraft.core.RegistryAccess, net.minecraft.core.Holder<net.minecraft.world.level.dimension.DimensionType>, boolean, boolean, long, int);
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+  public net.fabricmc.fabric.api.attachment.v1.GlobalAttachments globalAttachments();
+}
+Compiled from "VarIntAccessor.java"
+public interface net.fabricmc.fabric.mixin.attachment.VarIntAccessor {
+  public static int getMaxByteSize();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.mixin.attachment.package-info {
+}

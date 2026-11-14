@@ -1,0 +1,321 @@
+Compiled from "DensityBufferPool.java"
+public class net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool implements net.minecraft.world.level.levelgen.densityfunction.DensityBufferArena {
+  public net.minecraft.world.level.levelgen.densityfunction.DensityBufferPool(int);
+  public net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer acquire(int);
+  public void release(net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer);
+  public void garbageCollect();
+  public void clear();
+  public boolean isEmpty();
+}
+Compiled from "CacheId.java"
+final class net.minecraft.world.level.levelgen.densityfunction.CacheId extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+}
+Compiled from "DensityBuffer.java"
+public class net.minecraft.world.level.levelgen.densityfunction.DensityBuffer {
+  protected final float[] values;
+  protected int size;
+  protected net.minecraft.world.level.levelgen.densityfunction.DensityBuffer(int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityBuffer createUnpooled(int);
+  public void set(int, float);
+  public void setRange(int, int, float);
+  public void addTo(int, float);
+  public float get(int);
+  public void fill(float);
+  public void copyFrom(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer);
+  public int capacity();
+  public int size();
+}
+Compiled from "DensityFunctionCompiler.java"
+final class net.minecraft.world.level.levelgen.densityfunction.DensityFunctionCompiler$PreparedCache extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DensityFunction {
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler compileSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewriteChildren(net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.densityfunction.DensityFunctionCompiler$PreparedCache> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int id();
+  public net.minecraft.util.Interval range();
+  public int domainAxes();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler cachingSampler();
+}
+Compiled from "DensityBufferArena.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensityBufferArena {
+  public static final net.minecraft.world.level.levelgen.densityfunction.DensityBufferArena GLOBAL;
+  public abstract net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer acquire(int);
+  public abstract void release(net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer);
+}
+Compiled from "DensityVolume.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DensityVolume extends java.lang.Record {
+  public static final int NO_BLOCK;
+  public net.minecraft.world.level.levelgen.densityfunction.DensityVolume(int, int, int, int, int, int, int, int, int);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityVolume(int, int, int, int, int, int);
+  public int indexUnchecked(int, int, int);
+  public int blockX(int);
+  public int blockY(int);
+  public int blockZ(int);
+  public int maxBlockX();
+  public int maxBlockY();
+  public int maxBlockZ();
+  public int size();
+  public boolean intersects(net.minecraft.world.level.levelgen.structure.BoundingBox);
+  public int indexOfBlock(int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int sizeX();
+  public int sizeY();
+  public int sizeZ();
+  public int minBlockX();
+  public int minBlockY();
+  public int minBlockZ();
+  public int stepBlockX();
+  public int stepBlockY();
+  public int stepBlockZ();
+}
+Compiled from "TilingMode.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.TilingMode extends java.lang.Enum<net.minecraft.world.level.levelgen.densityfunction.TilingMode> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.densityfunction.TilingMode CLAMP_TO_EDGE;
+  public static final net.minecraft.world.level.levelgen.densityfunction.TilingMode REPEAT;
+  public static final net.minecraft.world.level.levelgen.densityfunction.TilingMode MIRRORED_REPEAT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.densityfunction.TilingMode> CODEC;
+  public static net.minecraft.world.level.levelgen.densityfunction.TilingMode[] values();
+  public static net.minecraft.world.level.levelgen.densityfunction.TilingMode valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "DistanceMetric.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DistanceMetric extends java.lang.Enum<net.minecraft.world.level.levelgen.densityfunction.DistanceMetric> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.levelgen.densityfunction.DistanceMetric EUCLIDEAN;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DistanceMetric EUCLIDEAN_SQUARED;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DistanceMetric MANHATTAN;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DistanceMetric CHEBYSHEV;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.densityfunction.DistanceMetric> CODEC;
+  public static net.minecraft.world.level.levelgen.densityfunction.DistanceMetric[] values();
+  public static net.minecraft.world.level.levelgen.densityfunction.DistanceMetric valueOf(java.lang.String);
+  public float compute(float, float, float);
+  public float compute(float, float);
+  public java.lang.String getSerializedName();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.levelgen.densityfunction.package-info {
+}
+Compiled from "CachingDensitySampler.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.CachingDensitySampler extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DensitySampler {
+  public net.minecraft.world.level.levelgen.densityfunction.CachingDensitySampler(int, net.minecraft.world.level.levelgen.densityfunction.DensitySampler);
+  public void sampleVolume(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public float sampleValue(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int id();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler input();
+}
+Compiled from "ScopedDensityBuffer.java"
+public class net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer extends net.minecraft.world.level.levelgen.densityfunction.DensityBuffer implements java.lang.AutoCloseable {
+  public void close();
+}
+Compiled from "DensitySampler.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound(net.minecraft.world.level.levelgen.densityfunction.DensitySampler, net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+  public float sampleValue(int, int, int);
+  public void sampleVolume(net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer sampleVolume(net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler sampler();
+  public net.minecraft.world.level.levelgen.densityfunction.SamplerContext context();
+}
+Compiled from "DfRewriteRule.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule {
+  public static final net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule INLINE_REFERENCE;
+  public static final net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule SLICE_UNIFORM_AXES;
+  public static net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule sequence(net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule...);
+  public abstract net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewrite(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+}
+Compiled from "DensityFunction.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensityFunction$Axes extends java.lang.annotation.Annotation {
+}
+Compiled from "DensityFunction.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensityFunction {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>> REFERENCE_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> CODEC;
+  public static final int AXIS_X;
+  public static final int AXIS_Y;
+  public static final int AXIS_Z;
+  public static final int NO_AXES;
+  public static final int ALL_AXES;
+  public static int axesFrom(net.minecraft.core.Direction$Axis);
+  public abstract net.minecraft.world.level.levelgen.densityfunction.DensitySampler compileSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext);
+  public abstract net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewriteChildren(net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule);
+  public abstract net.minecraft.util.Interval range();
+  public abstract int domainAxes();
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.densityfunction.DensityFunction> codec();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction clamp(float, float);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction abs();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction square();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction cube();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction sqrt();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction halfNegative();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction quarterNegative();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction reciprocal();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction negate();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction squeeze();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction log();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction sign();
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction add(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction add(float);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction sub(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction sub(float);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction mul(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction mul(float);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction div(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction div(float);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction pow(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensityFunction pow(float);
+}
+Compiled from "DensityFunctions.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DensityFunctions$HolderHolder extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DensityFunction {
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunctions$HolderHolder(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler compileSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewriteChildren(net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule);
+  public net.minecraft.util.Interval range();
+  public int domainAxes();
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.levelgen.densityfunction.DensityFunctions$HolderHolder> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> function();
+}
+Compiled from "SamplerContext.java"
+class net.minecraft.world.level.levelgen.densityfunction.SamplerContext$CacheCell {
+}
+Compiled from "DensitySampler.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensitySampler {
+  public abstract void sampleVolume(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public static void sampleVolumeNaive(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume, net.minecraft.world.level.levelgen.densityfunction.DensitySampler);
+  public abstract float sampleValue(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, int, int, int);
+  public default net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound bind(net.minecraft.world.level.levelgen.densityfunction.SamplerContext);
+}
+Compiled from "DensitySamplerSet.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensitySamplerSet {
+  public abstract net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound get(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public default float sampleValue(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int, int);
+}
+Compiled from "ContextBoundSampler.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.ContextBoundSampler extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DensitySampler {
+  public net.minecraft.world.level.levelgen.densityfunction.ContextBoundSampler(net.minecraft.util.context.ContextKey<? extends net.minecraft.world.level.levelgen.densityfunction.DensitySampler>, net.minecraft.world.level.levelgen.densityfunction.DensitySampler);
+  public void sampleVolume(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, net.minecraft.world.level.levelgen.densityfunction.DensityBuffer, net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+  public float sampleValue(net.minecraft.world.level.levelgen.densityfunction.SamplerContext, int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.context.ContextKey<? extends net.minecraft.world.level.levelgen.densityfunction.DensitySampler> key();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler fallbackSampler();
+}
+Compiled from "SamplerContext.java"
+public class net.minecraft.world.level.levelgen.densityfunction.SamplerContext {
+  public static final net.minecraft.world.level.levelgen.densityfunction.SamplerContext EMPTY_UNCACHED;
+  public static net.minecraft.world.level.levelgen.densityfunction.SamplerContext$Builder builder();
+  public <T> T getField(net.minecraft.util.context.ContextKey<T>);
+  public <T> T getFieldOrDefault(net.minecraft.util.context.ContextKey<? extends T>, T);
+  public net.minecraft.world.level.levelgen.densityfunction.ScopedDensityBuffer acquireBuffer(net.minecraft.world.level.levelgen.densityfunction.DensityVolume);
+}
+Compiled from "SamplerContext.java"
+public class net.minecraft.world.level.levelgen.densityfunction.SamplerContext$Builder {
+  public net.minecraft.world.level.levelgen.densityfunction.SamplerContext$Builder setUserFields(net.minecraft.util.context.ContextMap);
+  public net.minecraft.world.level.levelgen.densityfunction.SamplerContext$Builder useBufferArena(net.minecraft.world.level.levelgen.densityfunction.DensityBufferArena);
+  public net.minecraft.world.level.levelgen.densityfunction.SamplerContext$Builder enableCaches();
+  public net.minecraft.world.level.levelgen.densityfunction.SamplerContext build();
+}
+Compiled from "DensityFunctions.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DensityFunctions {
+  public static final float MAX_REASONABLE_NOISE_VALUE;
+  public static final com.mojang.serialization.Codec<java.lang.Float> NOISE_VALUE_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.levelgen.densityfunction.DensityFunction> DIRECT_CODEC;
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.densityfunction.DensityFunction> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.levelgen.densityfunction.DensityFunction>>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction zero();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction constant(float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction abs(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction square(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction cube(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction sqrt(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction halfNegative(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction quarterNegative(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction reciprocal(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction negate(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction squeeze(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction log(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction sign(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction interpolated(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction cache(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction mappedNoise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>, double, double, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction mappedNoise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>, double, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction mappedNoise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction shiftedNoise2d(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, double, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction noise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction noise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>, double, double);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction noise(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>, double);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction rangeChoice(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, float, float, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction intervalSelect(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, it.unimi.dsi.fastutil.floats.FloatList, java.util.List<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction shiftA(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction shiftB(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction shift(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction blendDensity(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction endOuterIslands();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction distanceToPoint(net.minecraft.core.Vec3i, net.minecraft.world.level.levelgen.densityfunction.DistanceMetric);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction add(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction sub(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction mul(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction div(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction pow(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction clamp(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction min(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction max(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction spline(net.minecraft.util.CubicSpline<net.minecraft.world.level.levelgen.densityfunction.op.SplineFunction$Coordinate>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction sliceY(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction slice(net.minecraft.core.Direction$Axis, int, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction yClampedGradient(int, int, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction gradient(net.minecraft.core.Direction$Axis, net.minecraft.world.level.levelgen.densityfunction.TilingMode, int, int, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction blendAlpha();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction blendOffset();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction beardifier();
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction lerp(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction lerp(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, float, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction round(net.minecraft.world.level.levelgen.densityfunction.op.RoundFunction$Type, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction round(net.minecraft.world.level.levelgen.densityfunction.op.RoundFunction$Type, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction floor(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction floor(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction round(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction round(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction ceil(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction ceil(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction truncate(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction truncate(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction findTopSurface(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction, int, int);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction remap(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, float, float, float, float);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction clampedMap(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, float, float, float, float);
+}
+Compiled from "DensityFunction.java"
+public interface net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext {
+  public abstract net.minecraft.world.level.levelgen.synth.Noise createNoiseSampler(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.synth.NormalNoise>);
+  public abstract net.minecraft.util.RandomSource createRandom(net.minecraft.resources.Identifier);
+  public abstract net.minecraft.util.RandomSource createEndIslandRandom();
+}
+Compiled from "DensityFunctionCompiler.java"
+public class net.minecraft.world.level.levelgen.densityfunction.DensityFunctionCompiler {
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunctionCompiler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction$CompileContext);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler getSampler(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+}
+Compiled from "DfRewriteRule.java"
+public final class net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule$SliceUniformAxes extends java.lang.Record implements net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule {
+  public net.minecraft.world.level.levelgen.densityfunction.DfRewriteRule$SliceUniformAxes(int);
+  public net.minecraft.world.level.levelgen.densityfunction.DensityFunction rewrite(net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int parentDomainAxes();
+}

@@ -1,0 +1,410 @@
+Compiled from "CompoundContainer.java"
+public class net.minecraft.world.CompoundContainer implements net.minecraft.world.Container {
+  public net.minecraft.world.CompoundContainer(net.minecraft.world.Container, net.minecraft.world.Container);
+  public int getContainerSize();
+  public boolean isEmpty();
+  public boolean contains(net.minecraft.world.Container);
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public int getMaxStackSize();
+  public void setChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public void clearContent();
+}
+Compiled from "WorldlyContainerHolder.java"
+public interface net.minecraft.world.WorldlyContainerHolder {
+  public abstract net.minecraft.world.WorldlyContainer getContainer(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$Pass extends java.lang.Record implements net.minecraft.world.InteractionResult {
+  public net.minecraft.world.InteractionResult$Pass();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "RandomizableContainer.java"
+public interface net.minecraft.world.RandomizableContainer extends net.minecraft.world.Container {
+  public static final java.lang.String LOOT_TABLE_TAG;
+  public static final java.lang.String LOOT_TABLE_SEED_TAG;
+  public abstract net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getLootTable();
+  public abstract void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public default void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, long);
+  public abstract long getLootTableSeed();
+  public abstract void setLootTableSeed(long);
+  public abstract net.minecraft.core.BlockPos getBlockPos();
+  public abstract net.minecraft.world.level.Level getLevel();
+  public static void setBlockEntityLootTable(net.minecraft.world.level.BlockGetter, net.minecraft.util.RandomSource, net.minecraft.core.BlockPos, net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public default boolean tryLoadLootTable(net.minecraft.world.level.storage.ValueInput);
+  public default boolean trySaveLootTable(net.minecraft.world.level.storage.ValueOutput);
+  public default void unpackLootTable(net.minecraft.world.entity.player.Player);
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$TryEmptyHandInteraction extends java.lang.Record implements net.minecraft.world.InteractionResult {
+  public net.minecraft.world.InteractionResult$TryEmptyHandInteraction();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "ContainerHelper.java"
+public class net.minecraft.world.ContainerHelper {
+  public static final java.lang.String TAG_ITEMS;
+  public net.minecraft.world.ContainerHelper();
+  public static net.minecraft.world.item.ItemStack removeItem(java.util.List<net.minecraft.world.item.ItemStack>, int, int);
+  public static net.minecraft.world.item.ItemStack takeItem(java.util.List<net.minecraft.world.item.ItemStack>, int);
+  public static void saveAllItems(net.minecraft.world.level.storage.ValueOutput, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public static void saveAllItems(net.minecraft.world.level.storage.ValueOutput, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>, boolean);
+  public static void loadAllItems(net.minecraft.world.level.storage.ValueInput, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public static int clearOrCountMatchingItems(net.minecraft.world.Container, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, int, boolean);
+  public static int clearOrCountMatchingItems(net.minecraft.world.item.ItemStack, java.util.function.Predicate<net.minecraft.world.item.ItemStack>, int, boolean);
+}
+Compiled from "BossEvent.java"
+public final class net.minecraft.world.BossEvent$BossBarOverlay extends java.lang.Enum<net.minecraft.world.BossEvent$BossBarOverlay> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.BossEvent$BossBarOverlay PROGRESS;
+  public static final net.minecraft.world.BossEvent$BossBarOverlay NOTCHED_6;
+  public static final net.minecraft.world.BossEvent$BossBarOverlay NOTCHED_10;
+  public static final net.minecraft.world.BossEvent$BossBarOverlay NOTCHED_12;
+  public static final net.minecraft.world.BossEvent$BossBarOverlay NOTCHED_20;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.BossEvent$BossBarOverlay> CODEC;
+  public static net.minecraft.world.BossEvent$BossBarOverlay[] values();
+  public static net.minecraft.world.BossEvent$BossBarOverlay valueOf(java.lang.String);
+  public java.lang.String getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$Success extends java.lang.Record implements net.minecraft.world.InteractionResult {
+  public net.minecraft.world.InteractionResult$Success(net.minecraft.world.InteractionResult$SwingSource, net.minecraft.world.InteractionResult$ItemContext);
+  public boolean shouldSwing();
+  public boolean consumesAction();
+  public net.minecraft.world.InteractionResult$Success heldItemTransformedTo(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.InteractionResult$Success withoutItem();
+  public boolean wasItemInteraction();
+  public net.minecraft.world.item.ItemStack heldItemTransformedTo();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.InteractionResult$SwingSource swingSource();
+  public net.minecraft.world.InteractionResult$ItemContext itemContext();
+}
+Compiled from "ItemStackWithSlot.java"
+public final class net.minecraft.world.ItemStackWithSlot extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.ItemStackWithSlot> CODEC;
+  public net.minecraft.world.ItemStackWithSlot(int, net.minecraft.world.item.ItemStack);
+  public boolean isValidInContainer(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int slot();
+  public net.minecraft.world.item.ItemStack stack();
+}
+Compiled from "BossEvent.java"
+public final class net.minecraft.world.BossEvent$BossBarColor extends java.lang.Enum<net.minecraft.world.BossEvent$BossBarColor> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.BossEvent$BossBarColor PINK;
+  public static final net.minecraft.world.BossEvent$BossBarColor BLUE;
+  public static final net.minecraft.world.BossEvent$BossBarColor RED;
+  public static final net.minecraft.world.BossEvent$BossBarColor GREEN;
+  public static final net.minecraft.world.BossEvent$BossBarColor YELLOW;
+  public static final net.minecraft.world.BossEvent$BossBarColor PURPLE;
+  public static final net.minecraft.world.BossEvent$BossBarColor WHITE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.BossEvent$BossBarColor> CODEC;
+  public static net.minecraft.world.BossEvent$BossBarColor[] values();
+  public static net.minecraft.world.BossEvent$BossBarColor valueOf(java.lang.String);
+  public net.minecraft.ChatFormatting getFormatting();
+  public java.lang.String getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "Difficulty.java"
+public final class net.minecraft.world.Difficulty extends java.lang.Enum<net.minecraft.world.Difficulty> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.Difficulty PEACEFUL;
+  public static final net.minecraft.world.Difficulty EASY;
+  public static final net.minecraft.world.Difficulty NORMAL;
+  public static final net.minecraft.world.Difficulty HARD;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.world.Difficulty> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.Difficulty> STREAM_CODEC;
+  public static net.minecraft.world.Difficulty[] values();
+  public static net.minecraft.world.Difficulty valueOf(java.lang.String);
+  public int getId();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.network.chat.Component getInfo();
+  public static net.minecraft.world.Difficulty byId(int);
+  public static net.minecraft.world.Difficulty byName(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "Clearable.java"
+public interface net.minecraft.world.Clearable {
+  public abstract void clearContent();
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$ItemContext extends java.lang.Record {
+  public static final net.minecraft.world.InteractionResult$ItemContext NONE;
+  public static final net.minecraft.world.InteractionResult$ItemContext DEFAULT;
+  public net.minecraft.world.InteractionResult$ItemContext(boolean, net.minecraft.world.item.ItemStack);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean wasItemInteraction();
+  public net.minecraft.world.item.ItemStack heldItemTransformedTo();
+}
+Compiled from "Stopwatch.java"
+public final class net.minecraft.world.Stopwatch extends java.lang.Record {
+  public net.minecraft.world.Stopwatch(long);
+  public net.minecraft.world.Stopwatch(long, long);
+  public long elapsedMilliseconds(long);
+  public double elapsedSeconds(long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long creationTime();
+  public long accumulatedElapsedTime();
+}
+Compiled from "Container.java"
+public class net.minecraft.world.Container$ContainerIterator implements java.util.Iterator<net.minecraft.world.item.ItemStack> {
+  public net.minecraft.world.Container$ContainerIterator(net.minecraft.world.Container);
+  public boolean hasNext();
+  public net.minecraft.world.item.ItemStack next();
+  public java.lang.Object next();
+}
+Compiled from "RandomSequences.java"
+class net.minecraft.world.RandomSequences$DirtyMarkingRandomSource implements net.minecraft.util.RandomSource {
+  public net.minecraft.util.RandomSource fork();
+  public net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public void setSeed(long);
+  public int nextInt();
+  public int nextInt(int);
+  public long nextLong();
+  public boolean nextBoolean();
+  public float nextFloat();
+  public double nextDouble();
+  public double nextGaussian();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "LockCode.java"
+public final class net.minecraft.world.LockCode extends java.lang.Record {
+  public static final net.minecraft.world.LockCode NO_LOCK;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.LockCode> CODEC;
+  public static final java.lang.String TAG_LOCK;
+  public net.minecraft.world.LockCode(net.minecraft.advancements.predicates.ItemPredicate);
+  public boolean unlocksWith(net.minecraft.world.item.ItemStack);
+  public void addToTag(net.minecraft.world.level.storage.ValueOutput);
+  public boolean canUnlock(net.minecraft.world.entity.player.Player);
+  public static net.minecraft.world.LockCode fromTag(net.minecraft.world.level.storage.ValueInput);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.advancements.predicates.ItemPredicate predicate();
+}
+Compiled from "Stopwatches.java"
+public class net.minecraft.world.Stopwatches extends net.minecraft.world.level.saveddata.SavedData {
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.Stopwatches> TYPE;
+  public net.minecraft.world.Stopwatch get(net.minecraft.resources.Identifier);
+  public boolean add(net.minecraft.resources.Identifier, net.minecraft.world.Stopwatch);
+  public boolean update(net.minecraft.resources.Identifier, java.util.function.UnaryOperator<net.minecraft.world.Stopwatch>);
+  public boolean remove(net.minecraft.resources.Identifier);
+  public boolean isDirty();
+  public java.util.List<net.minecraft.resources.Identifier> ids();
+  public static long currentTime();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.package-info {
+}
+Compiled from "RandomSequences.java"
+public class net.minecraft.world.RandomSequences extends net.minecraft.world.level.saveddata.SavedData {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.RandomSequences> CODEC;
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.RandomSequences> TYPE;
+  public net.minecraft.world.RandomSequences();
+  public net.minecraft.util.RandomSource get(net.minecraft.resources.Identifier, long);
+  public void forAllSequences(java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.world.RandomSequence>);
+  public void setSeedDefaults(int, boolean, boolean);
+  public int clear();
+  public void reset(net.minecraft.resources.Identifier, long);
+  public void reset(net.minecraft.resources.Identifier, long, int, boolean, boolean);
+}
+Compiled from "SimpleMenuProvider.java"
+public final class net.minecraft.world.SimpleMenuProvider implements net.minecraft.world.MenuProvider {
+  public net.minecraft.world.SimpleMenuProvider(net.minecraft.world.inventory.MenuConstructor, net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+}
+Compiled from "BossEvent.java"
+public abstract class net.minecraft.world.BossEvent {
+  protected net.minecraft.network.chat.Component name;
+  protected float progress;
+  protected net.minecraft.world.BossEvent$BossBarColor color;
+  protected net.minecraft.world.BossEvent$BossBarOverlay overlay;
+  protected boolean darkenScreen;
+  protected boolean playBossMusic;
+  protected boolean createWorldFog;
+  public net.minecraft.world.BossEvent(java.util.UUID, net.minecraft.network.chat.Component, net.minecraft.world.BossEvent$BossBarColor, net.minecraft.world.BossEvent$BossBarOverlay);
+  public java.util.UUID getId();
+  public net.minecraft.network.chat.Component getName();
+  public void setName(net.minecraft.network.chat.Component);
+  public float getProgress();
+  public void setProgress(float);
+  public net.minecraft.world.BossEvent$BossBarColor getColor();
+  public void setColor(net.minecraft.world.BossEvent$BossBarColor);
+  public net.minecraft.world.BossEvent$BossBarOverlay getOverlay();
+  public void setOverlay(net.minecraft.world.BossEvent$BossBarOverlay);
+  public boolean shouldDarkenScreen();
+  public net.minecraft.world.BossEvent setDarkenScreen(boolean);
+  public boolean shouldPlayBossMusic();
+  public net.minecraft.world.BossEvent setPlayBossMusic(boolean);
+  public net.minecraft.world.BossEvent setCreateWorldFog(boolean);
+  public boolean shouldCreateWorldFog();
+}
+Compiled from "Containers.java"
+public class net.minecraft.world.Containers {
+  public net.minecraft.world.Containers();
+  public static void dropContents(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.Container);
+  public static void dropContents(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity, net.minecraft.world.Container);
+  public static void dropContents(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack>);
+  public static void dropItemStack(net.minecraft.world.level.Level, double, double, double, net.minecraft.world.item.ItemStack);
+  public static void updateNeighboursAfterDestroy(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$Fail extends java.lang.Record implements net.minecraft.world.InteractionResult {
+  public net.minecraft.world.InteractionResult$Fail();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "RandomSequence.java"
+public class net.minecraft.world.RandomSequence {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.RandomSequence> CODEC;
+  public net.minecraft.world.RandomSequence(net.minecraft.world.level.levelgen.XoroshiroRandomSource);
+  public net.minecraft.world.RandomSequence(long, net.minecraft.resources.Identifier);
+  public net.minecraft.world.RandomSequence(long, java.util.Optional<net.minecraft.resources.Identifier>);
+  public static net.minecraft.world.level.levelgen.RandomSupport$Seed128bit seedForKey(net.minecraft.resources.Identifier);
+  public net.minecraft.util.RandomSource random();
+}
+Compiled from "DifficultyInstance.java"
+public class net.minecraft.world.DifficultyInstance {
+  public net.minecraft.world.DifficultyInstance(net.minecraft.world.Difficulty, long, long, float);
+  public net.minecraft.world.Difficulty getDifficulty();
+  public float getEffectiveDifficulty();
+  public boolean isHard();
+  public boolean isHarderThan(float);
+  public float getSpecialMultiplier();
+}
+Compiled from "MenuProvider.java"
+public interface net.minecraft.world.MenuProvider extends net.minecraft.world.inventory.MenuConstructor,net.fabricmc.fabric.api.menu.v1.FabricMenuProvider {
+  public abstract net.minecraft.network.chat.Component getDisplayName();
+}
+Compiled from "Container.java"
+public interface net.minecraft.world.Container extends net.minecraft.world.Clearable, java.lang.Iterable<net.minecraft.world.item.ItemStack>, net.minecraft.world.entity.SlotProvider {
+  public static final float DEFAULT_DISTANCE_BUFFER;
+  public abstract int getContainerSize();
+  public abstract boolean isEmpty();
+  public abstract net.minecraft.world.item.ItemStack getItem(int);
+  public abstract net.minecraft.world.item.ItemStack removeItem(int, int);
+  public abstract net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public abstract void setItem(int, net.minecraft.world.item.ItemStack);
+  public default int getMaxStackSize();
+  public default int getMaxStackSize(net.minecraft.world.item.ItemStack);
+  public abstract void setChanged();
+  public abstract boolean stillValid(net.minecraft.world.entity.player.Player);
+  public default void startOpen(net.minecraft.world.entity.ContainerUser);
+  public default void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public default java.util.List<net.minecraft.world.entity.ContainerUser> getEntitiesWithContainerOpen();
+  public default boolean canPlaceItem(int, net.minecraft.world.item.ItemStack);
+  public default boolean canTakeItem(net.minecraft.world.Container, int, net.minecraft.world.item.ItemStack);
+  public default int countItem(net.minecraft.world.item.Item);
+  public default boolean hasAnyOf(java.util.Set<net.minecraft.world.item.Item>);
+  public default boolean hasAnyMatching(java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public static boolean stillValidBlockEntity(net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.world.entity.player.Player);
+  public static boolean stillValidBlockEntity(net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.world.entity.player.Player, float);
+  public default net.minecraft.world.entity.SlotAccess getSlot(int);
+  public default java.util.Iterator<net.minecraft.world.item.ItemStack> iterator();
+}
+Compiled from "InteractionResult.java"
+public final class net.minecraft.world.InteractionResult$SwingSource extends java.lang.Enum<net.minecraft.world.InteractionResult$SwingSource> {
+  public static final net.minecraft.world.InteractionResult$SwingSource NONE;
+  public static final net.minecraft.world.InteractionResult$SwingSource PREDICTED;
+  public static final net.minecraft.world.InteractionResult$SwingSource SERVER_ONLY;
+  public static net.minecraft.world.InteractionResult$SwingSource[] values();
+  public static net.minecraft.world.InteractionResult$SwingSource valueOf(java.lang.String);
+}
+Compiled from "WorldlyContainer.java"
+public interface net.minecraft.world.WorldlyContainer extends net.minecraft.world.Container {
+  public abstract int[] getSlotsForFace(net.minecraft.core.Direction);
+  public abstract boolean canPlaceItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+  public abstract boolean canTakeItemThroughFace(int, net.minecraft.world.item.ItemStack, net.minecraft.core.Direction);
+}
+Compiled from "TickRateManager.java"
+public class net.minecraft.world.TickRateManager {
+  public static final float MIN_TICKRATE;
+  protected float tickrate;
+  protected long nanosecondsPerTick;
+  protected int frozenTicksToRun;
+  protected boolean runGameElements;
+  protected boolean isFrozen;
+  public net.minecraft.world.TickRateManager();
+  public void setTickRate(float);
+  public float tickrate();
+  public float millisecondsPerTick();
+  public long nanosecondsPerTick();
+  public boolean runsNormally();
+  public boolean isSteppingForward();
+  public void setFrozenTicksToRun(int);
+  public int frozenTicksToRun();
+  public void setFrozen(boolean);
+  public boolean isFrozen();
+  public void tick();
+  public boolean isEntityFrozen(net.minecraft.world.entity.Entity);
+}
+Compiled from "Nameable.java"
+public interface net.minecraft.world.Nameable {
+  public abstract net.minecraft.network.chat.Component getName();
+  public default java.lang.String getPlainTextName();
+  public default boolean hasCustomName();
+  public default net.minecraft.network.chat.Component getDisplayName();
+  public default net.minecraft.network.chat.Component getCustomName();
+}
+Compiled from "InteractionResult.java"
+public interface net.minecraft.world.InteractionResult {
+  public static final net.minecraft.world.InteractionResult$Success SUCCESS;
+  public static final net.minecraft.world.InteractionResult$Success SUCCESS_SERVER;
+  public static final net.minecraft.world.InteractionResult$Success CONSUME;
+  public static final net.minecraft.world.InteractionResult$Fail FAIL;
+  public static final net.minecraft.world.InteractionResult$Pass PASS;
+  public static final net.minecraft.world.InteractionResult$TryEmptyHandInteraction TRY_WITH_EMPTY_HAND;
+  public default boolean consumesAction();
+}
+Compiled from "SimpleContainer.java"
+public class net.minecraft.world.SimpleContainer implements net.minecraft.world.Container,net.minecraft.world.inventory.StackedContentsCompatible {
+  public final net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> items;
+  public net.minecraft.world.SimpleContainer(int);
+  public net.minecraft.world.SimpleContainer(net.minecraft.world.item.ItemStack...);
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public java.util.List<net.minecraft.world.item.ItemStack> removeAllItems();
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemType(net.minecraft.world.item.Item, int);
+  public net.minecraft.world.item.ItemStack addItem(net.minecraft.world.item.ItemStack);
+  public boolean canAddItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public void setChanged();
+  public int getContainerSize();
+  public boolean isEmpty();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void clearContent();
+  public void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public java.lang.String toString();
+  public void fromItemList(net.minecraft.world.level.storage.ValueInput$TypedInputList<net.minecraft.world.item.ItemStack>);
+  public void storeAsItemList(net.minecraft.world.level.storage.ValueOutput$TypedOutputList<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+}
+Compiled from "InteractionHand.java"
+public final class net.minecraft.world.InteractionHand extends java.lang.Enum<net.minecraft.world.InteractionHand> {
+  public static final net.minecraft.world.InteractionHand MAIN_HAND;
+  public static final net.minecraft.world.InteractionHand OFF_HAND;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.InteractionHand> STREAM_CODEC;
+  public static net.minecraft.world.InteractionHand[] values();
+  public static net.minecraft.world.InteractionHand valueOf(java.lang.String);
+  public net.minecraft.world.entity.HumanoidArm asArm(net.minecraft.world.entity.HumanoidArm);
+  public net.minecraft.world.entity.EquipmentSlot asEquipmentSlot();
+}

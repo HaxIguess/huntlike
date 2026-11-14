@@ -1,0 +1,44 @@
+Compiled from "LootPoolAccessor.java"
+public interface net.fabricmc.fabric.mixin.loot.LootPoolAccessor {
+  public abstract net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> fabric_getRolls();
+  public abstract net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> fabric_getBonusRolls();
+  public abstract java.util.List<net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer> fabric_getEntries();
+  public abstract java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> fabric_getCondition();
+  public abstract java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>> fabric_getModifier();
+}
+Compiled from "LootPoolBuilderMixin.java"
+abstract class net.fabricmc.fabric.mixin.loot.LootPoolBuilderMixin implements net.fabricmc.fabric.api.loot.v3.FabricLootPoolBuilder {
+  public net.minecraft.world.level.storage.loot.LootPool$Builder add(net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder add(java.util.Collection<? extends net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder when(net.minecraft.world.level.storage.loot.predicates.LootItemCondition);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder when(java.util.Collection<? extends net.minecraft.world.level.storage.loot.predicates.LootItemCondition>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder apply(net.minecraft.world.level.storage.loot.functions.LootItemFunction);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder apply(java.util.Collection<? extends net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+}
+Compiled from "LootTableAccessor.java"
+public interface net.fabricmc.fabric.mixin.loot.LootTableAccessor {
+  public abstract java.util.List<net.minecraft.world.level.storage.loot.LootPool> fabric_getPools();
+  public abstract java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>> fabric_getModifier();
+  public abstract java.util.Optional<net.minecraft.resources.Identifier> fabric_getRandomSequence();
+}
+Compiled from "LootTableBuilderMixin.java"
+abstract class net.fabricmc.fabric.mixin.loot.LootTableBuilderMixin implements net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder {
+  public net.minecraft.world.level.storage.loot.LootTable$Builder pool(net.minecraft.world.level.storage.loot.LootPool);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder apply(net.minecraft.world.level.storage.loot.functions.LootItemFunction);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder pools(java.util.Collection<? extends net.minecraft.world.level.storage.loot.LootPool>);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder apply(java.util.Collection<? extends net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder modifyPools(java.util.function.Consumer<? super net.minecraft.world.level.storage.loot.LootPool$Builder>);
+}
+Compiled from "LootTableMixin.java"
+class net.fabricmc.fabric.mixin.loot.LootTableMixin implements net.fabricmc.fabric.impl.loot.FabricLootTable {
+  public void fabric$setHolder(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable>);
+}
+Compiled from "ReloadableServerRegistriesMixin.java"
+abstract class net.fabricmc.fabric.mixin.loot.ReloadableServerRegistriesMixin {
+}
+Compiled from "ResourceManagerRegistryLoadTaskMixin.java"
+abstract class net.fabricmc.fabric.mixin.loot.ResourceManagerRegistryLoadTaskMixin {
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.mixin.loot.package-info {
+}

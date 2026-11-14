@@ -1,0 +1,106 @@
+Compiled from "IdentifierParseRule.java"
+public class net.minecraft.util.parsing.packrat.commands.IdentifierParseRule implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, net.minecraft.resources.Identifier> {
+  public static final net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, net.minecraft.resources.Identifier> INSTANCE;
+  public net.minecraft.resources.Identifier parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}
+Compiled from "ResourceLookupRule.java"
+public abstract class net.minecraft.util.parsing.packrat.commands.ResourceLookupRule<C, V> implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, V>, net.minecraft.util.parsing.packrat.commands.ResourceSuggestion {
+  protected final C context;
+  protected net.minecraft.util.parsing.packrat.commands.ResourceLookupRule(net.minecraft.util.parsing.packrat.NamedRule<com.mojang.brigadier.StringReader, net.minecraft.resources.Identifier>, C);
+  public V parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  protected abstract V validateElement(com.mojang.brigadier.ImmutableStringReader, net.minecraft.resources.Identifier) throws java.lang.Exception;
+}
+Compiled from "StringReaderParserState.java"
+public class net.minecraft.util.parsing.packrat.commands.StringReaderParserState extends net.minecraft.util.parsing.packrat.CachedParseState<com.mojang.brigadier.StringReader> {
+  public net.minecraft.util.parsing.packrat.commands.StringReaderParserState(net.minecraft.util.parsing.packrat.ErrorCollector<com.mojang.brigadier.StringReader>, com.mojang.brigadier.StringReader);
+  public com.mojang.brigadier.StringReader input();
+  public int mark();
+  public void restore(int);
+  public java.lang.Object input();
+}
+Compiled from "ParserBasedArgument.java"
+public abstract class net.minecraft.util.parsing.packrat.commands.ParserBasedArgument<T> implements com.mojang.brigadier.arguments.ArgumentType<T> {
+  public net.minecraft.util.parsing.packrat.commands.ParserBasedArgument(net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<T>);
+  public T parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+}
+Compiled from "UnquotedStringParseRule.java"
+public class net.minecraft.util.parsing.packrat.commands.UnquotedStringParseRule implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, java.lang.String> {
+  public net.minecraft.util.parsing.packrat.commands.UnquotedStringParseRule(int, net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>);
+  public java.lang.String parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}
+Compiled from "ResourceSuggestion.java"
+public interface net.minecraft.util.parsing.packrat.commands.ResourceSuggestion extends net.minecraft.util.parsing.packrat.SuggestionSupplier<com.mojang.brigadier.StringReader> {
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> possibleResources();
+  public default java.util.stream.Stream<java.lang.String> possibleValues(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.parsing.packrat.commands.package-info {
+}
+Compiled from "StringReaderTerms.java"
+public interface net.minecraft.util.parsing.packrat.commands.StringReaderTerms {
+  public static net.minecraft.util.parsing.packrat.Term<com.mojang.brigadier.StringReader> word(java.lang.String);
+  public static net.minecraft.util.parsing.packrat.Term<com.mojang.brigadier.StringReader> character(char);
+  public static net.minecraft.util.parsing.packrat.Term<com.mojang.brigadier.StringReader> characters(char, char);
+  public static com.mojang.brigadier.StringReader createReader(java.lang.String, int);
+}
+Compiled from "CommandArgumentParser.java"
+public interface net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<T> {
+  public abstract T parseForCommands(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> parseForSuggestions(com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public default <S> net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<S> mapResult(java.util.function.Function<T, S>);
+  public default <T, O> net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<T> withCodec(com.mojang.serialization.DynamicOps<O>, net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<O>, com.mojang.serialization.Codec<T>, com.mojang.brigadier.exceptions.DynamicCommandExceptionType);
+}
+Compiled from "NumberRunParseRule.java"
+public abstract class net.minecraft.util.parsing.packrat.commands.NumberRunParseRule implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, java.lang.String> {
+  public net.minecraft.util.parsing.packrat.commands.NumberRunParseRule(net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>, net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>);
+  public java.lang.String parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  protected abstract boolean isAccepted(char);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}
+Compiled from "GreedyPatternParseRule.java"
+public final class net.minecraft.util.parsing.packrat.commands.GreedyPatternParseRule implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, java.lang.String> {
+  public net.minecraft.util.parsing.packrat.commands.GreedyPatternParseRule(java.util.regex.Pattern, net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>);
+  public java.lang.String parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}
+Compiled from "Grammar.java"
+public final class net.minecraft.util.parsing.packrat.commands.Grammar<T> extends java.lang.Record implements net.minecraft.util.parsing.packrat.commands.CommandArgumentParser<T> {
+  public net.minecraft.util.parsing.packrat.commands.Grammar(net.minecraft.util.parsing.packrat.Dictionary<com.mojang.brigadier.StringReader>, net.minecraft.util.parsing.packrat.NamedRule<com.mojang.brigadier.StringReader, T>);
+  public java.util.Optional<T> parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  public T parseForCommands(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> parseForSuggestions(com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.parsing.packrat.Dictionary<com.mojang.brigadier.StringReader> rules();
+  public net.minecraft.util.parsing.packrat.NamedRule<com.mojang.brigadier.StringReader, T> top();
+}
+Compiled from "StringReaderTerms.java"
+public final class net.minecraft.util.parsing.packrat.commands.StringReaderTerms$TerminalWord implements net.minecraft.util.parsing.packrat.Term<com.mojang.brigadier.StringReader> {
+  public net.minecraft.util.parsing.packrat.commands.StringReaderTerms$TerminalWord(java.lang.String);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  public java.lang.String toString();
+}
+Compiled from "StringReaderTerms.java"
+public abstract class net.minecraft.util.parsing.packrat.commands.StringReaderTerms$TerminalCharacters implements net.minecraft.util.parsing.packrat.Term<com.mojang.brigadier.StringReader> {
+  public net.minecraft.util.parsing.packrat.commands.StringReaderTerms$TerminalCharacters(it.unimi.dsi.fastutil.chars.CharList);
+  public boolean parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>, net.minecraft.util.parsing.packrat.Scope, net.minecraft.util.parsing.packrat.Control);
+  protected abstract boolean isAccepted(char);
+}
+Compiled from "GreedyPredicateParseRule.java"
+public abstract class net.minecraft.util.parsing.packrat.commands.GreedyPredicateParseRule implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, java.lang.String> {
+  public net.minecraft.util.parsing.packrat.commands.GreedyPredicateParseRule(int, net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>);
+  public net.minecraft.util.parsing.packrat.commands.GreedyPredicateParseRule(int, int, net.minecraft.util.parsing.packrat.DelayedException<com.mojang.brigadier.exceptions.CommandSyntaxException>);
+  public java.lang.String parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  protected abstract boolean isAccepted(char);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}
+Compiled from "TagParseRule.java"
+public class net.minecraft.util.parsing.packrat.commands.TagParseRule<T> implements net.minecraft.util.parsing.packrat.Rule<com.mojang.brigadier.StringReader, com.mojang.serialization.Dynamic<?>> {
+  public net.minecraft.util.parsing.packrat.commands.TagParseRule(com.mojang.serialization.DynamicOps<T>);
+  public com.mojang.serialization.Dynamic<T> parse(net.minecraft.util.parsing.packrat.ParseState<com.mojang.brigadier.StringReader>);
+  public java.lang.Object parse(net.minecraft.util.parsing.packrat.ParseState);
+}

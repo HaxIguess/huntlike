@@ -1,0 +1,75 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.allay.package-info {
+}
+Compiled from "Allay.java"
+class net.minecraft.world.entity.animal.allay.Allay$VibrationUser implements net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User {
+  public int getListenerRadius();
+  public net.minecraft.world.level.gameevent.PositionSource getPositionSource();
+  public boolean canReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context);
+  public void onReceiveVibration(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, float);
+  public net.minecraft.tags.TagKey<net.minecraft.world.level.gameevent.GameEvent> getListenableEvents();
+}
+Compiled from "Allay.java"
+class net.minecraft.world.entity.animal.allay.Allay$JukeboxListener implements net.minecraft.world.level.gameevent.GameEventListener {
+  public net.minecraft.world.entity.animal.allay.Allay$JukeboxListener(net.minecraft.world.entity.animal.allay.Allay, net.minecraft.world.level.gameevent.PositionSource, int);
+  public net.minecraft.world.level.gameevent.PositionSource getListenerSource();
+  public int getListenerRadius();
+  public boolean handleGameEvent(net.minecraft.server.level.ServerLevel, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.phys.Vec3);
+}
+Compiled from "Allay.java"
+public class net.minecraft.world.entity.animal.allay.Allay extends net.minecraft.world.entity.PathfinderMob implements net.minecraft.world.entity.npc.InventoryCarrier,net.minecraft.world.level.gameevent.vibrations.VibrationSystem {
+  public static final int MAX_NOTEBLOCK_DISTANCE;
+  public static final com.google.common.collect.ImmutableList<java.lang.Float> THROW_SOUND_PITCHES;
+  public net.minecraft.world.entity.animal.allay.Allay(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.allay.Allay>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.allay.Allay> makeBrain(net.minecraft.world.entity.ai.Brain$Packed);
+  public net.minecraft.world.entity.ai.Brain<net.minecraft.world.entity.animal.allay.Allay> getBrain();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void travel(net.minecraft.world.phys.Vec3);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected boolean considersEntityAsAlly(net.minecraft.world.entity.Entity);
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected float getSoundVolume();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void aiStep();
+  public void tick();
+  public boolean canPickUpLoot();
+  public boolean hasItemInHand();
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+  protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public void setJukeboxPlaying(net.minecraft.core.BlockPos, boolean);
+  public net.minecraft.world.SimpleContainer getInventory();
+  protected net.minecraft.core.Vec3i getPickupReach();
+  public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  public boolean isFlapping();
+  public void updateDynamicGameEventListener(java.util.function.BiConsumer<net.minecraft.world.level.gameevent.DynamicGameEventListener<?>, net.minecraft.server.level.ServerLevel>);
+  public boolean isDancing();
+  public void setDancing(boolean);
+  public float getHoldingItemAnimationProgress(float);
+  public boolean isSpinning();
+  public float getSpinningProgress(float);
+  public boolean equipmentHasChanged(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+  public boolean removeWhenFarAway(double);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected boolean shouldStayCloseToLeashHolder();
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public void handleEntityEvent(byte);
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$Data getVibrationData();
+  public net.minecraft.world.level.gameevent.vibrations.VibrationSystem$User getVibrationUser();
+}
+Compiled from "AllayAi.java"
+public class net.minecraft.world.entity.animal.allay.AllayAi {
+  public net.minecraft.world.entity.animal.allay.AllayAi();
+  protected static java.util.List<net.minecraft.world.entity.ai.ActivityData<net.minecraft.world.entity.animal.allay.Allay>> getActivities();
+  public static void updateActivity(net.minecraft.world.entity.animal.allay.Allay);
+  public static void hearNoteblock(net.minecraft.world.entity.LivingEntity, net.minecraft.core.BlockPos);
+  public static java.util.Optional<net.minecraft.server.level.ServerPlayer> getLikedPlayer(net.minecraft.world.entity.LivingEntity);
+}

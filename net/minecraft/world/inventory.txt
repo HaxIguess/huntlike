@@ -1,0 +1,866 @@
+Compiled from "ItemCombinerMenuSlotDefinition.java"
+public final class net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$SlotDefinition extends java.lang.Record {
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$SlotDefinition(int, int, int, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int slotIndex();
+  public int x();
+  public int y();
+  public java.util.function.Predicate<net.minecraft.world.item.ItemStack> mayPlace();
+}
+Compiled from "NonInteractiveResultSlot.java"
+public class net.minecraft.world.inventory.NonInteractiveResultSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.NonInteractiveResultSlot(net.minecraft.world.Container, int, int, int);
+  public void onQuickCraft(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public boolean mayPickup(net.minecraft.world.entity.player.Player);
+  public java.util.Optional<net.minecraft.world.item.ItemStack> tryRemove(int, int, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack safeTake(int, int, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack safeInsert(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack safeInsert(net.minecraft.world.item.ItemStack, int);
+  public boolean allowModification(net.minecraft.world.entity.player.Player);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack remove(int);
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public boolean isHighlightable();
+  public boolean isFake();
+}
+Compiled from "FurnaceFuelSlot.java"
+public class net.minecraft.world.inventory.FurnaceFuelSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.FurnaceFuelSlot(net.minecraft.world.inventory.AbstractFurnaceMenu, net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public int getMaxStackSize(net.minecraft.world.item.ItemStack);
+  public static boolean isBucket(net.minecraft.world.item.ItemStack);
+}
+Compiled from "GrindstoneMenu.java"
+public class net.minecraft.world.inventory.GrindstoneMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int MAX_NAME_LENGTH;
+  public static final int INPUT_SLOT;
+  public static final int ADDITIONAL_SLOT;
+  public static final int RESULT_SLOT;
+  public net.minecraft.world.inventory.GrindstoneMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.GrindstoneMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+}
+Compiled from "CrafterSlot.java"
+public class net.minecraft.world.inventory.CrafterSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.CrafterSlot(net.minecraft.world.Container, int, int, int, net.minecraft.world.inventory.CrafterMenu);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public void setChanged();
+}
+Compiled from "Slot.java"
+public class net.minecraft.world.inventory.Slot {
+  public final net.minecraft.world.Container container;
+  public int index;
+  public final int x;
+  public final int y;
+  public net.minecraft.world.inventory.Slot(net.minecraft.world.Container, int, int, int);
+  public void onQuickCraft(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  protected void onQuickCraft(net.minecraft.world.item.ItemStack, int);
+  protected void onSwapCraft(int);
+  protected void checkTakeAchievements(net.minecraft.world.item.ItemStack);
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getItem();
+  public boolean hasItem();
+  public void setByPlayer(net.minecraft.world.item.ItemStack);
+  public void setByPlayer(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public void set(net.minecraft.world.item.ItemStack);
+  public void setChanged();
+  public int getMaxStackSize();
+  public int getMaxStackSize(net.minecraft.world.item.ItemStack);
+  public net.minecraft.resources.Identifier getNoItemIcon();
+  public net.minecraft.world.item.ItemStack remove(int);
+  public boolean mayPickup(net.minecraft.world.entity.player.Player);
+  public boolean isActive();
+  public java.util.Optional<net.minecraft.world.item.ItemStack> tryRemove(int, int, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack safeTake(int, int, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack safeClone(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack safeInsert(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack safeInsert(net.minecraft.world.item.ItemStack, int);
+  public boolean allowModification(net.minecraft.world.entity.player.Player);
+  public int getContainerSlot();
+  public boolean isHighlightable();
+  public boolean isFake();
+}
+Compiled from "AbstractMountInventoryMenu.java"
+public abstract class net.minecraft.world.inventory.AbstractMountInventoryMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  protected final net.minecraft.world.Container mountContainer;
+  protected final net.minecraft.world.entity.LivingEntity mount;
+  protected final int SLOT_SADDLE;
+  protected final int SLOT_BODY_ARMOR;
+  protected final int SLOT_INVENTORY_START;
+  protected static final int INVENTORY_ROWS;
+  protected net.minecraft.world.inventory.AbstractMountInventoryMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.entity.LivingEntity);
+  protected abstract boolean hasInventoryChanged(net.minecraft.world.Container);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public static int getInventorySize(int);
+}
+Compiled from "ContainerData.java"
+public interface net.minecraft.world.inventory.ContainerData {
+  public abstract int get(int);
+  public abstract void set(int, int);
+  public abstract int getCount();
+}
+Compiled from "MenuConstructor.java"
+public interface net.minecraft.world.inventory.MenuConstructor {
+  public abstract net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+}
+Compiled from "BeaconMenu.java"
+public class net.minecraft.world.inventory.BeaconMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.BeaconMenu(int, net.minecraft.world.Container);
+  public net.minecraft.world.inventory.BeaconMenu(int, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData, net.minecraft.world.inventory.ContainerLevelAccess);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void setData(int, int);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public int getLevels();
+  public static int encodeEffect(net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>);
+  public static net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> decodeEffect(int);
+  public net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> getPrimaryEffect();
+  public net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> getSecondaryEffect();
+  public boolean updateEffects(java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>>, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect>>);
+  public boolean hasPayment();
+}
+Compiled from "RecipeBookMenu.java"
+public final class net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction extends java.lang.Enum<net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction> {
+  public static final net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction NOTHING;
+  public static final net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction PLACE_GHOST_RECIPE;
+  public static net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction[] values();
+  public static net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction valueOf(java.lang.String);
+}
+Compiled from "ResultSlot.java"
+public class net.minecraft.world.inventory.ResultSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.ResultSlot(net.minecraft.world.entity.player.Player, net.minecraft.world.inventory.CraftingContainer, net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack remove(int);
+  protected void onQuickCraft(net.minecraft.world.item.ItemStack, int);
+  protected void onSwapCraft(int);
+  public net.minecraft.world.item.ItemStack safeClone(net.minecraft.world.entity.player.Player);
+  protected void checkTakeAchievements(net.minecraft.world.item.ItemStack);
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public boolean isFake();
+}
+Compiled from "NautilusInventoryMenu.java"
+public class net.minecraft.world.inventory.NautilusInventoryMenu extends net.minecraft.world.inventory.AbstractMountInventoryMenu {
+  public net.minecraft.world.inventory.NautilusInventoryMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.entity.animal.nautilus.AbstractNautilus, int);
+  protected boolean hasInventoryChanged(net.minecraft.world.Container);
+}
+Compiled from "RecipeBookType.java"
+public final class net.minecraft.world.inventory.RecipeBookType extends java.lang.Enum<net.minecraft.world.inventory.RecipeBookType> {
+  public static final net.minecraft.world.inventory.RecipeBookType CRAFTING;
+  public static final net.minecraft.world.inventory.RecipeBookType FURNACE;
+  public static final net.minecraft.world.inventory.RecipeBookType BLAST_FURNACE;
+  public static final net.minecraft.world.inventory.RecipeBookType SMOKER;
+  public static net.minecraft.world.inventory.RecipeBookType[] values();
+  public static net.minecraft.world.inventory.RecipeBookType valueOf(java.lang.String);
+}
+Compiled from "HorseInventoryMenu.java"
+public class net.minecraft.world.inventory.HorseInventoryMenu extends net.minecraft.world.inventory.AbstractMountInventoryMenu {
+  public net.minecraft.world.inventory.HorseInventoryMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.entity.animal.equine.AbstractHorse, int);
+  protected boolean hasInventoryChanged(net.minecraft.world.Container);
+}
+Compiled from "RecipeCraftingHolder.java"
+public interface net.minecraft.world.inventory.RecipeCraftingHolder {
+  public abstract void setRecipeUsed(net.minecraft.world.item.crafting.RecipeHolder<?>);
+  public abstract net.minecraft.world.item.crafting.RecipeHolder<?> getRecipeUsed();
+  public default void awardUsedRecipes(net.minecraft.world.entity.player.Player, java.util.List<net.minecraft.world.item.ItemStack>);
+  public default boolean setRecipeUsed(net.minecraft.server.level.ServerPlayer, net.minecraft.world.item.crafting.RecipeHolder<?>);
+}
+Compiled from "ShulkerBoxSlot.java"
+public class net.minecraft.world.inventory.ShulkerBoxSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.ShulkerBoxSlot(net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+}
+Compiled from "SimpleContainerData.java"
+public class net.minecraft.world.inventory.SimpleContainerData implements net.minecraft.world.inventory.ContainerData {
+  public net.minecraft.world.inventory.SimpleContainerData(int);
+  public int get(int);
+  public void set(int, int);
+  public int getCount();
+}
+Compiled from "SlotRanges.java"
+public class net.minecraft.world.inventory.SlotRanges {
+  public static final int MOB_INVENTORY_SLOT_OFFSET;
+  public static final int MOB_INVENTORY_SIZE;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.inventory.SlotRange> CODEC;
+  public net.minecraft.world.inventory.SlotRanges();
+  public static net.minecraft.world.inventory.SlotRange nameToIds(java.lang.String);
+  public static java.util.stream.Stream<java.lang.String> allNames();
+  public static java.util.stream.Stream<java.lang.String> singleSlotNames();
+  public static net.minecraft.world.inventory.SlotRange tryRead(com.mojang.brigadier.StringReader);
+  public static net.minecraft.world.inventory.SlotRange read(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "FurnaceMenu.java"
+public class net.minecraft.world.inventory.FurnaceMenu extends net.minecraft.world.inventory.AbstractFurnaceMenu {
+  public net.minecraft.world.inventory.FurnaceMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.FurnaceMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+}
+Compiled from "CrafterMenu.java"
+public class net.minecraft.world.inventory.CrafterMenu extends net.minecraft.world.inventory.AbstractContainerMenu implements net.minecraft.world.inventory.ContainerListener {
+  protected static final int SLOT_COUNT;
+  public net.minecraft.world.inventory.CrafterMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.CrafterMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.CraftingContainer, net.minecraft.world.inventory.ContainerData);
+  public void setSlotState(int, boolean);
+  public boolean isSlotDisabled(int);
+  public boolean isPowered();
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.Container getContainer();
+  public void slotChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+  public void dataChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+}
+Compiled from "FurnaceResultSlot.java"
+public class net.minecraft.world.inventory.FurnaceResultSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.FurnaceResultSlot(net.minecraft.world.entity.player.Player, net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack remove(int);
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  protected void onQuickCraft(net.minecraft.world.item.ItemStack, int);
+  protected void checkTakeAchievements(net.minecraft.world.item.ItemStack);
+}
+Compiled from "ResultContainer.java"
+public class net.minecraft.world.inventory.ResultContainer implements net.minecraft.world.Container,net.minecraft.world.inventory.RecipeCraftingHolder {
+  public net.minecraft.world.inventory.ResultContainer();
+  public int getContainerSize();
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public void setChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void clearContent();
+  public void setRecipeUsed(net.minecraft.world.item.crafting.RecipeHolder<?>);
+  public net.minecraft.world.item.crafting.RecipeHolder<?> getRecipeUsed();
+}
+Compiled from "RecipeBookMenu.java"
+public abstract class net.minecraft.world.inventory.RecipeBookMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.RecipeBookMenu(net.minecraft.world.inventory.MenuType<?>, int);
+  public abstract net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction handlePlacement(boolean, boolean, net.minecraft.world.item.crafting.RecipeHolder<?>, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Inventory);
+  public abstract void fillCraftSlotsStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public abstract net.minecraft.world.inventory.RecipeBookType getRecipeBookType();
+}
+Compiled from "BlastFurnaceMenu.java"
+public class net.minecraft.world.inventory.BlastFurnaceMenu extends net.minecraft.world.inventory.AbstractFurnaceMenu {
+  public net.minecraft.world.inventory.BlastFurnaceMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.BlastFurnaceMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+}
+Compiled from "AbstractFurnaceMenu.java"
+public abstract class net.minecraft.world.inventory.AbstractFurnaceMenu extends net.minecraft.world.inventory.RecipeBookMenu {
+  public static final int INGREDIENT_SLOT;
+  public static final int FUEL_SLOT;
+  public static final int RESULT_SLOT;
+  public static final int SLOT_COUNT;
+  public static final int DATA_COUNT;
+  protected final net.minecraft.world.level.Level level;
+  protected net.minecraft.world.inventory.AbstractFurnaceMenu(net.minecraft.world.inventory.MenuType<?>, net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet>, net.minecraft.world.inventory.RecipeBookType, int, net.minecraft.world.entity.player.Inventory);
+  protected net.minecraft.world.inventory.AbstractFurnaceMenu(net.minecraft.world.inventory.MenuType<?>, net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.RecipePropertySet>, net.minecraft.world.inventory.RecipeBookType, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+  public void fillCraftSlotsStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+  public net.minecraft.world.inventory.Slot getResultSlot();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  protected boolean canSmelt(net.minecraft.world.item.ItemStack);
+  protected boolean isFuel(net.minecraft.world.item.ItemStack);
+  public float getBurnProgress();
+  public float getLitProgress();
+  public boolean isLit();
+  public net.minecraft.world.inventory.RecipeBookType getRecipeBookType();
+  public net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction handlePlacement(boolean, boolean, net.minecraft.world.item.crafting.RecipeHolder<?>, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "SmokerMenu.java"
+public class net.minecraft.world.inventory.SmokerMenu extends net.minecraft.world.inventory.AbstractFurnaceMenu {
+  public net.minecraft.world.inventory.SmokerMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.SmokerMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+}
+Compiled from "TransientCraftingContainer.java"
+public class net.minecraft.world.inventory.TransientCraftingContainer implements net.minecraft.world.inventory.CraftingContainer {
+  public net.minecraft.world.inventory.TransientCraftingContainer(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+  public int getContainerSize();
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public void setChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void clearContent();
+  public int getHeight();
+  public int getWidth();
+  public java.util.List<net.minecraft.world.item.ItemStack> getItems();
+  public void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+}
+Compiled from "MerchantMenu.java"
+public class net.minecraft.world.inventory.MerchantMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  protected static final int PAYMENT1_SLOT;
+  protected static final int PAYMENT2_SLOT;
+  protected static final int RESULT_SLOT;
+  public net.minecraft.world.inventory.MerchantMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.MerchantMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.item.trading.Merchant);
+  public void setShowProgressBar(boolean);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void updateSellItem();
+  public void setSelectionHint(int);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public int getTraderXp();
+  public int getFutureTraderXp();
+  public void setXp(int);
+  public int getTraderLevel();
+  public void setMerchantLevel(int);
+  public void setCanRestock(boolean);
+  public boolean canRestock();
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public void tryMoveItems(int);
+  public void setOffers(net.minecraft.world.item.trading.MerchantOffers);
+  public net.minecraft.world.item.trading.MerchantOffers getOffers();
+  public boolean showProgressBar();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.inventory.package-info {
+}
+Compiled from "ItemCombinerMenu.java"
+public abstract class net.minecraft.world.inventory.ItemCombinerMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  protected final net.minecraft.world.inventory.ContainerLevelAccess access;
+  protected final net.minecraft.world.entity.player.Player player;
+  protected final net.minecraft.world.Container inputSlots;
+  protected final net.minecraft.world.inventory.ResultContainer resultSlots;
+  protected boolean mayPickup(net.minecraft.world.entity.player.Player, boolean);
+  protected abstract void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  protected abstract boolean isValidBlock(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.inventory.ItemCombinerMenu(net.minecraft.world.inventory.MenuType<?>, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess, net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition);
+  public abstract void createResult();
+  public void slotsChanged(net.minecraft.world.Container);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  protected boolean canMoveIntoInputSlots(net.minecraft.world.item.ItemStack);
+  public int getResultSlot();
+}
+Compiled from "StonecutterMenu.java"
+public class net.minecraft.world.inventory.StonecutterMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int INPUT_SLOT;
+  public static final int RESULT_SLOT;
+  public final net.minecraft.world.Container container;
+  public net.minecraft.world.inventory.StonecutterMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.StonecutterMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  public int getSelectedRecipeIndex();
+  public net.minecraft.world.item.crafting.SelectableRecipe$SingleInputSet<net.minecraft.world.item.crafting.StonecutterRecipe> getVisibleRecipes();
+  public int getNumberOfVisibleRecipes();
+  public boolean hasInputItem();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public void slotsChanged(net.minecraft.world.Container);
+  public net.minecraft.world.inventory.MenuType<?> getType();
+  public void registerUpdateListener(java.lang.Runnable);
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+}
+Compiled from "RemoteSlot.java"
+public class net.minecraft.world.inventory.RemoteSlot$Synchronized implements net.minecraft.world.inventory.RemoteSlot {
+  public net.minecraft.world.inventory.RemoteSlot$Synchronized(net.minecraft.network.HashedPatchMap$HashGenerator);
+  public void force(net.minecraft.world.item.ItemStack);
+  public void receive(net.minecraft.network.HashedStack);
+  public boolean matches(net.minecraft.world.item.ItemStack);
+  public void copyFrom(net.minecraft.world.inventory.RemoteSlot$Synchronized);
+}
+Compiled from "MenuType.java"
+public interface net.minecraft.world.inventory.MenuType$MenuSupplier<T extends net.minecraft.world.inventory.AbstractContainerMenu> {
+  public abstract T create(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "HopperMenu.java"
+public class net.minecraft.world.inventory.HopperMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int CONTAINER_SIZE;
+  public net.minecraft.world.inventory.HopperMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.HopperMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+}
+Compiled from "MenuType.java"
+public class net.minecraft.world.inventory.MenuType<T extends net.minecraft.world.inventory.AbstractContainerMenu> implements net.minecraft.world.flag.FeatureElement {
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x1;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x2;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x3;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x4;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x5;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ChestMenu> GENERIC_9x6;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.DispenserMenu> GENERIC_3x3;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.CrafterMenu> CRAFTER_3x3;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.AnvilMenu> ANVIL;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.BeaconMenu> BEACON;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.BlastFurnaceMenu> BLAST_FURNACE;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.BrewingStandMenu> BREWING_STAND;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.CraftingMenu> CRAFTING;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.EnchantmentMenu> ENCHANTMENT;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.FurnaceMenu> FURNACE;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.GrindstoneMenu> GRINDSTONE;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.HopperMenu> HOPPER;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.LecternMenu> LECTERN;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.LoomMenu> LOOM;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.MerchantMenu> MERCHANT;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.ShulkerBoxMenu> SHULKER_BOX;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.SmithingMenu> SMITHING;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.SmokerMenu> SMOKER;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.CartographyTableMenu> CARTOGRAPHY_TABLE;
+  public static final net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.StonecutterMenu> STONECUTTER;
+  public net.minecraft.world.inventory.MenuType(net.minecraft.world.inventory.MenuType$MenuSupplier<T>, net.minecraft.world.flag.FeatureFlagSet);
+  public T create(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.flag.FeatureFlagSet requiredFeatures();
+}
+Compiled from "PlayerEnderChestContainer.java"
+public class net.minecraft.world.inventory.PlayerEnderChestContainer extends net.minecraft.world.SimpleContainer {
+  public net.minecraft.world.inventory.PlayerEnderChestContainer();
+  public void setActiveChest(net.minecraft.world.level.block.entity.EnderChestBlockEntity);
+  public boolean isActiveChest(net.minecraft.world.level.block.entity.EnderChestBlockEntity);
+  public void fromSlots(net.minecraft.world.level.storage.ValueInput$TypedInputList<net.minecraft.world.ItemStackWithSlot>);
+  public void storeAsSlots(net.minecraft.world.level.storage.ValueOutput$TypedOutputList<net.minecraft.world.ItemStackWithSlot>);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void startOpen(net.minecraft.world.entity.ContainerUser);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+}
+Compiled from "DispenserMenu.java"
+public class net.minecraft.world.inventory.DispenserMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.DispenserMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.DispenserMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container);
+  protected void add3x3GridSlots(net.minecraft.world.Container, int, int);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+}
+Compiled from "AnvilMenu.java"
+public class net.minecraft.world.inventory.AnvilMenu extends net.minecraft.world.inventory.ItemCombinerMenu {
+  public static final int INPUT_SLOT;
+  public static final int ADDITIONAL_SLOT;
+  public static final int RESULT_SLOT;
+  public static final int MAX_NAME_LENGTH;
+  public net.minecraft.world.inventory.AnvilMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.AnvilMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  protected boolean isValidBlock(net.minecraft.world.level.block.state.BlockState);
+  protected boolean mayPickup(net.minecraft.world.entity.player.Player, boolean);
+  protected void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public void createResult();
+  public static int calculateIncreasedRepairCost(int);
+  public boolean setItemName(java.lang.String);
+  public int getCost();
+}
+Compiled from "ClickAction.java"
+public final class net.minecraft.world.inventory.ClickAction extends java.lang.Enum<net.minecraft.world.inventory.ClickAction> {
+  public static final net.minecraft.world.inventory.ClickAction PRIMARY;
+  public static final net.minecraft.world.inventory.ClickAction SECONDARY;
+  public static net.minecraft.world.inventory.ClickAction[] values();
+  public static net.minecraft.world.inventory.ClickAction valueOf(java.lang.String);
+}
+Compiled from "AbstractCraftingMenu.java"
+public abstract class net.minecraft.world.inventory.AbstractCraftingMenu extends net.minecraft.world.inventory.RecipeBookMenu {
+  protected final net.minecraft.world.inventory.CraftingContainer craftSlots;
+  protected final net.minecraft.world.inventory.ResultContainer resultSlots;
+  public net.minecraft.world.inventory.AbstractCraftingMenu(net.minecraft.world.inventory.MenuType<?>, int, int, int);
+  protected net.minecraft.world.inventory.Slot addResultSlot(net.minecraft.world.entity.player.Player, int, int);
+  protected void addCraftingGridSlots(int, int);
+  public net.minecraft.world.inventory.RecipeBookMenu$PostPlaceAction handlePlacement(boolean, boolean, net.minecraft.world.item.crafting.RecipeHolder<?>, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Inventory);
+  protected void beginPlacingRecipe();
+  protected void finishPlacingRecipe(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CraftingRecipe>);
+  public abstract net.minecraft.world.inventory.Slot getResultSlot();
+  public abstract java.util.List<net.minecraft.world.inventory.Slot> getInputGridSlots();
+  public int getGridWidth();
+  public int getGridHeight();
+  protected abstract net.minecraft.world.entity.player.Player owner();
+  public void fillCraftSlotsStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+}
+Compiled from "CartographyTableMenu.java"
+public class net.minecraft.world.inventory.CartographyTableMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int MAP_SLOT;
+  public static final int ADDITIONAL_SLOT;
+  public static final int RESULT_SLOT;
+  public final net.minecraft.world.Container container;
+  public net.minecraft.world.inventory.CartographyTableMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.CartographyTableMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void slotsChanged(net.minecraft.world.Container);
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+}
+Compiled from "BrewingStandMenu.java"
+class net.minecraft.world.inventory.BrewingStandMenu$FuelSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.BrewingStandMenu$FuelSlot(net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public static boolean mayPlaceItem(net.minecraft.world.item.ItemStack);
+  public net.minecraft.resources.Identifier getNoItemIcon();
+}
+Compiled from "CraftingContainer.java"
+public interface net.minecraft.world.inventory.CraftingContainer extends net.minecraft.world.Container,net.minecraft.world.inventory.StackedContentsCompatible {
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public abstract java.util.List<net.minecraft.world.item.ItemStack> getItems();
+  public default net.minecraft.world.item.crafting.CraftingInput asCraftInput();
+  public default net.minecraft.world.item.crafting.CraftingInput$Positioned asPositionedCraftInput();
+}
+Compiled from "MerchantContainer.java"
+public class net.minecraft.world.inventory.MerchantContainer implements net.minecraft.world.Container {
+  public net.minecraft.world.inventory.MerchantContainer(net.minecraft.world.item.trading.Merchant);
+  public int getContainerSize();
+  public boolean isEmpty();
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void setChanged();
+  public void updateSellItem();
+  public net.minecraft.world.item.trading.MerchantOffer getActiveOffer();
+  public void setSelectionHint(int);
+  public void clearContent();
+  public int getFutureXp();
+}
+Compiled from "ContainerInput.java"
+public final class net.minecraft.world.inventory.ContainerInput extends java.lang.Enum<net.minecraft.world.inventory.ContainerInput> {
+  public static final net.minecraft.world.inventory.ContainerInput PICKUP;
+  public static final net.minecraft.world.inventory.ContainerInput QUICK_MOVE;
+  public static final net.minecraft.world.inventory.ContainerInput SWAP;
+  public static final net.minecraft.world.inventory.ContainerInput CLONE;
+  public static final net.minecraft.world.inventory.ContainerInput THROW;
+  public static final net.minecraft.world.inventory.ContainerInput QUICK_CRAFT;
+  public static final net.minecraft.world.inventory.ContainerInput PICKUP_ALL;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.inventory.ContainerInput> STREAM_CODEC;
+  public static net.minecraft.world.inventory.ContainerInput[] values();
+  public static net.minecraft.world.inventory.ContainerInput valueOf(java.lang.String);
+  public int id();
+}
+Compiled from "BeaconMenu.java"
+class net.minecraft.world.inventory.BeaconMenu$PaymentSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.BeaconMenu$PaymentSlot(net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public int getMaxStackSize();
+}
+Compiled from "ArmorSlot.java"
+public class net.minecraft.world.inventory.ArmorSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.ArmorSlot(net.minecraft.world.Container, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.EquipmentSlot, int, int, int, net.minecraft.resources.Identifier);
+  public void setByPlayer(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public int getMaxStackSize();
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public boolean isActive();
+  public boolean mayPickup(net.minecraft.world.entity.player.Player);
+  public net.minecraft.resources.Identifier getNoItemIcon();
+}
+Compiled from "SlotRange.java"
+public interface net.minecraft.world.inventory.SlotRange extends net.minecraft.util.StringRepresentable {
+  public abstract it.unimi.dsi.fastutil.ints.IntList slots();
+  public default int size();
+  public static net.minecraft.world.inventory.SlotRange of(java.lang.String, it.unimi.dsi.fastutil.ints.IntList);
+}
+Compiled from "ContainerLevelAccess.java"
+public interface net.minecraft.world.inventory.ContainerLevelAccess {
+  public static final net.minecraft.world.inventory.ContainerLevelAccess NULL;
+  public static net.minecraft.world.inventory.ContainerLevelAccess create(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public abstract <T> java.util.Optional<T> evaluate(java.util.function.BiFunction<net.minecraft.world.level.Level, net.minecraft.core.BlockPos, T>);
+  public default <T> T evaluate(java.util.function.BiFunction<net.minecraft.world.level.Level, net.minecraft.core.BlockPos, T>, T);
+  public default void execute(java.util.function.BiConsumer<net.minecraft.world.level.Level, net.minecraft.core.BlockPos>);
+}
+Compiled from "SmithingMenu.java"
+public class net.minecraft.world.inventory.SmithingMenu extends net.minecraft.world.inventory.ItemCombinerMenu {
+  public static final int TEMPLATE_SLOT;
+  public static final int BASE_SLOT;
+  public static final int ADDITIONAL_SLOT;
+  public static final int RESULT_SLOT;
+  public static final int TEMPLATE_SLOT_X_PLACEMENT;
+  public static final int BASE_SLOT_X_PLACEMENT;
+  public static final int ADDITIONAL_SLOT_X_PLACEMENT;
+  public static final int SLOT_Y_PLACEMENT;
+  public net.minecraft.world.inventory.SmithingMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.SmithingMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  protected boolean isValidBlock(net.minecraft.world.level.block.state.BlockState);
+  protected void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void createResult();
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public boolean canMoveIntoInputSlots(net.minecraft.world.item.ItemStack);
+  public boolean hasRecipeError();
+}
+Compiled from "LecternMenu.java"
+public class net.minecraft.world.inventory.LecternMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int BUTTON_PREV_PAGE;
+  public static final int BUTTON_NEXT_PAGE;
+  public static final int BUTTON_TAKE_BOOK;
+  public static final int BUTTON_PAGE_JUMP_RANGE_START;
+  public net.minecraft.world.inventory.LecternMenu(int);
+  public net.minecraft.world.inventory.LecternMenu(int, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void setData(int, int);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack getBook();
+  public int getPage();
+}
+Compiled from "ShulkerBoxMenu.java"
+public class net.minecraft.world.inventory.ShulkerBoxMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.ShulkerBoxMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.ShulkerBoxMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+}
+Compiled from "AbstractContainerMenu.java"
+public abstract class net.minecraft.world.inventory.AbstractContainerMenu {
+  public static final int SLOT_CLICKED_OUTSIDE;
+  public static final int CONTAINER_CLICK_PRIMARY;
+  public static final int CONTAINER_CLICK_SECONDARY;
+  public static final int QUICKCRAFT_TYPE_CHARITABLE;
+  public static final int QUICKCRAFT_TYPE_GREEDY;
+  public static final int QUICKCRAFT_TYPE_CLONE;
+  public static final int QUICKCRAFT_HEADER_START;
+  public static final int QUICKCRAFT_HEADER_CONTINUE;
+  public static final int QUICKCRAFT_HEADER_END;
+  public static final int CARRIED_SLOT_SIZE;
+  public static final int SLOTS_PER_ROW;
+  public static final int SLOT_SIZE;
+  public final net.minecraft.core.NonNullList<net.minecraft.world.inventory.Slot> slots;
+  public final int containerId;
+  protected net.minecraft.world.inventory.AbstractContainerMenu(net.minecraft.world.inventory.MenuType<?>, int);
+  protected void addInventoryHotbarSlots(net.minecraft.world.Container, int, int);
+  protected void addInventoryExtendedSlots(net.minecraft.world.Container, int, int);
+  protected void addStandardInventorySlots(net.minecraft.world.Container, int, int);
+  protected static boolean stillValid(net.minecraft.world.inventory.ContainerLevelAccess, net.minecraft.world.entity.player.Player, net.minecraft.world.level.block.Block);
+  public net.minecraft.world.inventory.MenuType<?> getType();
+  protected static void checkContainerSize(net.minecraft.world.Container, int);
+  protected static void checkContainerDataCount(net.minecraft.world.inventory.ContainerData, int);
+  public boolean isValidSlotIndex(int);
+  protected net.minecraft.world.inventory.Slot addSlot(net.minecraft.world.inventory.Slot);
+  protected net.minecraft.world.inventory.DataSlot addDataSlot(net.minecraft.world.inventory.DataSlot);
+  protected void addDataSlots(net.minecraft.world.inventory.ContainerData);
+  public void addSlotListener(net.minecraft.world.inventory.ContainerListener);
+  public void setSynchronizer(net.minecraft.world.inventory.ContainerSynchronizer);
+  public void sendAllDataToRemote();
+  public void removeSlotListener(net.minecraft.world.inventory.ContainerListener);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItems();
+  public void broadcastChanges();
+  public void broadcastFullState();
+  public void setRemoteSlot(int, net.minecraft.world.item.ItemStack);
+  public void setRemoteSlotUnsafe(int, net.minecraft.network.HashedStack);
+  public void setRemoteCarried(net.minecraft.network.HashedStack);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public net.minecraft.world.inventory.Slot getSlot(int);
+  public abstract net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void setSelectedBundleItemIndex(int, int);
+  public void clicked(int, int, net.minecraft.world.inventory.ContainerInput, net.minecraft.world.entity.player.Player);
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public void removed(net.minecraft.world.entity.player.Player);
+  protected void clearContainer(net.minecraft.world.entity.player.Player, net.minecraft.world.Container);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void setItem(int, int, net.minecraft.world.item.ItemStack);
+  public void initializeContents(int, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack);
+  public void setData(int, int);
+  public abstract boolean stillValid(net.minecraft.world.entity.player.Player);
+  protected boolean moveItemStackTo(net.minecraft.world.item.ItemStack, int, int, boolean);
+  public static int getQuickcraftType(int);
+  public static int getQuickcraftHeader(int);
+  public static int getQuickcraftMask(int, int);
+  public static boolean isValidQuickcraftType(int, net.minecraft.world.entity.player.Player);
+  protected void resetQuickCraft();
+  public static boolean canItemQuickReplace(net.minecraft.world.inventory.Slot, net.minecraft.world.item.ItemStack, boolean);
+  public static int getQuickCraftPlaceCount(int, int, net.minecraft.world.item.ItemStack);
+  public boolean canDragTo(net.minecraft.world.inventory.Slot);
+  public static int getRedstoneSignalFromBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public static int getRedstoneSignalFromContainer(net.minecraft.world.Container);
+  public void setCarried(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack getCarried();
+  public void suppressRemoteUpdates();
+  public void resumeRemoteUpdates();
+  public void transferState(net.minecraft.world.inventory.AbstractContainerMenu);
+  public java.util.OptionalInt findSlot(net.minecraft.world.Container, int);
+  public int getStateId();
+  public int incrementStateId();
+}
+Compiled from "BrewingStandMenu.java"
+public class net.minecraft.world.inventory.BrewingStandMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.BrewingStandMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.BrewingStandMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, net.minecraft.world.inventory.ContainerData);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public int getFuel();
+  public int getTotalFuel();
+  public int getBrewingTicks();
+  public int getTotalBrewingTicks();
+}
+Compiled from "InventoryMenu.java"
+public class net.minecraft.world.inventory.InventoryMenu extends net.minecraft.world.inventory.AbstractCraftingMenu {
+  public static final int CONTAINER_ID;
+  public static final int RESULT_SLOT;
+  public static final int CRAFT_SLOT_START;
+  public static final int CRAFT_SLOT_COUNT;
+  public static final int CRAFT_SLOT_END;
+  public static final int ARMOR_SLOT_START;
+  public static final int ARMOR_SLOT_COUNT;
+  public static final int ARMOR_SLOT_END;
+  public static final int INV_SLOT_START;
+  public static final int INV_SLOT_END;
+  public static final int USE_ROW_SLOT_START;
+  public static final int USE_ROW_SLOT_END;
+  public static final int SHIELD_SLOT;
+  public static final net.minecraft.resources.Identifier EMPTY_ARMOR_SLOT_HELMET;
+  public static final net.minecraft.resources.Identifier EMPTY_ARMOR_SLOT_CHESTPLATE;
+  public static final net.minecraft.resources.Identifier EMPTY_ARMOR_SLOT_LEGGINGS;
+  public static final net.minecraft.resources.Identifier EMPTY_ARMOR_SLOT_BOOTS;
+  public static final net.minecraft.resources.Identifier EMPTY_ARMOR_SLOT_SHIELD;
+  public final boolean active;
+  public net.minecraft.world.inventory.InventoryMenu(net.minecraft.world.entity.player.Inventory, boolean, net.minecraft.world.entity.player.Player);
+  public static boolean isHotbarSlot(int);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public net.minecraft.world.inventory.Slot getResultSlot();
+  public java.util.List<net.minecraft.world.inventory.Slot> getInputGridSlots();
+  public net.minecraft.world.inventory.CraftingContainer getCraftSlots();
+  public net.minecraft.world.inventory.RecipeBookType getRecipeBookType();
+  protected net.minecraft.world.entity.player.Player owner();
+}
+Compiled from "ChestMenu.java"
+public class net.minecraft.world.inventory.ChestMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public static net.minecraft.world.inventory.ChestMenu oneRow(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu twoRows(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu threeRows(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu fourRows(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu fiveRows(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu sixRows(int, net.minecraft.world.entity.player.Inventory);
+  public static net.minecraft.world.inventory.ChestMenu threeRows(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container);
+  public static net.minecraft.world.inventory.ChestMenu sixRows(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container);
+  public net.minecraft.world.inventory.ChestMenu(net.minecraft.world.inventory.MenuType<?>, int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.Container, int);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.Container getContainer();
+  public int getRowCount();
+}
+Compiled from "BrewingStandMenu.java"
+class net.minecraft.world.inventory.BrewingStandMenu$PotionSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.BrewingStandMenu$PotionSlot(net.minecraft.world.item.crafting.RecipeAccess, net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public int getMaxStackSize();
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+  public net.minecraft.resources.Identifier getNoItemIcon();
+}
+Compiled from "RemoteSlot.java"
+public interface net.minecraft.world.inventory.RemoteSlot {
+  public static final net.minecraft.world.inventory.RemoteSlot PLACEHOLDER;
+  public abstract void force(net.minecraft.world.item.ItemStack);
+  public abstract void receive(net.minecraft.network.HashedStack);
+  public abstract boolean matches(net.minecraft.world.item.ItemStack);
+}
+Compiled from "EnchantmentMenu.java"
+public class net.minecraft.world.inventory.EnchantmentMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public final int[] costs;
+  public final int[] enchantClue;
+  public final int[] levelClue;
+  public net.minecraft.world.inventory.EnchantmentMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.EnchantmentMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  public void slotsChanged(net.minecraft.world.Container);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public int getGoldCount();
+  public int getEnchantmentSeed();
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+}
+Compiled from "StackedContentsCompatible.java"
+public interface net.minecraft.world.inventory.StackedContentsCompatible {
+  public abstract void fillStackedContents(net.minecraft.world.entity.player.StackedItemContents);
+}
+Compiled from "ItemCombinerMenuSlotDefinition.java"
+public class net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition {
+  public static net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$Builder create();
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$SlotDefinition getSlot(int);
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$SlotDefinition getResultSlot();
+  public java.util.List<net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$SlotDefinition> getSlots();
+  public int getNumOfInputSlots();
+  public int getResultSlotIndex();
+}
+Compiled from "MerchantResultSlot.java"
+public class net.minecraft.world.inventory.MerchantResultSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.MerchantResultSlot(net.minecraft.world.entity.player.Player, net.minecraft.world.item.trading.Merchant, net.minecraft.world.inventory.MerchantContainer, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.item.ItemStack remove(int);
+  protected void onQuickCraft(net.minecraft.world.item.ItemStack, int);
+  protected void checkTakeAchievements(net.minecraft.world.item.ItemStack);
+  public boolean mayPickup(net.minecraft.world.entity.player.Player);
+  public void onTake(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+}
+Compiled from "CraftingMenu.java"
+public class net.minecraft.world.inventory.CraftingMenu extends net.minecraft.world.inventory.AbstractCraftingMenu {
+  public static final int RESULT_SLOT;
+  public net.minecraft.world.inventory.CraftingMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.CraftingMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  protected static void slotChangedCraftingGrid(net.minecraft.world.inventory.AbstractContainerMenu, net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Player, net.minecraft.world.inventory.CraftingContainer, net.minecraft.world.inventory.ResultContainer, net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CraftingRecipe>);
+  public void slotsChanged(net.minecraft.world.Container);
+  public void beginPlacingRecipe();
+  public void finishPlacingRecipe(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CraftingRecipe>);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public boolean canTakeItemForPickAll(net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.Slot);
+  public net.minecraft.world.inventory.Slot getResultSlot();
+  public java.util.List<net.minecraft.world.inventory.Slot> getInputGridSlots();
+  public net.minecraft.world.inventory.RecipeBookType getRecipeBookType();
+  protected net.minecraft.world.entity.player.Player owner();
+}
+Compiled from "LoomMenu.java"
+public class net.minecraft.world.inventory.LoomMenu extends net.minecraft.world.inventory.AbstractContainerMenu {
+  public net.minecraft.world.inventory.LoomMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.world.inventory.LoomMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.inventory.ContainerLevelAccess);
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public boolean clickMenuButton(net.minecraft.world.entity.player.Player, int);
+  public void slotsChanged(net.minecraft.world.Container);
+  public java.util.List<net.minecraft.core.Holder<net.minecraft.world.level.block.entity.BannerPattern>> getSelectablePatterns();
+  public int getSelectedBannerPatternIndex();
+  public void registerUpdateListener(java.lang.Runnable);
+  public net.minecraft.world.item.ItemStack quickMoveStack(net.minecraft.world.entity.player.Player, int);
+  public void removed(net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.inventory.Slot getBannerSlot();
+  public net.minecraft.world.inventory.Slot getDyeSlot();
+  public net.minecraft.world.inventory.Slot getPatternSlot();
+  public net.minecraft.world.inventory.Slot getResultSlot();
+}
+Compiled from "DataSlot.java"
+public abstract class net.minecraft.world.inventory.DataSlot {
+  public net.minecraft.world.inventory.DataSlot();
+  public static net.minecraft.world.inventory.DataSlot forContainer(net.minecraft.world.inventory.ContainerData, int);
+  public static net.minecraft.world.inventory.DataSlot shared(int[], int);
+  public static net.minecraft.world.inventory.DataSlot standalone();
+  public abstract int get();
+  public abstract void set(int);
+  public boolean checkAndClearUpdateFlag();
+}
+Compiled from "ContainerListener.java"
+public interface net.minecraft.world.inventory.ContainerListener {
+  public abstract void slotChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+  public abstract void dataChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+}
+Compiled from "BrewingStandMenu.java"
+class net.minecraft.world.inventory.BrewingStandMenu$IngredientsSlot extends net.minecraft.world.inventory.Slot {
+  public net.minecraft.world.inventory.BrewingStandMenu$IngredientsSlot(net.minecraft.world.item.crafting.RecipePropertySet, net.minecraft.world.Container, int, int, int);
+  public boolean mayPlace(net.minecraft.world.item.ItemStack);
+}
+Compiled from "ContainerSynchronizer.java"
+public interface net.minecraft.world.inventory.ContainerSynchronizer {
+  public abstract void sendInitialData(net.minecraft.world.inventory.AbstractContainerMenu, java.util.List<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.ItemStack, int[]);
+  public abstract void sendSlotChange(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+  public abstract void sendCarriedChange(net.minecraft.world.inventory.AbstractContainerMenu, net.minecraft.world.item.ItemStack);
+  public abstract void sendDataChange(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+  public abstract net.minecraft.world.inventory.RemoteSlot createSlot();
+}
+Compiled from "ItemCombinerMenuSlotDefinition.java"
+public class net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$Builder {
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$Builder();
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$Builder withSlot(int, int, int, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition$Builder withResultSlot(int, int, int);
+  public net.minecraft.world.inventory.ItemCombinerMenuSlotDefinition build();
+}

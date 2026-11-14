@@ -1,0 +1,209 @@
+Compiled from "ProfilerFiller.java"
+public class net.minecraft.util.profiling.ProfilerFiller$CombinedProfileFiller implements net.minecraft.util.profiling.ProfilerFiller {
+  public net.minecraft.util.profiling.ProfilerFiller$CombinedProfileFiller(net.minecraft.util.profiling.ProfilerFiller, net.minecraft.util.profiling.ProfilerFiller);
+  public void startTick();
+  public void endTick();
+  public void push(java.lang.String);
+  public void push(java.util.function.Supplier<java.lang.String>);
+  public void markForCharting(net.minecraft.util.profiling.metrics.MetricCategory);
+  public void pop();
+  public void popPush(java.lang.String);
+  public void popPush(java.util.function.Supplier<java.lang.String>);
+  public void incrementCounter(java.lang.String, int);
+  public void incrementCounter(java.util.function.Supplier<java.lang.String>, int);
+  public void addZoneText(java.lang.String);
+  public void addZoneValue(long);
+  public void setZoneColor(int);
+}
+Compiled from "TracyZoneFiller.java"
+public class net.minecraft.util.profiling.TracyZoneFiller implements net.minecraft.util.profiling.ProfilerFiller {
+  public net.minecraft.util.profiling.TracyZoneFiller();
+  public void startTick();
+  public void endTick();
+  public void push(java.lang.String);
+  public void push(java.util.function.Supplier<java.lang.String>);
+  public void pop();
+  public void popPush(java.lang.String);
+  public void popPush(java.util.function.Supplier<java.lang.String>);
+  public void markForCharting(net.minecraft.util.profiling.metrics.MetricCategory);
+  public void incrementCounter(java.lang.String, int);
+  public void incrementCounter(java.util.function.Supplier<java.lang.String>, int);
+  public void addZoneText(java.lang.String);
+  public void addZoneValue(long);
+  public void setZoneColor(int);
+}
+Compiled from "FilledProfileResults.java"
+class net.minecraft.util.profiling.FilledProfileResults$CounterCollector {
+  public void addValue(java.util.Iterator<java.lang.String>, long);
+}
+Compiled from "InactiveProfiler.java"
+public class net.minecraft.util.profiling.InactiveProfiler implements net.minecraft.util.profiling.ProfileCollector {
+  public static final net.minecraft.util.profiling.InactiveProfiler INSTANCE;
+  public void startTick();
+  public void endTick();
+  public void push(java.lang.String);
+  public void push(java.util.function.Supplier<java.lang.String>);
+  public void markForCharting(net.minecraft.util.profiling.metrics.MetricCategory);
+  public void pop();
+  public void popPush(java.lang.String);
+  public void popPush(java.util.function.Supplier<java.lang.String>);
+  public net.minecraft.util.profiling.Zone zone(java.lang.String);
+  public net.minecraft.util.profiling.Zone zone(java.util.function.Supplier<java.lang.String>);
+  public void incrementCounter(java.lang.String, int);
+  public void incrementCounter(java.util.function.Supplier<java.lang.String>, int);
+  public net.minecraft.util.profiling.ProfileResults getResults();
+  public net.minecraft.util.profiling.ActiveProfiler$PathEntry getEntry(java.lang.String);
+  public java.util.Set<com.mojang.datafixers.util.Pair<java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory>> getChartedPaths();
+}
+Compiled from "ActiveProfiler.java"
+public class net.minecraft.util.profiling.ActiveProfiler implements net.minecraft.util.profiling.ProfileCollector {
+  public net.minecraft.util.profiling.ActiveProfiler(java.util.function.LongSupplier, java.util.function.IntSupplier, java.util.function.BooleanSupplier);
+  public void startTick();
+  public void endTick();
+  public void push(java.lang.String);
+  public void push(java.util.function.Supplier<java.lang.String>);
+  public void markForCharting(net.minecraft.util.profiling.metrics.MetricCategory);
+  public void pop();
+  public void popPush(java.lang.String);
+  public void popPush(java.util.function.Supplier<java.lang.String>);
+  public void incrementCounter(java.lang.String, int);
+  public void incrementCounter(java.util.function.Supplier<java.lang.String>, int);
+  public net.minecraft.util.profiling.ProfileResults getResults();
+  public net.minecraft.util.profiling.ActiveProfiler$PathEntry getEntry(java.lang.String);
+  public java.util.Set<com.mojang.datafixers.util.Pair<java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory>> getChartedPaths();
+}
+Compiled from "Profiler.java"
+public interface net.minecraft.util.profiling.Profiler$Scope extends java.lang.AutoCloseable {
+  public abstract void close();
+}
+Compiled from "FilledProfileResults.java"
+public class net.minecraft.util.profiling.FilledProfileResults implements net.minecraft.util.profiling.ProfileResults {
+  public net.minecraft.util.profiling.FilledProfileResults(java.util.Map<java.lang.String, ? extends net.minecraft.util.profiling.ProfilerPathEntry>, long, int, long, int);
+  public java.util.List<net.minecraft.util.profiling.ResultField> getTimes(java.lang.String);
+  public long getStartTimeNano();
+  public int getStartTimeTicks();
+  public long getEndTimeNano();
+  public int getEndTimeTicks();
+  public boolean saveResults(java.nio.file.Path);
+  protected java.lang.String getProfilerResults(long, int);
+  public java.lang.String getProfilerResults();
+  public int getTickDuration();
+}
+Compiled from "EmptyProfileResults.java"
+public class net.minecraft.util.profiling.EmptyProfileResults implements net.minecraft.util.profiling.ProfileResults {
+  public static final net.minecraft.util.profiling.EmptyProfileResults EMPTY;
+  public java.util.List<net.minecraft.util.profiling.ResultField> getTimes(java.lang.String);
+  public boolean saveResults(java.nio.file.Path);
+  public long getStartTimeNano();
+  public int getStartTimeTicks();
+  public long getEndTimeNano();
+  public int getEndTimeTicks();
+  public java.lang.String getProfilerResults();
+}
+Compiled from "ResultField.java"
+public final class net.minecraft.util.profiling.ResultField implements java.lang.Comparable<net.minecraft.util.profiling.ResultField> {
+  public final double percentage;
+  public final double globalPercentage;
+  public final long count;
+  public final java.lang.String name;
+  public net.minecraft.util.profiling.ResultField(java.lang.String, double, double, long);
+  public int compareTo(net.minecraft.util.profiling.ResultField);
+  public int getColor();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "Profiler.java"
+public final class net.minecraft.util.profiling.Profiler {
+  public static net.minecraft.util.profiling.Profiler$Scope use(net.minecraft.util.profiling.ProfilerFiller);
+  public static net.minecraft.util.profiling.ProfilerFiller get();
+}
+Compiled from "SingleTickProfiler.java"
+public class net.minecraft.util.profiling.SingleTickProfiler {
+  public net.minecraft.util.profiling.SingleTickProfiler(java.util.function.LongSupplier, java.lang.String, long);
+  public net.minecraft.util.profiling.ProfilerFiller startTick();
+  public void endTick();
+  public static net.minecraft.util.profiling.SingleTickProfiler createTickProfiler(java.lang.String);
+  public static net.minecraft.util.profiling.ProfilerFiller decorateFiller(net.minecraft.util.profiling.ProfilerFiller, net.minecraft.util.profiling.SingleTickProfiler);
+}
+Compiled from "ActiveProfiler.java"
+public class net.minecraft.util.profiling.ActiveProfiler$PathEntry implements net.minecraft.util.profiling.ProfilerPathEntry {
+  public net.minecraft.util.profiling.ActiveProfiler$PathEntry();
+  public long getDuration();
+  public long getMaxDuration();
+  public long getCount();
+  public it.unimi.dsi.fastutil.objects.Object2LongMap<java.lang.String> getCounters();
+}
+Compiled from "ProfilerFiller.java"
+public interface net.minecraft.util.profiling.ProfilerFiller {
+  public static final java.lang.String ROOT;
+  public abstract void startTick();
+  public abstract void endTick();
+  public abstract void push(java.lang.String);
+  public abstract void push(java.util.function.Supplier<java.lang.String>);
+  public abstract void pop();
+  public abstract void popPush(java.lang.String);
+  public abstract void popPush(java.util.function.Supplier<java.lang.String>);
+  public default void addZoneText(java.lang.String);
+  public default void addZoneValue(long);
+  public default void setZoneColor(int);
+  public default net.minecraft.util.profiling.Zone zone(java.lang.String);
+  public default net.minecraft.util.profiling.Zone zone(java.util.function.Supplier<java.lang.String>);
+  public abstract void markForCharting(net.minecraft.util.profiling.metrics.MetricCategory);
+  public default void incrementCounter(java.lang.String);
+  public abstract void incrementCounter(java.lang.String, int);
+  public default void incrementCounter(java.util.function.Supplier<java.lang.String>);
+  public abstract void incrementCounter(java.util.function.Supplier<java.lang.String>, int);
+  public static net.minecraft.util.profiling.ProfilerFiller combine(net.minecraft.util.profiling.ProfilerFiller, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "Zone.java"
+public class net.minecraft.util.profiling.Zone implements java.lang.AutoCloseable {
+  public static final net.minecraft.util.profiling.Zone INACTIVE;
+  public net.minecraft.util.profiling.Zone addText(java.lang.String);
+  public net.minecraft.util.profiling.Zone addText(java.util.function.Supplier<java.lang.String>);
+  public net.minecraft.util.profiling.Zone addValue(long);
+  public net.minecraft.util.profiling.Zone setColor(int);
+  public void close();
+}
+Compiled from "ProfileResults.java"
+public interface net.minecraft.util.profiling.ProfileResults {
+  public static final char PATH_SEPARATOR;
+  public abstract java.util.List<net.minecraft.util.profiling.ResultField> getTimes(java.lang.String);
+  public abstract boolean saveResults(java.nio.file.Path);
+  public abstract long getStartTimeNano();
+  public abstract int getStartTimeTicks();
+  public abstract long getEndTimeNano();
+  public abstract int getEndTimeTicks();
+  public default long getNanoDuration();
+  public default int getTickDuration();
+  public abstract java.lang.String getProfilerResults();
+  public static java.lang.String demanglePath(java.lang.String);
+}
+Compiled from "ProfilerPathEntry.java"
+public interface net.minecraft.util.profiling.ProfilerPathEntry {
+  public abstract long getDuration();
+  public abstract long getMaxDuration();
+  public abstract long getCount();
+  public abstract it.unimi.dsi.fastutil.objects.Object2LongMap<java.lang.String> getCounters();
+}
+Compiled from "ProfileCollector.java"
+public interface net.minecraft.util.profiling.ProfileCollector extends net.minecraft.util.profiling.ProfilerFiller {
+  public abstract net.minecraft.util.profiling.ProfileResults getResults();
+  public abstract net.minecraft.util.profiling.ActiveProfiler$PathEntry getEntry(java.lang.String);
+  public abstract java.util.Set<com.mojang.datafixers.util.Pair<java.lang.String, net.minecraft.util.profiling.metrics.MetricCategory>> getChartedPaths();
+}
+Compiled from "TracyZoneFiller.java"
+final class net.minecraft.util.profiling.TracyZoneFiller$PlotAndValue {
+  public void set(int);
+  public void add(int);
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.profiling.package-info {
+}
+Compiled from "ContinuousProfiler.java"
+public class net.minecraft.util.profiling.ContinuousProfiler {
+  public net.minecraft.util.profiling.ContinuousProfiler(java.util.function.LongSupplier, java.util.function.IntSupplier, java.util.function.BooleanSupplier);
+  public boolean isEnabled();
+  public void disable();
+  public void enable();
+  public net.minecraft.util.profiling.ProfilerFiller getFiller();
+  public net.minecraft.util.profiling.ProfileResults getResults();
+}

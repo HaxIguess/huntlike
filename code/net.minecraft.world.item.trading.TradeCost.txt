@@ -1,0 +1,156 @@
+Compiled from "TradeCost.java"
+public final class net.minecraft.world.item.trading.TradeCost extends java.lang.Record implements net.minecraft.world.level.storage.loot.Validatable {
+  private final net.minecraft.core.Holder<net.minecraft.world.item.Item> item;
+
+  private final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> count;
+
+  private final net.minecraft.core.component.DataComponentExactPredicate components;
+
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.trading.TradeCost> CODEC;
+
+  public net.minecraft.world.item.trading.TradeCost(net.minecraft.world.level.ItemLike, int);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #20,  1           // InterfaceMethod net/minecraft/world/level/ItemLike.asItem:()Lnet/minecraft/world/item/Item;
+         7: invokevirtual #26                 // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+        10: iload_2
+        11: invokestatic  #32                 // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        14: getstatic     #38                 // Field net/minecraft/core/component/DataComponentExactPredicate.EMPTY:Lnet/minecraft/core/component/DataComponentExactPredicate;
+        17: invokespecial #43                 // Method "<init>":(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/component/DataComponentExactPredicate;)V
+        20: return
+
+  public net.minecraft.world.item.trading.TradeCost(net.minecraft.world.level.ItemLike, net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokeinterface #20,  1           // InterfaceMethod net/minecraft/world/level/ItemLike.asItem:()Lnet/minecraft/world/item/Item;
+         7: invokevirtual #26                 // Method net/minecraft/world/item/Item.builtInRegistryHolder:()Lnet/minecraft/core/Holder$Reference;
+        10: aload_2
+        11: getstatic     #38                 // Field net/minecraft/core/component/DataComponentExactPredicate.EMPTY:Lnet/minecraft/core/component/DataComponentExactPredicate;
+        14: invokespecial #43                 // Method "<init>":(Lnet/minecraft/core/Holder;Lnet/minecraft/core/Holder;Lnet/minecraft/core/component/DataComponentExactPredicate;)V
+        17: return
+
+  public net.minecraft.world.item.trading.TradeCost(net.minecraft.core.Holder<net.minecraft.world.item.Item>, net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>, net.minecraft.core.component.DataComponentExactPredicate);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field item:Lnet/minecraft/core/Holder;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field count:Lnet/minecraft/core/Holder;
+        14: aload_0
+        15: aload_3
+        16: putfield      #16                 // Field components:Lnet/minecraft/core/component/DataComponentExactPredicate;
+        19: return
+
+  public net.minecraft.world.item.trading.ItemCost toItemCost(net.minecraft.world.level.storage.loot.LootContext, int);
+    Code:
+         0: aload_0
+         1: invokevirtual #46                 // Method count:()Lnet/minecraft/core/Holder;
+         4: invokeinterface #49,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+         9: checkcast     #55                 // class net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider
+        12: aload_1
+        13: invokeinterface #57,  2           // InterfaceMethod net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProvider.getInt:(Lnet/minecraft/world/level/storage/loot/LootContext;)I
+        18: iload_2
+        19: iadd
+        20: iconst_0
+        21: aload_0
+        22: invokevirtual #61                 // Method item:()Lnet/minecraft/core/Holder;
+        25: invokeinterface #49,  1           // InterfaceMethod net/minecraft/core/Holder.value:()Ljava/lang/Object;
+        30: checkcast     #27                 // class net/minecraft/world/item/Item
+        33: invokevirtual #63                 // Method net/minecraft/world/item/Item.getDefaultMaxStackSize:()I
+        36: invokestatic  #67                 // Method net/minecraft/util/Mth.clamp:(III)I
+        39: istore_3
+        40: new           #73                 // class net/minecraft/world/item/trading/ItemCost
+        43: dup
+        44: aload_0
+        45: invokevirtual #61                 // Method item:()Lnet/minecraft/core/Holder;
+        48: iload_3
+        49: aload_0
+        50: invokevirtual #75                 // Method components:()Lnet/minecraft/core/component/DataComponentExactPredicate;
+        53: invokespecial #78                 // Method net/minecraft/world/item/trading/ItemCost."<init>":(Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/DataComponentExactPredicate;)V
+        56: areturn
+
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+    Code:
+         0: aload_1
+         1: ldc           #81                 // String count
+         3: aload_0
+         4: getfield      #13                 // Field count:Lnet/minecraft/core/Holder;
+         7: invokestatic  #82                 // InterfaceMethod net/minecraft/world/level/storage/loot/Validatable.validateHolder:(Lnet/minecraft/world/level/storage/loot/ValidationContext;Ljava/lang/String;Lnet/minecraft/core/Holder;)V
+        10: return
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #88,  0             // InvokeDynamic #0:toString:(Lnet/minecraft/world/item/trading/TradeCost;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #92,  0             // InvokeDynamic #0:hashCode:(Lnet/minecraft/world/item/trading/TradeCost;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #96,  0             // InvokeDynamic #0:equals:(Lnet/minecraft/world/item/trading/TradeCost;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public net.minecraft.core.Holder<net.minecraft.world.item.Item> item();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field item:Lnet/minecraft/core/Holder;
+         4: areturn
+
+  public net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> count();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field count:Lnet/minecraft/core/Holder;
+         4: areturn
+
+  public net.minecraft.core.component.DataComponentExactPredicate components();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field components:Lnet/minecraft/core/component/DataComponentExactPredicate;
+         4: areturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$0(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+         0: aload_0
+         1: getstatic     #100                // Field net/minecraft/world/item/Item.CODEC:Lcom/mojang/serialization/Codec;
+         4: ldc           #106                // String id
+         6: invokeinterface #108,  2          // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        11: invokedynamic #114,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+        16: invokevirtual #118                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        19: getstatic     #124                // Field net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.CODEC:Lcom/mojang/serialization/Codec;
+        22: ldc           #81                 // String count
+        24: iconst_1
+        25: invokestatic  #32                 // Method net/minecraft/world/level/storage/loot/providers/number/ints/ContextIntProviders.exactly:(I)Lnet/minecraft/core/Holder;
+        28: invokeinterface #125,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+        33: invokedynamic #129,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+        38: invokevirtual #118                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        41: getstatic     #130                // Field net/minecraft/core/component/DataComponentExactPredicate.CODEC:Lcom/mojang/serialization/Codec;
+        44: ldc           #131                // String components
+        46: getstatic     #38                 // Field net/minecraft/core/component/DataComponentExactPredicate.EMPTY:Lnet/minecraft/core/component/DataComponentExactPredicate;
+        49: invokeinterface #125,  3          // InterfaceMethod com/mojang/serialization/Codec.optionalFieldOf:(Ljava/lang/String;Ljava/lang/Object;)Lcom/mojang/serialization/MapCodec;
+        54: invokedynamic #132,  0            // InvokeDynamic #3:apply:()Ljava/util/function/Function;
+        59: invokevirtual #118                // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        62: invokevirtual #133                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P3;
+        65: aload_0
+        66: invokedynamic #139,  0            // InvokeDynamic #4:apply:()Lcom/mojang/datafixers/util/Function3;
+        71: invokevirtual #142                // Method com/mojang/datafixers/Products$P3.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function3;)Lcom/mojang/datafixers/kinds/App;
+        74: areturn
+
+  static {};
+    Code:
+         0: invokedynamic #147,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+         5: invokestatic  #148                // Method com/mojang/serialization/codecs/RecordCodecBuilder.create:(Ljava/util/function/Function;)Lcom/mojang/serialization/Codec;
+         8: putstatic     #154                // Field CODEC:Lcom/mojang/serialization/Codec;
+        11: return
+}

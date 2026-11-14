@@ -1,0 +1,177 @@
+Compiled from "FirstPersonHandsAndItems.java"
+public class net.minecraft.client.player.FirstPersonHandsAndItems {
+  public net.minecraft.client.player.FirstPersonHandsAndItems();
+  public void tick(net.minecraft.client.player.LocalPlayer);
+  public void itemUsed(net.minecraft.world.InteractionHand);
+  public void extractRenderState(net.minecraft.client.player.LocalPlayer, float, net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState);
+  public static net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection evaluateWhichHandsToRender(net.minecraft.client.player.LocalPlayer);
+}
+Compiled from "LocalPlayerResolver.java"
+public class net.minecraft.client.player.LocalPlayerResolver implements net.minecraft.server.players.ProfileResolver {
+  public net.minecraft.client.player.LocalPlayerResolver(net.minecraft.client.Minecraft, net.minecraft.server.players.ProfileResolver);
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchByName(java.lang.String);
+  public java.util.Optional<com.mojang.authlib.GameProfile> fetchById(java.util.UUID);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.player.package-info {
+}
+Compiled from "ItemActivation.java"
+public class net.minecraft.client.player.ItemActivation {
+  public static final int ANIMATION_LENGTH;
+  public net.minecraft.client.player.ItemActivation();
+  public void tick();
+  public void reset();
+  public void activate(net.minecraft.world.item.ItemStack, net.minecraft.util.RandomSource);
+  public boolean isActive();
+  public net.minecraft.world.item.ItemStack item();
+  public int ticks();
+  public float offX();
+  public float offY();
+}
+Compiled from "RemotePlayer.java"
+public class net.minecraft.client.player.RemotePlayer extends net.minecraft.client.player.AbstractClientPlayer {
+  public net.minecraft.client.player.RemotePlayer(net.minecraft.client.multiplayer.ClientLevel, com.mojang.authlib.GameProfile);
+  public boolean shouldRenderAtSqrDistance(double);
+  public boolean hurtClient(net.minecraft.world.damagesource.DamageSource);
+  public void tick();
+  public void aiStep();
+  public void lerpMotion(net.minecraft.world.phys.Vec3);
+  protected void updatePlayerPose();
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+}
+Compiled from "KeyboardInput.java"
+public class net.minecraft.client.player.KeyboardInput extends net.minecraft.client.player.ClientInput {
+  public net.minecraft.client.player.KeyboardInput(net.minecraft.client.Options);
+  public void tick();
+}
+Compiled from "AbstractClientPlayer.java"
+public abstract class net.minecraft.client.player.AbstractClientPlayer extends net.minecraft.world.entity.player.Player implements net.minecraft.client.entity.ClientAvatarEntity {
+  public net.minecraft.client.player.AbstractClientPlayer(net.minecraft.client.multiplayer.ClientLevel, com.mojang.authlib.GameProfile);
+  public net.minecraft.world.level.GameType gameMode();
+  protected net.minecraft.client.multiplayer.PlayerInfo getPlayerInfo();
+  public void tick();
+  protected void addWalkedDistance(float);
+  public net.minecraft.client.entity.ClientAvatarState avatarState();
+  public net.minecraft.world.entity.player.PlayerSkin getSkin();
+  public net.minecraft.world.entity.animal.parrot.Parrot$Variant getParrotVariantOnShoulder(boolean);
+  public void rideTick();
+  public void aiStep();
+  protected void updateBob();
+  public float getFieldOfViewModifier(boolean, float);
+  public boolean showExtraEars();
+}
+Compiled from "ClientInput.java"
+public class net.minecraft.client.player.ClientInput {
+  public net.minecraft.world.entity.player.Input keyPresses;
+  protected net.minecraft.world.phys.Vec2 moveVector;
+  public net.minecraft.client.player.ClientInput();
+  public void tick();
+  public net.minecraft.world.phys.Vec2 getMoveVector();
+  public boolean hasForwardImpulse();
+  public void makeJump();
+}
+Compiled from "LocalPlayer.java"
+public class net.minecraft.client.player.LocalPlayer extends net.minecraft.client.player.AbstractClientPlayer implements net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public static final org.slf4j.Logger LOGGER;
+  public final net.minecraft.client.multiplayer.ClientPacketListener connection;
+  public net.minecraft.client.player.ClientInput input;
+  protected final net.minecraft.client.Minecraft minecraft;
+  protected int sprintTriggerTime;
+  public int experienceDisplayStartTick;
+  public float yBob;
+  public float xBob;
+  public float yBobO;
+  public float xBobO;
+  public float portalEffectIntensity;
+  public float oPortalEffectIntensity;
+  public net.minecraft.client.player.LocalPlayer(net.minecraft.client.Minecraft, net.minecraft.client.multiplayer.ClientLevel, net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.stats.StatsCounter, net.minecraft.client.ClientRecipeBook, net.minecraft.world.entity.player.Input, boolean, net.minecraft.client.multiplayer.chat.ChatAbilities, net.minecraft.client.player.ItemActivation);
+  public void heal(float);
+  public boolean startRiding(net.minecraft.world.entity.Entity, boolean, boolean);
+  public void removeVehicle();
+  public float getViewYRot(float);
+  public void tick();
+  public void displayItemActivation(net.minecraft.world.item.ItemStack);
+  public void resetItemActivation();
+  public net.minecraft.client.player.ItemActivation itemActivation();
+  public void itemUsed(net.minecraft.world.InteractionHand);
+  public net.minecraft.client.player.FirstPersonHandsAndItems firstPersonHandsAndItems();
+  public void sendChanges();
+  public float getCurrentMood();
+  public void respawn();
+  public void closeContainer();
+  public void clientSideCloseContainer();
+  public void hurtTo(float);
+  public void onUpdateAbilities();
+  public void setReducedDebugInfo(boolean);
+  public boolean isLocalPlayer();
+  public boolean isSuppressingSlidingDownLadder();
+  public boolean canSpawnSprintParticle();
+  protected void sendRidingJump();
+  public void sendOpenInventory();
+  public net.minecraft.stats.StatsCounter getStats();
+  public net.minecraft.client.ClientRecipeBook getRecipeBook();
+  public void removeRecipeHighlight(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public net.minecraft.server.permissions.PermissionSet permissions();
+  public void setPermissions(net.minecraft.server.permissions.PermissionSet);
+  public net.minecraft.client.multiplayer.chat.ChatAbilities chatAbilities();
+  public void refreshChatAbilities();
+  public void sendSystemMessage(net.minecraft.network.chat.Component);
+  public void sendOverlayMessage(net.minecraft.network.chat.Component);
+  public void setExperienceValues(float, int, int);
+  public void handleEntityEvent(byte);
+  public void setShowDeathScreen(boolean);
+  public boolean shouldShowDeathScreen();
+  public void setDoLimitedCrafting(boolean);
+  public boolean getDoLimitedCrafting();
+  public void playSound(net.minecraft.sounds.SoundEvent, float, float);
+  public void startUsingItem(net.minecraft.world.InteractionHand);
+  public boolean isUsingItem();
+  public void stopUsingItem();
+  public net.minecraft.world.InteractionHand getUsedItemHand();
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  public net.minecraft.world.entity.PlayerRideableJumping jumpableVehicle();
+  public float getJumpRidingScale();
+  public boolean isTextFilteringEnabled();
+  public void openTextEdit(net.minecraft.world.level.block.entity.SignBlockEntity, net.minecraft.world.level.block.entity.SignTextSlot);
+  public void openMinecartCommandBlock(net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock);
+  public void openCommandBlock(net.minecraft.world.level.block.entity.CommandBlockEntity);
+  public void openStructureBlock(net.minecraft.world.level.block.entity.StructureBlockEntity);
+  public void openTestBlock(net.minecraft.world.level.block.entity.TestBlockEntity);
+  public void openTestInstanceBlock(net.minecraft.world.level.block.entity.TestInstanceBlockEntity);
+  public void openJigsawBlock(net.minecraft.world.level.block.entity.JigsawBlockEntity);
+  public void openDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>);
+  public void openItemGui(net.minecraft.world.item.ItemStack, net.minecraft.world.InteractionHand);
+  public void crit(net.minecraft.world.entity.Entity);
+  public void magicCrit(net.minecraft.world.entity.Entity);
+  public boolean isShiftKeyDown();
+  public boolean isCrouching();
+  public boolean isMovingSlowly();
+  public void applyInput();
+  protected boolean isControlledCamera();
+  public void resetPos();
+  public void aiStep();
+  public net.minecraft.world.level.block.Portal$Transition getActivePortalLocalTransition();
+  protected void tickDeath();
+  public float getSpinningEffectAngle(float);
+  public void rideTick();
+  public boolean isHandsBusy();
+  public void move(net.minecraft.world.entity.MoverType, net.minecraft.world.phys.Vec3);
+  public boolean isAutoJumpEnabled();
+  public boolean shouldRotateWithMinecart();
+  protected void updateAutoJump(float, float);
+  protected boolean isHorizontalCollisionMinor(net.minecraft.world.phys.Vec3);
+  public float getWaterVision();
+  public void onGameModeChanged(net.minecraft.world.level.GameType);
+  public boolean isUnderWater();
+  protected boolean updateIsUnderwater();
+  public net.minecraft.world.phys.Vec3 getRopeHoldPosition(float);
+  public void updateTutorialInventoryAction(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, net.minecraft.world.inventory.ClickAction);
+  public float getVisualRotationYInDegrees();
+  public void handleCreativeModeItemDrop(net.minecraft.world.item.ItemStack);
+  public boolean canDropItems();
+  public net.minecraft.util.TickThrottler getDropSpamThrottler();
+  public net.minecraft.world.entity.player.Input getLastSentInput();
+  public net.minecraft.world.phys.HitResult raycastHitResult(float, net.minecraft.world.entity.Entity);
+  public void setActivePostEffects(java.util.List<net.minecraft.resources.Identifier>);
+  public java.util.List<net.minecraft.resources.Identifier> getActivePostEffects();
+}

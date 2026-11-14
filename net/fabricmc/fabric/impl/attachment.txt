@@ -1,0 +1,90 @@
+Compiled from "AttachmentEntrypoint.java"
+public class net.fabricmc.fabric.impl.attachment.AttachmentEntrypoint implements net.fabricmc.api.ModInitializer {
+  public static final org.slf4j.Logger LOGGER;
+  public net.fabricmc.fabric.impl.attachment.AttachmentEntrypoint();
+  public void onInitialize();
+}
+Compiled from "AttachmentRegistryImpl.java"
+public class net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl$BuilderImpl<A> implements net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> {
+  public net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl$BuilderImpl();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> persistent(com.mojang.serialization.Codec<A>);
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> copyOnDeath();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> initializer(java.util.function.Supplier<A>);
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> syncWith(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A>, net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate);
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> syncWith(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A>, net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate, int);
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> buildAndRegister(net.minecraft.resources.Identifier);
+}
+Compiled from "AttachmentRegistryImpl.java"
+public final class net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl {
+  public net.fabricmc.fabric.impl.attachment.AttachmentRegistryImpl();
+  public static <A> void register(net.minecraft.resources.Identifier, net.fabricmc.fabric.api.attachment.v1.AttachmentType<A>);
+  public static net.fabricmc.fabric.api.attachment.v1.AttachmentType<?> get(net.minecraft.resources.Identifier);
+  public static java.util.Set<net.minecraft.resources.Identifier> getSyncableAttachments();
+  public static <A> net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry$Builder<A> builder();
+  public static int getMaxSyncPacketSize();
+}
+Compiled from "AttachmentSavedData.java"
+public class net.fabricmc.fabric.impl.attachment.AttachmentSavedData extends net.minecraft.world.level.saveddata.SavedData {
+  public static final net.minecraft.resources.Identifier ID;
+  public net.fabricmc.fabric.impl.attachment.AttachmentSavedData(net.fabricmc.fabric.api.attachment.v1.AttachmentTarget);
+  public static com.mojang.serialization.Codec<net.fabricmc.fabric.impl.attachment.AttachmentSavedData> codec(net.minecraft.server.MinecraftServer);
+  public static com.mojang.serialization.Codec<net.fabricmc.fabric.impl.attachment.AttachmentSavedData> codec(net.minecraft.server.level.ServerLevel);
+  public boolean isDirty();
+}
+Compiled from "AttachmentSerializingImpl.java"
+public class net.fabricmc.fabric.impl.attachment.AttachmentSerializingImpl {
+  public net.fabricmc.fabric.impl.attachment.AttachmentSerializingImpl();
+  public static void serializeAttachmentData(net.minecraft.world.level.storage.ValueOutput, java.util.IdentityHashMap<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, java.lang.Object>);
+  public static java.util.IdentityHashMap<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, java.lang.Object> deserializeAttachmentData(net.minecraft.world.level.storage.ValueInput);
+  public static boolean hasPersistentAttachments(java.util.IdentityHashMap<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, ?>);
+}
+Compiled from "AttachmentTargetImpl.java"
+public interface net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl extends net.fabricmc.fabric.api.attachment.v1.AttachmentTarget {
+  public static void transfer(net.fabricmc.fabric.api.attachment.v1.AttachmentTarget, net.fabricmc.fabric.api.attachment.v1.AttachmentTarget, boolean);
+  public default java.util.Map<net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, ?> fabric_getAttachments();
+  public default void fabric_writeAttachmentsToNbt(net.minecraft.world.level.storage.ValueOutput);
+  public default void fabric_readAttachmentsFromNbt(net.minecraft.world.level.storage.ValueInput);
+  public default boolean fabric_hasPersistentAttachments();
+  public default net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public default void fabric_computeInitialSyncChanges(net.minecraft.server.level.ServerPlayer, java.util.function.Consumer<net.fabricmc.fabric.impl.attachment.sync.AttachmentChange>);
+  public default void fabric_sendAndClearDeferredSyncChanges(java.util.List<net.minecraft.server.level.ServerPlayer>);
+  public default void fabric_clearDeferredSyncChanges();
+  public default <T> void fabric_updateSyncTarget(net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>, net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<T>);
+  public default void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public default void fabric_markChanged(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>);
+  public default boolean fabric_shouldTryToSync();
+  public default boolean fabric_shouldDeferSync();
+  public abstract net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "AttachmentTypeImpl.java"
+public final class net.fabricmc.fabric.impl.attachment.AttachmentTypeImpl<A> extends java.lang.Record implements net.fabricmc.fabric.api.attachment.v1.AttachmentType<A> {
+  public net.fabricmc.fabric.impl.attachment.AttachmentTypeImpl(net.minecraft.resources.Identifier, java.util.function.Supplier<A>, com.mojang.serialization.Codec<A>, net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A>, net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate, boolean, int);
+  public boolean isSynced();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier identifier();
+  public java.util.function.Supplier<A> initializer();
+  public com.mojang.serialization.Codec<A> persistenceCodec();
+  public net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, A> streamCodec();
+  public net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate syncPredicate();
+  public boolean copyOnDeath();
+  public int maxSyncSize();
+}
+Compiled from "DataAccessorHandler.java"
+public class net.fabricmc.fabric.impl.attachment.DataAccessorHandler {
+  public static final java.lang.ScopedValue<java.lang.Void> APPLYING_DATA_CHANGE;
+  public net.fabricmc.fabric.impl.attachment.DataAccessorHandler();
+  public static void applyDataChanges(net.fabricmc.fabric.api.attachment.v1.AttachmentTarget, net.minecraft.world.level.storage.ValueInput, java.lang.Runnable);
+}
+Compiled from "GlobalAttachmentsImpl.java"
+public class net.fabricmc.fabric.impl.attachment.GlobalAttachmentsImpl implements net.fabricmc.fabric.api.attachment.v1.GlobalAttachments,net.fabricmc.fabric.impl.attachment.AttachmentTargetImpl {
+  public net.fabricmc.fabric.impl.attachment.GlobalAttachmentsImpl(net.minecraft.server.MinecraftServer);
+  public void fabric_syncChange(net.fabricmc.fabric.api.attachment.v1.AttachmentType<?>, net.fabricmc.fabric.impl.attachment.sync.AttachmentChange);
+  public boolean fabric_shouldTryToSync();
+  public net.fabricmc.fabric.impl.attachment.sync.AttachmentTargetInfo<?> fabric_getSyncTargetInfo();
+  public net.minecraft.core.RegistryAccess fabric_getRegistryAccess();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.attachment.package-info {
+}

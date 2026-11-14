@@ -1,0 +1,108 @@
+Compiled from "CustomModifierExecutor.java"
+public interface net.minecraft.commands.execution.CustomModifierExecutor<T> {
+  public abstract void apply(T, java.util.List<T>, com.mojang.brigadier.context.ContextChain<T>, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.ExecutionControl<T>);
+}
+Compiled from "TraceCallbacks.java"
+public interface net.minecraft.commands.execution.TraceCallbacks extends java.lang.AutoCloseable {
+  public abstract void onCommand(int, java.lang.String);
+  public abstract void onReturn(int, java.lang.String, int);
+  public abstract void onError(java.lang.String);
+  public abstract void onCall(int, net.minecraft.resources.Identifier, int);
+  public abstract void close();
+}
+Compiled from "UnboundEntryAction.java"
+public interface net.minecraft.commands.execution.UnboundEntryAction<T> {
+  public abstract void execute(T, net.minecraft.commands.execution.ExecutionContext<T>, net.minecraft.commands.execution.Frame);
+  public default net.minecraft.commands.execution.EntryAction<T> bind(T);
+}
+Compiled from "CustomCommandExecutor.java"
+public abstract class net.minecraft.commands.execution.CustomCommandExecutor$WithErrorHandling<T extends net.minecraft.commands.ExecutionCommandSource<T>> implements net.minecraft.commands.execution.CustomCommandExecutor<T> {
+  public net.minecraft.commands.execution.CustomCommandExecutor$WithErrorHandling();
+  public final void run(T, com.mojang.brigadier.context.ContextChain<T>, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.ExecutionControl<T>);
+  protected void onError(com.mojang.brigadier.exceptions.CommandSyntaxException, T, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.TraceCallbacks);
+  protected abstract void runGuarded(T, com.mojang.brigadier.context.ContextChain<T>, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.ExecutionControl<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public void run(java.lang.Object, com.mojang.brigadier.context.ContextChain, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.ExecutionControl);
+}
+Compiled from "Frame.java"
+public final class net.minecraft.commands.execution.Frame extends java.lang.Record {
+  public net.minecraft.commands.execution.Frame(int, net.minecraft.commands.CommandResultCallback, net.minecraft.commands.execution.Frame$FrameControl);
+  public void returnSuccess(int);
+  public void returnFailure();
+  public void discard();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int depth();
+  public net.minecraft.commands.CommandResultCallback returnValueConsumer();
+  public net.minecraft.commands.execution.Frame$FrameControl frameControl();
+}
+Compiled from "CustomCommandExecutor.java"
+public interface net.minecraft.commands.execution.CustomCommandExecutor<T> {
+  public abstract void run(T, com.mojang.brigadier.context.ContextChain<T>, net.minecraft.commands.execution.ChainModifiers, net.minecraft.commands.execution.ExecutionControl<T>);
+}
+Compiled from "CommandQueueEntry.java"
+public final class net.minecraft.commands.execution.CommandQueueEntry<T> extends java.lang.Record {
+  public net.minecraft.commands.execution.CommandQueueEntry(net.minecraft.commands.execution.Frame, net.minecraft.commands.execution.EntryAction<T>);
+  public void execute(net.minecraft.commands.execution.ExecutionContext<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.commands.execution.Frame frame();
+  public net.minecraft.commands.execution.EntryAction<T> action();
+}
+Compiled from "Frame.java"
+public interface net.minecraft.commands.execution.Frame$FrameControl {
+  public abstract void discard();
+}
+Compiled from "CustomCommandExecutor.java"
+public interface net.minecraft.commands.execution.CustomCommandExecutor$CommandAdapter<T> extends net.minecraft.commands.execution.CustomCommandExecutor<T>, com.mojang.brigadier.Command<T> {
+  public default int run(com.mojang.brigadier.context.CommandContext<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ExecutionContext.java"
+public class net.minecraft.commands.execution.ExecutionContext<T> implements java.lang.AutoCloseable {
+  public net.minecraft.commands.execution.ExecutionContext(int, int, net.minecraft.util.profiling.ProfilerFiller);
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> void queueInitialFunctionCall(net.minecraft.commands.execution.ExecutionContext<T>, net.minecraft.commands.functions.InstantiatedFunction<T>, T, net.minecraft.commands.CommandResultCallback);
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> void queueInitialCommandExecution(net.minecraft.commands.execution.ExecutionContext<T>, java.lang.String, com.mojang.brigadier.context.ContextChain<T>, T, net.minecraft.commands.CommandResultCallback);
+  public void queueNext(net.minecraft.commands.execution.CommandQueueEntry<T>);
+  public void discardAtDepthOrHigher(int);
+  public net.minecraft.commands.execution.Frame$FrameControl frameControlForDepth(int);
+  public void runCommandQueue();
+  public void tracer(net.minecraft.commands.execution.TraceCallbacks);
+  public net.minecraft.commands.execution.TraceCallbacks tracer();
+  public net.minecraft.util.profiling.ProfilerFiller profiler();
+  public int forkLimit();
+  public void incrementCost();
+  public void close();
+}
+Compiled from "ExecutionControl.java"
+public interface net.minecraft.commands.execution.ExecutionControl<T> {
+  public abstract void queueNext(net.minecraft.commands.execution.EntryAction<T>);
+  public abstract void tracer(net.minecraft.commands.execution.TraceCallbacks);
+  public abstract net.minecraft.commands.execution.TraceCallbacks tracer();
+  public abstract net.minecraft.commands.execution.Frame currentFrame();
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> net.minecraft.commands.execution.ExecutionControl<T> create(net.minecraft.commands.execution.ExecutionContext<T>, net.minecraft.commands.execution.Frame);
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.execution.package-info {
+}
+Compiled from "EntryAction.java"
+public interface net.minecraft.commands.execution.EntryAction<T> {
+  public abstract void execute(net.minecraft.commands.execution.ExecutionContext<T>, net.minecraft.commands.execution.Frame);
+}
+Compiled from "ChainModifiers.java"
+public final class net.minecraft.commands.execution.ChainModifiers extends java.lang.Record {
+  public static final net.minecraft.commands.execution.ChainModifiers DEFAULT;
+  public net.minecraft.commands.execution.ChainModifiers(byte);
+  public boolean isForked();
+  public net.minecraft.commands.execution.ChainModifiers setForked();
+  public boolean isReturn();
+  public net.minecraft.commands.execution.ChainModifiers setReturn();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public byte flags();
+}
+Compiled from "CustomModifierExecutor.java"
+public interface net.minecraft.commands.execution.CustomModifierExecutor$ModifierAdapter<T> extends net.minecraft.commands.execution.CustomModifierExecutor<T>, com.mojang.brigadier.RedirectModifier<T> {
+  public default java.util.Collection<T> apply(com.mojang.brigadier.context.CommandContext<T>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}

@@ -1,0 +1,50 @@
+Compiled from "ForbiddenSymlinkInfo.java"
+public final class net.minecraft.world.level.validation.ForbiddenSymlinkInfo extends java.lang.Record {
+  public net.minecraft.world.level.validation.ForbiddenSymlinkInfo(java.nio.file.Path, java.nio.file.Path);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.nio.file.Path link();
+  public java.nio.file.Path target();
+}
+Compiled from "DirectoryValidator.java"
+public class net.minecraft.world.level.validation.DirectoryValidator {
+  public net.minecraft.world.level.validation.DirectoryValidator(java.nio.file.PathMatcher);
+  public void validateSymlink(java.nio.file.Path, java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo>) throws java.io.IOException;
+  public java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo> validateSymlink(java.nio.file.Path) throws java.io.IOException;
+  public java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo> validateDirectory(java.nio.file.Path, boolean) throws java.io.IOException;
+  public void validateKnownDirectory(java.nio.file.Path, java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo>) throws java.io.IOException;
+}
+Compiled from "ContentValidationException.java"
+public class net.minecraft.world.level.validation.ContentValidationException extends java.lang.Exception {
+  public net.minecraft.world.level.validation.ContentValidationException(java.nio.file.Path, java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo>);
+  public java.lang.String getMessage();
+  public static java.lang.String getMessage(java.nio.file.Path, java.util.List<net.minecraft.world.level.validation.ForbiddenSymlinkInfo>);
+}
+Compiled from "PathAllowList.java"
+public interface net.minecraft.world.level.validation.PathAllowList$EntryType {
+  public static final net.minecraft.world.level.validation.PathAllowList$EntryType FILESYSTEM;
+  public static final net.minecraft.world.level.validation.PathAllowList$EntryType PREFIX;
+  public abstract java.nio.file.PathMatcher compile(java.nio.file.FileSystem, java.lang.String);
+}
+Compiled from "PathAllowList.java"
+public final class net.minecraft.world.level.validation.PathAllowList$ConfigEntry extends java.lang.Record {
+  public net.minecraft.world.level.validation.PathAllowList$ConfigEntry(net.minecraft.world.level.validation.PathAllowList$EntryType, java.lang.String);
+  public java.nio.file.PathMatcher compile(java.nio.file.FileSystem);
+  public static java.util.Optional<net.minecraft.world.level.validation.PathAllowList$ConfigEntry> parse(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.validation.PathAllowList$EntryType type();
+  public java.lang.String pattern();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.validation.package-info {
+}
+Compiled from "PathAllowList.java"
+public class net.minecraft.world.level.validation.PathAllowList implements java.nio.file.PathMatcher {
+  public net.minecraft.world.level.validation.PathAllowList(java.util.List<net.minecraft.world.level.validation.PathAllowList$ConfigEntry>);
+  public java.nio.file.PathMatcher getForFileSystem(java.nio.file.FileSystem);
+  public boolean matches(java.nio.file.Path);
+  public static net.minecraft.world.level.validation.PathAllowList readPlain(java.io.BufferedReader);
+}

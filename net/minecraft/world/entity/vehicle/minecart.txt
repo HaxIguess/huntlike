@@ -1,0 +1,313 @@
+Compiled from "Minecart.java"
+public class net.minecraft.world.entity.vehicle.minecart.Minecart extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart {
+  public net.minecraft.world.entity.vehicle.minecart.Minecart(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  public void activateMinecart(net.minecraft.server.level.ServerLevel, int, int, int, boolean);
+  public boolean isRideable();
+  public void tick();
+  protected void positionRider(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity$MoveFunction);
+}
+Compiled from "MinecartCommandBlock.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart {
+  public net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  public net.minecraft.world.level.BaseCommandBlock getCommandBlock();
+  public void activateMinecart(net.minecraft.server.level.ServerLevel, int, int, int, boolean);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.vehicle.minecart.package-info {
+}
+Compiled from "MinecartSpawner.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartSpawner extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart {
+  public net.minecraft.world.entity.vehicle.minecart.MinecartSpawner(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartSpawner>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void handleEntityEvent(byte);
+  public void tick();
+  public net.minecraft.world.level.BaseSpawner getSpawner();
+}
+Compiled from "MinecartBehavior.java"
+public abstract class net.minecraft.world.entity.vehicle.minecart.MinecartBehavior {
+  protected final net.minecraft.world.entity.vehicle.minecart.AbstractMinecart minecart;
+  protected net.minecraft.world.entity.vehicle.minecart.MinecartBehavior(net.minecraft.world.entity.vehicle.minecart.AbstractMinecart);
+  public void onInterpolationStart(net.minecraft.world.entity.InterpolationHandler);
+  public void lerpMotion(net.minecraft.world.phys.Vec3);
+  public abstract void tick();
+  public net.minecraft.world.level.Level level();
+  public abstract void moveAlongTrack(net.minecraft.server.level.ServerLevel);
+  public abstract double stepAlongTrack(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.RailShape, double);
+  public abstract boolean pushAndPickupEntities();
+  public net.minecraft.world.phys.Vec3 getDeltaMovement();
+  public void setDeltaMovement(net.minecraft.world.phys.Vec3);
+  public void setDeltaMovement(double, double, double);
+  public net.minecraft.world.phys.Vec3 position();
+  public double getX();
+  public double getY();
+  public double getZ();
+  public void setPos(net.minecraft.world.phys.Vec3);
+  public void setPos(double, double, double);
+  public float getXRot();
+  public void setXRot(float);
+  public float getYRot();
+  public void setYRot(float);
+  public net.minecraft.core.Direction getMotionDirection();
+  public net.minecraft.world.phys.Vec3 getKnownMovement(net.minecraft.world.phys.Vec3);
+  public abstract double getMaxSpeed(net.minecraft.server.level.ServerLevel);
+  public abstract double getSlowdownFactor();
+}
+Compiled from "AbstractMinecartContainer.java"
+public abstract class net.minecraft.world.entity.vehicle.minecart.AbstractMinecartContainer extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart implements net.minecraft.world.entity.vehicle.ContainerEntity {
+  protected net.minecraft.world.entity.vehicle.minecart.AbstractMinecartContainer(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+  public void destroy(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public net.minecraft.world.item.ItemStack removeItem(int, int);
+  public net.minecraft.world.item.ItemStack removeItemNoUpdate(int);
+  public void setItem(int, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public void setChanged();
+  public boolean stillValid(net.minecraft.world.entity.player.Player);
+  public void remove(net.minecraft.world.entity.Entity$RemovalReason);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  protected net.minecraft.world.phys.Vec3 applyNaturalSlowdown(net.minecraft.world.phys.Vec3);
+  public void clearContent();
+  public void setLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, long);
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.entity.player.Player);
+  protected abstract net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> getContainerLootTable();
+  public void setContainerLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+  public long getContainerLootTableSeed();
+  public void setContainerLootTableSeed(long);
+  public net.minecraft.core.NonNullList<net.minecraft.world.item.ItemStack> getItemStacks();
+  public void clearItemStacks();
+}
+Compiled from "MinecartTNT.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartTNT extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart {
+  public net.minecraft.world.entity.vehicle.minecart.MinecartTNT(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartTNT>, net.minecraft.world.level.Level);
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  public void tick();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public void destroy(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected void explode(net.minecraft.world.damagesource.DamageSource, double);
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+  public void activateMinecart(net.minecraft.server.level.ServerLevel, int, int, int, boolean);
+  public void handleEntityEvent(byte);
+  public void primeFuse(net.minecraft.world.damagesource.DamageSource);
+  public int getFuse();
+  public boolean isPrimed();
+  public float getBlockExplosionResistance(net.minecraft.world.level.Explosion, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState, float);
+  public boolean shouldBlockExplode(net.minecraft.world.level.Explosion, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, float);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected boolean shouldSourceDestroy(net.minecraft.world.damagesource.DamageSource);
+}
+Compiled from "MinecartHopper.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartHopper extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecartContainer implements net.minecraft.world.level.block.entity.Hopper {
+  public net.minecraft.world.entity.vehicle.minecart.MinecartHopper(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartHopper>, net.minecraft.world.level.Level);
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  public int getDefaultDisplayOffset();
+  public int getContainerSize();
+  public void activateMinecart(net.minecraft.server.level.ServerLevel, int, int, int, boolean);
+  public boolean isEnabled();
+  public void setEnabled(boolean);
+  public double getLevelX();
+  public double getLevelY();
+  public double getLevelZ();
+  public boolean isGridAligned();
+  public void tick();
+  protected double makeStepAlongTrack(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.RailShape, double);
+  public boolean suckInItems();
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+}
+Compiled from "NewMinecartBehavior.java"
+public final class net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep> STREAM_CODEC;
+  public static final net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep ZERO;
+  public net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, float, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.phys.Vec3 position();
+  public net.minecraft.world.phys.Vec3 movement();
+  public float yRot();
+  public float xRot();
+  public float weight();
+}
+Compiled from "AbstractMinecart.java"
+public abstract class net.minecraft.world.entity.vehicle.minecart.AbstractMinecart extends net.minecraft.world.entity.vehicle.VehicleEntity {
+  protected static final float WATER_SLOWDOWN_FACTOR;
+  protected net.minecraft.world.entity.vehicle.minecart.AbstractMinecart(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.vehicle.minecart.AbstractMinecart(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.Level, double, double, double);
+  public void setInitialPos(double, double, double);
+  public static <T extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart> T createMinecart(net.minecraft.world.level.Level, double, double, double, net.minecraft.world.entity.EntityType<T>, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.player.Player);
+  public net.minecraft.world.entity.vehicle.minecart.MinecartBehavior getBehavior();
+  protected net.minecraft.world.entity.Entity$MovementEmission getMovementEmission();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean canCollideWith(net.minecraft.world.entity.Entity);
+  public boolean isPushable();
+  public net.minecraft.world.phys.Vec3 getRelativePortalPosition(net.minecraft.core.Direction$Axis, net.minecraft.util.BlockUtil$FoundRectangle);
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+  protected float getBlockSpeedFactor();
+  public void animateHurt(float);
+  public boolean isPickable();
+  public static com.mojang.datafixers.util.Pair<net.minecraft.core.Vec3i, net.minecraft.core.Vec3i> exits(net.minecraft.world.level.block.state.properties.RailShape);
+  public net.minecraft.core.Direction getMotionDirection();
+  protected double getDefaultGravity();
+  public void tick();
+  public boolean isFirstTick();
+  public net.minecraft.core.BlockPos getCurrentBlockPosOrRailBelow();
+  protected double getMaxSpeed(net.minecraft.server.level.ServerLevel);
+  public void activateMinecart(net.minecraft.server.level.ServerLevel, int, int, int, boolean);
+  public void lerpPositionAndRotationStep(int, double, double, double, double, double);
+  public void applyGravity();
+  public void reapplyPosition();
+  public boolean updateFluidInteraction();
+  public net.minecraft.world.phys.Vec3 getKnownMovement();
+  protected net.minecraft.world.entity.InterpolationHandler createInterpolationHandler();
+  public void onInterpolationStart(net.minecraft.world.entity.InterpolationHandler);
+  public void recreateFromPacket(net.minecraft.network.protocol.game.ClientboundAddEntityPacket);
+  public void lerpMotion(net.minecraft.world.phys.Vec3);
+  protected void moveAlongTrack(net.minecraft.server.level.ServerLevel);
+  protected void comeOffTrack(net.minecraft.server.level.ServerLevel);
+  protected float getAirDrag();
+  protected double makeStepAlongTrack(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.RailShape, double);
+  public void move(net.minecraft.world.entity.MoverType, net.minecraft.world.phys.Vec3);
+  public void applyEffectsFromBlocks();
+  public boolean isOnRails();
+  public void setOnRails(boolean);
+  public boolean isFlipped();
+  public void setFlipped(boolean);
+  public net.minecraft.world.phys.Vec3 getRedstoneDirection(net.minecraft.core.BlockPos);
+  public boolean isRedstoneConductor(net.minecraft.core.BlockPos);
+  protected net.minecraft.world.phys.Vec3 applyNaturalSlowdown(net.minecraft.world.phys.Vec3);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void push(net.minecraft.world.entity.Entity);
+  public net.minecraft.world.level.block.state.BlockState getDisplayBlockState();
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  public int getDisplayOffset();
+  public int getDefaultDisplayOffset();
+  public void setCustomDisplayBlockState(java.util.Optional<net.minecraft.world.level.block.state.BlockState>);
+  public void setDisplayOffset(int);
+  public static boolean useExperimentalMovement(net.minecraft.world.level.Level);
+  public abstract net.minecraft.world.item.ItemStack getPickResult();
+  public boolean isRideable();
+  public boolean isFurnace();
+}
+Compiled from "OldMinecartBehavior.java"
+public class net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior extends net.minecraft.world.entity.vehicle.minecart.MinecartBehavior {
+  public net.minecraft.world.entity.vehicle.minecart.OldMinecartBehavior(net.minecraft.world.entity.vehicle.minecart.AbstractMinecart);
+  public void onInterpolationStart(net.minecraft.world.entity.InterpolationHandler);
+  public void lerpMotion(net.minecraft.world.phys.Vec3);
+  public void tick();
+  public void moveAlongTrack(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.world.phys.Vec3 getPosOffs(double, double, double, double);
+  public net.minecraft.world.phys.Vec3 getPos(double, double, double);
+  public double stepAlongTrack(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.RailShape, double);
+  public boolean pushAndPickupEntities();
+  public net.minecraft.core.Direction getMotionDirection();
+  public net.minecraft.world.phys.Vec3 getKnownMovement(net.minecraft.world.phys.Vec3);
+  public double getMaxSpeed(net.minecraft.server.level.ServerLevel);
+  public double getSlowdownFactor();
+}
+Compiled from "NewMinecartBehavior.java"
+public class net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior extends net.minecraft.world.entity.vehicle.minecart.MinecartBehavior {
+  public static final int POS_ROT_LERP_TICKS;
+  public static final double ON_RAIL_Y_OFFSET;
+  public static final double OPPOSING_SLOPES_REST_AT_SPEED_THRESHOLD;
+  public final java.util.List<net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep> lerpSteps;
+  public final java.util.List<net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep> currentLerpSteps;
+  public double currentLerpStepsTotalWeight;
+  public net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep oldLerp;
+  public net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior(net.minecraft.world.entity.vehicle.minecart.AbstractMinecart);
+  public void tick();
+  public void setOldLerpValues();
+  public boolean cartHasPosRotLerp();
+  public float getCartLerpXRot(float);
+  public float getCartLerpYRot(float);
+  public net.minecraft.world.phys.Vec3 getCartLerpPosition(float);
+  public net.minecraft.world.phys.Vec3 getCartLerpMovements(float);
+  public void adjustToRails(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  public void moveAlongTrack(net.minecraft.server.level.ServerLevel);
+  public double stepAlongTrack(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.properties.RailShape, double);
+  public double getMaxSpeed(net.minecraft.server.level.ServerLevel);
+  public double getSlowdownFactor();
+  public boolean pushAndPickupEntities();
+  public boolean pickupEntities(net.minecraft.world.phys.AABB);
+  public boolean pushEntities(net.minecraft.world.phys.AABB);
+}
+Compiled from "MinecartFurnace.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartFurnace extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecart {
+  public net.minecraft.world.phys.Vec3 push;
+  public net.minecraft.world.entity.vehicle.minecart.MinecartFurnace(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartFurnace>, net.minecraft.world.level.Level);
+  public boolean isFurnace();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void tick();
+  protected double getMaxSpeed(net.minecraft.server.level.ServerLevel);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  protected net.minecraft.world.phys.Vec3 applyNaturalSlowdown(net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+  public boolean addFuel(net.minecraft.world.phys.Vec3, net.minecraft.world.item.ItemStack);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected boolean hasFuel();
+  protected void setHasFuel(boolean);
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+}
+Compiled from "NewMinecartBehavior.java"
+class net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$TrackIteration {
+  public double movementLeft;
+  public boolean firstIteration;
+  public boolean hasGainedSlopeSpeed;
+  public boolean hasHalted;
+  public boolean hasBoosted;
+  public boolean shouldIterate();
+}
+Compiled from "MinecartChest.java"
+public class net.minecraft.world.entity.vehicle.minecart.MinecartChest extends net.minecraft.world.entity.vehicle.minecart.AbstractMinecartContainer {
+  public net.minecraft.world.entity.vehicle.minecart.MinecartChest(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.vehicle.minecart.MinecartChest>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.item.Item getDropItem();
+  public net.minecraft.world.item.ItemStack getPickResult();
+  public int getContainerSize();
+  public net.minecraft.world.level.block.state.BlockState getDefaultDisplayBlockState();
+  public int getDefaultDisplayOffset();
+  public net.minecraft.world.inventory.AbstractContainerMenu createMenu(int, net.minecraft.world.entity.player.Inventory);
+  public void stopOpen(net.minecraft.world.entity.ContainerUser);
+  public net.minecraft.world.InteractionResult interact(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand, net.minecraft.world.phys.Vec3);
+}
+Compiled from "MinecartCommandBlock.java"
+class net.minecraft.world.entity.vehicle.minecart.MinecartCommandBlock$MinecartCommandBase extends net.minecraft.world.level.BaseCommandBlock {
+  public void onUpdated(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.commands.CommandSourceStack createCommandSourceStack(net.minecraft.server.level.ServerLevel, net.minecraft.commands.CommandSource);
+  public boolean isValid();
+}
+Compiled from "NewMinecartBehavior.java"
+final class net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$StepPartialTicks extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float partialTicksInStep();
+  public net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep currentStep();
+  public net.minecraft.world.entity.vehicle.minecart.NewMinecartBehavior$MinecartStep previousStep();
+}

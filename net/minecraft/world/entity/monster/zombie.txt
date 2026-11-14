@@ -1,0 +1,222 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.monster.zombie.package-info {
+}
+Compiled from "Husk.java"
+public class net.minecraft.world.entity.monster.zombie.Husk$HuskGroupData extends net.minecraft.world.entity.monster.zombie.Zombie$ZombieGroupData {
+  public boolean triedToSpawnCamelHusk;
+  public net.minecraft.world.entity.monster.zombie.Husk$HuskGroupData(net.minecraft.world.entity.monster.zombie.Zombie$ZombieGroupData);
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedGoToBeachGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedGoToBeachGoal(net.minecraft.world.entity.monster.zombie.Drowned, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  public void start();
+  public void stop();
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedAttackGoal extends net.minecraft.world.entity.ai.goal.ZombieAttackGoal {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedAttackGoal(net.minecraft.world.entity.monster.zombie.Drowned, double, boolean);
+  public boolean canUse();
+  public boolean canContinueToUse();
+}
+Compiled from "Zombie.java"
+public class net.minecraft.world.entity.monster.zombie.Zombie extends net.minecraft.world.entity.monster.Monster {
+  public static final float ZOMBIE_LEADER_CHANCE;
+  public static final int REINFORCEMENT_ATTEMPTS;
+  public static final int REINFORCEMENT_RANGE_MAX;
+  public static final int REINFORCEMENT_RANGE_MIN;
+  public net.minecraft.world.entity.monster.zombie.Zombie(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Zombie>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.monster.zombie.Zombie(net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void addBehaviourGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean isUnderWaterConverting();
+  public boolean canBreakDoors();
+  public void setCanBreakDoors(boolean);
+  public boolean isBaby();
+  protected int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  public void setBaby(boolean);
+  public void onSyncedDataUpdated(net.minecraft.network.syncher.EntityDataAccessor<?>);
+  protected boolean convertsInWater();
+  public void tick();
+  public boolean convertVillagerToZombieVillager(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.npc.villager.Villager);
+  protected boolean isSunSensitive();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getStepSound();
+  protected int getConversionSound();
+  protected net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Zombie> convertsToWhenDrowning();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Zombie> getType();
+  protected boolean canSpawnInLiquids();
+  protected void populateDefaultEquipmentSlots(net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean killedEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public boolean canHoldItem(net.minecraft.world.item.ItemStack);
+  public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected void onOffspringSpawnedFromEgg(net.minecraft.world.entity.player.Player, net.minecraft.world.entity.Mob);
+  public void setInWaterTime(int);
+  public void setConversionTime(int);
+  public static boolean getSpawnAsBabyOdds(net.minecraft.util.RandomSource);
+  protected void handleAttributes(float, net.minecraft.world.entity.EntitySpawnReason);
+  protected void randomizeReinforcementsChance();
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedTridentAttackGoal extends net.minecraft.world.entity.ai.goal.RangedAttackGoal {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedTridentAttackGoal(net.minecraft.world.entity.monster.RangedAttackMob, double, int, float);
+  public boolean canUse();
+  public void start();
+  public void stop();
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedGoToWaterGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedGoToWaterGoal(net.minecraft.world.entity.PathfinderMob, double);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+}
+Compiled from "Zombie.java"
+public class net.minecraft.world.entity.monster.zombie.Zombie$ZombieGroupData implements net.minecraft.world.entity.SpawnGroupData {
+  public final boolean isBaby;
+  public final boolean canSpawnJockey;
+  public net.minecraft.world.entity.monster.zombie.Zombie$ZombieGroupData(boolean, boolean);
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedMoveControl<T extends net.minecraft.world.entity.monster.zombie.Drowned> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedMoveControl(T);
+  public void tick();
+}
+Compiled from "Drowned.java"
+public class net.minecraft.world.entity.monster.zombie.Drowned extends net.minecraft.world.entity.monster.zombie.Zombie implements net.minecraft.world.entity.monster.RangedAttackMob {
+  public static final float NAUTILUS_SHELL_CHANCE;
+  public net.minecraft.world.entity.monster.zombie.Drowned(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Drowned>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  protected void addBehaviourGoals();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public static boolean checkDrownedSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.monster.zombie.Drowned>, net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getStepSound();
+  protected net.minecraft.sounds.SoundEvent getSwimSound();
+  protected boolean canSpawnInLiquids();
+  protected void populateDefaultEquipmentSlots(net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  protected boolean canReplaceCurrentItem(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot);
+  protected boolean convertsInWater();
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public boolean okTarget(net.minecraft.world.entity.LivingEntity);
+  public boolean isPushedByFluid();
+  public boolean wantsToSwim();
+  protected void travelInWater(net.minecraft.world.phys.Vec3, double, boolean, double);
+  public void updateSwimming();
+  public boolean isVisuallySwimming();
+  protected boolean closeToNextPos();
+  public void performRangedAttack(net.minecraft.world.entity.LivingEntity, float);
+  public float rangedAttackUncertainty(net.minecraft.world.level.Level);
+  public void setRangedAttackUncertainty(float);
+  public net.minecraft.tags.TagKey<net.minecraft.world.item.Item> getPreferredWeaponType();
+  public void setSearchingForLand(boolean);
+  public boolean isSearchingForLand();
+  public void rideTick();
+  public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+}
+Compiled from "ZombifiedPiglin.java"
+public class net.minecraft.world.entity.monster.zombie.ZombifiedPiglin extends net.minecraft.world.entity.monster.zombie.Zombie implements net.minecraft.world.entity.NeutralMob {
+  public net.minecraft.world.entity.monster.zombie.ZombifiedPiglin(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.ZombifiedPiglin>, net.minecraft.world.level.Level);
+  protected void addBehaviourGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected boolean convertsInWater();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void setTarget(net.minecraft.world.entity.LivingEntity);
+  public void startPersistentAngerTimer();
+  public static boolean checkZombifiedPiglinSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.monster.zombie.ZombifiedPiglin>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public void setPersistentAngerEndTime(long);
+  public long getPersistentAngerEndTime();
+  public void setPersistentAngerTarget(net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity>);
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public void populateDefaultEquipmentSlots(net.minecraft.util.RandomSource, net.minecraft.world.DifficultyInstance);
+  protected void randomizeReinforcementsChance();
+  public net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> getPersistentAngerTarget();
+  public boolean isPreventingPlayerRest(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.player.Player);
+  public boolean wantsToPickUp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack);
+}
+Compiled from "ZombieVillager.java"
+public class net.minecraft.world.entity.monster.zombie.ZombieVillager extends net.minecraft.world.entity.monster.zombie.Zombie implements net.minecraft.world.entity.npc.villager.VillagerDataHolder {
+  public net.minecraft.world.entity.monster.zombie.ZombieVillager(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.ZombieVillager>, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public void tick();
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  protected boolean convertsInWater();
+  public boolean removeWhenFarAway(double);
+  public boolean isConverting();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public void handleEntityEvent(byte);
+  public void setVillagerConversionTime(int);
+  public float getVoicePitch();
+  public net.minecraft.sounds.SoundEvent getAmbientSound();
+  public net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  public net.minecraft.sounds.SoundEvent getDeathSound();
+  public net.minecraft.sounds.SoundEvent getStepSound();
+  public void setTradeOffers(net.minecraft.world.item.trading.MerchantOffers);
+  public void setGossips(net.minecraft.world.entity.ai.gossip.GossipContainer);
+  public void setVillagerData(net.minecraft.world.entity.npc.villager.VillagerData);
+  public boolean getVillagerDataFinalized();
+  public void setVillagerDataFinalized(boolean);
+  public net.minecraft.world.entity.npc.villager.VillagerData getVillagerData();
+  public int getVillagerXp();
+  public void setVillagerXp(int);
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+}
+Compiled from "Husk.java"
+public class net.minecraft.world.entity.monster.zombie.Husk extends net.minecraft.world.entity.monster.zombie.Zombie {
+  public net.minecraft.world.entity.monster.zombie.Husk(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Husk>, net.minecraft.world.level.Level);
+  protected boolean isSunSensitive();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected net.minecraft.sounds.SoundEvent getStepSound();
+  public boolean doHurtTarget(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity);
+  protected boolean convertsInWater();
+  protected int getConversionSound();
+  protected net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.monster.zombie.Zombie> convertsToWhenDrowning();
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+}
+Compiled from "Drowned.java"
+class net.minecraft.world.entity.monster.zombie.Drowned$DrownedSwimUpGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.monster.zombie.Drowned$DrownedSwimUpGoal(net.minecraft.world.entity.monster.zombie.Drowned, double, int);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+  public void start();
+  public void stop();
+}
+Compiled from "Zombie.java"
+class net.minecraft.world.entity.monster.zombie.Zombie$ZombieAttackTurtleEggGoal extends net.minecraft.world.entity.ai.goal.RemoveBlockGoal {
+  public net.minecraft.world.entity.monster.zombie.Zombie$ZombieAttackTurtleEggGoal(net.minecraft.world.entity.monster.zombie.Zombie, net.minecraft.world.entity.PathfinderMob, double, int);
+  public void playDestroyProgressSound(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+  public void playBreakSound(net.minecraft.world.level.Level, net.minecraft.core.BlockPos);
+  public double acceptedDistance();
+}

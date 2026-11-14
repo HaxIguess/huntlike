@@ -1,0 +1,90 @@
+Compiled from "IClickableIngredientFactory.java"
+public interface mezz.jei.api.gui.builder.IClickableIngredientFactory$IBuilder<T> {
+  public abstract java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<T>> buildWithArea(int, int, int, int);
+  public abstract java.util.Optional<mezz.jei.api.runtime.IClickableIngredient<T>> buildWithArea(net.minecraft.client.renderer.Rect2i);
+}
+Compiled from "IClickableIngredientFactory.java"
+public interface mezz.jei.api.gui.builder.IClickableIngredientFactory {
+  public default mezz.jei.api.gui.builder.IClickableIngredientFactory$IBuilder<net.minecraft.world.item.ItemStack> createBuilder(net.minecraft.world.item.ItemStack);
+  public abstract <T> mezz.jei.api.gui.builder.IClickableIngredientFactory$IBuilder<T> createBuilder(mezz.jei.api.ingredients.ITypedIngredient<T>);
+  public abstract <T> mezz.jei.api.gui.builder.IClickableIngredientFactory$IBuilder<T> createBuilder(mezz.jei.api.ingredients.IIngredientType<T>, T);
+}
+Compiled from "IIngredientAcceptor.java"
+public interface mezz.jei.api.gui.builder.IIngredientAcceptor<THIS extends mezz.jei.api.gui.builder.IIngredientAcceptor<THIS>> {
+  public abstract THIS add(net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract <I> THIS add(mezz.jei.api.ingredients.IIngredientType<I>, net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract THIS add(net.minecraft.world.item.ItemStack);
+  public abstract THIS add(net.minecraft.world.level.ItemLike);
+  public abstract THIS add(net.minecraft.world.item.ItemStackTemplate);
+  public abstract THIS add(net.minecraft.world.level.material.Fluid);
+  public abstract THIS add(net.minecraft.world.level.material.Fluid, long);
+  public abstract THIS add(net.minecraft.world.level.material.Fluid, long, net.minecraft.core.component.DataComponentPatch);
+  public abstract THIS add(net.minecraft.world.item.crafting.Ingredient);
+  public abstract <I> THIS add(mezz.jei.api.ingredients.IIngredientType<I>, net.minecraft.world.item.crafting.Ingredient);
+  public abstract <I> THIS add(mezz.jei.api.ingredients.ITypedIngredient<I>);
+  public abstract <I> THIS add(mezz.jei.api.ingredients.IIngredientType<I>, I);
+  public abstract <I> THIS addIngredients(mezz.jei.api.ingredients.IIngredientType<I>, java.util.List<I>);
+  public abstract THIS addIngredientsUnsafe(java.util.List<?>);
+  public abstract THIS addTypedIngredients(java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>>);
+  public abstract THIS addOptionalTypedIngredients(java.util.List<java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>>>);
+  public abstract THIS addItemStacks(java.util.List<net.minecraft.world.item.ItemStack>);
+  public abstract net.minecraft.util.context.ContextMap getContextMap();
+  public default <I> THIS addIngredient(mezz.jei.api.ingredients.IIngredientType<I>, I);
+  public default THIS addIngredients(net.minecraft.world.item.crafting.Ingredient);
+  public default <I> THIS addTypedIngredient(mezz.jei.api.ingredients.ITypedIngredient<I>);
+  public default THIS addItemStack(net.minecraft.world.item.ItemStack);
+  public default THIS addItemLike(net.minecraft.world.level.ItemLike);
+  public default THIS addFluidStack(net.minecraft.world.level.material.Fluid);
+  public default THIS addFluidStack(net.minecraft.world.level.material.Fluid, long);
+  public default THIS addFluidStack(net.minecraft.world.level.material.Fluid, long, net.minecraft.core.component.DataComponentPatch);
+}
+Compiled from "IRecipeLayoutBuilder.java"
+public interface mezz.jei.api.gui.builder.IRecipeLayoutBuilder {
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addInputSlot(int, int);
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addInputSlot();
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addOutputSlot(int, int);
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addOutputSlot();
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addSlot(mezz.jei.api.recipe.RecipeIngredientRole, int, int);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder addSlot(mezz.jei.api.recipe.RecipeIngredientRole);
+  public abstract mezz.jei.api.gui.builder.IIngredientAcceptor<?> addInvisibleIngredients(mezz.jei.api.recipe.RecipeIngredientRole);
+  public abstract void moveRecipeTransferButton(int, int);
+  public abstract void setShapeless();
+  public abstract void setShapeless(int, int);
+  public abstract void createFocusLink(mezz.jei.api.gui.builder.IIngredientAcceptor<?>...);
+}
+Compiled from "IRecipeSlotBuilder.java"
+public interface mezz.jei.api.gui.builder.IRecipeSlotBuilder extends mezz.jei.api.gui.builder.IIngredientAcceptor<mezz.jei.api.gui.builder.IRecipeSlotBuilder>, mezz.jei.api.gui.placement.IPlaceable<mezz.jei.api.gui.builder.IRecipeSlotBuilder> {
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder addRichTooltipCallback(mezz.jei.api.gui.ingredient.IRecipeSlotRichTooltipCallback);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setSlotName(java.lang.String);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setStandardSlotBackground();
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setOutputSlotBackground();
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setBackground(mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setOverlay(mezz.jei.api.gui.drawable.IDrawable, int, int);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setFluidRenderer(long, boolean, int, int);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setFluidRenderer(long, boolean, int, int, mezz.jei.api.gui.drawable.TilingDirection);
+  public abstract <T> mezz.jei.api.gui.builder.IRecipeSlotBuilder setCustomRenderer(mezz.jei.api.ingredients.IIngredientType<T>, mezz.jei.api.ingredients.IIngredientRenderer<T>);
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addFluidStack(net.minecraft.world.level.material.Fluid, long);
+  public default mezz.jei.api.gui.builder.IRecipeSlotBuilder addFluidStack(net.minecraft.world.level.material.Fluid, long, net.minecraft.core.component.DataComponentPatch);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setPosition(int, int);
+  public abstract mezz.jei.api.gui.builder.IRecipeSlotBuilder setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public abstract int getWidth();
+  public abstract int getHeight();
+  public default mezz.jei.api.gui.builder.IIngredientAcceptor addFluidStack(net.minecraft.world.level.material.Fluid, long, net.minecraft.core.component.DataComponentPatch);
+  public default mezz.jei.api.gui.builder.IIngredientAcceptor addFluidStack(net.minecraft.world.level.material.Fluid, long);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int, int, int, mezz.jei.api.gui.placement.HorizontalAlignment, mezz.jei.api.gui.placement.VerticalAlignment);
+  public default mezz.jei.api.gui.placement.IPlaceable setPosition(int, int);
+}
+Compiled from "ITooltipBuilder.java"
+public interface mezz.jei.api.gui.builder.ITooltipBuilder {
+  public abstract void add(net.minecraft.network.chat.FormattedText);
+  public abstract void addAll(java.util.Collection<? extends net.minecraft.network.chat.FormattedText>);
+  public abstract void add(net.minecraft.world.inventory.tooltip.TooltipComponent);
+  public abstract void addKeyUsageComponent(java.lang.String, mezz.jei.api.runtime.IJeiKeyMapping);
+  public abstract void setIngredient(mezz.jei.api.ingredients.ITypedIngredient<?>);
+  public default void clear();
+  public abstract void clearIngredient();
+  public abstract java.util.List<com.mojang.datafixers.util.Either<net.minecraft.network.chat.FormattedText, net.minecraft.world.inventory.tooltip.TooltipComponent>> getLines();
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.gui.builder.package-info {
+}

@@ -1,0 +1,48 @@
+Compiled from "Transaction.java"
+public final class net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle extends java.lang.Enum<net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle> {
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle NONE;
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle OPEN;
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle CLOSING;
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle OUTER_CLOSING;
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle[] values();
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle valueOf(java.lang.String);
+}
+Compiled from "Transaction.java"
+public interface net.fabricmc.fabric.api.transfer.v1.transaction.Transaction extends java.lang.AutoCloseable,net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext {
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.Transaction openOuter();
+  public static boolean isOpen();
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.Transaction$Lifecycle getLifecycle();
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.Transaction openNested(net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext);
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext getCurrentUnsafe();
+  public abstract void abort();
+  public abstract void commit();
+  public abstract void close();
+}
+Compiled from "TransactionContext.java"
+public interface net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$CloseCallback {
+  public abstract void onClose(net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext, net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result);
+}
+Compiled from "TransactionContext.java"
+public interface net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$OuterCloseCallback {
+  public abstract void afterOuterClose(net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result);
+}
+Compiled from "TransactionContext.java"
+public final class net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result extends java.lang.Enum<net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result> {
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result ABORTED;
+  public static final net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result COMMITTED;
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result[] values();
+  public static net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$Result valueOf(java.lang.String);
+  public boolean wasAborted();
+  public boolean wasCommitted();
+}
+Compiled from "TransactionContext.java"
+public interface net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext {
+  public abstract net.fabricmc.fabric.api.transfer.v1.transaction.Transaction openNested();
+  public abstract int nestingDepth();
+  public abstract net.fabricmc.fabric.api.transfer.v1.transaction.Transaction getOpenTransaction(int);
+  public abstract void addCloseCallback(net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$CloseCallback);
+  public abstract void addOuterCloseCallback(net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext$OuterCloseCallback);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.transaction.package-info {
+}

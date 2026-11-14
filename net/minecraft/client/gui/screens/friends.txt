@@ -1,0 +1,126 @@
+Compiled from "OutgoingEntry.java"
+class net.minecraft.client.gui.screens.friends.OutgoingEntry extends net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget {
+  public net.minecraft.client.gui.screens.friends.OutgoingEntry(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.friends.FriendsOverlayScreen, net.minecraft.client.gui.screens.social.PlayerSocialManager$PlayerData, java.lang.Runnable);
+  protected net.minecraft.network.chat.Component getEntryNarration();
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "IncomingEntry.java"
+class net.minecraft.client.gui.screens.friends.IncomingEntry extends net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget {
+  public net.minecraft.client.gui.screens.friends.IncomingEntry(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.friends.FriendsOverlayScreen, net.minecraft.client.gui.screens.social.PlayerSocialManager$PlayerData, java.lang.Runnable, java.lang.Runnable);
+  protected net.minecraft.network.chat.Component getEntryNarration();
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "AddFriendWidget.java"
+final class net.minecraft.client.gui.screens.friends.AddFriendWidget$State extends java.lang.Enum<net.minecraft.client.gui.screens.friends.AddFriendWidget$State> {
+  public static final net.minecraft.client.gui.screens.friends.AddFriendWidget$State EMPTY_INPUT;
+  public static final net.minecraft.client.gui.screens.friends.AddFriendWidget$State READY;
+  public static final net.minecraft.client.gui.screens.friends.AddFriendWidget$State SENDING;
+  public static final net.minecraft.client.gui.screens.friends.AddFriendWidget$State DISABLED;
+  public static net.minecraft.client.gui.screens.friends.AddFriendWidget$State[] values();
+  public static net.minecraft.client.gui.screens.friends.AddFriendWidget$State valueOf(java.lang.String);
+}
+Compiled from "AddFriendWidget.java"
+class net.minecraft.client.gui.screens.friends.AddFriendWidget extends net.minecraft.client.gui.components.AbstractContainerWidget {
+  public void applyState(net.minecraft.client.gui.screens.friends.AddFriendWidget$State);
+  public net.minecraft.client.gui.components.EditBox getEditBox();
+  public java.lang.String getValue();
+  public void setValue(java.lang.String);
+  protected int contentHeight();
+  public void setX(int);
+  public void setY(int);
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public java.util.Collection<? extends net.minecraft.client.gui.narration.NarratableEntry> getNarratables();
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+}
+Compiled from "AbstractFriendsTab.java"
+public abstract class net.minecraft.client.gui.screens.friends.AbstractFriendsTab implements net.minecraft.client.gui.components.tabs.Tab {
+  protected final int width;
+  protected int height;
+  public net.minecraft.client.gui.screens.friends.AbstractFriendsTab(int, int);
+  protected int getListContentWidth();
+  protected abstract net.minecraft.client.gui.layouts.Layout entriesContainer();
+}
+Compiled from "FriendsListConfirmScreen.java"
+public class net.minecraft.client.gui.screens.friends.FriendsListConfirmScreen extends net.minecraft.client.gui.screens.ConfirmScreen {
+  public net.minecraft.client.gui.screens.friends.FriendsListConfirmScreen(it.unimi.dsi.fastutil.booleans.BooleanConsumer, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component);
+  protected net.minecraft.client.gui.layouts.LayoutElement addMessage();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "FriendsOverlayScreen.java"
+public class net.minecraft.client.gui.screens.friends.FriendsOverlayScreen extends net.minecraft.client.gui.screens.Screen {
+  public static final int TAB_BUTTON_WIDTH;
+  public net.minecraft.client.gui.screens.friends.FriendsOverlayScreen(net.minecraft.client.gui.screens.Screen);
+  public void added();
+  public void removed();
+  protected void init();
+  public int getOverlayWidth();
+  protected void repositionElements();
+  public void tick();
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void onClose();
+  public void refreshLists();
+  public void applyPresenceUpdate();
+}
+Compiled from "FriendsTab.java"
+class net.minecraft.client.gui.screens.friends.FriendsTab extends net.minecraft.client.gui.screens.friends.AbstractFriendsTab {
+  public void showLoading();
+  public void showError(net.minecraft.network.chat.Component);
+  public void showEmpty();
+  public net.minecraft.network.chat.Component getTabTitle();
+  public net.minecraft.network.chat.Component getTabExtraNarration();
+  public void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public void doLayout(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.layouts.Layout getLayout();
+  protected net.minecraft.client.gui.layouts.Layout entriesContainer();
+}
+Compiled from "AbstractFriendsEntryContainerWidget.java"
+abstract class net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget extends net.minecraft.client.gui.components.AbstractContainerWidget {
+  protected final net.minecraft.client.Minecraft minecraft;
+  protected final net.minecraft.client.gui.screens.friends.FriendsOverlayScreen screen;
+  protected final net.minecraft.client.gui.components.PlayerFaceWidget playerFaceWidget;
+  protected final net.minecraft.client.gui.components.StringWidget nameWidget;
+  protected final java.lang.String playerName;
+  protected final java.util.UUID playerId;
+  protected final boolean showingStatus;
+  public net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.friends.FriendsOverlayScreen, int, int, int, int, net.minecraft.client.gui.screens.social.PlayerSocialManager$PlayerData);
+  public net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.friends.FriendsOverlayScreen, int, int, int, int, net.minecraft.client.gui.screens.social.PlayerSocialManager$PlayerData, boolean);
+  protected abstract net.minecraft.network.chat.Component getEntryNarration();
+  protected void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public java.util.Collection<? extends net.minecraft.client.gui.narration.NarratableEntry> getNarratables();
+  protected final void addChild(net.minecraft.client.gui.components.AbstractWidget);
+  protected final void removeChild(net.minecraft.client.gui.components.AbstractWidget);
+  public java.util.List<? extends net.minecraft.client.gui.components.events.GuiEventListener> children();
+  protected int contentHeight();
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.friends.package-info {
+}
+Compiled from "PendingTab.java"
+class net.minecraft.client.gui.screens.friends.PendingTab extends net.minecraft.client.gui.screens.friends.AbstractFriendsTab {
+  public net.minecraft.network.chat.Component getTabTitle();
+  public net.minecraft.network.chat.Component getTabExtraNarration();
+  public void visitChildren(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+  public void doLayout(net.minecraft.client.gui.navigation.ScreenRectangle);
+  public net.minecraft.client.gui.layouts.Layout getLayout();
+  public void showLoading();
+  public void showError(net.minecraft.network.chat.Component);
+  public void updateEntries(java.util.List<net.minecraft.client.gui.screens.friends.IncomingEntry>, java.util.List<net.minecraft.client.gui.screens.friends.OutgoingEntry>);
+  protected net.minecraft.client.gui.layouts.Layout entriesContainer();
+  public void showEmpty();
+}
+Compiled from "FriendsOverlayTabButton.java"
+class net.minecraft.client.gui.screens.friends.FriendsOverlayTabButton extends net.minecraft.client.gui.components.TabButton {
+  public net.minecraft.client.gui.screens.friends.FriendsOverlayTabButton(net.minecraft.client.gui.components.tabs.TabManager, net.minecraft.client.gui.components.tabs.Tab, int, int);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "FriendEntry.java"
+class net.minecraft.client.gui.screens.friends.FriendEntry extends net.minecraft.client.gui.screens.friends.AbstractFriendsEntryContainerWidget {
+  public net.minecraft.client.gui.screens.friends.FriendEntry(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.friends.FriendsOverlayScreen, net.minecraft.client.gui.screens.social.PlayerSocialManager$PlayerData, com.mojang.authlib.services.response.PresenceStatusDto, boolean, java.lang.Runnable);
+  public int presenceStatusSortOrder();
+  protected net.minecraft.network.chat.Component getEntryNarration();
+  protected void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}

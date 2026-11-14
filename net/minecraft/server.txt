@@ -1,0 +1,637 @@
+Compiled from "RegistryLayer.java"
+public final class net.minecraft.server.RegistryLayer extends java.lang.Enum<net.minecraft.server.RegistryLayer> {
+  public static final net.minecraft.server.RegistryLayer STATIC;
+  public static final net.minecraft.server.RegistryLayer WORLD;
+  public static final net.minecraft.server.RegistryLayer DIMENSIONS;
+  public static final net.minecraft.server.RegistryLayer RELOADABLE;
+  public static net.minecraft.server.RegistryLayer[] values();
+  public static net.minecraft.server.RegistryLayer valueOf(java.lang.String);
+  public static net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> createRegistryAccess();
+}
+Compiled from "WorldLoader.java"
+public final class net.minecraft.server.WorldLoader$DataLoadContext extends java.lang.Record {
+  public net.minecraft.server.WorldLoader$DataLoadContext(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.world.level.WorldDataConfiguration, net.minecraft.core.HolderLookup$Provider, net.minecraft.core.RegistryAccess$Frozen);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.packs.resources.ResourceManager resources();
+  public net.minecraft.world.level.WorldDataConfiguration dataConfiguration();
+  public net.minecraft.core.HolderLookup$Provider datapackWorldRegistries();
+  public net.minecraft.core.RegistryAccess$Frozen datapackDimensions();
+}
+Compiled from "WorldLoader.java"
+public class net.minecraft.server.WorldLoader {
+  public net.minecraft.server.WorldLoader();
+  public static <D, R> java.util.concurrent.CompletableFuture<R> load(net.minecraft.server.WorldLoader$InitConfig, net.minecraft.server.WorldLoader$WorldDataSupplier<D>, net.minecraft.server.WorldLoader$ResultFactory<D, R>, java.util.concurrent.Executor, java.util.concurrent.Executor);
+}
+Compiled from "Main.java"
+public class net.minecraft.server.Main {
+  public net.minecraft.server.Main();
+  public static void main(java.lang.String[]);
+}
+Compiled from "ConsoleInput.java"
+public class net.minecraft.server.ConsoleInput {
+  public final java.lang.String msg;
+  public final net.minecraft.commands.CommandSourceStack source;
+  public net.minecraft.server.ConsoleInput(java.lang.String, net.minecraft.commands.CommandSourceStack);
+}
+Compiled from "Bootstrap.java"
+public class net.minecraft.server.Bootstrap {
+  public static final java.io.PrintStream STDOUT;
+  public static final java.util.concurrent.atomic.AtomicLong bootstrapDuration;
+  public net.minecraft.server.Bootstrap();
+  public static void bootStrap();
+  public static java.util.Set<java.lang.String> getMissingTranslations(net.minecraft.locale.Language);
+  public static void checkBootstrapCalled(java.util.function.Supplier<java.lang.String>);
+  public static void validate();
+  public static void realStdoutPrintln(java.lang.String);
+  public static void shutdownStdout();
+}
+Compiled from "SuppressedExceptionCollector.java"
+final class net.minecraft.server.SuppressedExceptionCollector$LongEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long timestampMs();
+  public java.lang.String location();
+  public java.lang.Class<? extends java.lang.Throwable> cls();
+  public java.lang.String message();
+}
+Compiled from "ServerInfo.java"
+public interface net.minecraft.server.ServerInfo {
+  public abstract java.lang.String getMotd();
+  public abstract java.lang.String getServerVersion();
+  public abstract int getPlayerCount();
+  public abstract int getMaxPlayers();
+}
+Compiled from "WorldLoader.java"
+public interface net.minecraft.server.WorldLoader$WorldDataSupplier<D> {
+  public abstract net.minecraft.server.WorldLoader$DataLoadOutput<D> get(net.minecraft.server.WorldLoader$DataLoadContext);
+}
+Compiled from "ServerLinks.java"
+public final class net.minecraft.server.ServerLinks$UntrustedEntry extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.server.ServerLinks$UntrustedEntry> STREAM_CODEC;
+  public net.minecraft.server.ServerLinks$UntrustedEntry(com.mojang.datafixers.util.Either<net.minecraft.server.ServerLinks$KnownLinkType, net.minecraft.network.chat.Component>, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.datafixers.util.Either<net.minecraft.server.ServerLinks$KnownLinkType, net.minecraft.network.chat.Component> type();
+  public java.lang.String link();
+}
+Compiled from "Eula.java"
+public class net.minecraft.server.Eula {
+  public net.minecraft.server.Eula(java.nio.file.Path);
+  public boolean hasAgreedToEULA();
+}
+Compiled from "RunningOnDifferentThreadException.java"
+public final class net.minecraft.server.RunningOnDifferentThreadException extends java.lang.RuntimeException {
+  public static final net.minecraft.server.RunningOnDifferentThreadException RUNNING_ON_DIFFERENT_THREAD;
+  public synchronized java.lang.Throwable fillInStackTrace();
+}
+Compiled from "MinecraftServer.java"
+public abstract class net.minecraft.server.MinecraftServer extends net.minecraft.util.thread.ReentrantBlockableEventLoop<net.minecraft.server.TickTask> implements net.minecraft.commands.CommandSource, net.minecraft.server.ServerInfo, net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter, net.fabricmc.fabric.api.attachment.v1.GlobalAttachmentsProvider, net.fabricmc.fabric.api.resource.v1.DataResourceStore {
+  public static final java.lang.String VANILLA_BRAND;
+  public static final int SPAWN_POSITION_SEARCH_RADIUS;
+  public static final int ABSOLUTE_MAX_WORLD_SIZE;
+  public static final net.minecraft.world.level.LevelSettings DEMO_SETTINGS;
+  public static final java.util.function.Supplier<net.minecraft.world.level.gamerules.GameRules> DEFAULT_GAME_RULES;
+  public static final net.minecraft.server.players.NameAndId ANONYMOUS_PLAYER_PROFILE;
+  public static final java.lang.String SERVER_THREAD_NAME;
+  protected final net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess storageSource;
+  protected final net.minecraft.world.level.storage.PlayerDataStorage playerDataStorage;
+  protected final java.net.Proxy proxy;
+  protected final net.minecraft.server.Services services;
+  protected final net.minecraft.world.level.storage.WorldData worldData;
+  public static <S extends net.minecraft.server.MinecraftServer> S spin(java.util.function.Function<java.lang.Thread, S>);
+  public net.minecraft.server.MinecraftServer(java.lang.Thread, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.packs.repository.PackRepository, net.minecraft.server.WorldStem, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>, java.net.Proxy, com.mojang.datafixers.DataFixer, net.minecraft.server.Services, net.minecraft.server.level.progress.LevelLoadListener, boolean, net.minecraft.server.notifications.NotificationManager);
+  protected abstract boolean initServer() throws java.io.IOException;
+  public net.minecraft.server.level.progress.ChunkLoadStatusView createChunkLoadStatusView(int);
+  protected void loadLevel();
+  protected void forceDifficulty();
+  protected void createLevels();
+  protected net.minecraft.core.GlobalPos selectLevelLoadFocusPos();
+  public net.minecraft.world.level.GameType getDefaultGameType();
+  public boolean isHardcore();
+  public abstract net.minecraft.server.permissions.LevelBasedPermissionSet operatorUserPermissions();
+  public abstract net.minecraft.server.permissions.PermissionSet getFunctionCompilationPermissions();
+  public abstract boolean shouldRconBroadcast();
+  public boolean saveAllChunks(boolean, boolean, boolean);
+  public boolean saveEverything(boolean, boolean, boolean);
+  public void close();
+  protected void stopServer();
+  public java.lang.String getLocalIp();
+  public void setLocalIp(java.lang.String);
+  public boolean isRunning();
+  public void halt(boolean);
+  protected void runServer();
+  public net.minecraft.server.notifications.NotificationManager notificationManager();
+  protected void waitUntilNextTick();
+  protected void waitForTasks();
+  public net.minecraft.server.TickTask wrapRunnable(java.lang.Runnable);
+  protected boolean shouldRun(net.minecraft.server.TickTask);
+  protected boolean pollTask();
+  protected void doRunTask(net.minecraft.server.TickTask);
+  public java.util.Optional<java.nio.file.Path> getWorldScreenshotFile();
+  public java.nio.file.Path getServerDirectory();
+  public net.minecraft.server.notifications.ServerActivityMonitor getServerActivityMonitor();
+  protected void onServerCrash(net.minecraft.CrashReport);
+  protected void onServerExit();
+  public boolean isPaused();
+  protected void tickServer(java.util.function.BooleanSupplier);
+  protected void processPacketsAndTick(boolean);
+  public void onTickRateChanged();
+  protected abstract net.minecraft.util.debugchart.SampleLogger getTickTimeLogger();
+  public abstract boolean isTickTimeLoggingEnabled();
+  protected void tickChildren(java.util.function.BooleanSupplier);
+  protected void tickConnection();
+  public void forceGameTimeSynchronization();
+  public void addTickable(java.lang.Runnable);
+  protected void setId(java.lang.String);
+  public boolean isShutdown();
+  public java.nio.file.Path getFile(java.lang.String);
+  public final net.minecraft.server.level.ServerLevel overworld();
+  public net.minecraft.server.level.ServerLevel getLevel(net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>);
+  public java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levelKeys();
+  public java.lang.Iterable<net.minecraft.server.level.ServerLevel> getAllLevels();
+  public java.lang.String getServerVersion();
+  public int getPlayerCount();
+  public java.lang.String[] getPlayerNames();
+  public java.lang.String getServerModName();
+  public net.minecraft.world.clock.ServerClockManager clockManager();
+  public net.minecraft.SystemReport fillSystemReport(net.minecraft.SystemReport);
+  public abstract net.minecraft.SystemReport fillServerSystemReport(net.minecraft.SystemReport);
+  public net.minecraft.util.ModCheck getModdedStatus();
+  public void sendSystemMessage(net.minecraft.network.chat.Component);
+  public java.security.KeyPair getKeyPair();
+  public int getPort();
+  public void setPort(int);
+  public com.mojang.authlib.GameProfile getSingleplayerProfile();
+  public void setSingleplayerProfile(com.mojang.authlib.GameProfile);
+  public boolean isSingleplayer();
+  protected void initializeKeyPair();
+  public void setDifficulty(net.minecraft.world.Difficulty, boolean);
+  public int getScaledTrackingDistance(int);
+  public void updateMobSpawningFlags();
+  public void setDifficultyLocked(boolean);
+  public boolean isDemo();
+  public void setDemo(boolean);
+  public java.util.Map<java.lang.String, java.lang.String> getCodeOfConducts();
+  public java.util.Optional<net.minecraft.server.MinecraftServer$ServerResourcePackInfo> getServerResourcePack();
+  public boolean isResourcePackRequired();
+  public abstract boolean isDedicatedServer();
+  public abstract int getRateLimitPacketsPerSecond();
+  public abstract int getCommandSpamThresholdSeconds();
+  public abstract int getChatSpamThresholdSeconds();
+  public boolean usesAuthentication();
+  public void setUsesAuthentication(boolean);
+  public boolean getPreventProxyConnections();
+  public void setPreventProxyConnections(boolean);
+  public abstract boolean useNativeTransport();
+  public boolean allowFlight();
+  public java.lang.String getMotd();
+  public void setMotd(java.lang.String);
+  public boolean isStopped();
+  public net.minecraft.server.players.PlayerList getPlayerList();
+  public void setPlayerList(net.minecraft.server.players.PlayerList);
+  public abstract boolean isPublished();
+  public void setDefaultGameType(net.minecraft.world.level.GameType);
+  public int enforceGameTypeForPlayers(net.minecraft.world.level.GameType);
+  public net.minecraft.server.network.ServerConnectionListener getConnection();
+  public boolean isReady();
+  public boolean publishServer(net.minecraft.server.MinecraftServer$MultiplayerScope, boolean, int);
+  public boolean unpublishServer();
+  public int getTickCount();
+  public boolean isUnderSpawnProtection(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public boolean repliesToStatus();
+  public boolean hidesOnlinePlayers();
+  public java.net.Proxy getProxy();
+  public int playerIdleTimeout();
+  public void setPlayerIdleTimeout(int);
+  public net.minecraft.server.Services services();
+  public net.minecraft.network.protocol.status.ServerStatus getStatus();
+  public void invalidateStatus();
+  public int getAbsoluteMaxWorldSize();
+  public boolean scheduleExecutables();
+  public void executeIfPossible(java.lang.Runnable);
+  public java.lang.Thread getRunningThread();
+  public int getCompressionThreshold();
+  public boolean enforceSecureProfile();
+  public long getNextTickTime();
+  public com.mojang.datafixers.DataFixer getFixerUpper();
+  public net.minecraft.server.ServerAdvancementManager getAdvancements();
+  public net.minecraft.server.ServerFunctionManager getFunctions();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> reloadResources(java.util.Collection<java.lang.String>);
+  public static net.minecraft.world.level.WorldDataConfiguration configurePackRepository(net.minecraft.server.packs.repository.PackRepository, net.minecraft.world.level.WorldDataConfiguration, boolean, boolean);
+  public void kickUnlistedPlayers();
+  public net.minecraft.server.packs.repository.PackRepository getPackRepository();
+  public net.minecraft.commands.Commands getCommands();
+  public net.minecraft.commands.CommandSourceStack createCommandSourceStack();
+  public net.minecraft.server.level.ServerLevel findRespawnDimension();
+  public void setRespawnData(net.minecraft.world.level.storage.LevelData$RespawnData);
+  public net.minecraft.world.level.storage.LevelData$RespawnData getRespawnData();
+  public boolean acceptsSuccess();
+  public boolean acceptsFailure();
+  public abstract boolean shouldInformAdmins();
+  public net.minecraft.world.level.levelgen.WorldGenSettings getWorldGenSettings();
+  public net.minecraft.world.item.crafting.RecipeManager getRecipeManager();
+  public net.minecraft.server.ServerScoreboard getScoreboard();
+  public net.minecraft.world.level.storage.CommandStorage getCommandStorage();
+  public net.minecraft.world.Stopwatches getStopwatches();
+  public net.minecraft.server.bossevents.CustomBossEvents getCustomBossEvents();
+  public net.minecraft.util.RandomSource getRandomSequence(net.minecraft.resources.Identifier);
+  public net.minecraft.world.RandomSequences getRandomSequences();
+  public void setWeatherParameters(int, int, boolean, boolean);
+  public net.minecraft.world.level.saveddata.WeatherData getWeatherData();
+  public boolean isEnforceWhitelist();
+  public void setEnforceWhitelist(boolean);
+  public boolean isUsingWhitelist();
+  public void setUsingWhitelist(boolean);
+  public float getCurrentSmoothedTickTime();
+  public net.minecraft.server.ServerTickRateManager tickRateManager();
+  public long getAverageTickTimeNanos();
+  public long[] getTickTimesNanos();
+  public net.minecraft.server.permissions.LevelBasedPermissionSet getProfilePermissions(net.minecraft.server.players.NameAndId);
+  public abstract boolean isSingleplayerOwner(net.minecraft.server.players.NameAndId);
+  public void dumpServerProperties(java.nio.file.Path) throws java.io.IOException;
+  protected void endMetricsRecordingTick();
+  public boolean isRecordingMetrics();
+  public void startRecordingMetrics(java.util.function.Consumer<net.minecraft.util.profiling.ProfileResults>, java.util.function.Consumer<java.nio.file.Path>);
+  public void stopRecordingMetrics();
+  public void finishRecordingMetrics();
+  public void cancelRecordingMetrics();
+  public java.nio.file.Path getWorldPath(net.minecraft.world.level.storage.LevelResource);
+  public boolean forceSynchronousWrites();
+  public net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager getStructureTemplateManager();
+  public net.minecraft.world.level.storage.WorldData getWorldData();
+  public net.minecraft.core.RegistryAccess$Frozen registryAccess();
+  public net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> registries();
+  public net.minecraft.server.ReloadableServerRegistries$Holder reloadableRegistries();
+  public net.minecraft.server.network.TextFilter createTextFilterForPlayer(net.minecraft.server.level.ServerPlayer);
+  public net.minecraft.server.level.ServerPlayerGameMode createGameModeForPlayer(net.minecraft.server.level.ServerPlayer);
+  public net.minecraft.world.level.GameType getForcedGameType();
+  public boolean forceGameMode();
+  public void setForceGameMode(boolean);
+  public net.minecraft.server.packs.resources.ResourceManager getResourceManager();
+  public boolean isCurrentlySaving();
+  public boolean isTimeProfilerRunning();
+  public void startTimeProfiler();
+  public net.minecraft.util.profiling.ProfileResults stopTimeProfiler();
+  public int getMaxChainedNeighborUpdates();
+  public void logChatMessage(net.minecraft.network.chat.Component, net.minecraft.network.chat.ChatType$Bound, java.lang.String);
+  public net.minecraft.network.chat.ChatDecorator getChatDecorator();
+  public boolean logIPs();
+  public void handleCustomClickAction(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.Tag>);
+  public net.minecraft.server.level.progress.LevelLoadListener getLevelLoadListener();
+  public boolean setAutoSave(boolean);
+  public boolean isAutoSave();
+  public <T> void onGameRuleChanged(net.minecraft.world.level.gamerules.GameRule<T>, T);
+  public net.minecraft.world.level.gamerules.GameRules getGlobalGameRules();
+  public net.minecraft.world.level.storage.SavedDataStorage getDataStorage();
+  public net.minecraft.world.level.timers.TimerQueue<net.minecraft.server.MinecraftServer> getScheduledEvents();
+  public net.minecraft.world.level.gamerules.GameRules getGameRules();
+  public boolean acceptsTransfers();
+  public void reportChunkLoadFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public void reportChunkSaveFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  protected void warnOnLowDiskSpace();
+  public void sendLowDiskSpaceWarning();
+  public void reportPacketHandlingException(java.lang.Throwable, net.minecraft.network.protocol.PacketType<?>);
+  public net.minecraft.server.ServerLinks serverLinks();
+  protected int pauseWhenEmptySeconds();
+  public net.minecraft.network.PacketProcessor packetProcessor();
+  public net.minecraft.util.debug.ServerDebugSubscribers debugSubscribers();
+  protected void doRunTask(java.lang.Runnable);
+  protected boolean shouldRun(java.lang.Runnable);
+  public java.lang.Runnable wrapRunnable(java.lang.Runnable);
+}
+Compiled from "ServerAdvancementManager.java"
+public class net.minecraft.server.ServerAdvancementManager {
+  public net.minecraft.server.ServerAdvancementManager(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.advancements.AdvancementHolder get(net.minecraft.resources.Identifier);
+  public net.minecraft.advancements.AdvancementTree tree();
+  public java.util.Collection<net.minecraft.advancements.AdvancementHolder> getAllAdvancements();
+}
+Compiled from "ServerLinks.java"
+public final class net.minecraft.server.ServerLinks$Entry extends java.lang.Record {
+  public net.minecraft.server.ServerLinks$Entry(com.mojang.datafixers.util.Either<net.minecraft.server.ServerLinks$KnownLinkType, net.minecraft.network.chat.Component>, java.net.URI);
+  public static net.minecraft.server.ServerLinks$Entry knownType(net.minecraft.server.ServerLinks$KnownLinkType, java.net.URI);
+  public static net.minecraft.server.ServerLinks$Entry custom(net.minecraft.network.chat.Component, java.net.URI);
+  public net.minecraft.network.chat.Component displayName();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.datafixers.util.Either<net.minecraft.server.ServerLinks$KnownLinkType, net.minecraft.network.chat.Component> type();
+  public java.net.URI link();
+}
+Compiled from "LoggedPrintStream.java"
+public class net.minecraft.server.LoggedPrintStream extends java.io.PrintStream {
+  protected final java.lang.String name;
+  public net.minecraft.server.LoggedPrintStream(java.lang.String, java.io.OutputStream);
+  public void println(java.lang.String);
+  public void println(java.lang.Object);
+  protected void logLine(java.lang.String);
+}
+Compiled from "MinecraftServer.java"
+class net.minecraft.server.MinecraftServer$TimeProfiler {
+}
+Compiled from "ServerScoreboard.java"
+public class net.minecraft.server.ServerScoreboard extends net.minecraft.world.scores.Scoreboard {
+  public net.minecraft.server.ServerScoreboard(net.minecraft.server.MinecraftServer);
+  public void load(net.minecraft.world.scores.ScoreboardSaveData$Packed);
+  protected void onScoreChanged(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective, net.minecraft.world.scores.Score);
+  protected void onScoreLockChanged(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public void onPlayerRemoved(net.minecraft.world.scores.ScoreHolder);
+  public void onPlayerScoreRemoved(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public void setDisplayObjective(net.minecraft.world.scores.DisplaySlot, net.minecraft.world.scores.Objective);
+  public boolean addPlayerToTeam(java.lang.String, net.minecraft.world.scores.PlayerTeam);
+  public void removePlayerFromTeam(java.lang.String, net.minecraft.world.scores.PlayerTeam);
+  public void onObjectiveAdded(net.minecraft.world.scores.Objective);
+  public void onObjectiveChanged(net.minecraft.world.scores.Objective);
+  public void onObjectiveRemoved(net.minecraft.world.scores.Objective);
+  public void onTeamAdded(net.minecraft.world.scores.PlayerTeam);
+  public void onTeamChanged(net.minecraft.world.scores.PlayerTeam);
+  public void onTeamRemoved(net.minecraft.world.scores.PlayerTeam);
+  protected void setDirty();
+  public void storeToSaveDataIfDirty(net.minecraft.world.scores.ScoreboardSaveData);
+  public java.util.List<net.minecraft.network.protocol.Packet<?>> getStartTrackingPackets(net.minecraft.world.scores.Objective);
+  public void startTrackingObjective(net.minecraft.world.scores.Objective);
+  public java.util.List<net.minecraft.network.protocol.Packet<?>> getStopTrackingPackets(net.minecraft.world.scores.Objective);
+  public void stopTrackingObjective(net.minecraft.world.scores.Objective);
+  public int getObjectiveDisplaySlotCount(net.minecraft.world.scores.Objective);
+}
+Compiled from "ServerLinks.java"
+public final class net.minecraft.server.ServerLinks$KnownLinkType extends java.lang.Enum<net.minecraft.server.ServerLinks$KnownLinkType> {
+  public static final net.minecraft.server.ServerLinks$KnownLinkType BUG_REPORT;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType COMMUNITY_GUIDELINES;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType SUPPORT;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType STATUS;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType FEEDBACK;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType COMMUNITY;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType WEBSITE;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType FORUMS;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType NEWS;
+  public static final net.minecraft.server.ServerLinks$KnownLinkType ANNOUNCEMENTS;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.server.ServerLinks$KnownLinkType> STREAM_CODEC;
+  public static net.minecraft.server.ServerLinks$KnownLinkType[] values();
+  public static net.minecraft.server.ServerLinks$KnownLinkType valueOf(java.lang.String);
+  public net.minecraft.server.ServerLinks$Entry create(java.net.URI);
+}
+Compiled from "WorldLoader.java"
+public interface net.minecraft.server.WorldLoader$ResultFactory<D, R> {
+  public abstract R create(net.minecraft.server.packs.resources.CloseableResourceManager, net.minecraft.server.ReloadableServerResources, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, D);
+}
+Compiled from "PlayerAdvancements.java"
+final class net.minecraft.server.PlayerAdvancements$Data extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.PlayerAdvancements$Data> CODEC;
+  public void forEach(java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.advancements.AdvancementProgress>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.advancements.AdvancementProgress> map();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.package-info {
+}
+Compiled from "ReloadableServerRegistries.java"
+public class net.minecraft.server.ReloadableServerRegistries {
+  public net.minecraft.server.ReloadableServerRegistries();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.server.ReloadableServerRegistries$LoadResult> reload(net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, java.util.List<net.minecraft.core.Registry$PendingTags<?>>, net.minecraft.server.packs.resources.ResourceManager, java.util.concurrent.Executor);
+}
+Compiled from "PlayerAdvancements.java"
+public class net.minecraft.server.PlayerAdvancements {
+  public net.minecraft.server.PlayerAdvancements(com.mojang.datafixers.DataFixer, net.minecraft.server.players.PlayerList, net.minecraft.server.ServerAdvancementManager, java.nio.file.Path, net.minecraft.server.level.ServerPlayer);
+  public void setPlayer(net.minecraft.server.level.ServerPlayer);
+  public void clearTriggers();
+  public void reload(net.minecraft.server.ServerAdvancementManager);
+  public void save();
+  public boolean award(net.minecraft.advancements.AdvancementHolder, java.lang.String);
+  public boolean revoke(net.minecraft.advancements.AdvancementHolder, java.lang.String);
+  public void flushDirty(net.minecraft.server.level.ServerPlayer, boolean);
+  public void setSelectedTab(net.minecraft.advancements.AdvancementHolder);
+  public net.minecraft.advancements.AdvancementProgress getOrStartProgress(net.minecraft.advancements.AdvancementHolder);
+  public <T extends net.minecraft.advancements.CriterionTriggerInstance> java.util.Map<net.minecraft.server.PlayerAdvancements$TriggerInstanceKey, T> getTriggerMapForType(net.minecraft.advancements.triggers.CriterionTrigger<T>);
+}
+Compiled from "PlayerAdvancements.java"
+public final class net.minecraft.server.PlayerAdvancements$TriggerInstanceKey extends java.lang.Record {
+  public net.minecraft.server.PlayerAdvancements$TriggerInstanceKey(net.minecraft.advancements.AdvancementHolder, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.advancements.AdvancementHolder advancement();
+  public java.lang.String criterion();
+}
+Compiled from "MinecraftServer.java"
+final class net.minecraft.server.MinecraftServer$ReloadableResources extends java.lang.Record implements java.lang.AutoCloseable {
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.packs.resources.CloseableResourceManager resourceManager();
+  public net.minecraft.server.ReloadableServerResources managers();
+}
+Compiled from "Services.java"
+public final class net.minecraft.server.Services extends java.lang.Record {
+  public net.minecraft.server.Services(com.mojang.authlib.minecraft.SessionService, com.mojang.authlib.services.ServicesKeySet, com.mojang.authlib.GameProfileRepository, net.minecraft.server.players.UserNameToIdResolver, net.minecraft.server.players.ProfileResolver);
+  public static net.minecraft.server.Services create(com.mojang.authlib.services.MinecraftServicesDiscoveryService, java.io.File);
+  public net.minecraft.util.SignatureValidator profileKeySignatureValidator();
+  public boolean canValidateProfileKeys();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.authlib.minecraft.SessionService sessionService();
+  public com.mojang.authlib.services.ServicesKeySet servicesKeySet();
+  public com.mojang.authlib.GameProfileRepository profileRepository();
+  public net.minecraft.server.players.UserNameToIdResolver nameToIdCache();
+  public net.minecraft.server.players.ProfileResolver profileResolver();
+}
+Compiled from "ReloadableServerRegistries.java"
+public class net.minecraft.server.ReloadableServerRegistries$Holder {
+  public net.minecraft.server.ReloadableServerRegistries$Holder(net.minecraft.core.HolderLookup$Provider);
+  public net.minecraft.core.HolderLookup$Provider lookup();
+  public net.minecraft.world.level.storage.loot.LootTable getLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>);
+}
+Compiled from "ChainedJsonException.java"
+public class net.minecraft.server.ChainedJsonException$Entry {
+  public java.lang.String getFilename();
+  public java.lang.String getJsonKeys();
+  public java.lang.String toString();
+}
+Compiled from "MinecraftServer.java"
+public final class net.minecraft.server.MinecraftServer$MultiplayerScope extends java.lang.Enum<net.minecraft.server.MinecraftServer$MultiplayerScope> {
+  public static final net.minecraft.server.MinecraftServer$MultiplayerScope OFF;
+  public static final net.minecraft.server.MinecraftServer$MultiplayerScope LAN;
+  public static net.minecraft.server.MinecraftServer$MultiplayerScope[] values();
+  public static net.minecraft.server.MinecraftServer$MultiplayerScope valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.network.chat.Component getTooltip();
+}
+Compiled from "ServerTickRateManager.java"
+public class net.minecraft.server.ServerTickRateManager extends net.minecraft.world.TickRateManager {
+  public net.minecraft.server.ServerTickRateManager(net.minecraft.server.MinecraftServer);
+  public boolean isSprinting();
+  public void setFrozen(boolean);
+  public boolean stepGameIfPaused(int);
+  public boolean stopStepping();
+  public boolean stopSprinting();
+  public boolean requestGameToSprint(int);
+  public boolean checkShouldSprintThisTick();
+  public void endTickWork();
+  public void setTickRate(float);
+  public void updateJoiningPlayer(net.minecraft.server.level.ServerPlayer);
+}
+Compiled from "ServerFunctionManager.java"
+public class net.minecraft.server.ServerFunctionManager {
+  public net.minecraft.server.ServerFunctionManager(net.minecraft.server.MinecraftServer, net.minecraft.server.ServerFunctionLibrary);
+  public com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack> getDispatcher();
+  public void tick();
+  public void execute(net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>, net.minecraft.commands.CommandSourceStack);
+  public void replaceLibrary(net.minecraft.server.ServerFunctionLibrary);
+  public net.minecraft.commands.CommandSourceStack getGameLoopSender();
+  public java.util.Optional<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> get(net.minecraft.resources.Identifier);
+  public java.util.List<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> getTag(net.minecraft.resources.Identifier);
+  public java.lang.Iterable<net.minecraft.resources.Identifier> getFunctionNames();
+  public java.lang.Iterable<net.minecraft.resources.Identifier> getTagNames();
+}
+Compiled from "WorldLoader.java"
+public final class net.minecraft.server.WorldLoader$InitConfig extends java.lang.Record {
+  public net.minecraft.server.WorldLoader$InitConfig(net.minecraft.server.WorldLoader$PackConfig, net.minecraft.commands.Commands$CommandSelection, net.minecraft.server.permissions.PermissionSet);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.WorldLoader$PackConfig packConfig();
+  public net.minecraft.commands.Commands$CommandSelection commandSelection();
+  public net.minecraft.server.permissions.PermissionSet functionCompilationPermissions();
+}
+Compiled from "ServerInterface.java"
+public interface net.minecraft.server.ServerInterface extends net.minecraft.server.ServerInfo {
+  public abstract net.minecraft.server.dedicated.DedicatedServerProperties getProperties();
+  public abstract java.lang.String getServerIp();
+  public abstract int getServerPort();
+  public abstract java.lang.String getServerName();
+  public abstract java.lang.String[] getPlayerNames();
+  public abstract java.lang.String getLevelIdName();
+  public abstract java.lang.String getPluginNames();
+  public abstract java.lang.String runCommand(java.lang.String);
+}
+Compiled from "ServerLinks.java"
+public final class net.minecraft.server.ServerLinks extends java.lang.Record {
+  public static final net.minecraft.server.ServerLinks EMPTY;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, com.mojang.datafixers.util.Either<net.minecraft.server.ServerLinks$KnownLinkType, net.minecraft.network.chat.Component>> TYPE_STREAM_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, java.util.List<net.minecraft.server.ServerLinks$UntrustedEntry>> UNTRUSTED_LINKS_STREAM_CODEC;
+  public net.minecraft.server.ServerLinks(java.util.List<net.minecraft.server.ServerLinks$Entry>);
+  public boolean isEmpty();
+  public java.util.Optional<net.minecraft.server.ServerLinks$Entry> findKnownType(net.minecraft.server.ServerLinks$KnownLinkType);
+  public java.util.List<net.minecraft.server.ServerLinks$UntrustedEntry> untrust();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.server.ServerLinks$Entry> entries();
+}
+Compiled from "ChainedJsonException.java"
+public class net.minecraft.server.ChainedJsonException extends java.io.IOException {
+  public net.minecraft.server.ChainedJsonException(java.lang.String);
+  public net.minecraft.server.ChainedJsonException(java.lang.String, java.lang.Throwable);
+  public void prependJsonKey(java.lang.String);
+  public void setFilenameAndFlush(java.lang.String);
+  public java.lang.String getMessage();
+  public static net.minecraft.server.ChainedJsonException forException(java.lang.Exception);
+}
+Compiled from "MinecraftServer.java"
+public final class net.minecraft.server.MinecraftServer$ServerResourcePackInfo extends java.lang.Record {
+  public net.minecraft.server.MinecraftServer$ServerResourcePackInfo(java.util.UUID, java.lang.String, java.lang.String, boolean, net.minecraft.network.chat.Component);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.UUID id();
+  public java.lang.String url();
+  public java.lang.String hash();
+  public boolean isRequired();
+  public net.minecraft.network.chat.Component prompt();
+}
+Compiled from "ReloadableServerRegistries.java"
+public final class net.minecraft.server.ReloadableServerRegistries$LoadResult extends java.lang.Record {
+  public net.minecraft.server.ReloadableServerRegistries$LoadResult(net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.core.HolderLookup$Provider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> layers();
+  public net.minecraft.core.HolderLookup$Provider lookupWithUpdatedTags();
+}
+Compiled from "WorldStem.java"
+public final class net.minecraft.server.WorldStem extends java.lang.Record implements java.lang.AutoCloseable {
+  public net.minecraft.server.WorldStem(net.minecraft.server.packs.resources.CloseableResourceManager, net.minecraft.server.ReloadableServerResources, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.packs.resources.CloseableResourceManager resourceManager();
+  public net.minecraft.server.ReloadableServerResources dataPackResources();
+  public net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer> registries();
+  public net.minecraft.world.level.storage.LevelDataAndDimensions$WorldDataAndGenSettings worldDataAndGenSettings();
+}
+Compiled from "TickTask.java"
+public class net.minecraft.server.TickTask implements java.lang.Runnable {
+  public net.minecraft.server.TickTask(int, java.lang.Runnable);
+  public int getTick();
+  public void run();
+}
+Compiled from "WorldLoader.java"
+public final class net.minecraft.server.WorldLoader$PackConfig extends java.lang.Record {
+  public net.minecraft.server.WorldLoader$PackConfig(net.minecraft.server.packs.repository.PackRepository, net.minecraft.world.level.WorldDataConfiguration, boolean, boolean);
+  public com.mojang.datafixers.util.Pair<net.minecraft.world.level.WorldDataConfiguration, net.minecraft.server.packs.resources.CloseableResourceManager> createResourceManager();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.packs.repository.PackRepository packRepository();
+  public net.minecraft.world.level.WorldDataConfiguration initialDataConfig();
+  public boolean safeMode();
+  public boolean initMode();
+}
+Compiled from "SuppressedExceptionCollector.java"
+public class net.minecraft.server.SuppressedExceptionCollector {
+  public net.minecraft.server.SuppressedExceptionCollector();
+  public synchronized void addEntry(java.lang.String, java.lang.Throwable);
+  public synchronized java.lang.String dump();
+}
+Compiled from "SuppressedExceptionCollector.java"
+final class net.minecraft.server.SuppressedExceptionCollector$ShortEntry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String location();
+  public java.lang.Class<? extends java.lang.Throwable> cls();
+}
+Compiled from "WorldLoader.java"
+public final class net.minecraft.server.WorldLoader$DataLoadOutput<D> extends java.lang.Record {
+  public net.minecraft.server.WorldLoader$DataLoadOutput(D, net.minecraft.core.RegistryAccess$Frozen);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public D cookie();
+  public net.minecraft.core.RegistryAccess$Frozen finalDimensions();
+}
+Compiled from "ServerFunctionLibrary.java"
+public class net.minecraft.server.ServerFunctionLibrary implements net.minecraft.server.packs.resources.PreparableReloadListener {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>>> TYPE_KEY;
+  public java.util.Optional<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> getFunction(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> getFunctions();
+  public java.util.List<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> getTag(net.minecraft.resources.Identifier);
+  public java.lang.Iterable<net.minecraft.resources.Identifier> getAvailableTags();
+  public net.minecraft.server.ServerFunctionLibrary(net.minecraft.server.permissions.PermissionSet, com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack>);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+}
+Compiled from "ReloadableServerResources.java"
+public class net.minecraft.server.ReloadableServerResources {
+  public net.minecraft.server.ServerFunctionLibrary getFunctionLibrary();
+  public net.minecraft.server.ReloadableServerRegistries$Holder fullRegistries();
+  public net.minecraft.world.item.crafting.RecipeManager getRecipeManager();
+  public net.minecraft.commands.Commands getCommands();
+  public net.minecraft.server.ServerAdvancementManager getAdvancements();
+  public java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener> listeners();
+  public static java.util.concurrent.CompletableFuture<net.minecraft.server.ReloadableServerResources> loadResources(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, java.util.List<net.minecraft.core.Registry$PendingTags<?>>, net.minecraft.world.flag.FeatureFlagSet, net.minecraft.commands.Commands$CommandSelection, net.minecraft.server.permissions.PermissionSet, java.util.concurrent.Executor, java.util.concurrent.Executor);
+  public void updateComponentsAndStaticRegistryTags();
+}
+Compiled from "DebugLoggedPrintStream.java"
+public class net.minecraft.server.DebugLoggedPrintStream extends net.minecraft.server.LoggedPrintStream {
+  public net.minecraft.server.DebugLoggedPrintStream(java.lang.String, java.io.OutputStream);
+  protected void logLine(java.lang.String);
+}

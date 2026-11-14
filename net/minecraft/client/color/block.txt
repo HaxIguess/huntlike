@@ -1,0 +1,53 @@
+Compiled from "BlockTintCache.java"
+class net.minecraft.client.color.block.BlockTintCache$CacheData {
+  public int[] getLayer(int);
+  public boolean isInvalidated();
+  public void invalidate();
+}
+Compiled from "BlockTintCache.java"
+class net.minecraft.client.color.block.BlockTintCache$LatestCacheInfo {
+}
+Compiled from "BlockTintSources.java"
+public class net.minecraft.client.color.block.BlockTintSources {
+  public net.minecraft.client.color.block.BlockTintSources();
+  public static net.minecraft.client.color.block.BlockTintSource constant(int);
+  public static net.minecraft.client.color.block.BlockTintSource constant(int, int);
+  public static net.minecraft.client.color.block.BlockTintSource doubleTallGrass();
+  public static net.minecraft.client.color.block.BlockTintSource grass();
+  public static net.minecraft.client.color.block.BlockTintSource grassBlock();
+  public static net.minecraft.client.color.block.BlockTintSource sugarCane();
+  public static net.minecraft.client.color.block.BlockTintSource foliage();
+  public static net.minecraft.client.color.block.BlockTintSource dryFoliage();
+  public static net.minecraft.client.color.block.BlockTintSource water();
+  public static net.minecraft.client.color.block.BlockTintSource waterParticles();
+  public static net.minecraft.client.color.block.BlockTintSource redstone();
+  public static net.minecraft.client.color.block.BlockTintSource stem();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.color.block.package-info {
+}
+Compiled from "BlockTintSource.java"
+public interface net.minecraft.client.color.block.BlockTintSource {
+  public abstract int color(net.minecraft.world.level.block.state.BlockState);
+  public default int colorInWorld(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.core.BlockPos);
+  public default int colorAsTerrainParticle(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.core.BlockPos);
+  public default java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>> relevantProperties();
+}
+Compiled from "BlockColors.java"
+public class net.minecraft.client.color.block.BlockColors {
+  public static final int LILY_PAD_IN_WORLD;
+  public static final int LILY_PAD_DEFAULT;
+  public net.minecraft.client.color.block.BlockColors();
+  public static net.minecraft.client.color.block.BlockColors createDefault();
+  public java.util.List<net.minecraft.client.color.block.BlockTintSource> getTintSources(net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.client.color.block.BlockTintSource getTintSource(net.minecraft.world.level.block.state.BlockState, int);
+  public void register(java.util.List<net.minecraft.client.color.block.BlockTintSource>, net.minecraft.world.level.block.Block...);
+  public java.util.Set<net.minecraft.world.level.block.state.properties.Property<?>> getColoringProperties(net.minecraft.world.level.block.Block);
+}
+Compiled from "BlockTintCache.java"
+public class net.minecraft.client.color.block.BlockTintCache {
+  public net.minecraft.client.color.block.BlockTintCache(java.util.function.ToIntFunction<net.minecraft.core.BlockPos>);
+  public int getColor(net.minecraft.core.BlockPos);
+  public void invalidateForChunk(int, int);
+  public void invalidateAll();
+}

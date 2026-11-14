@@ -1,0 +1,37 @@
+Compiled from "FabricLootTable.java"
+public interface net.fabricmc.fabric.impl.loot.FabricLootTable {
+  public abstract void fabric$setHolder(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable>);
+}
+Compiled from "LootTableHolderProvider.java"
+public final class net.fabricmc.fabric.impl.loot.LootTableHolderProvider implements net.minecraft.core.HolderLookup$Provider {
+  public net.fabricmc.fabric.impl.loot.LootTableHolderProvider(net.minecraft.resources.RegistryOps$RegistryInfoLookup, net.minecraft.core.HolderLookup$Provider);
+  public java.util.stream.Stream<net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<?>>> listRegistryKeys();
+  public <A> java.util.Optional<? extends net.minecraft.core.HolderLookup$RegistryLookup<A>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends A>>);
+  public <A> java.util.Optional<net.minecraft.core.Holder$Reference<A>> get(net.minecraft.resources.ResourceKey<A>);
+  public <T> net.minecraft.core.Holder$Reference<T> getOrThrow(net.minecraft.resources.ResourceKey<T>);
+  public <T> net.minecraft.core.HolderSet$Named<T> getOrThrow(net.minecraft.tags.TagKey<T>);
+  public <T> java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+}
+Compiled from "LootTableLookup.java"
+public final class net.fabricmc.fabric.impl.loot.LootTableLookup<T> implements net.minecraft.core.HolderLookup$RegistryLookup<T> {
+  public net.fabricmc.fabric.impl.loot.LootTableLookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>, net.minecraft.core.HolderGetter<T>, net.minecraft.core.HolderLookup$RegistryLookup<T>);
+  public java.util.stream.Stream<net.minecraft.core.Holder$Reference<T>> listElements();
+  public java.util.stream.Stream<net.minecraft.core.HolderSet$Named<T>> listTags();
+  public net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>> key();
+  public com.mojang.serialization.Lifecycle registryLifecycle();
+  public java.util.Optional<net.minecraft.core.Holder$Reference<T>> get(net.minecraft.resources.ResourceKey<T>);
+  public java.util.Optional<net.minecraft.core.HolderSet$Named<T>> get(net.minecraft.tags.TagKey<T>);
+}
+Compiled from "LootUtil.java"
+public final class net.fabricmc.fabric.impl.loot.LootUtil {
+  public net.fabricmc.fabric.impl.loot.LootUtil();
+  public static void startReload(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.core.HolderLookup$Provider);
+  public static void endReload(net.minecraft.server.packs.resources.ResourceManager);
+  public static net.minecraft.core.HolderLookup$Provider getActiveReloadProvider(net.minecraft.server.packs.resources.ResourceManager);
+  public static net.minecraft.world.level.storage.loot.LootTable modifyLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, net.minecraft.world.level.storage.loot.LootTable, net.fabricmc.fabric.api.loot.v3.LootTableSource, net.minecraft.core.HolderLookup$Provider);
+  public static net.fabricmc.fabric.api.loot.v3.LootTableSource determineSource(net.minecraft.server.packs.resources.Resource);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable> getEntryOrDirect(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.storage.loot.LootTable);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.loot.package-info {
+}

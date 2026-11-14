@@ -1,0 +1,102 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.block.piston.package-info {
+}
+Compiled from "PistonStructureResolver.java"
+public class net.minecraft.world.level.block.piston.PistonStructureResolver {
+  public static final int MAX_PUSH_DEPTH;
+  public net.minecraft.world.level.block.piston.PistonStructureResolver(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction, boolean);
+  public boolean resolve();
+  public net.minecraft.core.Direction getPushDirection();
+  public java.util.List<net.minecraft.core.BlockPos> getToPush();
+  public java.util.List<net.minecraft.core.BlockPos> getToDestroy();
+}
+Compiled from "PistonMath.java"
+public class net.minecraft.world.level.block.piston.PistonMath {
+  public net.minecraft.world.level.block.piston.PistonMath();
+  public static net.minecraft.world.phys.AABB getMovementArea(net.minecraft.world.phys.AABB, net.minecraft.core.Direction, double);
+}
+Compiled from "PistonBaseBlock.java"
+public class net.minecraft.world.level.block.piston.PistonBaseBlock extends net.minecraft.world.level.block.DirectionalBlock {
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty EXTENDED;
+  public static final int TRIGGER_EXTEND;
+  public static final int TRIGGER_CONTRACT;
+  public static final int TRIGGER_DROP;
+  public static final int PLATFORM_THICKNESS;
+  public net.minecraft.world.level.block.piston.PistonBaseBlock(boolean, net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  public void setPlacedBy(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.ItemStack);
+  protected void neighborChanged(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.world.level.redstone.Orientation, boolean);
+  protected void onPlace(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  public net.minecraft.world.level.block.state.BlockState getStateForPlacement(net.minecraft.world.item.context.BlockPlaceContext);
+  protected boolean triggerEvent(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, int, int);
+  public static boolean isPushable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction, boolean, net.minecraft.core.Direction);
+  protected net.minecraft.world.level.block.state.BlockState rotate(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Rotation);
+  protected net.minecraft.world.level.block.state.BlockState mirror(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Mirror);
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+  protected boolean useShapeForLightOcclusion(net.minecraft.world.level.block.state.BlockState);
+  protected boolean isPathfindable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.pathfinder.PathComputationType);
+}
+Compiled from "PistonHeadBlock.java"
+public class net.minecraft.world.level.block.piston.PistonHeadBlock extends net.minecraft.world.level.block.DirectionalBlock {
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.PistonType> TYPE;
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty SHORT;
+  public static final int PLATFORM_THICKNESS;
+  public net.minecraft.world.level.block.piston.PistonHeadBlock(net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+  protected boolean useShapeForLightOcclusion(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  public net.minecraft.world.level.block.state.BlockState playerWillDestroy(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.entity.player.Player);
+  protected void affectNeighborsAfterRemoval(net.minecraft.world.level.block.state.BlockState, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, boolean);
+  protected net.minecraft.world.level.block.state.BlockState updateShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelReader, net.minecraft.world.level.ScheduledTickAccess, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.util.RandomSource);
+  protected boolean canSurvive(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  protected void neighborChanged(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.world.level.redstone.Orientation, boolean);
+  protected net.minecraft.world.item.ItemStack getCloneItemStack(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  protected net.minecraft.world.level.block.state.BlockState rotate(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Rotation);
+  protected net.minecraft.world.level.block.state.BlockState mirror(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Mirror);
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+  protected boolean isPathfindable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.pathfinder.PathComputationType);
+}
+Compiled from "MovingPistonBlock.java"
+public class net.minecraft.world.level.block.piston.MovingPistonBlock extends net.minecraft.world.level.block.BaseEntityBlock {
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.core.Direction> FACING;
+  public static final net.minecraft.world.level.block.state.properties.EnumProperty<net.minecraft.world.level.block.state.properties.PistonType> TYPE;
+  public net.minecraft.world.level.block.piston.MovingPistonBlock(net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+  public net.minecraft.world.level.block.entity.BlockEntity newBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.level.block.entity.BlockEntity newMovingBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, boolean, boolean);
+  public <T extends net.minecraft.world.level.block.entity.BlockEntity> net.minecraft.world.level.block.entity.BlockEntityTicker<T> getTicker(net.minecraft.world.level.Level, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.entity.BlockEntityType<T>);
+  public void destroy(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.InteractionResult useWithoutItem(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player, net.minecraft.world.phys.BlockHitResult);
+  protected java.util.List<net.minecraft.world.item.ItemStack> getDrops(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.storage.loot.LootParams$Builder);
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  protected net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+  protected net.minecraft.world.level.block.RenderShape getRenderShape(net.minecraft.world.level.block.state.BlockState);
+  protected net.minecraft.world.item.ItemStack getCloneItemStack(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, boolean);
+  protected net.minecraft.world.level.block.state.BlockState rotate(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Rotation);
+  protected net.minecraft.world.level.block.state.BlockState mirror(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.Mirror);
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+  protected boolean isPathfindable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.pathfinder.PathComputationType);
+}
+Compiled from "PistonMovingBlockEntity.java"
+public class net.minecraft.world.level.block.piston.PistonMovingBlockEntity extends net.minecraft.world.level.block.entity.BlockEntity {
+  public static final double TICK_MOVEMENT;
+  public net.minecraft.world.level.block.piston.PistonMovingBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.level.block.piston.PistonMovingBlockEntity(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.Direction, boolean, boolean);
+  public net.minecraft.nbt.CompoundTag getUpdateTag(net.minecraft.core.HolderLookup$Provider);
+  public boolean isExtending();
+  public net.minecraft.core.Direction getDirection();
+  public boolean isSourcePiston();
+  public float getProgress(float);
+  public float getXOff(float);
+  public float getYOff(float);
+  public float getZOff(float);
+  public net.minecraft.core.Direction getMovementDirection();
+  public net.minecraft.world.level.block.state.BlockState getMovedState();
+  public void finalTick();
+  public void preRemoveSideEffects(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.core.Direction getPushDirection();
+  public static void tick(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.piston.PistonMovingBlockEntity);
+  protected void loadAdditional(net.minecraft.world.level.storage.ValueInput);
+  protected void saveAdditional(net.minecraft.world.level.storage.ValueOutput);
+  public net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public long getLastTicked();
+  public void setLevel(net.minecraft.world.level.Level);
+}

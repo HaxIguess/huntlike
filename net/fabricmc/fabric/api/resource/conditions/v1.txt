@@ -1,0 +1,56 @@
+Compiled from "ResourceCondition.java"
+public interface net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition> CODEC;
+  public static final com.mojang.serialization.Codec<java.util.List<net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition>> LIST_CODEC;
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition> CONDITION_CODEC;
+  public abstract net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<?> getType();
+  public abstract boolean test(net.minecraft.resources.RegistryOps$RegistryInfoLookup);
+}
+Compiled from "ResourceConditionType.java"
+public interface net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<T extends net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition> {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<?>> TYPE_CODEC;
+  public abstract net.minecraft.resources.Identifier id();
+  public abstract com.mojang.serialization.MapCodec<T> codec();
+  public static <T extends net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition> net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<T> create(net.minecraft.resources.Identifier, com.mojang.serialization.MapCodec<T>);
+}
+Compiled from "ResourceConditions.java"
+public final class net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions {
+  public static final java.lang.String CONDITIONS_KEY;
+  public static final java.lang.String OVERLAYS_KEY;
+  public static void register(net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<?>);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType<?> getConditionType(net.minecraft.resources.Identifier);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition alwaysTrue();
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition alwaysFalse();
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition not(net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition and(net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition...);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition or(net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition...);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition allModsLoaded(java.lang.String...);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition anyModsLoaded(java.lang.String...);
+  public static <T> net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition tagsPopulated(net.minecraft.tags.TagKey<T>...);
+  public static <T> net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition tagsPopulated(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.tags.TagKey<T>...);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition featuresEnabled(net.minecraft.resources.Identifier...);
+  public static net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition featuresEnabled(net.minecraft.world.flag.FeatureFlag...);
+  public static <T> net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition registryContains(net.minecraft.resources.ResourceKey<T>...);
+  public static <T> net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition registryContains(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<T>>, net.minecraft.resources.Identifier...);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.resource.conditions.v1.package-info {
+}
+Compiled from "FabricOverlayMetadataSection.java"
+public final class net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection$Entry extends java.lang.Record {
+  public net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection$Entry(net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition condition();
+  public java.lang.String overlay();
+}
+Compiled from "FabricOverlayMetadataSection.java"
+public final class net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection extends java.lang.Record {
+  public static final net.minecraft.server.packs.metadata.MetadataSectionType<net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection> TYPE;
+  public net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection(java.util.List<net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection$Entry>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.fabricmc.fabric.api.resource.conditions.v1.FabricOverlayMetadataSection$Entry> overlays();
+}

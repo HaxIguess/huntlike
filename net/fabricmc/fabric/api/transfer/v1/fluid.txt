@@ -1,0 +1,87 @@
+Compiled from "CauldronFluidContent.java"
+public final class net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent {
+  public final net.minecraft.world.level.block.Block block;
+  public final net.minecraft.world.level.material.Fluid fluid;
+  public final long amountPerLevel;
+  public final int maxLevel;
+  public final net.minecraft.world.level.block.state.properties.IntegerProperty levelProperty;
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent getForBlock(net.minecraft.world.level.block.Block);
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent getForFluid(net.minecraft.world.level.material.Fluid);
+  public static synchronized net.fabricmc.fabric.api.transfer.v1.fluid.CauldronFluidContent registerCauldron(net.minecraft.world.level.block.Block, net.minecraft.world.level.material.Fluid, long, net.minecraft.world.level.block.state.properties.IntegerProperty);
+  public int currentLevel(net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "FluidConstants.java"
+public final class net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants {
+  public static final long BUCKET;
+  public static final long BOTTLE;
+  public static final long BOWL;
+  public static final long BLOCK;
+  public static final long INGOT;
+  public static final long NUGGET;
+  public static final long DROPLET;
+  public static final int WATER_TEMPERATURE;
+  public static final int LAVA_TEMPERATURE;
+  public static final int WATER_VISCOSITY;
+  public static final int LAVA_VISCOSITY;
+  public static final int LAVA_VISCOSITY_NETHER;
+  public static final int VISCOSITY_RATIO;
+  public static long fromBucketFraction(long, long);
+}
+Compiled from "FluidStorage.java"
+public interface net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage$CombinedItemApiProvider {
+  public abstract net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant> find(net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext);
+}
+Compiled from "FluidStorage.java"
+public final class net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage {
+  public static final net.fabricmc.fabric.api.lookup.v1.block.BlockApiLookup<net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant>, net.minecraft.core.Direction> SIDED;
+  public static final net.fabricmc.fabric.api.lookup.v1.item.ItemApiLookup<net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant>, net.fabricmc.fabric.api.transfer.v1.context.ContainerItemContext> ITEM;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage$CombinedItemApiProvider> GENERAL_COMBINED_PROVIDER;
+  public static net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage$CombinedItemApiProvider> combinedItemApiProvider(net.minecraft.world.item.Item);
+}
+Compiled from "FluidStorageUtil.java"
+public final class net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorageUtil {
+  public static boolean interactWithFluidStorage(net.fabricmc.fabric.api.transfer.v1.storage.Storage<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant>, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+}
+Compiled from "FluidVariant.java"
+public interface net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant extends net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant<net.minecraft.world.level.material.Fluid> {
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant> PACKET_CODEC;
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant blank();
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant of(net.minecraft.world.level.material.Fluid);
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant of(net.minecraft.world.level.material.Fluid, net.minecraft.core.component.DataComponentPatch);
+  public default net.minecraft.world.level.material.Fluid getFluid();
+  public default net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid> typeHolder();
+  public abstract net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant withComponents(net.minecraft.core.component.DataComponentPatch);
+  public default net.fabricmc.fabric.api.transfer.v1.storage.TransferVariant withComponents(net.minecraft.core.component.DataComponentPatch);
+}
+Compiled from "FluidVariantAttributeHandler.java"
+public interface net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler {
+  public default net.minecraft.network.chat.Component getName(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default net.minecraft.network.chat.Component getColoredName(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default int getAssociatedColor(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default java.util.Optional<net.minecraft.sounds.SoundEvent> getFillSound(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default java.util.Optional<net.minecraft.sounds.SoundEvent> getEmptySound(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default int getLightEmission(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default int getTemperature(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public default int getViscosity(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant, net.minecraft.world.level.Level);
+  public default boolean isLighterThanAir(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+}
+Compiled from "FluidVariantAttributes.java"
+public final class net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes {
+  public static void register(net.minecraft.world.level.material.Fluid, net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler);
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler getHandler(net.minecraft.world.level.material.Fluid);
+  public static net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributeHandler getHandlerOrDefault(net.minecraft.world.level.material.Fluid);
+  public static net.minecraft.network.chat.Component getName(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static net.minecraft.network.chat.Component getColoredName(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static int getAssociatedColor(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static net.minecraft.sounds.SoundEvent getFillSound(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static net.minecraft.sounds.SoundEvent getEmptySound(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static int getLuminance(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static int getTemperature(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static int getViscosity(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant, net.minecraft.world.level.Level);
+  public static boolean isLighterThanAir(net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant);
+  public static void enableColoredVanillaFluidNames();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.transfer.v1.fluid.package-info {
+}

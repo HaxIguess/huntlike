@@ -1,0 +1,214 @@
+Compiled from "BrewingRecipe.java"
+public class net.minecraft.world.item.crafting.BrewingRecipe implements net.minecraft.world.item.crafting.Recipe<net.minecraft.world.item.crafting.BrewingInput> {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.crafting.BrewingRecipe> MAP_CODEC;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.crafting.BrewingRecipe> STREAM_CODEC;
+
+  public static final net.minecraft.world.item.crafting.RecipeSerializer<net.minecraft.world.item.crafting.BrewingRecipe> SERIALIZER;
+
+  private final net.minecraft.world.item.crafting.PotionIngredient input;
+
+  private final net.minecraft.world.item.crafting.PotionIngredient reagent;
+
+  private final net.minecraft.world.item.ItemStackTemplate output;
+
+  public net.minecraft.world.item.crafting.BrewingRecipe(net.minecraft.world.item.crafting.PotionIngredient, net.minecraft.world.item.crafting.PotionIngredient, net.minecraft.world.item.ItemStackTemplate);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field input:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field reagent:Lnet/minecraft/world/item/crafting/PotionIngredient;
+        14: aload_0
+        15: aload_3
+        16: putfield      #16                 // Field output:Lnet/minecraft/world/item/ItemStackTemplate;
+        19: return
+
+  public net.minecraft.world.item.crafting.PotionIngredient getInput();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field input:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  public net.minecraft.world.item.crafting.PotionIngredient getReagent();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field reagent:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  public net.minecraft.world.item.ItemStackTemplate getOutput();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field output:Lnet/minecraft/world/item/ItemStackTemplate;
+         4: areturn
+
+  public boolean matches(net.minecraft.world.item.crafting.BrewingInput, net.minecraft.world.level.Level);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #20                 // Method matches:(Lnet/minecraft/world/item/crafting/BrewingInput;)Z
+         5: ireturn
+
+  public boolean matches(net.minecraft.world.item.crafting.BrewingInput);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field input:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: aload_1
+         5: invokevirtual #24                 // Method net/minecraft/world/item/crafting/BrewingInput.input:()Lnet/minecraft/world/item/ItemStack;
+         8: invokevirtual #29                 // Method net/minecraft/world/item/crafting/PotionIngredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+        11: ifeq          32
+        14: aload_0
+        15: getfield      #13                 // Field reagent:Lnet/minecraft/world/item/crafting/PotionIngredient;
+        18: aload_1
+        19: invokevirtual #35                 // Method net/minecraft/world/item/crafting/BrewingInput.reagent:()Lnet/minecraft/world/item/ItemStack;
+        22: invokevirtual #29                 // Method net/minecraft/world/item/crafting/PotionIngredient.test:(Lnet/minecraft/world/item/ItemStack;)Z
+        25: ifeq          32
+        28: iconst_1
+        29: goto          33
+        32: iconst_0
+        33: ireturn
+
+  public net.minecraft.world.item.ItemStack assemble(net.minecraft.world.item.crafting.BrewingInput);
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field output:Lnet/minecraft/world/item/ItemStackTemplate;
+         4: invokevirtual #37                 // Method net/minecraft/world/item/ItemStackTemplate.create:()Lnet/minecraft/world/item/ItemStack;
+         7: areturn
+
+  public net.minecraft.world.item.crafting.RecipeType<net.minecraft.world.item.crafting.BrewingRecipe> getType();
+    Code:
+         0: getstatic     #42                 // Field net/minecraft/world/item/crafting/RecipeType.BREWING:Lnet/minecraft/world/item/crafting/RecipeType;
+         3: areturn
+
+  public net.minecraft.world.item.crafting.PlacementInfo placementInfo();
+    Code:
+         0: getstatic     #48                 // Field net/minecraft/world/item/crafting/PlacementInfo.NOT_PLACEABLE:Lnet/minecraft/world/item/crafting/PlacementInfo;
+         3: areturn
+
+  public boolean isSpecial();
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  public boolean showNotification();
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  public java.lang.String group();
+    Code:
+         0: ldc           #54                 // String
+         2: areturn
+
+  public net.minecraft.world.item.crafting.RecipeBookCategory recipeBookCategory();
+    Code:
+         0: getstatic     #56                 // Field net/minecraft/world/item/crafting/RecipeBookCategories.CRAFTING_MISC:Lnet/minecraft/world/item/crafting/RecipeBookCategory;
+         3: areturn
+
+  public net.minecraft.world.item.crafting.RecipeSerializer<net.minecraft.world.item.crafting.BrewingRecipe> getSerializer();
+    Code:
+         0: getstatic     #62                 // Field SERIALIZER:Lnet/minecraft/world/item/crafting/RecipeSerializer;
+         3: areturn
+
+  public net.minecraft.world.item.ItemStack assemble(net.minecraft.world.item.crafting.RecipeInput);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #25                 // class net/minecraft/world/item/crafting/BrewingInput
+         5: invokevirtual #66                 // Method assemble:(Lnet/minecraft/world/item/crafting/BrewingInput;)Lnet/minecraft/world/item/ItemStack;
+         8: areturn
+
+  public boolean matches(net.minecraft.world.item.crafting.RecipeInput, net.minecraft.world.level.Level);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: checkcast     #25                 // class net/minecraft/world/item/crafting/BrewingInput
+         5: aload_2
+         6: invokevirtual #70                 // Method matches:(Lnet/minecraft/world/item/crafting/BrewingInput;Lnet/minecraft/world/level/Level;)Z
+         9: ireturn
+
+  private static net.minecraft.world.item.ItemStackTemplate lambda$static$6(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field output:Lnet/minecraft/world/item/ItemStackTemplate;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.PotionIngredient lambda$static$5(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field reagent:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.PotionIngredient lambda$static$4(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field input:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  private static com.mojang.datafixers.kinds.App lambda$static$0(com.mojang.serialization.codecs.RecordCodecBuilder$Instance);
+    Code:
+         0: aload_0
+         1: getstatic     #73                 // Field net/minecraft/world/item/crafting/PotionIngredient.MAP_CODEC:Lcom/mojang/serialization/MapCodec;
+         4: ldc           #77                 // String input
+         6: invokevirtual #78                 // Method com/mojang/serialization/MapCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+         9: invokedynamic #84,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+        14: invokevirtual #88                 // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        17: getstatic     #73                 // Field net/minecraft/world/item/crafting/PotionIngredient.MAP_CODEC:Lcom/mojang/serialization/MapCodec;
+        20: ldc           #92                 // String reagent
+        22: invokevirtual #78                 // Method com/mojang/serialization/MapCodec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        25: invokedynamic #93,  0             // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+        30: invokevirtual #88                 // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        33: getstatic     #94                 // Field net/minecraft/world/item/ItemStackTemplate.CODEC:Lcom/mojang/serialization/Codec;
+        36: ldc           #98                 // String output
+        38: invokeinterface #99,  2           // InterfaceMethod com/mojang/serialization/Codec.fieldOf:(Ljava/lang/String;)Lcom/mojang/serialization/MapCodec;
+        43: invokedynamic #102,  0            // InvokeDynamic #2:apply:()Ljava/util/function/Function;
+        48: invokevirtual #88                 // Method com/mojang/serialization/MapCodec.forGetter:(Ljava/util/function/Function;)Lcom/mojang/serialization/codecs/RecordCodecBuilder;
+        51: invokevirtual #103                // Method com/mojang/serialization/codecs/RecordCodecBuilder$Instance.group:(Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;Lcom/mojang/datafixers/kinds/App;)Lcom/mojang/datafixers/Products$P3;
+        54: aload_0
+        55: invokedynamic #109,  0            // InvokeDynamic #3:apply:()Lcom/mojang/datafixers/util/Function3;
+        60: invokevirtual #112                // Method com/mojang/datafixers/Products$P3.apply:(Lcom/mojang/datafixers/kinds/Applicative;Lcom/mojang/datafixers/util/Function3;)Lcom/mojang/datafixers/kinds/App;
+        63: areturn
+
+  private static net.minecraft.world.item.ItemStackTemplate lambda$static$3(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field output:Lnet/minecraft/world/item/ItemStackTemplate;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.PotionIngredient lambda$static$2(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field reagent:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  private static net.minecraft.world.item.crafting.PotionIngredient lambda$static$1(net.minecraft.world.item.crafting.BrewingRecipe);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field input:Lnet/minecraft/world/item/crafting/PotionIngredient;
+         4: areturn
+
+  static {};
+    Code:
+         0: invokedynamic #117,  0            // InvokeDynamic #4:apply:()Ljava/util/function/Function;
+         5: invokestatic  #118                // Method com/mojang/serialization/codecs/RecordCodecBuilder.mapCodec:(Ljava/util/function/Function;)Lcom/mojang/serialization/MapCodec;
+         8: putstatic     #124                // Field MAP_CODEC:Lcom/mojang/serialization/MapCodec;
+        11: getstatic     #125                // Field net/minecraft/world/item/crafting/PotionIngredient.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        14: invokedynamic #129,  0            // InvokeDynamic #5:apply:()Ljava/util/function/Function;
+        19: getstatic     #125                // Field net/minecraft/world/item/crafting/PotionIngredient.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        22: invokedynamic #130,  0            // InvokeDynamic #6:apply:()Ljava/util/function/Function;
+        27: getstatic     #131                // Field net/minecraft/world/item/ItemStackTemplate.STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        30: invokedynamic #132,  0            // InvokeDynamic #7:apply:()Ljava/util/function/Function;
+        35: invokedynamic #109,  0            // InvokeDynamic #3:apply:()Lcom/mojang/datafixers/util/Function3;
+        40: invokestatic  #133                // InterfaceMethod net/minecraft/network/codec/StreamCodec.composite:(Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function3;)Lnet/minecraft/network/codec/StreamCodec;
+        43: putstatic     #139                // Field STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        46: new           #140                // class net/minecraft/world/item/crafting/RecipeSerializer
+        49: dup
+        50: getstatic     #124                // Field MAP_CODEC:Lcom/mojang/serialization/MapCodec;
+        53: getstatic     #139                // Field STREAM_CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        56: invokespecial #142                // Method net/minecraft/world/item/crafting/RecipeSerializer."<init>":(Lcom/mojang/serialization/MapCodec;Lnet/minecraft/network/codec/StreamCodec;)V
+        59: putstatic     #62                 // Field SERIALIZER:Lnet/minecraft/world/item/crafting/RecipeSerializer;
+        62: return
+}

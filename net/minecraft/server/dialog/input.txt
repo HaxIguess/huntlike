@@ -1,0 +1,107 @@
+Compiled from "BooleanInput.java"
+public final class net.minecraft.server.dialog.input.BooleanInput extends java.lang.Record implements net.minecraft.server.dialog.input.InputControl {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.BooleanInput> MAP_CODEC;
+  public net.minecraft.server.dialog.input.BooleanInput(net.minecraft.network.chat.Component, boolean, java.lang.String, java.lang.String);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.BooleanInput> mapCodec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component label();
+  public boolean initial();
+  public java.lang.String onTrue();
+  public java.lang.String onFalse();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.dialog.input.package-info {
+}
+Compiled from "NumberRangeInput.java"
+public final class net.minecraft.server.dialog.input.NumberRangeInput$RangeInfo extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.NumberRangeInput$RangeInfo> MAP_CODEC;
+  public net.minecraft.server.dialog.input.NumberRangeInput$RangeInfo(float, float, java.util.Optional<java.lang.Float>, java.util.Optional<java.lang.Float>);
+  public float computeScaledValue(float);
+  public float initialSliderValue();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float start();
+  public float end();
+  public java.util.Optional<java.lang.Float> initial();
+  public java.util.Optional<java.lang.Float> step();
+}
+Compiled from "TextInput.java"
+public final class net.minecraft.server.dialog.input.TextInput extends java.lang.Record implements net.minecraft.server.dialog.input.InputControl {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.TextInput> MAP_CODEC;
+  public net.minecraft.server.dialog.input.TextInput(int, net.minecraft.network.chat.Component, boolean, java.lang.String, int, java.util.Optional<net.minecraft.server.dialog.input.TextInput$MultilineOptions>);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.TextInput> mapCodec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public net.minecraft.network.chat.Component label();
+  public boolean labelVisible();
+  public java.lang.String initial();
+  public int maxLength();
+  public java.util.Optional<net.minecraft.server.dialog.input.TextInput$MultilineOptions> multiline();
+}
+Compiled from "SingleOptionInput.java"
+public final class net.minecraft.server.dialog.input.SingleOptionInput$Entry extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.input.SingleOptionInput$Entry> FULL_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.input.SingleOptionInput$Entry> CODEC;
+  public net.minecraft.server.dialog.input.SingleOptionInput$Entry(java.lang.String, java.util.Optional<net.minecraft.network.chat.Component>, boolean);
+  public net.minecraft.network.chat.Component displayOrDefault();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String id();
+  public java.util.Optional<net.minecraft.network.chat.Component> display();
+  public boolean initial();
+}
+Compiled from "InputControlTypes.java"
+public class net.minecraft.server.dialog.input.InputControlTypes {
+  public net.minecraft.server.dialog.input.InputControlTypes();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.input.InputControl> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.input.InputControl>>);
+}
+Compiled from "NumberRangeInput.java"
+public final class net.minecraft.server.dialog.input.NumberRangeInput extends java.lang.Record implements net.minecraft.server.dialog.input.InputControl {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.NumberRangeInput> MAP_CODEC;
+  public net.minecraft.server.dialog.input.NumberRangeInput(int, net.minecraft.network.chat.Component, java.lang.String, net.minecraft.server.dialog.input.NumberRangeInput$RangeInfo);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.NumberRangeInput> mapCodec();
+  public net.minecraft.network.chat.Component computeLabel(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public net.minecraft.network.chat.Component label();
+  public java.lang.String labelFormat();
+  public net.minecraft.server.dialog.input.NumberRangeInput$RangeInfo rangeInfo();
+}
+Compiled from "TextInput.java"
+public final class net.minecraft.server.dialog.input.TextInput$MultilineOptions extends java.lang.Record {
+  public static final int MAX_HEIGHT;
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.input.TextInput$MultilineOptions> CODEC;
+  public net.minecraft.server.dialog.input.TextInput$MultilineOptions(java.util.Optional<java.lang.Integer>, java.util.Optional<java.lang.Integer>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<java.lang.Integer> maxLines();
+  public java.util.Optional<java.lang.Integer> height();
+}
+Compiled from "SingleOptionInput.java"
+public final class net.minecraft.server.dialog.input.SingleOptionInput extends java.lang.Record implements net.minecraft.server.dialog.input.InputControl {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.SingleOptionInput> MAP_CODEC;
+  public net.minecraft.server.dialog.input.SingleOptionInput(int, java.util.List<net.minecraft.server.dialog.input.SingleOptionInput$Entry>, net.minecraft.network.chat.Component, boolean);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.SingleOptionInput> mapCodec();
+  public java.util.Optional<net.minecraft.server.dialog.input.SingleOptionInput$Entry> initial();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public java.util.List<net.minecraft.server.dialog.input.SingleOptionInput$Entry> entries();
+  public net.minecraft.network.chat.Component label();
+  public boolean labelVisible();
+}
+Compiled from "InputControl.java"
+public interface net.minecraft.server.dialog.input.InputControl {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.input.InputControl> MAP_CODEC;
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.input.InputControl> mapCodec();
+}

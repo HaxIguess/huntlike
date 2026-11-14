@@ -1,0 +1,42 @@
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.oit.package-info {
+}
+Compiled from "OitPipelineSet.java"
+public class net.minecraft.client.renderer.oit.OitPipelineSet$Builder {
+  public net.minecraft.client.renderer.oit.OitPipelineSet$Builder(com.mojang.renderpearl.api.pipeline.RenderPipeline$Snippet, java.lang.String);
+  public net.minecraft.client.renderer.oit.OitPipelineSet$Builder withDepthBoundsModifier(java.util.function.Consumer<com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder>);
+  public net.minecraft.client.renderer.oit.OitPipelineSet$Builder withTransmittanceModifier(java.util.function.Consumer<com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder>);
+  public net.minecraft.client.renderer.oit.OitPipelineSet$Builder withAccumulateModifier(java.util.function.Consumer<com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder>);
+  public net.minecraft.client.renderer.oit.OitPipelineSet$Builder withoutDepthTest();
+  public net.minecraft.client.renderer.oit.OitPipelineSet build();
+}
+Compiled from "OitRenderPassProvider.java"
+public final class net.minecraft.client.renderer.oit.OitRenderPassProvider$Parameters {
+  public net.minecraft.client.renderer.oit.OitRenderPassProvider$Parameters(com.mojang.renderpearl.api.textures.GpuTextureView, com.mojang.renderpearl.api.textures.GpuTextureView[], com.mojang.renderpearl.api.textures.GpuTextureView, com.mojang.renderpearl.api.textures.GpuTextureView);
+  public void setDepthBoundsTargetView(com.mojang.renderpearl.api.textures.GpuTextureView);
+}
+Compiled from "OitRenderPassProvider.java"
+public class net.minecraft.client.renderer.oit.OitRenderPassProvider {
+  public net.minecraft.client.renderer.oit.OitRenderPassProvider();
+  public static com.mojang.renderpearl.api.commands.RenderPass createRenderPass(net.minecraft.client.renderer.oit.OitStage, java.util.function.Supplier<java.lang.String>, net.minecraft.client.renderer.oit.OitRenderPassProvider$Parameters);
+}
+Compiled from "OitPipelineSet.java"
+public final class net.minecraft.client.renderer.oit.OitPipelineSet extends java.lang.Record {
+  public net.minecraft.client.renderer.oit.OitPipelineSet(com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.RenderPipeline, com.mojang.renderpearl.api.pipeline.RenderPipeline);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline getPipeline(net.minecraft.client.renderer.oit.OitStage);
+  public static net.minecraft.client.renderer.oit.OitPipelineSet$Builder builder(java.lang.String, com.mojang.renderpearl.api.pipeline.RenderPipeline$Builder);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline depthBoundsPipeline();
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline transmittancePipeline();
+  public com.mojang.renderpearl.api.pipeline.RenderPipeline accumulatePipeline();
+}
+Compiled from "OitStage.java"
+public final class net.minecraft.client.renderer.oit.OitStage extends java.lang.Enum<net.minecraft.client.renderer.oit.OitStage> {
+  public static final net.minecraft.client.renderer.oit.OitStage DEPTH_BOUNDS;
+  public static final net.minecraft.client.renderer.oit.OitStage TRANSMITTANCE;
+  public static final net.minecraft.client.renderer.oit.OitStage ACCUMULATE;
+  public static net.minecraft.client.renderer.oit.OitStage[] values();
+  public static net.minecraft.client.renderer.oit.OitStage valueOf(java.lang.String);
+}

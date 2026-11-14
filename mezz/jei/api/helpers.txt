@@ -1,0 +1,86 @@
+Compiled from "ICodecHelper.java"
+public interface mezz.jei.api.helpers.ICodecHelper {
+  public abstract com.mojang.serialization.Codec<mezz.jei.api.ingredients.IIngredientType<?>> getIngredientTypeCodec();
+  public abstract com.mojang.serialization.Codec<mezz.jei.api.recipe.types.IRecipeType<?>> getRecipeTypeCodec(mezz.jei.api.recipe.IRecipeManager);
+  public abstract com.mojang.serialization.MapCodec<mezz.jei.api.ingredients.ITypedIngredient<?>> getTypedIngredientCodec();
+  public abstract <T> com.mojang.serialization.Codec<mezz.jei.api.ingredients.ITypedIngredient<T>> getTypedIngredientCodec(mezz.jei.api.ingredients.IIngredientType<T>);
+  public abstract <T extends net.minecraft.world.item.crafting.RecipeHolder<?>> com.mojang.serialization.Codec<T> getRecipeHolderCodec();
+  public abstract <T> com.mojang.serialization.Codec<T> getSlowRecipeCategoryCodec(mezz.jei.api.recipe.category.IRecipeCategory<T>, mezz.jei.api.recipe.IRecipeManager);
+}
+Compiled from "IColorHelper.java"
+public interface mezz.jei.api.helpers.IColorHelper {
+  public abstract java.util.List<java.lang.Integer> getColors(net.minecraft.client.renderer.texture.TextureAtlasSprite, int, int);
+  public abstract java.util.List<java.lang.Integer> getColors(net.minecraft.world.item.ItemStack, int);
+  public abstract java.lang.String getClosestColorName(int);
+}
+Compiled from "IGuiHelper.java"
+public interface mezz.jei.api.helpers.IGuiHelper {
+  public default mezz.jei.api.gui.drawable.IDrawableStatic createDrawable(net.minecraft.resources.Identifier, int, int, int, int);
+  public abstract mezz.jei.api.gui.drawable.IDrawableBuilder drawableBuilder(net.minecraft.resources.Identifier, int, int, int, int);
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic createDrawableSprite(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier);
+  public default mezz.jei.api.gui.drawable.IDrawableStatic createDrawableSprite(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier, int, int);
+  public abstract mezz.jei.api.gui.drawable.IScalableDrawable createScalableDrawableSprite(net.minecraft.client.renderer.texture.TextureAtlas, net.minecraft.resources.Identifier);
+  public abstract mezz.jei.api.gui.drawable.IDrawableAnimated createAnimatedDrawable(mezz.jei.api.gui.drawable.IDrawableStatic, int, mezz.jei.api.gui.drawable.IDrawableAnimated$StartDirection, boolean);
+  public abstract mezz.jei.api.gui.drawable.IDrawableAnimated createAnimatedDrawable(mezz.jei.api.gui.drawable.IDrawableStatic, mezz.jei.api.gui.ITickTimer, mezz.jei.api.gui.drawable.IDrawableAnimated$StartDirection);
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getSlotDrawable();
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getOutputSlot();
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getRecipeArrow();
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getRecipeArrowFilled();
+  public abstract mezz.jei.api.gui.drawable.IDrawableAnimated createAnimatedRecipeArrow(int);
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getRecipePlusSign();
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getRecipeFlameFilled();
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic getRecipeFlameEmpty();
+  public abstract mezz.jei.api.gui.drawable.IDrawableAnimated createAnimatedRecipeFlame(int);
+  public abstract mezz.jei.api.gui.drawable.IDrawableStatic createBlankDrawable(int, int);
+  public default mezz.jei.api.gui.drawable.IDrawable createDrawableItemStack(net.minecraft.world.item.ItemStack);
+  public default mezz.jei.api.gui.drawable.IDrawable createDrawableItemLike(net.minecraft.world.level.ItemLike);
+  public abstract <V> mezz.jei.api.gui.drawable.IDrawable createDrawableIngredient(mezz.jei.api.ingredients.IIngredientType<V>, V);
+  public abstract <V> mezz.jei.api.gui.drawable.IDrawable createDrawableIngredient(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract <V> mezz.jei.api.gui.drawable.IDrawable createDrawableIngredient(mezz.jei.api.ingredients.IIngredientRenderer<V>, V);
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotDrawable createRecipeSlotDrawable(mezz.jei.api.recipe.RecipeIngredientRole, java.util.List<java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>>>, java.util.Set<java.lang.Integer>, int);
+  public abstract mezz.jei.api.gui.ingredient.IRecipeSlotDrawable createRecipeSlotDrawable(mezz.jei.api.recipe.RecipeIngredientRole, java.util.function.Consumer<mezz.jei.api.gui.builder.IIngredientAcceptor<?>>, java.util.Set<java.lang.Integer>, int);
+  public abstract mezz.jei.api.gui.ingredient.ICraftingGridHelper createCraftingGridHelper();
+  public abstract mezz.jei.api.gui.widgets.IScrollBoxWidget createScrollBoxWidget(int, int, int, int);
+  public abstract mezz.jei.api.gui.ITickTimer createTickTimer(int, int, boolean);
+}
+Compiled from "IJeiHelpers.java"
+public interface mezz.jei.api.helpers.IJeiHelpers {
+  public abstract mezz.jei.api.helpers.IGuiHelper getGuiHelper();
+  public abstract mezz.jei.api.helpers.IStackHelper getStackHelper();
+  public abstract mezz.jei.api.helpers.IModIdHelper getModIdHelper();
+  public abstract mezz.jei.api.recipe.IFocusFactory getFocusFactory();
+  public abstract mezz.jei.api.helpers.IColorHelper getColorHelper();
+  public abstract mezz.jei.api.helpers.IPlatformFluidHelper<?> getPlatformFluidHelper();
+  public abstract <T> java.util.Optional<mezz.jei.api.recipe.types.IRecipeType<T>> getRecipeType(net.minecraft.resources.Identifier, java.lang.Class<? extends T>);
+  public abstract java.util.Optional<mezz.jei.api.recipe.types.IRecipeType<?>> getRecipeType(net.minecraft.resources.Identifier);
+  public abstract java.util.stream.Stream<mezz.jei.api.recipe.types.IRecipeType<?>> getAllRecipeTypes();
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.helpers.ICodecHelper getCodecHelper();
+  public abstract mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory getVanillaRecipeFactory();
+  public abstract mezz.jei.api.runtime.IIngredientVisibility getIngredientVisibility();
+}
+Compiled from "IModIdHelper.java"
+public interface mezz.jei.api.helpers.IModIdHelper {
+  public abstract java.lang.String getModNameForModId(java.lang.String);
+  public abstract boolean isDisplayingModNameEnabled();
+  public abstract java.lang.String getFormattedModNameForModId(java.lang.String);
+  public default net.minecraft.network.chat.Component getFormattedModNameComponentForModId(java.lang.String);
+  public abstract java.util.Set<java.lang.String> getModAliases(java.lang.String);
+  public abstract <T> java.util.Optional<net.minecraft.network.chat.Component> getModNameForTooltip(mezz.jei.api.ingredients.ITypedIngredient<T>);
+}
+Compiled from "IPlatformFluidHelper.java"
+public interface mezz.jei.api.helpers.IPlatformFluidHelper<T> {
+  public abstract mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<net.minecraft.world.level.material.Fluid, T> getFluidIngredientType();
+  public abstract T create(net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid>, long, net.minecraft.core.component.DataComponentPatch);
+  public abstract T create(net.minecraft.core.Holder<net.minecraft.world.level.material.Fluid>, long);
+  public abstract long bucketVolume();
+}
+Compiled from "IStackHelper.java"
+public interface mezz.jei.api.helpers.IStackHelper {
+  public abstract java.lang.Object getUidForStack(net.minecraft.world.item.ItemStack, mezz.jei.api.ingredients.subtypes.UidContext);
+  public abstract java.lang.Object getUidForStack(mezz.jei.api.ingredients.ITypedIngredient<net.minecraft.world.item.ItemStack>, mezz.jei.api.ingredients.subtypes.UidContext);
+  public abstract boolean isEquivalent(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, mezz.jei.api.ingredients.subtypes.UidContext);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.helpers.package-info {
+}

@@ -1,0 +1,47 @@
+Compiled from "SnbtToNbt.java"
+public interface net.minecraft.data.structures.SnbtToNbt$Filter {
+  public abstract net.minecraft.nbt.CompoundTag apply(java.lang.String, net.minecraft.nbt.CompoundTag);
+}
+Compiled from "SnbtToNbt.java"
+class net.minecraft.data.structures.SnbtToNbt$StructureConversionException extends java.lang.RuntimeException {
+  public net.minecraft.data.structures.SnbtToNbt$StructureConversionException(java.nio.file.Path, java.lang.Throwable);
+}
+Compiled from "StructureUpdater.java"
+public class net.minecraft.data.structures.StructureUpdater implements net.minecraft.data.structures.SnbtToNbt$Filter {
+  public net.minecraft.data.structures.StructureUpdater();
+  public net.minecraft.nbt.CompoundTag apply(java.lang.String, net.minecraft.nbt.CompoundTag);
+  public static net.minecraft.nbt.CompoundTag update(java.lang.String, net.minecraft.nbt.CompoundTag);
+}
+Compiled from "SnbtToNbt.java"
+public class net.minecraft.data.structures.SnbtToNbt implements net.minecraft.data.DataProvider {
+  public net.minecraft.data.structures.SnbtToNbt(net.minecraft.data.PackOutput, java.nio.file.Path);
+  public net.minecraft.data.structures.SnbtToNbt(net.minecraft.data.PackOutput, java.lang.Iterable<java.nio.file.Path>);
+  public net.minecraft.data.structures.SnbtToNbt addFilter(net.minecraft.data.structures.SnbtToNbt$Filter);
+  public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public java.lang.String getName();
+}
+Compiled from "package-info.java"
+interface net.minecraft.data.structures.package-info {
+}
+Compiled from "SnbtDatafixer.java"
+public class net.minecraft.data.structures.SnbtDatafixer {
+  public net.minecraft.data.structures.SnbtDatafixer();
+  public static void main(java.lang.String[]) throws java.io.IOException;
+}
+Compiled from "NbtToSnbt.java"
+public class net.minecraft.data.structures.NbtToSnbt implements net.minecraft.data.DataProvider {
+  public net.minecraft.data.structures.NbtToSnbt(net.minecraft.data.PackOutput, java.util.Collection<java.nio.file.Path>);
+  public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public java.lang.String getName();
+  public static java.nio.file.Path convertStructure(net.minecraft.data.CachedOutput, java.nio.file.Path, java.lang.String, java.nio.file.Path);
+  public static void writeSnbt(net.minecraft.data.CachedOutput, java.nio.file.Path, java.lang.String) throws java.io.IOException;
+}
+Compiled from "SnbtToNbt.java"
+final class net.minecraft.data.structures.SnbtToNbt$TaskResult extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public byte[] payload();
+  public com.google.common.hash.HashCode hash();
+}

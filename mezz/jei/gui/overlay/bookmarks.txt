@@ -1,0 +1,114 @@
+Compiled from "BookmarkButtonController.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkButtonController implements mezz.jei.api.gui.buttons.IIconButtonController {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkButtonController(mezz.jei.gui.overlay.bookmarks.BookmarkOverlay, mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.common.config.IClientToggleState, mezz.jei.common.input.IInternalKeyMappings);
+  public void getTooltips(mezz.jei.api.gui.builder.ITooltipBuilder);
+  public void updateState(mezz.jei.api.gui.buttons.IButtonState);
+  public boolean onPress(mezz.jei.api.gui.inputs.IJeiUserInput);
+}
+Compiled from "BookmarkDrag.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkDrag<T> {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkDrag(mezz.jei.gui.overlay.bookmarks.BookmarkOverlay, java.util.List<mezz.jei.gui.overlay.bookmarks.IBookmarkDragTarget>, mezz.jei.api.ingredients.IIngredientRenderer<T>, mezz.jei.api.ingredients.ITypedIngredient<T>, mezz.jei.gui.bookmarks.IBookmark, double, double, mezz.jei.common.util.ImmutableRect2i);
+  public static boolean canStart(mezz.jei.gui.overlay.bookmarks.BookmarkDrag<?>, double, double);
+  public void update(int, int);
+  public boolean drawItem(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public boolean onClick(mezz.jei.gui.input.UserInput);
+  public void stop();
+}
+Compiled from "BookmarkDragManager.java"
+class mezz.jei.gui.overlay.bookmarks.BookmarkDragManager$DragHandler implements mezz.jei.gui.input.IDragHandler {
+  public java.util.Optional<mezz.jei.gui.input.IDragHandler> handleDragStart(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public boolean handleDragComplete(net.minecraft.client.gui.screens.Screen, mezz.jei.gui.input.UserInput);
+  public void handleDragCanceled();
+}
+Compiled from "BookmarkDragManager.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkDragManager {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkDragManager(mezz.jei.gui.overlay.bookmarks.BookmarkOverlay);
+  public void updateDrag(int, int);
+  public boolean drawDraggedItem(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void stopDrag();
+  public mezz.jei.gui.input.IDragHandler createDragHandler();
+}
+Compiled from "BookmarkOverlay.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$ActionDragTarget extends mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$DragTarget {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$ActionDragTarget(mezz.jei.common.util.ImmutableRect2i, mezz.jei.gui.bookmarks.IBookmark, mezz.jei.gui.bookmarks.BookmarkList, int, java.lang.Runnable);
+  public void accept(mezz.jei.gui.bookmarks.IBookmark);
+}
+Compiled from "BookmarkOverlay.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$DragTarget implements mezz.jei.gui.overlay.bookmarks.IBookmarkDragTarget {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$DragTarget(mezz.jei.common.util.ImmutableRect2i, mezz.jei.gui.bookmarks.IBookmark, mezz.jei.gui.bookmarks.BookmarkList, int);
+  public mezz.jei.common.util.ImmutableRect2i getArea();
+  public void accept(mezz.jei.gui.bookmarks.IBookmark);
+}
+Compiled from "BookmarkOverlay.java"
+final class mezz.jei.gui.overlay.bookmarks.BookmarkOverlay$PreviewSource extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public mezz.jei.gui.input.IClickableIngredientInternal<?> ingredient();
+  public mezz.jei.gui.overlay.ingredients.IIngredientGridSource owner();
+  public java.util.function.BooleanSupplier ownerDisplayed();
+}
+Compiled from "BookmarkOverlay.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkOverlay implements mezz.jei.gui.input.IRecipeFocusSource,mezz.jei.api.runtime.IBookmarkOverlay {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkOverlay(mezz.jei.gui.bookmarks.BookmarkList, mezz.jei.common.transfer.RecipeTransferService, mezz.jei.gui.overlay.ingredients.IngredientGridWithNavigation, mezz.jei.gui.overlay.bookmarks.history.LookupHistoryOverlay, mezz.jei.common.config.IClientToggleState, mezz.jei.common.config.IClientConfig, mezz.jei.common.config.IIngredientGridConfig, mezz.jei.api.runtime.IScreenHelper, mezz.jei.common.input.IInternalKeyMappings);
+  public boolean isListDisplayed();
+  public boolean hasRoom();
+  public mezz.jei.gui.overlay.IScreenPropertiesUpdater getScreenPropertiesUpdater();
+  public void drawScreen(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void drawBackground(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void drawForeground(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public mezz.jei.gui.overlay.bookmarks.BookmarkPreviewTooltipController getPreviewTooltipController();
+  public void drawTooltips(net.minecraft.client.Minecraft, net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void tick();
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+  public java.util.Optional<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredientUnderMouse();
+  public <T> T getIngredientUnderMouse(mezz.jei.api.ingredients.IIngredientType<T>);
+  public mezz.jei.gui.input.IUserInputHandler createInputHandler();
+  public mezz.jei.gui.input.IUserInputHandler createDeleteItemInputHandler();
+  public mezz.jei.gui.input.IDragHandler createDragHandler();
+  public void drawOnForeground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.List<mezz.jei.gui.overlay.bookmarks.IBookmarkDragTarget> createBookmarkDragTargets();
+  public boolean isMouseOver(double, double);
+  public boolean isBookmarkElementUnderMouse(mezz.jei.gui.overlay.elements.IElement<?>, double, double);
+}
+Compiled from "BookmarkPreviewTooltip.java"
+final class mezz.jei.gui.overlay.bookmarks.BookmarkPreviewTooltip implements mezz.jei.gui.input.IUserInputHandler,mezz.jei.gui.input.IMouseOverable {
+  public boolean isSourceVisible();
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public boolean isMouseOver(double, double);
+  public void update();
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+}
+Compiled from "BookmarkPreviewTooltipController.java"
+public class mezz.jei.gui.overlay.bookmarks.BookmarkPreviewTooltipController implements mezz.jei.gui.input.IGuiInputLayer,mezz.jei.gui.input.IPinnedTooltipHolder,mezz.jei.gui.input.IRecipeFocusSource {
+  public mezz.jei.gui.overlay.bookmarks.BookmarkPreviewTooltipController(mezz.jei.gui.overlay.bookmarks.BookmarkOverlay, mezz.jei.common.transfer.RecipeTransferService);
+  public boolean isVisible();
+  public void hide();
+  public boolean isMouseOver(double, double);
+  public void draw(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public void update(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IClickableIngredientInternal<?>> getIngredientUnderMouse(double, double);
+  public java.util.stream.Stream<mezz.jei.gui.input.IDraggableIngredientInternal<?>> getDraggableIngredientUnderMouse(double, double);
+  public java.util.Optional<mezz.jei.gui.input.IUserInputHandler> handleUserInput(net.minecraft.client.gui.screens.Screen, mezz.jei.api.gui.handlers.IGuiProperties, mezz.jei.gui.input.UserInput, mezz.jei.common.input.IInternalKeyMappings);
+}
+Compiled from "IBookmarkDragTarget.java"
+public interface mezz.jei.gui.overlay.bookmarks.IBookmarkDragTarget {
+  public abstract mezz.jei.common.util.ImmutableRect2i getArea();
+  public abstract void accept(mezz.jei.gui.bookmarks.IBookmark);
+}
+Compiled from "PreviewTooltipComponent.java"
+public class mezz.jei.gui.overlay.bookmarks.PreviewTooltipComponent<R> implements net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent, net.minecraft.world.inventory.tooltip.TooltipComponent {
+  public mezz.jei.gui.overlay.bookmarks.PreviewTooltipComponent(mezz.jei.api.gui.IRecipeLayoutDrawable<R>, mezz.jei.common.transfer.RecipeTransferService);
+  public mezz.jei.api.gui.IRecipeLayoutDrawable<R> getRecipeLayout();
+  public void setInteractive(double, double, int);
+  public void setStatic();
+  public int getHeight(net.minecraft.client.gui.Font);
+  public int getWidth(net.minecraft.client.gui.Font);
+  public void extractImage(net.minecraft.client.gui.Font, int, int, int, int, net.minecraft.client.gui.GuiGraphicsExtractor);
+  public void tick();
+}
+Compiled from "package-info.java"
+interface mezz.jei.gui.overlay.bookmarks.package-info {
+}

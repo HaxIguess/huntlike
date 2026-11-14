@@ -1,0 +1,103 @@
+Compiled from "IIngredientHelper.java"
+public interface mezz.jei.api.ingredients.IIngredientHelper<V> {
+  public abstract mezz.jei.api.ingredients.IIngredientType<V> getIngredientType();
+  public abstract java.lang.String getDisplayName(V);
+  public abstract java.lang.Object getUid(V, mezz.jei.api.ingredients.subtypes.UidContext);
+  public default java.lang.Object getUid(mezz.jei.api.ingredients.ITypedIngredient<V>, mezz.jei.api.ingredients.subtypes.UidContext);
+  public default java.lang.Object getGroupingUid(V);
+  public default java.lang.Object getGroupingUid(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public default boolean hasSubtypes(V);
+  public default java.lang.String getDisplayModId(V);
+  public default long getAmount(V);
+  public default V copyWithAmount(V, long);
+  public default java.lang.Iterable<java.lang.Integer> getColors(V);
+  public abstract net.minecraft.resources.Identifier getIdentifier(V);
+  public default net.minecraft.resources.Identifier getResourceLocation(V);
+  public default net.minecraft.world.item.ItemStack getCheatItemStack(V);
+  public abstract V copyIngredient(V);
+  public default V normalizeIngredient(V);
+  public default boolean isValidIngredient(V);
+  public default boolean isIngredientOnServer(V);
+  public default java.util.stream.Stream<net.minecraft.resources.Identifier> getTagStream(V);
+  public default boolean isHiddenFromRecipeViewersByTags(V);
+  public default boolean isHiddenFromRecipeViewersByTags(mezz.jei.api.ingredients.ITypedIngredient<V>);
+  public abstract java.lang.String getErrorInfo(V);
+  public default java.util.Optional<net.minecraft.tags.TagKey<?>> getTagKeyEquivalent(java.util.Collection<V>);
+  public default java.util.Optional<net.minecraft.world.item.crafting.display.DisplayContentsFactory<V>> getDisplayContentsFactory();
+}
+Compiled from "IIngredientRenderer.java"
+public interface mezz.jei.api.ingredients.IIngredientRenderer<T> {
+  public abstract void render(net.minecraft.client.gui.GuiGraphicsExtractor, T);
+  public default void render(net.minecraft.client.gui.GuiGraphicsExtractor, T, int, int);
+  public default void renderBatch(net.minecraft.client.gui.GuiGraphicsExtractor, java.util.List<mezz.jei.api.ingredients.rendering.BatchRenderElement<T>>);
+  public abstract java.util.List<net.minecraft.network.chat.Component> getTooltip(T, net.minecraft.world.item.TooltipFlag);
+  public default java.util.List<net.minecraft.network.chat.Component> getTooltip(T, net.minecraft.world.item.Item$TooltipContext, net.minecraft.world.entity.player.Player, net.minecraft.world.item.TooltipFlag);
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, T, net.minecraft.world.item.TooltipFlag);
+  public default void getTooltip(mezz.jei.api.gui.builder.ITooltipBuilder, T, net.minecraft.world.item.Item$TooltipContext, net.minecraft.world.entity.player.Player, net.minecraft.world.item.TooltipFlag);
+  public default net.minecraft.client.gui.Font getFontRenderer(net.minecraft.client.Minecraft, T);
+  public default int getWidth();
+  public default int getHeight();
+}
+Compiled from "IIngredientSupplier.java"
+public interface mezz.jei.api.ingredients.IIngredientSupplier {
+  public abstract java.util.List<mezz.jei.api.ingredients.ITypedIngredient<?>> getIngredients(mezz.jei.api.recipe.RecipeIngredientRole);
+}
+Compiled from "IIngredientType.java"
+public interface mezz.jei.api.ingredients.IIngredientType<T> {
+  public abstract java.lang.Class<? extends T> getIngredientClass();
+  public default java.lang.String getUid();
+  public default java.util.Optional<T> castIngredient(java.lang.Object);
+  public default T getCastIngredient(java.lang.Object);
+}
+Compiled from "IIngredientTypeWithSubtypes.java"
+public interface mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, I> extends mezz.jei.api.ingredients.IIngredientType<I> {
+  public abstract java.lang.Class<? extends I> getIngredientClass();
+  public abstract java.lang.Class<? extends B> getIngredientBaseClass();
+  public abstract B getBase(I);
+  public default I getDefaultIngredient(B);
+}
+Compiled from "ISlotDisplayInterpretationBuilder.java"
+public interface mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> {
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setWrappedDisplay(net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setChildDisplays(java.util.List<? extends net.minecraft.world.item.crafting.display.SlotDisplay>);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> addChildDisplay(net.minecraft.world.item.crafting.display.SlotDisplay);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> addChildDisplay(net.minecraft.world.item.crafting.display.SlotDisplay, java.util.function.UnaryOperator<T>);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setMatchesAllSubtypes(boolean);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setWildcardForSubtypes(boolean);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setTagKey(net.minecraft.tags.TagKey<?>);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> clearTagKey();
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> setTooltipHeader(net.minecraft.network.chat.Component);
+  public abstract mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T> clearTooltipHeader();
+}
+Compiled from "ISlotDisplayInterpreter.java"
+public interface mezz.jei.api.ingredients.ISlotDisplayInterpreter$IContext<T> {
+  public abstract java.util.List<mezz.jei.api.ingredients.ITypedIngredient<T>> getIngredients();
+  public abstract mezz.jei.api.runtime.IIngredientManager getIngredientManager();
+  public abstract mezz.jei.api.ingredients.IIngredientHelper<T> getIngredientHelper();
+  public abstract net.minecraft.util.context.ContextMap getContextMap();
+  public abstract mezz.jei.api.recipe.RecipeIngredientRole getRole();
+  public abstract java.util.stream.Stream<T> resolve(net.minecraft.world.item.crafting.display.SlotDisplay);
+}
+Compiled from "ISlotDisplayInterpreter.java"
+public interface mezz.jei.api.ingredients.ISlotDisplayInterpreter<D extends net.minecraft.world.item.crafting.display.SlotDisplay, T> {
+  public abstract void interpret(D, mezz.jei.api.ingredients.ISlotDisplayInterpreter$IContext<T>, mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<T>);
+}
+Compiled from "ITypedIngredient.java"
+public interface mezz.jei.api.ingredients.ITypedIngredient<T> {
+  public abstract mezz.jei.api.ingredients.IIngredientType<T> getType();
+  public abstract T getIngredient();
+  public abstract mezz.jei.api.ingredients.ITypedIngredient<T> normalize(mezz.jei.api.ingredients.IIngredientHelper<T>);
+  public default <V> java.util.Optional<V> getIngredient(mezz.jei.api.ingredients.IIngredientType<V>);
+  public default <V> V getCastIngredient(mezz.jei.api.ingredients.IIngredientType<V>);
+  public default <V> mezz.jei.api.ingredients.ITypedIngredient<V> cast(mezz.jei.api.ingredients.IIngredientType<V>);
+  public default mezz.jei.api.ingredients.ITypedIngredient<net.minecraft.world.item.ItemStack> castToItemStackType();
+  public default <B> B getBaseIngredient(mezz.jei.api.ingredients.IIngredientTypeWithSubtypes<B, T>);
+  public default java.util.Optional<net.minecraft.world.item.ItemStack> getItemStack();
+}
+Compiled from "IUniversalSlotDisplayInterpreter.java"
+public interface mezz.jei.api.ingredients.IUniversalSlotDisplayInterpreter<D extends net.minecraft.world.item.crafting.display.SlotDisplay> {
+  public abstract void interpret(D, mezz.jei.api.ingredients.ISlotDisplayInterpretationBuilder<?>);
+}
+Compiled from "package-info.java"
+interface mezz.jei.api.ingredients.package-info {
+}

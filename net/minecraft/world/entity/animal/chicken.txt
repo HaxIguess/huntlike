@@ -1,0 +1,115 @@
+Compiled from "Chicken.java"
+public class net.minecraft.world.entity.animal.chicken.Chicken extends net.minecraft.world.entity.animal.Animal {
+  public float flap;
+  public float flapSpeed;
+  public float oFlapSpeed;
+  public float oFlap;
+  public float flapping;
+  public int eggTime;
+  public boolean isChickenJockey;
+  public net.minecraft.world.entity.animal.chicken.Chicken(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.chicken.Chicken>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  public net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  public void aiStep();
+  protected boolean isFlapping();
+  protected void onFlap();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  public net.minecraft.world.entity.animal.chicken.Chicken getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  protected int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  public void setVariant(net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant>);
+  public net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant> getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public boolean removeWhenFarAway(double);
+  protected void positionRider(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity$MoveFunction);
+  public boolean isChickenJockey();
+  public void setChickenJockey(boolean);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}
+Compiled from "ChickenSoundVariant.java"
+public final class net.minecraft.world.entity.animal.chicken.ChickenSoundVariant extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.chicken.ChickenSoundVariant(net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet, net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet adultSounds();
+  public net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet babySounds();
+}
+Compiled from "ChickenVariant.java"
+public final class net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType extends java.lang.Enum<net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType NORMAL;
+  public static final net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType COLD;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType> CODEC;
+  public static net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType[] values();
+  public static net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "ChickenSoundVariants.java"
+public class net.minecraft.world.entity.animal.chicken.ChickenSoundVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant> CLASSIC;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant> PICKY;
+  public net.minecraft.world.entity.animal.chicken.ChickenSoundVariants();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant>);
+  public static net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenSoundVariant> pickRandomSoundVariant(net.minecraft.core.RegistryAccess, net.minecraft.util.RandomSource);
+}
+Compiled from "ChickenSoundVariant.java"
+public final class net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet extends java.lang.Record {
+  public net.minecraft.world.entity.animal.chicken.ChickenSoundVariant$ChickenSoundSet(net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>, net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> ambientSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> hurtSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> deathSound();
+  public net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> stepSound();
+}
+Compiled from "ChickenVariants.java"
+public class net.minecraft.world.entity.animal.chicken.ChickenVariants {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenVariant> TEMPERATE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenVariant> WARM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenVariant> COLD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.entity.animal.chicken.ChickenVariant> DEFAULT;
+  public net.minecraft.world.entity.animal.chicken.ChickenVariants();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.entity.animal.chicken.ChickenVariant>);
+}
+Compiled from "ChickenVariant.java"
+public final class net.minecraft.world.entity.animal.chicken.ChickenVariant extends java.lang.Record implements net.minecraft.world.entity.variant.PriorityProvider<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.chicken.ChickenVariant> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.chicken.ChickenVariant> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.entity.animal.chicken.ChickenVariant>> STREAM_CODEC;
+  public net.minecraft.world.entity.animal.chicken.ChickenVariant(net.minecraft.world.entity.variant.ModelAndTexture<net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType>, net.minecraft.core.ClientAsset$ResourceTexture, net.minecraft.world.entity.variant.SpawnPrioritySelectors);
+  public java.util.List<net.minecraft.world.entity.variant.PriorityProvider$Selector<net.minecraft.world.entity.variant.SpawnContext, net.minecraft.world.entity.variant.SpawnCondition>> selectors();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.variant.ModelAndTexture<net.minecraft.world.entity.animal.chicken.ChickenVariant$ModelType> modelAndTexture();
+  public net.minecraft.core.ClientAsset$ResourceTexture babyTexture();
+  public net.minecraft.world.entity.variant.SpawnPrioritySelectors spawnConditions();
+}
+Compiled from "ChickenSoundVariants.java"
+public final class net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet extends java.lang.Enum<net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet> {
+  public static final net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet CLASSIC;
+  public static final net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet PICKY;
+  public static net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet[] values();
+  public static net.minecraft.world.entity.animal.chicken.ChickenSoundVariants$SoundSet valueOf(java.lang.String);
+  public java.lang.String getIdentifier();
+  public java.lang.String getSoundEventIdentifier();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.chicken.package-info {
+}

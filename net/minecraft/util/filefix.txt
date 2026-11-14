@@ -1,0 +1,87 @@
+Compiled from "FileFix.java"
+public abstract class net.minecraft.util.filefix.FileFix {
+  public net.minecraft.util.filefix.FileFix(com.mojang.datafixers.schemas.Schema);
+  public final com.mojang.datafixers.schemas.Schema getSchema();
+  public final int getVersion();
+  public void addFileFixOperation(net.minecraft.util.filefix.operations.FileFixOperation);
+  public void addFileContentFix(net.minecraft.util.filefix.operations.ModifyContent$FileAccessFunction);
+  public int countFileOperations();
+  public void runFixOperations(java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws java.io.IOException;
+  public abstract void makeFixer();
+}
+Compiled from "AbortedFileFixException.java"
+public final class net.minecraft.util.filefix.AbortedFileFixException extends net.minecraft.util.filefix.FileFixException {
+  public net.minecraft.util.filefix.AbortedFileFixException(java.lang.Exception, java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>, net.minecraft.util.filefix.FileSystemCapabilities);
+  public net.minecraft.util.filefix.AbortedFileFixException(java.lang.Exception);
+  public java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove> notRevertedMoves();
+  protected net.minecraft.CrashReport createCrashReport();
+}
+Compiled from "FileSystemCapabilities.java"
+public final class net.minecraft.util.filefix.FileSystemCapabilities extends java.lang.Record {
+  public net.minecraft.util.filefix.FileSystemCapabilities(boolean, boolean);
+  public java.nio.file.CopyOption[] getMoveOptions();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean atomicMove();
+  public boolean hardLinks();
+}
+Compiled from "AtomicMoveNotSupportedFileFixException.java"
+public class net.minecraft.util.filefix.AtomicMoveNotSupportedFileFixException extends net.minecraft.util.filefix.FileFixException {
+  public net.minecraft.util.filefix.AtomicMoveNotSupportedFileFixException(net.minecraft.util.filefix.FileSystemCapabilities);
+}
+Compiled from "FileFixerUpper.java"
+public final class net.minecraft.util.filefix.FileFixerUpper$UpgradeInProgress extends java.lang.Record {
+  public net.minecraft.util.filefix.FileFixerUpper$UpgradeInProgress(java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>);
+  public static com.mojang.serialization.Codec<net.minecraft.util.filefix.FileFixerUpper$UpgradeInProgress> codec(java.nio.file.Path, java.nio.file.Path);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove> moves();
+}
+Compiled from "FileFixerUpper.java"
+public class net.minecraft.util.filefix.FileFixerUpper {
+  public net.minecraft.util.filefix.FileFixerUpper(com.mojang.datafixers.DataFixerBuilder$Result, java.util.List<net.minecraft.util.filefix.FileFix>, int);
+  public static int worldVersionToFileFixerVersion(int);
+  public boolean requiresFileFixing(int);
+  public com.mojang.serialization.Dynamic<?> fix(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.serialization.Dynamic<?>, net.minecraft.util.worldupdate.UpgradeProgress) throws net.minecraft.util.filefix.FileFixException;
+  public com.mojang.serialization.Dynamic<?> fix(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, com.mojang.serialization.Dynamic<?>, net.minecraft.util.worldupdate.UpgradeProgress, int) throws net.minecraft.util.filefix.FileFixException;
+  public void applyFileFixers(net.minecraft.util.worldupdate.UpgradeProgress, int, int, java.nio.file.Path) throws java.io.IOException;
+  protected static void swapInFixedWorld(net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, java.util.List<net.minecraft.util.filefix.virtualfilesystem.FileMove>, java.nio.file.Path, java.nio.file.Path, net.minecraft.util.worldupdate.UpgradeProgress) throws net.minecraft.util.filefix.FileFixException;
+  public static net.minecraft.util.filefix.FileSystemCapabilities detectFileSystemCapabilities(java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "FileFixException.java"
+public class net.minecraft.util.filefix.FileFixException extends java.lang.RuntimeException {
+  protected final net.minecraft.util.filefix.FileSystemCapabilities fileSystemCapabilities;
+  public net.minecraft.util.filefix.FileFixException(java.lang.Exception, net.minecraft.util.filefix.FileSystemCapabilities);
+  protected net.minecraft.CrashReport createCrashReport();
+  public net.minecraft.ReportedException makeReportedException();
+}
+Compiled from "FileFixUtil.java"
+public class net.minecraft.util.filefix.FileFixUtil {
+  public static final java.lang.String NAMESPACE_PATTERN;
+  public net.minecraft.util.filefix.FileFixUtil();
+  public static void moveFile(java.nio.file.Path, java.lang.String, java.lang.String) throws java.io.IOException;
+  public static void deleteFileOrEmptyDirectory(java.nio.file.Path, java.lang.String) throws java.io.IOException;
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.filefix.package-info {
+}
+Compiled from "CanceledFileFixException.java"
+public class net.minecraft.util.filefix.CanceledFileFixException extends net.minecraft.util.filefix.FileFixException {
+  public net.minecraft.util.filefix.CanceledFileFixException();
+}
+Compiled from "FailedCleanupFileFixException.java"
+public final class net.minecraft.util.filefix.FailedCleanupFileFixException extends net.minecraft.util.filefix.FileFixException {
+  public net.minecraft.util.filefix.FailedCleanupFileFixException(java.lang.Exception, java.lang.String, net.minecraft.util.filefix.FileSystemCapabilities);
+  protected net.minecraft.CrashReport createCrashReport();
+  public java.lang.String newWorldFolderName();
+}
+Compiled from "FileFixerUpper.java"
+public class net.minecraft.util.filefix.FileFixerUpper$Builder {
+  public final java.util.List<net.minecraft.util.filefix.FileFix> fileFixes;
+  public net.minecraft.util.filefix.FileFixerUpper$Builder(int);
+  public void addFixer(net.minecraft.util.filefix.FileFix);
+  public com.mojang.datafixers.schemas.Schema addSchema(com.mojang.datafixers.DataFixerBuilder, int, java.util.function.BiFunction<java.lang.Integer, com.mojang.datafixers.schemas.Schema, com.mojang.datafixers.schemas.Schema>);
+  public net.minecraft.util.filefix.FileFixerUpper build(com.mojang.datafixers.DataFixerBuilder$Result);
+}

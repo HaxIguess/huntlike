@@ -1,0 +1,263 @@
+Compiled from "AmphibiousNodeEvaluator.java"
+public class net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator extends net.minecraft.world.level.pathfinder.WalkNodeEvaluator {
+  public net.minecraft.world.level.pathfinder.AmphibiousNodeEvaluator(boolean);
+  public void prepare(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob);
+  public void done();
+  public net.minecraft.world.level.pathfinder.Node getStart();
+  public net.minecraft.world.level.pathfinder.Target getTarget(double, double, double);
+  public int getNeighbors(net.minecraft.world.level.pathfinder.Node[], net.minecraft.world.level.pathfinder.Node);
+  protected boolean isAmphibious();
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+}
+Compiled from "Target.java"
+public class net.minecraft.world.level.pathfinder.Target extends net.minecraft.world.level.pathfinder.Node {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.pathfinder.Target> DEBUG_STREAM_CODEC;
+  public net.minecraft.world.level.pathfinder.Target(net.minecraft.world.level.pathfinder.Node);
+  public net.minecraft.world.level.pathfinder.Target(int, int, int);
+  public void updateBest(float, net.minecraft.world.level.pathfinder.Node);
+  public net.minecraft.world.level.pathfinder.Node getBestNode();
+  public void setReached();
+  public boolean isReached();
+}
+Compiled from "WalkNodeEvaluator.java"
+public class net.minecraft.world.level.pathfinder.WalkNodeEvaluator extends net.minecraft.world.level.pathfinder.NodeEvaluator {
+  public static final double SPACE_BETWEEN_WALL_POSTS;
+  public net.minecraft.world.level.pathfinder.WalkNodeEvaluator();
+  public void prepare(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob);
+  public void done();
+  public net.minecraft.world.level.pathfinder.Node getStart();
+  protected net.minecraft.world.level.pathfinder.Node getStartNode(net.minecraft.core.BlockPos);
+  protected boolean canStartAt(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.pathfinder.Target getTarget(double, double, double);
+  public int getNeighbors(net.minecraft.world.level.pathfinder.Node[], net.minecraft.world.level.pathfinder.Node);
+  protected boolean isNeighborValid(net.minecraft.world.level.pathfinder.Node, net.minecraft.world.level.pathfinder.Node);
+  protected boolean isDiagonalValid(net.minecraft.world.level.pathfinder.Node, net.minecraft.world.level.pathfinder.Node, net.minecraft.world.level.pathfinder.Node);
+  protected boolean isDiagonalValid(net.minecraft.world.level.pathfinder.Node);
+  protected double getFloorLevel(net.minecraft.core.BlockPos);
+  public static double getFloorLevel(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  protected boolean isAmphibious();
+  protected net.minecraft.world.level.pathfinder.Node findAcceptedNode(int, int, int, int, double, net.minecraft.core.Direction, net.minecraft.world.level.pathfinder.PathType);
+  protected net.minecraft.world.level.pathfinder.PathType getCachedPathType(int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathTypeOfMob(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int, net.minecraft.world.entity.Mob);
+  public java.util.Set<net.minecraft.world.level.pathfinder.PathType> getPathTypeWithinMobBB(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+  public static net.minecraft.world.level.pathfinder.PathType getPathTypeStatic(net.minecraft.world.entity.Mob, net.minecraft.core.BlockPos);
+  public static net.minecraft.world.level.pathfinder.PathType getPathTypeStatic(net.minecraft.world.level.pathfinder.PathfindingContext, net.minecraft.core.BlockPos$MutableBlockPos);
+  public static net.minecraft.world.level.pathfinder.PathType checkNeighbourBlocks(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int, net.minecraft.world.level.pathfinder.PathType);
+  protected static net.minecraft.world.level.pathfinder.PathType getPathTypeFromState(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "FlyNodeEvaluator.java"
+public class net.minecraft.world.level.pathfinder.FlyNodeEvaluator extends net.minecraft.world.level.pathfinder.WalkNodeEvaluator {
+  public net.minecraft.world.level.pathfinder.FlyNodeEvaluator();
+  public void prepare(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob);
+  public void done();
+  public net.minecraft.world.level.pathfinder.Node getStart();
+  protected boolean canStartAt(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.pathfinder.Target getTarget(double, double, double);
+  public int getNeighbors(net.minecraft.world.level.pathfinder.Node[], net.minecraft.world.level.pathfinder.Node);
+  protected net.minecraft.world.level.pathfinder.Node findAcceptedNode(int, int, int);
+  protected net.minecraft.world.level.pathfinder.PathType getCachedPathType(int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+}
+Compiled from "Node.java"
+public class net.minecraft.world.level.pathfinder.Node {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.pathfinder.Node> DEBUG_STREAM_CODEC;
+  public final int x;
+  public final int y;
+  public final int z;
+  public int heapIdx;
+  public float g;
+  public float h;
+  public float f;
+  public net.minecraft.world.level.pathfinder.Node cameFrom;
+  public boolean closed;
+  public float walkedDistance;
+  public float costMalus;
+  public net.minecraft.world.level.pathfinder.PathType type;
+  protected static <N extends net.minecraft.world.level.pathfinder.Node> net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, N> createDebugStreamCodec(com.mojang.datafixers.util.Function3<java.lang.Integer, java.lang.Integer, java.lang.Integer, N>);
+  public net.minecraft.world.level.pathfinder.Node(int, int, int);
+  public net.minecraft.world.level.pathfinder.Node cloneAndMove(int, int, int);
+  public static int createHash(int, int, int);
+  public float distanceTo(net.minecraft.world.level.pathfinder.Node);
+  public float distanceToXZ(net.minecraft.world.level.pathfinder.Node);
+  public float distanceTo(net.minecraft.core.BlockPos);
+  public float distanceToSqr(net.minecraft.world.level.pathfinder.Node);
+  public float distanceToSqr(net.minecraft.core.BlockPos);
+  public float distanceManhattan(net.minecraft.world.level.pathfinder.Node);
+  public float distanceManhattan(net.minecraft.core.BlockPos);
+  public net.minecraft.core.BlockPos asBlockPos();
+  public net.minecraft.world.phys.Vec3 asVec3();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public boolean inOpenSet();
+  public java.lang.String toString();
+}
+Compiled from "PathfindingContext.java"
+public class net.minecraft.world.level.pathfinder.PathfindingContext {
+  public net.minecraft.world.level.pathfinder.PathfindingContext(net.minecraft.world.level.CollisionGetter, net.minecraft.world.entity.Mob);
+  public net.minecraft.world.level.pathfinder.PathType getPathTypeFromState(int, int, int);
+  public net.minecraft.world.level.block.state.BlockState getBlockState(net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.CollisionGetter level();
+  public net.minecraft.core.BlockPos mobPosition();
+}
+Compiled from "Path.java"
+public final class net.minecraft.world.level.pathfinder.Path {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.pathfinder.Path> DEBUG_STREAM_CODEC;
+  public net.minecraft.world.level.pathfinder.Path(java.util.List<net.minecraft.world.level.pathfinder.Node>, net.minecraft.core.BlockPos, boolean);
+  public void advance();
+  public boolean notStarted();
+  public boolean isDone();
+  public net.minecraft.world.level.pathfinder.Node getEndNode();
+  public net.minecraft.world.level.pathfinder.Node getNode(int);
+  public void truncateNodes(int);
+  public void replaceNode(int, net.minecraft.world.level.pathfinder.Node);
+  public int getNodeCount();
+  public int getNextNodeIndex();
+  public void setNextNodeIndex(int);
+  public net.minecraft.world.phys.Vec3 getEntityPosAtNode(net.minecraft.world.entity.Entity, int);
+  public net.minecraft.core.BlockPos getNodePos(int);
+  public net.minecraft.world.phys.Vec3 getNextEntityPos(net.minecraft.world.entity.Entity);
+  public net.minecraft.core.BlockPos getNextNodePos();
+  public net.minecraft.world.level.pathfinder.Node getNextNode();
+  public net.minecraft.world.level.pathfinder.Node getPreviousNode();
+  public boolean sameAs(net.minecraft.world.level.pathfinder.Path);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public boolean canReach();
+  public net.minecraft.world.level.pathfinder.Path$DebugData debugData();
+  public java.lang.String toString();
+  public net.minecraft.core.BlockPos getTarget();
+  public float getDistToTarget();
+  public net.minecraft.world.level.pathfinder.Path copy();
+}
+Compiled from "BinaryHeap.java"
+public class net.minecraft.world.level.pathfinder.BinaryHeap {
+  public net.minecraft.world.level.pathfinder.BinaryHeap();
+  public net.minecraft.world.level.pathfinder.Node insert(net.minecraft.world.level.pathfinder.Node);
+  public void clear();
+  public net.minecraft.world.level.pathfinder.Node peek();
+  public net.minecraft.world.level.pathfinder.Node pop();
+  public void remove(net.minecraft.world.level.pathfinder.Node);
+  public void changeCost(net.minecraft.world.level.pathfinder.Node, float);
+  public int size();
+  public boolean isEmpty();
+  public net.minecraft.world.level.pathfinder.Node[] getHeap();
+}
+Compiled from "SwimNodeEvaluator.java"
+public class net.minecraft.world.level.pathfinder.SwimNodeEvaluator extends net.minecraft.world.level.pathfinder.NodeEvaluator {
+  public net.minecraft.world.level.pathfinder.SwimNodeEvaluator(boolean);
+  public void prepare(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob);
+  public void done();
+  public net.minecraft.world.level.pathfinder.Node getStart();
+  public net.minecraft.world.level.pathfinder.Target getTarget(double, double, double);
+  public int getNeighbors(net.minecraft.world.level.pathfinder.Node[], net.minecraft.world.level.pathfinder.Node);
+  protected boolean isNodeValid(net.minecraft.world.level.pathfinder.Node);
+  protected net.minecraft.world.level.pathfinder.Node findAcceptedNode(int, int, int);
+  protected net.minecraft.world.level.pathfinder.PathType getCachedBlockType(int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathTypeOfMob(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int, net.minecraft.world.entity.Mob);
+}
+Compiled from "PathType.java"
+public final class net.minecraft.world.level.pathfinder.PathType extends java.lang.Enum<net.minecraft.world.level.pathfinder.PathType> {
+  public static final net.minecraft.world.level.pathfinder.PathType BLOCKED;
+  public static final net.minecraft.world.level.pathfinder.PathType OPEN;
+  public static final net.minecraft.world.level.pathfinder.PathType WALKABLE;
+  public static final net.minecraft.world.level.pathfinder.PathType WALKABLE_DOOR;
+  public static final net.minecraft.world.level.pathfinder.PathType TRAPDOOR;
+  public static final net.minecraft.world.level.pathfinder.PathType POWDER_SNOW;
+  public static final net.minecraft.world.level.pathfinder.PathType ON_TOP_OF_POWDER_SNOW;
+  public static final net.minecraft.world.level.pathfinder.PathType FENCE;
+  public static final net.minecraft.world.level.pathfinder.PathType LAVA;
+  public static final net.minecraft.world.level.pathfinder.PathType WATER;
+  public static final net.minecraft.world.level.pathfinder.PathType WATER_BORDER;
+  public static final net.minecraft.world.level.pathfinder.PathType RAIL;
+  public static final net.minecraft.world.level.pathfinder.PathType UNPASSABLE_RAIL;
+  public static final net.minecraft.world.level.pathfinder.PathType FIRE_IN_NEIGHBOR;
+  public static final net.minecraft.world.level.pathfinder.PathType FIRE;
+  public static final net.minecraft.world.level.pathfinder.PathType DAMAGING_IN_NEIGHBOR;
+  public static final net.minecraft.world.level.pathfinder.PathType DAMAGING;
+  public static final net.minecraft.world.level.pathfinder.PathType DOOR_OPEN;
+  public static final net.minecraft.world.level.pathfinder.PathType DOOR_WOOD_CLOSED;
+  public static final net.minecraft.world.level.pathfinder.PathType DOOR_IRON_CLOSED;
+  public static final net.minecraft.world.level.pathfinder.PathType BREACH;
+  public static final net.minecraft.world.level.pathfinder.PathType LEAVES;
+  public static final net.minecraft.world.level.pathfinder.PathType STICKY_HONEY;
+  public static final net.minecraft.world.level.pathfinder.PathType COCOA;
+  public static final net.minecraft.world.level.pathfinder.PathType DAMAGE_CAUTIOUS;
+  public static final net.minecraft.world.level.pathfinder.PathType ON_TOP_OF_TRAPDOOR;
+  public static final net.minecraft.world.level.pathfinder.PathType BIG_MOBS_CLOSE_TO_DANGER;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.pathfinder.PathType> STREAM_CODEC;
+  public static net.minecraft.world.level.pathfinder.PathType[] values();
+  public static net.minecraft.world.level.pathfinder.PathType valueOf(java.lang.String);
+  public float getMalus();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.pathfinder.package-info {
+}
+Compiled from "NodeEvaluator.java"
+public abstract class net.minecraft.world.level.pathfinder.NodeEvaluator {
+  protected net.minecraft.world.level.pathfinder.PathfindingContext currentContext;
+  protected net.minecraft.world.entity.Mob mob;
+  protected final it.unimi.dsi.fastutil.ints.Int2ObjectMap<net.minecraft.world.level.pathfinder.Node> nodes;
+  protected int entityWidth;
+  protected int entityHeight;
+  protected int entityDepth;
+  protected boolean canPassDoors;
+  protected boolean canOpenDoors;
+  protected boolean canFloat;
+  protected boolean canWalkOverFences;
+  public net.minecraft.world.level.pathfinder.NodeEvaluator();
+  public void prepare(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob);
+  public void done();
+  protected net.minecraft.world.level.pathfinder.Node getNode(net.minecraft.core.BlockPos);
+  protected net.minecraft.world.level.pathfinder.Node getNode(int, int, int);
+  public abstract net.minecraft.world.level.pathfinder.Node getStart();
+  public abstract net.minecraft.world.level.pathfinder.Target getTarget(double, double, double);
+  protected net.minecraft.world.level.pathfinder.Target getTargetNodeAt(double, double, double);
+  public abstract int getNeighbors(net.minecraft.world.level.pathfinder.Node[], net.minecraft.world.level.pathfinder.Node);
+  public abstract net.minecraft.world.level.pathfinder.PathType getPathTypeOfMob(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int, net.minecraft.world.entity.Mob);
+  public abstract net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.level.pathfinder.PathfindingContext, int, int, int);
+  public net.minecraft.world.level.pathfinder.PathType getPathType(net.minecraft.world.entity.Mob, net.minecraft.core.BlockPos);
+  public void setCanPassDoors(boolean);
+  public void setCanOpenDoors(boolean);
+  public void setCanFloat(boolean);
+  public void setCanWalkOverFences(boolean);
+  public boolean canPassDoors();
+  public boolean canOpenDoors();
+  public boolean canFloat();
+  public boolean canWalkOverFences();
+  public static boolean isBurningBlock(net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "PathTypeCache.java"
+public class net.minecraft.world.level.pathfinder.PathTypeCache {
+  public net.minecraft.world.level.pathfinder.PathTypeCache();
+  public net.minecraft.world.level.pathfinder.PathType getOrCompute(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+  public void invalidate(net.minecraft.core.BlockPos);
+}
+Compiled from "Path.java"
+public final class net.minecraft.world.level.pathfinder.Path$DebugData extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.pathfinder.Path$DebugData> STREAM_CODEC;
+  public net.minecraft.world.level.pathfinder.Path$DebugData(java.util.List<net.minecraft.world.level.pathfinder.Node>, java.util.List<net.minecraft.world.level.pathfinder.Node>, java.util.Set<net.minecraft.world.level.pathfinder.Target>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.pathfinder.Node> openSet();
+  public java.util.List<net.minecraft.world.level.pathfinder.Node> closedSet();
+  public java.util.Set<net.minecraft.world.level.pathfinder.Target> targetNodes();
+}
+Compiled from "PathComputationType.java"
+public final class net.minecraft.world.level.pathfinder.PathComputationType extends java.lang.Enum<net.minecraft.world.level.pathfinder.PathComputationType> {
+  public static final net.minecraft.world.level.pathfinder.PathComputationType LAND;
+  public static final net.minecraft.world.level.pathfinder.PathComputationType WATER;
+  public static final net.minecraft.world.level.pathfinder.PathComputationType AIR;
+  public static net.minecraft.world.level.pathfinder.PathComputationType[] values();
+  public static net.minecraft.world.level.pathfinder.PathComputationType valueOf(java.lang.String);
+}
+Compiled from "PathFinder.java"
+public class net.minecraft.world.level.pathfinder.PathFinder {
+  public net.minecraft.world.level.pathfinder.PathFinder(net.minecraft.world.level.pathfinder.NodeEvaluator, int);
+  public void setCaptureDebug(java.util.function.BooleanSupplier);
+  public void setMaxVisitedNodes(int);
+  public net.minecraft.world.level.pathfinder.Path findPath(net.minecraft.world.level.PathNavigationRegion, net.minecraft.world.entity.Mob, java.util.Set<net.minecraft.core.BlockPos>, float, int, float);
+  protected float distance(net.minecraft.world.level.pathfinder.Node, net.minecraft.world.level.pathfinder.Node);
+}

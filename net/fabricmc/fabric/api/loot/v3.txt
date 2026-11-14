@@ -1,0 +1,55 @@
+Compiled from "FabricLootPoolBuilder.java"
+public interface net.fabricmc.fabric.api.loot.v3.FabricLootPoolBuilder {
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder add(net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer);
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder add(java.util.Collection<? extends net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer>);
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder when(net.minecraft.world.level.storage.loot.predicates.LootItemCondition);
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder when(java.util.Collection<? extends net.minecraft.world.level.storage.loot.predicates.LootItemCondition>);
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder apply(net.minecraft.world.level.storage.loot.functions.LootItemFunction);
+  public default net.minecraft.world.level.storage.loot.LootPool$Builder apply(java.util.Collection<? extends net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+  public static net.minecraft.world.level.storage.loot.LootPool$Builder copyOf(net.minecraft.world.level.storage.loot.LootPool);
+}
+Compiled from "FabricLootTableBuilder.java"
+public interface net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder {
+  public default net.minecraft.world.level.storage.loot.LootTable$Builder pool(net.minecraft.world.level.storage.loot.LootPool);
+  public default net.minecraft.world.level.storage.loot.LootTable$Builder apply(net.minecraft.world.level.storage.loot.functions.LootItemFunction);
+  public default net.minecraft.world.level.storage.loot.LootTable$Builder pools(java.util.Collection<? extends net.minecraft.world.level.storage.loot.LootPool>);
+  public default net.minecraft.world.level.storage.loot.LootTable$Builder apply(java.util.Collection<? extends net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+  public default net.minecraft.world.level.storage.loot.LootTable$Builder modifyPools(java.util.function.Consumer<? super net.minecraft.world.level.storage.loot.LootPool$Builder>);
+  public static net.minecraft.world.level.storage.loot.LootTable$Builder copyOf(net.minecraft.world.level.storage.loot.LootTable);
+}
+Compiled from "LootTableEvents.java"
+public interface net.fabricmc.fabric.api.loot.v3.LootTableEvents$Loaded {
+  public abstract void onLootTablesLoaded(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.core.Registry<net.minecraft.world.level.storage.loot.LootTable>);
+}
+Compiled from "LootTableEvents.java"
+public interface net.fabricmc.fabric.api.loot.v3.LootTableEvents$Modify {
+  public abstract void modifyLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, net.minecraft.world.level.storage.loot.LootTable$Builder, net.fabricmc.fabric.api.loot.v3.LootTableSource, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "LootTableEvents.java"
+public interface net.fabricmc.fabric.api.loot.v3.LootTableEvents$ModifyDrops {
+  public abstract void modifyLootTableDrops(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable>, net.minecraft.world.level.storage.loot.LootContext, java.util.List<net.minecraft.world.item.ItemStack>);
+}
+Compiled from "LootTableEvents.java"
+public interface net.fabricmc.fabric.api.loot.v3.LootTableEvents$Replace {
+  public abstract net.minecraft.world.level.storage.loot.LootTable replaceLootTable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>, net.minecraft.world.level.storage.loot.LootTable, net.fabricmc.fabric.api.loot.v3.LootTableSource, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "LootTableEvents.java"
+public final class net.fabricmc.fabric.api.loot.v3.LootTableEvents {
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.loot.v3.LootTableEvents$Replace> REPLACE;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.loot.v3.LootTableEvents$Modify> MODIFY;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.loot.v3.LootTableEvents$Loaded> ALL_LOADED;
+  public static final net.fabricmc.fabric.api.event.Event<net.fabricmc.fabric.api.loot.v3.LootTableEvents$ModifyDrops> MODIFY_DROPS;
+}
+Compiled from "LootTableSource.java"
+public final class net.fabricmc.fabric.api.loot.v3.LootTableSource extends java.lang.Enum<net.fabricmc.fabric.api.loot.v3.LootTableSource> {
+  public static final net.fabricmc.fabric.api.loot.v3.LootTableSource VANILLA;
+  public static final net.fabricmc.fabric.api.loot.v3.LootTableSource MOD;
+  public static final net.fabricmc.fabric.api.loot.v3.LootTableSource DATA_PACK;
+  public static final net.fabricmc.fabric.api.loot.v3.LootTableSource REPLACED;
+  public static net.fabricmc.fabric.api.loot.v3.LootTableSource[] values();
+  public static net.fabricmc.fabric.api.loot.v3.LootTableSource valueOf(java.lang.String);
+  public boolean isBuiltin();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.loot.v3.package-info {
+}

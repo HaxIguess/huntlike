@@ -1,0 +1,56 @@
+Compiled from "ServerMetricsSamplersProvider.java"
+public class net.minecraft.util.profiling.metrics.profiling.ServerMetricsSamplersProvider$CpuStats {
+  public final int nrOfCpus;
+  public net.minecraft.util.profiling.metrics.profiling.ServerMetricsSamplersProvider$CpuStats();
+  public double loadForCpu(int);
+}
+Compiled from "ServerMetricsSamplersProvider.java"
+public class net.minecraft.util.profiling.metrics.profiling.ServerMetricsSamplersProvider implements net.minecraft.util.profiling.metrics.MetricsSamplerProvider {
+  public net.minecraft.util.profiling.metrics.profiling.ServerMetricsSamplersProvider(java.util.function.LongSupplier, boolean);
+  public static java.util.Set<net.minecraft.util.profiling.metrics.MetricSampler> runtimeIndependentSamplers();
+  public java.util.Set<net.minecraft.util.profiling.metrics.MetricSampler> samplers(java.util.function.Supplier<net.minecraft.util.profiling.ProfileCollector>);
+  public static net.minecraft.util.profiling.metrics.MetricSampler tickTimeSampler(java.util.function.LongSupplier);
+}
+Compiled from "ProfilerSamplerAdapter.java"
+public class net.minecraft.util.profiling.metrics.profiling.ProfilerSamplerAdapter {
+  public net.minecraft.util.profiling.metrics.profiling.ProfilerSamplerAdapter();
+  public java.util.Set<net.minecraft.util.profiling.metrics.MetricSampler> newSamplersFoundInProfiler(java.util.function.Supplier<net.minecraft.util.profiling.ProfileCollector>);
+}
+Compiled from "InactiveMetricsRecorder.java"
+public class net.minecraft.util.profiling.metrics.profiling.InactiveMetricsRecorder implements net.minecraft.util.profiling.metrics.profiling.MetricsRecorder {
+  public static final net.minecraft.util.profiling.metrics.profiling.MetricsRecorder INSTANCE;
+  public net.minecraft.util.profiling.metrics.profiling.InactiveMetricsRecorder();
+  public void end();
+  public void cancel();
+  public void startTick();
+  public void sampleDuringExtract();
+  public boolean isRecording();
+  public net.minecraft.util.profiling.ProfilerFiller getProfiler();
+  public void endTick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.profiling.metrics.profiling.package-info {
+}
+Compiled from "ActiveMetricsRecorder.java"
+public class net.minecraft.util.profiling.metrics.profiling.ActiveMetricsRecorder implements net.minecraft.util.profiling.metrics.profiling.MetricsRecorder {
+  public static final int PROFILING_MAX_DURATION_SECONDS;
+  public static net.minecraft.util.profiling.metrics.profiling.ActiveMetricsRecorder createStarted(net.minecraft.util.profiling.metrics.MetricsSamplerProvider, java.util.function.LongSupplier, java.util.concurrent.Executor, net.minecraft.util.profiling.metrics.storage.MetricsPersister, java.util.function.Consumer<net.minecraft.util.profiling.ProfileResults>, java.util.function.Consumer<java.nio.file.Path>);
+  public synchronized void end();
+  public synchronized void cancel();
+  public void startTick();
+  public void sampleDuringExtract();
+  public void endTick();
+  public boolean isRecording();
+  public net.minecraft.util.profiling.ProfilerFiller getProfiler();
+  public static void registerGlobalCompletionCallback(java.util.function.Consumer<java.nio.file.Path>);
+}
+Compiled from "MetricsRecorder.java"
+public interface net.minecraft.util.profiling.metrics.profiling.MetricsRecorder {
+  public abstract void end();
+  public abstract void cancel();
+  public abstract void startTick();
+  public abstract void sampleDuringExtract();
+  public abstract boolean isRecording();
+  public abstract net.minecraft.util.profiling.ProfilerFiller getProfiler();
+  public abstract void endTick();
+}

@@ -1,0 +1,49 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.level.block.state.pattern.package-info {
+}
+Compiled from "BlockPattern.java"
+public class net.minecraft.world.level.block.state.pattern.BlockPattern {
+  public net.minecraft.world.level.block.state.pattern.BlockPattern(java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld>[][][]);
+  public int getDepth();
+  public int getHeight();
+  public int getWidth();
+  public java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld>[][][] getPattern();
+  public net.minecraft.world.level.block.state.pattern.BlockPattern$BlockPatternMatch matches(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.Direction);
+  public net.minecraft.world.level.block.state.pattern.BlockPattern$BlockPatternMatch find(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  public static com.google.common.cache.LoadingCache<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.pattern.BlockInWorld> createLevelCache(net.minecraft.world.level.LevelReader, boolean);
+  protected static net.minecraft.core.BlockPos translateAndRotate(net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.Direction, int, int, int);
+}
+Compiled from "BlockInWorld.java"
+public class net.minecraft.world.level.block.state.pattern.BlockInWorld {
+  public net.minecraft.world.level.block.state.pattern.BlockInWorld(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, boolean);
+  public net.minecraft.world.level.block.state.BlockState getState();
+  public net.minecraft.world.level.block.entity.BlockEntity getEntity();
+  public net.minecraft.world.level.LevelReader getLevel();
+  public net.minecraft.core.BlockPos getPos();
+  public static java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld> hasState(java.util.function.Predicate<net.minecraft.world.level.block.state.BlockState>);
+}
+Compiled from "BlockPattern.java"
+public class net.minecraft.world.level.block.state.pattern.BlockPattern$BlockPatternMatch {
+  public net.minecraft.world.level.block.state.pattern.BlockPattern$BlockPatternMatch(net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.Direction, com.google.common.cache.LoadingCache<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.pattern.BlockInWorld>, int, int, int);
+  public net.minecraft.core.BlockPos getFrontTopLeft();
+  public net.minecraft.core.Direction getForwards();
+  public net.minecraft.core.Direction getUp();
+  public int getWidth();
+  public int getHeight();
+  public int getDepth();
+  public net.minecraft.world.level.block.state.pattern.BlockInWorld getBlock(int, int, int);
+  public java.lang.String toString();
+}
+Compiled from "BlockPattern.java"
+class net.minecraft.world.level.block.state.pattern.BlockPattern$BlockCacheLoader extends com.google.common.cache.CacheLoader<net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.pattern.BlockInWorld> {
+  public net.minecraft.world.level.block.state.pattern.BlockPattern$BlockCacheLoader(net.minecraft.world.level.LevelReader, boolean);
+  public net.minecraft.world.level.block.state.pattern.BlockInWorld load(net.minecraft.core.BlockPos);
+  public java.lang.Object load(java.lang.Object) throws java.lang.Exception;
+}
+Compiled from "BlockPatternBuilder.java"
+public class net.minecraft.world.level.block.state.pattern.BlockPatternBuilder {
+  public net.minecraft.world.level.block.state.pattern.BlockPatternBuilder aisle(java.lang.String...);
+  public static net.minecraft.world.level.block.state.pattern.BlockPatternBuilder start();
+  public net.minecraft.world.level.block.state.pattern.BlockPatternBuilder where(char, java.util.function.Predicate<net.minecraft.world.level.block.state.pattern.BlockInWorld>);
+  public net.minecraft.world.level.block.state.pattern.BlockPattern build();
+}

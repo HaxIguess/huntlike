@@ -1,0 +1,200 @@
+Compiled from "GameEvent.java"
+public final class net.minecraft.world.level.gameevent.GameEvent$Context extends java.lang.Record {
+  public net.minecraft.world.level.gameevent.GameEvent$Context(net.minecraft.world.entity.Entity, net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.level.gameevent.GameEvent$Context of(net.minecraft.world.entity.Entity);
+  public static net.minecraft.world.level.gameevent.GameEvent$Context of(net.minecraft.world.level.block.state.BlockState);
+  public static net.minecraft.world.level.gameevent.GameEvent$Context of(net.minecraft.world.entity.Entity, net.minecraft.world.level.block.state.BlockState);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.Entity sourceEntity();
+  public net.minecraft.world.level.block.state.BlockState affectedState();
+}
+Compiled from "BlockPositionSource.java"
+public final class net.minecraft.world.level.gameevent.BlockPositionSource extends java.lang.Record implements net.minecraft.world.level.gameevent.PositionSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.gameevent.BlockPositionSource> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.gameevent.BlockPositionSource> STREAM_CODEC;
+  public net.minecraft.world.level.gameevent.BlockPositionSource(net.minecraft.core.BlockPos);
+  public java.util.Optional<net.minecraft.world.phys.Vec3> getPosition(net.minecraft.world.level.Level);
+  public net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.BlockPositionSource> getType();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+}
+Compiled from "EntityPositionSource.java"
+public class net.minecraft.world.level.gameevent.EntityPositionSource implements net.minecraft.world.level.gameevent.PositionSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.gameevent.EntityPositionSource> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.gameevent.EntityPositionSource> STREAM_CODEC;
+  public net.minecraft.world.level.gameevent.EntityPositionSource(net.minecraft.world.entity.Entity, float);
+  public java.util.Optional<net.minecraft.world.phys.Vec3> getPosition(net.minecraft.world.level.Level);
+  public java.util.UUID getUuid();
+  public net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.EntityPositionSource> getType();
+}
+Compiled from "DynamicGameEventListener.java"
+public class net.minecraft.world.level.gameevent.DynamicGameEventListener<T extends net.minecraft.world.level.gameevent.GameEventListener> {
+  public net.minecraft.world.level.gameevent.DynamicGameEventListener(T);
+  public void add(net.minecraft.server.level.ServerLevel);
+  public T getListener();
+  public void remove(net.minecraft.server.level.ServerLevel);
+  public void move(net.minecraft.server.level.ServerLevel);
+}
+Compiled from "GameEventListener.java"
+public interface net.minecraft.world.level.gameevent.GameEventListener$Provider<T extends net.minecraft.world.level.gameevent.GameEventListener> {
+  public abstract T getListener();
+}
+Compiled from "GameEvent.java"
+public final class net.minecraft.world.level.gameevent.GameEvent$ListenerInfo implements java.lang.Comparable<net.minecraft.world.level.gameevent.GameEvent$ListenerInfo> {
+  public net.minecraft.world.level.gameevent.GameEvent$ListenerInfo(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.level.gameevent.GameEventListener, net.minecraft.world.phys.Vec3);
+  public int compareTo(net.minecraft.world.level.gameevent.GameEvent$ListenerInfo);
+  public net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent> gameEvent();
+  public net.minecraft.world.phys.Vec3 source();
+  public net.minecraft.world.level.gameevent.GameEvent$Context context();
+  public net.minecraft.world.level.gameevent.GameEventListener recipient();
+  public int compareTo(java.lang.Object);
+}
+Compiled from "GameEventListenerRegistry.java"
+public interface net.minecraft.world.level.gameevent.GameEventListenerRegistry {
+  public static final net.minecraft.world.level.gameevent.GameEventListenerRegistry NOOP;
+  public abstract boolean isEmpty();
+  public abstract void register(net.minecraft.world.level.gameevent.GameEventListener);
+  public abstract void unregister(net.minecraft.world.level.gameevent.GameEventListener);
+  public abstract boolean visitInRangeListeners(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.level.gameevent.GameEventListenerRegistry$ListenerVisitor);
+}
+Compiled from "GameEventListenerRegistry.java"
+public interface net.minecraft.world.level.gameevent.GameEventListenerRegistry$ListenerVisitor {
+  public abstract void visit(net.minecraft.world.level.gameevent.GameEventListener, net.minecraft.world.phys.Vec3);
+}
+Compiled from "EuclideanGameEventListenerRegistry.java"
+public class net.minecraft.world.level.gameevent.EuclideanGameEventListenerRegistry implements net.minecraft.world.level.gameevent.GameEventListenerRegistry {
+  public net.minecraft.world.level.gameevent.EuclideanGameEventListenerRegistry(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.level.gameevent.EuclideanGameEventListenerRegistry$OnEmptyAction);
+  public boolean isEmpty();
+  public void register(net.minecraft.world.level.gameevent.GameEventListener);
+  public void unregister(net.minecraft.world.level.gameevent.GameEventListener);
+  public boolean visitInRangeListeners(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.level.gameevent.GameEventListenerRegistry$ListenerVisitor);
+}
+Compiled from "EntityPositionSource.java"
+public class net.minecraft.world.level.gameevent.EntityPositionSource$Type implements net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.EntityPositionSource> {
+  public net.minecraft.world.level.gameevent.EntityPositionSource$Type();
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.gameevent.EntityPositionSource> codec();
+  public net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.gameevent.EntityPositionSource> streamCodec();
+}
+Compiled from "EuclideanGameEventListenerRegistry.java"
+public interface net.minecraft.world.level.gameevent.EuclideanGameEventListenerRegistry$OnEmptyAction {
+  public abstract void apply(int);
+}
+Compiled from "BlockPositionSource.java"
+public class net.minecraft.world.level.gameevent.BlockPositionSource$Type implements net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.BlockPositionSource> {
+  public net.minecraft.world.level.gameevent.BlockPositionSource$Type();
+  public com.mojang.serialization.MapCodec<net.minecraft.world.level.gameevent.BlockPositionSource> codec();
+  public net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.level.gameevent.BlockPositionSource> streamCodec();
+}
+Compiled from "PositionSource.java"
+public interface net.minecraft.world.level.gameevent.PositionSource {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.gameevent.PositionSource> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.level.gameevent.PositionSource> STREAM_CODEC;
+  public abstract java.util.Optional<net.minecraft.world.phys.Vec3> getPosition(net.minecraft.world.level.Level);
+  public abstract net.minecraft.world.level.gameevent.PositionSourceType<? extends net.minecraft.world.level.gameevent.PositionSource> getType();
+}
+Compiled from "GameEventListener.java"
+public interface net.minecraft.world.level.gameevent.GameEventListener {
+  public abstract net.minecraft.world.level.gameevent.PositionSource getListenerSource();
+  public abstract int getListenerRadius();
+  public abstract boolean handleGameEvent(net.minecraft.server.level.ServerLevel, net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.level.gameevent.GameEvent$Context, net.minecraft.world.phys.Vec3);
+  public default net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode getDeliveryMode();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.gameevent.package-info {
+}
+Compiled from "GameEventListener.java"
+public final class net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode extends java.lang.Enum<net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode> {
+  public static final net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode UNSPECIFIED;
+  public static final net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode BY_DISTANCE;
+  public static net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode[] values();
+  public static net.minecraft.world.level.gameevent.GameEventListener$DeliveryMode valueOf(java.lang.String);
+}
+Compiled from "GameEvent.java"
+public final class net.minecraft.world.level.gameevent.GameEvent extends java.lang.Record {
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_ACTIVATE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_ATTACH;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_CHANGE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_CLOSE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_DEACTIVATE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_DESTROY;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_DETACH;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_OPEN;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BLOCK_PLACE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> BOUNCE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> CONTAINER_CLOSE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> CONTAINER_OPEN;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> DRINK;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> EAT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ELYTRA_GLIDE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_DAMAGE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_DIE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_DISMOUNT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_INTERACT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_MOUNT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_PLACE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ENTITY_ACTION;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> EQUIP;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> EXPLODE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> FLAP;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> FLUID_PICKUP;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> FLUID_PLACE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> HIT_GROUND;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> INSTRUMENT_PLAY;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ITEM_INTERACT_FINISH;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> ITEM_INTERACT_START;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> JUKEBOX_PLAY;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> JUKEBOX_STOP_PLAY;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> LIGHTNING_STRIKE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> NOTE_BLOCK_PLAY;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> PRIME_FUSE;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> PROJECTILE_LAND;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> PROJECTILE_SHOOT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> SCULK_SENSOR_TENDRILS_CLICKING;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> SHEAR;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> SHRIEK;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> SPLASH;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> STEP;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> SWIM;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> TELEPORT;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> UNEQUIP;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_1;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_2;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_3;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_4;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_5;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_6;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_7;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_8;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_9;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_10;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_11;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_12;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_13;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_14;
+  public static final net.minecraft.core.Holder$Reference<net.minecraft.world.level.gameevent.GameEvent> RESONATE_15;
+  public static final int DEFAULT_NOTIFICATION_RADIUS;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>> CODEC;
+  public net.minecraft.world.level.gameevent.GameEvent(int);
+  public static net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent> bootstrap(net.minecraft.core.Registry<net.minecraft.world.level.gameevent.GameEvent>);
+  public int notificationRadius();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "PositionSourceType.java"
+public interface net.minecraft.world.level.gameevent.PositionSourceType<T extends net.minecraft.world.level.gameevent.PositionSource> {
+  public static final net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.BlockPositionSource> BLOCK;
+  public static final net.minecraft.world.level.gameevent.PositionSourceType<net.minecraft.world.level.gameevent.EntityPositionSource> ENTITY;
+  public abstract com.mojang.serialization.MapCodec<T> codec();
+  public abstract net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> streamCodec();
+  public static <S extends net.minecraft.world.level.gameevent.PositionSourceType<T>, T extends net.minecraft.world.level.gameevent.PositionSource> S register(java.lang.String, S);
+}
+Compiled from "GameEventDispatcher.java"
+public class net.minecraft.world.level.gameevent.GameEventDispatcher {
+  public net.minecraft.world.level.gameevent.GameEventDispatcher(net.minecraft.server.level.ServerLevel);
+  public void post(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3, net.minecraft.world.level.gameevent.GameEvent$Context);
+}

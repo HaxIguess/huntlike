@@ -1,0 +1,90 @@
+Compiled from "ClientboundCustomIngredientPayload.java"
+public final class net.fabricmc.fabric.impl.recipe.ingredient.ClientboundCustomIngredientPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.fabricmc.fabric.impl.recipe.ingredient.ClientboundCustomIngredientPayload> CODEC;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.recipe.ingredient.ClientboundCustomIngredientPayload> TYPE;
+  public net.fabricmc.fabric.impl.recipe.ingredient.ClientboundCustomIngredientPayload(int);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int protocolVersion();
+}
+Compiled from "CustomIngredientImpl.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl extends net.minecraft.world.item.crafting.Ingredient {
+  public static final java.lang.String TYPE_KEY;
+  public static final com.mojang.serialization.Codec<net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?>> CODEC;
+  public static void registerSerializer(net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?>);
+  public static net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?> getSerializer(net.minecraft.resources.Identifier);
+  public net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientImpl(net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient);
+  public java.util.List<net.minecraft.core.Holder<net.minecraft.world.item.Item>> getCustomMatchingItems();
+  public net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient getCustomIngredient();
+  public boolean requiresTesting();
+  public java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.item.Item>> items();
+  public boolean isEmpty();
+  public boolean test(net.minecraft.world.item.ItemStack);
+  public boolean acceptsItem(net.minecraft.core.Holder<net.minecraft.world.item.Item>);
+  public net.minecraft.world.item.crafting.display.SlotDisplay display();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public boolean test(java.lang.Object);
+  public boolean acceptsItem(java.lang.Object);
+}
+Compiled from "CustomIngredientInit.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit implements net.fabricmc.api.ModInitializer {
+  public net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit();
+  public void onInitialize();
+}
+Compiled from "CustomIngredientStreamCodec.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientStreamCodec implements net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.crafting.Ingredient> {
+  public net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientStreamCodec(net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.crafting.Ingredient>);
+  public net.minecraft.world.item.crafting.Ingredient decode(net.minecraft.network.RegistryFriendlyByteBuf);
+  public void encode(net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.crafting.Ingredient);
+  public void encode(java.lang.Object, java.lang.Object);
+  public java.lang.Object decode(java.lang.Object);
+}
+Compiled from "CustomIngredientSync.java"
+final class net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync$IngredientSyncTask extends java.lang.Record implements net.minecraft.server.network.ConfigurationTask {
+  public static final net.minecraft.server.network.ConfigurationTask$Type KEY;
+  public void start(java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>);
+  public net.minecraft.server.network.ConfigurationTask$Type type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+}
+Compiled from "CustomIngredientSync.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync implements net.fabricmc.api.ModInitializer {
+  public static final net.minecraft.resources.Identifier PACKET_ID;
+  public static final int PROTOCOL_VERSION_1;
+  public static final net.fabricmc.fabric.api.networking.v1.context.PacketContext$Key<java.util.Set<net.minecraft.resources.Identifier>> SUPPORTED_CUSTOM_INGREDIENTS;
+  public net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync();
+  public static net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload createResponsePayload(int);
+  public static java.util.Set<net.minecraft.resources.Identifier> decodeResponsePayload(net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload);
+  public void onInitialize();
+}
+Compiled from "OptionalCustomIngredientStreamCodec.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.OptionalCustomIngredientStreamCodec implements net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, java.util.Optional<net.minecraft.world.item.crafting.Ingredient>> {
+  public net.fabricmc.fabric.impl.recipe.ingredient.OptionalCustomIngredientStreamCodec(net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, java.util.Optional<net.minecraft.world.item.crafting.Ingredient>>);
+  public java.util.Optional<net.minecraft.world.item.crafting.Ingredient> decode(net.minecraft.network.RegistryFriendlyByteBuf);
+  public void encode(net.minecraft.network.RegistryFriendlyByteBuf, java.util.Optional<net.minecraft.world.item.crafting.Ingredient>);
+  public void encode(java.lang.Object, java.lang.Object);
+  public java.lang.Object decode(java.lang.Object);
+}
+Compiled from "ServerboundCustomIngredientPayload.java"
+public final class net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload> CODEC;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload> TYPE;
+  public net.fabricmc.fabric.impl.recipe.ingredient.ServerboundCustomIngredientPayload(int, java.util.Set<net.minecraft.resources.Identifier>);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int protocolVersion();
+  public java.util.Set<net.minecraft.resources.Identifier> registeredSerializers();
+}
+Compiled from "ShapelessMatch.java"
+public class net.fabricmc.fabric.impl.recipe.ingredient.ShapelessMatch {
+  public static boolean isMatch(java.util.List<net.minecraft.world.item.ItemStack>, java.util.List<net.minecraft.world.item.crafting.Ingredient>);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.recipe.ingredient.package-info {
+}

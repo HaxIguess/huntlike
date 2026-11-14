@@ -1,0 +1,510 @@
+Compiled from "FeatureSorter.java"
+public final class net.minecraft.world.level.biome.FeatureSorter$StepFeatureData extends java.lang.Record {
+  public net.minecraft.world.level.biome.FeatureSorter$StepFeatureData(java.util.List<net.minecraft.world.level.levelgen.placement.PlacedFeature>, java.util.function.ToIntFunction<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.level.levelgen.placement.PlacedFeature> features();
+  public java.util.function.ToIntFunction<net.minecraft.world.level.levelgen.placement.PlacedFeature> indexMapping();
+}
+Compiled from "Climate.java"
+public final class net.minecraft.world.level.biome.Climate$TargetPoint extends java.lang.Record {
+  public net.minecraft.world.level.biome.Climate$TargetPoint(long, long, long, long, long, long);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long temperature();
+  public long humidity();
+  public long continentalness();
+  public long erosion();
+  public long depth();
+  public long weirdness();
+}
+Compiled from "Climate.java"
+public class net.minecraft.world.level.biome.Climate {
+  protected static final int PARAMETER_COUNT;
+  public net.minecraft.world.level.biome.Climate();
+  public static net.minecraft.world.level.biome.Climate$TargetPoint target(float, float, float, float, float, float);
+  public static net.minecraft.world.level.biome.Climate$ParameterPoint parameters(float, float, float, float, float, float, float);
+  public static net.minecraft.world.level.biome.Climate$ParameterPoint parameters(net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, float);
+  public static long quantizeCoord(float);
+  public static float unquantizeCoord(long);
+}
+Compiled from "MultiNoiseBiomeSourceParameterList.java"
+public final class net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset extends java.lang.Record {
+  public static final net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset NETHER;
+  public static final net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset OVERWORLD;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset> CODEC;
+  public net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset(net.minecraft.resources.Identifier, net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset$SourceProvider);
+  public java.util.stream.Stream<net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>> usedBiomes();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset$SourceProvider provider();
+}
+Compiled from "Biome.java"
+final class net.minecraft.world.level.biome.Biome$ClimateSettings extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.Biome$ClimateSettings> CODEC;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean hasPrecipitation();
+  public float temperature();
+  public net.minecraft.world.level.biome.Biome$TemperatureModifier temperatureModifier();
+  public float downfall();
+}
+Compiled from "Climate.java"
+abstract class net.minecraft.world.level.biome.Climate$RTree$Node<T> {
+  protected final net.minecraft.world.level.biome.Climate$Parameter[] parameterSpace;
+  protected net.minecraft.world.level.biome.Climate$RTree$Node(java.util.List<net.minecraft.world.level.biome.Climate$Parameter>);
+  protected abstract net.minecraft.world.level.biome.Climate$RTree$Leaf<T> search(long[], net.minecraft.world.level.biome.Climate$RTree$Leaf<T>, net.minecraft.world.level.biome.Climate$DistanceMetric<T>);
+  protected long distance(long[]);
+  public java.lang.String toString();
+}
+Compiled from "BiomeGenerationSettings.java"
+public class net.minecraft.world.level.biome.BiomeGenerationSettings$Builder extends net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder {
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$Builder(net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.placement.PlacedFeature>, net.minecraft.core.HolderGetter<net.minecraft.world.level.levelgen.carver.WorldCarver>);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$Builder addFeature(net.minecraft.world.level.levelgen.GenerationStep$Decoration, net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$Builder addCarver(net.minecraft.resources.ResourceKey<net.minecraft.world.level.levelgen.carver.WorldCarver>);
+}
+Compiled from "CheckerboardColumnBiomeSource.java"
+public class net.minecraft.world.level.biome.CheckerboardColumnBiomeSource extends net.minecraft.world.level.biome.BiomeSource implements net.minecraft.world.level.biome.BiomeResolver {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.CheckerboardColumnBiomeSource> CODEC;
+  public net.minecraft.world.level.biome.CheckerboardColumnBiomeSource(net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>, int);
+  protected java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> collectPossibleBiomes();
+  public net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate$Sampler);
+  protected com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.CheckerboardColumnBiomeSource> codec();
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+}
+Compiled from "MultiNoiseBiomeSourceParameterLists.java"
+public class net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterLists {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList> NETHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList> OVERWORLD;
+  public net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterLists();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList>);
+}
+Compiled from "Climate.java"
+public final class net.minecraft.world.level.biome.Climate$RTree<T> {
+  public static <T> net.minecraft.world.level.biome.Climate$RTree<T> create(java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.biome.Climate$ParameterPoint, T>>);
+  public static <T> net.minecraft.world.level.biome.Climate$RTree<T> create(java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.biome.Climate$ParameterPoint, T>>, int);
+  public T search(net.minecraft.world.level.biome.Climate$TargetPoint, net.minecraft.world.level.biome.Climate$DistanceMetric<T>);
+}
+Compiled from "BiomeManager.java"
+public class net.minecraft.world.level.biome.BiomeManager {
+  public static final int CHUNK_CENTER_QUART;
+  public net.minecraft.world.level.biome.BiomeManager(net.minecraft.world.level.biome.BiomeResolver, long);
+  public static long obfuscateSeed(long);
+  public net.minecraft.world.level.biome.BiomeManager withDifferentSource(net.minecraft.world.level.biome.BiomeResolver);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getBiome(net.minecraft.core.BlockPos);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getBiome(int, int, int);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiomeAtPosition(double, double, double);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiomeAtPosition(net.minecraft.core.BlockPos);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiomeAtQuart(int, int, int);
+}
+Compiled from "MobSpawnSettings.java"
+public class net.minecraft.world.level.biome.MobSpawnSettings$Builder {
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder();
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addSpawn(net.minecraft.world.entity.EntityType<?>, int, int, int);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addSpawn(net.minecraft.world.entity.EntityType<?>, int, net.minecraft.util.valueproviders.IntProvider);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addSpawn(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.entity.MobCategory, int, net.minecraft.util.valueproviders.IntProvider);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addAllSpawns(net.minecraft.world.entity.MobCategory, net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData>);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder noSpawns(net.minecraft.world.entity.MobCategory);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder dontOverride(net.minecraft.world.entity.MobCategory);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addMobSpawnCost(net.minecraft.world.entity.EntityType<?>, double, double);
+  public net.minecraft.world.level.biome.MobSpawnSettings$Builder addAllCosts(java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost>);
+  public net.minecraft.world.level.biome.MobSpawnSettings build();
+}
+Compiled from "MultiNoiseBiomeSourceParameterList.java"
+interface net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset$SourceProvider {
+  public abstract <T> net.minecraft.world.level.biome.Climate$ParameterList<T> apply(java.util.function.Function<net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>, T>);
+}
+Compiled from "Climate.java"
+public final class net.minecraft.world.level.biome.Climate$Parameter extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Climate$Parameter> CODEC;
+  public net.minecraft.world.level.biome.Climate$Parameter(long, long);
+  public static net.minecraft.world.level.biome.Climate$Parameter point(float);
+  public static net.minecraft.world.level.biome.Climate$Parameter span(float, float);
+  public static net.minecraft.world.level.biome.Climate$Parameter span(net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter);
+  public java.lang.String toString();
+  public long distance(long);
+  public net.minecraft.world.level.biome.Climate$Parameter span(net.minecraft.world.level.biome.Climate$Parameter);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long min();
+  public long max();
+}
+Compiled from "BiomeSource.java"
+public abstract class net.minecraft.world.level.biome.BiomeSource {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.BiomeSource> CODEC;
+  protected net.minecraft.world.level.biome.BiomeSource();
+  protected abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.biome.BiomeSource> codec();
+  protected abstract java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> collectPossibleBiomes();
+  public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> possibleBiomes();
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findBiomeHorizontal(int, int, int, int, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.util.RandomSource, net.minecraft.world.level.levelgen.RandomState);
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findClosestBiome3d(net.minecraft.core.BlockPos, int, int, int, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.LevelReader);
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findBiomeHorizontal(int, int, int, int, int, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.util.RandomSource, boolean, net.minecraft.world.level.levelgen.RandomState);
+  public final net.minecraft.world.level.biome.BiomeResolver createUncachedResolver(net.minecraft.world.level.levelgen.RandomState);
+  public final net.minecraft.world.level.biome.BiomeResolver createCachingResolver(net.minecraft.world.level.levelgen.RandomState);
+  public abstract net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate$Sampler);
+  public net.minecraft.world.level.biome.BiomeResolver createResolverForChunk(net.minecraft.world.level.biome.Climate$Sampler, int, int, int, int, int, int);
+  public void addDebugInfo(java.util.List<java.lang.String>, net.minecraft.core.BlockPos, net.minecraft.world.level.biome.Climate$Sampler);
+}
+Compiled from "MobSpawnSettings.java"
+public class net.minecraft.world.level.biome.MobSpawnSettings {
+  public static final float DEFAULT_CREATURE_WORLD_GEN_SPAWN_PROBABILITY;
+  public static final net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> EMPTY_MOB_LIST;
+  public static final net.minecraft.world.level.biome.MobSpawnSettings EMPTY;
+  public static final net.minecraft.world.level.biome.MobSpawnSettings NO_SPAWNS;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.MobSpawnSettings> CODEC;
+  public net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> getMobsToSpawn(net.minecraft.world.entity.MobCategory);
+  public net.minecraft.util.random.WeightedList<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> getMobsInCategory(net.minecraft.world.entity.MobCategory);
+  public java.util.Set<net.minecraft.world.entity.MobCategory> definedCategories();
+  public net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost getMobSpawnCost(net.minecraft.world.entity.EntityType<?>);
+  public java.util.Map<net.minecraft.world.entity.EntityType<?>, net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost> allSpawnCosts();
+}
+Compiled from "Climate.java"
+interface net.minecraft.world.level.biome.Climate$DistanceMetric<T> {
+  public abstract long distance(net.minecraft.world.level.biome.Climate$RTree$Node<T>, long[]);
+}
+Compiled from "Climate.java"
+public final class net.minecraft.world.level.biome.Climate$ParameterPoint extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Climate$ParameterPoint> CODEC;
+  public net.minecraft.world.level.biome.Climate$ParameterPoint(net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, net.minecraft.world.level.biome.Climate$Parameter, long);
+  public long fitness(net.minecraft.world.level.biome.Climate$TargetPoint);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.biome.Climate$Parameter temperature();
+  public net.minecraft.world.level.biome.Climate$Parameter humidity();
+  public net.minecraft.world.level.biome.Climate$Parameter continentalness();
+  public net.minecraft.world.level.biome.Climate$Parameter erosion();
+  public net.minecraft.world.level.biome.Climate$Parameter depth();
+  public net.minecraft.world.level.biome.Climate$Parameter weirdness();
+  public long offset();
+}
+Compiled from "Climate.java"
+final class net.minecraft.world.level.biome.Climate$RTree$SubTree<T> extends net.minecraft.world.level.biome.Climate$RTree$Node<T> {
+  public net.minecraft.world.level.biome.Climate$RTree$SubTree(java.util.List<? extends net.minecraft.world.level.biome.Climate$RTree$Node<T>>);
+  public net.minecraft.world.level.biome.Climate$RTree$SubTree(java.util.List<net.minecraft.world.level.biome.Climate$Parameter>, java.util.List<? extends net.minecraft.world.level.biome.Climate$RTree$Node<T>>);
+  protected net.minecraft.world.level.biome.Climate$RTree$Leaf<T> search(long[], net.minecraft.world.level.biome.Climate$RTree$Leaf<T>, net.minecraft.world.level.biome.Climate$DistanceMetric<T>);
+}
+Compiled from "BiomeGenerationSettings.java"
+public class net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder {
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder();
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder addFeature(net.minecraft.world.level.levelgen.GenerationStep$Decoration, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder addFeature(int, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.placement.PlacedFeature>);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings$PlainBuilder addCarver(net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver>);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings build();
+}
+Compiled from "Climate.java"
+final class net.minecraft.world.level.biome.Climate$RTree$Leaf<T> extends net.minecraft.world.level.biome.Climate$RTree$Node<T> {
+  protected net.minecraft.world.level.biome.Climate$RTree$Leaf<T> search(long[], net.minecraft.world.level.biome.Climate$RTree$Leaf<T>, net.minecraft.world.level.biome.Climate$DistanceMetric<T>);
+}
+Compiled from "BiomeGenerationSettings.java"
+public class net.minecraft.world.level.biome.BiomeGenerationSettings {
+  public static final net.minecraft.world.level.biome.BiomeGenerationSettings EMPTY;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.BiomeGenerationSettings> CODEC;
+  public java.lang.Iterable<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.carver.WorldCarver>> getCarvers();
+  public java.util.List<net.minecraft.world.level.levelgen.feature.Feature> getBoneMealFeatures();
+  public java.util.List<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>> features();
+  public boolean hasFeature(net.minecraft.world.level.levelgen.placement.PlacedFeature);
+}
+Compiled from "BiomeSpecialEffects.java"
+public abstract class net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier extends java.lang.Enum<net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier NONE;
+  public static final net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier DARK_FOREST;
+  public static final net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier SWAMP;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier> CODEC;
+  public static net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier[] values();
+  public static net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier valueOf(java.lang.String);
+  public abstract int modifyColor(double, double, int);
+  public java.lang.String getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "OverworldBiomeBuilder.java"
+public final class net.minecraft.world.level.biome.OverworldBiomeBuilder {
+  public static final float HIGH_START;
+  public static final float PEAK_START;
+  public static final float NEAR_INLAND_START;
+  public static final float MID_INLAND_START;
+  public static final float FAR_INLAND_START;
+  public static final float EROSION_INDEX_1_START;
+  public static final float EROSION_INDEX_2_START;
+  public net.minecraft.world.level.biome.OverworldBiomeBuilder();
+  public java.util.List<net.minecraft.world.level.levelgen.SpawnTargetPoint> spawnTarget(net.minecraft.world.level.levelgen.OverworldFunctionSet<net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>>, net.minecraft.core.Holder<net.minecraft.world.level.levelgen.densityfunction.DensityFunction>);
+  public static net.minecraft.world.level.levelgen.densityfunction.DensityFunction deepDarkRegion(net.minecraft.world.level.levelgen.densityfunction.DensityFunction, net.minecraft.world.level.levelgen.densityfunction.DensityFunction);
+  public static java.lang.String getDebugStringForPeaksAndValleys(double);
+  public java.lang.String getDebugStringForContinentalness(double);
+  public java.lang.String getDebugStringForErosion(double);
+  public java.lang.String getDebugStringForTemperature(double);
+  public java.lang.String getDebugStringForHumidity(double);
+  public net.minecraft.world.level.biome.Climate$Parameter[] getTemperatureThresholds();
+  public net.minecraft.world.level.biome.Climate$Parameter[] getHumidityThresholds();
+  public net.minecraft.world.level.biome.Climate$Parameter[] getErosionThresholds();
+  public net.minecraft.world.level.biome.Climate$Parameter[] getContinentalnessThresholds();
+  public net.minecraft.world.level.biome.Climate$Parameter[] getPeaksAndValleysThresholds();
+  public net.minecraft.world.level.biome.Climate$Parameter[] getWeirdnessThresholds();
+}
+Compiled from "FixedBiomeSource.java"
+public class net.minecraft.world.level.biome.FixedBiomeSource extends net.minecraft.world.level.biome.BiomeSource implements net.minecraft.world.level.biome.BiomeResolver {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.FixedBiomeSource> CODEC;
+  public net.minecraft.world.level.biome.FixedBiomeSource(net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>);
+  protected java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> collectPossibleBiomes();
+  protected com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.FixedBiomeSource> codec();
+  public net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate$Sampler);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findBiomeHorizontal(int, int, int, int, int, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.util.RandomSource, boolean, net.minecraft.world.level.levelgen.RandomState);
+  public com.mojang.datafixers.util.Pair<net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> findClosestBiome3d(net.minecraft.core.BlockPos, int, int, int, java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>, net.minecraft.world.level.levelgen.RandomState, net.minecraft.world.level.LevelReader);
+  public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> getBiomesWithin(int, int, int, int);
+}
+Compiled from "Biome.java"
+public class net.minecraft.world.level.biome.Biome$BiomeBuilder {
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder();
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder hasPrecipitation(boolean);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder temperature(float);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder downfall(float);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder putAttributes(net.minecraft.world.attribute.EnvironmentAttributeMap);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder putAttributes(net.minecraft.world.attribute.EnvironmentAttributeMap$Builder);
+  public <Value> net.minecraft.world.level.biome.Biome$BiomeBuilder setAttribute(net.minecraft.world.attribute.EnvironmentAttribute<Value>, Value);
+  public <Value, Parameter> net.minecraft.world.level.biome.Biome$BiomeBuilder modifyAttribute(net.minecraft.world.attribute.EnvironmentAttribute<Value>, net.minecraft.world.attribute.modifier.AttributeModifier<Value, Parameter>, Parameter);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder specialEffects(net.minecraft.world.level.biome.BiomeSpecialEffects);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder mobSpawnSettings(net.minecraft.world.level.biome.MobSpawnSettings);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder generationSettings(net.minecraft.world.level.biome.BiomeGenerationSettings);
+  public net.minecraft.world.level.biome.Biome$BiomeBuilder temperatureAdjustment(net.minecraft.world.level.biome.Biome$TemperatureModifier);
+  public net.minecraft.world.level.biome.Biome build();
+  public java.lang.String toString();
+}
+Compiled from "MobSpawnSettings.java"
+public final class net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost> CODEC;
+  public net.minecraft.world.level.biome.MobSpawnSettings$MobSpawnCost(double, double);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double energyBudget();
+  public double charge();
+}
+Compiled from "Biome.java"
+public final class net.minecraft.world.level.biome.Biome$Precipitation extends java.lang.Enum<net.minecraft.world.level.biome.Biome$Precipitation> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.biome.Biome$Precipitation NONE;
+  public static final net.minecraft.world.level.biome.Biome$Precipitation RAIN;
+  public static final net.minecraft.world.level.biome.Biome$Precipitation SNOW;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Biome$Precipitation> CODEC;
+  public static net.minecraft.world.level.biome.Biome$Precipitation[] values();
+  public static net.minecraft.world.level.biome.Biome$Precipitation valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "Biomes.java"
+public abstract class net.minecraft.world.level.biome.Biomes {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> THE_VOID;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> PLAINS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SUNFLOWER_PLAINS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SNOWY_PLAINS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> ICE_SPIKES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DESERT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SWAMP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> MANGROVE_SWAMP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> FLOWER_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> BIRCH_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DAPPLED_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DARK_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> PALE_GARDEN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> OLD_GROWTH_BIRCH_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> OLD_GROWTH_PINE_TAIGA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> OLD_GROWTH_SPRUCE_TAIGA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> TAIGA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SNOWY_TAIGA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SAVANNA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SAVANNA_PLATEAU;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WINDSWEPT_HILLS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WINDSWEPT_GRAVELLY_HILLS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WINDSWEPT_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WINDSWEPT_SAVANNA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> JUNGLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SPARSE_JUNGLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> BAMBOO_JUNGLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> BADLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> ERODED_BADLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WOODED_BADLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> MEADOW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> CHERRY_GROVE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> GROVE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SNOWY_SLOPES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> FROZEN_PEAKS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> JAGGED_PEAKS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> STONY_PEAKS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> RIVER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> FROZEN_RIVER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> BEACH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SNOWY_BEACH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> STONY_SHORE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WARM_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> LUKEWARM_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DEEP_LUKEWARM_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DEEP_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> COLD_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DEEP_COLD_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> FROZEN_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DEEP_FROZEN_OCEAN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> MUSHROOM_FIELDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DRIPSTONE_CAVES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> LUSH_CAVES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> DEEP_DARK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SULFUR_CAVES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> NETHER_WASTES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> WARPED_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> CRIMSON_FOREST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SOUL_SAND_VALLEY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> BASALT_DELTAS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> THE_END;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> END_HIGHLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> END_MIDLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> SMALL_END_ISLANDS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome> END_BARRENS;
+  public net.minecraft.world.level.biome.Biomes();
+}
+Compiled from "TheEndBiomeSource.java"
+public class net.minecraft.world.level.biome.TheEndBiomeSource extends net.minecraft.world.level.biome.BiomeSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.TheEndBiomeSource> CODEC;
+  public static net.minecraft.world.level.biome.TheEndBiomeSource create(net.minecraft.core.HolderGetter<net.minecraft.world.level.biome.Biome>);
+  protected java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> collectPossibleBiomes();
+  protected com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.TheEndBiomeSource> codec();
+  public net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate$Sampler);
+}
+Compiled from "MultiNoiseBiomeSource.java"
+public class net.minecraft.world.level.biome.MultiNoiseBiomeSource extends net.minecraft.world.level.biome.BiomeSource {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.Climate$ParameterList<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>> DIRECT_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.MultiNoiseBiomeSource> CODEC;
+  public static net.minecraft.world.level.biome.MultiNoiseBiomeSource createFromList(net.minecraft.world.level.biome.Climate$ParameterList<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>>);
+  public static net.minecraft.world.level.biome.MultiNoiseBiomeSource createFromPreset(net.minecraft.core.Holder<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList>);
+  protected java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> collectPossibleBiomes();
+  protected com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.MultiNoiseBiomeSource> codec();
+  public boolean stable(net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList>);
+  public net.minecraft.world.level.biome.BiomeResolver createResolver(net.minecraft.world.level.biome.Climate$Sampler);
+  public net.minecraft.world.level.biome.BiomeResolver createResolverForChunk(net.minecraft.world.level.biome.Climate$Sampler, int, int, int, int, int, int);
+  public net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(net.minecraft.world.level.biome.Climate$TargetPoint);
+  public void addDebugInfo(java.util.List<java.lang.String>, net.minecraft.core.BlockPos, net.minecraft.world.level.biome.Climate$Sampler);
+}
+Compiled from "Climate.java"
+public final class net.minecraft.world.level.biome.Climate$Sampler extends java.lang.Record {
+  public net.minecraft.world.level.biome.Climate$Sampler(net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound, net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound, net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound, net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound, net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound, net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound);
+  public net.minecraft.world.level.biome.Climate$TargetPoint sample(int, int, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound temperature();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound humidity();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound continentalness();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound erosion();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound depth();
+  public net.minecraft.world.level.levelgen.densityfunction.DensitySampler$Bound weirdness();
+}
+Compiled from "FeatureSorter.java"
+public class net.minecraft.world.level.biome.FeatureSorter {
+  public net.minecraft.world.level.biome.FeatureSorter();
+  public static <T> java.util.List<net.minecraft.world.level.biome.FeatureSorter$StepFeatureData> buildFeaturesPerStep(java.util.List<T>, java.util.function.Function<T, java.util.List<net.minecraft.core.HolderSet<net.minecraft.world.level.levelgen.placement.PlacedFeature>>>, boolean);
+}
+Compiled from "MobSpawnSettings.java"
+public final class net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData> CODEC;
+  public net.minecraft.world.level.biome.MobSpawnSettings$SpawnerData(net.minecraft.world.entity.EntityType<?>, net.minecraft.util.valueproviders.IntProvider);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.EntityType<?> type();
+  public net.minecraft.util.valueproviders.IntProvider count();
+}
+Compiled from "BiomeSpecialEffects.java"
+public final class net.minecraft.world.level.biome.BiomeSpecialEffects extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.BiomeSpecialEffects> CODEC;
+  public net.minecraft.world.level.biome.BiomeSpecialEffects(int, java.util.Optional<java.lang.Integer>, java.util.Optional<java.lang.Integer>, java.util.Optional<java.lang.Integer>, net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int waterColor();
+  public java.util.Optional<java.lang.Integer> foliageColorOverride();
+  public java.util.Optional<java.lang.Integer> dryFoliageColorOverride();
+  public java.util.Optional<java.lang.Integer> grassColorOverride();
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier grassColorModifier();
+}
+Compiled from "Biome.java"
+public final class net.minecraft.world.level.biome.Biome {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Biome> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Biome> NETWORK_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.biome.Biome>> LIST_CODEC;
+  public static final net.minecraft.world.level.levelgen.synth.Noise FROZEN_TEMPERATURE_NOISE;
+  public static final net.minecraft.world.level.levelgen.synth.Noise BIOME_INFO_NOISE;
+  public boolean hasPrecipitation();
+  public net.minecraft.world.level.biome.Biome$Precipitation getPrecipitationAt(net.minecraft.core.BlockPos, int);
+  public boolean shouldFreeze(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  public boolean shouldFreeze(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos, boolean);
+  public boolean coldEnoughToSnow(net.minecraft.core.BlockPos, int);
+  public boolean warmEnoughToRain(net.minecraft.core.BlockPos, int);
+  public boolean shouldMeltFrozenOceanIcebergSlightly(net.minecraft.core.BlockPos, int);
+  public boolean shouldSnow(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+  public net.minecraft.world.level.biome.BiomeGenerationSettings getGenerationSettings();
+  public int getGrassColor(double, double);
+  public int getFoliageColor();
+  public int getDryFoliageColor();
+  public float getBaseTemperature();
+  public net.minecraft.world.attribute.EnvironmentAttributeMap getAttributes();
+  public net.minecraft.world.level.biome.BiomeSpecialEffects getSpecialEffects();
+  public int getWaterColor();
+}
+Compiled from "BiomeResolver.java"
+public interface net.minecraft.world.level.biome.BiomeResolver {
+  public abstract net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome> getNoiseBiome(int, int, int);
+  public default java.util.Set<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> getBiomesWithin(int, int, int, int);
+}
+Compiled from "BiomeSpecialEffects.java"
+public class net.minecraft.world.level.biome.BiomeSpecialEffects$Builder {
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder();
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder waterColor(int);
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder foliageColorOverride(int);
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder dryFoliageColorOverride(int);
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder grassColorOverride(int);
+  public net.minecraft.world.level.biome.BiomeSpecialEffects$Builder grassColorModifier(net.minecraft.world.level.biome.BiomeSpecialEffects$GrassColorModifier);
+  public net.minecraft.world.level.biome.BiomeSpecialEffects build();
+}
+Compiled from "Climate.java"
+public class net.minecraft.world.level.biome.Climate$ParameterList<T> {
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.level.biome.Climate$ParameterList<T>> codec(com.mojang.serialization.MapCodec<T>);
+  public net.minecraft.world.level.biome.Climate$ParameterList(java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.biome.Climate$ParameterPoint, T>>);
+  public net.minecraft.world.level.biome.Climate$ParameterList<T> rebuildWithChildrenPerNode(int);
+  public java.util.List<com.mojang.datafixers.util.Pair<net.minecraft.world.level.biome.Climate$ParameterPoint, T>> values();
+  public T findValue(net.minecraft.world.level.biome.Climate$TargetPoint);
+  public T findValueBruteForce(net.minecraft.world.level.biome.Climate$TargetPoint);
+  public T findValueIndex(net.minecraft.world.level.biome.Climate$TargetPoint);
+  protected T findValueIndex(net.minecraft.world.level.biome.Climate$TargetPoint, net.minecraft.world.level.biome.Climate$DistanceMetric<T>);
+}
+Compiled from "Biome.java"
+public abstract class net.minecraft.world.level.biome.Biome$TemperatureModifier extends java.lang.Enum<net.minecraft.world.level.biome.Biome$TemperatureModifier> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.level.biome.Biome$TemperatureModifier NONE;
+  public static final net.minecraft.world.level.biome.Biome$TemperatureModifier FROZEN;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.Biome$TemperatureModifier> CODEC;
+  public static net.minecraft.world.level.biome.Biome$TemperatureModifier[] values();
+  public static net.minecraft.world.level.biome.Biome$TemperatureModifier valueOf(java.lang.String);
+  public abstract float modifyTemperature(net.minecraft.core.BlockPos, float);
+  public java.lang.String getName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.biome.package-info {
+}
+Compiled from "MultiNoiseBiomeSourceParameterList.java"
+public class net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList>> CODEC;
+  public net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList(net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset, net.minecraft.core.HolderGetter<net.minecraft.world.level.biome.Biome>);
+  public net.minecraft.world.level.biome.Climate$ParameterList<net.minecraft.core.Holder<net.minecraft.world.level.biome.Biome>> parameters();
+  public static java.util.Map<net.minecraft.world.level.biome.MultiNoiseBiomeSourceParameterList$Preset, net.minecraft.world.level.biome.Climate$ParameterList<net.minecraft.resources.ResourceKey<net.minecraft.world.level.biome.Biome>>> knownPresets();
+}
+Compiled from "BiomeSources.java"
+public class net.minecraft.world.level.biome.BiomeSources {
+  public net.minecraft.world.level.biome.BiomeSources();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.biome.BiomeSource> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.level.biome.BiomeSource>>);
+}

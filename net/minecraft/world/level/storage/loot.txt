@@ -1,0 +1,530 @@
+Compiled from "LootContextArg.java"
+public final class net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> {
+  public <T> net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyOf(T[], java.util.function.Function<T, java.lang.String>, java.util.function.Function<T, ? extends net.minecraft.world.level.storage.loot.LootContextArg<R>>);
+  public <T extends net.minecraft.util.StringRepresentable> net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyOf(T[], java.util.function.Function<T, ? extends net.minecraft.world.level.storage.loot.LootContextArg<R>>);
+  public <T extends net.minecraft.util.StringRepresentable & net.minecraft.world.level.storage.loot.LootContextArg<? extends R>> net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyOf(T[]);
+  public net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyEntity(java.util.function.Function<? super net.minecraft.util.context.ContextKey<? extends net.minecraft.world.entity.Entity>, ? extends net.minecraft.world.level.storage.loot.LootContextArg<R>>);
+  public net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyBlockEntity(java.util.function.Function<? super net.minecraft.util.context.ContextKey<? extends net.minecraft.world.level.block.entity.BlockEntity>, ? extends net.minecraft.world.level.storage.loot.LootContextArg<R>>);
+  public net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> anyItemStack(java.util.function.Function<? super net.minecraft.util.context.ContextKey<? extends net.minecraft.world.item.ItemInstance>, ? extends net.minecraft.world.level.storage.loot.LootContextArg<R>>);
+  public net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R> or(java.lang.String, net.minecraft.world.level.storage.loot.LootContextArg<R>);
+}
+Compiled from "ValidationContextSource.java"
+public class net.minecraft.world.level.storage.loot.ValidationContextSource {
+  public net.minecraft.world.level.storage.loot.ValidationContextSource(net.minecraft.util.ProblemReporter, net.minecraft.core.HolderGetter$Provider);
+  public net.minecraft.world.level.storage.loot.ValidationContext context(net.minecraft.util.context.ContextKeySet);
+  public net.minecraft.world.level.storage.loot.ValidationContext entityContext();
+}
+Compiled from "FloatRangePredicate.java"
+interface net.minecraft.world.level.storage.loot.FloatRangePredicate$Line$FloatChecker {
+  public abstract boolean test(net.minecraft.world.level.storage.loot.LootContext, float);
+}
+Compiled from "LootContextUser.java"
+public interface net.minecraft.world.level.storage.loot.LootContextUser extends net.minecraft.world.level.storage.loot.Validatable {
+  public default java.util.Set<net.minecraft.util.context.ContextKey<?>> getReferencedContextParams();
+  public default void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+}
+Compiled from "LootPool.java"
+public class net.minecraft.world.level.storage.loot.LootPool implements net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.LootPool> CODEC;
+  public final java.util.List<net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer> entries;
+  public final java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> condition;
+  public final java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>> modifier;
+  public final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> rolls;
+  public final net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> bonusRolls;
+  public void addRandomItems(java.util.function.Consumer<net.minecraft.world.item.ItemStack>, net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public static net.minecraft.world.level.storage.loot.LootPool$Builder lootPool();
+}
+Compiled from "ContainerComponentManipulator.java"
+final class net.minecraft.world.level.storage.loot.ContainerComponentManipulator$ComponentSlotCollection<T extends net.minecraft.world.item.component.ContainerComponent<T>> extends java.lang.Record implements net.minecraft.world.item.slot.SlotCollection {
+  public java.util.stream.Stream<net.minecraft.world.item.ItemStack> itemCopies();
+  public int size();
+  public int replaceSlotItems(net.minecraft.world.item.ItemProvider, net.minecraft.world.item.slot.SlotSelector);
+  public void modifySlots(java.util.function.Consumer<? super net.minecraft.world.entity.SlotAccess>, net.minecraft.world.item.slot.SlotSelector);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.ItemStack itemStack();
+  public net.minecraft.world.level.storage.loot.ContainerComponentManipulator<T> component();
+}
+Compiled from "IntRangePredicate.java"
+public final class net.minecraft.world.level.storage.loot.IntRangePredicate$Point extends java.lang.Record implements net.minecraft.world.level.storage.loot.IntRangePredicate {
+  public net.minecraft.world.level.storage.loot.IntRangePredicate$Point(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> value();
+}
+Compiled from "Validatable.java"
+public interface net.minecraft.world.level.storage.loot.Validatable {
+  public abstract void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public static void validate(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, net.minecraft.world.level.storage.loot.Validatable);
+  public static void validate(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, java.util.Optional<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static void validateHolder(net.minecraft.world.level.storage.loot.ValidationContext, net.minecraft.core.Holder<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static void validateHolder(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, net.minecraft.core.Holder<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static void validateHolder(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, java.util.Optional<? extends net.minecraft.core.Holder<? extends net.minecraft.world.level.storage.loot.Validatable>>);
+  public static void validateHolder(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, java.util.List<? extends net.minecraft.core.Holder<? extends net.minecraft.world.level.storage.loot.Validatable>>);
+  public static void validateHolderSet(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, net.minecraft.core.HolderSet<? extends net.minecraft.world.level.storage.loot.Validatable>, int);
+  public static void validateHolderSet(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, net.minecraft.core.HolderSet<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static void validate(net.minecraft.world.level.storage.loot.ValidationContext, java.lang.String, java.util.List<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static void validate(net.minecraft.world.level.storage.loot.ValidationContext, java.util.List<? extends net.minecraft.world.level.storage.loot.Validatable>);
+  public static <T extends net.minecraft.world.level.storage.loot.Validatable> java.util.function.Function<T, com.mojang.serialization.DataResult<T>> validatorForContext(net.minecraft.util.context.ContextKeySet);
+  public static <T extends net.minecraft.world.level.storage.loot.Validatable> java.util.function.Function<java.util.List<T>, com.mojang.serialization.DataResult<java.util.List<T>>> listValidatorForContext(net.minecraft.util.context.ContextKeySet);
+}
+Compiled from "ContainerComponentManipulators.java"
+public interface net.minecraft.world.level.storage.loot.ContainerComponentManipulators {
+  public static final net.minecraft.world.level.storage.loot.ContainerComponentManipulator<net.minecraft.world.item.component.ItemContainerContents> CONTAINER;
+  public static final net.minecraft.world.level.storage.loot.ContainerComponentManipulator<net.minecraft.world.item.component.BundleContents> BUNDLE_CONTENTS;
+  public static final net.minecraft.world.level.storage.loot.ContainerComponentManipulator<net.minecraft.world.item.component.ChargedProjectiles> CHARGED_PROJECTILES;
+  public static final java.util.Map<net.minecraft.core.component.DataComponentType<?>, net.minecraft.world.level.storage.loot.ContainerComponentManipulator<?>> ALL_MANIPULATORS;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.ContainerComponentManipulator<?>> CODEC;
+}
+Compiled from "ContainerComponentManipulator.java"
+public final class net.minecraft.world.level.storage.loot.ContainerComponentManipulator<T extends net.minecraft.world.item.component.ContainerComponent<T>> extends java.lang.Record {
+  public net.minecraft.world.level.storage.loot.ContainerComponentManipulator(net.minecraft.core.component.DataComponentType<T>, T);
+  public void setContents(net.minecraft.world.item.ItemStack, T, java.util.stream.Stream<net.minecraft.world.item.ItemStack>);
+  public void setContents(net.minecraft.world.item.ItemStack, java.util.stream.Stream<net.minecraft.world.item.ItemStack>);
+  public void modifyItems(net.minecraft.world.item.ItemStack, java.util.function.UnaryOperator<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.world.item.slot.SlotCollection getSlots(net.minecraft.world.item.ItemStack);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.component.DataComponentType<T> type();
+  public T empty();
+}
+Compiled from "ValidationContext.java"
+public final class net.minecraft.world.level.storage.loot.ValidationContext$RecursiveElementReferenceProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.loot.ValidationContext$RecursiveElementReferenceProblem(net.minecraft.resources.ResourceKey<?>);
+  public java.lang.String description();
+  public boolean isFatal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<?> referenced();
+}
+Compiled from "LootTable.java"
+public class net.minecraft.world.level.storage.loot.LootTable implements net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> KEY_CODEC;
+  public static final net.minecraft.util.context.ContextKeySet DEFAULT_PARAM_SET;
+  public static final long RANDOMIZE_SEED;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.LootTable> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.LootTable>> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.HolderSet<net.minecraft.world.level.storage.loot.LootTable>> LIST_CODEC;
+  public static final net.minecraft.world.level.storage.loot.LootTable EMPTY;
+  public static java.util.function.Consumer<net.minecraft.world.item.ItemStack> createStackSplitter(net.minecraft.server.level.ServerLevel, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public void getRandomItemsRaw(net.minecraft.world.level.storage.loot.LootParams, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public void getRandomItemsRaw(net.minecraft.world.level.storage.loot.LootContext, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public void getRandomItems(net.minecraft.world.level.storage.loot.LootParams, long, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public void getRandomItems(net.minecraft.world.level.storage.loot.LootParams, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public void getRandomItems(net.minecraft.world.level.storage.loot.LootContext, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.world.item.ItemStack> getRandomItems(net.minecraft.world.level.storage.loot.LootParams, net.minecraft.util.RandomSource);
+  public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.world.item.ItemStack> getRandomItems(net.minecraft.world.level.storage.loot.LootParams, long);
+  public it.unimi.dsi.fastutil.objects.ObjectArrayList<net.minecraft.world.item.ItemStack> getRandomItems(net.minecraft.world.level.storage.loot.LootParams);
+  public net.minecraft.util.context.ContextKeySet getParamSet();
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public void fill(net.minecraft.world.Container, net.minecraft.world.level.storage.loot.LootParams, long);
+  public static net.minecraft.world.level.storage.loot.LootTable$Builder lootTable();
+}
+Compiled from "LootContextArg.java"
+public interface net.minecraft.world.level.storage.loot.LootContextArg<R> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.LootContextArg<java.lang.Object>> ENTITY_OR_BLOCK;
+  public abstract R get(net.minecraft.world.level.storage.loot.LootContext);
+  public abstract net.minecraft.util.context.ContextKey<?> contextParam();
+  public static <U> net.minecraft.world.level.storage.loot.LootContextArg<U> cast(net.minecraft.world.level.storage.loot.LootContextArg<? extends U>);
+  public static <R> net.minecraft.world.level.storage.loot.LootContextArg<R> of(net.minecraft.util.context.ContextKey<? extends R>);
+  public static <R> com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.LootContextArg<R>> createArgCodec(java.util.function.UnaryOperator<net.minecraft.world.level.storage.loot.LootContextArg$ArgCodecBuilder<R>>);
+}
+Compiled from "ValidationContext.java"
+public final class net.minecraft.world.level.storage.loot.ValidationContext$ParametersNotProvidedProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.loot.ValidationContext$ParametersNotProvidedProblem(java.util.Set<net.minecraft.util.context.ContextKey<?>>);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Set<net.minecraft.util.context.ContextKey<?>> notProvided();
+}
+Compiled from "LootContext.java"
+public class net.minecraft.world.level.storage.loot.LootContext$Builder {
+  public net.minecraft.world.level.storage.loot.LootContext$Builder(net.minecraft.world.level.storage.loot.LootParams);
+  public net.minecraft.world.level.storage.loot.LootContext$Builder withOptionalRandomSeed(long);
+  public net.minecraft.world.level.storage.loot.LootContext$Builder withOptionalRandomSource(net.minecraft.util.RandomSource);
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public net.minecraft.world.level.storage.loot.LootContext create(java.util.Optional<net.minecraft.resources.Identifier>);
+}
+Compiled from "LootContext.java"
+public final class net.minecraft.world.level.storage.loot.LootContext$EntityTarget extends java.lang.Enum<net.minecraft.world.level.storage.loot.LootContext$EntityTarget> implements net.minecraft.util.StringRepresentable, net.minecraft.world.level.storage.loot.LootContextArg$SimpleGetter<net.minecraft.world.entity.Entity> {
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget THIS;
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget ATTACKER;
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget DIRECT_ATTACKER;
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget ATTACKING_PLAYER;
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget TARGET_ENTITY;
+  public static final net.minecraft.world.level.storage.loot.LootContext$EntityTarget INTERACTING_ENTITY;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.world.level.storage.loot.LootContext$EntityTarget> CODEC;
+  public static net.minecraft.world.level.storage.loot.LootContext$EntityTarget[] values();
+  public static net.minecraft.world.level.storage.loot.LootContext$EntityTarget valueOf(java.lang.String);
+  public net.minecraft.util.context.ContextKey<? extends net.minecraft.world.entity.Entity> contextParam();
+  public static net.minecraft.world.level.storage.loot.LootContext$EntityTarget getByName(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "LootContextArg.java"
+public interface net.minecraft.world.level.storage.loot.LootContextArg$Getter<T, R> extends net.minecraft.world.level.storage.loot.LootContextArg<R> {
+  public abstract R get(T);
+  public abstract net.minecraft.util.context.ContextKey<? extends T> contextParam();
+  public default R get(net.minecraft.world.level.storage.loot.LootContext);
+}
+Compiled from "IntRangePredicate.java"
+public final class net.minecraft.world.level.storage.loot.IntRangePredicate$Line implements net.minecraft.world.level.storage.loot.IntRangePredicate {
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, int);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider);
+}
+Compiled from "LootContext.java"
+public final class net.minecraft.world.level.storage.loot.LootContext$BlockEntityTarget extends java.lang.Enum<net.minecraft.world.level.storage.loot.LootContext$BlockEntityTarget> implements net.minecraft.util.StringRepresentable, net.minecraft.world.level.storage.loot.LootContextArg$SimpleGetter<net.minecraft.world.level.block.entity.BlockEntity> {
+  public static final net.minecraft.world.level.storage.loot.LootContext$BlockEntityTarget BLOCK_ENTITY;
+  public static net.minecraft.world.level.storage.loot.LootContext$BlockEntityTarget[] values();
+  public static net.minecraft.world.level.storage.loot.LootContext$BlockEntityTarget valueOf(java.lang.String);
+  public net.minecraft.util.context.ContextKey<? extends net.minecraft.world.level.block.entity.BlockEntity> contextParam();
+  public java.lang.String getSerializedName();
+}
+Compiled from "LootParams.java"
+public interface net.minecraft.world.level.storage.loot.LootParams$DynamicDrop {
+  public abstract void add(java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+}
+Compiled from "LootDataType.java"
+public interface net.minecraft.world.level.storage.loot.LootDataType$ContextGetter<T> {
+  public abstract net.minecraft.util.context.ContextKeySet context(T);
+  public static <T> net.minecraft.world.level.storage.loot.LootDataType$ContextGetter<T> constant(net.minecraft.util.context.ContextKeySet);
+}
+Compiled from "LootParams.java"
+public class net.minecraft.world.level.storage.loot.LootParams$Builder {
+  public net.minecraft.world.level.storage.loot.LootParams$Builder(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public <T> net.minecraft.world.level.storage.loot.LootParams$Builder withParameter(net.minecraft.util.context.ContextKey<T>, T);
+  public <T> net.minecraft.world.level.storage.loot.LootParams$Builder withOptionalParameter(net.minecraft.util.context.ContextKey<T>, T);
+  public <T> T getParameter(net.minecraft.util.context.ContextKey<T>);
+  public <T> T getOptionalParameter(net.minecraft.util.context.ContextKey<T>);
+  public net.minecraft.world.level.storage.loot.LootParams$Builder withDynamicDrop(net.minecraft.resources.Identifier, net.minecraft.world.level.storage.loot.LootParams$DynamicDrop);
+  public net.minecraft.world.level.storage.loot.LootParams$Builder withLuck(float);
+  public net.minecraft.world.level.storage.loot.LootParams create(net.minecraft.util.context.ContextKeySet);
+}
+Compiled from "LootParams.java"
+public class net.minecraft.world.level.storage.loot.LootParams {
+  public net.minecraft.world.level.storage.loot.LootParams(net.minecraft.server.level.ServerLevel, net.minecraft.util.context.ContextMap, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.world.level.storage.loot.LootParams$DynamicDrop>, float);
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public net.minecraft.util.context.ContextMap contextMap();
+  public void addDynamicDrops(net.minecraft.resources.Identifier, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public float getLuck();
+}
+Compiled from "LootContext.java"
+public final class net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<T extends net.minecraft.world.level.storage.loot.Validatable> extends java.lang.Record {
+  public net.minecraft.world.level.storage.loot.LootContext$VisitedEntry(net.minecraft.world.level.storage.loot.LootDataType<T>, T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.storage.loot.LootDataType<T> type();
+  public T value();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.storage.loot.package-info {
+}
+Compiled from "LootContextArg.java"
+public interface net.minecraft.world.level.storage.loot.LootContextArg$SimpleGetter<T> extends net.minecraft.world.level.storage.loot.LootContextArg<T> {
+  public abstract net.minecraft.util.context.ContextKey<? extends T> contextParam();
+  public default T get(net.minecraft.world.level.storage.loot.LootContext);
+}
+Compiled from "LootPool.java"
+public class net.minecraft.world.level.storage.loot.LootPool$Builder implements net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder<net.minecraft.world.level.storage.loot.LootPool$Builder>, net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder<net.minecraft.world.level.storage.loot.LootPool$Builder>, net.fabricmc.fabric.api.loot.v3.FabricLootPoolBuilder {
+  public net.minecraft.world.level.storage.loot.LootPool$Builder();
+  public net.minecraft.world.level.storage.loot.LootPool$Builder setRolls(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder unwrap();
+  public net.minecraft.world.level.storage.loot.LootPool$Builder setBonusRolls(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder add(net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer$Builder<?>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder addAll(java.util.List<? extends net.minecraft.world.level.storage.loot.entries.UniformContainerBase$Builder<?>>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder when(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>);
+  public net.minecraft.world.level.storage.loot.LootPool$Builder apply(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+  public net.minecraft.world.level.storage.loot.LootPool build();
+  public net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder unwrap();
+  public net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder apply(net.minecraft.core.Holder);
+  public net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder unwrap();
+  public net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder when(net.minecraft.core.Holder);
+}
+Compiled from "IntLimit.java"
+interface net.minecraft.world.level.storage.loot.IntLimit$IntLimiter {
+  public abstract int apply(net.minecraft.world.level.storage.loot.LootContext, int);
+}
+Compiled from "IntRangePredicate.java"
+public interface net.minecraft.world.level.storage.loot.IntRangePredicate extends net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.IntRangePredicate$Point> POINT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.IntRangePredicate$Line> LINE_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.IntRangePredicate> CODEC;
+  public static net.minecraft.world.level.storage.loot.IntRangePredicate exact(int);
+  public static net.minecraft.world.level.storage.loot.IntRangePredicate range(int, int);
+  public static net.minecraft.world.level.storage.loot.IntRangePredicate lowerBound(int);
+  public static net.minecraft.world.level.storage.loot.IntRangePredicate upperBound(int);
+  public abstract boolean test(net.minecraft.world.level.storage.loot.LootContext, int);
+  public default boolean test(net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider);
+}
+Compiled from "FloatRangePredicate.java"
+public final class net.minecraft.world.level.storage.loot.FloatRangePredicate$Line implements net.minecraft.world.level.storage.loot.FloatRangePredicate {
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, float);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider);
+}
+Compiled from "BuiltInLootTables.java"
+public class net.minecraft.world.level.storage.loot.BuiltInLootTables {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWN_BONUS_CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> END_CITY_TREASURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SIMPLE_DUNGEON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_WEAPONSMITH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_TOOLSMITH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_ARMORER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_CARTOGRAPHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_MASON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_SHEPHERD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_BUTCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_FLETCHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_FISHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_TANNERY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_TEMPLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_DESERT_HOUSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_PLAINS_HOUSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_TAIGA_HOUSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_SNOWY_HOUSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> VILLAGE_SAVANNA_HOUSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ABANDONED_MINESHAFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> NETHER_BRIDGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> STRONGHOLD_LIBRARY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> STRONGHOLD_CROSSING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> STRONGHOLD_CORRIDOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> DESERT_PYRAMID;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> JUNGLE_TEMPLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> JUNGLE_TEMPLE_DISPENSER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> IGLOO_CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> WOODLAND_MANSION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> UNDERWATER_RUIN_SMALL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> UNDERWATER_RUIN_BIG;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BURIED_TREASURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHIPWRECK_MAP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHIPWRECK_SUPPLY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHIPWRECK_TREASURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> PILLAGER_OUTPOST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BASTION_TREASURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BASTION_OTHER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BASTION_BRIDGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BASTION_HOGLIN_STABLE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ANCIENT_CITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ANCIENT_CITY_ICE_BOX;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> RUINED_PORTAL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_COMMON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_RARE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_UNIQUE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_OMINOUS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_OMINOUS_COMMON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_OMINOUS_RARE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_REWARD_OMINOUS_UNIQUE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_SUPPLY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_CORRIDOR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_INTERSECTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_INTERSECTION_BARREL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_ENTRANCE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_CORRIDOR_DISPENSER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_CHAMBER_DISPENSER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_WATER_DISPENSER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRIAL_CHAMBERS_CORRIDOR_POT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> EQUIPMENT_TRIAL_CHAMBER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> EQUIPMENT_TRIAL_CHAMBER_RANGED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> EQUIPMENT_TRIAL_CHAMBER_MELEE;
+  public static final net.minecraft.world.level.block.ColorCollection<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> SHEEP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FISHING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FISHING_JUNK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FISHING_TREASURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FISHING_FISH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CAT_MORNING_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ARMORER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BUTCHER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CARTOGRAPHER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CLERIC_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FARMER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FISHERMAN_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> FLETCHER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> LEATHERWORKER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> LIBRARIAN_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> MASON_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEPHERD_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TOOLSMITH_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> WEAPONSMITH_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> UNEMPLOYED_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BABY_VILLAGER_GIFT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SNIFFER_DIGGING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> PANDA_SNEEZE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHICKEN_LAY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ARMADILLO_SHED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TURTLE_GROW;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> HARVEST_CAVE_VINE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> HARVEST_SWEET_BERRY_BUSH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> HARVEST_BEEHIVE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CARVE_PUMPKIN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TILL_ROOTED_DIRT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> PIGLIN_BARTERING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWNER_TRIAL_CHAMBER_KEY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWNER_TRIAL_CHAMBER_CONSUMABLES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWNER_OMINOUS_TRIAL_CHAMBER_KEY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWNER_OMINOUS_TRIAL_CHAMBER_CONSUMABLES;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SPAWNER_TRIAL_ITEMS_TO_DROP_WHEN_OMINOUS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ARMADILLO_BRUSH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> BOGGED_SHEAR;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEAR_MOOSHROOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEAR_RED_MOOSHROOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEAR_BROWN_MOOSHROOM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEAR_SNOW_GOLEM;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> SHEAR_SHEEP;
+  public static final net.minecraft.world.level.block.ColorCollection<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> SHEAR_DYED_SHEEP;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER_PIGLIN;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER_CREEPER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER_SKELETON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER_WITHER_SKELETON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> CHARGED_CREEPER_ZOMBIE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> DESERT_WELL_ARCHAEOLOGY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> DESERT_PYRAMID_ARCHAEOLOGY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRAIL_RUINS_ARCHAEOLOGY_COMMON;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> TRAIL_RUINS_ARCHAEOLOGY_RARE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> OCEAN_RUIN_WARM_ARCHAEOLOGY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> OCEAN_RUIN_COLD_ARCHAEOLOGY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ABANDONED_CAMP_BARREL;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ABANDONED_CAMP_COMMON_CHEST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable> ABANDONED_CAMP_SECRET_CHEST;
+  public net.minecraft.world.level.storage.loot.BuiltInLootTables();
+  public static java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.storage.loot.LootTable>> all();
+}
+Compiled from "LootTable.java"
+public class net.minecraft.world.level.storage.loot.LootTable$Builder implements net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder<net.minecraft.world.level.storage.loot.LootTable$Builder>, net.fabricmc.fabric.api.loot.v3.FabricLootTableBuilder {
+  public net.minecraft.world.level.storage.loot.LootTable$Builder();
+  public net.minecraft.world.level.storage.loot.LootTable$Builder withPool(net.minecraft.world.level.storage.loot.LootPool$Builder);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder setParamSet(net.minecraft.util.context.ContextKeySet);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder setRandomSequence(net.minecraft.resources.Identifier);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder apply(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.functions.LootItemFunction>);
+  public net.minecraft.world.level.storage.loot.LootTable$Builder unwrap();
+  public net.minecraft.world.level.storage.loot.LootTable build();
+  public net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder unwrap();
+  public net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder apply(net.minecraft.core.Holder);
+}
+Compiled from "IntLimit.java"
+public class net.minecraft.world.level.storage.loot.IntLimit implements net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.IntLimit> CODEC;
+  public static net.minecraft.world.level.storage.loot.IntLimit range(int, int);
+  public static net.minecraft.world.level.storage.loot.IntLimit lowerBound(int);
+  public static net.minecraft.world.level.storage.loot.IntLimit upperBound(int);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public int clamp(net.minecraft.world.level.storage.loot.LootContext, int);
+}
+Compiled from "ValidationContext.java"
+public class net.minecraft.world.level.storage.loot.ValidationContext {
+  public net.minecraft.world.level.storage.loot.ValidationContext(net.minecraft.util.ProblemReporter, net.minecraft.util.context.ContextKeySet, net.minecraft.core.HolderGetter$Provider);
+  public net.minecraft.world.level.storage.loot.ValidationContext(net.minecraft.util.ProblemReporter, net.minecraft.util.context.ContextKeySet);
+  public net.minecraft.world.level.storage.loot.ValidationContext forChild(net.minecraft.util.ProblemReporter$PathElement);
+  public net.minecraft.world.level.storage.loot.ValidationContext forField(java.lang.String);
+  public net.minecraft.world.level.storage.loot.ValidationContext forIndexedField(java.lang.String, int);
+  public net.minecraft.world.level.storage.loot.ValidationContext forMapField(java.lang.String, java.lang.String);
+  public net.minecraft.world.level.storage.loot.ValidationContext enterElement(net.minecraft.util.ProblemReporter$PathElement, net.minecraft.resources.ResourceKey<?>);
+  public boolean hasVisitedElement(net.minecraft.resources.ResourceKey<?>);
+  public net.minecraft.world.level.storage.loot.ValidationContext enterTag(net.minecraft.util.ProblemReporter$PathElement, net.minecraft.tags.TagKey<?>);
+  public boolean hasVisitedTag(net.minecraft.tags.TagKey<?>);
+  public void reportProblem(net.minecraft.util.ProblemReporter$Problem);
+  public void validateContextUsage(net.minecraft.world.level.storage.loot.LootContextUser);
+  public net.minecraft.core.HolderGetter$Provider resolver();
+  public net.minecraft.util.ProblemReporter reporter();
+}
+Compiled from "LootContext.java"
+public class net.minecraft.world.level.storage.loot.LootContext {
+  public boolean hasParameter(net.minecraft.util.context.ContextKey<?>);
+  public <T> T getOptional(net.minecraft.util.context.ContextKey<T>);
+  public void addDynamicDrops(net.minecraft.resources.Identifier, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public boolean hasVisitedElement(net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<?>);
+  public boolean pushVisitedElement(net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<?>);
+  public void popVisitedElement(net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<?>);
+  public net.minecraft.core.HolderGetter$Provider getResolver();
+  public net.minecraft.util.RandomSource getRandom();
+  public float getLuck();
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public static net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<net.minecraft.world.level.storage.loot.LootTable> createVisitedEntry(net.minecraft.world.level.storage.loot.LootTable);
+  public static net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> createVisitedEntry(net.minecraft.world.level.storage.loot.predicates.LootItemCondition);
+  public static net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<net.minecraft.world.level.storage.loot.functions.LootItemFunction> createVisitedEntry(net.minecraft.world.level.storage.loot.functions.LootItemFunction);
+  public static net.minecraft.world.level.storage.loot.LootContext$VisitedEntry<net.minecraft.world.item.slot.SlotSource> createVisitedEntry(net.minecraft.world.item.slot.SlotSource);
+}
+Compiled from "LootDataType.java"
+public final class net.minecraft.world.level.storage.loot.LootDataType<T extends net.minecraft.world.level.storage.loot.Validatable> extends java.lang.Record {
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.level.storage.loot.predicates.LootItemCondition> PREDICATE;
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.level.storage.loot.functions.LootItemFunction> MODIFIER;
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.item.slot.SlotSource> SLOT_SOURCE;
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.level.storage.loot.LootTable> TABLE;
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> FLOAT_PROVIDER;
+  public static final net.minecraft.world.level.storage.loot.LootDataType<net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider> INT_PROVIDER;
+  public net.minecraft.world.level.storage.loot.LootDataType(net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>>, net.minecraft.world.level.storage.loot.LootDataType$ContextGetter<T>);
+  public void runValidation(net.minecraft.world.level.storage.loot.ValidationContextSource, net.minecraft.resources.ResourceKey<T>, T);
+  public void runValidation(net.minecraft.world.level.storage.loot.ValidationContextSource, net.minecraft.core.HolderLookup<T>);
+  public void runValidation(net.minecraft.world.level.storage.loot.ValidationContextSource, net.minecraft.core.HolderLookup$Provider);
+  public void runValidationIfPresent(net.minecraft.world.level.storage.loot.ValidationContextSource, net.minecraft.core.HolderLookup$Provider);
+  public static java.util.stream.Stream<net.minecraft.world.level.storage.loot.LootDataType<?>> values();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<net.minecraft.core.Registry<T>> registryKey();
+  public net.minecraft.world.level.storage.loot.LootDataType$ContextGetter<T> contextGetter();
+}
+Compiled from "IntRangePredicate.java"
+interface net.minecraft.world.level.storage.loot.IntRangePredicate$Line$IntChecker {
+  public abstract boolean test(net.minecraft.world.level.storage.loot.LootContext, int);
+}
+Compiled from "LootContext.java"
+public final class net.minecraft.world.level.storage.loot.LootContext$ItemStackTarget extends java.lang.Enum<net.minecraft.world.level.storage.loot.LootContext$ItemStackTarget> implements net.minecraft.util.StringRepresentable, net.minecraft.world.level.storage.loot.LootContextArg$SimpleGetter<net.minecraft.world.item.ItemInstance> {
+  public static final net.minecraft.world.level.storage.loot.LootContext$ItemStackTarget TOOL;
+  public static net.minecraft.world.level.storage.loot.LootContext$ItemStackTarget[] values();
+  public static net.minecraft.world.level.storage.loot.LootContext$ItemStackTarget valueOf(java.lang.String);
+  public net.minecraft.util.context.ContextKey<? extends net.minecraft.world.item.ItemInstance> contextParam();
+  public java.lang.String getSerializedName();
+}
+Compiled from "FloatRangePredicate.java"
+public interface net.minecraft.world.level.storage.loot.FloatRangePredicate extends net.minecraft.world.level.storage.loot.Validatable {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.FloatRangePredicate$Point> POINT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.FloatRangePredicate$Line> LINE_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.level.storage.loot.FloatRangePredicate> CODEC;
+  public static net.minecraft.world.level.storage.loot.FloatRangePredicate exact(float);
+  public static net.minecraft.world.level.storage.loot.FloatRangePredicate range(float, float);
+  public static net.minecraft.world.level.storage.loot.FloatRangePredicate lowerBound(float);
+  public static net.minecraft.world.level.storage.loot.FloatRangePredicate upperBound(float);
+  public abstract boolean test(net.minecraft.world.level.storage.loot.LootContext, float);
+  public default boolean test(net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider);
+}
+Compiled from "ValidationContext.java"
+public final class net.minecraft.world.level.storage.loot.ValidationContext$RecursiveTagReferenceProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.loot.ValidationContext$RecursiveTagReferenceProblem(net.minecraft.tags.TagKey<?>);
+  public java.lang.String description();
+  public boolean isFatal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.tags.TagKey<?> referenced();
+}
+Compiled from "ValidationContext.java"
+public final class net.minecraft.world.level.storage.loot.ValidationContext$MinBoundsProblem extends java.lang.Record implements net.minecraft.util.ProblemReporter$Problem {
+  public net.minecraft.world.level.storage.loot.ValidationContext$MinBoundsProblem(int);
+  public java.lang.String description();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int minBounds();
+}
+Compiled from "FloatRangePredicate.java"
+public final class net.minecraft.world.level.storage.loot.FloatRangePredicate$Point extends java.lang.Record implements net.minecraft.world.level.storage.loot.FloatRangePredicate {
+  public net.minecraft.world.level.storage.loot.FloatRangePredicate$Point(net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider>);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public boolean test(net.minecraft.world.level.storage.loot.LootContext, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProvider> value();
+}

@@ -1,0 +1,61 @@
+Compiled from "DataCommands.java"
+interface net.minecraft.server.commands.data.DataCommands$StringProcessor {
+  public abstract java.lang.String process(java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "BlockDataAccessor.java"
+public class net.minecraft.server.commands.data.BlockDataAccessor implements net.minecraft.server.commands.data.DataAccessor {
+  public static final net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.data.DataAccessor> PROVIDER;
+  public net.minecraft.server.commands.data.BlockDataAccessor(net.minecraft.world.level.block.entity.BlockEntity, net.minecraft.core.BlockPos);
+  public void setData(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag getData();
+  public net.minecraft.network.chat.Component getModifiedSuccess();
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.nbt.Tag);
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.commands.arguments.NbtPathArgument$NbtPath, double, int);
+}
+Compiled from "DataCommands.java"
+public class net.minecraft.server.commands.data.DataCommands {
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.data.DataAccessor>> ALL_PROVIDERS;
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider<net.minecraft.server.commands.data.DataAccessor>> TARGET_PROVIDERS;
+  public static final java.util.List<net.minecraft.server.commands.ArgProvider<net.minecraft.server.commands.data.DataAccessor>> SOURCE_PROVIDERS;
+  public net.minecraft.server.commands.data.DataCommands();
+  public static void register(com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack>, net.minecraft.commands.CommandBuildContext);
+  public static net.minecraft.nbt.Tag getSingleTag(net.minecraft.commands.arguments.NbtPathArgument$NbtPath, net.minecraft.server.commands.data.DataAccessor) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "StorageDataAccessor.java"
+public class net.minecraft.server.commands.data.StorageDataAccessor implements net.minecraft.server.commands.data.DataAccessor {
+  public static final net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.data.DataAccessor> PROVIDER;
+  public void setData(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.nbt.CompoundTag getData();
+  public net.minecraft.network.chat.Component getModifiedSuccess();
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.nbt.Tag);
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.commands.arguments.NbtPathArgument$NbtPath, double, int);
+}
+Compiled from "DataCommands.java"
+interface net.minecraft.server.commands.data.DataCommands$DataManipulatorDecorator {
+  public abstract com.mojang.brigadier.builder.ArgumentBuilder<net.minecraft.commands.CommandSourceStack, ?> create(net.minecraft.server.commands.data.DataCommands$DataManipulator);
+}
+Compiled from "DataCommands.java"
+interface net.minecraft.server.commands.data.DataCommands$DataManipulator {
+  public abstract int modify(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, net.minecraft.nbt.CompoundTag, net.minecraft.commands.arguments.NbtPathArgument$NbtPath, java.util.List<net.minecraft.nbt.Tag>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "EntityDataAccessor.java"
+public class net.minecraft.server.commands.data.EntityDataAccessor implements net.minecraft.server.commands.data.DataAccessor {
+  public static final net.minecraft.server.commands.ArgProvider$Factory<net.minecraft.server.commands.data.DataAccessor> PROVIDER;
+  public net.minecraft.server.commands.data.EntityDataAccessor(net.minecraft.world.entity.Entity);
+  public void setData(net.minecraft.nbt.CompoundTag) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.nbt.CompoundTag getData();
+  public net.minecraft.network.chat.Component getModifiedSuccess();
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.nbt.Tag);
+  public net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.commands.arguments.NbtPathArgument$NbtPath, double, int);
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.commands.data.package-info {
+}
+Compiled from "DataAccessor.java"
+public interface net.minecraft.server.commands.data.DataAccessor {
+  public abstract void setData(net.minecraft.nbt.CompoundTag) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract net.minecraft.nbt.CompoundTag getData() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public abstract net.minecraft.network.chat.Component getModifiedSuccess();
+  public abstract net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.nbt.Tag);
+  public abstract net.minecraft.network.chat.Component getPrintSuccess(net.minecraft.commands.arguments.NbtPathArgument$NbtPath, double, int);
+}

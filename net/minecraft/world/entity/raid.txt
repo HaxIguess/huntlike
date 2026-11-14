@@ -1,0 +1,163 @@
+Compiled from "Raid.java"
+final class net.minecraft.world.entity.raid.Raid$RaidStatus extends java.lang.Enum<net.minecraft.world.entity.raid.Raid$RaidStatus> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.raid.Raid$RaidStatus ONGOING;
+  public static final net.minecraft.world.entity.raid.Raid$RaidStatus VICTORY;
+  public static final net.minecraft.world.entity.raid.Raid$RaidStatus LOSS;
+  public static final net.minecraft.world.entity.raid.Raid$RaidStatus STOPPED;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.raid.Raid$RaidStatus> CODEC;
+  public static net.minecraft.world.entity.raid.Raid$RaidStatus[] values();
+  public static net.minecraft.world.entity.raid.Raid$RaidStatus valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "Raider.java"
+public abstract class net.minecraft.world.entity.raid.Raider extends net.minecraft.world.entity.monster.PatrollingMonster {
+  protected static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Boolean> IS_CELEBRATING;
+  protected net.minecraft.world.entity.raid.Raid raid;
+  protected net.minecraft.world.entity.raid.Raider(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.raid.Raider>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public abstract void applyRaidBuffs(net.minecraft.server.level.ServerLevel, int, boolean);
+  public boolean canJoinRaid();
+  public void setCanJoinRaid(boolean);
+  public void aiStep();
+  protected void updateNoActionTime();
+  public void die(net.minecraft.world.damagesource.DamageSource);
+  public boolean canJoinPatrol();
+  public void setCurrentRaid(net.minecraft.world.entity.raid.Raid);
+  public net.minecraft.world.entity.raid.Raid getCurrentRaid();
+  public boolean isCaptain();
+  public boolean hasRaid();
+  public boolean hasActiveRaid();
+  public void setWave(int);
+  public int getWave();
+  public boolean isCelebrating();
+  public void setCelebrating(boolean);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected void pickUpItem(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.item.ItemEntity);
+  public boolean removeWhenFarAway(double);
+  public boolean requiresCustomPersistence();
+  public int getTicksOutsideRaid();
+  public void setTicksOutsideRaid(int);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public abstract net.minecraft.sounds.SoundEvent getCelebrateSound();
+}
+Compiled from "Raids.java"
+final class net.minecraft.world.entity.raid.Raids$RaidWithId extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.raid.Raids$RaidWithId> CODEC;
+  public static net.minecraft.world.entity.raid.Raids$RaidWithId from(it.unimi.dsi.fastutil.ints.Int2ObjectMap$Entry<net.minecraft.world.entity.raid.Raid>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int id();
+  public net.minecraft.world.entity.raid.Raid raid();
+}
+Compiled from "Raider.java"
+class net.minecraft.world.entity.raid.Raider$RaiderMoveThroughVillageGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.raid.Raider$RaiderMoveThroughVillageGoal(net.minecraft.world.entity.raid.Raider, double, int);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void stop();
+  public void start();
+  public void tick();
+}
+Compiled from "Raids.java"
+public class net.minecraft.world.entity.raid.Raids extends net.minecraft.world.level.saveddata.SavedData {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.raid.Raids> CODEC;
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.entity.raid.Raids> TYPE;
+  public net.minecraft.world.entity.raid.Raids();
+  public net.minecraft.world.entity.raid.Raid get(int);
+  public java.util.OptionalInt getId(net.minecraft.world.entity.raid.Raid);
+  public void tick(net.minecraft.server.level.ServerLevel);
+  public static boolean canJoinRaid(net.minecraft.world.entity.raid.Raider);
+  public net.minecraft.world.entity.raid.Raid createOrExtendRaid(net.minecraft.server.level.ServerPlayer, net.minecraft.core.BlockPos);
+  public static net.minecraft.world.entity.raid.Raids load(net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.entity.raid.Raid getNearbyRaid(net.minecraft.core.BlockPos, int);
+  public java.util.List<net.minecraft.core.BlockPos> getRaidCentersInChunk(net.minecraft.world.level.ChunkPos);
+}
+Compiled from "Raid.java"
+final class net.minecraft.world.entity.raid.Raid$RaiderType extends java.lang.Enum<net.minecraft.world.entity.raid.Raid$RaiderType> {
+  public static final net.minecraft.world.entity.raid.Raid$RaiderType VINDICATOR;
+  public static final net.minecraft.world.entity.raid.Raid$RaiderType EVOKER;
+  public static final net.minecraft.world.entity.raid.Raid$RaiderType PILLAGER;
+  public static final net.minecraft.world.entity.raid.Raid$RaiderType WITCH;
+  public static final net.minecraft.world.entity.raid.Raid$RaiderType RAVAGER;
+  public static net.minecraft.world.entity.raid.Raid$RaiderType[] values();
+  public static net.minecraft.world.entity.raid.Raid$RaiderType valueOf(java.lang.String);
+}
+Compiled from "Raider.java"
+public class net.minecraft.world.entity.raid.Raider$RaiderCelebration extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.raid.Raider$RaiderCelebration(net.minecraft.world.entity.raid.Raider, net.minecraft.world.entity.raid.Raider);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "Raider.java"
+public class net.minecraft.world.entity.raid.Raider$ObtainRaidLeaderBannerGoal<T extends net.minecraft.world.entity.raid.Raider> extends net.minecraft.world.entity.ai.goal.Goal {
+  public net.minecraft.world.entity.raid.Raider$ObtainRaidLeaderBannerGoal(T);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void start();
+  public void stop();
+  public void tick();
+}
+Compiled from "Raider.java"
+public class net.minecraft.world.entity.raid.Raider$HoldGroundAttackGoal extends net.minecraft.world.entity.ai.goal.Goal {
+  public final net.minecraft.world.entity.ai.targeting.TargetingConditions shoutTargeting;
+  public net.minecraft.world.entity.raid.Raider$HoldGroundAttackGoal(net.minecraft.world.entity.monster.illager.AbstractIllager, float);
+  public boolean canUse();
+  public void start();
+  public void stop();
+  public boolean requiresUpdateEveryTick();
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.raid.package-info {
+}
+Compiled from "Raid.java"
+public class net.minecraft.world.entity.raid.Raid {
+  public static final net.minecraft.world.entity.SpawnPlacementType RAVAGER_SPAWN_PLACEMENT_TYPE;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.entity.raid.Raid> MAP_CODEC;
+  public static final int VILLAGE_RADIUS_BUFFER;
+  public static final int MAX_NO_ACTION_TIME;
+  public static final int MAX_CELEBRATION_TICKS;
+  public static final int DEFAULT_MAX_RAID_OMEN_LEVEL;
+  public static final int VALID_RAID_RADIUS_SQR;
+  public static final int RAID_REMOVAL_THRESHOLD_SQR;
+  public net.minecraft.world.entity.raid.Raid(net.minecraft.core.BlockPos, net.minecraft.world.Difficulty);
+  public boolean isOver();
+  public boolean isBetweenWaves();
+  public boolean hasFirstWaveSpawned();
+  public boolean isStopped();
+  public boolean isVictory();
+  public boolean isLoss();
+  public float getTotalHealth();
+  public java.util.Set<net.minecraft.world.entity.raid.Raider> getAllRaiders();
+  public boolean isStarted();
+  public int getGroupsSpawned();
+  public int getMaxRaidOmenLevel();
+  public int getRaidOmenLevel();
+  public void setRaidOmenLevel(int);
+  public boolean absorbRaidOmen(net.minecraft.server.level.ServerPlayer);
+  public void stop();
+  public void tick(net.minecraft.server.level.ServerLevel);
+  public void joinRaid(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.raid.Raider, net.minecraft.core.BlockPos, boolean);
+  public void updateBossbar();
+  public float getHealthOfLivingRaiders();
+  public int getTotalRaidersAlive();
+  public void removeFromRaid(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.raid.Raider, boolean);
+  public static net.minecraft.core.component.DataComponentPatch getBannerComponentPatch(net.minecraft.core.HolderGetter<net.minecraft.world.level.block.entity.BannerPattern>);
+  public static net.minecraft.world.item.ItemStackTemplate getOminousBannerTemplate(net.minecraft.core.HolderGetter<net.minecraft.world.level.block.entity.BannerPattern>);
+  public static net.minecraft.world.item.ItemStack getOminousBannerInstance(net.minecraft.core.HolderGetter<net.minecraft.world.level.block.entity.BannerPattern>);
+  public net.minecraft.world.entity.raid.Raider getLeader(int);
+  public boolean addWaveMob(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.raid.Raider, boolean);
+  public void setLeader(int, net.minecraft.world.entity.raid.Raider);
+  public void removeLeader(int);
+  public net.minecraft.core.BlockPos getCenter();
+  public boolean isActive();
+  public int getNumGroups(net.minecraft.world.Difficulty);
+  public float getEnchantOdds();
+  public void addHeroOfTheVillage(net.minecraft.world.entity.Entity);
+}

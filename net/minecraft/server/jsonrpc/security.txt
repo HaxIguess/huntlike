@@ -1,0 +1,36 @@
+Compiled from "JsonRpcSslContextProvider.java"
+public class net.minecraft.server.jsonrpc.security.JsonRpcSslContextProvider {
+  public net.minecraft.server.jsonrpc.security.JsonRpcSslContextProvider();
+  public static io.netty.handler.ssl.SslContext createFrom(java.lang.String, java.lang.String) throws java.lang.Exception;
+  public static void printInstructions();
+}
+Compiled from "SecurityConfig.java"
+public final class net.minecraft.server.jsonrpc.security.SecurityConfig extends java.lang.Record {
+  public net.minecraft.server.jsonrpc.security.SecurityConfig(java.lang.String);
+  public static boolean isValid(java.lang.String);
+  public static java.lang.String generateSecretKey();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String secretKey();
+}
+Compiled from "AuthenticationHandler.java"
+public class net.minecraft.server.jsonrpc.security.AuthenticationHandler extends io.netty.channel.ChannelDuplexHandler {
+  public static final java.lang.String BEARER_PREFIX;
+  public net.minecraft.server.jsonrpc.security.AuthenticationHandler(net.minecraft.server.jsonrpc.security.SecurityConfig, java.lang.String);
+  public void channelRead(io.netty.channel.ChannelHandlerContext, java.lang.Object) throws java.lang.Exception;
+  public void write(io.netty.channel.ChannelHandlerContext, java.lang.Object, io.netty.channel.ChannelPromise) throws java.lang.Exception;
+  public boolean isValidApiKey(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.jsonrpc.security.package-info {
+}
+Compiled from "AuthenticationHandler.java"
+class net.minecraft.server.jsonrpc.security.AuthenticationHandler$SecurityCheckResult {
+  public static net.minecraft.server.jsonrpc.security.AuthenticationHandler$SecurityCheckResult allowed();
+  public static net.minecraft.server.jsonrpc.security.AuthenticationHandler$SecurityCheckResult allowed(boolean);
+  public static net.minecraft.server.jsonrpc.security.AuthenticationHandler$SecurityCheckResult denied(java.lang.String);
+  public boolean isAllowed();
+  public java.lang.String getReason();
+  public boolean isTokenSentInSecWebsocketProtocol();
+}

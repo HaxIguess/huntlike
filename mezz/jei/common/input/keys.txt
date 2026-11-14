@@ -1,0 +1,74 @@
+Compiled from "AbstractJeiKeyMappingBuilder.java"
+public abstract class mezz.jei.common.input.keys.AbstractJeiKeyMappingBuilder implements mezz.jei.common.input.keys.IJeiKeyMappingBuilder {
+  public mezz.jei.common.input.keys.AbstractJeiKeyMappingBuilder();
+  protected abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouse(int);
+  public final mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseLeft();
+  public final mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseRight();
+  public final mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseMiddle();
+  public final mezz.jei.common.input.keys.IJeiKeyMappingInternal buildUnbound();
+}
+Compiled from "IJeiKeyMappingBuilder.java"
+public interface mezz.jei.common.input.keys.IJeiKeyMappingBuilder {
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingBuilder setContext(mezz.jei.common.input.keys.JeiKeyConflictContext);
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingBuilder setModifier(mezz.jei.common.input.keys.JeiKeyModifier);
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseLeft();
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseRight();
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildMouseMiddle();
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildKeyboardKey(int);
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal buildUnbound();
+}
+Compiled from "IJeiKeyMappingCategoryBuilder.java"
+public interface mezz.jei.common.input.keys.IJeiKeyMappingCategoryBuilder {
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingBuilder createMapping(java.lang.String);
+}
+Compiled from "IJeiKeyMappingInternal.java"
+public interface mezz.jei.common.input.keys.IJeiKeyMappingInternal extends mezz.jei.common.input.keys.IJeiKeyMappingWithExtraModifiers {
+  public abstract boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public default boolean isActiveAndMatchesAllowingExtraModifiers(com.mojang.blaze3d.platform.InputConstants$Key);
+  public abstract boolean isUnbound();
+  public abstract net.minecraft.network.chat.Component getTranslatedKeyMessage();
+  public abstract boolean isDown();
+  public abstract mezz.jei.common.input.keys.IJeiKeyMappingInternal register(java.util.function.Consumer<net.minecraft.client.KeyMapping>);
+  public static boolean isKeyDown(com.mojang.blaze3d.platform.InputConstants$Key);
+}
+Compiled from "IJeiKeyMappingWithExtraModifiers.java"
+public interface mezz.jei.common.input.keys.IJeiKeyMappingWithExtraModifiers extends mezz.jei.api.runtime.IJeiKeyMapping {
+  public abstract boolean isActiveAndMatchesAllowingExtraModifiers(com.mojang.blaze3d.platform.InputConstants$Key);
+}
+Compiled from "JeiKeyConflictContext.java"
+public abstract class mezz.jei.common.input.keys.JeiKeyConflictContext extends java.lang.Enum<mezz.jei.common.input.keys.JeiKeyConflictContext> {
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext UNIVERSAL;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext GUI;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext IN_GAME;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext JEI_GUI_HOVER;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext JEI_GUI_HOVER_CHEAT_MODE;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext JEI_GUI_HOVER_CONFIG_BUTTON;
+  public static final mezz.jei.common.input.keys.JeiKeyConflictContext JEI_GUI_HOVER_SEARCH;
+  public static mezz.jei.common.input.keys.JeiKeyConflictContext[] values();
+  public static mezz.jei.common.input.keys.JeiKeyConflictContext valueOf(java.lang.String);
+  public abstract boolean isActive();
+  public boolean conflicts(mezz.jei.common.input.keys.JeiKeyConflictContext);
+}
+Compiled from "JeiKeyModifier.java"
+public abstract class mezz.jei.common.input.keys.JeiKeyModifier extends java.lang.Enum<mezz.jei.common.input.keys.JeiKeyModifier> {
+  public static final mezz.jei.common.input.keys.JeiKeyModifier CONTROL;
+  public static final mezz.jei.common.input.keys.JeiKeyModifier CONTROL_OR_COMMAND;
+  public static final mezz.jei.common.input.keys.JeiKeyModifier SHIFT;
+  public static final mezz.jei.common.input.keys.JeiKeyModifier ALT;
+  public static final mezz.jei.common.input.keys.JeiKeyModifier NONE;
+  public static mezz.jei.common.input.keys.JeiKeyModifier[] values();
+  public static mezz.jei.common.input.keys.JeiKeyModifier valueOf(java.lang.String);
+  public abstract boolean isActive(mezz.jei.common.input.keys.JeiKeyConflictContext);
+  public abstract net.minecraft.network.chat.Component getCombinedName(net.minecraft.network.chat.Component);
+}
+Compiled from "JeiMultiKeyMapping.java"
+public class mezz.jei.common.input.keys.JeiMultiKeyMapping implements mezz.jei.common.input.keys.IJeiKeyMappingWithExtraModifiers {
+  public mezz.jei.common.input.keys.JeiMultiKeyMapping(mezz.jei.api.runtime.IJeiKeyMapping...);
+  public boolean isActiveAndMatches(com.mojang.blaze3d.platform.InputConstants$Key);
+  public boolean isActiveAndMatchesAllowingExtraModifiers(com.mojang.blaze3d.platform.InputConstants$Key);
+  public boolean isUnbound();
+  public net.minecraft.network.chat.Component getTranslatedKeyMessage();
+}
+Compiled from "package-info.java"
+interface mezz.jei.common.input.keys.package-info {
+}

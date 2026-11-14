@@ -1,0 +1,231 @@
+Compiled from "DedicatedServerSettings.java"
+public class net.minecraft.server.dedicated.DedicatedServerSettings {
+  public net.minecraft.server.dedicated.DedicatedServerSettings(java.nio.file.Path);
+  public net.minecraft.server.dedicated.DedicatedServerProperties getProperties();
+  public void forceSave();
+  public net.minecraft.server.dedicated.DedicatedServerSettings update(java.util.function.UnaryOperator<net.minecraft.server.dedicated.DedicatedServerProperties>);
+}
+Compiled from "DedicatedServer.java"
+public class net.minecraft.server.dedicated.DedicatedServer extends net.minecraft.server.MinecraftServer implements net.minecraft.server.ServerInterface {
+  public net.minecraft.server.dedicated.DedicatedServer(java.lang.Thread, net.minecraft.world.level.storage.LevelStorageSource$LevelStorageAccess, net.minecraft.server.packs.repository.PackRepository, net.minecraft.server.WorldStem, java.util.Optional<net.minecraft.world.level.gamerules.GameRules>, net.minecraft.server.dedicated.DedicatedServerSettings, com.mojang.datafixers.DataFixer, net.minecraft.server.Services, net.minecraft.server.jsonrpc.ManagementServer, net.minecraft.server.notifications.NotificationManager);
+  protected boolean initServer() throws java.io.IOException;
+  public boolean isEnforceWhitelist();
+  public void setEnforceWhitelist(boolean);
+  public boolean isUsingWhitelist();
+  public void setUsingWhitelist(boolean);
+  protected void tickServer(java.util.function.BooleanSupplier);
+  public boolean saveAllChunks(boolean, boolean, boolean);
+  public void sendLowDiskSpaceWarning();
+  public boolean allowFlight();
+  public void setAllowFlight(boolean);
+  public net.minecraft.server.dedicated.DedicatedServerProperties getProperties();
+  public void setDifficulty(net.minecraft.world.Difficulty);
+  protected void forceDifficulty();
+  public int viewDistance();
+  public void setViewDistance(int);
+  public int simulationDistance();
+  public void setSimulationDistance(int);
+  public net.minecraft.SystemReport fillServerSystemReport(net.minecraft.SystemReport);
+  public void dumpServerProperties(java.nio.file.Path) throws java.io.IOException;
+  protected void onServerExit();
+  protected void tickConnection();
+  public void handleConsoleInput(java.lang.String, net.minecraft.commands.CommandSourceStack);
+  public void handleConsoleInputs();
+  public boolean isDedicatedServer();
+  public int getRateLimitPacketsPerSecond();
+  public int getCommandSpamThresholdSeconds();
+  public int getChatSpamThresholdSeconds();
+  public boolean useNativeTransport();
+  public net.minecraft.server.dedicated.DedicatedPlayerList getPlayerList();
+  public int getMaxPlayers();
+  public void setMaxPlayers(int);
+  public boolean isPublished();
+  public java.lang.String getServerIp();
+  public int getServerPort();
+  public java.lang.String getServerName();
+  public void showGui();
+  public int spawnProtectionRadius();
+  public void setSpawnProtectionRadius(int);
+  public boolean isUnderSpawnProtection(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.entity.player.Player);
+  public boolean repliesToStatus();
+  public void setRepliesToStatus(boolean);
+  public boolean hidesOnlinePlayers();
+  public void setHidesOnlinePlayers(boolean);
+  public net.minecraft.server.permissions.LevelBasedPermissionSet operatorUserPermissions();
+  public void setOperatorUserPermissions(net.minecraft.server.permissions.LevelBasedPermissionSet);
+  public net.minecraft.server.permissions.PermissionSet getFunctionCompilationPermissions();
+  public int playerIdleTimeout();
+  public void setPlayerIdleTimeout(int);
+  public int statusHeartbeatInterval();
+  public boolean setStatusHeartbeatInterval(int);
+  public java.lang.String getMotd();
+  public void setMotd(java.lang.String);
+  public boolean shouldRconBroadcast();
+  public boolean shouldInformAdmins();
+  public int getAbsoluteMaxWorldSize();
+  public int getCompressionThreshold();
+  public boolean enforceSecureProfile();
+  public boolean logIPs();
+  protected boolean convertOldUsers();
+  public long getMaxTickLength();
+  public int getMaxChainedNeighborUpdates();
+  public java.lang.String getPluginNames();
+  public java.lang.String runCommand(java.lang.String);
+  protected void stopServer();
+  public boolean isSingleplayerOwner(net.minecraft.server.players.NameAndId);
+  public int getScaledTrackingDistance(int);
+  public int entityBroadcastRangePercentage();
+  public void setEntityBroadcastRangePercentage(int);
+  public java.lang.String getLevelIdName();
+  public boolean forceSynchronousWrites();
+  public net.minecraft.server.network.TextFilter createTextFilterForPlayer(net.minecraft.server.level.ServerPlayer);
+  public net.minecraft.world.level.GameType getForcedGameType();
+  public boolean forceGameMode();
+  public void setForceGameMode(boolean);
+  public net.minecraft.world.level.GameType gameMode();
+  public void setGameMode(net.minecraft.world.level.GameType);
+  public java.util.Optional<net.minecraft.server.MinecraftServer$ServerResourcePackInfo> getServerResourcePack();
+  protected void endMetricsRecordingTick();
+  protected net.minecraft.util.debugchart.SampleLogger getTickTimeLogger();
+  public boolean isTickTimeLoggingEnabled();
+  public boolean acceptsTransfers();
+  public void setAcceptsTransfers(boolean);
+  public net.minecraft.server.ServerLinks serverLinks();
+  public int pauseWhenEmptySeconds();
+  public void setPauseWhenEmptySeconds(int);
+  public java.util.Map<java.lang.String, java.lang.String> getCodeOfConducts();
+  public net.minecraft.server.players.PlayerList getPlayerList();
+}
+Compiled from "DedicatedServerProperties.java"
+final class net.minecraft.server.dedicated.DedicatedServerProperties$WorldDimensionData extends java.lang.Record {
+  public net.minecraft.world.level.levelgen.WorldDimensions create(net.minecraft.core.HolderLookup$Provider);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.google.gson.JsonObject generatorSettings();
+  public java.lang.String levelType();
+}
+Compiled from "Settings.java"
+public abstract class net.minecraft.server.dedicated.Settings<T extends net.minecraft.server.dedicated.Settings<T>> {
+  protected final java.util.Properties properties;
+  public net.minecraft.server.dedicated.Settings(java.util.Properties);
+  public static java.util.Properties loadFromFile(java.nio.file.Path);
+  public void store(java.nio.file.Path);
+  protected static <V> java.util.function.Function<java.lang.String, V> dispatchNumberOrString(java.util.function.IntFunction<V>, java.util.function.Function<java.lang.String, V>);
+  protected <V> V getLegacy(java.lang.String, java.util.function.Function<java.lang.String, V>);
+  protected <V> V get(java.lang.String, java.util.function.Function<java.lang.String, V>, java.util.function.Function<V, java.lang.String>, V);
+  protected <V> net.minecraft.server.dedicated.Settings<T>.MutableValue<V> getMutable(java.lang.String, java.util.function.Function<java.lang.String, V>, java.util.function.Function<V, java.lang.String>, V);
+  protected <V> V get(java.lang.String, java.util.function.Function<java.lang.String, V>, java.util.function.UnaryOperator<V>, java.util.function.Function<V, java.lang.String>, V);
+  protected <V> V get(java.lang.String, java.util.function.Function<java.lang.String, V>, V);
+  protected <V> net.minecraft.server.dedicated.Settings<T>.MutableValue<V> getMutable(java.lang.String, java.util.function.Function<java.lang.String, V>, V);
+  protected java.lang.String get(java.lang.String, java.lang.String);
+  protected java.lang.String getLegacyString(java.lang.String);
+  protected int get(java.lang.String, int);
+  protected net.minecraft.server.dedicated.Settings<T>.MutableValue<java.lang.Integer> getMutable(java.lang.String, int);
+  protected net.minecraft.server.dedicated.Settings<T>.MutableValue<java.lang.String> getMutable(java.lang.String, java.lang.String);
+  protected int get(java.lang.String, java.util.function.UnaryOperator<java.lang.Integer>, int);
+  protected long get(java.lang.String, long);
+  protected boolean get(java.lang.String, boolean);
+  protected net.minecraft.server.dedicated.Settings<T>.MutableValue<java.lang.Boolean> getMutable(java.lang.String, boolean);
+  protected java.lang.Boolean getLegacyBoolean(java.lang.String);
+  protected java.util.Properties cloneProperties();
+  protected abstract T reload(net.minecraft.core.RegistryAccess, java.util.Properties);
+}
+Compiled from "Settings.java"
+public class net.minecraft.server.dedicated.Settings$MutableValue<V> implements java.util.function.Supplier<V> {
+  public V get();
+  public T update(net.minecraft.core.RegistryAccess, V);
+}
+Compiled from "DedicatedServerProperties.java"
+public class net.minecraft.server.dedicated.DedicatedServerProperties extends net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties> {
+  public static final java.lang.String MANAGEMENT_SERVER_TLS_ENABLED_KEY;
+  public static final java.lang.String MANAGEMENT_SERVER_TLS_KEYSTORE_KEY;
+  public static final java.lang.String MANAGEMENT_SERVER_TLS_KEYSTORE_PASSWORD_KEY;
+  public final boolean onlineMode;
+  public final boolean preventProxyConnections;
+  public final java.lang.String serverIp;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> allowFlight;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.String> motd;
+  public final boolean codeOfConduct;
+  public final java.lang.String bugReportLink;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> forceGameMode;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> enforceWhitelist;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<net.minecraft.world.Difficulty> difficulty;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<net.minecraft.world.level.GameType> gameMode;
+  public final java.lang.String levelName;
+  public final int serverPort;
+  public final boolean managementServerEnabled;
+  public final java.lang.String managementServerHost;
+  public final int managementServerPort;
+  public final java.lang.String managementServerSecret;
+  public final boolean managementServerTlsEnabled;
+  public final java.lang.String managementServerTlsKeystore;
+  public final java.lang.String managementServerTlsKeystorePassword;
+  public final java.lang.String managementServerAllowedOrigins;
+  public final java.lang.Boolean announcePlayerAchievements;
+  public final boolean enableQuery;
+  public final int queryPort;
+  public final boolean enableRcon;
+  public final int rconPort;
+  public final java.lang.String rconPassword;
+  public final boolean hardcore;
+  public final boolean useNativeTransport;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> spawnProtection;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<net.minecraft.server.permissions.LevelBasedPermissionSet> opPermissions;
+  public final net.minecraft.server.permissions.LevelBasedPermissionSet functionPermissions;
+  public final long maxTickTime;
+  public final int maxChainedNeighborUpdates;
+  public final int rateLimitPacketsPerSecond;
+  public final int commandSpamThresholdSeconds;
+  public final int chatSpamThresholdSeconds;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> viewDistance;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> simulationDistance;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> maxPlayers;
+  public final int networkCompressionThreshold;
+  public final boolean broadcastRconToOps;
+  public final boolean broadcastConsoleToOps;
+  public final int maxWorldSize;
+  public final boolean syncChunkWrites;
+  public final java.lang.String regionFileComression;
+  public final boolean enableJmxMonitoring;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> enableStatus;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> hideOnlinePlayers;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> entityBroadcastRangePercentage;
+  public final java.lang.String textFilteringConfig;
+  public final int textFilteringVersion;
+  public final java.util.Optional<net.minecraft.server.MinecraftServer$ServerResourcePackInfo> serverResourcePackInfo;
+  public final net.minecraft.world.level.DataPackConfig initialDataPackConfiguration;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> playerIdleTimeout;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> statusHeartbeatInterval;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> whiteList;
+  public final boolean enforceSecureProfile;
+  public final boolean logIPs;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Integer> pauseWhenEmptySeconds;
+  public final net.minecraft.world.level.levelgen.WorldOptions worldOptions;
+  public final net.minecraft.server.dedicated.Settings<net.minecraft.server.dedicated.DedicatedServerProperties>.MutableValue<java.lang.Boolean> acceptsTransfers;
+  public net.minecraft.server.dedicated.DedicatedServerProperties(java.util.Properties);
+  public static net.minecraft.server.dedicated.DedicatedServerProperties fromFile(java.nio.file.Path);
+  protected net.minecraft.server.dedicated.DedicatedServerProperties reload(net.minecraft.core.RegistryAccess, java.util.Properties);
+  public static net.minecraft.server.permissions.LevelBasedPermissionSet deserializePermission(java.lang.String);
+  public static java.lang.String serializePermission(net.minecraft.server.permissions.LevelBasedPermissionSet);
+  public net.minecraft.world.level.levelgen.WorldDimensions createDimensions(net.minecraft.core.HolderLookup$Provider);
+  protected net.minecraft.server.dedicated.Settings reload(net.minecraft.core.RegistryAccess, java.util.Properties);
+}
+Compiled from "DedicatedPlayerList.java"
+public class net.minecraft.server.dedicated.DedicatedPlayerList extends net.minecraft.server.players.PlayerList {
+  public net.minecraft.server.dedicated.DedicatedPlayerList(net.minecraft.server.dedicated.DedicatedServer, net.minecraft.core.LayeredRegistryAccess<net.minecraft.server.RegistryLayer>, net.minecraft.world.level.storage.PlayerDataStorage);
+  public void reloadWhiteList();
+  public boolean isWhiteListed(net.minecraft.server.players.NameAndId);
+  public net.minecraft.server.dedicated.DedicatedServer getServer();
+  public boolean canBypassPlayerLimit(net.minecraft.server.players.NameAndId);
+  public net.minecraft.server.MinecraftServer getServer();
+}
+Compiled from "ServerWatchdog.java"
+public class net.minecraft.server.dedicated.ServerWatchdog implements java.lang.Runnable {
+  public net.minecraft.server.dedicated.ServerWatchdog(net.minecraft.server.dedicated.DedicatedServer);
+  public void run();
+  public static net.minecraft.CrashReport createWatchdogCrashReport(java.lang.String, long);
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.dedicated.package-info {
+}

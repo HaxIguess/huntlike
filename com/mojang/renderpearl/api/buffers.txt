@@ -1,0 +1,70 @@
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.api.buffers.package-info {
+}
+Compiled from "GpuBuffer.java"
+public interface com.mojang.renderpearl.api.buffers.GpuBuffer extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final int USAGE_MAP_READ;
+  public static final int USAGE_MAP_WRITE;
+  public static final int USAGE_HINT_CLIENT_STORAGE;
+  public static final int USAGE_COPY_DST;
+  public static final int USAGE_COPY_SRC;
+  public static final int USAGE_VERTEX;
+  public static final int USAGE_INDEX;
+  public static final int USAGE_UNIFORM;
+  public static final int USAGE_UNIFORM_TEXEL_BUFFER;
+  public static final int USAGE_INDIRECT_PARAMETERS;
+  public abstract long size();
+  public abstract int usage();
+  public abstract boolean isClosed();
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice slice(long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice slice();
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(boolean, boolean);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(long, long, boolean, boolean);
+}
+Compiled from "GpuBuffer.java"
+public interface com.mojang.renderpearl.api.buffers.GpuBuffer$Usage extends java.lang.annotation.Annotation {
+}
+Compiled from "GpuBufferSlice.java"
+public final class com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView extends java.lang.Record implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView(com.mojang.renderpearl.api.buffers.GpuBufferSlice, java.nio.ByteBuffer, java.lang.Runnable);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice();
+  public java.nio.ByteBuffer data();
+  public java.lang.Runnable onClose();
+}
+Compiled from "TransientMemory.java"
+public interface com.mojang.renderpearl.api.buffers.TransientMemory {
+  public default java.nio.ByteBuffer allocateCpu(long, long);
+  public abstract java.nio.ByteBuffer allocateCpu(long, long, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateStaging(long, long, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateStaging(long, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice allocateGpu(long, long, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice allocateGpu(long, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateGpuMapped(long, long, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateGpuMapped(long, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.nio.ByteBuffer, long, int);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.nio.ByteBuffer, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.util.List<java.nio.ByteBuffer>, long, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.nio.ByteBuffer, long, int);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.nio.ByteBuffer, long, int, long, long);
+  public default com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.util.List<java.nio.ByteBuffer>, long, int);
+  public abstract com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public abstract java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadStaging(java.util.List<java.nio.ByteBuffer>, long, int);
+  public abstract java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadGpu(java.util.List<java.nio.ByteBuffer>, long, int);
+}
+Compiled from "GpuBufferSlice.java"
+public final class com.mojang.renderpearl.api.buffers.GpuBufferSlice extends java.lang.Record {
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice(com.mojang.renderpearl.api.buffers.GpuBuffer, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice(long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(boolean, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer buffer();
+  public long offset();
+  public long length();
+}

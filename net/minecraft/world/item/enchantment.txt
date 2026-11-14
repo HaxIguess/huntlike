@@ -1,0 +1,482 @@
+Compiled from "LevelBasedValue.java"
+public interface net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.LevelBasedValue> DISPATCH_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.LevelBasedValue> CODEC;
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.enchantment.LevelBasedValue> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.enchantment.LevelBasedValue>>);
+  public static net.minecraft.world.item.enchantment.LevelBasedValue$Constant constant(float);
+  public static net.minecraft.world.item.enchantment.LevelBasedValue$Linear perLevel(float, float);
+  public static net.minecraft.world.item.enchantment.LevelBasedValue$Linear perLevel(float);
+  public static net.minecraft.world.item.enchantment.LevelBasedValue$Lookup lookup(java.util.List<java.lang.Float>, net.minecraft.world.item.enchantment.LevelBasedValue);
+  public abstract float calculate(int);
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.world.item.enchantment.LevelBasedValue> codec();
+}
+Compiled from "Enchantment.java"
+public interface net.minecraft.world.item.enchantment.Enchantment$FloatAction<T> {
+  public abstract float apply(T, float);
+  public default net.minecraft.world.item.enchantment.Enchantment$GenericAction<T> asGeneric(org.apache.commons.lang3.mutable.MutableFloat);
+}
+Compiled from "Enchantment.java"
+public class net.minecraft.world.item.enchantment.Enchantment$Builder {
+  public net.minecraft.world.item.enchantment.Enchantment$Builder(net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition);
+  public net.minecraft.world.item.enchantment.Enchantment$Builder exclusiveWith(net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment>);
+  public <E> net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<E>>>, E, net.minecraft.world.level.storage.loot.predicates.LootItemCondition$Builder);
+  public <E> net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<E>>>, E);
+  public <E> net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.TargetedConditionalEffect<E>>>, net.minecraft.world.item.enchantment.EnchantmentTarget, net.minecraft.world.item.enchantment.EnchantmentTarget, E, net.minecraft.world.level.storage.loot.predicates.LootItemCondition$Builder);
+  public <E> net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.TargetedConditionalEffect<E>>>, net.minecraft.world.item.enchantment.EnchantmentTarget, net.minecraft.world.item.enchantment.EnchantmentTarget, E);
+  public net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect>>, net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect);
+  public <E> net.minecraft.world.item.enchantment.Enchantment$Builder withSpecialEffect(net.minecraft.core.component.DataComponentType<E>, E);
+  public net.minecraft.world.item.enchantment.Enchantment$Builder withEffect(net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit>);
+  public net.minecraft.world.item.enchantment.Enchantment build(net.minecraft.resources.Identifier);
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$LevelsSquared extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$LevelsSquared> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$LevelsSquared(float);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$LevelsSquared> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float added();
+}
+Compiled from "Enchantment.java"
+public final class net.minecraft.world.item.enchantment.Enchantment$Cost extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.Enchantment$Cost> CODEC;
+  public net.minecraft.world.item.enchantment.Enchantment$Cost(int, int);
+  public int calculate(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int base();
+  public int perLevelAboveFirst();
+}
+Compiled from "TargetedConditionalEffect.java"
+public final class net.minecraft.world.item.enchantment.TargetedConditionalEffect<T> extends java.lang.Record implements net.minecraft.world.level.storage.loot.Validatable {
+  public net.minecraft.world.item.enchantment.TargetedConditionalEffect(net.minecraft.world.item.enchantment.EnchantmentTarget, net.minecraft.world.item.enchantment.EnchantmentTarget, T, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>>);
+  public static <S> com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.TargetedConditionalEffect<S>> codec(com.mojang.serialization.Codec<S>);
+  public static <S> com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.TargetedConditionalEffect<S>> equipmentDropsCodec(com.mojang.serialization.Codec<S>);
+  public boolean matches(net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.enchantment.EnchantmentTarget enchanted();
+  public net.minecraft.world.item.enchantment.EnchantmentTarget affected();
+  public T effect();
+  public java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> requirements();
+}
+Compiled from "ItemEnchantments.java"
+public class net.minecraft.world.item.enchantment.ItemEnchantments implements net.minecraft.world.item.component.TooltipProvider {
+  public static final net.minecraft.world.item.enchantment.ItemEnchantments EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.ItemEnchantments> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.enchantment.ItemEnchantments> STREAM_CODEC;
+  public int getLevel(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+  public void addToTooltip(net.minecraft.world.item.Item$TooltipContext, java.util.function.Consumer<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag, net.minecraft.core.component.DataComponentGetter);
+  public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>> keySet();
+  public java.util.Set<it.unimi.dsi.fastutil.objects.Object2IntMap$Entry<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>> entrySet();
+  public int size();
+  public boolean isEmpty();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "Enchantment.java"
+public final class net.minecraft.world.item.enchantment.Enchantment extends java.lang.Record {
+  public static final int MAX_LEVEL;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.Enchantment> DIRECT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>> STREAM_CODEC;
+  public net.minecraft.world.item.enchantment.Enchantment(net.minecraft.network.chat.Component, net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition, net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment>, net.minecraft.core.component.DataComponentMap);
+  public static net.minecraft.world.item.enchantment.Enchantment$Cost constantCost(int);
+  public static net.minecraft.world.item.enchantment.Enchantment$Cost dynamicCost(int, int);
+  public static net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition definition(net.minecraft.core.HolderSet<net.minecraft.world.item.Item>, net.minecraft.core.HolderSet<net.minecraft.world.item.Item>, int, int, net.minecraft.world.item.enchantment.Enchantment$Cost, net.minecraft.world.item.enchantment.Enchantment$Cost, int, net.minecraft.world.entity.EquipmentSlotGroup...);
+  public static net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition definition(net.minecraft.core.HolderSet<net.minecraft.world.item.Item>, int, int, net.minecraft.world.item.enchantment.Enchantment$Cost, net.minecraft.world.item.enchantment.Enchantment$Cost, int, net.minecraft.world.entity.EquipmentSlotGroup...);
+  public java.util.Map<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack> getSlotItems(net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.core.HolderSet<net.minecraft.world.item.Item> getSupportedItems();
+  public boolean matchingSlot(net.minecraft.world.entity.EquipmentSlot);
+  public boolean isPrimaryItem(net.minecraft.world.item.ItemStack);
+  public boolean isSupportedItem(net.minecraft.world.item.ItemStack);
+  public int getWeight();
+  public int getAnvilCost();
+  public int getMinLevel();
+  public int getMaxLevel();
+  public int getMinCost(int);
+  public int getMaxCost(int);
+  public java.lang.String toString();
+  public static boolean areCompatible(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+  public static net.minecraft.network.chat.Component getFullname(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int);
+  public boolean canEnchant(net.minecraft.world.item.ItemStack);
+  public <T> java.util.List<T> getEffects(net.minecraft.core.component.DataComponentType<java.util.List<T>>);
+  public boolean isImmuneToDamage(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource);
+  public void modifyDamageProtection(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyDurabilityChange(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyAmmoCount(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyPiercingCount(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyBlockExperience(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyMobExperience(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyDurabilityToRepairFromXp(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyTridentReturnToOwnerAcceleration(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyTridentSpinAttackStrength(net.minecraft.util.RandomSource, int, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyFishingTimeReduction(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyFishingLuckBonus(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyDamage(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyFallBasedDamage(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyKnockback(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyArmorEffectivness(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public void doPostAttack(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.item.enchantment.EnchantmentTarget, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource);
+  public static void doPostAttack(net.minecraft.world.item.enchantment.TargetedConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>, net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource);
+  public void doPostPiercingAttack(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.Entity);
+  public void modifyProjectileCount(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyProjectileSpread(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyCrossbowChargeTime(net.minecraft.util.RandomSource, int, org.apache.commons.lang3.mutable.MutableFloat);
+  public void modifyUnfilteredValue(net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>, net.minecraft.util.RandomSource, int, org.apache.commons.lang3.mutable.MutableFloat);
+  public void tick(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.Entity);
+  public void onProjectileSpawned(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.Entity);
+  public void onHitBlock(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.level.block.state.BlockState);
+  public final void modifyItemFilteredCount(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>>, net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemInstance, org.apache.commons.lang3.mutable.MutableFloat);
+  public final void modifyEntityFilteredValue(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>>, net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat);
+  public final void modifyDamageFilteredValue(net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>>, net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, org.apache.commons.lang3.mutable.MutableFloat);
+  public static net.minecraft.world.level.storage.loot.LootContext damageContext(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource);
+  public static net.minecraft.world.level.storage.loot.LootContext itemContext(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.ItemInstance);
+  public static net.minecraft.world.level.storage.loot.LootContext locationContext(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.Entity, boolean);
+  public static net.minecraft.world.level.storage.loot.LootContext entityContext(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3);
+  public static net.minecraft.world.level.storage.loot.LootContext blockHitContext(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.entity.Entity, net.minecraft.world.phys.Vec3, net.minecraft.world.level.block.state.BlockState);
+  public static <T> void applyEffects(java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<T>>, net.minecraft.world.level.storage.loot.LootContext, net.minecraft.world.item.enchantment.Enchantment$GenericAction<T>);
+  public static <T> void applyEffects(java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<T>>, net.minecraft.world.level.storage.loot.LootContext, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.world.item.enchantment.Enchantment$FloatAction<T>);
+  public void runLocationChangedEffects(net.minecraft.server.level.ServerLevel, int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.LivingEntity);
+  public void stopLocationBasedEffects(int, net.minecraft.world.item.enchantment.EnchantedItemInUse, net.minecraft.world.entity.LivingEntity);
+  public static net.minecraft.world.item.enchantment.Enchantment$Builder enchantment(net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.Component description();
+  public net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition definition();
+  public net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment> exclusiveSet();
+  public net.minecraft.core.component.DataComponentMap effects();
+}
+Compiled from "EnchantmentHelper.java"
+public class net.minecraft.world.item.enchantment.EnchantmentHelper {
+  public net.minecraft.world.item.enchantment.EnchantmentHelper();
+  public static int getItemEnchantmentLevel(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, net.minecraft.world.item.ItemInstance);
+  public static net.minecraft.world.item.enchantment.ItemEnchantments updateEnchantments(net.minecraft.world.item.ItemStack, java.util.function.Consumer<net.minecraft.world.item.enchantment.ItemEnchantments$Mutable>);
+  public static boolean canStoreEnchantments(net.minecraft.world.item.ItemStack);
+  public static void setEnchantments(net.minecraft.world.item.ItemStack, net.minecraft.world.item.enchantment.ItemEnchantments);
+  public static net.minecraft.world.item.enchantment.ItemEnchantments getEnchantmentsForCrafting(net.minecraft.world.item.ItemStack);
+  public static net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.ItemEnchantments> getComponentType(net.minecraft.world.item.ItemStack);
+  public static boolean hasAnyEnchantments(net.minecraft.world.item.ItemStack);
+  public static int processDurabilityChange(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, int);
+  public static int processAmmoUse(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, int);
+  public static int processBlockExperience(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, int);
+  public static int processMobExperience(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity, int);
+  public static net.minecraft.world.item.ItemStack createBook(net.minecraft.world.item.enchantment.EnchantmentInstance);
+  public static void runIterationOnItem(net.minecraft.world.item.ItemStack, net.minecraft.world.item.enchantment.EnchantmentHelper$EnchantmentVisitor);
+  public static void runIterationOnItem(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.enchantment.EnchantmentHelper$EnchantmentInSlotVisitor);
+  public static void runIterationOnEquipment(net.minecraft.world.entity.LivingEntity, net.minecraft.world.item.enchantment.EnchantmentHelper$EnchantmentInSlotVisitor);
+  public static boolean isImmuneToDamage(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+  public static float getDamageProtection(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource);
+  public static float modifyDamage(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, float);
+  public static float modifyFallBasedDamage(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, float);
+  public static float modifyArmorEffectiveness(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, float);
+  public static float modifyKnockback(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, float);
+  public static void doPostAttackEffects(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource);
+  public static void doPostPiercingAttackEffects(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public static void doPostAttackEffectsWithItemSource(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, net.minecraft.world.item.ItemStack);
+  public static void doPostAttackEffectsWithItemSourceOnBreak(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.world.damagesource.DamageSource, net.minecraft.world.item.ItemStack, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public static void runLocationChangedEffects(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public static void runLocationChangedEffects(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.EquipmentSlot);
+  public static void stopLocationBasedEffects(net.minecraft.world.entity.LivingEntity);
+  public static void stopLocationBasedEffects(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.EquipmentSlot);
+  public static void tickEffects(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public static int getEnchantmentLevel(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, net.minecraft.world.entity.LivingEntity);
+  public static int processProjectileCount(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, int);
+  public static float processProjectileSpread(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity, float);
+  public static int getPiercingCount(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack);
+  public static void onProjectileSpawned(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.projectile.Projectile, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public static void onHitBlock(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, net.minecraft.world.entity.Entity, net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.phys.Vec3, net.minecraft.world.level.block.state.BlockState, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public static int modifyDurabilityToRepairFromXp(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, int);
+  public static float processEquipmentDropChance(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, net.minecraft.world.damagesource.DamageSource, float);
+  public static void forEachModifier(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlotGroup, java.util.function.BiConsumer<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  public static void forEachModifier(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot, java.util.function.BiConsumer<net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+  public static int getFishingLuckBonus(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity);
+  public static float getFishingTimeReduction(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity);
+  public static int getTridentReturnToOwnerAcceleration(net.minecraft.server.level.ServerLevel, net.minecraft.world.item.ItemStack, net.minecraft.world.entity.Entity);
+  public static float modifyCrossbowChargingTime(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity, float);
+  public static float getTridentSpinAttackStrength(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.LivingEntity);
+  public static boolean hasTag(net.minecraft.world.item.ItemStack, net.minecraft.tags.TagKey<net.minecraft.world.item.enchantment.Enchantment>);
+  public static boolean has(net.minecraft.world.item.ItemStack, net.minecraft.core.component.DataComponentType<?>);
+  public static <T> java.util.Optional<T> pickHighestLevel(net.minecraft.world.item.ItemStack, net.minecraft.core.component.DataComponentType<java.util.List<T>>);
+  public static <T> com.mojang.datafixers.util.Pair<T, java.lang.Integer> getHighestLevel(net.minecraft.world.item.ItemStack, net.minecraft.core.component.DataComponentType<T>);
+  public static java.util.Optional<net.minecraft.world.item.enchantment.EnchantedItemInUse> getRandomItemWith(net.minecraft.core.component.DataComponentType<?>, net.minecraft.world.entity.LivingEntity, java.util.function.Predicate<net.minecraft.world.item.ItemStack>);
+  public static int getEnchantmentCost(net.minecraft.util.RandomSource, int, int, net.minecraft.world.item.ItemStack);
+  public static net.minecraft.world.item.ItemStack enchantItem(net.minecraft.util.RandomSource, net.minecraft.world.item.ItemStack, int, net.minecraft.core.RegistryAccess, java.util.Optional<? extends net.minecraft.core.HolderSet<net.minecraft.world.item.enchantment.Enchantment>>);
+  public static net.minecraft.world.item.ItemStack enchantItem(net.minecraft.util.RandomSource, net.minecraft.world.item.ItemStack, int, java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>);
+  public static java.util.List<net.minecraft.world.item.enchantment.EnchantmentInstance> selectEnchantment(net.minecraft.util.RandomSource, net.minecraft.world.item.ItemStack, int, java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>);
+  public static void filterCompatibleEnchantments(java.util.List<net.minecraft.world.item.enchantment.EnchantmentInstance>, net.minecraft.world.item.enchantment.EnchantmentInstance);
+  public static boolean isEnchantmentCompatible(java.util.Collection<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>, net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+  public static java.util.List<net.minecraft.world.item.enchantment.EnchantmentInstance> getAvailableEnchantmentResults(int, net.minecraft.world.item.ItemStack, java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>);
+  public static void enchantItemFromProvider(net.minecraft.world.item.ItemStack, net.minecraft.core.RegistryAccess, net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.providers.EnchantmentProvider>, net.minecraft.world.DifficultyInstance, net.minecraft.util.RandomSource);
+}
+Compiled from "EnchantmentEffectComponents.java"
+public interface net.minecraft.world.item.enchantment.EnchantmentEffectComponents {
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentType<?>> COMPONENT_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.core.component.DataComponentMap> CODEC;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> DAMAGE_PROTECTION;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.DamageImmunity>>> DAMAGE_IMMUNITY;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> DAMAGE;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> SMASH_DAMAGE_PER_FALLEN_BLOCK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> KNOCKBACK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> ARMOR_EFFECTIVENESS;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.TargetedConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> POST_ATTACK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> POST_PIERCING_ATTACK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> HIT_BLOCK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> ITEM_DAMAGE;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.TargetedConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> EQUIPMENT_DROPS;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentLocationBasedEffect>>> LOCATION_CHANGED;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> TICK;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> AMMO_USE;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> PROJECTILE_PIERCING;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect>>> PROJECTILE_SPAWNED;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> PROJECTILE_SPREAD;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> PROJECTILE_COUNT;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> TRIDENT_RETURN_ACCELERATION;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> FISHING_TIME_REDUCTION;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> FISHING_LUCK_BONUS;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> BLOCK_EXPERIENCE;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> MOB_EXPERIENCE;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.ConditionalEffect<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect>>> REPAIR_WITH_XP;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.enchantment.effects.EnchantmentAttributeEffect>> ATTRIBUTES;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect> CROSSBOW_CHARGE_TIME;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.world.item.CrossbowItem$ChargingSounds>> CROSSBOW_CHARGING_SOUNDS;
+  public static final net.minecraft.core.component.DataComponentType<java.util.List<net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent>>> TRIDENT_SOUND;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> PREVENT_EQUIPMENT_DROP;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.util.Unit> PREVENT_ARMOR_CHANGE;
+  public static final net.minecraft.core.component.DataComponentType<net.minecraft.world.item.enchantment.effects.EnchantmentValueEffect> TRIDENT_SPIN_ATTACK_STRENGTH;
+  public static net.minecraft.core.component.DataComponentType<?> bootstrap(net.minecraft.core.Registry<net.minecraft.core.component.DataComponentType<?>>);
+}
+Compiled from "ItemEnchantments.java"
+public class net.minecraft.world.item.enchantment.ItemEnchantments$Mutable {
+  public net.minecraft.world.item.enchantment.ItemEnchantments$Mutable(net.minecraft.world.item.enchantment.ItemEnchantments);
+  public void set(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int);
+  public void upgrade(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int);
+  public void removeIf(java.util.function.Predicate<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>>);
+  public int getLevel(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>);
+  public java.util.Set<net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>> keySet();
+  public net.minecraft.world.item.enchantment.ItemEnchantments toImmutable();
+}
+Compiled from "EnchantmentInstance.java"
+public final class net.minecraft.world.item.enchantment.EnchantmentInstance extends java.lang.Record {
+  public net.minecraft.world.item.enchantment.EnchantmentInstance(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int);
+  public int weight();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment> enchantment();
+  public int level();
+}
+Compiled from "Enchantable.java"
+public final class net.minecraft.world.item.enchantment.Enchantable extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.Enchantable> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.item.enchantment.Enchantable> STREAM_CODEC;
+  public net.minecraft.world.item.enchantment.Enchantable(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int value();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.item.enchantment.package-info {
+}
+Compiled from "EnchantmentHelper.java"
+public interface net.minecraft.world.item.enchantment.EnchantmentHelper$EnchantmentInSlotVisitor {
+  public abstract void accept(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int, net.minecraft.world.item.enchantment.EnchantedItemInUse);
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Fraction extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Fraction> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Fraction(net.minecraft.world.item.enchantment.LevelBasedValue, net.minecraft.world.item.enchantment.LevelBasedValue);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Fraction> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.enchantment.LevelBasedValue numerator();
+  public net.minecraft.world.item.enchantment.LevelBasedValue denominator();
+}
+Compiled from "EnchantmentTarget.java"
+public final class net.minecraft.world.item.enchantment.EnchantmentTarget extends java.lang.Enum<net.minecraft.world.item.enchantment.EnchantmentTarget> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.item.enchantment.EnchantmentTarget ATTACKER;
+  public static final net.minecraft.world.item.enchantment.EnchantmentTarget DAMAGING_ENTITY;
+  public static final net.minecraft.world.item.enchantment.EnchantmentTarget VICTIM;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.EnchantmentTarget> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.EnchantmentTarget> NON_DAMAGE_CODEC;
+  public static net.minecraft.world.item.enchantment.EnchantmentTarget[] values();
+  public static net.minecraft.world.item.enchantment.EnchantmentTarget valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "EnchantmentHelper.java"
+public interface net.minecraft.world.item.enchantment.EnchantmentHelper$EnchantmentVisitor {
+  public abstract void accept(net.minecraft.core.Holder<net.minecraft.world.item.enchantment.Enchantment>, int);
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Constant extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.LevelBasedValue$Constant> CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Constant> TYPED_CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Constant(float);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Constant> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float value();
+}
+Compiled from "Enchantment.java"
+public final class net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition> CODEC;
+  public net.minecraft.world.item.enchantment.Enchantment$EnchantmentDefinition(net.minecraft.core.HolderSet<net.minecraft.world.item.Item>, java.util.Optional<net.minecraft.core.HolderSet<net.minecraft.world.item.Item>>, int, int, net.minecraft.world.item.enchantment.Enchantment$Cost, net.minecraft.world.item.enchantment.Enchantment$Cost, int, java.util.List<net.minecraft.world.entity.EquipmentSlotGroup>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet<net.minecraft.world.item.Item> supportedItems();
+  public java.util.Optional<net.minecraft.core.HolderSet<net.minecraft.world.item.Item>> primaryItems();
+  public int weight();
+  public int maxLevel();
+  public net.minecraft.world.item.enchantment.Enchantment$Cost minCost();
+  public net.minecraft.world.item.enchantment.Enchantment$Cost maxCost();
+  public int anvilCost();
+  public java.util.List<net.minecraft.world.entity.EquipmentSlotGroup> slots();
+}
+Compiled from "Repairable.java"
+public final class net.minecraft.world.item.enchantment.Repairable extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.Repairable> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.world.item.enchantment.Repairable> STREAM_CODEC;
+  public net.minecraft.world.item.enchantment.Repairable(net.minecraft.core.HolderSet<net.minecraft.world.item.Item>);
+  public boolean isValidRepairItem(net.minecraft.world.item.ItemStack);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.HolderSet<net.minecraft.world.item.Item> items();
+}
+Compiled from "Enchantments.java"
+public class net.minecraft.world.item.enchantment.Enchantments {
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> PROTECTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FIRE_PROTECTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FEATHER_FALLING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> BLAST_PROTECTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> PROJECTILE_PROTECTION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> RESPIRATION;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> AQUA_AFFINITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> THORNS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> DEPTH_STRIDER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FROST_WALKER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> BINDING_CURSE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SOUL_SPEED;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SWIFT_SNEAK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SHARPNESS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SMITE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> BANE_OF_ARTHROPODS;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> KNOCKBACK;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FIRE_ASPECT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> LOOTING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SWEEPING_EDGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> EFFICIENCY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> SILK_TOUCH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> UNBREAKING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FORTUNE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> POWER;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> PUNCH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> FLAME;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> INFINITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> LUCK_OF_THE_SEA;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> LURE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> LOYALTY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> IMPALING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> RIPTIDE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> CHANNELING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> MULTISHOT;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> QUICK_CHARGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> PIERCING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> DENSITY;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> BREACH;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> WIND_BURST;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> LUNGE;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> MENDING;
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.enchantment.Enchantment> VANISHING_CURSE;
+  public net.minecraft.world.item.enchantment.Enchantments();
+  public static void bootstrap(net.minecraft.data.worldgen.BootstrapContext<net.minecraft.world.item.enchantment.Enchantment>);
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Exponent extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Exponent> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Exponent(net.minecraft.world.item.enchantment.LevelBasedValue, net.minecraft.world.item.enchantment.LevelBasedValue);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Exponent> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.enchantment.LevelBasedValue base();
+  public net.minecraft.world.item.enchantment.LevelBasedValue power();
+}
+Compiled from "ConditionalEffect.java"
+public final class net.minecraft.world.item.enchantment.ConditionalEffect<T> extends java.lang.Record implements net.minecraft.world.level.storage.loot.Validatable {
+  public net.minecraft.world.item.enchantment.ConditionalEffect(T, java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>>);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.item.enchantment.ConditionalEffect<T>> codec(com.mojang.serialization.Codec<T>);
+  public boolean matches(net.minecraft.world.level.storage.loot.LootContext);
+  public void validate(net.minecraft.world.level.storage.loot.ValidationContext);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T effect();
+  public java.util.Optional<net.minecraft.core.Holder<net.minecraft.world.level.storage.loot.predicates.LootItemCondition>> requirements();
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Clamped extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Clamped> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Clamped(net.minecraft.world.item.enchantment.LevelBasedValue, float, float);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Clamped> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.enchantment.LevelBasedValue value();
+  public float min();
+  public float max();
+}
+Compiled from "EnchantedItemInUse.java"
+public final class net.minecraft.world.item.enchantment.EnchantedItemInUse extends java.lang.Record {
+  public net.minecraft.world.item.enchantment.EnchantedItemInUse(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.entity.LivingEntity);
+  public net.minecraft.world.item.enchantment.EnchantedItemInUse(net.minecraft.world.item.ItemStack, net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.entity.LivingEntity, java.util.function.Consumer<net.minecraft.world.item.ItemStack>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.ItemStack itemStack();
+  public net.minecraft.world.entity.EquipmentSlot inSlot();
+  public net.minecraft.world.entity.LivingEntity owner();
+  public java.util.function.Consumer<net.minecraft.world.item.ItemStack> onBreak();
+}
+Compiled from "Enchantment.java"
+public interface net.minecraft.world.item.enchantment.Enchantment$GenericAction<T> {
+  public abstract void apply(T);
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Lookup extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Lookup> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Lookup(java.util.List<java.lang.Float>, net.minecraft.world.item.enchantment.LevelBasedValue);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Lookup> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<java.lang.Float> values();
+  public net.minecraft.world.item.enchantment.LevelBasedValue fallback();
+}
+Compiled from "LevelBasedValue.java"
+public final class net.minecraft.world.item.enchantment.LevelBasedValue$Linear extends java.lang.Record implements net.minecraft.world.item.enchantment.LevelBasedValue {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Linear> CODEC;
+  public net.minecraft.world.item.enchantment.LevelBasedValue$Linear(float, float);
+  public float calculate(int);
+  public com.mojang.serialization.MapCodec<net.minecraft.world.item.enchantment.LevelBasedValue$Linear> codec();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float base();
+  public float perLevelAboveFirst();
+}

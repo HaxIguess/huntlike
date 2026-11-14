@@ -1,0 +1,64 @@
+Compiled from "VulkanPNextStruct.java"
+public final class com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct extends java.lang.Record {
+  public <T extends org.lwjgl.system.Struct<?>> com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct(java.lang.Class<T>);
+  public com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct(java.lang.Class<?>, int, int);
+  public long fieldOffset(java.lang.String);
+  public long findOrCreateStructInPNextChain(org.lwjgl.vulkan.VkPhysicalDeviceProperties2, org.lwjgl.system.MemoryStack);
+  public long findOrCreateStructInPNextChain(org.lwjgl.vulkan.VkPhysicalDeviceFeatures2, org.lwjgl.system.MemoryStack);
+  public long findOrCreateStructInPNextChain(long, org.lwjgl.system.MemoryStack);
+  public long findStructInPNextChain(long);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Class<?> pNextStructClass();
+  public int sType();
+  public int structSize();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.vulkan.init.package-info {
+}
+Compiled from "FeatureSet.java"
+public final class com.mojang.renderpearl.backend.vulkan.init.FeatureSet extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.init.FeatureSet(java.lang.String, java.util.Set<java.lang.String>, java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature>, com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition);
+  public com.mojang.renderpearl.backend.vulkan.init.FeatureSet(java.lang.String, java.util.Set<java.lang.String>, java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature>);
+  public com.mojang.renderpearl.backend.vulkan.init.FeatureSet(java.lang.String, java.util.Collection<com.mojang.renderpearl.backend.vulkan.init.FeatureSet>);
+  public com.mojang.renderpearl.backend.vulkan.init.FeatureSet composite(com.mojang.renderpearl.backend.vulkan.init.FeatureSet);
+  public boolean contains(com.mojang.renderpearl.backend.vulkan.init.FeatureSet);
+  public boolean checkCondition(org.lwjgl.vulkan.VkPhysicalDevice) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public boolean isSupported(org.lwjgl.vulkan.VkPhysicalDevice) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public boolean isSupported(org.lwjgl.vulkan.VkPhysicalDevice, java.util.Set<java.lang.String>) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public boolean allFeaturesSupported(org.lwjgl.vulkan.VkPhysicalDevice);
+  public java.util.Set<java.lang.String> unsupportedExtensions(java.util.Set<java.lang.String>);
+  public java.util.Set<java.lang.String> supportedExtensions(java.util.Set<java.lang.String>);
+  public java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature> unsupportedFeatures(org.lwjgl.vulkan.VkPhysicalDevice);
+  public java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature> supportedFeatures(org.lwjgl.vulkan.VkPhysicalDevice);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.Set<java.lang.String> extensions();
+  public java.util.Set<com.mojang.renderpearl.backend.vulkan.init.VulkanFeature> features();
+  public com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition condition();
+}
+Compiled from "FeatureSet.java"
+public interface com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition {
+  public static final com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition IDENTITY_CONDITION;
+  public static com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition reduce(com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition, com.mojang.renderpearl.backend.vulkan.init.FeatureSet$Condition);
+  public abstract boolean test(org.lwjgl.vulkan.VkPhysicalDevice) throws com.mojang.renderpearl.api.device.BackendCreationException;
+}
+Compiled from "VulkanFeature.java"
+public final class com.mojang.renderpearl.backend.vulkan.init.VulkanFeature extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.init.VulkanFeature(com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct, java.lang.String);
+  public com.mojang.renderpearl.backend.vulkan.init.VulkanFeature(com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct, java.lang.String, long);
+  public boolean get(org.lwjgl.vulkan.VkPhysicalDeviceFeatures2);
+  public boolean get(long);
+  public boolean set(org.lwjgl.vulkan.VkPhysicalDeviceFeatures2, boolean);
+  public void set(org.lwjgl.vulkan.VkPhysicalDeviceFeatures2, boolean, org.lwjgl.system.MemoryStack);
+  public void set(long, boolean, org.lwjgl.system.MemoryStack);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.backend.vulkan.init.VulkanPNextStruct struct();
+  public java.lang.String name();
+  public long offset();
+}

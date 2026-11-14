@@ -1,0 +1,2780 @@
+Compiled from "AbstractHorse.java"
+public abstract class net.minecraft.world.entity.animal.equine.AbstractHorse extends net.minecraft.world.entity.animal.Animal implements net.minecraft.world.entity.PlayerRideableJumping,net.minecraft.world.entity.HasCustomInventoryScreen,net.minecraft.world.entity.OwnableEntity {
+  public static final int CHEST_SLOT_OFFSET;
+
+  public static final int INVENTORY_SLOT_OFFSET;
+
+  public static final double BREEDING_CROSS_FACTOR;
+
+  private static final float MIN_MOVEMENT_SPEED;
+
+  private static final float MAX_MOVEMENT_SPEED;
+
+  private static final float MIN_JUMP_STRENGTH;
+
+  private static final float MAX_JUMP_STRENGTH;
+
+  private static final float MIN_HEALTH;
+
+  private static final float MAX_HEALTH;
+
+  private static final float BACKWARDS_MOVE_SPEED_FACTOR;
+
+  private static final float SIDEWAYS_MOVE_SPEED_FACTOR;
+
+  private static final net.minecraft.world.entity.ai.targeting.TargetingConditions$Selector PARENT_HORSE_SELECTOR;
+
+  private static final net.minecraft.world.entity.ai.targeting.TargetingConditions MOMMY_TARGETING;
+
+  private static final net.minecraft.network.syncher.EntityDataAccessor<java.lang.Byte> DATA_ID_FLAGS;
+
+  private static final int FLAG_TAME;
+
+  private static final int FLAG_BRED;
+
+  private static final int FLAG_EATING;
+
+  private static final int FLAG_STANDING;
+
+  private static final int FLAG_OPEN_MOUTH;
+
+  protected static final float BABY_SCALE;
+
+  public static final int INVENTORY_ROWS;
+
+  private static final int DEFAULT_TEMPER;
+
+  private static final boolean DEFAULT_EATING_HAYSTACK;
+
+  private static final boolean DEFAULT_BRED;
+
+  private static final boolean DEFAULT_TAME;
+
+  private int eatingCounter;
+
+  private int mouthCounter;
+
+  private int standCounter;
+
+  public int tailCounter;
+
+  public int sprintCounter;
+
+  protected net.minecraft.world.SimpleContainer inventory;
+
+  protected int temper;
+
+  protected float playerJumpPendingScale;
+
+  protected boolean allowStandSliding;
+
+  private float eatAnim;
+
+  private float eatAnimO;
+
+  private float standAnim;
+
+  private float standAnimO;
+
+  private float mouthAnim;
+
+  private float mouthAnimO;
+
+  protected boolean canGallop;
+
+  protected int gallopSoundCounter;
+
+  private net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> owner;
+
+  protected net.minecraft.world.entity.animal.equine.AbstractHorse(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.equine.AbstractHorse>, net.minecraft.world.level.Level);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #1                  // Method net/minecraft/world/entity/animal/Animal."<init>":(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/level/Level;)V
+         6: aload_0
+         7: iconst_0
+         8: putfield      #9                  // Field temper:I
+        11: aload_0
+        12: iconst_1
+        13: putfield      #13                 // Field canGallop:Z
+        16: aload_0
+        17: invokevirtual #17                 // Method createInventory:()V
+        20: return
+
+  protected void registerGoals();
+    Code:
+         0: aload_0
+         1: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+         4: iconst_1
+         5: new           #25                 // class net/minecraft/world/entity/ai/goal/RunAroundLikeCrazyGoal
+         8: dup
+         9: aload_0
+        10: ldc2_w        #27                 // double 1.2d
+        13: invokespecial #29                 // Method net/minecraft/world/entity/ai/goal/RunAroundLikeCrazyGoal."<init>":(Lnet/minecraft/world/entity/animal/equine/AbstractHorse;D)V
+        16: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        19: aload_0
+        20: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        23: iconst_2
+        24: new           #38                 // class net/minecraft/world/entity/ai/goal/BreedGoal
+        27: dup
+        28: aload_0
+        29: dconst_1
+        30: ldc           #7                  // class net/minecraft/world/entity/animal/equine/AbstractHorse
+        32: invokespecial #40                 // Method net/minecraft/world/entity/ai/goal/BreedGoal."<init>":(Lnet/minecraft/world/entity/animal/Animal;DLjava/lang/Class;)V
+        35: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        38: aload_0
+        39: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        42: iconst_4
+        43: new           #43                 // class net/minecraft/world/entity/ai/goal/FollowParentGoal
+        46: dup
+        47: aload_0
+        48: dconst_1
+        49: invokespecial #45                 // Method net/minecraft/world/entity/ai/goal/FollowParentGoal."<init>":(Lnet/minecraft/world/entity/animal/Animal;D)V
+        52: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        55: aload_0
+        56: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        59: bipush        6
+        61: new           #48                 // class net/minecraft/world/entity/ai/goal/WaterAvoidingRandomStrollGoal
+        64: dup
+        65: aload_0
+        66: ldc2_w        #50                 // double 0.7d
+        69: invokespecial #52                 // Method net/minecraft/world/entity/ai/goal/WaterAvoidingRandomStrollGoal."<init>":(Lnet/minecraft/world/entity/PathfinderMob;D)V
+        72: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        75: aload_0
+        76: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        79: bipush        7
+        81: new           #55                 // class net/minecraft/world/entity/ai/goal/LookAtPlayerGoal
+        84: dup
+        85: aload_0
+        86: ldc           #57                 // class net/minecraft/world/entity/player/Player
+        88: ldc           #59                 // float 6.0f
+        90: invokespecial #60                 // Method net/minecraft/world/entity/ai/goal/LookAtPlayerGoal."<init>":(Lnet/minecraft/world/entity/Mob;Ljava/lang/Class;F)V
+        93: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        96: aload_0
+        97: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+       100: bipush        8
+       102: new           #63                 // class net/minecraft/world/entity/ai/goal/RandomLookAroundGoal
+       105: dup
+       106: aload_0
+       107: invokespecial #65                 // Method net/minecraft/world/entity/ai/goal/RandomLookAroundGoal."<init>":(Lnet/minecraft/world/entity/Mob;)V
+       110: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+       113: aload_0
+       114: invokevirtual #68                 // Method canPerformRearing:()Z
+       117: ifeq          137
+       120: aload_0
+       121: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+       124: bipush        9
+       126: new           #72                 // class net/minecraft/world/entity/ai/goal/RandomStandGoal
+       129: dup
+       130: aload_0
+       131: invokespecial #74                 // Method net/minecraft/world/entity/ai/goal/RandomStandGoal."<init>":(Lnet/minecraft/world/entity/animal/equine/AbstractHorse;)V
+       134: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+       137: aload_0
+       138: invokevirtual #77                 // Method addBehaviourGoals:()V
+       141: return
+
+  protected void addBehaviourGoals();
+    Code:
+         0: aload_0
+         1: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+         4: iconst_0
+         5: new           #80                 // class net/minecraft/world/entity/ai/goal/FloatGoal
+         8: dup
+         9: aload_0
+        10: invokespecial #82                 // Method net/minecraft/world/entity/ai/goal/FloatGoal."<init>":(Lnet/minecraft/world/entity/Mob;)V
+        13: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        16: aload_0
+        17: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        20: iconst_1
+        21: new           #83                 // class net/minecraft/world/entity/animal/equine/AbstractHorse$MountPanicGoal
+        24: dup
+        25: aload_0
+        26: ldc2_w        #27                 // double 1.2d
+        29: invokespecial #85                 // Method net/minecraft/world/entity/animal/equine/AbstractHorse$MountPanicGoal."<init>":(Lnet/minecraft/world/entity/animal/equine/AbstractHorse;D)V
+        32: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        35: aload_0
+        36: getfield      #21                 // Field goalSelector:Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+        39: iconst_3
+        40: new           #86                 // class net/minecraft/world/entity/ai/goal/TemptGoal
+        43: dup
+        44: aload_0
+        45: ldc2_w        #88                 // double 1.25d
+        48: invokedynamic #90,  0             // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+        53: iconst_0
+        54: invokespecial #94                 // Method net/minecraft/world/entity/ai/goal/TemptGoal."<init>":(Lnet/minecraft/world/entity/PathfinderMob;DLjava/util/function/Predicate;Z)V
+        57: invokevirtual #32                 // Method net/minecraft/world/entity/ai/goal/GoalSelector.addGoal:(ILnet/minecraft/world/entity/ai/goal/Goal;)V
+        60: return
+
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #97                 // Method net/minecraft/world/entity/animal/Animal.defineSynchedData:(Lnet/minecraft/network/syncher/SynchedEntityData$Builder;)V
+         5: aload_1
+         6: getstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+         9: iconst_0
+        10: invokestatic  #105                // Method java/lang/Byte.valueOf:(B)Ljava/lang/Byte;
+        13: invokevirtual #111                // Method net/minecraft/network/syncher/SynchedEntityData$Builder.define:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)Lnet/minecraft/network/syncher/SynchedEntityData$Builder;
+        16: pop
+        17: return
+
+  protected boolean getFlag(int);
+    Code:
+         0: aload_0
+         1: getfield      #117                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+         4: getstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+         7: invokevirtual #121                // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+        10: checkcast     #106                // class java/lang/Byte
+        13: invokevirtual #127                // Method java/lang/Byte.byteValue:()B
+        16: iload_1
+        17: iand
+        18: ifeq          25
+        21: iconst_1
+        22: goto          26
+        25: iconst_0
+        26: ireturn
+
+  protected void setFlag(int, boolean);
+    Code:
+         0: aload_0
+         1: getfield      #117                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+         4: getstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+         7: invokevirtual #121                // Method net/minecraft/network/syncher/SynchedEntityData.get:(Lnet/minecraft/network/syncher/EntityDataAccessor;)Ljava/lang/Object;
+        10: checkcast     #106                // class java/lang/Byte
+        13: invokevirtual #127                // Method java/lang/Byte.byteValue:()B
+        16: istore_3
+        17: iload_2
+        18: ifeq          41
+        21: aload_0
+        22: getfield      #117                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+        25: getstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+        28: iload_3
+        29: iload_1
+        30: ior
+        31: i2b
+        32: invokestatic  #105                // Method java/lang/Byte.valueOf:(B)Ljava/lang/Byte;
+        35: invokevirtual #131                // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+        38: goto          60
+        41: aload_0
+        42: getfield      #117                // Field entityData:Lnet/minecraft/network/syncher/SynchedEntityData;
+        45: getstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+        48: iload_3
+        49: iload_1
+        50: iconst_m1
+        51: ixor
+        52: iand
+        53: i2b
+        54: invokestatic  #105                // Method java/lang/Byte.valueOf:(B)Ljava/lang/Byte;
+        57: invokevirtual #131                // Method net/minecraft/network/syncher/SynchedEntityData.set:(Lnet/minecraft/network/syncher/EntityDataAccessor;Ljava/lang/Object;)V
+        60: return
+
+  public boolean isTamed();
+    Code:
+         0: aload_0
+         1: iconst_2
+         2: invokevirtual #135                // Method getFlag:(I)Z
+         5: ireturn
+
+  public net.minecraft.world.entity.EntityReference<net.minecraft.world.entity.LivingEntity> getOwnerReference();
+    Code:
+         0: aload_0
+         1: getfield      #139                // Field owner:Lnet/minecraft/world/entity/EntityReference;
+         4: areturn
+
+  public void setOwner(net.minecraft.world.entity.LivingEntity);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #143                // Method net/minecraft/world/entity/EntityReference.of:(Lnet/minecraft/world/level/entity/UniquelyIdentifyable;)Lnet/minecraft/world/entity/EntityReference;
+         5: putfield      #139                // Field owner:Lnet/minecraft/world/entity/EntityReference;
+         8: return
+
+  public void setTamed(boolean);
+    Code:
+         0: aload_0
+         1: iconst_2
+         2: iload_1
+         3: invokevirtual #149                // Method setFlag:(IZ)V
+         6: return
+
+  public void onElasticLeashPull();
+    Code:
+         0: aload_0
+         1: invokespecial #153                // Method net/minecraft/world/entity/animal/Animal.onElasticLeashPull:()V
+         4: aload_0
+         5: invokevirtual #156                // Method isEating:()Z
+         8: ifeq          16
+        11: aload_0
+        12: iconst_0
+        13: invokevirtual #159                // Method setEating:(Z)V
+        16: return
+
+  public boolean supportQuadLeash();
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  public net.minecraft.world.phys.Vec3[] getQuadLeashOffsets();
+    Code:
+         0: aload_0
+         1: ldc2_w        #163                // double 0.04d
+         4: ldc2_w        #165                // double 0.52d
+         7: ldc2_w        #167                // double 0.23d
+        10: ldc2_w        #169                // double 0.87d
+        13: invokestatic  #171                // InterfaceMethod net/minecraft/world/entity/Leashable.createQuadLeashOffsets:(Lnet/minecraft/world/entity/Entity;DDDD)[Lnet/minecraft/world/phys/Vec3;
+        16: areturn
+
+  public boolean isEating();
+    Code:
+         0: aload_0
+         1: bipush        16
+         3: invokevirtual #135                // Method getFlag:(I)Z
+         6: ireturn
+
+  public boolean isStanding();
+    Code:
+         0: aload_0
+         1: bipush        32
+         3: invokevirtual #135                // Method getFlag:(I)Z
+         6: ireturn
+
+  public boolean isBred();
+    Code:
+         0: aload_0
+         1: bipush        8
+         3: invokevirtual #135                // Method getFlag:(I)Z
+         6: ireturn
+
+  public void setBred(boolean);
+    Code:
+         0: aload_0
+         1: bipush        8
+         3: iload_1
+         4: invokevirtual #149                // Method setFlag:(IZ)V
+         7: return
+
+  public boolean canUseSlot(net.minecraft.world.entity.EquipmentSlot);
+    Code:
+         0: aload_1
+         1: getstatic     #177                // Field net/minecraft/world/entity/EquipmentSlot.SADDLE:Lnet/minecraft/world/entity/EquipmentSlot;
+         4: if_acmpne     34
+         7: aload_0
+         8: invokevirtual #183                // Method isAlive:()Z
+        11: ifeq          32
+        14: aload_0
+        15: invokevirtual #186                // Method isBaby:()Z
+        18: ifne          32
+        21: aload_0
+        22: invokevirtual #189                // Method isTamed:()Z
+        25: ifeq          32
+        28: iconst_1
+        29: goto          33
+        32: iconst_0
+        33: ireturn
+        34: aload_0
+        35: aload_1
+        36: invokespecial #192                // Method net/minecraft/world/entity/animal/Animal.canUseSlot:(Lnet/minecraft/world/entity/EquipmentSlot;)Z
+        39: ireturn
+
+  public void equipBodyArmor(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_0
+         1: aload_2
+         2: getstatic     #196                // Field net/minecraft/world/entity/EquipmentSlot.BODY:Lnet/minecraft/world/entity/EquipmentSlot;
+         5: invokevirtual #199                // Method isEquippableInSlot:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z
+         8: ifeq          24
+        11: aload_0
+        12: getstatic     #196                // Field net/minecraft/world/entity/EquipmentSlot.BODY:Lnet/minecraft/world/entity/EquipmentSlot;
+        15: aload_2
+        16: iconst_1
+        17: aload_1
+        18: invokevirtual #203                // Method net/minecraft/world/item/ItemStack.consumeAndReturn:(ILnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;
+        21: invokevirtual #209                // Method setItemSlotAndDropWhenKilled:(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;)V
+        24: return
+
+  protected boolean canDispenserEquipIntoSlot(net.minecraft.world.entity.EquipmentSlot);
+    Code:
+         0: aload_1
+         1: getstatic     #196                // Field net/minecraft/world/entity/EquipmentSlot.BODY:Lnet/minecraft/world/entity/EquipmentSlot;
+         4: if_acmpeq     14
+         7: aload_1
+         8: getstatic     #177                // Field net/minecraft/world/entity/EquipmentSlot.SADDLE:Lnet/minecraft/world/entity/EquipmentSlot;
+        11: if_acmpne     21
+        14: aload_0
+        15: invokevirtual #189                // Method isTamed:()Z
+        18: ifne          29
+        21: aload_0
+        22: aload_1
+        23: invokespecial #213                // Method net/minecraft/world/entity/animal/Animal.canDispenserEquipIntoSlot:(Lnet/minecraft/world/entity/EquipmentSlot;)Z
+        26: ifeq          33
+        29: iconst_1
+        30: goto          34
+        33: iconst_0
+        34: ireturn
+
+  public int getTemper();
+    Code:
+         0: aload_0
+         1: getfield      #9                  // Field temper:I
+         4: ireturn
+
+  public void setTemper(int);
+    Code:
+         0: aload_0
+         1: iload_1
+         2: putfield      #9                  // Field temper:I
+         5: return
+
+  public int modifyTemper(int);
+    Code:
+         0: aload_0
+         1: invokevirtual #216                // Method getTemper:()I
+         4: iload_1
+         5: iadd
+         6: iconst_0
+         7: aload_0
+         8: invokevirtual #220                // Method getMaxTemper:()I
+        11: invokestatic  #223                // Method net/minecraft/util/Mth.clamp:(III)I
+        14: istore_2
+        15: aload_0
+        16: iload_2
+        17: invokevirtual #229                // Method setTemper:(I)V
+        20: iload_2
+        21: ireturn
+
+  public boolean isPushable();
+    Code:
+         0: aload_0
+         1: invokevirtual #233                // Method isVehicle:()Z
+         4: ifne          11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+
+  private void eating();
+    Code:
+         0: aload_0
+         1: invokevirtual #236                // Method openMouth:()V
+         4: aload_0
+         5: invokevirtual #239                // Method isSilent:()Z
+         8: ifne          71
+        11: aload_0
+        12: invokevirtual #242                // Method getEatingSound:()Lnet/minecraft/sounds/SoundEvent;
+        15: astore_1
+        16: aload_1
+        17: ifnull        71
+        20: aload_0
+        21: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        24: aconst_null
+        25: aload_0
+        26: invokevirtual #250                // Method getX:()D
+        29: aload_0
+        30: invokevirtual #254                // Method getY:()D
+        33: aload_0
+        34: invokevirtual #257                // Method getZ:()D
+        37: aload_1
+        38: aload_0
+        39: invokevirtual #260                // Method getSoundSource:()Lnet/minecraft/sounds/SoundSource;
+        42: fconst_1
+        43: fconst_1
+        44: aload_0
+        45: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        48: invokeinterface #268,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextFloat:()F
+        53: aload_0
+        54: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        57: invokeinterface #268,  1          // InterfaceMethod net/minecraft/util/RandomSource.nextFloat:()F
+        62: fsub
+        63: ldc_w         #274                // float 0.2f
+        66: fmul
+        67: fadd
+        68: invokevirtual #275                // Method net/minecraft/world/level/Level.playSound:(Lnet/minecraft/world/entity/Entity;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+        71: return
+
+  public boolean causeFallDamage(double, float, net.minecraft.world.damagesource.DamageSource);
+    Code:
+         0: dload_1
+         1: dconst_1
+         2: dcmpl
+         3: ifle          30
+         6: aload_0
+         7: aload_0
+         8: invokevirtual #186                // Method isBaby:()Z
+        11: ifeq          20
+        14: getstatic     #281                // Field net/minecraft/sounds/SoundEvents.HORSE_LAND_BABY:Lnet/minecraft/sounds/SoundEvent;
+        17: goto          23
+        20: getstatic     #287                // Field net/minecraft/sounds/SoundEvents.HORSE_LAND:Lnet/minecraft/sounds/SoundEvent;
+        23: ldc_w         #290                // float 0.4f
+        26: fconst_1
+        27: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+        30: aload_0
+        31: dload_1
+        32: fload_3
+        33: invokevirtual #294                // Method calculateFallDamage:(DF)I
+        36: istore        5
+        38: iload         5
+        40: ifgt          45
+        43: iconst_0
+        44: ireturn
+        45: aload_0
+        46: aload         4
+        48: iload         5
+        50: i2f
+        51: invokevirtual #298                // Method hurt:(Lnet/minecraft/world/damagesource/DamageSource;F)V
+        54: aload_0
+        55: dload_1
+        56: fload_3
+        57: aload         4
+        59: invokevirtual #302                // Method propagateFallToPassengers:(DFLnet/minecraft/world/damagesource/DamageSource;)V
+        62: aload_0
+        63: invokevirtual #306                // Method playBlockFallSound:()V
+        66: iconst_1
+        67: ireturn
+
+  public final int getInventorySize();
+    Code:
+         0: aload_0
+         1: invokevirtual #309                // Method getInventoryColumns:()I
+         4: invokestatic  #312                // Method net/minecraft/world/inventory/AbstractMountInventoryMenu.getInventorySize:(I)I
+         7: ireturn
+
+  protected void createInventory();
+    Code:
+         0: aload_0
+         1: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+         4: astore_1
+         5: aload_0
+         6: new           #322                // class net/minecraft/world/SimpleContainer
+         9: dup
+        10: aload_0
+        11: invokevirtual #324                // Method getInventorySize:()I
+        14: invokespecial #326                // Method net/minecraft/world/SimpleContainer."<init>":(I)V
+        17: putfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        20: aload_1
+        21: ifnull        80
+        24: aload_1
+        25: invokevirtual #328                // Method net/minecraft/world/SimpleContainer.getContainerSize:()I
+        28: aload_0
+        29: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        32: invokevirtual #328                // Method net/minecraft/world/SimpleContainer.getContainerSize:()I
+        35: invokestatic  #331                // Method java/lang/Math.min:(II)I
+        38: istore_2
+        39: iconst_0
+        40: istore_3
+        41: iload_3
+        42: iload_2
+        43: if_icmpge     80
+        46: aload_1
+        47: iload_3
+        48: invokevirtual #337                // Method net/minecraft/world/SimpleContainer.getItem:(I)Lnet/minecraft/world/item/ItemStack;
+        51: astore        4
+        53: aload         4
+        55: invokevirtual #341                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        58: ifne          74
+        61: aload_0
+        62: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        65: iload_3
+        66: aload         4
+        68: invokevirtual #344                // Method net/minecraft/world/item/ItemStack.copy:()Lnet/minecraft/world/item/ItemStack;
+        71: invokevirtual #348                // Method net/minecraft/world/SimpleContainer.setItem:(ILnet/minecraft/world/item/ItemStack;)V
+        74: iinc          3, 1
+        77: goto          41
+        80: return
+
+  protected net.minecraft.core.Holder<net.minecraft.sounds.SoundEvent> getEquipSound(net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack, net.minecraft.world.item.equipment.Equippable);
+    Code:
+         0: aload_1
+         1: getstatic     #177                // Field net/minecraft/world/entity/EquipmentSlot.SADDLE:Lnet/minecraft/world/entity/EquipmentSlot;
+         4: if_acmpne     11
+         7: getstatic     #352                // Field net/minecraft/sounds/SoundEvents.HORSE_SADDLE:Lnet/minecraft/core/Holder$Reference;
+        10: areturn
+        11: aload_0
+        12: aload_1
+        13: aload_2
+        14: aload_3
+        15: invokespecial #356                // Method net/minecraft/world/entity/animal/Animal.getEquipSound:(Lnet/minecraft/world/entity/EquipmentSlot;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/equipment/Equippable;)Lnet/minecraft/core/Holder;
+        18: areturn
+
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: fload_3
+         4: invokespecial #360                // Method net/minecraft/world/entity/animal/Animal.hurtServer:(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z
+         7: istore        4
+         9: iload         4
+        11: ifeq          31
+        14: aload_0
+        15: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        18: iconst_3
+        19: invokeinterface #364,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        24: ifne          31
+        27: aload_0
+        28: invokevirtual #367                // Method standIfPossible:()V
+        31: iload         4
+        33: ireturn
+
+  protected boolean canPerformRearing();
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  protected net.minecraft.sounds.SoundEvent getEatingSound();
+    Code:
+         0: aconst_null
+         1: areturn
+
+  protected net.minecraft.sounds.SoundEvent getAngrySound();
+    Code:
+         0: aconst_null
+         1: areturn
+
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_2
+         1: invokevirtual #370                // Method net/minecraft/world/level/block/state/BlockState.liquid:()Z
+         4: ifeq          8
+         7: return
+         8: aload_0
+         9: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        12: aload_1
+        13: invokevirtual #375                // Method net/minecraft/core/BlockPos.above:()Lnet/minecraft/core/BlockPos;
+        16: invokevirtual #381                // Method net/minecraft/world/level/Level.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        19: astore_3
+        20: aload_2
+        21: invokevirtual #385                // Method net/minecraft/world/level/block/state/BlockState.getSoundType:()Lnet/minecraft/world/level/block/SoundType;
+        24: astore        4
+        26: aload_3
+        27: getstatic     #389                // Field net/minecraft/world/level/block/Blocks.SNOW:Lnet/minecraft/world/level/block/Block;
+        30: invokevirtual #395                // Method net/minecraft/world/level/block/state/BlockState.is:(Ljava/lang/Object;)Z
+        33: ifeq          42
+        36: aload_3
+        37: invokevirtual #385                // Method net/minecraft/world/level/block/state/BlockState.getSoundType:()Lnet/minecraft/world/level/block/SoundType;
+        40: astore        4
+        42: aload_0
+        43: invokevirtual #233                // Method isVehicle:()Z
+        46: ifeq          124
+        49: aload_0
+        50: getfield      #13                 // Field canGallop:Z
+        53: ifeq          124
+        56: aload_0
+        57: dup
+        58: getfield      #399                // Field gallopSoundCounter:I
+        61: iconst_1
+        62: iadd
+        63: putfield      #399                // Field gallopSoundCounter:I
+        66: aload_0
+        67: getfield      #399                // Field gallopSoundCounter:I
+        70: iconst_5
+        71: if_icmple     92
+        74: aload_0
+        75: getfield      #399                // Field gallopSoundCounter:I
+        78: iconst_3
+        79: irem
+        80: ifne          92
+        83: aload_0
+        84: aload         4
+        86: invokevirtual #402                // Method playGallopSound:(Lnet/minecraft/world/level/block/SoundType;)V
+        89: goto          191
+        92: aload_0
+        93: getfield      #399                // Field gallopSoundCounter:I
+        96: iconst_5
+        97: if_icmpgt     191
+       100: aload_0
+       101: getstatic     #406                // Field net/minecraft/sounds/SoundEvents.HORSE_STEP_WOOD:Lnet/minecraft/sounds/SoundEvent;
+       104: aload         4
+       106: invokevirtual #409                // Method net/minecraft/world/level/block/SoundType.getVolume:()F
+       109: ldc_w         #414                // float 0.15f
+       112: fmul
+       113: aload         4
+       115: invokevirtual #415                // Method net/minecraft/world/level/block/SoundType.getPitch:()F
+       118: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+       121: goto          191
+       124: aload_0
+       125: aload         4
+       127: invokevirtual #418                // Method isWoodSoundType:(Lnet/minecraft/world/level/block/SoundType;)Z
+       130: ifeq          157
+       133: aload_0
+       134: getstatic     #406                // Field net/minecraft/sounds/SoundEvents.HORSE_STEP_WOOD:Lnet/minecraft/sounds/SoundEvent;
+       137: aload         4
+       139: invokevirtual #409                // Method net/minecraft/world/level/block/SoundType.getVolume:()F
+       142: ldc_w         #414                // float 0.15f
+       145: fmul
+       146: aload         4
+       148: invokevirtual #415                // Method net/minecraft/world/level/block/SoundType.getPitch:()F
+       151: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+       154: goto          191
+       157: aload_0
+       158: aload_0
+       159: invokevirtual #186                // Method isBaby:()Z
+       162: ifeq          171
+       165: getstatic     #422                // Field net/minecraft/sounds/SoundEvents.HORSE_STEP_BABY:Lnet/minecraft/sounds/SoundEvent;
+       168: goto          174
+       171: getstatic     #425                // Field net/minecraft/sounds/SoundEvents.HORSE_STEP:Lnet/minecraft/sounds/SoundEvent;
+       174: aload         4
+       176: invokevirtual #409                // Method net/minecraft/world/level/block/SoundType.getVolume:()F
+       179: ldc_w         #414                // float 0.15f
+       182: fmul
+       183: aload         4
+       185: invokevirtual #415                // Method net/minecraft/world/level/block/SoundType.getPitch:()F
+       188: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+       191: return
+
+  private boolean isWoodSoundType(net.minecraft.world.level.block.SoundType);
+    Code:
+         0: aload_1
+         1: getstatic     #428                // Field net/minecraft/world/level/block/SoundType.WOOD:Lnet/minecraft/world/level/block/SoundType;
+         4: if_acmpeq     35
+         7: aload_1
+         8: getstatic     #432                // Field net/minecraft/world/level/block/SoundType.NETHER_WOOD:Lnet/minecraft/world/level/block/SoundType;
+        11: if_acmpeq     35
+        14: aload_1
+        15: getstatic     #435                // Field net/minecraft/world/level/block/SoundType.STEM:Lnet/minecraft/world/level/block/SoundType;
+        18: if_acmpeq     35
+        21: aload_1
+        22: getstatic     #438                // Field net/minecraft/world/level/block/SoundType.CHERRY_WOOD:Lnet/minecraft/world/level/block/SoundType;
+        25: if_acmpeq     35
+        28: aload_1
+        29: getstatic     #441                // Field net/minecraft/world/level/block/SoundType.BAMBOO_WOOD:Lnet/minecraft/world/level/block/SoundType;
+        32: if_acmpne     39
+        35: iconst_1
+        36: goto          40
+        39: iconst_0
+        40: ireturn
+
+  protected void playGallopSound(net.minecraft.world.level.block.SoundType);
+    Code:
+         0: aload_0
+         1: getstatic     #444                // Field net/minecraft/sounds/SoundEvents.HORSE_GALLOP:Lnet/minecraft/sounds/SoundEvent;
+         4: aload_1
+         5: invokevirtual #409                // Method net/minecraft/world/level/block/SoundType.getVolume:()F
+         8: ldc_w         #414                // float 0.15f
+        11: fmul
+        12: aload_1
+        13: invokevirtual #415                // Method net/minecraft/world/level/block/SoundType.getPitch:()F
+        16: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+        19: return
+
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createBaseHorseAttributes();
+    Code:
+         0: invokestatic  #447                // Method net/minecraft/world/entity/animal/Animal.createAnimalAttributes:()Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+         3: getstatic     #451                // Field net/minecraft/world/entity/ai/attributes/Attributes.JUMP_STRENGTH:Lnet/minecraft/core/Holder;
+         6: ldc2_w        #50                 // double 0.7d
+         9: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        12: getstatic     #463                // Field net/minecraft/world/entity/ai/attributes/Attributes.MAX_HEALTH:Lnet/minecraft/core/Holder;
+        15: ldc2_w        #466                // double 53.0d
+        18: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        21: getstatic     #468                // Field net/minecraft/world/entity/ai/attributes/Attributes.MOVEMENT_SPEED:Lnet/minecraft/core/Holder;
+        24: ldc2_w        #471                // double 0.22499999403953552d
+        27: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        30: getstatic     #473                // Field net/minecraft/world/entity/ai/attributes/Attributes.STEP_HEIGHT:Lnet/minecraft/core/Holder;
+        33: dconst_1
+        34: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        37: getstatic     #476                // Field net/minecraft/world/entity/ai/attributes/Attributes.SAFE_FALL_DISTANCE:Lnet/minecraft/core/Holder;
+        40: ldc2_w        #479                // double 6.0d
+        43: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        46: getstatic     #481                // Field net/minecraft/world/entity/ai/attributes/Attributes.FALL_DAMAGE_MULTIPLIER:Lnet/minecraft/core/Holder;
+        49: ldc2_w        #484                // double 0.5d
+        52: invokevirtual #457                // Method net/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder.add:(Lnet/minecraft/core/Holder;D)Lnet/minecraft/world/entity/ai/attributes/AttributeSupplier$Builder;
+        55: areturn
+
+  public int getMaxSpawnClusterSize();
+    Code:
+         0: bipush        6
+         2: ireturn
+
+  public int getMaxTemper();
+    Code:
+         0: bipush        100
+         2: ireturn
+
+  protected float getSoundVolume();
+    Code:
+         0: ldc_w         #486                // float 0.8f
+         3: freturn
+
+  public int getAmbientSoundInterval();
+    Code:
+         0: sipush        400
+         3: ireturn
+
+  public void openCustomInventoryScreen(net.minecraft.world.entity.player.Player);
+    Code:
+         0: aload_0
+         1: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+         4: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+         7: ifne          41
+        10: aload_0
+        11: invokevirtual #233                // Method isVehicle:()Z
+        14: ifeq          25
+        17: aload_0
+        18: aload_1
+        19: invokevirtual #490                // Method hasPassenger:(Lnet/minecraft/world/entity/Entity;)Z
+        22: ifeq          41
+        25: aload_0
+        26: invokevirtual #189                // Method isTamed:()Z
+        29: ifeq          41
+        32: aload_1
+        33: aload_0
+        34: aload_0
+        35: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        38: invokevirtual #494                // Method net/minecraft/world/entity/player/Player.openHorseInventory:(Lnet/minecraft/world/entity/animal/equine/AbstractHorse;Lnet/minecraft/world/Container;)V
+        41: return
+
+  public net.minecraft.world.InteractionResult fedFood(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokevirtual #498                // Method handleEating:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)Z
+         6: istore_3
+         7: iload_3
+         8: ifeq          17
+        11: aload_2
+        12: iconst_1
+        13: aload_1
+        14: invokevirtual #502                // Method net/minecraft/world/item/ItemStack.consume:(ILnet/minecraft/world/entity/LivingEntity;)V
+        17: iload_3
+        18: ifne          31
+        21: aload_0
+        22: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        25: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+        28: ifeq          37
+        31: getstatic     #506                // Field net/minecraft/world/InteractionResult.SUCCESS_SERVER:Lnet/minecraft/world/InteractionResult$Success;
+        34: goto          40
+        37: getstatic     #512                // Field net/minecraft/world/InteractionResult.PASS:Lnet/minecraft/world/InteractionResult$Pass;
+        40: areturn
+
+  protected boolean handleEating(net.minecraft.world.entity.player.Player, net.minecraft.world.item.ItemStack);
+    Code:
+         0: iconst_0
+         1: istore_3
+         2: fconst_0
+         3: fstore        4
+         5: iconst_0
+         6: istore        5
+         8: iconst_0
+         9: istore        6
+        11: aload_2
+        12: getstatic     #516                // Field net/minecraft/world/item/Items.WHEAT:Lnet/minecraft/world/item/Item;
+        15: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        18: ifeq          34
+        21: fconst_2
+        22: fstore        4
+        24: bipush        20
+        26: istore        5
+        28: iconst_3
+        29: istore        6
+        31: goto          289
+        34: aload_2
+        35: getstatic     #523                // Field net/minecraft/world/item/Items.SUGAR:Lnet/minecraft/world/item/Item;
+        38: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        41: ifeq          57
+        44: fconst_1
+        45: fstore        4
+        47: bipush        30
+        49: istore        5
+        51: iconst_3
+        52: istore        6
+        54: goto          289
+        57: aload_2
+        58: getstatic     #526                // Field net/minecraft/world/item/Items.HAY_BLOCK:Lnet/minecraft/world/item/Item;
+        61: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        64: ifeq          80
+        67: ldc_w         #529                // float 20.0f
+        70: fstore        4
+        72: sipush        180
+        75: istore        5
+        77: goto          289
+        80: aload_2
+        81: getstatic     #530                // Field net/minecraft/world/item/Items.APPLE:Lnet/minecraft/world/item/Item;
+        84: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        87: ifeq          105
+        90: ldc_w         #533                // float 3.0f
+        93: fstore        4
+        95: bipush        60
+        97: istore        5
+        99: iconst_3
+       100: istore        6
+       102: goto          289
+       105: aload_2
+       106: getstatic     #534                // Field net/minecraft/world/item/Items.RED_MUSHROOM:Lnet/minecraft/world/item/Item;
+       109: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       112: ifeq          129
+       115: ldc_w         #533                // float 3.0f
+       118: fstore        4
+       120: iconst_0
+       121: istore        5
+       123: iconst_3
+       124: istore        6
+       126: goto          289
+       129: aload_2
+       130: getstatic     #537                // Field net/minecraft/world/item/Items.CARROT:Lnet/minecraft/world/item/Item;
+       133: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       136: ifeq          154
+       139: ldc_w         #533                // float 3.0f
+       142: fstore        4
+       144: bipush        60
+       146: istore        5
+       148: iconst_3
+       149: istore        6
+       151: goto          289
+       154: aload_2
+       155: getstatic     #540                // Field net/minecraft/world/item/Items.GOLDEN_CARROT:Lnet/minecraft/world/item/Item;
+       158: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       161: ifeq          217
+       164: ldc_w         #543                // float 4.0f
+       167: fstore        4
+       169: bipush        60
+       171: istore        5
+       173: iconst_5
+       174: istore        6
+       176: aload_0
+       177: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       180: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+       183: ifne          289
+       186: aload_0
+       187: invokevirtual #189                // Method isTamed:()Z
+       190: ifeq          289
+       193: aload_0
+       194: invokevirtual #544                // Method getAge:()I
+       197: ifne          289
+       200: aload_0
+       201: invokevirtual #547                // Method isInLove:()Z
+       204: ifne          289
+       207: iconst_1
+       208: istore_3
+       209: aload_0
+       210: aload_1
+       211: invokevirtual #550                // Method setInLove:(Lnet/minecraft/world/entity/player/Player;)V
+       214: goto          289
+       217: aload_2
+       218: getstatic     #554                // Field net/minecraft/world/item/Items.GOLDEN_APPLE:Lnet/minecraft/world/item/Item;
+       221: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       224: ifne          237
+       227: aload_2
+       228: getstatic     #557                // Field net/minecraft/world/item/Items.ENCHANTED_GOLDEN_APPLE:Lnet/minecraft/world/item/Item;
+       231: invokevirtual #522                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       234: ifeq          289
+       237: ldc_w         #560                // float 10.0f
+       240: fstore        4
+       242: sipush        240
+       245: istore        5
+       247: bipush        10
+       249: istore        6
+       251: aload_0
+       252: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       255: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+       258: ifne          289
+       261: aload_0
+       262: invokevirtual #189                // Method isTamed:()Z
+       265: ifeq          289
+       268: aload_0
+       269: invokevirtual #544                // Method getAge:()I
+       272: ifne          289
+       275: aload_0
+       276: invokevirtual #547                // Method isInLove:()Z
+       279: ifne          289
+       282: iconst_1
+       283: istore_3
+       284: aload_0
+       285: aload_1
+       286: invokevirtual #550                // Method setInLove:(Lnet/minecraft/world/entity/player/Player;)V
+       289: aload_0
+       290: invokevirtual #561                // Method getHealth:()F
+       293: aload_0
+       294: invokevirtual #564                // Method getMaxHealth:()F
+       297: fcmpg
+       298: ifge          316
+       301: fload         4
+       303: fconst_0
+       304: fcmpl
+       305: ifle          316
+       308: aload_0
+       309: fload         4
+       311: invokevirtual #567                // Method heal:(F)V
+       314: iconst_1
+       315: istore_3
+       316: aload_0
+       317: invokevirtual #186                // Method isBaby:()Z
+       320: ifeq          384
+       323: iload         5
+       325: ifle          384
+       328: aload_0
+       329: invokevirtual #571                // Method isAgeLocked:()Z
+       332: ifne          384
+       335: aload_0
+       336: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       339: getstatic     #574                // Field net/minecraft/core/particles/ParticleTypes.HAPPY_VILLAGER:Lnet/minecraft/core/particles/SimpleParticleType;
+       342: aload_0
+       343: dconst_1
+       344: invokevirtual #580                // Method getRandomX:(D)D
+       347: aload_0
+       348: invokevirtual #584                // Method getRandomY:()D
+       351: ldc2_w        #484                // double 0.5d
+       354: dadd
+       355: aload_0
+       356: dconst_1
+       357: invokevirtual #587                // Method getRandomZ:(D)D
+       360: dconst_0
+       361: dconst_0
+       362: dconst_0
+       363: invokevirtual #590                // Method net/minecraft/world/level/Level.addParticle:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+       366: aload_0
+       367: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       370: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+       373: ifne          384
+       376: aload_0
+       377: iload         5
+       379: invokevirtual #594                // Method ageUp:(I)V
+       382: iconst_1
+       383: istore_3
+       384: iload         6
+       386: ifle          430
+       389: iload_3
+       390: ifne          400
+       393: aload_0
+       394: invokevirtual #189                // Method isTamed:()Z
+       397: ifne          430
+       400: aload_0
+       401: invokevirtual #216                // Method getTemper:()I
+       404: aload_0
+       405: invokevirtual #220                // Method getMaxTemper:()I
+       408: if_icmpge     430
+       411: aload_0
+       412: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       415: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+       418: ifne          430
+       421: aload_0
+       422: iload         6
+       424: invokevirtual #597                // Method modifyTemper:(I)I
+       427: pop
+       428: iconst_1
+       429: istore_3
+       430: iload_3
+       431: ifeq          445
+       434: aload_0
+       435: invokevirtual #600                // Method eating:()V
+       438: aload_0
+       439: getstatic     #603                // Field net/minecraft/world/level/gameevent/GameEvent.EAT:Lnet/minecraft/core/Holder$Reference;
+       442: invokevirtual #608                // Method gameEvent:(Lnet/minecraft/core/Holder;)V
+       445: iload_3
+       446: ireturn
+
+  protected void doPlayerRide(net.minecraft.world.entity.player.Player);
+    Code:
+         0: aload_0
+         1: iconst_0
+         2: invokevirtual #159                // Method setEating:(Z)V
+         5: aload_0
+         6: invokevirtual #612                // Method clearStanding:()V
+         9: aload_0
+        10: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        13: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+        16: ifne          41
+        19: aload_1
+        20: aload_0
+        21: invokevirtual #615                // Method getYRot:()F
+        24: invokevirtual #618                // Method net/minecraft/world/entity/player/Player.setYRot:(F)V
+        27: aload_1
+        28: aload_0
+        29: invokevirtual #621                // Method getXRot:()F
+        32: invokevirtual #624                // Method net/minecraft/world/entity/player/Player.setXRot:(F)V
+        35: aload_1
+        36: aload_0
+        37: invokevirtual #627                // Method net/minecraft/world/entity/player/Player.startRiding:(Lnet/minecraft/world/entity/Entity;)Z
+        40: pop
+        41: return
+
+  public boolean isImmobile();
+    Code:
+         0: aload_0
+         1: invokespecial #630                // Method net/minecraft/world/entity/animal/Animal.isImmobile:()Z
+         4: ifeq          21
+         7: aload_0
+         8: invokevirtual #233                // Method isVehicle:()Z
+        11: ifeq          21
+        14: aload_0
+        15: invokevirtual #633                // Method isSaddled:()Z
+        18: ifne          35
+        21: aload_0
+        22: invokevirtual #156                // Method isEating:()Z
+        25: ifne          35
+        28: aload_0
+        29: invokevirtual #636                // Method isStanding:()Z
+        32: ifeq          39
+        35: iconst_1
+        36: goto          40
+        39: iconst_0
+        40: ireturn
+
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_1
+         1: getstatic     #639                // Field net/minecraft/tags/ItemTags.HORSE_FOOD:Lnet/minecraft/tags/TagKey;
+         4: invokevirtual #645                // Method net/minecraft/world/item/ItemStack.is:(Lnet/minecraft/tags/TagKey;)Z
+         7: ireturn
+
+  private void moveTail();
+    Code:
+         0: aload_0
+         1: iconst_1
+         2: putfield      #648                // Field tailCounter:I
+         5: return
+
+  protected void dropEquipment(net.minecraft.server.level.ServerLevel);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #651                // Method net/minecraft/world/entity/animal/Animal.dropEquipment:(Lnet/minecraft/server/level/ServerLevel;)V
+         5: aload_0
+         6: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+         9: ifnonnull     13
+        12: return
+        13: iconst_0
+        14: istore_2
+        15: iload_2
+        16: aload_0
+        17: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        20: invokevirtual #328                // Method net/minecraft/world/SimpleContainer.getContainerSize:()I
+        23: if_icmpge     68
+        26: aload_0
+        27: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        30: iload_2
+        31: invokevirtual #337                // Method net/minecraft/world/SimpleContainer.getItem:(I)Lnet/minecraft/world/item/ItemStack;
+        34: astore_3
+        35: aload_3
+        36: invokevirtual #341                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        39: ifne          62
+        42: aload_3
+        43: getstatic     #655                // Field net/minecraft/world/item/enchantment/EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP:Lnet/minecraft/core/component/DataComponentType;
+        46: invokestatic  #661                // Method net/minecraft/world/item/enchantment/EnchantmentHelper.has:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/component/DataComponentType;)Z
+        49: ifeq          55
+        52: goto          62
+        55: aload_0
+        56: aload_1
+        57: aload_3
+        58: invokevirtual #667                // Method spawnAtLocation:(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/world/entity/item/ItemEntity;
+        61: pop
+        62: iinc          2, 1
+        65: goto          15
+        68: return
+
+  public void aiStep();
+    Code:
+         0: aload_0
+         1: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+         4: sipush        200
+         7: invokeinterface #364,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        12: ifne          19
+        15: aload_0
+        16: invokevirtual #671                // Method moveTail:()V
+        19: aload_0
+        20: invokespecial #674                // Method net/minecraft/world/entity/animal/Animal.aiStep:()V
+        23: aload_0
+        24: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        27: astore_2
+        28: aload_2
+        29: instanceof    #677                // class net/minecraft/server/level/ServerLevel
+        32: ifeq          47
+        35: aload_2
+        36: checkcast     #677                // class net/minecraft/server/level/ServerLevel
+        39: astore_1
+        40: aload_0
+        41: invokevirtual #183                // Method isAlive:()Z
+        44: ifne          48
+        47: return
+        48: aload_0
+        49: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        52: sipush        900
+        55: invokeinterface #364,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        60: ifne          75
+        63: aload_0
+        64: getfield      #679                // Field deathTime:I
+        67: ifne          75
+        70: aload_0
+        71: fconst_1
+        72: invokevirtual #567                // Method heal:(F)V
+        75: aload_0
+        76: invokevirtual #682                // Method canEatGrass:()Z
+        79: ifeq          169
+        82: aload_0
+        83: invokevirtual #156                // Method isEating:()Z
+        86: ifne          136
+        89: aload_0
+        90: invokevirtual #233                // Method isVehicle:()Z
+        93: ifne          136
+        96: aload_0
+        97: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+       100: sipush        300
+       103: invokeinterface #364,  2          // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+       108: ifne          136
+       111: aload_1
+       112: aload_0
+       113: invokevirtual #685                // Method blockPosition:()Lnet/minecraft/core/BlockPos;
+       116: invokevirtual #688                // Method net/minecraft/core/BlockPos.below:()Lnet/minecraft/core/BlockPos;
+       119: invokevirtual #691                // Method net/minecraft/server/level/ServerLevel.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+       122: getstatic     #692                // Field net/minecraft/world/level/block/Blocks.GRASS_BLOCK:Lnet/minecraft/world/level/block/Block;
+       125: invokevirtual #395                // Method net/minecraft/world/level/block/state/BlockState.is:(Ljava/lang/Object;)Z
+       128: ifeq          136
+       131: aload_0
+       132: iconst_1
+       133: invokevirtual #159                // Method setEating:(Z)V
+       136: aload_0
+       137: invokevirtual #156                // Method isEating:()Z
+       140: ifeq          169
+       143: aload_0
+       144: dup
+       145: getfield      #695                // Field eatingCounter:I
+       148: iconst_1
+       149: iadd
+       150: dup_x1
+       151: putfield      #695                // Field eatingCounter:I
+       154: bipush        50
+       156: if_icmple     169
+       159: aload_0
+       160: iconst_0
+       161: putfield      #695                // Field eatingCounter:I
+       164: aload_0
+       165: iconst_0
+       166: invokevirtual #159                // Method setEating:(Z)V
+       169: aload_0
+       170: aload_1
+       171: invokevirtual #698                // Method followMommy:(Lnet/minecraft/server/level/ServerLevel;)V
+       174: return
+
+  protected void followMommy(net.minecraft.server.level.ServerLevel);
+    Code:
+         0: aload_0
+         1: invokevirtual #701                // Method isBred:()Z
+         4: ifeq          80
+         7: aload_0
+         8: invokevirtual #186                // Method isBaby:()Z
+        11: ifeq          80
+        14: aload_0
+        15: invokevirtual #156                // Method isEating:()Z
+        18: ifne          80
+        21: aload_1
+        22: ldc           #7                  // class net/minecraft/world/entity/animal/equine/AbstractHorse
+        24: getstatic     #704                // Field MOMMY_TARGETING:Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        27: aload_0
+        28: aload_0
+        29: invokevirtual #250                // Method getX:()D
+        32: aload_0
+        33: invokevirtual #254                // Method getY:()D
+        36: aload_0
+        37: invokevirtual #257                // Method getZ:()D
+        40: aload_0
+        41: invokevirtual #708                // Method getBoundingBox:()Lnet/minecraft/world/phys/AABB;
+        44: ldc2_w        #712                // double 16.0d
+        47: invokevirtual #714                // Method net/minecraft/world/phys/AABB.inflate:(D)Lnet/minecraft/world/phys/AABB;
+        50: invokevirtual #720                // Method net/minecraft/server/level/ServerLevel.getNearestEntity:(Ljava/lang/Class;Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;Lnet/minecraft/world/entity/LivingEntity;DDDLnet/minecraft/world/phys/AABB;)Lnet/minecraft/world/entity/LivingEntity;
+        53: astore_2
+        54: aload_2
+        55: ifnull        80
+        58: aload_0
+        59: aload_2
+        60: invokevirtual #724                // Method distanceToSqr:(Lnet/minecraft/world/entity/Entity;)D
+        63: ldc2_w        #728                // double 4.0d
+        66: dcmpl
+        67: ifle          80
+        70: aload_0
+        71: getfield      #730                // Field navigation:Lnet/minecraft/world/entity/ai/navigation/PathNavigation;
+        74: aload_2
+        75: iconst_0
+        76: invokevirtual #734                // Method net/minecraft/world/entity/ai/navigation/PathNavigation.createPath:(Lnet/minecraft/world/entity/Entity;I)Lnet/minecraft/world/level/pathfinder/Path;
+        79: pop
+        80: return
+
+  public boolean canEatGrass();
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  public void tick();
+    Code:
+         0: aload_0
+         1: invokespecial #740                // Method net/minecraft/world/entity/animal/Animal.tick:()V
+         4: aload_0
+         5: getfield      #743                // Field mouthCounter:I
+         8: ifle          39
+        11: aload_0
+        12: dup
+        13: getfield      #743                // Field mouthCounter:I
+        16: iconst_1
+        17: iadd
+        18: dup_x1
+        19: putfield      #743                // Field mouthCounter:I
+        22: bipush        30
+        24: if_icmple     39
+        27: aload_0
+        28: iconst_0
+        29: putfield      #743                // Field mouthCounter:I
+        32: aload_0
+        33: bipush        64
+        35: iconst_0
+        36: invokevirtual #149                // Method setFlag:(IZ)V
+        39: aload_0
+        40: getfield      #746                // Field standCounter:I
+        43: ifle          64
+        46: aload_0
+        47: dup
+        48: getfield      #746                // Field standCounter:I
+        51: iconst_1
+        52: isub
+        53: dup_x1
+        54: putfield      #746                // Field standCounter:I
+        57: ifgt          64
+        60: aload_0
+        61: invokevirtual #612                // Method clearStanding:()V
+        64: aload_0
+        65: getfield      #648                // Field tailCounter:I
+        68: ifle          92
+        71: aload_0
+        72: dup
+        73: getfield      #648                // Field tailCounter:I
+        76: iconst_1
+        77: iadd
+        78: dup_x1
+        79: putfield      #648                // Field tailCounter:I
+        82: bipush        8
+        84: if_icmple     92
+        87: aload_0
+        88: iconst_0
+        89: putfield      #648                // Field tailCounter:I
+        92: aload_0
+        93: getfield      #749                // Field sprintCounter:I
+        96: ifle          124
+        99: aload_0
+       100: dup
+       101: getfield      #749                // Field sprintCounter:I
+       104: iconst_1
+       105: iadd
+       106: putfield      #749                // Field sprintCounter:I
+       109: aload_0
+       110: getfield      #749                // Field sprintCounter:I
+       113: sipush        300
+       116: if_icmple     124
+       119: aload_0
+       120: iconst_0
+       121: putfield      #749                // Field sprintCounter:I
+       124: aload_0
+       125: aload_0
+       126: getfield      #752                // Field eatAnim:F
+       129: putfield      #756                // Field eatAnimO:F
+       132: aload_0
+       133: invokevirtual #156                // Method isEating:()Z
+       136: ifeq          179
+       139: aload_0
+       140: dup
+       141: getfield      #752                // Field eatAnim:F
+       144: fconst_1
+       145: aload_0
+       146: getfield      #752                // Field eatAnim:F
+       149: fsub
+       150: ldc_w         #290                // float 0.4f
+       153: fmul
+       154: ldc_w         #759                // float 0.05f
+       157: fadd
+       158: fadd
+       159: putfield      #752                // Field eatAnim:F
+       162: aload_0
+       163: getfield      #752                // Field eatAnim:F
+       166: fconst_1
+       167: fcmpl
+       168: ifle          216
+       171: aload_0
+       172: fconst_1
+       173: putfield      #752                // Field eatAnim:F
+       176: goto          216
+       179: aload_0
+       180: dup
+       181: getfield      #752                // Field eatAnim:F
+       184: fconst_0
+       185: aload_0
+       186: getfield      #752                // Field eatAnim:F
+       189: fsub
+       190: ldc_w         #290                // float 0.4f
+       193: fmul
+       194: ldc_w         #759                // float 0.05f
+       197: fsub
+       198: fadd
+       199: putfield      #752                // Field eatAnim:F
+       202: aload_0
+       203: getfield      #752                // Field eatAnim:F
+       206: fconst_0
+       207: fcmpg
+       208: ifge          216
+       211: aload_0
+       212: fconst_0
+       213: putfield      #752                // Field eatAnim:F
+       216: aload_0
+       217: aload_0
+       218: getfield      #760                // Field standAnim:F
+       221: putfield      #763                // Field standAnimO:F
+       224: aload_0
+       225: invokevirtual #636                // Method isStanding:()Z
+       228: ifeq          284
+       231: aload_0
+       232: fconst_0
+       233: putfield      #752                // Field eatAnim:F
+       236: aload_0
+       237: aload_0
+       238: getfield      #752                // Field eatAnim:F
+       241: putfield      #756                // Field eatAnimO:F
+       244: aload_0
+       245: dup
+       246: getfield      #760                // Field standAnim:F
+       249: fconst_1
+       250: aload_0
+       251: getfield      #760                // Field standAnim:F
+       254: fsub
+       255: ldc_w         #290                // float 0.4f
+       258: fmul
+       259: ldc_w         #759                // float 0.05f
+       262: fadd
+       263: fadd
+       264: putfield      #760                // Field standAnim:F
+       267: aload_0
+       268: getfield      #760                // Field standAnim:F
+       271: fconst_1
+       272: fcmpl
+       273: ifle          343
+       276: aload_0
+       277: fconst_1
+       278: putfield      #760                // Field standAnim:F
+       281: goto          343
+       284: aload_0
+       285: iconst_0
+       286: putfield      #766                // Field allowStandSliding:Z
+       289: aload_0
+       290: dup
+       291: getfield      #760                // Field standAnim:F
+       294: ldc_w         #486                // float 0.8f
+       297: aload_0
+       298: getfield      #760                // Field standAnim:F
+       301: fmul
+       302: aload_0
+       303: getfield      #760                // Field standAnim:F
+       306: fmul
+       307: aload_0
+       308: getfield      #760                // Field standAnim:F
+       311: fmul
+       312: aload_0
+       313: getfield      #760                // Field standAnim:F
+       316: fsub
+       317: ldc_w         #769                // float 0.6f
+       320: fmul
+       321: ldc_w         #759                // float 0.05f
+       324: fsub
+       325: fadd
+       326: putfield      #760                // Field standAnim:F
+       329: aload_0
+       330: getfield      #760                // Field standAnim:F
+       333: fconst_0
+       334: fcmpg
+       335: ifge          343
+       338: aload_0
+       339: fconst_0
+       340: putfield      #760                // Field standAnim:F
+       343: aload_0
+       344: aload_0
+       345: getfield      #770                // Field mouthAnim:F
+       348: putfield      #773                // Field mouthAnimO:F
+       351: aload_0
+       352: bipush        64
+       354: invokevirtual #135                // Method getFlag:(I)Z
+       357: ifeq          400
+       360: aload_0
+       361: dup
+       362: getfield      #770                // Field mouthAnim:F
+       365: fconst_1
+       366: aload_0
+       367: getfield      #770                // Field mouthAnim:F
+       370: fsub
+       371: ldc_w         #776                // float 0.7f
+       374: fmul
+       375: ldc_w         #759                // float 0.05f
+       378: fadd
+       379: fadd
+       380: putfield      #770                // Field mouthAnim:F
+       383: aload_0
+       384: getfield      #770                // Field mouthAnim:F
+       387: fconst_1
+       388: fcmpl
+       389: ifle          437
+       392: aload_0
+       393: fconst_1
+       394: putfield      #770                // Field mouthAnim:F
+       397: goto          437
+       400: aload_0
+       401: dup
+       402: getfield      #770                // Field mouthAnim:F
+       405: fconst_0
+       406: aload_0
+       407: getfield      #770                // Field mouthAnim:F
+       410: fsub
+       411: ldc_w         #776                // float 0.7f
+       414: fmul
+       415: ldc_w         #759                // float 0.05f
+       418: fsub
+       419: fadd
+       420: putfield      #770                // Field mouthAnim:F
+       423: aload_0
+       424: getfield      #770                // Field mouthAnim:F
+       427: fconst_0
+       428: fcmpg
+       429: ifge          437
+       432: aload_0
+       433: fconst_0
+       434: putfield      #770                // Field mouthAnim:F
+       437: return
+
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+         0: aload_0
+         1: invokevirtual #233                // Method isVehicle:()Z
+         4: ifne          14
+         7: aload_0
+         8: invokevirtual #186                // Method isBaby:()Z
+        11: ifeq          21
+        14: aload_0
+        15: aload_1
+        16: aload_2
+        17: invokespecial #777                // Method net/minecraft/world/entity/animal/Animal.mobInteract:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+        20: areturn
+        21: aload_0
+        22: invokevirtual #189                // Method isTamed:()Z
+        25: ifeq          44
+        28: aload_1
+        29: invokevirtual #781                // Method net/minecraft/world/entity/player/Player.isSecondaryUseActive:()Z
+        32: ifeq          44
+        35: aload_0
+        36: aload_1
+        37: invokevirtual #784                // Method openCustomInventoryScreen:(Lnet/minecraft/world/entity/player/Player;)V
+        40: getstatic     #787                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult$Success;
+        43: areturn
+        44: aload_1
+        45: aload_2
+        46: invokevirtual #790                // Method net/minecraft/world/entity/player/Player.getItemInHand:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+        49: astore_3
+        50: aload_3
+        51: invokevirtual #341                // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+        54: ifne          107
+        57: aload_3
+        58: aload_1
+        59: aload_0
+        60: aload_2
+        61: invokevirtual #794                // Method net/minecraft/world/item/ItemStack.interactLivingEntity:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;
+        64: astore        4
+        66: aload         4
+        68: invokeinterface #798,  1          // InterfaceMethod net/minecraft/world/InteractionResult.consumesAction:()Z
+        73: ifeq          79
+        76: aload         4
+        78: areturn
+        79: aload_0
+        80: aload_3
+        81: getstatic     #196                // Field net/minecraft/world/entity/EquipmentSlot.BODY:Lnet/minecraft/world/entity/EquipmentSlot;
+        84: invokevirtual #199                // Method isEquippableInSlot:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/EquipmentSlot;)Z
+        87: ifeq          107
+        90: aload_0
+        91: invokevirtual #801                // Method isWearingBodyArmor:()Z
+        94: ifne          107
+        97: aload_0
+        98: aload_1
+        99: aload_3
+       100: invokevirtual #804                // Method equipBodyArmor:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;)V
+       103: getstatic     #787                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult$Success;
+       106: areturn
+       107: aload_0
+       108: aload_1
+       109: invokevirtual #808                // Method doPlayerRide:(Lnet/minecraft/world/entity/player/Player;)V
+       112: getstatic     #787                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult$Success;
+       115: areturn
+
+  private void openMouth();
+    Code:
+         0: aload_0
+         1: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+         4: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+         7: ifne          22
+        10: aload_0
+        11: iconst_1
+        12: putfield      #743                // Field mouthCounter:I
+        15: aload_0
+        16: bipush        64
+        18: iconst_1
+        19: invokevirtual #149                // Method setFlag:(IZ)V
+        22: return
+
+  public void setEating(boolean);
+    Code:
+         0: aload_0
+         1: bipush        16
+         3: iload_1
+         4: invokevirtual #149                // Method setFlag:(IZ)V
+         7: return
+
+  public void setStanding(int);
+    Code:
+         0: aload_0
+         1: iconst_0
+         2: invokevirtual #159                // Method setEating:(Z)V
+         5: aload_0
+         6: bipush        32
+         8: iconst_1
+         9: invokevirtual #149                // Method setFlag:(IZ)V
+        12: aload_0
+        13: iload_1
+        14: putfield      #746                // Field standCounter:I
+        17: return
+
+  public void clearStanding();
+    Code:
+         0: aload_0
+         1: bipush        32
+         3: iconst_0
+         4: invokevirtual #149                // Method setFlag:(IZ)V
+         7: aload_0
+         8: iconst_0
+         9: putfield      #746                // Field standCounter:I
+        12: return
+
+  public net.minecraft.sounds.SoundEvent getAmbientStandSound();
+    Code:
+         0: aload_0
+         1: invokevirtual #811                // Method getAmbientSound:()Lnet/minecraft/sounds/SoundEvent;
+         4: areturn
+
+  public void standIfPossible();
+    Code:
+         0: aload_0
+         1: invokevirtual #68                 // Method canPerformRearing:()Z
+         4: ifeq          30
+         7: aload_0
+         8: invokevirtual #814                // Method isEffectiveAi:()Z
+        11: ifne          24
+        14: aload_0
+        15: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        18: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+        21: ifne          30
+        24: aload_0
+        25: bipush        20
+        27: invokevirtual #817                // Method setStanding:(I)V
+        30: return
+
+  public void makeMad();
+    Code:
+         0: aload_0
+         1: invokevirtual #636                // Method isStanding:()Z
+         4: ifne          29
+         7: aload_0
+         8: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        11: invokevirtual #487                // Method net/minecraft/world/level/Level.isClientSide:()Z
+        14: ifne          29
+        17: aload_0
+        18: invokevirtual #367                // Method standIfPossible:()V
+        21: aload_0
+        22: aload_0
+        23: invokevirtual #820                // Method getAngrySound:()Lnet/minecraft/sounds/SoundEvent;
+        26: invokevirtual #823                // Method makeSound:(Lnet/minecraft/sounds/SoundEvent;)V
+        29: return
+
+  public boolean tameWithName(net.minecraft.world.entity.player.Player);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #827                // Method setOwner:(Lnet/minecraft/world/entity/LivingEntity;)V
+         5: aload_0
+         6: iconst_1
+         7: invokevirtual #831                // Method setTamed:(Z)V
+        10: aload_1
+        11: instanceof    #834                // class net/minecraft/server/level/ServerPlayer
+        14: ifeq          30
+        17: aload_1
+        18: checkcast     #834                // class net/minecraft/server/level/ServerPlayer
+        21: astore_2
+        22: getstatic     #836                // Field net/minecraft/advancements/triggers/CriteriaTriggers.TAME_ANIMAL:Lnet/minecraft/advancements/triggers/TameAnimalTrigger;
+        25: aload_2
+        26: aload_0
+        27: invokevirtual #842                // Method net/minecraft/advancements/triggers/TameAnimalTrigger.trigger:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/world/entity/animal/Animal;)V
+        30: aload_0
+        31: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        34: aload_0
+        35: bipush        7
+        37: invokevirtual #850                // Method net/minecraft/world/level/Level.broadcastEntityEvent:(Lnet/minecraft/world/entity/Entity;B)V
+        40: iconst_1
+        41: ireturn
+
+  protected void tickRidden(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #854                // Method net/minecraft/world/entity/animal/Animal.tickRidden:(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/Vec3;)V
+         6: aload_0
+         7: aload_1
+         8: invokevirtual #858                // Method getRiddenRotation:(Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec2;
+        11: astore_3
+        12: aload_0
+        13: aload_3
+        14: getfield      #862                // Field net/minecraft/world/phys/Vec2.y:F
+        17: aload_3
+        18: getfield      #867                // Field net/minecraft/world/phys/Vec2.x:F
+        21: invokevirtual #870                // Method setRot:(FF)V
+        24: aload_0
+        25: aload_0
+        26: aload_0
+        27: aload_0
+        28: invokevirtual #615                // Method getYRot:()F
+        31: dup_x1
+        32: putfield      #874                // Field yHeadRot:F
+        35: dup_x1
+        36: putfield      #877                // Field yBodyRot:F
+        39: putfield      #880                // Field yRotO:F
+        42: aload_0
+        43: invokevirtual #883                // Method isLocalInstanceAuthoritative:()Z
+        46: ifeq          100
+        49: aload_2
+        50: getfield      #886                // Field net/minecraft/world/phys/Vec3.z:D
+        53: dconst_0
+        54: dcmpg
+        55: ifgt          63
+        58: aload_0
+        59: iconst_0
+        60: putfield      #399                // Field gallopSoundCounter:I
+        63: aload_0
+        64: invokevirtual #892                // Method onGround:()Z
+        67: ifeq          100
+        70: aload_0
+        71: getfield      #895                // Field playerJumpPendingScale:F
+        74: fconst_0
+        75: fcmpl
+        76: ifle          95
+        79: aload_0
+        80: invokevirtual #898                // Method isJumping:()Z
+        83: ifne          95
+        86: aload_0
+        87: aload_0
+        88: getfield      #895                // Field playerJumpPendingScale:F
+        91: aload_2
+        92: invokevirtual #901                // Method executeRidersJump:(FLnet/minecraft/world/phys/Vec3;)V
+        95: aload_0
+        96: fconst_0
+        97: putfield      #895                // Field playerJumpPendingScale:F
+       100: return
+
+  protected net.minecraft.world.phys.Vec2 getRiddenRotation(net.minecraft.world.entity.LivingEntity);
+    Code:
+         0: new           #863                // class net/minecraft/world/phys/Vec2
+         3: dup
+         4: aload_1
+         5: invokevirtual #905                // Method net/minecraft/world/entity/LivingEntity.getXRot:()F
+         8: ldc_w         #908                // float 0.5f
+        11: fmul
+        12: aload_1
+        13: invokevirtual #909                // Method net/minecraft/world/entity/LivingEntity.getYRot:()F
+        16: invokespecial #910                // Method net/minecraft/world/phys/Vec2."<init>":(FF)V
+        19: areturn
+
+  protected void addPassenger(net.minecraft.world.entity.Entity);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #912                // Method net/minecraft/world/entity/animal/Animal.addPassenger:(Lnet/minecraft/world/entity/Entity;)V
+         5: aload_1
+         6: aload_0
+         7: fconst_0
+         8: invokevirtual #916                // Method getViewYRot:(F)F
+        11: aload_0
+        12: fconst_0
+        13: invokevirtual #920                // Method getViewXRot:(F)F
+        16: invokevirtual #923                // Method net/minecraft/world/entity/Entity.absSnapRotationTo:(FF)V
+        19: return
+
+  protected net.minecraft.world.phys.Vec3 getRiddenInput(net.minecraft.world.entity.player.Player, net.minecraft.world.phys.Vec3);
+    Code:
+         0: aload_0
+         1: invokevirtual #892                // Method onGround:()Z
+         4: ifeq          34
+         7: aload_0
+         8: getfield      #895                // Field playerJumpPendingScale:F
+        11: fconst_0
+        12: fcmpl
+        13: ifne          34
+        16: aload_0
+        17: invokevirtual #636                // Method isStanding:()Z
+        20: ifeq          34
+        23: aload_0
+        24: getfield      #766                // Field allowStandSliding:Z
+        27: ifne          34
+        30: getstatic     #928                // Field net/minecraft/world/phys/Vec3.ZERO:Lnet/minecraft/world/phys/Vec3;
+        33: areturn
+        34: aload_1
+        35: getfield      #932                // Field net/minecraft/world/entity/player/Player.xxa:F
+        38: ldc_w         #908                // float 0.5f
+        41: fmul
+        42: fstore_3
+        43: aload_1
+        44: getfield      #935                // Field net/minecraft/world/entity/player/Player.zza:F
+        47: fstore        4
+        49: fload         4
+        51: fconst_0
+        52: fcmpg
+        53: ifgt          64
+        56: fload         4
+        58: ldc_w         #938                // float 0.25f
+        61: fmul
+        62: fstore        4
+        64: new           #887                // class net/minecraft/world/phys/Vec3
+        67: dup
+        68: fload_3
+        69: f2d
+        70: dconst_0
+        71: fload         4
+        73: f2d
+        74: invokespecial #939                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+        77: areturn
+
+  protected float getRiddenSpeed(net.minecraft.world.entity.player.Player);
+    Code:
+         0: aload_0
+         1: getstatic     #468                // Field net/minecraft/world/entity/ai/attributes/Attributes.MOVEMENT_SPEED:Lnet/minecraft/core/Holder;
+         4: invokevirtual #942                // Method getAttributeValue:(Lnet/minecraft/core/Holder;)D
+         7: d2f
+         8: freturn
+
+  protected void executeRidersJump(float, net.minecraft.world.phys.Vec3);
+    Code:
+         0: aload_0
+         1: fload_1
+         2: invokevirtual #946                // Method getJumpPower:(F)F
+         5: f2d
+         6: dstore_3
+         7: aload_0
+         8: invokevirtual #949                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        11: astore        5
+        13: aload_0
+        14: aload         5
+        16: getfield      #953                // Field net/minecraft/world/phys/Vec3.x:D
+        19: dload_3
+        20: aload         5
+        22: getfield      #886                // Field net/minecraft/world/phys/Vec3.z:D
+        25: invokevirtual #955                // Method setDeltaMovement:(DDD)V
+        28: aload_0
+        29: iconst_1
+        30: putfield      #958                // Field needsSync:Z
+        33: aload_2
+        34: getfield      #886                // Field net/minecraft/world/phys/Vec3.z:D
+        37: dconst_0
+        38: dcmpl
+        39: ifle          100
+        42: aload_0
+        43: invokevirtual #615                // Method getYRot:()F
+        46: ldc_w         #961                // float 0.017453292f
+        49: fmul
+        50: f2d
+        51: invokestatic  #962                // Method net/minecraft/util/Mth.sin:(D)F
+        54: fstore        6
+        56: aload_0
+        57: invokevirtual #615                // Method getYRot:()F
+        60: ldc_w         #961                // float 0.017453292f
+        63: fmul
+        64: f2d
+        65: invokestatic  #966                // Method net/minecraft/util/Mth.cos:(D)F
+        68: fstore        7
+        70: aload_0
+        71: aload_0
+        72: invokevirtual #949                // Method getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        75: ldc_w         #969                // float -0.4f
+        78: fload         6
+        80: fmul
+        81: fload_1
+        82: fmul
+        83: f2d
+        84: dconst_0
+        85: ldc_w         #290                // float 0.4f
+        88: fload         7
+        90: fmul
+        91: fload_1
+        92: fmul
+        93: f2d
+        94: invokevirtual #970                // Method net/minecraft/world/phys/Vec3.add:(DDD)Lnet/minecraft/world/phys/Vec3;
+        97: invokevirtual #973                // Method setDeltaMovement:(Lnet/minecraft/world/phys/Vec3;)V
+       100: return
+
+  protected void playJumpSound();
+    Code:
+         0: aload_0
+         1: getstatic     #976                // Field net/minecraft/sounds/SoundEvents.HORSE_JUMP:Lnet/minecraft/sounds/SoundEvent;
+         4: ldc_w         #290                // float 0.4f
+         7: fconst_1
+         8: invokevirtual #291                // Method playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+        11: return
+
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #979                // Method net/minecraft/world/entity/animal/Animal.addAdditionalSaveData:(Lnet/minecraft/world/level/storage/ValueOutput;)V
+         5: aload_1
+         6: ldc_w         #983                // String EatingHaystack
+         9: aload_0
+        10: invokevirtual #156                // Method isEating:()Z
+        13: invokeinterface #985,  3          // InterfaceMethod net/minecraft/world/level/storage/ValueOutput.putBoolean:(Ljava/lang/String;Z)V
+        18: aload_1
+        19: ldc_w         #991                // String Bred
+        22: aload_0
+        23: invokevirtual #701                // Method isBred:()Z
+        26: invokeinterface #985,  3          // InterfaceMethod net/minecraft/world/level/storage/ValueOutput.putBoolean:(Ljava/lang/String;Z)V
+        31: aload_1
+        32: ldc_w         #993                // String Temper
+        35: aload_0
+        36: invokevirtual #216                // Method getTemper:()I
+        39: invokeinterface #995,  3          // InterfaceMethod net/minecraft/world/level/storage/ValueOutput.putInt:(Ljava/lang/String;I)V
+        44: aload_1
+        45: ldc_w         #999                // String Tame
+        48: aload_0
+        49: invokevirtual #189                // Method isTamed:()Z
+        52: invokeinterface #985,  3          // InterfaceMethod net/minecraft/world/level/storage/ValueOutput.putBoolean:(Ljava/lang/String;Z)V
+        57: aload_0
+        58: getfield      #139                // Field owner:Lnet/minecraft/world/entity/EntityReference;
+        61: aload_1
+        62: ldc_w         #1001               // String Owner
+        65: invokestatic  #1003               // Method net/minecraft/world/entity/EntityReference.store:(Lnet/minecraft/world/entity/EntityReference;Lnet/minecraft/world/level/storage/ValueOutput;Ljava/lang/String;)V
+        68: return
+
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1007               // Method net/minecraft/world/entity/animal/Animal.readAdditionalSaveData:(Lnet/minecraft/world/level/storage/ValueInput;)V
+         5: aload_0
+         6: aload_1
+         7: ldc_w         #983                // String EatingHaystack
+        10: iconst_0
+        11: invokeinterface #1011,  3         // InterfaceMethod net/minecraft/world/level/storage/ValueInput.getBooleanOr:(Ljava/lang/String;Z)Z
+        16: invokevirtual #159                // Method setEating:(Z)V
+        19: aload_0
+        20: aload_1
+        21: ldc_w         #991                // String Bred
+        24: iconst_0
+        25: invokeinterface #1011,  3         // InterfaceMethod net/minecraft/world/level/storage/ValueInput.getBooleanOr:(Ljava/lang/String;Z)Z
+        30: invokevirtual #1017               // Method setBred:(Z)V
+        33: aload_0
+        34: aload_1
+        35: ldc_w         #993                // String Temper
+        38: iconst_0
+        39: invokeinterface #1020,  3         // InterfaceMethod net/minecraft/world/level/storage/ValueInput.getIntOr:(Ljava/lang/String;I)I
+        44: invokevirtual #229                // Method setTemper:(I)V
+        47: aload_0
+        48: aload_1
+        49: ldc_w         #999                // String Tame
+        52: iconst_0
+        53: invokeinterface #1011,  3         // InterfaceMethod net/minecraft/world/level/storage/ValueInput.getBooleanOr:(Ljava/lang/String;Z)Z
+        58: invokevirtual #831                // Method setTamed:(Z)V
+        61: aload_0
+        62: aload_1
+        63: ldc_w         #1001               // String Owner
+        66: aload_0
+        67: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        70: invokestatic  #1024               // Method net/minecraft/world/entity/EntityReference.readWithOldOwnerConversion:(Lnet/minecraft/world/level/storage/ValueInput;Ljava/lang/String;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/entity/EntityReference;
+        73: putfield      #139                // Field owner:Lnet/minecraft/world/entity/EntityReference;
+        76: return
+
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected boolean canParent();
+    Code:
+         0: aload_0
+         1: invokevirtual #233                // Method isVehicle:()Z
+         4: ifne          51
+         7: aload_0
+         8: invokevirtual #1028               // Method isPassenger:()Z
+        11: ifne          51
+        14: aload_0
+        15: invokevirtual #189                // Method isTamed:()Z
+        18: ifeq          51
+        21: aload_0
+        22: invokevirtual #186                // Method isBaby:()Z
+        25: ifne          51
+        28: aload_0
+        29: invokevirtual #561                // Method getHealth:()F
+        32: aload_0
+        33: invokevirtual #564                // Method getMaxHealth:()F
+        36: fcmpl
+        37: iflt          51
+        40: aload_0
+        41: invokevirtual #547                // Method isInLove:()Z
+        44: ifeq          51
+        47: iconst_1
+        48: goto          52
+        51: iconst_0
+        52: ireturn
+
+  public boolean isMobControlled();
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+    Code:
+         0: aconst_null
+         1: areturn
+
+  protected void setOffspringAttributes(net.minecraft.world.entity.AgeableMob, net.minecraft.world.entity.animal.equine.AbstractHorse);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: getstatic     #463                // Field net/minecraft/world/entity/ai/attributes/Attributes.MAX_HEALTH:Lnet/minecraft/core/Holder;
+         6: getstatic     #1031               // Field MIN_HEALTH:F
+         9: f2d
+        10: getstatic     #1034               // Field MAX_HEALTH:F
+        13: f2d
+        14: invokevirtual #1036               // Method setOffspringAttribute:(Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/equine/AbstractHorse;Lnet/minecraft/core/Holder;DD)V
+        17: aload_0
+        18: aload_1
+        19: aload_2
+        20: getstatic     #451                // Field net/minecraft/world/entity/ai/attributes/Attributes.JUMP_STRENGTH:Lnet/minecraft/core/Holder;
+        23: getstatic     #1040               // Field MIN_JUMP_STRENGTH:F
+        26: f2d
+        27: getstatic     #1043               // Field MAX_JUMP_STRENGTH:F
+        30: f2d
+        31: invokevirtual #1036               // Method setOffspringAttribute:(Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/equine/AbstractHorse;Lnet/minecraft/core/Holder;DD)V
+        34: aload_0
+        35: aload_1
+        36: aload_2
+        37: getstatic     #468                // Field net/minecraft/world/entity/ai/attributes/Attributes.MOVEMENT_SPEED:Lnet/minecraft/core/Holder;
+        40: getstatic     #1046               // Field MIN_MOVEMENT_SPEED:F
+        43: f2d
+        44: getstatic     #1049               // Field MAX_MOVEMENT_SPEED:F
+        47: f2d
+        48: invokevirtual #1036               // Method setOffspringAttribute:(Lnet/minecraft/world/entity/AgeableMob;Lnet/minecraft/world/entity/animal/equine/AbstractHorse;Lnet/minecraft/core/Holder;DD)V
+        51: return
+
+  private void setOffspringAttribute(net.minecraft.world.entity.AgeableMob, net.minecraft.world.entity.animal.equine.AbstractHorse, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute>, double, double);
+    Code:
+         0: aload_0
+         1: aload_3
+         2: invokevirtual #1052               // Method getAttributeBaseValue:(Lnet/minecraft/core/Holder;)D
+         5: aload_1
+         6: aload_3
+         7: invokevirtual #1055               // Method net/minecraft/world/entity/AgeableMob.getAttributeBaseValue:(Lnet/minecraft/core/Holder;)D
+        10: dload         4
+        12: dload         6
+        14: aload_0
+        15: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        18: invokestatic  #1058               // Method createOffspringAttribute:(DDDDLnet/minecraft/util/RandomSource;)D
+        21: dstore        8
+        23: aload_2
+        24: aload_3
+        25: invokevirtual #1062               // Method getAttribute:(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/entity/ai/attributes/AttributeInstance;
+        28: dload         8
+        30: invokevirtual #1066               // Method net/minecraft/world/entity/ai/attributes/AttributeInstance.setBaseValue:(D)V
+        33: return
+
+  public static double createOffspringAttribute(double, double, double, double, net.minecraft.util.RandomSource);
+    Code:
+         0: dload         6
+         2: dload         4
+         4: dcmpg
+         5: ifgt          19
+         8: new           #1072               // class java/lang/IllegalArgumentException
+        11: dup
+        12: ldc_w         #1074               // String Incorrect range for an attribute
+        15: invokespecial #1076               // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        18: athrow
+        19: dload_0
+        20: dload         4
+        22: dload         6
+        24: invokestatic  #1079               // Method net/minecraft/util/Mth.clamp:(DDD)D
+        27: dstore_0
+        28: dload_2
+        29: dload         4
+        31: dload         6
+        33: invokestatic  #1079               // Method net/minecraft/util/Mth.clamp:(DDD)D
+        36: dstore_2
+        37: ldc2_w        #1082               // double 0.15d
+        40: dload         6
+        42: dload         4
+        44: dsub
+        45: dmul
+        46: dstore        9
+        48: dload_0
+        49: dload_2
+        50: dsub
+        51: invokestatic  #1084               // Method java/lang/Math.abs:(D)D
+        54: dload         9
+        56: ldc2_w        #1087               // double 2.0d
+        59: dmul
+        60: dadd
+        61: dstore        11
+        63: dload_0
+        64: dload_2
+        65: dadd
+        66: ldc2_w        #1087               // double 2.0d
+        69: ddiv
+        70: dstore        13
+        72: aload         8
+        74: invokeinterface #1089,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+        79: aload         8
+        81: invokeinterface #1089,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+        86: dadd
+        87: aload         8
+        89: invokeinterface #1089,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextDouble:()D
+        94: dadd
+        95: ldc2_w        #1092               // double 3.0d
+        98: ddiv
+        99: ldc2_w        #484                // double 0.5d
+       102: dsub
+       103: dstore        15
+       105: dload         13
+       107: dload         11
+       109: dload         15
+       111: dmul
+       112: dadd
+       113: dstore        17
+       115: dload         17
+       117: dload         6
+       119: dcmpl
+       120: ifle          136
+       123: dload         17
+       125: dload         6
+       127: dsub
+       128: dstore        19
+       130: dload         6
+       132: dload         19
+       134: dsub
+       135: dreturn
+       136: dload         17
+       138: dload         4
+       140: dcmpg
+       141: ifge          157
+       144: dload         4
+       146: dload         17
+       148: dsub
+       149: dstore        19
+       151: dload         4
+       153: dload         19
+       155: dadd
+       156: dreturn
+       157: dload         17
+       159: dreturn
+
+  public float getEatAnim(float);
+    Code:
+         0: fload_1
+         1: aload_0
+         2: getfield      #756                // Field eatAnimO:F
+         5: aload_0
+         6: getfield      #752                // Field eatAnim:F
+         9: invokestatic  #1094               // Method net/minecraft/util/Mth.lerp:(FFF)F
+        12: freturn
+
+  public float getStandAnim(float);
+    Code:
+         0: fload_1
+         1: aload_0
+         2: getfield      #763                // Field standAnimO:F
+         5: aload_0
+         6: getfield      #760                // Field standAnim:F
+         9: invokestatic  #1094               // Method net/minecraft/util/Mth.lerp:(FFF)F
+        12: freturn
+
+  public float getMouthAnim(float);
+    Code:
+         0: fload_1
+         1: aload_0
+         2: getfield      #773                // Field mouthAnimO:F
+         5: aload_0
+         6: getfield      #770                // Field mouthAnim:F
+         9: invokestatic  #1094               // Method net/minecraft/util/Mth.lerp:(FFF)F
+        12: freturn
+
+  public void onPlayerJump(int);
+    Code:
+         0: aload_0
+         1: invokevirtual #633                // Method isSaddled:()Z
+         4: ifne          8
+         7: return
+         8: iload_1
+         9: ifge          17
+        12: iconst_0
+        13: istore_1
+        14: goto          26
+        17: aload_0
+        18: iconst_1
+        19: putfield      #766                // Field allowStandSliding:Z
+        22: aload_0
+        23: invokevirtual #367                // Method standIfPossible:()V
+        26: aload_0
+        27: aload_0
+        28: iload_1
+        29: invokevirtual #1098               // Method getPlayerJumpPendingScale:(I)F
+        32: putfield      #895                // Field playerJumpPendingScale:F
+        35: return
+
+  public boolean canJump();
+    Code:
+         0: aload_0
+         1: invokevirtual #633                // Method isSaddled:()Z
+         4: ireturn
+
+  public void handleStartJump(int);
+    Code:
+         0: aload_0
+         1: iconst_1
+         2: putfield      #766                // Field allowStandSliding:Z
+         5: aload_0
+         6: invokevirtual #367                // Method standIfPossible:()V
+         9: aload_0
+        10: invokevirtual #1102               // Method playJumpSound:()V
+        13: return
+
+  public void handleStopJump();
+    Code:
+         0: return
+
+  protected void spawnTamingParticles(boolean);
+    Code:
+         0: iload_1
+         1: ifeq          10
+         4: getstatic     #1105               // Field net/minecraft/core/particles/ParticleTypes.HEART:Lnet/minecraft/core/particles/SimpleParticleType;
+         7: goto          13
+        10: getstatic     #1108               // Field net/minecraft/core/particles/ParticleTypes.SMOKE:Lnet/minecraft/core/particles/SimpleParticleType;
+        13: astore_2
+        14: iconst_0
+        15: istore_3
+        16: iload_3
+        17: bipush        7
+        19: if_icmpge     105
+        22: aload_0
+        23: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        26: invokeinterface #1111,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextGaussian:()D
+        31: ldc2_w        #1114               // double 0.02d
+        34: dmul
+        35: dstore        4
+        37: aload_0
+        38: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        41: invokeinterface #1111,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextGaussian:()D
+        46: ldc2_w        #1114               // double 0.02d
+        49: dmul
+        50: dstore        6
+        52: aload_0
+        53: getfield      #264                // Field random:Lnet/minecraft/util/RandomSource;
+        56: invokeinterface #1111,  1         // InterfaceMethod net/minecraft/util/RandomSource.nextGaussian:()D
+        61: ldc2_w        #1114               // double 0.02d
+        64: dmul
+        65: dstore        8
+        67: aload_0
+        68: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        71: aload_2
+        72: aload_0
+        73: dconst_1
+        74: invokevirtual #580                // Method getRandomX:(D)D
+        77: aload_0
+        78: invokevirtual #584                // Method getRandomY:()D
+        81: ldc2_w        #484                // double 0.5d
+        84: dadd
+        85: aload_0
+        86: dconst_1
+        87: invokevirtual #587                // Method getRandomZ:(D)D
+        90: dload         4
+        92: dload         6
+        94: dload         8
+        96: invokevirtual #590                // Method net/minecraft/world/level/Level.addParticle:(Lnet/minecraft/core/particles/ParticleOptions;DDDDDD)V
+        99: iinc          3, 1
+       102: goto          16
+       105: return
+
+  public void handleEntityEvent(byte);
+    Code:
+         0: iload_1
+         1: bipush        7
+         3: if_icmpne     14
+         6: aload_0
+         7: iconst_1
+         8: invokevirtual #1116               // Method spawnTamingParticles:(Z)V
+        11: goto          33
+        14: iload_1
+        15: bipush        6
+        17: if_icmpne     28
+        20: aload_0
+        21: iconst_0
+        22: invokevirtual #1116               // Method spawnTamingParticles:(Z)V
+        25: goto          33
+        28: aload_0
+        29: iload_1
+        30: invokespecial #1119               // Method net/minecraft/world/entity/animal/Animal.handleEntityEvent:(B)V
+        33: return
+
+  protected void positionRider(net.minecraft.world.entity.Entity, net.minecraft.world.entity.Entity$MoveFunction);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #1123               // Method net/minecraft/world/entity/animal/Animal.positionRider:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/Entity$MoveFunction;)V
+         6: aload_1
+         7: instanceof    #906                // class net/minecraft/world/entity/LivingEntity
+        10: ifeq          26
+        13: aload_1
+        14: checkcast     #906                // class net/minecraft/world/entity/LivingEntity
+        17: astore_3
+        18: aload_3
+        19: aload_0
+        20: getfield      #877                // Field yBodyRot:F
+        23: putfield      #1127               // Field net/minecraft/world/entity/LivingEntity.yBodyRot:F
+        26: return
+
+  protected static float generateMaxHealth(java.util.function.IntUnaryOperator);
+    Code:
+         0: ldc_w         #1128               // float 15.0f
+         3: aload_0
+         4: bipush        8
+         6: invokeinterface #1129,  2         // InterfaceMethod java/util/function/IntUnaryOperator.applyAsInt:(I)I
+        11: i2f
+        12: fadd
+        13: aload_0
+        14: bipush        9
+        16: invokeinterface #1129,  2         // InterfaceMethod java/util/function/IntUnaryOperator.applyAsInt:(I)I
+        21: i2f
+        22: fadd
+        23: freturn
+
+  protected static double generateJumpStrength(java.util.function.DoubleSupplier);
+    Code:
+         0: ldc2_w        #1134               // double 0.4000000059604645d
+         3: aload_0
+         4: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+         9: ldc2_w        #1141               // double 0.2d
+        12: dmul
+        13: dadd
+        14: aload_0
+        15: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+        20: ldc2_w        #1141               // double 0.2d
+        23: dmul
+        24: dadd
+        25: aload_0
+        26: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+        31: ldc2_w        #1141               // double 0.2d
+        34: dmul
+        35: dadd
+        36: dreturn
+
+  protected static double generateSpeed(java.util.function.DoubleSupplier);
+    Code:
+         0: ldc2_w        #1143               // double 0.44999998807907104d
+         3: aload_0
+         4: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+         9: ldc2_w        #1145               // double 0.3d
+        12: dmul
+        13: dadd
+        14: aload_0
+        15: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+        20: ldc2_w        #1145               // double 0.3d
+        23: dmul
+        24: dadd
+        25: aload_0
+        26: invokeinterface #1136,  1         // InterfaceMethod java/util/function/DoubleSupplier.getAsDouble:()D
+        31: ldc2_w        #1145               // double 0.3d
+        34: dmul
+        35: dadd
+        36: ldc2_w        #1147               // double 0.25d
+        39: dmul
+        40: dreturn
+
+  public boolean onClimbable();
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+    Code:
+         0: iload_1
+         1: sipush        500
+         4: isub
+         5: istore_2
+         6: iload_2
+         7: iflt          30
+        10: iload_2
+        11: aload_0
+        12: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        15: invokevirtual #328                // Method net/minecraft/world/SimpleContainer.getContainerSize:()I
+        18: if_icmpge     30
+        21: aload_0
+        22: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+        25: iload_2
+        26: invokevirtual #1149               // Method net/minecraft/world/SimpleContainer.getSlot:(I)Lnet/minecraft/world/entity/SlotAccess;
+        29: areturn
+        30: aload_0
+        31: iload_1
+        32: invokespecial #1153               // Method net/minecraft/world/entity/animal/Animal.getSlot:(I)Lnet/minecraft/world/entity/SlotAccess;
+        35: areturn
+
+  public net.minecraft.world.entity.LivingEntity getControllingPassenger();
+    Code:
+         0: aload_0
+         1: invokevirtual #633                // Method isSaddled:()Z
+         4: ifeq          26
+         7: aload_0
+         8: invokevirtual #1154               // Method getFirstPassenger:()Lnet/minecraft/world/entity/Entity;
+        11: astore_2
+        12: aload_2
+        13: instanceof    #57                 // class net/minecraft/world/entity/player/Player
+        16: ifeq          26
+        19: aload_2
+        20: checkcast     #57                 // class net/minecraft/world/entity/player/Player
+        23: astore_1
+        24: aload_1
+        25: areturn
+        26: aload_0
+        27: invokespecial #1158               // Method net/minecraft/world/entity/animal/Animal.getControllingPassenger:()Lnet/minecraft/world/entity/LivingEntity;
+        30: areturn
+
+  private net.minecraft.world.phys.Vec3 getDismountLocationInDirection(net.minecraft.world.phys.Vec3, net.minecraft.world.entity.LivingEntity);
+    Code:
+         0: aload_0
+         1: invokevirtual #250                // Method getX:()D
+         4: aload_1
+         5: getfield      #953                // Field net/minecraft/world/phys/Vec3.x:D
+         8: dadd
+         9: dstore_3
+        10: aload_0
+        11: invokevirtual #708                // Method getBoundingBox:()Lnet/minecraft/world/phys/AABB;
+        14: getfield      #1162               // Field net/minecraft/world/phys/AABB.minY:D
+        17: dstore        5
+        19: aload_0
+        20: invokevirtual #257                // Method getZ:()D
+        23: aload_1
+        24: getfield      #886                // Field net/minecraft/world/phys/Vec3.z:D
+        27: dadd
+        28: dstore        7
+        30: new           #1165               // class net/minecraft/core/BlockPos$MutableBlockPos
+        33: dup
+        34: invokespecial #1167               // Method net/minecraft/core/BlockPos$MutableBlockPos."<init>":()V
+        37: astore        9
+        39: aload_2
+        40: invokevirtual #1169               // Method net/minecraft/world/entity/LivingEntity.getDismountPoses:()Lcom/google/common/collect/ImmutableList;
+        43: invokevirtual #1173               // Method com/google/common/collect/ImmutableList.iterator:()Lcom/google/common/collect/UnmodifiableIterator;
+        46: astore        10
+        48: aload         10
+        50: invokeinterface #1179,  1         // InterfaceMethod java/util/Iterator.hasNext:()Z
+        55: ifeq          211
+        58: aload         10
+        60: invokeinterface #1184,  1         // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        65: checkcast     #1188               // class net/minecraft/world/entity/Pose
+        68: astore        11
+        70: aload         9
+        72: dload_3
+        73: dload         5
+        75: dload         7
+        77: invokevirtual #1190               // Method net/minecraft/core/BlockPos$MutableBlockPos.set:(DDD)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+        80: pop
+        81: aload_0
+        82: invokevirtual #708                // Method getBoundingBox:()Lnet/minecraft/world/phys/AABB;
+        85: getfield      #1193               // Field net/minecraft/world/phys/AABB.maxY:D
+        88: ldc2_w        #1196               // double 0.75d
+        91: dadd
+        92: dstore        12
+        94: aload_0
+        95: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+        98: aload         9
+       100: invokevirtual #1198               // Method net/minecraft/world/level/Level.getBlockFloorHeight:(Lnet/minecraft/core/BlockPos;)D
+       103: dstore        14
+       105: aload         9
+       107: invokevirtual #1202               // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+       110: i2d
+       111: dload         14
+       113: dadd
+       114: dload         12
+       116: dcmpl
+       117: ifle          123
+       120: goto          208
+       123: dload         14
+       125: invokestatic  #1204               // Method net/minecraft/world/entity/vehicle/DismountHelper.isBlockFloorValid:(D)Z
+       128: ifeq          187
+       131: aload_2
+       132: aload         11
+       134: invokevirtual #1210               // Method net/minecraft/world/entity/LivingEntity.getLocalBoundsForPose:(Lnet/minecraft/world/entity/Pose;)Lnet/minecraft/world/phys/AABB;
+       137: astore        16
+       139: new           #887                // class net/minecraft/world/phys/Vec3
+       142: dup
+       143: dload_3
+       144: aload         9
+       146: invokevirtual #1202               // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+       149: i2d
+       150: dload         14
+       152: dadd
+       153: dload         7
+       155: invokespecial #939                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+       158: astore        17
+       160: aload_0
+       161: invokevirtual #246                // Method level:()Lnet/minecraft/world/level/Level;
+       164: aload_2
+       165: aload         16
+       167: aload         17
+       169: invokevirtual #1214               // Method net/minecraft/world/phys/AABB.move:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/AABB;
+       172: invokestatic  #1218               // Method net/minecraft/world/entity/vehicle/DismountHelper.canDismountTo:(Lnet/minecraft/world/level/CollisionGetter;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/phys/AABB;)Z
+       175: ifeq          187
+       178: aload_2
+       179: aload         11
+       181: invokevirtual #1222               // Method net/minecraft/world/entity/LivingEntity.setPose:(Lnet/minecraft/world/entity/Pose;)V
+       184: aload         17
+       186: areturn
+       187: aload         9
+       189: getstatic     #1226               // Field net/minecraft/core/Direction.UP:Lnet/minecraft/core/Direction;
+       192: invokevirtual #1232               // Method net/minecraft/core/BlockPos$MutableBlockPos.move:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+       195: pop
+       196: aload         9
+       198: invokevirtual #1202               // Method net/minecraft/core/BlockPos$MutableBlockPos.getY:()I
+       201: i2d
+       202: dload         12
+       204: dcmpg
+       205: iflt          94
+       208: goto          48
+       211: aconst_null
+       212: areturn
+
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+    Code:
+         0: aload_0
+         1: invokevirtual #1235               // Method getBbWidth:()F
+         4: f2d
+         5: aload_1
+         6: invokevirtual #1238               // Method net/minecraft/world/entity/LivingEntity.getBbWidth:()F
+         9: f2d
+        10: aload_0
+        11: invokevirtual #615                // Method getYRot:()F
+        14: aload_1
+        15: invokevirtual #1239               // Method net/minecraft/world/entity/LivingEntity.getMainArm:()Lnet/minecraft/world/entity/HumanoidArm;
+        18: getstatic     #1243               // Field net/minecraft/world/entity/HumanoidArm.RIGHT:Lnet/minecraft/world/entity/HumanoidArm;
+        21: if_acmpne     30
+        24: ldc_w         #1249               // float 90.0f
+        27: goto          33
+        30: ldc_w         #1250               // float -90.0f
+        33: fadd
+        34: invokestatic  #1251               // Method getCollisionHorizontalEscapeVector:(DDF)Lnet/minecraft/world/phys/Vec3;
+        37: astore_2
+        38: aload_0
+        39: aload_2
+        40: aload_1
+        41: invokevirtual #1255               // Method getDismountLocationInDirection:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+        44: astore_3
+        45: aload_3
+        46: ifnull        51
+        49: aload_3
+        50: areturn
+        51: aload_0
+        52: invokevirtual #1235               // Method getBbWidth:()F
+        55: f2d
+        56: aload_1
+        57: invokevirtual #1238               // Method net/minecraft/world/entity/LivingEntity.getBbWidth:()F
+        60: f2d
+        61: aload_0
+        62: invokevirtual #615                // Method getYRot:()F
+        65: aload_1
+        66: invokevirtual #1239               // Method net/minecraft/world/entity/LivingEntity.getMainArm:()Lnet/minecraft/world/entity/HumanoidArm;
+        69: getstatic     #1259               // Field net/minecraft/world/entity/HumanoidArm.LEFT:Lnet/minecraft/world/entity/HumanoidArm;
+        72: if_acmpne     81
+        75: ldc_w         #1249               // float 90.0f
+        78: goto          84
+        81: ldc_w         #1250               // float -90.0f
+        84: fadd
+        85: invokestatic  #1251               // Method getCollisionHorizontalEscapeVector:(DDF)Lnet/minecraft/world/phys/Vec3;
+        88: astore        4
+        90: aload_0
+        91: aload         4
+        93: aload_1
+        94: invokevirtual #1255               // Method getDismountLocationInDirection:(Lnet/minecraft/world/phys/Vec3;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/phys/Vec3;
+        97: astore        5
+        99: aload         5
+       101: ifnull        107
+       104: aload         5
+       106: areturn
+       107: aload_0
+       108: invokevirtual #1262               // Method position:()Lnet/minecraft/world/phys/Vec3;
+       111: areturn
+
+  protected void randomizeAttributes(net.minecraft.util.RandomSource);
+    Code:
+         0: return
+
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+    Code:
+         0: aload         4
+         2: ifnonnull     17
+         5: new           #1265               // class net/minecraft/world/entity/AgeableMob$AgeableMobGroupData
+         8: dup
+         9: ldc_w         #274                // float 0.2f
+        12: invokespecial #1267               // Method net/minecraft/world/entity/AgeableMob$AgeableMobGroupData."<init>":(F)V
+        15: astore        4
+        17: aload_0
+        18: aload_1
+        19: invokeinterface #1269,  1         // InterfaceMethod net/minecraft/world/level/ServerLevelAccessor.getRandom:()Lnet/minecraft/util/RandomSource;
+        24: invokevirtual #1275               // Method randomizeAttributes:(Lnet/minecraft/util/RandomSource;)V
+        27: aload_0
+        28: aload_1
+        29: aload_2
+        30: aload_3
+        31: aload         4
+        33: invokespecial #1279               // Method net/minecraft/world/entity/animal/Animal.finalizeSpawn:(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/EntitySpawnReason;Lnet/minecraft/world/entity/SpawnGroupData;)Lnet/minecraft/world/entity/SpawnGroupData;
+        36: areturn
+
+  public boolean hasInventoryChanged(net.minecraft.world.Container);
+    Code:
+         0: aload_0
+         1: getfield      #318                // Field inventory:Lnet/minecraft/world/SimpleContainer;
+         4: aload_1
+         5: if_acmpeq     12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: ireturn
+
+  public int getAmbientStandInterval();
+    Code:
+         0: aload_0
+         1: invokevirtual #1283               // Method getAmbientSoundInterval:()I
+         4: ireturn
+
+  protected net.minecraft.world.phys.Vec3 getPassengerAttachmentPoint(net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityDimensions, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: fload_3
+         4: invokespecial #1286               // Method net/minecraft/world/entity/animal/Animal.getPassengerAttachmentPoint:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/entity/EntityDimensions;F)Lnet/minecraft/world/phys/Vec3;
+         7: new           #887                // class net/minecraft/world/phys/Vec3
+        10: dup
+        11: dconst_0
+        12: ldc2_w        #1082               // double 0.15d
+        15: aload_0
+        16: getfield      #763                // Field standAnimO:F
+        19: f2d
+        20: dmul
+        21: fload_3
+        22: f2d
+        23: dmul
+        24: ldc2_w        #1290               // double -0.7d
+        27: aload_0
+        28: getfield      #763                // Field standAnimO:F
+        31: f2d
+        32: dmul
+        33: fload_3
+        34: f2d
+        35: dmul
+        36: invokespecial #939                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+        39: aload_0
+        40: invokevirtual #615                // Method getYRot:()F
+        43: fneg
+        44: ldc_w         #961                // float 0.017453292f
+        47: fmul
+        48: invokevirtual #1292               // Method net/minecraft/world/phys/Vec3.yRot:(F)Lnet/minecraft/world/phys/Vec3;
+        51: invokevirtual #1296               // Method net/minecraft/world/phys/Vec3.add:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+        54: areturn
+
+  public int getInventoryColumns();
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  private static boolean lambda$addBehaviourGoals$0(net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_0
+         1: getstatic     #1299               // Field net/minecraft/tags/ItemTags.HORSE_TEMPT_ITEMS:Lnet/minecraft/tags/TagKey;
+         4: invokevirtual #645                // Method net/minecraft/world/item/ItemStack.is:(Lnet/minecraft/tags/TagKey;)Z
+         7: ireturn
+
+  private static boolean lambda$static$6(net.minecraft.world.entity.LivingEntity, net.minecraft.server.level.ServerLevel);
+    Code:
+         0: aload_0
+         1: instanceof    #7                  // class net/minecraft/world/entity/animal/equine/AbstractHorse
+         4: ifeq          23
+         7: aload_0
+         8: checkcast     #7                  // class net/minecraft/world/entity/animal/equine/AbstractHorse
+        11: astore_2
+        12: aload_2
+        13: invokevirtual #701                // Method isBred:()Z
+        16: ifeq          23
+        19: iconst_1
+        20: goto          24
+        23: iconst_0
+        24: ireturn
+
+  private static int lambda$static$5(int);
+    Code:
+         0: iload_0
+         1: iconst_1
+         2: isub
+         3: ireturn
+
+  private static int lambda$static$4(int);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  private static double lambda$static$3();
+    Code:
+         0: dconst_1
+         1: dreturn
+
+  private static double lambda$static$2();
+    Code:
+         0: dconst_0
+         1: dreturn
+
+  private static double lambda$static$1();
+    Code:
+         0: dconst_1
+         1: dreturn
+
+  private static double lambda$static$0();
+    Code:
+         0: dconst_0
+         1: dreturn
+
+  static {};
+    Code:
+         0: invokedynamic #1302,  0           // InvokeDynamic #1:getAsDouble:()Ljava/util/function/DoubleSupplier;
+         5: invokestatic  #1305               // Method generateSpeed:(Ljava/util/function/DoubleSupplier;)D
+         8: d2f
+         9: putstatic     #1046               // Field MIN_MOVEMENT_SPEED:F
+        12: invokedynamic #1309,  0           // InvokeDynamic #2:getAsDouble:()Ljava/util/function/DoubleSupplier;
+        17: invokestatic  #1305               // Method generateSpeed:(Ljava/util/function/DoubleSupplier;)D
+        20: d2f
+        21: putstatic     #1049               // Field MAX_MOVEMENT_SPEED:F
+        24: invokedynamic #1310,  0           // InvokeDynamic #3:getAsDouble:()Ljava/util/function/DoubleSupplier;
+        29: invokestatic  #1311               // Method generateJumpStrength:(Ljava/util/function/DoubleSupplier;)D
+        32: d2f
+        33: putstatic     #1040               // Field MIN_JUMP_STRENGTH:F
+        36: invokedynamic #1314,  0           // InvokeDynamic #4:getAsDouble:()Ljava/util/function/DoubleSupplier;
+        41: invokestatic  #1311               // Method generateJumpStrength:(Ljava/util/function/DoubleSupplier;)D
+        44: d2f
+        45: putstatic     #1043               // Field MAX_JUMP_STRENGTH:F
+        48: invokedynamic #1315,  0           // InvokeDynamic #5:applyAsInt:()Ljava/util/function/IntUnaryOperator;
+        53: invokestatic  #1318               // Method generateMaxHealth:(Ljava/util/function/IntUnaryOperator;)F
+        56: putstatic     #1031               // Field MIN_HEALTH:F
+        59: invokedynamic #1322,  0           // InvokeDynamic #6:applyAsInt:()Ljava/util/function/IntUnaryOperator;
+        64: invokestatic  #1318               // Method generateMaxHealth:(Ljava/util/function/IntUnaryOperator;)F
+        67: putstatic     #1034               // Field MAX_HEALTH:F
+        70: invokedynamic #1323,  0           // InvokeDynamic #7:test:()Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;
+        75: putstatic     #1326               // Field PARENT_HORSE_SELECTOR:Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;
+        78: invokestatic  #1330               // Method net/minecraft/world/entity/ai/targeting/TargetingConditions.forNonCombat:()Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        81: ldc2_w        #712                // double 16.0d
+        84: invokevirtual #1336               // Method net/minecraft/world/entity/ai/targeting/TargetingConditions.range:(D)Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        87: invokevirtual #1340               // Method net/minecraft/world/entity/ai/targeting/TargetingConditions.ignoreLineOfSight:()Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        90: getstatic     #1326               // Field PARENT_HORSE_SELECTOR:Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;
+        93: invokevirtual #1343               // Method net/minecraft/world/entity/ai/targeting/TargetingConditions.selector:(Lnet/minecraft/world/entity/ai/targeting/TargetingConditions$Selector;)Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        96: putstatic     #704                // Field MOMMY_TARGETING:Lnet/minecraft/world/entity/ai/targeting/TargetingConditions;
+        99: ldc           #7                  // class net/minecraft/world/entity/animal/equine/AbstractHorse
+       101: getstatic     #1347               // Field net/minecraft/network/syncher/EntityDataSerializers.BYTE:Lnet/minecraft/network/syncher/EntityDataSerializer;
+       104: invokestatic  #1353               // Method net/minecraft/network/syncher/SynchedEntityData.defineId:(Ljava/lang/Class;Lnet/minecraft/network/syncher/EntityDataSerializer;)Lnet/minecraft/network/syncher/EntityDataAccessor;
+       107: putstatic     #101                // Field DATA_ID_FLAGS:Lnet/minecraft/network/syncher/EntityDataAccessor;
+       110: return
+}

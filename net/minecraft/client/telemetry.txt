@@ -1,0 +1,184 @@
+Compiled from "TelemetryLogManager.java"
+public class net.minecraft.client.telemetry.TelemetryLogManager implements java.lang.AutoCloseable {
+  public static java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.client.telemetry.TelemetryLogManager>> open(java.nio.file.Path);
+  public java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.client.telemetry.TelemetryEventLogger>> openLogger();
+  public void close();
+}
+Compiled from "TelemetryProperty.java"
+public final class net.minecraft.client.telemetry.TelemetryProperty$ServerType extends java.lang.Enum<net.minecraft.client.telemetry.TelemetryProperty$ServerType> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.telemetry.TelemetryProperty$ServerType REALM;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$ServerType LOCAL;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$ServerType OTHER;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.telemetry.TelemetryProperty$ServerType> CODEC;
+  public static net.minecraft.client.telemetry.TelemetryProperty$ServerType[] values();
+  public static net.minecraft.client.telemetry.TelemetryProperty$ServerType valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "TelemetryPropertyMap.java"
+public class net.minecraft.client.telemetry.TelemetryPropertyMap$Builder {
+  public <T> net.minecraft.client.telemetry.TelemetryPropertyMap$Builder put(net.minecraft.client.telemetry.TelemetryProperty<T>, T);
+  public <T> net.minecraft.client.telemetry.TelemetryPropertyMap$Builder putIfNotNull(net.minecraft.client.telemetry.TelemetryProperty<T>, T);
+  public net.minecraft.client.telemetry.TelemetryPropertyMap$Builder putAll(net.minecraft.client.telemetry.TelemetryPropertyMap);
+  public net.minecraft.client.telemetry.TelemetryPropertyMap build();
+}
+Compiled from "ClientTelemetryManager.java"
+public class net.minecraft.client.telemetry.ClientTelemetryManager implements java.lang.AutoCloseable {
+  public net.minecraft.client.telemetry.ClientTelemetryManager(net.minecraft.client.Minecraft, com.mojang.authlib.minecraft.UserApiService, net.minecraft.client.User);
+  public net.minecraft.client.telemetry.WorldSessionTelemetryManager createWorldSessionManager(boolean, java.time.Duration, java.lang.String, java.util.UUID);
+  public net.minecraft.client.telemetry.TelemetryEventSender getOutsideSessionSender();
+  public java.nio.file.Path getLogDirectory();
+  public void close();
+}
+Compiled from "TelemetryProperty.java"
+public final class net.minecraft.client.telemetry.TelemetryProperty$GameMode extends java.lang.Enum<net.minecraft.client.telemetry.TelemetryProperty$GameMode> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.telemetry.TelemetryProperty$GameMode SURVIVAL;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$GameMode CREATIVE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$GameMode ADVENTURE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$GameMode SPECTATOR;
+  public static final net.minecraft.client.telemetry.TelemetryProperty$GameMode HARDCORE;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.telemetry.TelemetryProperty$GameMode> CODEC;
+  public static net.minecraft.client.telemetry.TelemetryProperty$GameMode[] values();
+  public static net.minecraft.client.telemetry.TelemetryProperty$GameMode valueOf(java.lang.String);
+  public int id();
+  public java.lang.String getSerializedName();
+}
+Compiled from "TelemetryEventLogger.java"
+public interface net.minecraft.client.telemetry.TelemetryEventLogger {
+  public abstract void log(net.minecraft.client.telemetry.TelemetryEventInstance);
+}
+Compiled from "TelemetryEventType.java"
+public class net.minecraft.client.telemetry.TelemetryEventType {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.telemetry.TelemetryEventType> CODEC;
+  public static final net.minecraft.client.telemetry.TelemetryEventType GRAPHICS_CAPABILITIES;
+  public static final net.minecraft.client.telemetry.TelemetryEventType WORLD_LOADED;
+  public static final net.minecraft.client.telemetry.TelemetryEventType PERFORMANCE_METRICS;
+  public static final net.minecraft.client.telemetry.TelemetryEventType WORLD_LOAD_TIMES;
+  public static final net.minecraft.client.telemetry.TelemetryEventType WORLD_UNLOADED;
+  public static final net.minecraft.client.telemetry.TelemetryEventType ADVANCEMENT_MADE;
+  public static final net.minecraft.client.telemetry.TelemetryEventType GAME_LOAD_TIMES;
+  public static net.minecraft.client.telemetry.TelemetryEventType$Builder builder(java.lang.String, java.lang.String);
+  public java.lang.String id();
+  public java.util.List<net.minecraft.client.telemetry.TelemetryProperty<?>> properties();
+  public com.mojang.serialization.MapCodec<net.minecraft.client.telemetry.TelemetryEventInstance> codec();
+  public boolean isOptIn();
+  public com.mojang.authlib.minecraft.TelemetryEvent export(com.mojang.authlib.minecraft.TelemetrySession, net.minecraft.client.telemetry.TelemetryPropertyMap);
+  public <T> boolean contains(net.minecraft.client.telemetry.TelemetryProperty<T>);
+  public java.lang.String toString();
+  public net.minecraft.network.chat.MutableComponent title();
+  public net.minecraft.network.chat.MutableComponent description();
+  public static java.util.List<net.minecraft.client.telemetry.TelemetryEventType> values();
+  public static boolean selfTest();
+}
+Compiled from "TelemetryEventInstance.java"
+public final class net.minecraft.client.telemetry.TelemetryEventInstance extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.telemetry.TelemetryEventInstance> CODEC;
+  public net.minecraft.client.telemetry.TelemetryEventInstance(net.minecraft.client.telemetry.TelemetryEventType, net.minecraft.client.telemetry.TelemetryPropertyMap);
+  public com.mojang.authlib.minecraft.TelemetryEvent export(com.mojang.authlib.minecraft.TelemetrySession);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.telemetry.TelemetryEventType type();
+  public net.minecraft.client.telemetry.TelemetryPropertyMap properties();
+}
+Compiled from "TelemetryEventSender.java"
+public interface net.minecraft.client.telemetry.TelemetryEventSender {
+  public static final net.minecraft.client.telemetry.TelemetryEventSender DISABLED;
+  public default net.minecraft.client.telemetry.TelemetryEventSender decorate(java.util.function.Consumer<net.minecraft.client.telemetry.TelemetryPropertyMap$Builder>);
+  public abstract void send(net.minecraft.client.telemetry.TelemetryEventType, java.util.function.Consumer<net.minecraft.client.telemetry.TelemetryPropertyMap$Builder>);
+}
+Compiled from "TelemetryProperty.java"
+public final class net.minecraft.client.telemetry.TelemetryProperty<T> extends java.lang.Record {
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> USER_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> CLIENT_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.util.UUID> MINECRAFT_SESSION_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> GAME_VERSION;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> OPERATING_SYSTEM;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> PLATFORM;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Boolean> CLIENT_MODDED;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> LAUNCHER_NAME;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> BACKEND_NAME;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> BACKEND_FAILURE_MESSAGE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> BACKEND_FAILURE_REASON;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> BACKEND_FAILURE_MISSING_CAPABILITIES;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.util.UUID> WORLD_SESSION_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.util.UUID> SERVER_SESSION_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Boolean> SERVER_MODDED;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.TelemetryProperty$ServerType> SERVER_TYPE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Boolean> OPT_IN;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.time.Instant> EVENT_TIMESTAMP_UTC;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.TelemetryProperty$GameMode> GAME_MODE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> REALMS_MAP_CONTENT;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> SECONDS_SINCE_LOAD;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> TICKS_SINCE_LOAD;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<it.unimi.dsi.fastutil.longs.LongList> FRAME_RATE_SAMPLES;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<it.unimi.dsi.fastutil.longs.LongList> RENDER_TIME_SAMPLES;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<it.unimi.dsi.fastutil.longs.LongList> USED_MEMORY_SAMPLES;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> NUMBER_OF_SAMPLES;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> RENDER_DISTANCE;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> DEDICATED_MEMORY_KB;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> WORLD_LOAD_TIME_MS;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Boolean> NEW_WORLD;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> LOAD_TIME_TOTAL_TIME_MS;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> LOAD_TIME_PRE_WINDOW_MS;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> LOAD_TIME_BOOTSTRAP_MS;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> LOAD_TIME_LOADING_OVERLAY_MS;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> ADVANCEMENT_ID;
+  public static final net.minecraft.client.telemetry.TelemetryProperty<java.lang.Long> ADVANCEMENT_GAME_TIME;
+  public net.minecraft.client.telemetry.TelemetryProperty(java.lang.String, java.lang.String, com.mojang.serialization.Codec<T>, net.minecraft.client.telemetry.TelemetryProperty$Exporter<T>);
+  public static <T> net.minecraft.client.telemetry.TelemetryProperty<T> create(java.lang.String, java.lang.String, com.mojang.serialization.Codec<T>, net.minecraft.client.telemetry.TelemetryProperty$Exporter<T>);
+  public static net.minecraft.client.telemetry.TelemetryProperty<java.lang.Boolean> bool(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<java.lang.String> string(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<java.lang.Integer> integer(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<java.lang.Long> makeLong(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<java.util.UUID> uuid(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> gameLoadMeasurement(java.lang.String, java.lang.String);
+  public static net.minecraft.client.telemetry.TelemetryProperty<it.unimi.dsi.fastutil.longs.LongList> longSamples(java.lang.String, java.lang.String);
+  public void export(net.minecraft.client.telemetry.TelemetryPropertyMap, com.mojang.authlib.minecraft.TelemetryPropertyContainer);
+  public net.minecraft.network.chat.MutableComponent title();
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String id();
+  public java.lang.String exportKey();
+  public com.mojang.serialization.Codec<T> codec();
+  public net.minecraft.client.telemetry.TelemetryProperty$Exporter<T> exporter();
+}
+Compiled from "TelemetryEventType.java"
+public class net.minecraft.client.telemetry.TelemetryEventType$Builder {
+  public net.minecraft.client.telemetry.TelemetryEventType$Builder defineAll(java.util.List<net.minecraft.client.telemetry.TelemetryProperty<?>>);
+  public <T> net.minecraft.client.telemetry.TelemetryEventType$Builder define(net.minecraft.client.telemetry.TelemetryProperty<T>);
+  public net.minecraft.client.telemetry.TelemetryEventType$Builder optIn();
+  public net.minecraft.client.telemetry.TelemetryEventType register();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.telemetry.package-info {
+}
+Compiled from "TelemetryEventLog.java"
+public class net.minecraft.client.telemetry.TelemetryEventLog implements java.lang.AutoCloseable {
+  public net.minecraft.client.telemetry.TelemetryEventLog(java.nio.channels.FileChannel, java.util.concurrent.Executor);
+  public net.minecraft.client.telemetry.TelemetryEventLogger logger();
+  public void close();
+}
+Compiled from "TelemetryPropertyMap.java"
+public class net.minecraft.client.telemetry.TelemetryPropertyMap {
+  public static net.minecraft.client.telemetry.TelemetryPropertyMap$Builder builder();
+  public static com.mojang.serialization.MapCodec<net.minecraft.client.telemetry.TelemetryPropertyMap> createCodec(java.util.List<net.minecraft.client.telemetry.TelemetryProperty<?>>);
+  public <T> T get(net.minecraft.client.telemetry.TelemetryProperty<T>);
+  public java.lang.String toString();
+  public java.util.Set<net.minecraft.client.telemetry.TelemetryProperty<?>> propertySet();
+}
+Compiled from "TelemetryProperty.java"
+public interface net.minecraft.client.telemetry.TelemetryProperty$Exporter<T> {
+  public abstract void apply(com.mojang.authlib.minecraft.TelemetryPropertyContainer, java.lang.String, T);
+}
+Compiled from "WorldSessionTelemetryManager.java"
+public class net.minecraft.client.telemetry.WorldSessionTelemetryManager {
+  public net.minecraft.client.telemetry.WorldSessionTelemetryManager(net.minecraft.client.telemetry.TelemetryEventSender, boolean, java.time.Duration, java.lang.String, java.util.UUID);
+  public void tick();
+  public void onPlayerInfoReceived(net.minecraft.world.level.GameType, boolean);
+  public void onServerBrandReceived(java.lang.String);
+  public void setTime(long);
+  public void worldSessionStart();
+  public void onDisconnect();
+  public void onAdvancementDone(net.minecraft.world.level.Level, net.minecraft.advancements.AdvancementHolder);
+}

@@ -1,0 +1,68 @@
+Compiled from "ClientGameTestContextImpl.java"
+public final class net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext {
+  public net.fabricmc.fabric.impl.client.gametest.context.ClientGameTestContextImpl();
+  public static void initGameOptions(net.minecraft.client.Options);
+  public void waitTick();
+  public void waitTicks(int);
+  public int waitFor(java.util.function.Predicate<net.minecraft.client.Minecraft>);
+  public int waitFor(java.util.function.Predicate<net.minecraft.client.Minecraft>, int);
+  public int waitForScreen(java.lang.Class<? extends net.minecraft.client.gui.screens.Screen>);
+  public void setScreen(java.util.function.Supplier<net.minecraft.client.gui.screens.Screen>);
+  public void clickScreenButton(java.lang.String);
+  public boolean tryClickScreenButton(java.lang.String);
+  public java.nio.file.Path takeScreenshot(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions);
+  public void assertScreenshotEquals(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions);
+  public org.joml.Vector2i assertScreenshotContains(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions);
+  public net.fabricmc.fabric.impl.client.gametest.TestInputImpl getInput();
+  public net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldBuilder worldBuilder();
+  public void restoreDefaultGameOptions();
+  public <E extends java.lang.Throwable> void runOnClient(org.apache.commons.lang3.function.FailableConsumer<net.minecraft.client.Minecraft, E>) throws E;
+  public <T, E extends java.lang.Throwable> T computeOnClient(org.apache.commons.lang3.function.FailableFunction<net.minecraft.client.Minecraft, T, E>) throws E;
+  public net.fabricmc.fabric.api.client.gametest.v1.TestInput getInput();
+}
+Compiled from "TestDedicatedServerConnectionImpl.java"
+public class net.fabricmc.fabric.impl.client.gametest.context.TestDedicatedServerConnectionImpl extends net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.TestDedicatedServerConnection {
+  public net.fabricmc.fabric.impl.client.gametest.context.TestDedicatedServerConnectionImpl(net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext, net.fabricmc.fabric.impl.client.gametest.context.TestServerContextImpl);
+  public void close();
+}
+Compiled from "TestDedicatedServerContextImpl.java"
+public class net.fabricmc.fabric.impl.client.gametest.context.TestDedicatedServerContextImpl extends net.fabricmc.fabric.impl.client.gametest.context.TestServerContextImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.TestDedicatedServerContext {
+  public net.fabricmc.fabric.impl.client.gametest.context.TestDedicatedServerContextImpl(net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext, net.minecraft.server.dedicated.DedicatedServer);
+  public net.fabricmc.fabric.api.client.gametest.v1.context.TestDedicatedServerConnection connect();
+  public void close();
+}
+Compiled from "TestServerConnectionImpl.java"
+public class net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection {
+  protected final net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext context;
+  public net.fabricmc.fabric.impl.client.gametest.context.TestServerConnectionImpl(net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext, net.fabricmc.fabric.impl.client.gametest.context.TestServerContextImpl);
+  public int waitForChunksDownload(int);
+  public int waitForChunksRender(boolean, int);
+  public void waitForClientboundPackets();
+  public void waitForServerboundPackets();
+  public void waitForClientboundEntityUpdates(net.minecraft.world.entity.EntityType<?>, net.minecraft.world.entity.EntityType<?>...);
+  public net.minecraft.client.player.LocalPlayer getClientPlayer();
+  public net.minecraft.client.multiplayer.ClientLevel getClientLevel();
+  public net.minecraft.server.level.ServerPlayer getServerPlayer();
+  public net.minecraft.server.level.ServerLevel getServerLevel();
+}
+Compiled from "TestServerContextImpl.java"
+public class net.fabricmc.fabric.impl.client.gametest.context.TestServerContextImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext {
+  protected final net.minecraft.server.MinecraftServer server;
+  public net.fabricmc.fabric.impl.client.gametest.context.TestServerContextImpl(net.minecraft.server.MinecraftServer);
+  public void runCommand(java.lang.String);
+  public <E extends java.lang.Throwable> void runOnServer(org.apache.commons.lang3.function.FailableConsumer<net.minecraft.server.MinecraftServer, E>) throws E;
+  public <T, E extends java.lang.Throwable> T computeOnServer(org.apache.commons.lang3.function.FailableFunction<net.minecraft.server.MinecraftServer, T, E>) throws E;
+  public int waitFor(java.util.function.Predicate<net.minecraft.server.MinecraftServer>);
+  public int waitFor(java.util.function.Predicate<net.minecraft.server.MinecraftServer>, int);
+}
+Compiled from "TestSingleplayerContextImpl.java"
+public class net.fabricmc.fabric.impl.client.gametest.context.TestSingleplayerContextImpl implements net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext {
+  public net.fabricmc.fabric.impl.client.gametest.context.TestSingleplayerContextImpl(net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext, net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldSave, net.minecraft.server.MinecraftServer);
+  public net.fabricmc.fabric.api.client.gametest.v1.world.TestWorldSave getWorldSave();
+  public net.fabricmc.fabric.api.client.gametest.v1.context.TestServerConnection getConnection();
+  public net.fabricmc.fabric.api.client.gametest.v1.context.TestServerContext getServer();
+  public void close();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.client.gametest.context.package-info {
+}

@@ -1,0 +1,208 @@
+Compiled from "ExpirableValue.java"
+public final class net.minecraft.world.entity.ai.memory.ExpirableValue<T> extends java.lang.Record {
+  public net.minecraft.world.entity.ai.memory.ExpirableValue(T, java.util.Optional<java.lang.Long>);
+  public static <T> net.minecraft.world.entity.ai.memory.ExpirableValue<T> of(T);
+  public static <T> net.minecraft.world.entity.ai.memory.ExpirableValue<T> of(T, long);
+  public java.lang.String toString();
+  public static <T> com.mojang.serialization.Codec<net.minecraft.world.entity.ai.memory.ExpirableValue<T>> codec(com.mojang.serialization.Codec<T>);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T value();
+  public java.util.Optional<java.lang.Long> timeToLive();
+}
+Compiled from "MemoryMap.java"
+public final class net.minecraft.world.entity.ai.memory.MemoryMap implements java.lang.Iterable<net.minecraft.world.entity.ai.memory.MemoryMap$Value<?>> {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.ai.memory.MemoryMap> CODEC;
+  public static final net.minecraft.world.entity.ai.memory.MemoryMap EMPTY;
+  public static net.minecraft.world.entity.ai.memory.MemoryMap of(java.util.stream.Stream<net.minecraft.world.entity.ai.memory.MemoryMap$Value<?>>);
+  public <U> net.minecraft.world.entity.ai.memory.ExpirableValue<U> get(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+  public java.util.Iterator<net.minecraft.world.entity.ai.memory.MemoryMap$Value<?>> iterator();
+}
+Compiled from "MemorySlot.java"
+public class net.minecraft.world.entity.ai.memory.MemorySlot<T> {
+  public void tick();
+  public static <T> net.minecraft.world.entity.ai.memory.MemorySlot<T> create();
+  public void set(T, long);
+  public void set(T);
+  public void clear();
+  public boolean hasValue();
+  public T value();
+  public boolean canExpire();
+  public boolean hasExpired();
+  public long timeToLive();
+  public java.lang.String toString();
+  public void visit(net.minecraft.world.entity.ai.memory.MemoryModuleType<T>, net.minecraft.world.entity.ai.Brain$Visitor);
+}
+Compiled from "WalkTarget.java"
+public class net.minecraft.world.entity.ai.memory.WalkTarget {
+  public net.minecraft.world.entity.ai.memory.WalkTarget(net.minecraft.core.BlockPos, float, int);
+  public net.minecraft.world.entity.ai.memory.WalkTarget(net.minecraft.world.phys.Vec3, float, int);
+  public net.minecraft.world.entity.ai.memory.WalkTarget(net.minecraft.world.entity.Entity, float, int);
+  public net.minecraft.world.entity.ai.memory.WalkTarget(net.minecraft.world.entity.ai.behavior.PositionTracker, float, int);
+  public net.minecraft.world.entity.ai.behavior.PositionTracker getTarget();
+  public float getSpeedModifier();
+  public int getCloseEnoughDist();
+}
+Compiled from "MemoryMap.java"
+public class net.minecraft.world.entity.ai.memory.MemoryMap$Builder {
+  public net.minecraft.world.entity.ai.memory.MemoryMap$Builder();
+  public <U> net.minecraft.world.entity.ai.memory.MemoryMap$Builder add(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, net.minecraft.world.entity.ai.memory.ExpirableValue<U>);
+  public net.minecraft.world.entity.ai.memory.MemoryMap build();
+}
+Compiled from "MemoryStatus.java"
+public final class net.minecraft.world.entity.ai.memory.MemoryStatus extends java.lang.Enum<net.minecraft.world.entity.ai.memory.MemoryStatus> {
+  public static final net.minecraft.world.entity.ai.memory.MemoryStatus VALUE_PRESENT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryStatus VALUE_ABSENT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryStatus REGISTERED;
+  public static net.minecraft.world.entity.ai.memory.MemoryStatus[] values();
+  public static net.minecraft.world.entity.ai.memory.MemoryStatus valueOf(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.memory.package-info {
+}
+Compiled from "MemoryModuleType.java"
+public class net.minecraft.world.entity.ai.memory.MemoryModuleType<U> {
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Void> DUMMY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> HOME;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> JOB_SITE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> POTENTIAL_JOB_SITE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> MEETING_POINT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.core.GlobalPos>> SECONDARY_JOB_SITE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.LivingEntity>> NEAREST_LIVING_ENTITIES;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities> NEAREST_VISIBLE_LIVING_ENTITIES;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.LivingEntity>> VISIBLE_VILLAGER_BABIES;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.player.Player>> NEAREST_PLAYERS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.player.Player> NEAREST_VISIBLE_PLAYER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.player.Player> NEAREST_VISIBLE_ATTACKABLE_PLAYER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.player.Player>> NEAREST_VISIBLE_ATTACKABLE_PLAYERS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.ai.memory.WalkTarget> WALK_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.ai.behavior.PositionTracker> LOOK_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> ATTACK_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> ATTACK_COOLING_DOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> INTERACTION_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.AgeableMob> BREED_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.Entity> RIDE_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.level.pathfinder.Path> PATH;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.Set<net.minecraft.core.GlobalPos>> DOORS_TO_CLOSE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> NEAREST_BED;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.damagesource.DamageSource> HURT_BY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> HURT_BY_ENTITY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> AVOID_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> NEAREST_HOSTILE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> NEAREST_ATTACKABLE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> HIDING_PLACE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Long> HEARD_BELL_TIME;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Long> CANT_REACH_WALK_TARGET_SINCE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> GOLEM_DETECTED_RECENTLY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> DANGER_DETECTED_RECENTLY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Long> LAST_SLEPT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Long> LAST_WOKEN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Long> LAST_WORKED_AT_POI;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> NEAREST_VISIBLE_ADULT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.item.ItemEntity> NEAREST_VISIBLE_WANTED_ITEM;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.Mob> NEAREST_VISIBLE_NEMESIS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> PLAY_DEAD_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.player.Player> TEMPTING_PLAYER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> TEMPTATION_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> GAZE_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> LONG_JUMP_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> LONG_JUMP_MID_JUMP;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> HAS_HUNTING_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> RAM_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.phys.Vec3> RAM_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> IS_IN_WATER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> IS_PREGNANT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> IS_PANICKING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<java.util.UUID>> UNREACHABLE_TONGUE_TARGETS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.Set<net.minecraft.core.GlobalPos>> VISITED_BLOCK_POSITIONS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.Set<net.minecraft.core.GlobalPos>> UNREACHABLE_TRANSPORT_BLOCK_POSITIONS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> TRANSPORT_ITEMS_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> CHARGE_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> ATTACK_TARGET_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> SPEAR_FLEEING_TIME;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.phys.Vec3> SPEAR_FLEEING_POSITION;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.phys.Vec3> SPEAR_CHARGE_POSITION;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> SPEAR_ENGAGE_TIME;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.ai.behavior.SpearAttack$SpearStatus> SPEAR_STATUS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.UUID> ANGRY_AT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> UNIVERSAL_ANGER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> ADMIRING_ITEM;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> TIME_TRYING_TO_REACH_ADMIRE_ITEM;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> DISABLE_WALK_TO_ADMIRE_ITEM;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> ADMIRING_DISABLED;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> HUNTED_RECENTLY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> CELEBRATE_LOCATION;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> DANCING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.monster.hoglin.Hoglin> NEAREST_VISIBLE_HUNTABLE_HOGLIN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.monster.hoglin.Hoglin> NEAREST_VISIBLE_BABY_HOGLIN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.player.Player> NEAREST_TARGETABLE_PLAYER_NOT_WEARING_GOLD;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.monster.piglin.AbstractPiglin>> NEARBY_ADULT_PIGLINS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.monster.piglin.AbstractPiglin>> NEAREST_VISIBLE_ADULT_PIGLINS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.world.entity.monster.hoglin.Hoglin>> NEAREST_VISIBLE_ADULT_HOGLINS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.monster.piglin.AbstractPiglin> NEAREST_VISIBLE_ADULT_PIGLIN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> NEAREST_VISIBLE_ZOMBIFIED;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> VISIBLE_ADULT_PIGLIN_COUNT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> VISIBLE_ADULT_HOGLIN_COUNT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.player.Player> NEAREST_PLAYER_HOLDING_WANTED_ITEM;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> ATE_RECENTLY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> NEAREST_REPELLENT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> PACIFIED;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.world.entity.LivingEntity> ROAR_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> DISTURBANCE_LOCATION;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> RECENT_PROJECTILE;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> IS_SNIFFING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> IS_EMERGING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> ROAR_SOUND_DELAY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> DIG_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> ROAR_SOUND_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> SNIFF_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> TOUCH_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> VIBRATION_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> SONIC_BOOM_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> SONIC_BOOM_SOUND_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> SONIC_BOOM_SOUND_DELAY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.UUID> LIKED_PLAYER;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.GlobalPos> LIKED_NOTEBLOCK_POSITION;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> LIKED_NOTEBLOCK_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Integer> ITEM_PICKUP_COOLDOWN_TICKS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.util.List<net.minecraft.core.GlobalPos>> SNIFFER_EXPLORED_POSITIONS;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> SNIFFER_SNIFFING_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> SNIFFER_DIGGING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<java.lang.Boolean> SNIFFER_HAPPY;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_JUMP_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_SHOOT;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_SHOOT_CHARGING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_SHOOT_RECOVERING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_SHOOT_COOLDOWN;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_JUMP_INHALING;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.core.BlockPos> BREEZE_JUMP_TARGET;
+  public static final net.minecraft.world.entity.ai.memory.MemoryModuleType<net.minecraft.util.Unit> BREEZE_LEAVING_WATER;
+  public net.minecraft.world.entity.ai.memory.MemoryModuleType(java.util.Optional<com.mojang.serialization.Codec<U>>);
+  public java.lang.String toString();
+  public java.util.Optional<com.mojang.serialization.Codec<net.minecraft.world.entity.ai.memory.ExpirableValue<U>>> getCodec();
+  public boolean canSerialize();
+}
+Compiled from "NearestVisibleLivingEntities.java"
+public class net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities {
+  public net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity, java.util.List<net.minecraft.world.entity.LivingEntity>);
+  public static net.minecraft.world.entity.ai.memory.NearestVisibleLivingEntities empty();
+  public java.util.List<net.minecraft.world.entity.LivingEntity> nearbyEntities();
+  public java.util.Optional<net.minecraft.world.entity.LivingEntity> findClosest(java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>);
+  public java.lang.Iterable<net.minecraft.world.entity.LivingEntity> findAll(java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>);
+  public java.util.stream.Stream<net.minecraft.world.entity.LivingEntity> find(java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>);
+  public boolean contains(net.minecraft.world.entity.LivingEntity);
+  public boolean contains(java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>);
+}
+Compiled from "MemoryMap.java"
+public final class net.minecraft.world.entity.ai.memory.MemoryMap$Value<U> extends java.lang.Record {
+  public net.minecraft.world.entity.ai.memory.MemoryMap$Value(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, net.minecraft.world.entity.ai.memory.ExpirableValue<U>);
+  public static <U> net.minecraft.world.entity.ai.memory.MemoryMap$Value<U> createUnchecked(net.minecraft.world.entity.ai.memory.MemoryModuleType<U>, net.minecraft.world.entity.ai.memory.ExpirableValue<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.entity.ai.memory.MemoryModuleType<U> type();
+  public net.minecraft.world.entity.ai.memory.ExpirableValue<U> value();
+}

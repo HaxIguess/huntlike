@@ -1,0 +1,79 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.parrot.package-info {
+}
+Compiled from "Parrot.java"
+class net.minecraft.world.entity.animal.parrot.Parrot$ParrotWanderGoal extends net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal {
+  public net.minecraft.world.entity.animal.parrot.Parrot$ParrotWanderGoal(net.minecraft.world.entity.PathfinderMob, double);
+  protected net.minecraft.world.phys.Vec3 getPosition();
+}
+Compiled from "ShoulderRidingEntity.java"
+public abstract class net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity extends net.minecraft.world.entity.TamableAnimal {
+  protected net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity>, net.minecraft.world.level.Level);
+  public boolean setEntityOnShoulder(net.minecraft.server.level.ServerPlayer);
+  public void tick();
+  public boolean canSitOnShoulder();
+}
+Compiled from "Parrot.java"
+public final class net.minecraft.world.entity.animal.parrot.Parrot$Variant extends java.lang.Enum<net.minecraft.world.entity.animal.parrot.Parrot$Variant> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant RED_BLUE;
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant BLUE;
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant GREEN;
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant YELLOW_BLUE;
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant GRAY;
+  public static final net.minecraft.world.entity.animal.parrot.Parrot$Variant DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.parrot.Parrot$Variant> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.parrot.Parrot$Variant> LEGACY_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.parrot.Parrot$Variant> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.parrot.Parrot$Variant[] values();
+  public static net.minecraft.world.entity.animal.parrot.Parrot$Variant valueOf(java.lang.String);
+  public int getId();
+  public static net.minecraft.world.entity.animal.parrot.Parrot$Variant byId(int);
+  public java.lang.String getSerializedName();
+}
+Compiled from "Parrot.java"
+public class net.minecraft.world.entity.animal.parrot.Parrot extends net.minecraft.world.entity.animal.parrot.ShoulderRidingEntity {
+  public float flap;
+  public float flapSpeed;
+  public float oFlapSpeed;
+  public float oFlap;
+  public net.minecraft.world.entity.animal.parrot.Parrot(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.parrot.Parrot>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  protected boolean canBeABaby();
+  protected void registerGoals();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected net.minecraft.world.entity.ai.navigation.PathNavigation createNavigation(net.minecraft.world.level.Level);
+  public void aiStep();
+  public void setRecordPlayingNearby(net.minecraft.core.BlockPos, boolean);
+  public boolean isPartyParrot();
+  public static boolean imitateNearbyMobs(net.minecraft.world.level.Level, net.minecraft.world.entity.Entity);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public static boolean checkParrotSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.animal.parrot.Parrot>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected void checkFallDamage(double, boolean, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public net.minecraft.sounds.SoundEvent getAmbientSound();
+  public static net.minecraft.sounds.SoundEvent getAmbient(net.minecraft.world.level.Level, net.minecraft.util.RandomSource);
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  protected void playStepSound(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+  protected boolean isFlapping();
+  protected void onFlap();
+  public float getVoicePitch();
+  public static float getPitch(net.minecraft.util.RandomSource);
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  public boolean isPushable();
+  protected void doPush(net.minecraft.world.entity.Entity);
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public net.minecraft.world.entity.animal.parrot.Parrot$Variant getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public boolean isFlying();
+  protected boolean omnidirectionalAirMover();
+  protected boolean canFlyToOwner();
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+}

@@ -1,0 +1,347 @@
+Compiled from "Team.java"
+public final class net.minecraft.world.scores.Team$Visibility extends java.lang.Enum<net.minecraft.world.scores.Team$Visibility> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.scores.Team$Visibility ALWAYS;
+  public static final net.minecraft.world.scores.Team$Visibility NEVER;
+  public static final net.minecraft.world.scores.Team$Visibility HIDE_FOR_OTHER_TEAMS;
+  public static final net.minecraft.world.scores.Team$Visibility HIDE_FOR_OWN_TEAM;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.Team$Visibility> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.scores.Team$Visibility> STREAM_CODEC;
+  public final java.lang.String name;
+  public final int id;
+  public static net.minecraft.world.scores.Team$Visibility[] values();
+  public static net.minecraft.world.scores.Team$Visibility valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "Team.java"
+public final class net.minecraft.world.scores.Team$CollisionRule extends java.lang.Enum<net.minecraft.world.scores.Team$CollisionRule> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.scores.Team$CollisionRule ALWAYS;
+  public static final net.minecraft.world.scores.Team$CollisionRule NEVER;
+  public static final net.minecraft.world.scores.Team$CollisionRule PUSH_OTHER_TEAMS;
+  public static final net.minecraft.world.scores.Team$CollisionRule PUSH_OWN_TEAM;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.Team$CollisionRule> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.scores.Team$CollisionRule> STREAM_CODEC;
+  public final java.lang.String name;
+  public final int id;
+  public static net.minecraft.world.scores.Team$CollisionRule[] values();
+  public static net.minecraft.world.scores.Team$CollisionRule valueOf(java.lang.String);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public java.lang.String getSerializedName();
+}
+Compiled from "ScoreboardSaveData.java"
+public class net.minecraft.world.scores.ScoreboardSaveData extends net.minecraft.world.level.saveddata.SavedData {
+  public static final net.minecraft.world.level.saveddata.SavedDataType<net.minecraft.world.scores.ScoreboardSaveData> TYPE;
+  public net.minecraft.world.scores.ScoreboardSaveData(net.minecraft.world.scores.ScoreboardSaveData$Packed);
+  public net.minecraft.world.scores.ScoreboardSaveData$Packed getData();
+  public void setData(net.minecraft.world.scores.ScoreboardSaveData$Packed);
+}
+Compiled from "Score.java"
+public class net.minecraft.world.scores.Score implements net.minecraft.world.scores.ReadOnlyScoreInfo {
+  public net.minecraft.world.scores.Score();
+  public net.minecraft.world.scores.Score(net.minecraft.world.scores.Score$Packed);
+  public net.minecraft.world.scores.Score$Packed pack();
+  public int value();
+  public void value(int);
+  public boolean isLocked();
+  public void setLocked(boolean);
+  public net.minecraft.network.chat.Component display();
+  public void display(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.numbers.NumberFormat numberFormat();
+  public void numberFormat(net.minecraft.network.chat.numbers.NumberFormat);
+}
+Compiled from "PlayerTeam.java"
+public interface net.minecraft.world.scores.PlayerTeam$OptionFlags extends java.lang.annotation.Annotation {
+}
+Compiled from "Score.java"
+public final class net.minecraft.world.scores.Score$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.world.scores.Score$Packed> MAP_CODEC;
+  public net.minecraft.world.scores.Score$Packed(int, boolean, java.util.Optional<net.minecraft.network.chat.Component>, java.util.Optional<net.minecraft.network.chat.numbers.NumberFormat>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int value();
+  public boolean locked();
+  public java.util.Optional<net.minecraft.network.chat.Component> display();
+  public java.util.Optional<net.minecraft.network.chat.numbers.NumberFormat> numberFormat();
+}
+Compiled from "Objective.java"
+public final class net.minecraft.world.scores.Objective$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.Objective$Packed> CODEC;
+  public net.minecraft.world.scores.Objective$Packed(java.lang.String, net.minecraft.world.scores.criteria.ObjectiveCriteria, net.minecraft.network.chat.Component, net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType, boolean, java.util.Optional<net.minecraft.network.chat.numbers.NumberFormat>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.world.scores.criteria.ObjectiveCriteria criteria();
+  public net.minecraft.network.chat.Component displayName();
+  public net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType renderType();
+  public boolean displayAutoUpdate();
+  public java.util.Optional<net.minecraft.network.chat.numbers.NumberFormat> numberFormat();
+}
+Compiled from "ScoreHolder.java"
+public interface net.minecraft.world.scores.ScoreHolder {
+  public static final java.lang.String WILDCARD_NAME;
+  public static final net.minecraft.world.scores.ScoreHolder WILDCARD;
+  public abstract java.lang.String getScoreboardName();
+  public default net.minecraft.network.chat.Component getDisplayName();
+  public default net.minecraft.network.chat.Component getFeedbackDisplayName();
+  public static net.minecraft.world.scores.ScoreHolder forNameOnly(java.lang.String);
+  public static net.minecraft.world.scores.ScoreHolder fromGameProfile(com.mojang.authlib.GameProfile);
+}
+Compiled from "Team.java"
+public abstract class net.minecraft.world.scores.Team {
+  public net.minecraft.world.scores.Team();
+  public boolean isAlliedTo(net.minecraft.world.scores.Team);
+  public abstract java.lang.String getName();
+  public abstract net.minecraft.network.chat.MutableComponent getFormattedName(net.minecraft.network.chat.Component);
+  public abstract boolean canSeeFriendlyInvisibles();
+  public abstract boolean isAllowFriendlyFire();
+  public abstract net.minecraft.world.scores.Team$Visibility getNameTagVisibility();
+  public abstract java.util.Optional<net.minecraft.world.scores.TeamColor> getColor();
+  public abstract java.util.Collection<java.lang.String> getPlayers();
+  public abstract net.minecraft.world.scores.Team$Visibility getDeathMessageVisibility();
+  public abstract net.minecraft.world.scores.Team$CollisionRule getCollisionRule();
+}
+Compiled from "PlayerScores.java"
+class net.minecraft.world.scores.PlayerScores {
+  public net.minecraft.world.scores.Score get(net.minecraft.world.scores.Objective);
+  public net.minecraft.world.scores.Score getOrCreate(net.minecraft.world.scores.Objective, java.util.function.Consumer<net.minecraft.world.scores.Score>);
+  public boolean remove(net.minecraft.world.scores.Objective);
+  public boolean hasScores();
+  public it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.scores.Objective> listScores();
+}
+Compiled from "Scoreboard.java"
+public final class net.minecraft.world.scores.Scoreboard$PackedScore extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.Scoreboard$PackedScore> CODEC;
+  public net.minecraft.world.scores.Scoreboard$PackedScore(java.lang.String, java.lang.String, net.minecraft.world.scores.Score$Packed);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String owner();
+  public java.lang.String objective();
+  public net.minecraft.world.scores.Score$Packed score();
+}
+Compiled from "PlayerScoreEntry.java"
+public final class net.minecraft.world.scores.PlayerScoreEntry extends java.lang.Record {
+  public net.minecraft.world.scores.PlayerScoreEntry(java.lang.String, int, net.minecraft.network.chat.Component, net.minecraft.network.chat.numbers.NumberFormat);
+  public boolean isHidden();
+  public net.minecraft.network.chat.Component ownerName();
+  public net.minecraft.network.chat.MutableComponent formatValue(net.minecraft.network.chat.numbers.NumberFormat);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String owner();
+  public int value();
+  public net.minecraft.network.chat.Component display();
+  public net.minecraft.network.chat.numbers.NumberFormat numberFormatOverride();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.scores.package-info {
+}
+Compiled from "TeamColor.java"
+public final class net.minecraft.world.scores.TeamColor extends java.lang.Enum<net.minecraft.world.scores.TeamColor> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.scores.TeamColor BLACK;
+  public static final net.minecraft.world.scores.TeamColor DARK_BLUE;
+  public static final net.minecraft.world.scores.TeamColor DARK_GREEN;
+  public static final net.minecraft.world.scores.TeamColor DARK_AQUA;
+  public static final net.minecraft.world.scores.TeamColor DARK_RED;
+  public static final net.minecraft.world.scores.TeamColor DARK_PURPLE;
+  public static final net.minecraft.world.scores.TeamColor GOLD;
+  public static final net.minecraft.world.scores.TeamColor GRAY;
+  public static final net.minecraft.world.scores.TeamColor DARK_GRAY;
+  public static final net.minecraft.world.scores.TeamColor BLUE;
+  public static final net.minecraft.world.scores.TeamColor GREEN;
+  public static final net.minecraft.world.scores.TeamColor AQUA;
+  public static final net.minecraft.world.scores.TeamColor RED;
+  public static final net.minecraft.world.scores.TeamColor LIGHT_PURPLE;
+  public static final net.minecraft.world.scores.TeamColor YELLOW;
+  public static final net.minecraft.world.scores.TeamColor WHITE;
+  public static final java.util.List<net.minecraft.world.scores.TeamColor> VALUES;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.world.scores.TeamColor> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.scores.TeamColor> STREAM_CODEC;
+  public static net.minecraft.world.scores.TeamColor[] values();
+  public static net.minecraft.world.scores.TeamColor valueOf(java.lang.String);
+  public static net.minecraft.world.scores.TeamColor byName(java.lang.String);
+  public net.minecraft.network.chat.TextColor textColor();
+  public net.minecraft.world.scores.DisplaySlot displaySlot();
+  public int rgb();
+  public java.lang.String getSerializedName();
+}
+Compiled from "ReadOnlyScoreInfo.java"
+public interface net.minecraft.world.scores.ReadOnlyScoreInfo {
+  public abstract int value();
+  public abstract boolean isLocked();
+  public abstract net.minecraft.network.chat.numbers.NumberFormat numberFormat();
+  public default net.minecraft.network.chat.MutableComponent formatValue(net.minecraft.network.chat.numbers.NumberFormat);
+}
+Compiled from "Objective.java"
+public class net.minecraft.world.scores.Objective {
+  public net.minecraft.world.scores.Objective(net.minecraft.world.scores.Scoreboard, java.lang.String, net.minecraft.world.scores.criteria.ObjectiveCriteria, net.minecraft.network.chat.Component, net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType, boolean, net.minecraft.network.chat.numbers.NumberFormat);
+  public net.minecraft.world.scores.Objective$Packed pack();
+  public net.minecraft.world.scores.Scoreboard getScoreboard();
+  public java.lang.String getName();
+  public net.minecraft.world.scores.criteria.ObjectiveCriteria getCriteria();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public boolean displayAutoUpdate();
+  public net.minecraft.network.chat.numbers.NumberFormat numberFormat();
+  public net.minecraft.network.chat.numbers.NumberFormat numberFormatOrDefault(net.minecraft.network.chat.numbers.NumberFormat);
+  public net.minecraft.network.chat.Component getFormattedDisplayName();
+  public void setDisplayName(net.minecraft.network.chat.Component);
+  public net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType getRenderType();
+  public void setRenderType(net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType);
+  public void setDisplayAutoUpdate(boolean);
+  public void setNumberFormat(net.minecraft.network.chat.numbers.NumberFormat);
+}
+Compiled from "ScoreAccess.java"
+public interface net.minecraft.world.scores.ScoreAccess {
+  public abstract int get();
+  public abstract void set(int);
+  public default int add(int);
+  public default int increment();
+  public default void reset();
+  public abstract boolean locked();
+  public abstract void unlock();
+  public abstract void lock();
+  public abstract net.minecraft.network.chat.Component display();
+  public abstract void display(net.minecraft.network.chat.Component);
+  public abstract void numberFormatOverride(net.minecraft.network.chat.numbers.NumberFormat);
+}
+Compiled from "Scoreboard.java"
+public class net.minecraft.world.scores.Scoreboard {
+  public static final java.lang.String HIDDEN_SCORE_PREFIX;
+  public net.minecraft.world.scores.Scoreboard();
+  public net.minecraft.world.scores.Objective getObjective(java.lang.String);
+  public net.minecraft.world.scores.Objective addObjective(java.lang.String, net.minecraft.world.scores.criteria.ObjectiveCriteria, net.minecraft.network.chat.Component, net.minecraft.world.scores.criteria.ObjectiveCriteria$RenderType, boolean, net.minecraft.network.chat.numbers.NumberFormat);
+  public final void forAllObjectives(net.minecraft.world.scores.criteria.ObjectiveCriteria, net.minecraft.world.scores.ScoreHolder, java.util.function.Consumer<net.minecraft.world.scores.ScoreAccess>);
+  public net.minecraft.world.scores.ScoreAccess getOrCreatePlayerScore(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public net.minecraft.world.scores.ScoreAccess getOrCreatePlayerScore(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective, boolean);
+  public net.minecraft.world.scores.ReadOnlyScoreInfo getPlayerScoreInfo(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public java.util.Collection<net.minecraft.world.scores.PlayerScoreEntry> listPlayerScores(net.minecraft.world.scores.Objective);
+  public java.util.Collection<net.minecraft.world.scores.Objective> getObjectives();
+  public java.util.Collection<java.lang.String> getObjectiveNames();
+  public java.util.Collection<net.minecraft.world.scores.ScoreHolder> getTrackedPlayers();
+  public void resetAllPlayerScores(net.minecraft.world.scores.ScoreHolder);
+  public void resetSinglePlayerScore(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.world.scores.Objective> listPlayerScores(net.minecraft.world.scores.ScoreHolder);
+  public void removeObjective(net.minecraft.world.scores.Objective);
+  public void setDisplayObjective(net.minecraft.world.scores.DisplaySlot, net.minecraft.world.scores.Objective);
+  public net.minecraft.world.scores.Objective getDisplayObjective(net.minecraft.world.scores.DisplaySlot);
+  public net.minecraft.world.scores.PlayerTeam getPlayerTeam(java.lang.String);
+  public net.minecraft.world.scores.PlayerTeam addPlayerTeam(java.lang.String);
+  public void removePlayerTeam(net.minecraft.world.scores.PlayerTeam);
+  public boolean addPlayerToTeam(java.lang.String, net.minecraft.world.scores.PlayerTeam);
+  public boolean removePlayerFromTeam(java.lang.String);
+  public void removePlayerFromTeam(java.lang.String, net.minecraft.world.scores.PlayerTeam);
+  public java.util.Collection<java.lang.String> getTeamNames();
+  public java.util.Collection<net.minecraft.world.scores.PlayerTeam> getPlayerTeams();
+  public net.minecraft.world.scores.PlayerTeam getPlayersTeam(java.lang.String);
+  public void onObjectiveAdded(net.minecraft.world.scores.Objective);
+  public void onObjectiveChanged(net.minecraft.world.scores.Objective);
+  public void onObjectiveRemoved(net.minecraft.world.scores.Objective);
+  protected void onScoreChanged(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective, net.minecraft.world.scores.Score);
+  protected void onScoreLockChanged(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public void onPlayerRemoved(net.minecraft.world.scores.ScoreHolder);
+  public void onPlayerScoreRemoved(net.minecraft.world.scores.ScoreHolder, net.minecraft.world.scores.Objective);
+  public void onTeamAdded(net.minecraft.world.scores.PlayerTeam);
+  public void onTeamChanged(net.minecraft.world.scores.PlayerTeam);
+  public void onTeamRemoved(net.minecraft.world.scores.PlayerTeam);
+  public void entityRemoved(net.minecraft.world.entity.Entity);
+  protected java.util.List<net.minecraft.world.scores.Scoreboard$PackedScore> packPlayerScores();
+  protected void loadPlayerScore(net.minecraft.world.scores.Scoreboard$PackedScore);
+  protected java.util.List<net.minecraft.world.scores.PlayerTeam$Packed> packPlayerTeams();
+  protected void loadPlayerTeam(net.minecraft.world.scores.PlayerTeam$Packed);
+  protected java.util.List<net.minecraft.world.scores.Objective$Packed> packObjectives();
+  protected void loadObjective(net.minecraft.world.scores.Objective$Packed);
+  protected java.util.Map<net.minecraft.world.scores.DisplaySlot, java.lang.String> packDisplaySlots();
+}
+Compiled from "PlayerTeam.java"
+public final class net.minecraft.world.scores.PlayerTeam$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.PlayerTeam$Packed> CODEC;
+  public net.minecraft.world.scores.PlayerTeam$Packed(java.lang.String, java.util.Optional<net.minecraft.network.chat.Component>, java.util.Optional<net.minecraft.world.scores.TeamColor>, boolean, boolean, net.minecraft.network.chat.Component, net.minecraft.network.chat.Component, net.minecraft.world.scores.Team$Visibility, net.minecraft.world.scores.Team$Visibility, net.minecraft.world.scores.Team$CollisionRule, java.util.List<java.lang.String>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.Optional<net.minecraft.network.chat.Component> displayName();
+  public java.util.Optional<net.minecraft.world.scores.TeamColor> color();
+  public boolean allowFriendlyFire();
+  public boolean seeFriendlyInvisibles();
+  public net.minecraft.network.chat.Component memberNamePrefix();
+  public net.minecraft.network.chat.Component memberNameSuffix();
+  public net.minecraft.world.scores.Team$Visibility nameTagVisibility();
+  public net.minecraft.world.scores.Team$Visibility deathMessageVisibility();
+  public net.minecraft.world.scores.Team$CollisionRule collisionRule();
+  public java.util.List<java.lang.String> players();
+}
+Compiled from "PlayerTeam.java"
+public class net.minecraft.world.scores.PlayerTeam extends net.minecraft.world.scores.Team {
+  public net.minecraft.world.scores.PlayerTeam(net.minecraft.world.scores.Scoreboard, java.lang.String);
+  public net.minecraft.world.scores.PlayerTeam$Packed pack();
+  public net.minecraft.world.scores.Scoreboard getScoreboard();
+  public java.lang.String getName();
+  public net.minecraft.network.chat.Component getDisplayName();
+  public net.minecraft.network.chat.MutableComponent getFormattedDisplayName();
+  public void setDisplayName(net.minecraft.network.chat.Component);
+  public void setPlayerPrefix(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getPlayerPrefix();
+  public void setPlayerSuffix(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component getPlayerSuffix();
+  public java.util.Collection<java.lang.String> getPlayers();
+  public net.minecraft.network.chat.MutableComponent getFormattedName(net.minecraft.network.chat.Component);
+  public static net.minecraft.network.chat.MutableComponent formatNameForTeam(net.minecraft.world.scores.Team, net.minecraft.network.chat.Component);
+  public boolean isAllowFriendlyFire();
+  public void setAllowFriendlyFire(boolean);
+  public boolean canSeeFriendlyInvisibles();
+  public void setSeeFriendlyInvisibles(boolean);
+  public net.minecraft.world.scores.Team$Visibility getNameTagVisibility();
+  public net.minecraft.world.scores.Team$Visibility getDeathMessageVisibility();
+  public void setNameTagVisibility(net.minecraft.world.scores.Team$Visibility);
+  public void setDeathMessageVisibility(net.minecraft.world.scores.Team$Visibility);
+  public net.minecraft.world.scores.Team$CollisionRule getCollisionRule();
+  public void setCollisionRule(net.minecraft.world.scores.Team$CollisionRule);
+  public byte packOptions();
+  public void unpackOptions(byte);
+  public void setColor(java.util.Optional<net.minecraft.world.scores.TeamColor>);
+  public java.util.Optional<net.minecraft.world.scores.TeamColor> getColor();
+}
+Compiled from "ScoreboardSaveData.java"
+public final class net.minecraft.world.scores.ScoreboardSaveData$Packed extends java.lang.Record {
+  public static final net.minecraft.world.scores.ScoreboardSaveData$Packed EMPTY;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.scores.ScoreboardSaveData$Packed> CODEC;
+  public net.minecraft.world.scores.ScoreboardSaveData$Packed(java.util.List<net.minecraft.world.scores.Objective$Packed>, java.util.List<net.minecraft.world.scores.Scoreboard$PackedScore>, java.util.Map<net.minecraft.world.scores.DisplaySlot, java.lang.String>, java.util.List<net.minecraft.world.scores.PlayerTeam$Packed>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.scores.Objective$Packed> objectives();
+  public java.util.List<net.minecraft.world.scores.Scoreboard$PackedScore> scores();
+  public java.util.Map<net.minecraft.world.scores.DisplaySlot, java.lang.String> displaySlots();
+  public java.util.List<net.minecraft.world.scores.PlayerTeam$Packed> teams();
+}
+Compiled from "DisplaySlot.java"
+public final class net.minecraft.world.scores.DisplaySlot extends java.lang.Enum<net.minecraft.world.scores.DisplaySlot> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.scores.DisplaySlot LIST;
+  public static final net.minecraft.world.scores.DisplaySlot SIDEBAR;
+  public static final net.minecraft.world.scores.DisplaySlot BELOW_NAME;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_BLACK;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_BLUE;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_GREEN;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_AQUA;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_RED;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_PURPLE;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_GOLD;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_GRAY;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_DARK_GRAY;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_BLUE;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_GREEN;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_AQUA;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_RED;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_LIGHT_PURPLE;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_YELLOW;
+  public static final net.minecraft.world.scores.DisplaySlot TEAM_WHITE;
+  public static final net.minecraft.util.StringRepresentable$EnumCodec<net.minecraft.world.scores.DisplaySlot> CODEC;
+  public static final java.util.function.IntFunction<net.minecraft.world.scores.DisplaySlot> BY_ID;
+  public static net.minecraft.world.scores.DisplaySlot[] values();
+  public static net.minecraft.world.scores.DisplaySlot valueOf(java.lang.String);
+  public int id();
+  public java.lang.String getSerializedName();
+}

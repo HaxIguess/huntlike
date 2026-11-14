@@ -1,0 +1,225 @@
+Compiled from "RegionBitmap.java"
+public class net.minecraft.world.level.chunk.storage.RegionBitmap {
+  public net.minecraft.world.level.chunk.storage.RegionBitmap();
+  public void force(int, int);
+  public void free(int, int);
+  public int allocate(int);
+  public it.unimi.dsi.fastutil.ints.IntSet getUsed();
+}
+Compiled from "IOWorker.java"
+class net.minecraft.world.level.chunk.storage.IOWorker$PendingStore {
+  public net.minecraft.world.level.chunk.storage.IOWorker$PendingStore(net.minecraft.nbt.CompoundTag);
+}
+Compiled from "ChunkScanAccess.java"
+public interface net.minecraft.world.level.chunk.storage.ChunkScanAccess {
+  public abstract java.util.concurrent.CompletableFuture<java.lang.Void> scanChunk(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.StreamTagVisitor);
+}
+Compiled from "RegionFile.java"
+class net.minecraft.world.level.chunk.storage.RegionFile$ChunkBuffer extends java.io.ByteArrayOutputStream {
+  public net.minecraft.world.level.chunk.storage.RegionFile$ChunkBuffer(net.minecraft.world.level.chunk.storage.RegionFile, net.minecraft.world.level.ChunkPos);
+  public void close() throws java.io.IOException;
+}
+Compiled from "SerializableChunkData.java"
+public final class net.minecraft.world.level.chunk.storage.SerializableChunkData extends java.lang.Record {
+  public static final java.lang.String X_POS_TAG;
+  public static final java.lang.String Z_POS_TAG;
+  public static final java.lang.String HEIGHTMAPS_TAG;
+  public static final java.lang.String IS_LIGHT_ON_TAG;
+  public static final java.lang.String SECTIONS_TAG;
+  public static final java.lang.String BLOCK_LIGHT_TAG;
+  public static final java.lang.String SKY_LIGHT_TAG;
+  public net.minecraft.world.level.chunk.storage.SerializableChunkData(net.minecraft.world.level.chunk.PalettedContainerFactory, net.minecraft.world.level.ChunkPos, int, long, long, net.minecraft.world.level.chunk.status.ChunkStatus, net.minecraft.world.level.levelgen.blending.BlendingData$Packed, net.minecraft.world.level.levelgen.BelowZeroRetrogen, net.minecraft.world.level.chunk.UpgradeData, java.util.Map<net.minecraft.world.level.levelgen.Heightmap$Types, long[]>, net.minecraft.world.level.chunk.ChunkAccess$PackedTicks, it.unimi.dsi.fastutil.shorts.ShortList[], boolean, java.util.List<net.minecraft.world.level.chunk.storage.SerializableChunkData$SectionData>, java.util.List<net.minecraft.nbt.CompoundTag>, java.util.List<net.minecraft.nbt.CompoundTag>, net.minecraft.nbt.CompoundTag);
+  public static net.minecraft.world.level.chunk.storage.SerializableChunkData parse(net.minecraft.world.level.LevelHeightAccessor, net.minecraft.world.level.chunk.PalettedContainerFactory, net.minecraft.nbt.CompoundTag);
+  public net.minecraft.world.level.chunk.ProtoChunk read(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.ai.village.poi.PoiManager, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public static net.minecraft.world.level.chunk.storage.SerializableChunkData copyOf(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.chunk.ChunkAccess);
+  public net.minecraft.nbt.CompoundTag write();
+  public static net.minecraft.world.level.chunk.status.ChunkStatus getChunkStatusFromTag(net.minecraft.nbt.CompoundTag);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.chunk.PalettedContainerFactory containerFactory();
+  public net.minecraft.world.level.ChunkPos chunkPos();
+  public int minSectionY();
+  public long lastUpdateTime();
+  public long inhabitedTime();
+  public net.minecraft.world.level.chunk.status.ChunkStatus chunkStatus();
+  public net.minecraft.world.level.levelgen.blending.BlendingData$Packed blendingData();
+  public net.minecraft.world.level.levelgen.BelowZeroRetrogen belowZeroRetrogen();
+  public net.minecraft.world.level.chunk.UpgradeData upgradeData();
+  public java.util.Map<net.minecraft.world.level.levelgen.Heightmap$Types, long[]> heightmaps();
+  public net.minecraft.world.level.chunk.ChunkAccess$PackedTicks packedTicks();
+  public it.unimi.dsi.fastutil.shorts.ShortList[] postProcessingSections();
+  public boolean lightCorrect();
+  public java.util.List<net.minecraft.world.level.chunk.storage.SerializableChunkData$SectionData> sectionData();
+  public java.util.List<net.minecraft.nbt.CompoundTag> entities();
+  public java.util.List<net.minecraft.nbt.CompoundTag> blockEntities();
+  public net.minecraft.nbt.CompoundTag structureData();
+}
+Compiled from "RegionFileVersion.java"
+public class net.minecraft.world.level.chunk.storage.RegionFileVersion {
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion VERSION_GZIP;
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion VERSION_DEFLATE;
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion VERSION_NONE;
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion VERSION_LZ4;
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion VERSION_CUSTOM;
+  public static final net.minecraft.world.level.chunk.storage.RegionFileVersion DEFAULT;
+  public static net.minecraft.world.level.chunk.storage.RegionFileVersion fromId(int);
+  public static void configure(java.lang.String);
+  public static net.minecraft.world.level.chunk.storage.RegionFileVersion getSelected();
+  public static boolean isValidVersion(int);
+  public int getId();
+  public java.io.OutputStream wrap(java.io.OutputStream) throws java.io.IOException;
+  public java.io.InputStream wrap(java.io.InputStream) throws java.io.IOException;
+}
+Compiled from "SerializableChunkData.java"
+public final class net.minecraft.world.level.chunk.storage.SerializableChunkData$SectionData extends java.lang.Record {
+  public net.minecraft.world.level.chunk.storage.SerializableChunkData$SectionData(int, net.minecraft.world.level.chunk.LevelChunkSection, net.minecraft.world.level.chunk.DataLayer, net.minecraft.world.level.chunk.DataLayer);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int y();
+  public net.minecraft.world.level.chunk.LevelChunkSection chunkSection();
+  public net.minecraft.world.level.chunk.DataLayer blockLight();
+  public net.minecraft.world.level.chunk.DataLayer skyLight();
+}
+Compiled from "SimpleRegionStorage.java"
+public class net.minecraft.world.level.chunk.storage.SimpleRegionStorage implements java.lang.AutoCloseable {
+  public net.minecraft.world.level.chunk.storage.SimpleRegionStorage(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, com.mojang.datafixers.DataFixer, boolean, net.minecraft.util.datafix.DataFixTypes);
+  public boolean isOldChunkAround(net.minecraft.world.level.ChunkPos, int);
+  public java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.nbt.CompoundTag>> read(net.minecraft.world.level.ChunkPos);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> write(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> write(net.minecraft.world.level.ChunkPos, java.util.function.Supplier<net.minecraft.nbt.CompoundTag>);
+  public net.minecraft.nbt.CompoundTag upgradeChunkTag(net.minecraft.nbt.CompoundTag, int, net.minecraft.nbt.CompoundTag, int);
+  public net.minecraft.nbt.CompoundTag upgradeChunkTag(net.minecraft.nbt.CompoundTag, int);
+  public com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag> upgradeChunkTag(com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>, int);
+  public static void injectDatafixingContext(net.minecraft.nbt.CompoundTag, net.minecraft.nbt.CompoundTag);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> synchronize(boolean);
+  public void close() throws java.io.IOException;
+  public net.minecraft.world.level.chunk.storage.ChunkScanAccess chunkScanner();
+  public net.minecraft.world.level.chunk.storage.RegionStorageInfo storageInfo();
+}
+Compiled from "IOWorker.java"
+interface net.minecraft.world.level.chunk.storage.IOWorker$ThrowingSupplier<T> {
+  public abstract T get() throws java.lang.Exception;
+}
+Compiled from "RegionFileVersion.java"
+interface net.minecraft.world.level.chunk.storage.RegionFileVersion$StreamWrapper<O> {
+  public abstract O wrap(O) throws java.io.IOException;
+}
+Compiled from "IOWorker.java"
+final class net.minecraft.world.level.chunk.storage.IOWorker$Priority extends java.lang.Enum<net.minecraft.world.level.chunk.storage.IOWorker$Priority> {
+  public static final net.minecraft.world.level.chunk.storage.IOWorker$Priority FOREGROUND;
+  public static final net.minecraft.world.level.chunk.storage.IOWorker$Priority BACKGROUND;
+  public static final net.minecraft.world.level.chunk.storage.IOWorker$Priority SHUTDOWN;
+  public static net.minecraft.world.level.chunk.storage.IOWorker$Priority[] values();
+  public static net.minecraft.world.level.chunk.storage.IOWorker$Priority valueOf(java.lang.String);
+}
+Compiled from "RegionFileStorage.java"
+public final class net.minecraft.world.level.chunk.storage.RegionFileStorage implements java.lang.AutoCloseable {
+  public static final java.lang.String ANVIL_EXTENSION;
+  public net.minecraft.world.level.chunk.storage.RegionFileStorage(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, boolean);
+  public net.minecraft.nbt.CompoundTag read(net.minecraft.world.level.ChunkPos) throws java.io.IOException;
+  public void scanChunk(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.StreamTagVisitor) throws java.io.IOException;
+  public void write(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag) throws java.io.IOException;
+  public void close() throws java.io.IOException;
+  public void flush() throws java.io.IOException;
+  public net.minecraft.world.level.chunk.storage.RegionStorageInfo info();
+}
+Compiled from "RecreatingSimpleRegionStorage.java"
+public class net.minecraft.world.level.chunk.storage.RecreatingSimpleRegionStorage extends net.minecraft.world.level.chunk.storage.SimpleRegionStorage {
+  public net.minecraft.world.level.chunk.storage.RecreatingSimpleRegionStorage(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, com.mojang.datafixers.DataFixer, boolean, net.minecraft.util.datafix.DataFixTypes);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> write(net.minecraft.world.level.ChunkPos, java.util.function.Supplier<net.minecraft.nbt.CompoundTag>);
+  public void close() throws java.io.IOException;
+}
+Compiled from "SerializableChunkData.java"
+public class net.minecraft.world.level.chunk.storage.SerializableChunkData$ChunkReadException extends net.minecraft.nbt.NbtException {
+  public net.minecraft.world.level.chunk.storage.SerializableChunkData$ChunkReadException(java.lang.String);
+}
+Compiled from "RegionFile.java"
+interface net.minecraft.world.level.chunk.storage.RegionFile$CommitOp {
+  public abstract void run() throws java.io.IOException;
+}
+Compiled from "ChunkIOErrorReporter.java"
+public interface net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter {
+  public abstract void reportChunkLoadFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public abstract void reportChunkSaveFailure(java.lang.Throwable, net.minecraft.world.level.chunk.storage.RegionStorageInfo, net.minecraft.world.level.ChunkPos);
+  public static net.minecraft.ReportedException createMisplacedChunkReport(net.minecraft.world.level.ChunkPos, net.minecraft.world.level.ChunkPos);
+  public default void reportMisplacedChunk(net.minecraft.world.level.ChunkPos, net.minecraft.world.level.ChunkPos, net.minecraft.world.level.chunk.storage.RegionStorageInfo);
+}
+Compiled from "RegionStorageInfo.java"
+public final class net.minecraft.world.level.chunk.storage.RegionStorageInfo extends java.lang.Record {
+  public net.minecraft.world.level.chunk.storage.RegionStorageInfo(java.lang.String, net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>, java.lang.String);
+  public net.minecraft.world.level.chunk.storage.RegionStorageInfo withTypeSuffix(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String level();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level> dimension();
+  public java.lang.String type();
+}
+Compiled from "EntityStorage.java"
+public class net.minecraft.world.level.chunk.storage.EntityStorage implements net.minecraft.world.level.entity.EntityPersistentStorage<net.minecraft.world.entity.Entity> {
+  public net.minecraft.world.level.chunk.storage.EntityStorage(net.minecraft.world.level.chunk.storage.SimpleRegionStorage, net.minecraft.server.level.ServerLevel, java.util.concurrent.Executor);
+  public java.util.concurrent.CompletableFuture<net.minecraft.world.level.entity.ChunkEntities<net.minecraft.world.entity.Entity>> loadEntities(net.minecraft.world.level.ChunkPos);
+  public void storeEntities(net.minecraft.world.level.entity.ChunkEntities<net.minecraft.world.entity.Entity>);
+  public void flush(boolean);
+  public void close() throws java.io.IOException;
+}
+Compiled from "SectionStorage.java"
+public class net.minecraft.world.level.chunk.storage.SectionStorage<R, P> implements java.lang.AutoCloseable {
+  protected final net.minecraft.world.level.LevelHeightAccessor levelHeightAccessor;
+  public net.minecraft.world.level.chunk.storage.SectionStorage(net.minecraft.world.level.chunk.storage.SimpleRegionStorage, com.mojang.serialization.Codec<P>, java.util.function.Function<R, P>, java.util.function.BiFunction<P, java.lang.Runnable, R>, java.util.function.Function<java.lang.Runnable, R>, net.minecraft.core.RegistryAccess, net.minecraft.world.level.chunk.storage.ChunkIOErrorReporter, net.minecraft.world.level.LevelHeightAccessor);
+  protected void tick(java.util.function.BooleanSupplier);
+  public void flushAll();
+  public boolean hasWork();
+  protected java.util.Optional<R> get(long);
+  protected java.util.Optional<R> getOrLoad(long);
+  protected boolean outsideStoredRange(long);
+  protected R getOrCreate(long);
+  public java.util.concurrent.CompletableFuture<?> prefetch(net.minecraft.world.level.ChunkPos);
+  protected void onSectionLoad(long);
+  protected void setDirty(long);
+  public void flush(net.minecraft.world.level.ChunkPos);
+  public void close() throws java.io.IOException;
+}
+Compiled from "SectionStorage.java"
+final class net.minecraft.world.level.chunk.storage.SectionStorage$PackedChunk<T> extends java.lang.Record {
+  public static <T> net.minecraft.world.level.chunk.storage.SectionStorage$PackedChunk<T> parse(com.mojang.serialization.Codec<T>, com.mojang.serialization.DynamicOps<net.minecraft.nbt.Tag>, net.minecraft.nbt.Tag, net.minecraft.world.level.chunk.storage.SimpleRegionStorage, net.minecraft.world.level.LevelHeightAccessor);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public it.unimi.dsi.fastutil.ints.Int2ObjectMap<T> sectionsByY();
+  public boolean versionChanged();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.level.chunk.storage.package-info {
+}
+Compiled from "RegionFile.java"
+public class net.minecraft.world.level.chunk.storage.RegionFile implements java.lang.AutoCloseable {
+  protected static final int SECTOR_INTS;
+  protected final net.minecraft.world.level.chunk.storage.RegionBitmap usedSectors;
+  public net.minecraft.world.level.chunk.storage.RegionFile(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, java.nio.file.Path, boolean) throws java.io.IOException;
+  public net.minecraft.world.level.chunk.storage.RegionFile(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, java.nio.file.Path, net.minecraft.world.level.chunk.storage.RegionFileVersion, boolean) throws java.io.IOException;
+  public java.nio.file.Path getPath();
+  public synchronized java.io.DataInputStream getChunkDataInputStream(net.minecraft.world.level.ChunkPos) throws java.io.IOException;
+  public boolean doesChunkExist(net.minecraft.world.level.ChunkPos);
+  public java.io.DataOutputStream getChunkDataOutputStream(net.minecraft.world.level.ChunkPos) throws java.io.IOException;
+  public void flush() throws java.io.IOException;
+  public void clear(net.minecraft.world.level.ChunkPos) throws java.io.IOException;
+  protected synchronized void write(net.minecraft.world.level.ChunkPos, java.nio.ByteBuffer) throws java.io.IOException;
+  public boolean hasChunk(net.minecraft.world.level.ChunkPos);
+  public void close() throws java.io.IOException;
+}
+Compiled from "IOWorker.java"
+public class net.minecraft.world.level.chunk.storage.IOWorker implements java.lang.AutoCloseable,net.minecraft.world.level.chunk.storage.ChunkScanAccess {
+  public static final java.util.function.Supplier<net.minecraft.nbt.CompoundTag> STORE_EMPTY;
+  protected net.minecraft.world.level.chunk.storage.IOWorker(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, boolean);
+  public boolean isOldChunkAround(net.minecraft.world.level.ChunkPos, int);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> store(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> store(net.minecraft.world.level.ChunkPos, java.util.function.Supplier<net.minecraft.nbt.CompoundTag>);
+  public java.util.concurrent.CompletableFuture<java.util.Optional<net.minecraft.nbt.CompoundTag>> loadAsync(net.minecraft.world.level.ChunkPos);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> synchronize(boolean);
+  public java.util.concurrent.CompletableFuture<java.lang.Void> scanChunk(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.StreamTagVisitor);
+  public void close() throws java.io.IOException;
+  public net.minecraft.world.level.chunk.storage.RegionStorageInfo storageInfo();
+}

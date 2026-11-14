@@ -1,0 +1,53 @@
+Compiled from "TemperatureVariants.java"
+public interface net.minecraft.world.entity.animal.TemperatureVariants {
+  public static final net.minecraft.resources.Identifier TEMPERATE;
+  public static final net.minecraft.resources.Identifier WARM;
+  public static final net.minecraft.resources.Identifier COLD;
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.package-info {
+}
+Compiled from "AgeableWaterCreature.java"
+public abstract class net.minecraft.world.entity.animal.AgeableWaterCreature extends net.minecraft.world.entity.AgeableMob {
+  protected net.minecraft.world.entity.animal.AgeableWaterCreature(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.AgeableWaterCreature>, net.minecraft.world.level.Level);
+  public boolean checkSpawnObstruction(net.minecraft.world.level.LevelReader);
+  public int getAmbientSoundInterval();
+  public int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  protected void handleAirSupply(int);
+  public void baseTick();
+  public boolean isPushedByFluid();
+  public boolean canBeLeashed();
+  public static boolean checkSurfaceAgeableWaterCreatureSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.AgeableWaterCreature>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+}
+Compiled from "Animal.java"
+public abstract class net.minecraft.world.entity.animal.Animal extends net.minecraft.world.entity.AgeableMob {
+  protected static final int PARENT_AGE_AFTER_BREEDING;
+  protected net.minecraft.world.entity.animal.Animal(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.Level);
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAnimalAttributes();
+  protected void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public void aiStep();
+  protected void actuallyHurt(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  public float getWalkTargetValue(net.minecraft.core.BlockPos, net.minecraft.world.level.LevelReader);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public static boolean checkAnimalSpawnRules(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.Animal>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  protected static boolean isBrightEnoughToSpawn(net.minecraft.world.level.BlockAndLightGetter, net.minecraft.core.BlockPos);
+  public int getAmbientSoundInterval();
+  public boolean removeWhenFarAway(double);
+  protected int getBaseExperienceReward(net.minecraft.server.level.ServerLevel);
+  public abstract boolean isFood(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+  protected void playEatingSound();
+  public boolean canFallInLove();
+  public void setInLove(net.minecraft.world.entity.player.Player);
+  public void setInLoveTime(int);
+  public int getInLoveTime();
+  public net.minecraft.server.level.ServerPlayer getLoveCause();
+  public boolean isInLove();
+  public void resetLove();
+  public boolean canMate(net.minecraft.world.entity.animal.Animal);
+  public void spawnChildFromBreeding(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.Animal);
+  public void finalizeSpawnChildFromBreeding(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.animal.Animal, net.minecraft.world.entity.AgeableMob);
+  public void handleEntityEvent(byte);
+  public net.minecraft.world.phys.Vec3 getDismountLocationForPassenger(net.minecraft.world.entity.LivingEntity);
+}

@@ -1,0 +1,98 @@
+Compiled from "MultiButtonDialogScreen.java"
+public class net.minecraft.client.gui.screens.dialog.MultiButtonDialogScreen extends net.minecraft.client.gui.screens.dialog.ButtonListDialogScreen<net.minecraft.server.dialog.MultiActionDialog> {
+  public net.minecraft.client.gui.screens.dialog.MultiButtonDialogScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.server.dialog.MultiActionDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream<net.minecraft.server.dialog.ActionButton> createListActions(net.minecraft.server.dialog.MultiActionDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream createListActions(net.minecraft.server.dialog.ButtonListDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.dialog.package-info {
+}
+Compiled from "ServerLinksDialogScreen.java"
+public class net.minecraft.client.gui.screens.dialog.ServerLinksDialogScreen extends net.minecraft.client.gui.screens.dialog.ButtonListDialogScreen<net.minecraft.server.dialog.ServerLinksDialog> {
+  public net.minecraft.client.gui.screens.dialog.ServerLinksDialogScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.server.dialog.ServerLinksDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream<net.minecraft.server.dialog.ActionButton> createListActions(net.minecraft.server.dialog.ServerLinksDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream createListActions(net.minecraft.server.dialog.ButtonListDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}
+Compiled from "DialogControlSet.java"
+public class net.minecraft.client.gui.screens.dialog.DialogControlSet {
+  public static final java.util.function.Supplier<java.util.Optional<net.minecraft.network.chat.ClickEvent>> EMPTY_ACTION;
+  public net.minecraft.client.gui.screens.dialog.DialogControlSet(net.minecraft.client.gui.screens.dialog.DialogScreen<?>);
+  public void addInput(net.minecraft.server.dialog.Input, java.util.function.Consumer<net.minecraft.client.gui.layouts.LayoutElement>);
+  public java.util.function.Supplier<java.util.Optional<net.minecraft.network.chat.ClickEvent>> bindAction(java.util.Optional<net.minecraft.server.dialog.action.Action>);
+  public net.minecraft.client.gui.components.Button$Builder createActionButton(net.minecraft.server.dialog.ActionButton);
+}
+Compiled from "DialogScreen.java"
+public abstract class net.minecraft.client.gui.screens.dialog.DialogScreen<T extends net.minecraft.server.dialog.Dialog> extends net.minecraft.client.gui.screens.Screen {
+  public static final net.minecraft.network.chat.Component DISCONNECT;
+  public net.minecraft.client.gui.screens.dialog.DialogScreen(net.minecraft.client.gui.screens.Screen, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected final void init();
+  protected void populateBodyElements(net.minecraft.client.gui.layouts.LinearLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void updateHeaderAndFooter(net.minecraft.client.gui.layouts.HeaderAndFooterLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void repositionElements();
+  protected net.minecraft.client.gui.layouts.LayoutElement createTitleWithWarningButton();
+  protected void makeSureWarningButtonIsInBounds();
+  public boolean isPauseScreen();
+  public boolean shouldCloseOnEsc();
+  public void onClose();
+  public void runAction(java.util.Optional<net.minecraft.network.chat.ClickEvent>);
+  public void runAction(java.util.Optional<net.minecraft.network.chat.ClickEvent>, net.minecraft.server.dialog.DialogAction);
+  public net.minecraft.client.gui.screens.Screen previousScreen();
+  protected static net.minecraft.client.gui.layouts.LayoutElement packControlsIntoColumns(java.util.List<? extends net.minecraft.client.gui.layouts.LayoutElement>, int);
+}
+Compiled from "DialogConnectionAccess.java"
+public interface net.minecraft.client.gui.screens.dialog.DialogConnectionAccess {
+  public abstract void disconnect(net.minecraft.network.chat.Component);
+  public abstract void runCommand(java.lang.String, net.minecraft.client.gui.screens.Screen);
+  public abstract void openDialog(net.minecraft.core.Holder<net.minecraft.server.dialog.Dialog>, net.minecraft.client.gui.screens.Screen);
+  public abstract void sendCustomAction(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.Tag>);
+  public abstract net.minecraft.server.ServerLinks serverLinks();
+}
+Compiled from "WaitingForResponseScreen.java"
+public class net.minecraft.client.gui.screens.dialog.WaitingForResponseScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.dialog.WaitingForResponseScreen(net.minecraft.client.gui.screens.Screen);
+  protected void init();
+  protected void repositionElements();
+  public void tick();
+  public boolean isPauseScreen();
+  public boolean shouldCloseOnEsc();
+  public void onClose();
+  public net.minecraft.client.gui.screens.Screen previousScreen();
+}
+Compiled from "DialogListDialogScreen.java"
+public class net.minecraft.client.gui.screens.dialog.DialogListDialogScreen extends net.minecraft.client.gui.screens.dialog.ButtonListDialogScreen<net.minecraft.server.dialog.DialogListDialog> {
+  public net.minecraft.client.gui.screens.dialog.DialogListDialogScreen(net.minecraft.client.gui.screens.Screen, net.minecraft.server.dialog.DialogListDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream<net.minecraft.server.dialog.ActionButton> createListActions(net.minecraft.server.dialog.DialogListDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected java.util.stream.Stream createListActions(net.minecraft.server.dialog.ButtonListDialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}
+Compiled from "DialogScreens.java"
+public class net.minecraft.client.gui.screens.dialog.DialogScreens {
+  public net.minecraft.client.gui.screens.dialog.DialogScreens();
+  public static <T extends net.minecraft.server.dialog.Dialog> net.minecraft.client.gui.screens.dialog.DialogScreen<T> createFromData(T, net.minecraft.client.gui.screens.Screen, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  public static void bootstrap();
+}
+Compiled from "SimpleDialogScreen.java"
+public class net.minecraft.client.gui.screens.dialog.SimpleDialogScreen<T extends net.minecraft.server.dialog.SimpleDialog> extends net.minecraft.client.gui.screens.dialog.DialogScreen<T> {
+  public net.minecraft.client.gui.screens.dialog.SimpleDialogScreen(net.minecraft.client.gui.screens.Screen, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void updateHeaderAndFooter(net.minecraft.client.gui.layouts.HeaderAndFooterLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void updateHeaderAndFooter(net.minecraft.client.gui.layouts.HeaderAndFooterLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, net.minecraft.server.dialog.Dialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}
+Compiled from "DialogScreen.java"
+public class net.minecraft.client.gui.screens.dialog.DialogScreen$WarningScreen extends net.minecraft.client.gui.screens.ConfirmScreen {
+  public static net.minecraft.client.gui.screens.Screen create(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess, net.minecraft.client.gui.screens.Screen);
+  public net.minecraft.client.gui.screens.Screen returnScreen();
+  public void updateReturnScreen(net.minecraft.client.gui.screens.Screen);
+}
+Compiled from "DialogScreens.java"
+public interface net.minecraft.client.gui.screens.dialog.DialogScreens$Factory<T extends net.minecraft.server.dialog.Dialog> {
+  public abstract net.minecraft.client.gui.screens.dialog.DialogScreen<T> create(net.minecraft.client.gui.screens.Screen, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}
+Compiled from "ButtonListDialogScreen.java"
+public abstract class net.minecraft.client.gui.screens.dialog.ButtonListDialogScreen<T extends net.minecraft.server.dialog.ButtonListDialog> extends net.minecraft.client.gui.screens.dialog.DialogScreen<T> {
+  public static final int FOOTER_MARGIN;
+  public net.minecraft.client.gui.screens.dialog.ButtonListDialogScreen(net.minecraft.client.gui.screens.Screen, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void populateBodyElements(net.minecraft.client.gui.layouts.LinearLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected abstract java.util.stream.Stream<net.minecraft.server.dialog.ActionButton> createListActions(T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void updateHeaderAndFooter(net.minecraft.client.gui.layouts.HeaderAndFooterLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, T, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void updateHeaderAndFooter(net.minecraft.client.gui.layouts.HeaderAndFooterLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, net.minecraft.server.dialog.Dialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+  protected void populateBodyElements(net.minecraft.client.gui.layouts.LinearLayout, net.minecraft.client.gui.screens.dialog.DialogControlSet, net.minecraft.server.dialog.Dialog, net.minecraft.client.gui.screens.dialog.DialogConnectionAccess);
+}

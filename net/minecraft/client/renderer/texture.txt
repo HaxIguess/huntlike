@@ -1,0 +1,303 @@
+Compiled from "SimpleTexture.java"
+public class net.minecraft.client.renderer.texture.SimpleTexture extends net.minecraft.client.renderer.texture.ReloadableTexture {
+  public net.minecraft.client.renderer.texture.SimpleTexture(net.minecraft.resources.Identifier);
+  public net.minecraft.client.renderer.texture.TextureContents loadContents(net.minecraft.server.packs.resources.ResourceManager) throws java.io.IOException;
+}
+Compiled from "MipmapGenerator.java"
+public class net.minecraft.client.renderer.texture.MipmapGenerator {
+  public static com.mojang.blaze3d.platform.NativeImage[] generateMipLevels(net.minecraft.resources.Identifier, com.mojang.blaze3d.platform.NativeImage[], int, net.minecraft.client.renderer.texture.MipmapStrategy, float, com.mojang.blaze3d.platform.Transparency);
+}
+Compiled from "SpriteContents.java"
+final class net.minecraft.client.renderer.texture.SpriteContents$FrameInfo extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+  public int time();
+}
+Compiled from "DynamicAtlasTreeSlot.java"
+public interface net.minecraft.client.renderer.texture.DynamicAtlasTreeSlot {
+  public abstract int x();
+  public abstract int y();
+  public abstract int width();
+  public abstract int height();
+}
+Compiled from "CubeMapTexture.java"
+public class net.minecraft.client.renderer.texture.CubeMapTexture extends net.minecraft.client.renderer.texture.ReloadableTexture {
+  public net.minecraft.client.renderer.texture.CubeMapTexture(net.minecraft.resources.Identifier);
+  public net.minecraft.client.renderer.texture.TextureContents loadContents(net.minecraft.server.packs.resources.ResourceManager) throws java.io.IOException;
+  protected void doLoad(com.mojang.blaze3d.platform.NativeImage);
+}
+Compiled from "StitcherException.java"
+public class net.minecraft.client.renderer.texture.StitcherException extends java.lang.RuntimeException {
+  public net.minecraft.client.renderer.texture.StitcherException(net.minecraft.client.renderer.texture.Stitcher$Entry, java.util.Collection<net.minecraft.client.renderer.texture.Stitcher$Entry>);
+  public java.util.Collection<net.minecraft.client.renderer.texture.Stitcher$Entry> getAllSprites();
+}
+Compiled from "ReloadableTexture.java"
+public abstract class net.minecraft.client.renderer.texture.ReloadableTexture extends net.minecraft.client.renderer.texture.AbstractTexture {
+  public net.minecraft.client.renderer.texture.ReloadableTexture(net.minecraft.resources.Identifier);
+  public net.minecraft.resources.Identifier resourceId();
+  public void apply(net.minecraft.client.renderer.texture.TextureContents);
+  protected void setSampler(net.minecraft.client.renderer.texture.TextureContents);
+  protected void doLoad(com.mojang.blaze3d.platform.NativeImage);
+  public abstract net.minecraft.client.renderer.texture.TextureContents loadContents(net.minecraft.server.packs.resources.ResourceManager) throws java.io.IOException;
+}
+Compiled from "SpriteContents.java"
+public class net.minecraft.client.renderer.texture.SpriteContents$AnimationState implements java.lang.AutoCloseable {
+  public void tick();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice getDrawUbo(int);
+  public boolean needsToDraw();
+  public void drawToAtlas(com.mojang.renderpearl.api.commands.RenderPass, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public void close();
+}
+Compiled from "TextureManager.java"
+final class net.minecraft.client.renderer.texture.TextureManager$PendingReload extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.renderer.texture.ReloadableTexture texture();
+  public java.util.concurrent.CompletableFuture<net.minecraft.client.renderer.texture.TextureContents> newContents();
+}
+Compiled from "MissingTextureAtlasSprite.java"
+public final class net.minecraft.client.renderer.texture.MissingTextureAtlasSprite {
+  public net.minecraft.client.renderer.texture.MissingTextureAtlasSprite();
+  public static com.mojang.blaze3d.platform.NativeImage generateMissingImage();
+  public static com.mojang.blaze3d.platform.NativeImage generateMissingImage(int, int);
+  public static net.minecraft.client.renderer.texture.SpriteContents create();
+  public static net.minecraft.resources.Identifier getLocation();
+}
+Compiled from "TextureAtlasSprite.java"
+public class net.minecraft.client.renderer.texture.TextureAtlasSprite implements net.minecraft.client.renderer.texture.UvMapping,java.lang.AutoCloseable {
+  protected net.minecraft.client.renderer.texture.TextureAtlasSprite(net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.SpriteContents, int, int, int, int, int);
+  public int getX();
+  public int getY();
+  public float getU0();
+  public float getU1();
+  public net.minecraft.client.renderer.texture.SpriteContents contents();
+  public net.minecraft.client.renderer.texture.SpriteContents$AnimationState createAnimationState(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public com.mojang.blaze3d.platform.Transparency transparency();
+  public float getU(float);
+  public float getV0();
+  public float getV1();
+  public float getV(float);
+  public net.minecraft.resources.Identifier atlasLocation();
+  public java.lang.String toString();
+  public void uploadFirstFrame(com.mojang.renderpearl.api.textures.GpuTexture, int);
+  public boolean isAnimated();
+  public void uploadSpriteUbo(java.nio.ByteBuffer, int, int, int, int, int);
+  public void close();
+}
+Compiled from "TextureManager.java"
+public class net.minecraft.client.renderer.texture.TextureManager implements net.minecraft.server.packs.resources.PreparableReloadListener,java.lang.AutoCloseable {
+  public net.minecraft.client.renderer.texture.TextureManager(net.minecraft.server.packs.resources.ResourceManager);
+  public void registerAndLoad(net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.ReloadableTexture);
+  public void registerForNextReload(net.minecraft.resources.Identifier);
+  public void register(net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.AbstractTexture);
+  public net.minecraft.client.renderer.texture.AbstractTexture getTexture(net.minecraft.resources.Identifier);
+  public void tick();
+  public void release(net.minecraft.resources.Identifier);
+  public void close();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  public void dumpAllSheets(java.nio.file.Path);
+}
+Compiled from "OverlayTexture.java"
+public class net.minecraft.client.renderer.texture.OverlayTexture implements java.lang.AutoCloseable {
+  public static final int NO_WHITE_U;
+  public static final int RED_OVERLAY_V;
+  public static final int WHITE_OVERLAY_V;
+  public static final int NO_OVERLAY;
+  public net.minecraft.client.renderer.texture.OverlayTexture();
+  public void close();
+  public static int u(float);
+  public static int v(boolean);
+  public static int pack(int, int);
+  public static int pack(float, boolean);
+  public com.mojang.renderpearl.api.textures.GpuTextureView getTextureView();
+}
+Compiled from "DynamicAtlasTree.java"
+public class net.minecraft.client.renderer.texture.DynamicAtlasTree implements net.minecraft.client.renderer.texture.DynamicAtlasTreeSlot {
+  public net.minecraft.client.renderer.texture.DynamicAtlasTree(int, int, int, int);
+  public net.minecraft.client.renderer.texture.DynamicAtlasTreeSlot insert(int, int, int);
+  public int x();
+  public int y();
+  public int width();
+  public int height();
+}
+Compiled from "SpriteLoader.java"
+public class net.minecraft.client.renderer.texture.SpriteLoader {
+  public net.minecraft.client.renderer.texture.SpriteLoader(net.minecraft.resources.Identifier, int);
+  public static net.minecraft.client.renderer.texture.SpriteLoader create(net.minecraft.client.renderer.texture.TextureAtlas);
+  public java.util.concurrent.CompletableFuture<net.minecraft.client.renderer.texture.SpriteLoader$Preparations> loadAndStitch(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.resources.Identifier, int, java.util.concurrent.Executor, java.util.Set<net.minecraft.server.packs.metadata.MetadataSectionType<?>>);
+}
+Compiled from "SkinTextureDownloader.java"
+public class net.minecraft.client.renderer.texture.SkinTextureDownloader {
+  public net.minecraft.client.renderer.texture.SkinTextureDownloader(java.net.Proxy, net.minecraft.client.renderer.texture.TextureManager, java.util.concurrent.Executor);
+  public java.util.concurrent.CompletableFuture<net.minecraft.core.ClientAsset$Texture> downloadAndRegisterSkin(net.minecraft.resources.Identifier, java.nio.file.Path, java.lang.String, boolean);
+}
+Compiled from "SpriteLoader.java"
+public final class net.minecraft.client.renderer.texture.SpriteLoader$Preparations extends java.lang.Record implements net.fabricmc.fabric.api.client.renderer.v1.sprite.FabricPreparations {
+  public net.minecraft.client.renderer.texture.SpriteLoader$Preparations(int, int, int, net.minecraft.client.renderer.texture.TextureAtlasSprite, java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.TextureAtlasSprite>, java.util.concurrent.CompletableFuture<java.lang.Void>);
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite getSprite(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public int mipLevel();
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite missing();
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.client.renderer.texture.TextureAtlasSprite> regions();
+  public java.util.concurrent.CompletableFuture<java.lang.Void> readyForUpload();
+}
+Compiled from "MipmapStrategy.java"
+public final class net.minecraft.client.renderer.texture.MipmapStrategy extends java.lang.Enum<net.minecraft.client.renderer.texture.MipmapStrategy> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.client.renderer.texture.MipmapStrategy AUTO;
+  public static final net.minecraft.client.renderer.texture.MipmapStrategy MEAN;
+  public static final net.minecraft.client.renderer.texture.MipmapStrategy CUTOUT;
+  public static final net.minecraft.client.renderer.texture.MipmapStrategy STRICT_CUTOUT;
+  public static final net.minecraft.client.renderer.texture.MipmapStrategy DARK_CUTOUT;
+  public static final com.mojang.serialization.Codec<net.minecraft.client.renderer.texture.MipmapStrategy> CODEC;
+  public static net.minecraft.client.renderer.texture.MipmapStrategy[] values();
+  public static net.minecraft.client.renderer.texture.MipmapStrategy valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+}
+Compiled from "TextureAtlas.java"
+public class net.minecraft.client.renderer.texture.TextureAtlas extends net.minecraft.client.renderer.texture.AbstractTexture implements net.minecraft.client.renderer.texture.TickableTexture,net.minecraft.client.renderer.texture.Dumpable,net.fabricmc.fabric.api.client.renderer.v1.sprite.FabricTextureAtlas {
+  public static final net.minecraft.resources.Identifier LOCATION_BLOCKS;
+  public static final net.minecraft.resources.Identifier LOCATION_ITEMS;
+  public static final net.minecraft.resources.Identifier LOCATION_PARTICLES;
+  public net.minecraft.client.renderer.texture.TextureAtlas(net.minecraft.resources.Identifier);
+  public void upload(net.minecraft.client.renderer.texture.SpriteLoader$Preparations);
+  public void dumpContents(net.minecraft.resources.Identifier, java.nio.file.Path) throws java.io.IOException;
+  public void cycleAnimationFrames();
+  public void tick();
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite getSprite(net.minecraft.resources.Identifier);
+  public net.minecraft.client.renderer.texture.TextureAtlasSprite missingSprite();
+  public void clearTextureData();
+  protected void releaseTextures();
+  public void close();
+  public net.minecraft.resources.Identifier location();
+  public int maxSupportedTextureSize();
+}
+Compiled from "MipmappedTexture.java"
+public class net.minecraft.client.renderer.texture.MipmappedTexture extends net.minecraft.client.renderer.texture.ReloadableTexture {
+  public net.minecraft.client.renderer.texture.MipmappedTexture(net.minecraft.resources.Identifier, int);
+  public net.minecraft.client.renderer.texture.TextureContents loadContents(net.minecraft.server.packs.resources.ResourceManager) throws java.io.IOException;
+  protected void setSampler(net.minecraft.client.renderer.texture.TextureContents);
+  protected void doLoad(com.mojang.blaze3d.platform.NativeImage);
+}
+Compiled from "UvMapping.java"
+public interface net.minecraft.client.renderer.texture.UvMapping {
+  public abstract float getU(float);
+  public abstract float getV(float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer wrap(com.mojang.blaze3d.vertex.VertexConsumer);
+}
+Compiled from "TickableTexture.java"
+public interface net.minecraft.client.renderer.texture.TickableTexture {
+  public abstract void tick();
+}
+Compiled from "AbstractTexture.java"
+public abstract class net.minecraft.client.renderer.texture.AbstractTexture implements java.lang.AutoCloseable {
+  protected com.mojang.renderpearl.api.textures.GpuTexture texture;
+  protected com.mojang.renderpearl.api.textures.GpuTextureView textureView;
+  protected com.mojang.renderpearl.api.textures.GpuSampler sampler;
+  public net.minecraft.client.renderer.texture.AbstractTexture();
+  public void close();
+  protected void releaseTextures();
+  public com.mojang.renderpearl.api.textures.GpuTexture getTexture();
+  public com.mojang.renderpearl.api.textures.GpuTextureView getTextureView();
+  public com.mojang.renderpearl.api.textures.GpuSampler getSampler();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.renderer.texture.package-info {
+}
+Compiled from "Stitcher.java"
+final class net.minecraft.client.renderer.texture.Stitcher$Holder<T extends net.minecraft.client.renderer.texture.Stitcher$Entry> extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T entry();
+  public int width();
+  public int height();
+}
+Compiled from "Stitcher.java"
+public interface net.minecraft.client.renderer.texture.Stitcher$Entry {
+  public abstract int width();
+  public abstract int height();
+  public abstract net.minecraft.resources.Identifier name();
+}
+Compiled from "DynamicTexture.java"
+public class net.minecraft.client.renderer.texture.DynamicTexture extends net.minecraft.client.renderer.texture.AbstractTexture implements net.minecraft.client.renderer.texture.Dumpable {
+  public net.minecraft.client.renderer.texture.DynamicTexture(java.util.function.Supplier<java.lang.String>, com.mojang.blaze3d.platform.NativeImage);
+  public net.minecraft.client.renderer.texture.DynamicTexture(java.lang.String, int, int, boolean);
+  public net.minecraft.client.renderer.texture.DynamicTexture(java.util.function.Supplier<java.lang.String>, int, int, boolean);
+  public void upload();
+  public com.mojang.blaze3d.platform.NativeImage getPixels();
+  public void setPixels(com.mojang.blaze3d.platform.NativeImage);
+  public void close();
+  public void dumpContents(net.minecraft.resources.Identifier, java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "TextureContents.java"
+public final class net.minecraft.client.renderer.texture.TextureContents extends java.lang.Record implements java.io.Closeable {
+  public net.minecraft.client.renderer.texture.TextureContents(com.mojang.blaze3d.platform.NativeImage, net.minecraft.client.resources.metadata.texture.TextureMetadataSection);
+  public static net.minecraft.client.renderer.texture.TextureContents load(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.resources.Identifier) throws java.io.IOException;
+  public static net.minecraft.client.renderer.texture.TextureContents createMissing();
+  public boolean blur();
+  public boolean clamp();
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.blaze3d.platform.NativeImage image();
+  public net.minecraft.client.resources.metadata.texture.TextureMetadataSection metadata();
+}
+Compiled from "SpriteContents.java"
+public class net.minecraft.client.renderer.texture.SpriteContents implements java.lang.AutoCloseable,net.minecraft.client.renderer.texture.Stitcher$Entry {
+  public static final int UBO_SIZE;
+  public net.minecraft.client.renderer.texture.SpriteContents(net.minecraft.resources.Identifier, net.minecraft.client.resources.metadata.animation.FrameSize, com.mojang.blaze3d.platform.NativeImage);
+  public net.minecraft.client.renderer.texture.SpriteContents(net.minecraft.resources.Identifier, net.minecraft.client.resources.metadata.animation.FrameSize, com.mojang.blaze3d.platform.NativeImage, java.util.Optional<net.minecraft.client.resources.metadata.animation.AnimationMetadataSection>, java.util.List<net.minecraft.server.packs.metadata.MetadataSectionType$WithValue<?>>, java.util.Optional<net.minecraft.client.resources.metadata.texture.TextureMetadataSection>);
+  public void increaseMipLevel(int);
+  public boolean isAnimated();
+  public com.mojang.blaze3d.platform.Transparency transparency();
+  public int width();
+  public int height();
+  public net.minecraft.resources.Identifier name();
+  public it.unimi.dsi.fastutil.ints.IntList getUniqueFrames();
+  public net.minecraft.client.renderer.texture.SpriteContents$AnimationState createAnimationState(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public <T> java.util.Optional<T> getAdditionalMetadata(net.minecraft.server.packs.metadata.MetadataSectionType<T>);
+  public void close();
+  public java.lang.String toString();
+  public boolean isTransparent(int, int, int);
+  public com.mojang.blaze3d.platform.Transparency computeTransparency(float, float, float, float);
+  public void uploadFirstFrame(com.mojang.renderpearl.api.textures.GpuTexture, int);
+}
+Compiled from "Stitcher.java"
+public interface net.minecraft.client.renderer.texture.Stitcher$SpriteLoader<T extends net.minecraft.client.renderer.texture.Stitcher$Entry> {
+  public abstract void load(T, int, int, int);
+}
+Compiled from "Stitcher.java"
+public class net.minecraft.client.renderer.texture.Stitcher$Region<T extends net.minecraft.client.renderer.texture.Stitcher$Entry> {
+  public net.minecraft.client.renderer.texture.Stitcher$Region(int, int, int, int);
+  public int getX();
+  public int getY();
+  public boolean add(net.minecraft.client.renderer.texture.Stitcher$Holder<T>);
+  public void walk(net.minecraft.client.renderer.texture.Stitcher$SpriteLoader<T>, int);
+  public java.lang.String toString();
+}
+Compiled from "Dumpable.java"
+public interface net.minecraft.client.renderer.texture.Dumpable {
+  public abstract void dumpContents(net.minecraft.resources.Identifier, java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "SpriteContents.java"
+class net.minecraft.client.renderer.texture.SpriteContents$AnimatedTexture {
+  public net.minecraft.client.renderer.texture.SpriteContents$AnimationState createAnimationState(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public it.unimi.dsi.fastutil.ints.IntList getUniqueFrames();
+}
+Compiled from "Stitcher.java"
+public class net.minecraft.client.renderer.texture.Stitcher<T extends net.minecraft.client.renderer.texture.Stitcher$Entry> {
+  public net.minecraft.client.renderer.texture.Stitcher(int, int, int, int);
+  public int getWidth();
+  public int getHeight();
+  public void registerSprite(T);
+  public void stitch();
+  public void gatherSprites(net.minecraft.client.renderer.texture.Stitcher$SpriteLoader<T>);
+}

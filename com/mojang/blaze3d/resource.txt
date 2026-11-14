@@ -1,0 +1,64 @@
+Compiled from "CrossFrameResourcePool.java"
+public class com.mojang.blaze3d.resource.CrossFrameResourcePool implements com.mojang.blaze3d.resource.GraphicsResourceAllocator,java.lang.AutoCloseable {
+  public com.mojang.blaze3d.resource.CrossFrameResourcePool(int);
+  public void endFrame();
+  public <T> T acquire(com.mojang.blaze3d.resource.ResourceDescriptor<T>);
+  public <T> void release(com.mojang.blaze3d.resource.ResourceDescriptor<T>, T);
+  public void clear();
+  public void close();
+  protected java.util.Collection<com.mojang.blaze3d.resource.CrossFrameResourcePool$ResourceEntry<?>> entries();
+}
+Compiled from "ResourceHandle.java"
+public interface com.mojang.blaze3d.resource.ResourceHandle<T> {
+  public static final com.mojang.blaze3d.resource.ResourceHandle<?> INVALID_HANDLE;
+  public static <T> com.mojang.blaze3d.resource.ResourceHandle<T> invalid();
+  public abstract T get();
+}
+Compiled from "ResourceDescriptor.java"
+public interface com.mojang.blaze3d.resource.ResourceDescriptor<T> {
+  public abstract T allocate();
+  public default void prepare(T);
+  public abstract void free(T);
+  public default boolean canUsePhysicalResource(com.mojang.blaze3d.resource.ResourceDescriptor<?>);
+}
+Compiled from "RenderTargetDescriptor.java"
+public final class com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties extends java.lang.Record {
+  public static final com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties DEFAULT_DEPTH;
+  public com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties(org.joml.Vector4fc, com.mojang.renderpearl.api.GpuFormat);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public org.joml.Vector4fc clearColor();
+  public com.mojang.renderpearl.api.GpuFormat format();
+}
+Compiled from "GraphicsResourceAllocator.java"
+public interface com.mojang.blaze3d.resource.GraphicsResourceAllocator {
+  public static final com.mojang.blaze3d.resource.GraphicsResourceAllocator UNPOOLED;
+  public abstract <T> T acquire(com.mojang.blaze3d.resource.ResourceDescriptor<T>);
+  public abstract <T> void release(com.mojang.blaze3d.resource.ResourceDescriptor<T>, T);
+}
+Compiled from "package-info.java"
+interface com.mojang.blaze3d.resource.package-info {
+}
+Compiled from "RenderTargetDescriptor.java"
+public final class com.mojang.blaze3d.resource.RenderTargetDescriptor extends java.lang.Record implements com.mojang.blaze3d.resource.ResourceDescriptor<com.mojang.blaze3d.pipeline.RenderTarget> {
+  public com.mojang.blaze3d.resource.RenderTargetDescriptor(int, int, com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties, com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties);
+  public com.mojang.blaze3d.pipeline.RenderTarget allocate();
+  public void prepare(com.mojang.blaze3d.pipeline.RenderTarget);
+  public void free(com.mojang.blaze3d.pipeline.RenderTarget);
+  public boolean canUsePhysicalResource(com.mojang.blaze3d.resource.ResourceDescriptor<?>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties color();
+  public com.mojang.blaze3d.resource.RenderTargetDescriptor$TextureProperties depth();
+  public void free(java.lang.Object);
+  public void prepare(java.lang.Object);
+  public java.lang.Object allocate();
+}
+Compiled from "CrossFrameResourcePool.java"
+public final class com.mojang.blaze3d.resource.CrossFrameResourcePool$ResourceEntry<T> implements java.lang.AutoCloseable {
+  public void close();
+}

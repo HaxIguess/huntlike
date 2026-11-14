@@ -1,0 +1,53 @@
+Compiled from "AdvancementRenderContext.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Background extends net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext {
+  public abstract net.minecraft.client.gui.navigation.ScreenRectangle bounds();
+  public abstract double scrollX();
+  public abstract double scrollY();
+}
+Compiled from "AdvancementRenderContext.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Frame extends net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext {
+  public abstract int x();
+  public abstract int y();
+  public abstract boolean isHovered();
+}
+Compiled from "AdvancementRenderContext.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Icon extends net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext {
+  public abstract int x();
+  public abstract int y();
+  public abstract boolean isHovered();
+  public abstract boolean isSelected();
+}
+Compiled from "AdvancementRenderContext.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext {
+  public abstract net.minecraft.client.gui.GuiGraphicsExtractor graphics();
+  public abstract net.minecraft.advancements.AdvancementHolder holder();
+  public abstract net.minecraft.advancements.AdvancementProgress progress();
+  public default net.minecraft.advancements.Advancement advancement();
+  public default net.minecraft.advancements.DisplayInfo display();
+  public default boolean isObtained();
+}
+Compiled from "AdvancementRenderer.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$BackgroundRenderer {
+  public abstract void extractAdvancementBackground(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Background);
+  public default boolean shouldRenderOriginalBackground();
+}
+Compiled from "AdvancementRenderer.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$FrameRenderer {
+  public abstract void extractAdvancementFrame(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Frame);
+  public default boolean shouldRenderOriginalFrame();
+  public default boolean shouldRenderTooltip();
+}
+Compiled from "AdvancementRenderer.java"
+public interface net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$IconRenderer {
+  public abstract void extractAdvancementIcon(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderContext$Icon);
+  public default boolean shouldRenderOriginalIcon();
+}
+Compiled from "AdvancementRenderer.java"
+public final class net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer {
+  public static void registerIcon(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$IconRenderer, net.minecraft.resources.Identifier...);
+  public static void registerFrame(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$FrameRenderer, net.minecraft.resources.Identifier...);
+  public static void registerBackground(net.fabricmc.fabric.api.client.rendering.v1.advancement.AdvancementRenderer$BackgroundRenderer, net.minecraft.resources.Identifier...);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.client.rendering.v1.advancement.package-info {
+}

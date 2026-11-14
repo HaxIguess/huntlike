@@ -1,0 +1,62 @@
+Compiled from "ActionTypes.java"
+public class net.minecraft.server.dialog.action.ActionTypes {
+  public net.minecraft.server.dialog.action.ActionTypes();
+  public static com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.action.Action> bootstrap(net.minecraft.core.Registry<com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.action.Action>>);
+}
+Compiled from "CustomAll.java"
+public final class net.minecraft.server.dialog.action.CustomAll extends java.lang.Record implements net.minecraft.server.dialog.action.Action {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.CustomAll> MAP_CODEC;
+  public net.minecraft.server.dialog.action.CustomAll(net.minecraft.resources.Identifier, java.util.Optional<net.minecraft.nbt.CompoundTag>);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.CustomAll> codec();
+  public java.util.Optional<net.minecraft.network.chat.ClickEvent> createAction(java.util.Map<java.lang.String, net.minecraft.server.dialog.action.Action$ValueGetter>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public java.util.Optional<net.minecraft.nbt.CompoundTag> additions();
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.dialog.action.package-info {
+}
+Compiled from "Action.java"
+public interface net.minecraft.server.dialog.action.Action$ValueGetter {
+  public abstract java.lang.String asTemplateSubstitution();
+  public abstract net.minecraft.nbt.Tag asTag();
+  public static java.util.Map<java.lang.String, java.lang.String> getAsTemplateSubstitutions(java.util.Map<java.lang.String, net.minecraft.server.dialog.action.Action$ValueGetter>);
+  public static net.minecraft.server.dialog.action.Action$ValueGetter of(java.lang.String);
+  public static net.minecraft.server.dialog.action.Action$ValueGetter of(java.util.function.Supplier<java.lang.String>);
+}
+Compiled from "CommandTemplate.java"
+public final class net.minecraft.server.dialog.action.CommandTemplate extends java.lang.Record implements net.minecraft.server.dialog.action.Action {
+  public static final com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.CommandTemplate> MAP_CODEC;
+  public net.minecraft.server.dialog.action.CommandTemplate(net.minecraft.server.dialog.action.ParsedTemplate);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.CommandTemplate> codec();
+  public java.util.Optional<net.minecraft.network.chat.ClickEvent> createAction(java.util.Map<java.lang.String, net.minecraft.server.dialog.action.Action$ValueGetter>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.dialog.action.ParsedTemplate template();
+}
+Compiled from "StaticAction.java"
+public final class net.minecraft.server.dialog.action.StaticAction extends java.lang.Record implements net.minecraft.server.dialog.action.Action {
+  public static final java.util.Map<net.minecraft.network.chat.ClickEvent$Action, com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.StaticAction>> WRAPPED_CODECS;
+  public net.minecraft.server.dialog.action.StaticAction(net.minecraft.network.chat.ClickEvent);
+  public com.mojang.serialization.MapCodec<net.minecraft.server.dialog.action.StaticAction> codec();
+  public java.util.Optional<net.minecraft.network.chat.ClickEvent> createAction(java.util.Map<java.lang.String, net.minecraft.server.dialog.action.Action$ValueGetter>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.network.chat.ClickEvent value();
+}
+Compiled from "ParsedTemplate.java"
+public class net.minecraft.server.dialog.action.ParsedTemplate {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.action.ParsedTemplate> CODEC;
+  public static final com.mojang.serialization.Codec<java.lang.String> VARIABLE_CODEC;
+  public java.lang.String instantiate(java.util.Map<java.lang.String, java.lang.String>);
+}
+Compiled from "Action.java"
+public interface net.minecraft.server.dialog.action.Action {
+  public static final com.mojang.serialization.Codec<net.minecraft.server.dialog.action.Action> CODEC;
+  public abstract com.mojang.serialization.MapCodec<? extends net.minecraft.server.dialog.action.Action> codec();
+  public abstract java.util.Optional<net.minecraft.network.chat.ClickEvent> createAction(java.util.Map<java.lang.String, net.minecraft.server.dialog.action.Action$ValueGetter>);
+}

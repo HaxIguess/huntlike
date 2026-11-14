@@ -1,0 +1,62 @@
+Compiled from "WorldUnloadEvent.java"
+public class net.minecraft.client.telemetry.events.WorldUnloadEvent {
+  public net.minecraft.client.telemetry.events.WorldUnloadEvent();
+  public void onPlayerInfoReceived();
+  public void setTime(long);
+  public void send(net.minecraft.client.telemetry.TelemetryEventSender);
+}
+Compiled from "GameLoadTimesEvent.java"
+public class net.minecraft.client.telemetry.events.GameLoadTimesEvent {
+  public static final net.minecraft.client.telemetry.events.GameLoadTimesEvent INSTANCE;
+  protected net.minecraft.client.telemetry.events.GameLoadTimesEvent(com.google.common.base.Ticker);
+  public synchronized void beginStep(net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement>);
+  public synchronized void beginStep(net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement>, com.google.common.base.Stopwatch);
+  public synchronized void endStep(net.minecraft.client.telemetry.TelemetryProperty<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement>);
+  public void send(net.minecraft.client.telemetry.TelemetryEventSender);
+  public synchronized void setBootstrapTime(long);
+}
+Compiled from "GameLoadTimesEvent.java"
+public final class net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement> CODEC;
+  public net.minecraft.client.telemetry.events.GameLoadTimesEvent$Measurement(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int millis();
+}
+Compiled from "WorldLoadTimesEvent.java"
+public class net.minecraft.client.telemetry.events.WorldLoadTimesEvent {
+  public net.minecraft.client.telemetry.events.WorldLoadTimesEvent(boolean, java.time.Duration);
+  public void send(net.minecraft.client.telemetry.TelemetryEventSender);
+}
+Compiled from "AggregatedTelemetryEvent.java"
+public abstract class net.minecraft.client.telemetry.events.AggregatedTelemetryEvent {
+  public net.minecraft.client.telemetry.events.AggregatedTelemetryEvent();
+  public void start();
+  public void tick(net.minecraft.client.telemetry.TelemetryEventSender);
+  public boolean shouldTakeSample();
+  public boolean shouldSentEvent();
+  public void stop();
+  protected int getSampleCount();
+  public abstract void takeSample();
+  public abstract void sendEvent(net.minecraft.client.telemetry.TelemetryEventSender);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.telemetry.events.package-info {
+}
+Compiled from "WorldLoadEvent.java"
+public class net.minecraft.client.telemetry.events.WorldLoadEvent {
+  public net.minecraft.client.telemetry.events.WorldLoadEvent(java.lang.String);
+  public void addProperties(net.minecraft.client.telemetry.TelemetryPropertyMap$Builder);
+  public boolean send(net.minecraft.client.telemetry.TelemetryEventSender, boolean);
+  public boolean wasSent();
+  public void setGameMode(net.minecraft.world.level.GameType, boolean);
+  public void setServerBrand(java.lang.String);
+}
+Compiled from "PerformanceMetricsEvent.java"
+public final class net.minecraft.client.telemetry.events.PerformanceMetricsEvent extends net.minecraft.client.telemetry.events.AggregatedTelemetryEvent {
+  public net.minecraft.client.telemetry.events.PerformanceMetricsEvent();
+  public void tick(net.minecraft.client.telemetry.TelemetryEventSender);
+  public void takeSample();
+  public void sendEvent(net.minecraft.client.telemetry.TelemetryEventSender);
+}

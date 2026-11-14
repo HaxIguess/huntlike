@@ -1,0 +1,74 @@
+Compiled from "AbstractCookingCategory.java"
+final class mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory$FuelDisplay extends java.lang.Record {
+  public static mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory$FuelDisplay create(net.minecraft.world.item.crafting.display.SlotDisplay);
+  public boolean isSpecific();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.display.SlotDisplay input();
+  public net.minecraft.world.item.crafting.display.SlotDisplay output();
+}
+Compiled from "AbstractCookingCategory.java"
+public abstract class mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory<T extends net.minecraft.world.item.crafting.AbstractCookingRecipe> extends mezz.jei.api.recipe.category.AbstractRecipeCategory<net.minecraft.world.item.crafting.RecipeHolder<T>> {
+  protected final int regularCookTime;
+  public mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory(mezz.jei.api.helpers.IGuiHelper, mezz.jei.api.recipe.types.IRecipeHolderType<T>, net.minecraft.world.level.block.Block, java.lang.String, int);
+  public mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory(mezz.jei.api.helpers.IGuiHelper, mezz.jei.api.recipe.types.IRecipeHolderType<T>, net.minecraft.world.level.block.Block, java.lang.String, int, int, int);
+  public void setRecipe(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, net.minecraft.world.item.crafting.RecipeHolder<T>, mezz.jei.api.recipe.IFocusGroup);
+  public void createRecipeExtras(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, net.minecraft.world.item.crafting.RecipeHolder<T>, mezz.jei.api.recipe.IFocusGroup);
+  protected void addExperience(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay);
+  protected void addExperience(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay, boolean);
+  protected void addCookTime(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, net.minecraft.world.item.crafting.display.FurnaceRecipeDisplay);
+  public final com.mojang.serialization.Codec<net.minecraft.world.item.crafting.RecipeHolder<T>> getCodec(mezz.jei.api.helpers.ICodecHelper, mezz.jei.api.recipe.IRecipeManager);
+  public void createRecipeExtras(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, java.lang.Object, mezz.jei.api.recipe.IFocusGroup);
+  public void setRecipe(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.lang.Object, mezz.jei.api.recipe.IFocusGroup);
+}
+Compiled from "BlastingCategory.java"
+public class mezz.jei.library.plugins.vanilla.cooking.BlastingCategory extends mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory<net.minecraft.world.item.crafting.BlastingRecipe> {
+  public mezz.jei.library.plugins.vanilla.cooking.BlastingCategory(mezz.jei.api.helpers.IGuiHelper);
+}
+Compiled from "CampfireCookingCategory.java"
+public class mezz.jei.library.plugins.vanilla.cooking.CampfireCookingCategory extends mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory<net.minecraft.world.item.crafting.CampfireCookingRecipe> {
+  public mezz.jei.library.plugins.vanilla.cooking.CampfireCookingCategory(mezz.jei.api.helpers.IGuiHelper);
+  public void setRecipe(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CampfireCookingRecipe>, mezz.jei.api.recipe.IFocusGroup);
+  public void createRecipeExtras(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.CampfireCookingRecipe>, mezz.jei.api.recipe.IFocusGroup);
+  public void createRecipeExtras(mezz.jei.api.gui.widgets.IRecipeExtrasBuilder, java.lang.Object, mezz.jei.api.recipe.IFocusGroup);
+  public void setRecipe(mezz.jei.api.gui.builder.IRecipeLayoutBuilder, java.lang.Object, mezz.jei.api.recipe.IFocusGroup);
+}
+Compiled from "FurnaceRecipeMaker.java"
+public final class mezz.jei.library.plugins.vanilla.cooking.FurnaceRecipeMaker {
+  public static java.util.List<net.minecraft.world.item.crafting.RecipeHolder<net.minecraft.world.item.crafting.SmeltingRecipe>> getRecipes(mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory, net.minecraft.world.item.crafting.RecipeMap);
+}
+Compiled from "FurnaceRecipeTransferInfo.java"
+public class mezz.jei.library.plugins.vanilla.cooking.FurnaceRecipeTransferInfo implements mezz.jei.api.recipe.transfer.IRecipeTransferInfo<net.minecraft.world.inventory.FurnaceMenu, java.lang.Object> {
+  public mezz.jei.library.plugins.vanilla.cooking.FurnaceRecipeTransferInfo();
+  public java.lang.Class<? extends net.minecraft.world.inventory.FurnaceMenu> getContainerClass();
+  public java.util.Optional<net.minecraft.world.inventory.MenuType<net.minecraft.world.inventory.FurnaceMenu>> getMenuType();
+  public mezz.jei.api.recipe.types.IRecipeType<java.lang.Object> getRecipeType();
+  public boolean canHandle(net.minecraft.world.inventory.FurnaceMenu, java.lang.Object);
+  public java.util.List<net.minecraft.world.inventory.Slot> getRecipeSlots(net.minecraft.world.inventory.FurnaceMenu, java.lang.Object);
+  public java.util.List<net.minecraft.world.inventory.Slot> getInventorySlots(net.minecraft.world.inventory.FurnaceMenu, java.lang.Object);
+  public java.util.List getInventorySlots(net.minecraft.world.inventory.AbstractContainerMenu, java.lang.Object);
+  public java.util.List getRecipeSlots(net.minecraft.world.inventory.AbstractContainerMenu, java.lang.Object);
+  public boolean canHandle(net.minecraft.world.inventory.AbstractContainerMenu, java.lang.Object);
+}
+Compiled from "FurnaceSmeltingCategory.java"
+public class mezz.jei.library.plugins.vanilla.cooking.FurnaceSmeltingCategory extends mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory<net.minecraft.world.item.crafting.SmeltingRecipe> {
+  public mezz.jei.library.plugins.vanilla.cooking.FurnaceSmeltingCategory(mezz.jei.api.helpers.IGuiHelper);
+}
+Compiled from "JeiSmeltingRecipe.java"
+public class mezz.jei.library.plugins.vanilla.cooking.JeiSmeltingRecipe extends net.minecraft.world.item.crafting.SmeltingRecipe {
+  public static final com.mojang.serialization.MapCodec<mezz.jei.library.plugins.vanilla.cooking.JeiSmeltingRecipe> MAP_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, mezz.jei.library.plugins.vanilla.cooking.JeiSmeltingRecipe> STREAM_CODEC;
+  public static final net.minecraft.world.item.crafting.RecipeSerializer<mezz.jei.library.plugins.vanilla.cooking.JeiSmeltingRecipe> SERIALIZER;
+  public mezz.jei.library.plugins.vanilla.cooking.JeiSmeltingRecipe(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.display.SlotDisplay, net.minecraft.world.item.ItemStackTemplate, float, int);
+  public net.minecraft.world.item.crafting.display.SlotDisplay fuel();
+  public java.util.List<net.minecraft.world.item.crafting.display.RecipeDisplay> display();
+  public net.minecraft.world.item.crafting.RecipeSerializer<net.minecraft.world.item.crafting.SmeltingRecipe> getSerializer();
+}
+Compiled from "SmokingCategory.java"
+public class mezz.jei.library.plugins.vanilla.cooking.SmokingCategory extends mezz.jei.library.plugins.vanilla.cooking.AbstractCookingCategory<net.minecraft.world.item.crafting.SmokingRecipe> {
+  public mezz.jei.library.plugins.vanilla.cooking.SmokingCategory(mezz.jei.api.helpers.IGuiHelper);
+}
+Compiled from "package-info.java"
+interface mezz.jei.library.plugins.vanilla.cooking.package-info {
+}

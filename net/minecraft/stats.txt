@@ -1,0 +1,219 @@
+Compiled from "RecipeBookSettings.java"
+public final class net.minecraft.stats.RecipeBookSettings$TypeSettings extends java.lang.Record {
+  public static final net.minecraft.stats.RecipeBookSettings$TypeSettings DEFAULT;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings$TypeSettings> CRAFTING_MAP_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings$TypeSettings> FURNACE_MAP_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings$TypeSettings> BLAST_FURNACE_MAP_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings$TypeSettings> SMOKER_MAP_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.stats.RecipeBookSettings$TypeSettings> STREAM_CODEC;
+  public net.minecraft.stats.RecipeBookSettings$TypeSettings(boolean, boolean);
+  public java.lang.String toString();
+  public net.minecraft.stats.RecipeBookSettings$TypeSettings setOpen(boolean);
+  public net.minecraft.stats.RecipeBookSettings$TypeSettings setFiltering(boolean);
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean open();
+  public boolean filtering();
+}
+Compiled from "ServerStatsCounter.java"
+public class net.minecraft.stats.ServerStatsCounter extends net.minecraft.stats.StatsCounter {
+  public net.minecraft.stats.ServerStatsCounter(net.minecraft.server.MinecraftServer, java.nio.file.Path);
+  public void save();
+  public void setValue(net.minecraft.world.entity.player.Player, net.minecraft.stats.Stat<?>, int);
+  public void parse(com.mojang.datafixers.DataFixer, com.google.gson.JsonElement);
+  protected com.google.gson.JsonElement toJson();
+  public void markAllDirty();
+  public void sendStats(net.minecraft.server.level.ServerPlayer);
+}
+Compiled from "RecipeBook.java"
+public class net.minecraft.stats.RecipeBook {
+  protected final net.minecraft.stats.RecipeBookSettings bookSettings;
+  public net.minecraft.stats.RecipeBook();
+  public boolean isOpen(net.minecraft.world.inventory.RecipeBookType);
+  public void setOpen(net.minecraft.world.inventory.RecipeBookType, boolean);
+  public boolean isFiltering(net.minecraft.world.inventory.RecipeBookType);
+  public void setFiltering(net.minecraft.world.inventory.RecipeBookType, boolean);
+  public void setBookSettings(net.minecraft.stats.RecipeBookSettings);
+  public net.minecraft.stats.RecipeBookSettings getBookSettings();
+  public void setBookSetting(net.minecraft.world.inventory.RecipeBookType, boolean, boolean);
+}
+Compiled from "RecipeBookSettings.java"
+public final class net.minecraft.stats.RecipeBookSettings {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.stats.RecipeBookSettings> STREAM_CODEC;
+  public static final com.mojang.serialization.MapCodec<net.minecraft.stats.RecipeBookSettings> MAP_CODEC;
+  public net.minecraft.stats.RecipeBookSettings();
+  public net.minecraft.stats.RecipeBookSettings$TypeSettings getSettings(net.minecraft.world.inventory.RecipeBookType);
+  public boolean isOpen(net.minecraft.world.inventory.RecipeBookType);
+  public void setOpen(net.minecraft.world.inventory.RecipeBookType, boolean);
+  public boolean isFiltering(net.minecraft.world.inventory.RecipeBookType);
+  public void setFiltering(net.minecraft.world.inventory.RecipeBookType, boolean);
+  public net.minecraft.stats.RecipeBookSettings copy();
+  public void replaceFrom(net.minecraft.stats.RecipeBookSettings);
+}
+Compiled from "Stat.java"
+public class net.minecraft.stats.Stat<T> extends net.minecraft.world.scores.criteria.ObjectiveCriteria {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.stats.Stat<?>> STREAM_CODEC;
+  protected net.minecraft.stats.Stat(net.minecraft.stats.StatType<T>, T, net.minecraft.stats.StatFormatter);
+  public static <T> java.lang.String buildName(net.minecraft.stats.StatType<T>, T);
+  public net.minecraft.stats.StatType<T> getType();
+  public T getValue();
+  public java.lang.String format(int);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "ServerRecipeBook.java"
+public interface net.minecraft.stats.ServerRecipeBook$DisplayResolver {
+  public abstract void displaysForRecipe(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>, java.util.function.Consumer<net.minecraft.world.item.crafting.display.RecipeDisplayEntry>);
+}
+Compiled from "StatsCounter.java"
+public class net.minecraft.stats.StatsCounter {
+  protected final it.unimi.dsi.fastutil.objects.Object2IntMap<net.minecraft.stats.Stat<?>> stats;
+  public net.minecraft.stats.StatsCounter();
+  public void increment(net.minecraft.world.entity.player.Player, net.minecraft.stats.Stat<?>, int);
+  public void setValue(net.minecraft.world.entity.player.Player, net.minecraft.stats.Stat<?>, int);
+  public <T> int getValue(net.minecraft.stats.StatType<T>, T);
+  public int getValue(net.minecraft.stats.Stat<?>);
+}
+Compiled from "StatType.java"
+public class net.minecraft.stats.StatType<T> implements java.lang.Iterable<net.minecraft.stats.Stat<T>> {
+  public net.minecraft.stats.StatType(net.minecraft.core.Registry<T>, net.minecraft.network.chat.Component);
+  public net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.stats.Stat<T>> streamCodec();
+  public boolean contains(T);
+  public net.minecraft.stats.Stat<T> get(T, net.minecraft.stats.StatFormatter);
+  public net.minecraft.core.Registry<T> getRegistry();
+  public java.util.Iterator<net.minecraft.stats.Stat<T>> iterator();
+  public net.minecraft.stats.Stat<T> get(T);
+  public net.minecraft.network.chat.Component getDisplayName();
+}
+Compiled from "ServerRecipeBook.java"
+public final class net.minecraft.stats.ServerRecipeBook$Packed extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.stats.ServerRecipeBook$Packed> CODEC;
+  public net.minecraft.stats.ServerRecipeBook$Packed(net.minecraft.stats.RecipeBookSettings, java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>>, java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.stats.RecipeBookSettings settings();
+  public java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> known();
+  public java.util.List<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> highlight();
+}
+Compiled from "package-info.java"
+interface net.minecraft.stats.package-info {
+}
+Compiled from "StatFormatter.java"
+public interface net.minecraft.stats.StatFormatter {
+  public static final java.text.DecimalFormat DECIMAL_FORMAT;
+  public static final net.minecraft.stats.StatFormatter DEFAULT;
+  public static final net.minecraft.stats.StatFormatter DIVIDE_BY_TEN;
+  public static final net.minecraft.stats.StatFormatter DISTANCE;
+  public static final net.minecraft.stats.StatFormatter TIME;
+  public abstract java.lang.String format(int);
+}
+Compiled from "Stats.java"
+public class net.minecraft.stats.Stats {
+  public static final net.minecraft.stats.StatType<net.minecraft.world.level.block.Block> BLOCK_MINED;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.item.Item> ITEM_CRAFTED;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.item.Item> ITEM_USED;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.item.Item> ITEM_BROKEN;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.item.Item> ITEM_PICKED_UP;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.item.Item> ITEM_DROPPED;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.entity.EntityType<?>> ENTITY_KILLED;
+  public static final net.minecraft.stats.StatType<net.minecraft.world.entity.EntityType<?>> ENTITY_KILLED_BY;
+  public static final net.minecraft.stats.StatType<net.minecraft.resources.Identifier> CUSTOM;
+  public static final net.minecraft.resources.Identifier LEAVE_GAME;
+  public static final net.minecraft.resources.Identifier PLAY_TIME;
+  public static final net.minecraft.resources.Identifier TOTAL_WORLD_TIME;
+  public static final net.minecraft.resources.Identifier TIME_SINCE_DEATH;
+  public static final net.minecraft.resources.Identifier TIME_SINCE_REST;
+  public static final net.minecraft.resources.Identifier CROUCH_TIME;
+  public static final net.minecraft.resources.Identifier WALK_ONE_CM;
+  public static final net.minecraft.resources.Identifier CROUCH_ONE_CM;
+  public static final net.minecraft.resources.Identifier SPRINT_ONE_CM;
+  public static final net.minecraft.resources.Identifier WALK_ON_WATER_ONE_CM;
+  public static final net.minecraft.resources.Identifier FALL_ONE_CM;
+  public static final net.minecraft.resources.Identifier CLIMB_ONE_CM;
+  public static final net.minecraft.resources.Identifier FLY_ONE_CM;
+  public static final net.minecraft.resources.Identifier WALK_UNDER_WATER_ONE_CM;
+  public static final net.minecraft.resources.Identifier MINECART_ONE_CM;
+  public static final net.minecraft.resources.Identifier BOAT_ONE_CM;
+  public static final net.minecraft.resources.Identifier PIG_ONE_CM;
+  public static final net.minecraft.resources.Identifier HAPPY_GHAST_ONE_CM;
+  public static final net.minecraft.resources.Identifier HORSE_ONE_CM;
+  public static final net.minecraft.resources.Identifier AVIATE_ONE_CM;
+  public static final net.minecraft.resources.Identifier SWIM_ONE_CM;
+  public static final net.minecraft.resources.Identifier STRIDER_ONE_CM;
+  public static final net.minecraft.resources.Identifier NAUTILUS_ONE_CM;
+  public static final net.minecraft.resources.Identifier JUMP;
+  public static final net.minecraft.resources.Identifier DROP;
+  public static final net.minecraft.resources.Identifier DAMAGE_DEALT;
+  public static final net.minecraft.resources.Identifier DAMAGE_DEALT_ABSORBED;
+  public static final net.minecraft.resources.Identifier DAMAGE_DEALT_RESISTED;
+  public static final net.minecraft.resources.Identifier DAMAGE_TAKEN;
+  public static final net.minecraft.resources.Identifier DAMAGE_BLOCKED_BY_SHIELD;
+  public static final net.minecraft.resources.Identifier DAMAGE_ABSORBED;
+  public static final net.minecraft.resources.Identifier DAMAGE_RESISTED;
+  public static final net.minecraft.resources.Identifier DEATHS;
+  public static final net.minecraft.resources.Identifier MOB_KILLS;
+  public static final net.minecraft.resources.Identifier ANIMALS_BRED;
+  public static final net.minecraft.resources.Identifier PLAYER_KILLS;
+  public static final net.minecraft.resources.Identifier FISH_CAUGHT;
+  public static final net.minecraft.resources.Identifier TALKED_TO_VILLAGER;
+  public static final net.minecraft.resources.Identifier TRADED_WITH_VILLAGER;
+  public static final net.minecraft.resources.Identifier EAT_CAKE_SLICE;
+  public static final net.minecraft.resources.Identifier FILL_CAULDRON;
+  public static final net.minecraft.resources.Identifier USE_CAULDRON;
+  public static final net.minecraft.resources.Identifier CLEAN_ARMOR;
+  public static final net.minecraft.resources.Identifier CLEAN_BANNER;
+  public static final net.minecraft.resources.Identifier CLEAN_SHULKER_BOX;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_BREWINGSTAND;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_BEACON;
+  public static final net.minecraft.resources.Identifier INSPECT_DROPPER;
+  public static final net.minecraft.resources.Identifier INSPECT_HOPPER;
+  public static final net.minecraft.resources.Identifier INSPECT_DISPENSER;
+  public static final net.minecraft.resources.Identifier PLAY_NOTEBLOCK;
+  public static final net.minecraft.resources.Identifier TUNE_NOTEBLOCK;
+  public static final net.minecraft.resources.Identifier POT_FLOWER;
+  public static final net.minecraft.resources.Identifier TRIGGER_TRAPPED_CHEST;
+  public static final net.minecraft.resources.Identifier OPEN_ENDERCHEST;
+  public static final net.minecraft.resources.Identifier ENCHANT_ITEM;
+  public static final net.minecraft.resources.Identifier PLAY_RECORD;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_FURNACE;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_CRAFTING_TABLE;
+  public static final net.minecraft.resources.Identifier OPEN_CHEST;
+  public static final net.minecraft.resources.Identifier SLEEP_IN_BED;
+  public static final net.minecraft.resources.Identifier SLEEP_IN_STRAW_BED;
+  public static final net.minecraft.resources.Identifier OPEN_SHULKER_BOX;
+  public static final net.minecraft.resources.Identifier OPEN_BARREL;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_BLAST_FURNACE;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_SMOKER;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_LECTERN;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_CAMPFIRE;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_CARTOGRAPHY_TABLE;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_LOOM;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_STONECUTTER;
+  public static final net.minecraft.resources.Identifier BELL_RING;
+  public static final net.minecraft.resources.Identifier RAID_TRIGGER;
+  public static final net.minecraft.resources.Identifier RAID_WIN;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_ANVIL;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_GRINDSTONE;
+  public static final net.minecraft.resources.Identifier TARGET_HIT;
+  public static final net.minecraft.resources.Identifier INTERACT_WITH_SMITHING_TABLE;
+  public net.minecraft.stats.Stats();
+}
+Compiled from "ServerRecipeBook.java"
+public class net.minecraft.stats.ServerRecipeBook extends net.minecraft.stats.RecipeBook {
+  public static final java.lang.String RECIPE_BOOK_TAG;
+  protected final java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> known;
+  protected final java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>> highlight;
+  public net.minecraft.stats.ServerRecipeBook(net.minecraft.stats.ServerRecipeBook$DisplayResolver);
+  public void add(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>);
+  public boolean contains(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>);
+  public void remove(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>);
+  public void removeHighlight(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>);
+  public int addRecipes(java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<?>>, net.minecraft.server.level.ServerPlayer);
+  public int removeRecipes(java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<?>>, net.minecraft.server.level.ServerPlayer);
+  public void sendInitialRecipeBook(net.minecraft.server.level.ServerPlayer);
+  public void copyOverData(net.minecraft.stats.ServerRecipeBook);
+  public net.minecraft.stats.ServerRecipeBook$Packed pack();
+  public void loadUntrusted(net.minecraft.stats.ServerRecipeBook$Packed, java.util.function.Predicate<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>>);
+}

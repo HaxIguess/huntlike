@@ -1,0 +1,60 @@
+Compiled from "SlimeBlock.java"
+public class net.minecraft.world.level.block.SlimeBlock extends net.minecraft.world.level.block.HalfTransparentBlock {
+  public net.minecraft.world.level.block.SlimeBlock(net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1                  // Method net/minecraft/world/level/block/HalfTransparentBlock."<init>":(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+         5: return
+
+  public void fallOn(net.minecraft.world.level.Level, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, double);
+    Code:
+         0: aload         4
+         2: invokevirtual #7                  // Method net/minecraft/world/entity/Entity.isSuppressingBounce:()Z
+         5: ifne          24
+         8: aload         4
+        10: dload         5
+        12: fconst_0
+        13: aload_1
+        14: invokevirtual #13                 // Method net/minecraft/world/level/Level.damageSources:()Lnet/minecraft/world/damagesource/DamageSources;
+        17: invokevirtual #19                 // Method net/minecraft/world/damagesource/DamageSources.fall:()Lnet/minecraft/world/damagesource/DamageSource;
+        20: invokevirtual #25                 // Method net/minecraft/world/entity/Entity.causeFallDamage:(DFLnet/minecraft/world/damagesource/DamageSource;)Z
+        23: pop
+        24: return
+
+  public void stepOn(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.entity.Entity);
+    Code:
+         0: aload         4
+         2: invokevirtual #29                 // Method net/minecraft/world/entity/Entity.getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+         5: getfield      #33                 // Field net/minecraft/world/phys/Vec3.y:D
+         8: invokestatic  #39                 // Method java/lang/Math.abs:(D)D
+        11: dstore        5
+        13: dload         5
+        15: ldc2_w        #45                 // double 0.1d
+        18: dcmpg
+        19: ifge          60
+        22: aload         4
+        24: invokevirtual #47                 // Method net/minecraft/world/entity/Entity.isSteppingCarefully:()Z
+        27: ifne          60
+        30: ldc2_w        #50                 // double 0.4d
+        33: dload         5
+        35: ldc2_w        #52                 // double 0.2d
+        38: dmul
+        39: dadd
+        40: dstore        7
+        42: aload         4
+        44: aload         4
+        46: invokevirtual #29                 // Method net/minecraft/world/entity/Entity.getDeltaMovement:()Lnet/minecraft/world/phys/Vec3;
+        49: dload         7
+        51: dconst_1
+        52: dload         7
+        54: invokevirtual #54                 // Method net/minecraft/world/phys/Vec3.multiply:(DDD)Lnet/minecraft/world/phys/Vec3;
+        57: invokevirtual #58                 // Method net/minecraft/world/entity/Entity.setDeltaMovement:(Lnet/minecraft/world/phys/Vec3;)V
+        60: aload_0
+        61: aload_1
+        62: aload_2
+        63: aload_3
+        64: aload         4
+        66: invokespecial #62                 // Method net/minecraft/world/level/block/HalfTransparentBlock.stepOn:(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/Entity;)V
+        69: return
+}

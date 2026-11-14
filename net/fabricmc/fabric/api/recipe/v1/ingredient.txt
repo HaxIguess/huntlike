@@ -1,0 +1,35 @@
+Compiled from "CustomIngredient.java"
+public interface net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient {
+  public abstract boolean test(net.minecraft.world.item.ItemStack);
+  public abstract java.util.stream.Stream<net.minecraft.core.Holder<net.minecraft.world.item.Item>> items();
+  public abstract boolean requiresTesting();
+  public abstract net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?> getSerializer();
+  public default net.minecraft.world.item.crafting.display.SlotDisplay display();
+  public default net.minecraft.world.item.crafting.Ingredient toVanilla();
+}
+Compiled from "CustomIngredientSerializer.java"
+public interface net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<T extends net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient> {
+  public static void register(net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?>);
+  public static net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredientSerializer<?> get(net.minecraft.resources.Identifier);
+  public abstract net.minecraft.resources.Identifier getIdentifier();
+  public abstract com.mojang.serialization.MapCodec<T> getCodec();
+  public abstract net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, T> getStreamCodec();
+}
+Compiled from "DefaultCustomIngredients.java"
+public final class net.fabricmc.fabric.api.recipe.v1.ingredient.DefaultCustomIngredients {
+  public static net.minecraft.world.item.crafting.Ingredient all(net.minecraft.world.item.crafting.Ingredient...);
+  public static net.minecraft.world.item.crafting.Ingredient any(net.minecraft.world.item.crafting.Ingredient...);
+  public static net.minecraft.world.item.crafting.Ingredient difference(net.minecraft.world.item.crafting.Ingredient, net.minecraft.world.item.crafting.Ingredient);
+  public static net.minecraft.world.item.crafting.Ingredient components(net.minecraft.world.item.crafting.Ingredient, net.minecraft.core.component.DataComponentPatch);
+  public static net.minecraft.world.item.crafting.Ingredient components(net.minecraft.world.item.crafting.Ingredient, java.util.function.UnaryOperator<net.minecraft.core.component.DataComponentPatch$Builder>);
+  public static net.minecraft.world.item.crafting.Ingredient components(net.minecraft.world.item.ItemStack);
+  public static net.minecraft.world.item.crafting.Ingredient customData(net.minecraft.world.item.crafting.Ingredient, net.minecraft.nbt.CompoundTag);
+}
+Compiled from "FabricIngredient.java"
+public interface net.fabricmc.fabric.api.recipe.v1.ingredient.FabricIngredient {
+  public default net.fabricmc.fabric.api.recipe.v1.ingredient.CustomIngredient getCustomIngredient();
+  public default boolean requiresTesting();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.recipe.v1.ingredient.package-info {
+}

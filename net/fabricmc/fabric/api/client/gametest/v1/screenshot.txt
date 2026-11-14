@@ -1,0 +1,38 @@
+Compiled from "TestScreenshotCommonOptions.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotCommonOptions<SELF extends net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotCommonOptions<SELF>> {
+  public abstract SELF disableCounterPrefix();
+  public abstract SELF withDeltaTicks(float);
+  public abstract SELF withSize(int, int);
+  public abstract SELF withDestinationDir(java.nio.file.Path);
+}
+Compiled from "TestScreenshotComparisonAlgorithm.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm$RawImage<DATA> {
+  public abstract int width();
+  public abstract int height();
+  public abstract DATA data();
+}
+Compiled from "TestScreenshotComparisonAlgorithm.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm {
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm defaultAlgorithm();
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm meanSquaredDifference(float);
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm exact();
+  public abstract org.joml.Vector2i findColor(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm$RawImage<int[]>, net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm$RawImage<int[]>);
+  public default org.joml.Vector2i findGrayscale(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm$RawImage<byte[]>, net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm$RawImage<byte[]>);
+}
+Compiled from "TestScreenshotComparisonOptions.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions extends net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotCommonOptions<net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions> {
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions of(java.lang.String);
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions of(com.mojang.blaze3d.platform.NativeImage);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions save();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions saveWithFileName(java.lang.String);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions withAlgorithm(net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonAlgorithm);
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions withGrayscale();
+  public abstract net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotComparisonOptions withRegion(int, int, int, int);
+}
+Compiled from "TestScreenshotOptions.java"
+public interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions extends net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotCommonOptions<net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions> {
+  public static net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions of(java.lang.String);
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.api.client.gametest.v1.screenshot.package-info {
+}

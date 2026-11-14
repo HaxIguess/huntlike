@@ -1,0 +1,122 @@
+Compiled from "PackSelectionModel.java"
+public abstract class net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase implements net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry {
+  public net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase(net.minecraft.client.gui.screens.packs.PackSelectionModel, net.minecraft.server.packs.repository.Pack);
+  protected abstract java.util.List<net.minecraft.server.packs.repository.Pack> getSelfList();
+  protected abstract java.util.List<net.minecraft.server.packs.repository.Pack> getOtherList();
+  public net.minecraft.resources.Identifier getIconTexture();
+  public net.minecraft.server.packs.repository.PackCompatibility getCompatibility();
+  public java.lang.String getId();
+  public net.minecraft.network.chat.Component getTitle();
+  public net.minecraft.network.chat.Component getDescription();
+  public net.minecraft.server.packs.repository.PackSource getPackSource();
+  public boolean isFixedPosition();
+  public boolean isRequired();
+  protected void toggleSelection();
+  protected void move(int);
+  public boolean canMoveUp();
+  public void moveUp();
+  public boolean canMoveDown();
+  public void moveDown();
+}
+Compiled from "PackSelectionModel.java"
+public interface net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry {
+  public abstract net.minecraft.resources.Identifier getIconTexture();
+  public abstract net.minecraft.server.packs.repository.PackCompatibility getCompatibility();
+  public abstract java.lang.String getId();
+  public abstract net.minecraft.network.chat.Component getTitle();
+  public abstract net.minecraft.network.chat.Component getDescription();
+  public abstract net.minecraft.server.packs.repository.PackSource getPackSource();
+  public default net.minecraft.network.chat.Component getExtendedDescription();
+  public abstract boolean isFixedPosition();
+  public abstract boolean isRequired();
+  public abstract void select();
+  public abstract void unselect();
+  public abstract void moveUp();
+  public abstract void moveDown();
+  public abstract boolean isSelected();
+  public default boolean canSelect();
+  public default boolean canUnselect();
+  public abstract boolean canMoveUp();
+  public abstract boolean canMoveDown();
+}
+Compiled from "PackSelectionModel.java"
+class net.minecraft.client.gui.screens.packs.PackSelectionModel$UnselectedPackEntry extends net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase {
+  public net.minecraft.client.gui.screens.packs.PackSelectionModel$UnselectedPackEntry(net.minecraft.client.gui.screens.packs.PackSelectionModel, net.minecraft.server.packs.repository.Pack);
+  protected java.util.List<net.minecraft.server.packs.repository.Pack> getSelfList();
+  protected java.util.List<net.minecraft.server.packs.repository.Pack> getOtherList();
+  public boolean isSelected();
+  public void select();
+  public void unselect();
+}
+Compiled from "PackSelectionModel.java"
+public class net.minecraft.client.gui.screens.packs.PackSelectionModel {
+  public net.minecraft.client.gui.screens.packs.PackSelectionModel(java.util.function.Consumer<net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase>, java.util.function.Function<net.minecraft.server.packs.repository.Pack, net.minecraft.resources.Identifier>, net.minecraft.server.packs.repository.PackRepository, java.util.function.Consumer<net.minecraft.server.packs.repository.PackRepository>);
+  public java.util.stream.Stream<net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry> getUnselected();
+  public java.util.stream.Stream<net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry> getSelected();
+  public void commit();
+  public void findNewPacks();
+}
+Compiled from "PackSelectionModel.java"
+class net.minecraft.client.gui.screens.packs.PackSelectionModel$SelectedPackEntry extends net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase {
+  public net.minecraft.client.gui.screens.packs.PackSelectionModel$SelectedPackEntry(net.minecraft.client.gui.screens.packs.PackSelectionModel, net.minecraft.server.packs.repository.Pack);
+  protected java.util.List<net.minecraft.server.packs.repository.Pack> getSelfList();
+  protected java.util.List<net.minecraft.server.packs.repository.Pack> getOtherList();
+  public boolean isSelected();
+  public void select();
+  public void unselect();
+}
+Compiled from "PackSelectionScreen.java"
+public class net.minecraft.client.gui.screens.packs.PackSelectionScreen extends net.minecraft.client.gui.screens.Screen {
+  public net.minecraft.client.gui.screens.packs.PackSelectionScreen(net.minecraft.server.packs.repository.PackRepository, java.util.function.Consumer<net.minecraft.server.packs.repository.PackRepository>, java.nio.file.Path, net.minecraft.network.chat.Component);
+  public void onClose();
+  protected void init();
+  protected void setInitialFocus();
+  protected void repositionElements();
+  public void tick();
+  protected static void copyPacks(net.minecraft.client.Minecraft, java.util.List<java.nio.file.Path>, java.nio.file.Path);
+  public void onFilesDrop(java.util.List<java.nio.file.Path>);
+}
+Compiled from "TransferableSelectionList.java"
+public class net.minecraft.client.gui.screens.packs.TransferableSelectionList extends net.minecraft.client.gui.components.ObjectSelectionList<net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.packs.TransferableSelectionList(net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.packs.PackSelectionScreen, int, int, net.minecraft.network.chat.Component);
+  public int getRowWidth();
+  protected int scrollBarX();
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void updateList(java.util.stream.Stream<net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry>, net.minecraft.client.gui.screens.packs.PackSelectionModel$EntryBase);
+}
+Compiled from "TransferableSelectionList.java"
+public abstract class net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry extends net.minecraft.client.gui.components.ObjectSelectionList$Entry<net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry> {
+  public net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry(net.minecraft.client.gui.screens.packs.TransferableSelectionList);
+  public int getWidth();
+  public abstract java.lang.String getPackId();
+}
+Compiled from "PackSelectionScreen.java"
+class net.minecraft.client.gui.screens.packs.PackSelectionScreen$Watcher implements java.lang.AutoCloseable {
+  public net.minecraft.client.gui.screens.packs.PackSelectionScreen$Watcher(java.nio.file.Path) throws java.io.IOException;
+  public static net.minecraft.client.gui.screens.packs.PackSelectionScreen$Watcher create(java.nio.file.Path);
+  public boolean pollForChanges() throws java.io.IOException;
+  public void close() throws java.io.IOException;
+}
+Compiled from "TransferableSelectionList.java"
+public class net.minecraft.client.gui.screens.packs.TransferableSelectionList$HeaderEntry extends net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry {
+  public net.minecraft.client.gui.screens.packs.TransferableSelectionList$HeaderEntry(net.minecraft.client.gui.screens.packs.TransferableSelectionList, net.minecraft.client.gui.Font, net.minecraft.network.chat.Component);
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public net.minecraft.network.chat.Component getNarration();
+  public java.lang.String getPackId();
+}
+Compiled from "TransferableSelectionList.java"
+public class net.minecraft.client.gui.screens.packs.TransferableSelectionList$PackEntry extends net.minecraft.client.gui.screens.packs.TransferableSelectionList$Entry implements net.minecraft.client.gui.components.SelectableEntry {
+  public static final int ICON_SIZE;
+  protected final net.minecraft.client.Minecraft minecraft;
+  public net.minecraft.client.gui.screens.packs.TransferableSelectionList$PackEntry(net.minecraft.client.gui.screens.packs.TransferableSelectionList, net.minecraft.client.Minecraft, net.minecraft.client.gui.screens.packs.TransferableSelectionList, net.minecraft.client.gui.screens.packs.PackSelectionModel$Entry);
+  public net.minecraft.network.chat.Component getNarration();
+  public void extractContent(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, boolean, float);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public void keyboardSelection();
+  public java.lang.String getPackId();
+  public boolean shouldTakeFocusAfterInteraction();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.packs.package-info {
+}

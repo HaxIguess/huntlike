@@ -1,0 +1,72 @@
+Compiled from "EntityFluidInteractionRegistryImpl.java"
+public final class net.fabricmc.fabric.impl.content.registry.fluid.EntityFluidInteractionRegistryImpl {
+  public net.fabricmc.fabric.impl.content.registry.fluid.EntityFluidInteractionRegistryImpl();
+  public static void register(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.fabricmc.fabric.api.registry.fluid.FluidBehavior);
+  public static java.util.Collection<net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>> getTrackedFluids();
+  public static net.fabricmc.fabric.api.registry.fluid.FluidBehavior getFluidBehavior(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>);
+}
+Compiled from "InternalEntityFluidExtension.java"
+public interface net.fabricmc.fabric.impl.content.registry.fluid.InternalEntityFluidExtension {
+  public abstract java.util.Set<net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>> fabric_api$getTouchedCustomFluids();
+}
+Compiled from "SimpleConfiguredFluidBehavior.java"
+public class net.fabricmc.fabric.impl.content.registry.fluid.SimpleConfiguredFluidBehavior$Builder implements net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder {
+  public net.fabricmc.fabric.impl.content.registry.fluid.SimpleConfiguredFluidBehavior$Builder();
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSpeed(float);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSpeed(net.minecraft.util.ToFloatFunction<net.minecraft.world.entity.LivingEntity>);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSlowdown(float);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSlowdown(float, float);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSlowdown(net.minecraft.util.ToFloatFunction<net.minecraft.world.entity.LivingEntity>);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder movementSlowdown(net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$MovementSlowdownFunction);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder fallDistanceModifier(float);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder gravityMultiplier(float);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder flowingPushScale(double);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowMovingDown(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowBoats(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowSwimming(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowSprinting(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowSprinting(java.util.function.Predicate<net.minecraft.world.entity.LivingEntity>);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder allowSprinting(java.util.function.BiPredicate<net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity>);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder makeMobsFloat(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder makeRiddenMobsFloat(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder enableDrowning(boolean);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder onEnteredFluid(net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnEnter);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder onExitedFluid(net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnExit);
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior build();
+}
+Compiled from "SimpleConfiguredFluidBehavior.java"
+public final class net.fabricmc.fabric.impl.content.registry.fluid.SimpleConfiguredFluidBehavior extends java.lang.Record implements net.fabricmc.fabric.api.registry.fluid.FluidBehavior {
+  public static final net.fabricmc.fabric.api.registry.fluid.FluidBehavior WATER_LIKE;
+  public net.fabricmc.fabric.impl.content.registry.fluid.SimpleConfiguredFluidBehavior(net.minecraft.util.ToFloatFunction<net.minecraft.world.entity.LivingEntity>, net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$MovementSlowdownFunction, float, float, double, boolean, boolean, boolean, boolean, boolean, boolean, java.util.function.BiPredicate<net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity>, net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnEnter, net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnExit);
+  public void handleFluidInteractionUpdate(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity, net.minecraft.world.entity.EntityFluidInteraction, boolean);
+  public boolean canSwimInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity);
+  public boolean shouldTryFloatingInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity);
+  public void travelInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3, double, boolean, double);
+  public void travelFlyingInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3, float, float, float);
+  public boolean canMoveDownInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity);
+  public boolean canDrownInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity);
+  public boolean canSupportBoat(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity);
+  public boolean canSprintInFluid(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity);
+  public void onFluidEntered(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity, boolean);
+  public void onFluidExited(net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.Entity);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.ToFloatFunction<net.minecraft.world.entity.LivingEntity> movementSpeed();
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$MovementSlowdownFunction movementSlowdown();
+  public float gravityMultiplier();
+  public float fallDistanceMultiplier();
+  public double flowingPushScale();
+  public boolean allowMovingDown();
+  public boolean allowBoats();
+  public boolean allowSwimming();
+  public boolean makeMobsFloat();
+  public boolean makeRiddenMobsFloat();
+  public boolean drowning();
+  public java.util.function.BiPredicate<net.minecraft.tags.TagKey<net.minecraft.world.level.material.Fluid>, net.minecraft.world.entity.LivingEntity> allowSprinting();
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnEnter onEnter();
+  public net.fabricmc.fabric.api.registry.fluid.FluidBehavior$Builder$OnExit onExit();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.content.registry.fluid.package-info {
+}

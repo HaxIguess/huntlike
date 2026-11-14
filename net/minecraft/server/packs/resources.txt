@@ -1,0 +1,231 @@
+Compiled from "PreparableReloadListener.java"
+public interface net.minecraft.server.packs.resources.PreparableReloadListener {
+  public abstract java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  public default void prepareSharedState(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState);
+  public default java.lang.String getName();
+}
+Compiled from "ResourceManager.java"
+public interface net.minecraft.server.packs.resources.ResourceManager extends net.minecraft.server.packs.resources.ResourceProvider {
+  public abstract java.util.Set<java.lang.String> getNamespaces();
+  public abstract java.util.List<net.minecraft.server.packs.resources.Resource> getResourceStack(net.minecraft.resources.Identifier);
+  public abstract java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listResources(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public abstract java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listResourceStacks(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public abstract java.util.stream.Stream<net.minecraft.server.packs.PackResources> listPacks();
+}
+Compiled from "FallbackResourceManager.java"
+public class net.minecraft.server.packs.resources.FallbackResourceManager implements net.minecraft.server.packs.resources.ResourceManager {
+  public net.minecraft.server.packs.resources.FallbackResourceManager(net.minecraft.server.packs.PackType, java.lang.String);
+  public void push(net.minecraft.server.packs.PackResources);
+  public void push(net.minecraft.server.packs.PackResources, net.minecraft.server.packs.PackResources$Filter);
+  public void pushFilterOnly(java.lang.String, net.minecraft.server.packs.PackResources$Filter);
+  public java.util.Set<java.lang.String> getNamespaces();
+  public java.util.Optional<net.minecraft.server.packs.resources.Resource> getResource(net.minecraft.resources.Identifier);
+  public java.util.List<net.minecraft.server.packs.resources.Resource> getResourceStack(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listResources(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listResourceStacks(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.stream.Stream<net.minecraft.server.packs.PackResources> listPacks();
+}
+Compiled from "IoSupplier.java"
+public interface net.minecraft.server.packs.resources.IoSupplier<T> {
+  public static net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream> create(java.nio.file.Path);
+  public static net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream> create(java.util.zip.ZipFile, java.util.zip.ZipEntry);
+  public abstract T get() throws java.io.IOException;
+}
+Compiled from "package-info.java"
+interface net.minecraft.server.packs.resources.package-info {
+}
+Compiled from "PreparableReloadListener.java"
+public interface net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier {
+  public abstract <T> java.util.concurrent.CompletableFuture<T> wait(T);
+}
+Compiled from "ResourceMetadata.java"
+public class net.minecraft.server.packs.resources.ResourceMetadata$MapBased implements net.minecraft.server.packs.resources.ResourceMetadata {
+  public <T> java.util.Optional<T> getSection(net.minecraft.server.packs.metadata.MetadataSectionType<T>);
+}
+Compiled from "FallbackResourceManager.java"
+final class net.minecraft.server.packs.resources.FallbackResourceManager$EntryStack extends java.lang.Record {
+  public net.minecraft.server.packs.resources.FallbackResourceManager$EntryStack(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier fileLocation();
+  public net.minecraft.resources.Identifier metadataLocation();
+  public java.util.List<net.minecraft.server.packs.resources.FallbackResourceManager$ResourceWithSource> fileSources();
+  public java.util.Map<net.minecraft.server.packs.PackResources, net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream>> metaSources();
+}
+Compiled from "MultiPackResourceManager.java"
+public class net.minecraft.server.packs.resources.MultiPackResourceManager implements net.minecraft.server.packs.resources.CloseableResourceManager {
+  public net.minecraft.server.packs.resources.MultiPackResourceManager(net.minecraft.server.packs.PackType, java.util.List<net.minecraft.server.packs.PackResources>);
+  public java.util.Set<java.lang.String> getNamespaces();
+  public java.util.Optional<net.minecraft.server.packs.resources.Resource> getResource(net.minecraft.resources.Identifier);
+  public java.util.List<net.minecraft.server.packs.resources.Resource> getResourceStack(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listResources(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listResourceStacks(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.stream.Stream<net.minecraft.server.packs.PackResources> listPacks();
+  public void close();
+}
+Compiled from "CloseableResourceManager.java"
+public interface net.minecraft.server.packs.resources.CloseableResourceManager extends net.minecraft.server.packs.resources.ResourceManager,java.lang.AutoCloseable {
+  public abstract void close();
+}
+Compiled from "ResourceFilterSection.java"
+public class net.minecraft.server.packs.resources.ResourceFilterSection {
+  public static final net.minecraft.server.packs.metadata.MetadataSectionType<net.minecraft.server.packs.resources.ResourceFilterSection> TYPE;
+  public net.minecraft.server.packs.resources.ResourceFilterSection(java.util.List<net.minecraft.util.IdentifierPattern>);
+  public boolean isNamespaceFiltered(java.lang.String);
+  public boolean isPathFiltered(java.lang.String);
+}
+Compiled from "SimpleReloadInstance.java"
+public class net.minecraft.server.packs.resources.SimpleReloadInstance<S> implements net.minecraft.server.packs.resources.ReloadInstance {
+  public static net.minecraft.server.packs.resources.ReloadInstance of(net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<net.minecraft.util.Unit>);
+  protected net.minecraft.server.packs.resources.SimpleReloadInstance(java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>);
+  protected void startTasks(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, net.minecraft.server.packs.resources.SimpleReloadInstance$StateFactory<S>, java.util.concurrent.CompletableFuture<?>);
+  protected java.util.concurrent.CompletableFuture<java.util.List<S>> prepareTasks(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, net.minecraft.server.packs.resources.SimpleReloadInstance$StateFactory<S>, java.util.concurrent.CompletableFuture<?>);
+  public java.util.concurrent.CompletableFuture<?> done();
+  public float getActualProgress();
+  public static net.minecraft.server.packs.resources.ReloadInstance create(net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<net.minecraft.util.Unit>, boolean);
+}
+Compiled from "ResourceProvider.java"
+public interface net.minecraft.server.packs.resources.ResourceProvider {
+  public static final net.minecraft.server.packs.resources.ResourceProvider EMPTY;
+  public abstract java.util.Optional<net.minecraft.server.packs.resources.Resource> getResource(net.minecraft.resources.Identifier);
+  public default net.minecraft.server.packs.resources.Resource getResourceOrThrow(net.minecraft.resources.Identifier) throws java.io.FileNotFoundException;
+  public default java.io.InputStream open(net.minecraft.resources.Identifier) throws java.io.IOException;
+  public default java.io.BufferedReader openAsReader(net.minecraft.resources.Identifier) throws java.io.IOException;
+  public static net.minecraft.server.packs.resources.ResourceProvider fromMap(java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource>);
+}
+Compiled from "FallbackResourceManager.java"
+final class net.minecraft.server.packs.resources.FallbackResourceManager$ResourceWithSource extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.server.packs.PackResources source();
+  public net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream> resource();
+}
+Compiled from "ProfiledReloadInstance.java"
+public class net.minecraft.server.packs.resources.ProfiledReloadInstance extends net.minecraft.server.packs.resources.SimpleReloadInstance<net.minecraft.server.packs.resources.ProfiledReloadInstance$State> {
+  public static net.minecraft.server.packs.resources.ReloadInstance of(net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<net.minecraft.util.Unit>);
+  protected java.util.concurrent.CompletableFuture<java.util.List<net.minecraft.server.packs.resources.ProfiledReloadInstance$State>> prepareTasks(java.util.concurrent.Executor, java.util.concurrent.Executor, net.minecraft.server.packs.resources.ResourceManager, java.util.List<net.minecraft.server.packs.resources.PreparableReloadListener>, net.minecraft.server.packs.resources.SimpleReloadInstance$StateFactory<net.minecraft.server.packs.resources.ProfiledReloadInstance$State>, java.util.concurrent.CompletableFuture<?>);
+}
+Compiled from "SimpleReloadInstance.java"
+public interface net.minecraft.server.packs.resources.SimpleReloadInstance$StateFactory<S> {
+  public static final net.minecraft.server.packs.resources.SimpleReloadInstance$StateFactory<java.lang.Void> SIMPLE;
+  public abstract java.util.concurrent.CompletableFuture<S> create(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, net.minecraft.server.packs.resources.PreparableReloadListener, java.util.concurrent.Executor, java.util.concurrent.Executor);
+}
+Compiled from "SimplePreparableReloadListener.java"
+public abstract class net.minecraft.server.packs.resources.SimplePreparableReloadListener<T> implements net.minecraft.server.packs.resources.PreparableReloadListener {
+  public net.minecraft.server.packs.resources.SimplePreparableReloadListener();
+  public final java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  protected abstract T prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected abstract void apply(T, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "FallbackResourceManager.java"
+class net.minecraft.server.packs.resources.FallbackResourceManager$LeakedResourceWarningInputStream extends java.io.FilterInputStream {
+  public net.minecraft.server.packs.resources.FallbackResourceManager$LeakedResourceWarningInputStream(java.io.InputStream, net.minecraft.resources.Identifier, java.lang.String);
+  public void close() throws java.io.IOException;
+  protected void finalize() throws java.lang.Throwable;
+}
+Compiled from "PreparableReloadListener.java"
+public final class net.minecraft.server.packs.resources.PreparableReloadListener$SharedState {
+  public net.minecraft.server.packs.resources.PreparableReloadListener$SharedState(net.minecraft.server.packs.resources.ResourceManager);
+  public net.minecraft.server.packs.resources.ResourceManager resourceManager();
+  public <T> void set(net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<T>, T);
+  public <T> T get(net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<T>);
+}
+Compiled from "PreparableReloadListener.java"
+public final class net.minecraft.server.packs.resources.PreparableReloadListener$StateKey<T> {
+  public net.minecraft.server.packs.resources.PreparableReloadListener$StateKey();
+}
+Compiled from "ResourceMetadata.java"
+public interface net.minecraft.server.packs.resources.ResourceMetadata {
+  public static final net.minecraft.server.packs.resources.ResourceMetadata EMPTY;
+  public static final net.minecraft.server.packs.resources.IoSupplier<net.minecraft.server.packs.resources.ResourceMetadata> EMPTY_SUPPLIER;
+  public static net.minecraft.server.packs.resources.ResourceMetadata fromJsonStream(java.io.InputStream) throws java.io.IOException;
+  public abstract <T> java.util.Optional<T> getSection(net.minecraft.server.packs.metadata.MetadataSectionType<T>);
+  public default <T> java.util.Optional<net.minecraft.server.packs.metadata.MetadataSectionType$WithValue<T>> getTypedSection(net.minecraft.server.packs.metadata.MetadataSectionType<T>);
+  public static <T> net.minecraft.server.packs.resources.ResourceMetadata of(net.minecraft.server.packs.metadata.MetadataSectionType<T>, T);
+  public static <T1, T2> net.minecraft.server.packs.resources.ResourceMetadata of(net.minecraft.server.packs.metadata.MetadataSectionType<T1>, T1, net.minecraft.server.packs.metadata.MetadataSectionType<T2>, T2);
+  public default java.util.List<net.minecraft.server.packs.metadata.MetadataSectionType$WithValue<?>> getTypedSections(java.util.Collection<net.minecraft.server.packs.metadata.MetadataSectionType<?>>);
+}
+Compiled from "FallbackResourceManager.java"
+final class net.minecraft.server.packs.resources.FallbackResourceManager$PackEntry extends java.lang.Record {
+  public void filterAll(java.util.Collection<net.minecraft.resources.Identifier>);
+  public boolean isFiltered(net.minecraft.resources.Identifier);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public net.minecraft.server.packs.PackResources resources();
+  public net.minecraft.server.packs.PackResources$Filter filter();
+}
+Compiled from "ReloadInstance.java"
+public interface net.minecraft.server.packs.resources.ReloadInstance {
+  public abstract java.util.concurrent.CompletableFuture<?> done();
+  public abstract float getActualProgress();
+  public default boolean isDone();
+  public default void checkExceptions();
+}
+Compiled from "Resource.java"
+public class net.minecraft.server.packs.resources.Resource implements net.fabricmc.fabric.api.resource.v1.FabricResource {
+  public net.minecraft.server.packs.resources.Resource(net.minecraft.server.packs.PackResources, net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream>, net.minecraft.server.packs.resources.IoSupplier<net.minecraft.server.packs.resources.ResourceMetadata>);
+  public net.minecraft.server.packs.resources.Resource(net.minecraft.server.packs.PackResources, net.minecraft.server.packs.resources.IoSupplier<java.io.InputStream>);
+  public net.minecraft.server.packs.PackResources source();
+  public java.lang.String sourcePackId();
+  public java.util.Optional<net.minecraft.server.packs.repository.KnownPack> knownPackInfo();
+  public java.io.InputStream open() throws java.io.IOException;
+  public java.io.BufferedReader openAsReader() throws java.io.IOException;
+  public java.lang.String readAllAsString() throws java.io.IOException;
+  public net.minecraft.server.packs.resources.ResourceMetadata metadata() throws java.io.IOException;
+}
+Compiled from "ProfiledReloadInstance.java"
+public final class net.minecraft.server.packs.resources.ProfiledReloadInstance$State extends java.lang.Record {
+  public net.minecraft.server.packs.resources.ProfiledReloadInstance$State(java.lang.String, java.util.concurrent.atomic.AtomicLong, java.util.concurrent.atomic.AtomicLong, java.util.concurrent.atomic.AtomicLong, java.util.concurrent.atomic.AtomicLong);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.concurrent.atomic.AtomicLong preparationNanos();
+  public java.util.concurrent.atomic.AtomicLong preparationCount();
+  public java.util.concurrent.atomic.AtomicLong reloadNanos();
+  public java.util.concurrent.atomic.AtomicLong reloadCount();
+}
+Compiled from "ResourceManager.java"
+public final class net.minecraft.server.packs.resources.ResourceManager$Empty extends java.lang.Enum<net.minecraft.server.packs.resources.ResourceManager$Empty> implements net.minecraft.server.packs.resources.ResourceManager {
+  public static final net.minecraft.server.packs.resources.ResourceManager$Empty INSTANCE;
+  public static net.minecraft.server.packs.resources.ResourceManager$Empty[] values();
+  public static net.minecraft.server.packs.resources.ResourceManager$Empty valueOf(java.lang.String);
+  public java.util.Set<java.lang.String> getNamespaces();
+  public java.util.Optional<net.minecraft.server.packs.resources.Resource> getResource(net.minecraft.resources.Identifier);
+  public java.util.List<net.minecraft.server.packs.resources.Resource> getResourceStack(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listResources(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listResourceStacks(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.stream.Stream<net.minecraft.server.packs.PackResources> listPacks();
+}
+Compiled from "ResourceManager.java"
+public interface net.minecraft.server.packs.resources.ResourceManager$Selector {
+  public abstract boolean isIncluded(net.minecraft.resources.Identifier);
+}
+Compiled from "ReloadableResourceManager.java"
+public class net.minecraft.server.packs.resources.ReloadableResourceManager implements java.lang.AutoCloseable,net.minecraft.server.packs.resources.ResourceManager {
+  public net.minecraft.server.packs.resources.ReloadableResourceManager(net.minecraft.server.packs.PackType);
+  public void close();
+  public void registerReloadListener(net.minecraft.server.packs.resources.PreparableReloadListener);
+  public net.minecraft.server.packs.resources.ReloadInstance createReload(java.util.concurrent.Executor, java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<net.minecraft.util.Unit>, java.util.List<net.minecraft.server.packs.PackResources>);
+  public java.util.Optional<net.minecraft.server.packs.resources.Resource> getResource(net.minecraft.resources.Identifier);
+  public java.util.Set<java.lang.String> getNamespaces();
+  public java.util.List<net.minecraft.server.packs.resources.Resource> getResourceStack(net.minecraft.resources.Identifier);
+  public java.util.Map<net.minecraft.resources.Identifier, net.minecraft.server.packs.resources.Resource> listResources(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.Map<net.minecraft.resources.Identifier, java.util.List<net.minecraft.server.packs.resources.Resource>> listResourceStacks(java.lang.String, net.minecraft.server.packs.resources.ResourceManager$Selector);
+  public java.util.stream.Stream<net.minecraft.server.packs.PackResources> listPacks();
+}
+Compiled from "SimpleJsonResourceReloadListener.java"
+public abstract class net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener<T> extends net.minecraft.server.packs.resources.SimplePreparableReloadListener<java.util.Map<net.minecraft.resources.Identifier, T>> {
+  protected net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener(com.mojang.serialization.Codec<T>, net.minecraft.resources.FileToIdConverter);
+  protected java.util.Map<net.minecraft.resources.Identifier, T> prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+  protected java.lang.Object prepare(net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+}
+Compiled from "ResourceManagerReloadListener.java"
+public interface net.minecraft.server.packs.resources.ResourceManagerReloadListener extends net.minecraft.server.packs.resources.PreparableReloadListener {
+  public default java.util.concurrent.CompletableFuture<java.lang.Void> reload(net.minecraft.server.packs.resources.PreparableReloadListener$SharedState, java.util.concurrent.Executor, net.minecraft.server.packs.resources.PreparableReloadListener$PreparationBarrier, java.util.concurrent.Executor);
+  public abstract void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager);
+}

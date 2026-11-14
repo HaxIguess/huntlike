@@ -1,0 +1,2116 @@
+Compiled from "NullOps.java"
+final class net.minecraft.util.NullOps$NullMapBuilder extends com.mojang.serialization.RecordBuilder$AbstractUniversalBuilder<net.minecraft.util.Unit, net.minecraft.util.Unit> {
+  public net.minecraft.util.NullOps$NullMapBuilder(com.mojang.serialization.DynamicOps<net.minecraft.util.Unit>);
+  protected net.minecraft.util.Unit initBuilder();
+  protected net.minecraft.util.Unit append(net.minecraft.util.Unit, net.minecraft.util.Unit, net.minecraft.util.Unit);
+  protected com.mojang.serialization.DataResult<net.minecraft.util.Unit> build(net.minecraft.util.Unit, net.minecraft.util.Unit);
+  protected java.lang.Object append(java.lang.Object, java.lang.Object, java.lang.Object);
+  protected com.mojang.serialization.DataResult build(java.lang.Object, java.lang.Object);
+  protected java.lang.Object initBuilder();
+}
+Compiled from "Crypt.java"
+public class net.minecraft.util.Crypt {
+  public static final java.lang.String SIGNING_ALGORITHM;
+  public static final int SIGNATURE_BYTES;
+  public static final java.lang.String RSA_PUBLIC_KEY_HEADER;
+  public static final java.lang.String MIME_LINE_SEPARATOR;
+  public static final java.util.Base64$Encoder MIME_ENCODER;
+  public static final com.mojang.serialization.Codec<java.security.PublicKey> PUBLIC_KEY_CODEC;
+  public static final com.mojang.serialization.Codec<java.security.PrivateKey> PRIVATE_KEY_CODEC;
+  public net.minecraft.util.Crypt();
+  public static javax.crypto.SecretKey generateSecretKey() throws net.minecraft.util.CryptException;
+  public static java.security.KeyPair generateKeyPair() throws net.minecraft.util.CryptException;
+  public static byte[] digestData(java.lang.String, java.security.PublicKey, javax.crypto.SecretKey) throws net.minecraft.util.CryptException;
+  public static java.security.PrivateKey stringToPemRsaPrivateKey(java.lang.String) throws net.minecraft.util.CryptException;
+  public static java.security.PublicKey stringToRsaPublicKey(java.lang.String) throws net.minecraft.util.CryptException;
+  public static java.lang.String rsaPublicKeyToString(java.security.PublicKey);
+  public static java.lang.String pemRsaPrivateKeyToString(java.security.PrivateKey);
+  public static java.security.PublicKey byteToPublicKey(byte[]) throws net.minecraft.util.CryptException;
+  public static javax.crypto.SecretKey decryptByteToSecretKey(java.security.PrivateKey, byte[]) throws net.minecraft.util.CryptException;
+  public static byte[] encryptUsingKey(java.security.Key, byte[]) throws net.minecraft.util.CryptException;
+  public static byte[] decryptUsingKey(java.security.Key, byte[]) throws net.minecraft.util.CryptException;
+  public static javax.crypto.Cipher getCipher(int, java.security.Key) throws net.minecraft.util.CryptException;
+}
+Compiled from "CubicSpline.java"
+public final class net.minecraft.util.CubicSpline$Multipoint<I extends net.minecraft.util.BoundedFloatFunction<?>> extends java.lang.Record implements net.minecraft.util.CubicSpline<I> {
+  public net.minecraft.util.CubicSpline$Multipoint(I, float[], java.util.List<net.minecraft.util.CubicSpline<I>>, float[]);
+  public net.minecraft.util.Interval range();
+  public static <C, I extends net.minecraft.util.BoundedFloatFunction<C>> float sample(net.minecraft.util.CubicSpline$Multipoint<I>, C);
+  public java.lang.String parityString();
+  public void forEachCoordinate(java.util.function.Consumer<I>);
+  public <R extends net.minecraft.util.BoundedFloatFunction<?>> net.minecraft.util.CubicSpline<R> mapCoordinates(java.util.function.Function<I, R>);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public static <I extends net.minecraft.util.BoundedFloatFunction<?>> com.mojang.serialization.Codec<net.minecraft.util.CubicSpline$Multipoint<I>> codec(com.mojang.serialization.Codec<I>, com.mojang.serialization.Codec<net.minecraft.util.CubicSpline<I>>);
+  public final java.lang.String toString();
+  public I coordinate();
+  public float[] locations();
+  public java.util.List<net.minecraft.util.CubicSpline<I>> values();
+  public float[] derivatives();
+}
+Compiled from "Crypt.java"
+public final class net.minecraft.util.Crypt$SaltSignaturePair extends java.lang.Record {
+  public static final net.minecraft.util.Crypt$SaltSignaturePair EMPTY;
+  public net.minecraft.util.Crypt$SaltSignaturePair(net.minecraft.network.FriendlyByteBuf);
+  public net.minecraft.util.Crypt$SaltSignaturePair(long, byte[]);
+  public boolean isValid();
+  public static void write(net.minecraft.network.FriendlyByteBuf, net.minecraft.util.Crypt$SaltSignaturePair);
+  public byte[] saltAsBytes();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long salt();
+  public byte[] signature();
+}
+Compiled from "HashOps.java"
+class net.minecraft.util.HashOps$ListHashBuilder extends net.minecraft.util.AbstractListBuilder<com.google.common.hash.HashCode, com.google.common.hash.Hasher> {
+  public net.minecraft.util.HashOps$ListHashBuilder(net.minecraft.util.HashOps);
+  protected com.google.common.hash.Hasher initBuilder();
+  protected com.google.common.hash.Hasher append(com.google.common.hash.Hasher, com.google.common.hash.HashCode);
+  protected com.mojang.serialization.DataResult<com.google.common.hash.HashCode> build(com.google.common.hash.Hasher, com.google.common.hash.HashCode);
+  protected com.mojang.serialization.DataResult build(java.lang.Object, java.lang.Object);
+  protected java.lang.Object append(java.lang.Object, java.lang.Object);
+  protected java.lang.Object initBuilder();
+}
+Compiled from "EasingType.java"
+final class net.minecraft.util.EasingType$CubicBezier$CubicCurve extends java.lang.Record {
+  public float sample(float);
+  public float sampleGradient(float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float a();
+  public float b();
+  public float c();
+}
+Compiled from "CommonLinks.java"
+public final class net.minecraft.util.CommonLinks$ExtensionReference extends java.lang.Enum<net.minecraft.util.CommonLinks$ExtensionReference> {
+  public static final net.minecraft.util.CommonLinks$ExtensionReference NONE;
+  public static final net.minecraft.util.CommonLinks$ExtensionReference EXPIRED_TRIAL;
+  public static final net.minecraft.util.CommonLinks$ExtensionReference EXPIRED_REALM;
+  public static net.minecraft.util.CommonLinks$ExtensionReference[] values();
+  public static net.minecraft.util.CommonLinks$ExtensionReference valueOf(java.lang.String);
+}
+Compiled from "DirectoryLock.java"
+public class net.minecraft.util.DirectoryLock implements java.lang.AutoCloseable {
+  public static final java.lang.String LOCK_FILE;
+  public static net.minecraft.util.DirectoryLock create(java.nio.file.Path) throws java.io.IOException;
+  public void close() throws java.io.IOException;
+  public boolean isValid();
+  public static boolean isLocked(java.nio.file.Path) throws java.io.IOException;
+}
+Compiled from "AbortableIterationConsumer.java"
+public interface net.minecraft.util.AbortableIterationConsumer<T> {
+  public abstract net.minecraft.util.Continuation accept(T);
+  public static <T> net.minecraft.util.AbortableIterationConsumer<T> forConsumer(java.util.function.Consumer<T>);
+}
+Compiled from "DirectoryLock.java"
+public class net.minecraft.util.DirectoryLock$LockException extends java.io.IOException {
+  public static net.minecraft.util.DirectoryLock$LockException alreadyLocked(java.nio.file.Path);
+}
+Compiled from "PlaceholderLookupProvider.java"
+public class net.minecraft.util.PlaceholderLookupProvider implements net.minecraft.core.HolderGetter$Provider {
+  public net.minecraft.util.PlaceholderLookupProvider(net.minecraft.core.HolderLookup$Provider);
+  public <T> java.util.Optional<? extends net.minecraft.core.HolderGetter<T>> lookup(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<? extends T>>);
+  public <V> net.minecraft.resources.RegistryOps<V> createSerializationContext(com.mojang.serialization.DynamicOps<V>);
+  public net.minecraft.util.RegistryContextSwapper createSwapper();
+  public boolean hasRegisteredPlaceholders();
+}
+Compiled from "Keyframe.java"
+public final class net.minecraft.util.Keyframe<T> extends java.lang.Record {
+  public net.minecraft.util.Keyframe(int, T);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.util.Keyframe<T>> codec(com.mojang.serialization.Codec<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int ticks();
+  public T value();
+}
+Compiled from "KeyframeTrack.java"
+public class net.minecraft.util.KeyframeTrack$Builder<T> {
+  public net.minecraft.util.KeyframeTrack$Builder();
+  public net.minecraft.util.KeyframeTrack$Builder<T> addKeyframe(int, T);
+  public net.minecraft.util.KeyframeTrack$Builder<T> setEasing(net.minecraft.util.EasingType);
+  public net.minecraft.util.KeyframeTrack<T> build();
+}
+Compiled from "FileSystemUtil.java"
+public class net.minecraft.util.FileSystemUtil {
+  public net.minecraft.util.FileSystemUtil();
+  public static java.nio.file.Path safeGetPath(java.net.URI) throws java.io.IOException;
+}
+Compiled from "HttpUtil.java"
+public class net.minecraft.util.HttpUtil {
+  public static java.nio.file.Path downloadFile(java.nio.file.Path, java.net.URL, java.util.Map<java.lang.String, java.lang.String>, com.google.common.hash.HashFunction, com.google.common.hash.HashCode, int, java.net.Proxy, net.minecraft.util.HttpUtil$DownloadProgressListener);
+  public static int getAvailablePort();
+  public static boolean isPortAvailable(int);
+}
+Compiled from "ThreadingDetector.java"
+public class net.minecraft.util.ThreadingDetector {
+  public net.minecraft.util.ThreadingDetector(java.lang.String);
+  public void checkAndLock();
+  public void checkAndUnlock();
+  public static net.minecraft.ReportedException makeThreadingException(java.lang.String, java.lang.Thread);
+}
+Compiled from "Continuation.java"
+public final class net.minecraft.util.Continuation extends java.lang.Enum<net.minecraft.util.Continuation> {
+  public static final net.minecraft.util.Continuation CONTINUE;
+  public static final net.minecraft.util.Continuation ABORT;
+  public static net.minecraft.util.Continuation[] values();
+  public static net.minecraft.util.Continuation valueOf(java.lang.String);
+  public boolean shouldAbort();
+  public static net.minecraft.util.Continuation abortIf(boolean);
+  public static net.minecraft.util.Continuation continueIf(boolean);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$IndexedFieldPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$IndexedFieldPathElement(java.lang.String, int);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public int index();
+}
+Compiled from "ProgressListener.java"
+public interface net.minecraft.util.ProgressListener {
+  public abstract void progressStartNoAbort(net.minecraft.network.chat.Component);
+  public abstract void progressStart(net.minecraft.network.chat.Component);
+  public abstract void progressStage(net.minecraft.network.chat.Component);
+  public abstract void progressStagePercentage(int);
+  public abstract void stop();
+}
+Compiled from "Ease.java"
+public class net.minecraft.util.Ease {
+  public net.minecraft.util.Ease();
+  public static float inBack(float);
+  public static float inBounce(float);
+  public static float inCubic(float);
+  public static float inElastic(float);
+  public static float inExpo(float);
+  public static float inQuart(float);
+  public static float inQuint(float);
+  public static float inSine(float);
+  public static float inOutBounce(float);
+  public static float inOutCirc(float);
+  public static float inOutCubic(float);
+  public static float inOutQuad(float);
+  public static float inOutQuart(float);
+  public static float inOutQuint(float);
+  public static float outBounce(float);
+  public static float outElastic(float);
+  public static float outExpo(float);
+  public static float outQuad(float);
+  public static float outQuint(float);
+  public static float outSine(float);
+  public static float inOutSine(float);
+  public static float outBack(float);
+  public static float outQuart(float);
+  public static float outCubic(float);
+  public static float inOutExpo(float);
+  public static float inQuad(float);
+  public static float outCirc(float);
+  public static float inOutElastic(float);
+  public static float inCirc(float);
+  public static float inOutBack(float);
+}
+Compiled from "FutureChain.java"
+public class net.minecraft.util.FutureChain implements net.minecraft.util.TaskChainer,java.lang.AutoCloseable {
+  public net.minecraft.util.FutureChain(java.util.concurrent.Executor);
+  public <T> void append(java.util.concurrent.CompletableFuture<T>, java.util.function.Consumer<T>);
+  public void close();
+}
+Compiled from "Crypt.java"
+interface net.minecraft.util.Crypt$ByteArrayToKeyFunction<T extends java.security.Key> {
+  public abstract T apply(byte[]) throws net.minecraft.util.CryptException;
+}
+Compiled from "MemoryReserve.java"
+public class net.minecraft.util.MemoryReserve {
+  public net.minecraft.util.MemoryReserve();
+  public static void allocate();
+  public static void release();
+}
+Compiled from "GsonHelper.java"
+public class net.minecraft.util.GsonHelper {
+  public net.minecraft.util.GsonHelper();
+  public static boolean isStringValue(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isStringValue(com.google.gson.JsonElement);
+  public static boolean isNumberValue(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isNumberValue(com.google.gson.JsonElement);
+  public static boolean isBooleanValue(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isBooleanValue(com.google.gson.JsonElement);
+  public static boolean isArrayNode(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isObjectNode(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isValidPrimitive(com.google.gson.JsonObject, java.lang.String);
+  public static boolean isValidNode(com.google.gson.JsonObject, java.lang.String);
+  public static com.google.gson.JsonElement getNonNull(com.google.gson.JsonObject, java.lang.String);
+  public static java.lang.String convertToString(com.google.gson.JsonElement, java.lang.String);
+  public static java.lang.String getAsString(com.google.gson.JsonObject, java.lang.String);
+  public static java.lang.String getAsString(com.google.gson.JsonObject, java.lang.String, java.lang.String);
+  public static net.minecraft.core.Holder<net.minecraft.world.item.Item> convertToItem(com.google.gson.JsonElement, java.lang.String);
+  public static net.minecraft.core.Holder<net.minecraft.world.item.Item> getAsItem(com.google.gson.JsonObject, java.lang.String);
+  public static net.minecraft.core.Holder<net.minecraft.world.item.Item> getAsItem(com.google.gson.JsonObject, java.lang.String, net.minecraft.core.Holder<net.minecraft.world.item.Item>);
+  public static boolean convertToBoolean(com.google.gson.JsonElement, java.lang.String);
+  public static boolean getAsBoolean(com.google.gson.JsonObject, java.lang.String);
+  public static boolean getAsBoolean(com.google.gson.JsonObject, java.lang.String, boolean);
+  public static double convertToDouble(com.google.gson.JsonElement, java.lang.String);
+  public static double getAsDouble(com.google.gson.JsonObject, java.lang.String);
+  public static double getAsDouble(com.google.gson.JsonObject, java.lang.String, double);
+  public static float convertToFloat(com.google.gson.JsonElement, java.lang.String);
+  public static float getAsFloat(com.google.gson.JsonObject, java.lang.String);
+  public static float getAsFloat(com.google.gson.JsonObject, java.lang.String, float);
+  public static long convertToLong(com.google.gson.JsonElement, java.lang.String);
+  public static long getAsLong(com.google.gson.JsonObject, java.lang.String);
+  public static long getAsLong(com.google.gson.JsonObject, java.lang.String, long);
+  public static int convertToInt(com.google.gson.JsonElement, java.lang.String);
+  public static int getAsInt(com.google.gson.JsonObject, java.lang.String);
+  public static int getAsInt(com.google.gson.JsonObject, java.lang.String, int);
+  public static byte convertToByte(com.google.gson.JsonElement, java.lang.String);
+  public static byte getAsByte(com.google.gson.JsonObject, java.lang.String);
+  public static byte getAsByte(com.google.gson.JsonObject, java.lang.String, byte);
+  public static char convertToCharacter(com.google.gson.JsonElement, java.lang.String);
+  public static char getAsCharacter(com.google.gson.JsonObject, java.lang.String);
+  public static char getAsCharacter(com.google.gson.JsonObject, java.lang.String, char);
+  public static java.math.BigDecimal convertToBigDecimal(com.google.gson.JsonElement, java.lang.String);
+  public static java.math.BigDecimal getAsBigDecimal(com.google.gson.JsonObject, java.lang.String);
+  public static java.math.BigDecimal getAsBigDecimal(com.google.gson.JsonObject, java.lang.String, java.math.BigDecimal);
+  public static java.math.BigInteger convertToBigInteger(com.google.gson.JsonElement, java.lang.String);
+  public static java.math.BigInteger getAsBigInteger(com.google.gson.JsonObject, java.lang.String);
+  public static java.math.BigInteger getAsBigInteger(com.google.gson.JsonObject, java.lang.String, java.math.BigInteger);
+  public static short convertToShort(com.google.gson.JsonElement, java.lang.String);
+  public static short getAsShort(com.google.gson.JsonObject, java.lang.String);
+  public static short getAsShort(com.google.gson.JsonObject, java.lang.String, short);
+  public static com.google.gson.JsonObject convertToJsonObject(com.google.gson.JsonElement, java.lang.String);
+  public static com.google.gson.JsonObject getAsJsonObject(com.google.gson.JsonObject, java.lang.String);
+  public static com.google.gson.JsonObject getAsJsonObject(com.google.gson.JsonObject, java.lang.String, com.google.gson.JsonObject);
+  public static com.google.gson.JsonArray convertToJsonArray(com.google.gson.JsonElement, java.lang.String);
+  public static com.google.gson.JsonArray getAsJsonArray(com.google.gson.JsonObject, java.lang.String);
+  public static com.google.gson.JsonArray getAsJsonArray(com.google.gson.JsonObject, java.lang.String, com.google.gson.JsonArray);
+  public static <T> T convertToObject(com.google.gson.JsonElement, java.lang.String, com.google.gson.JsonDeserializationContext, java.lang.Class<? extends T>);
+  public static <T> T getAsObject(com.google.gson.JsonObject, java.lang.String, com.google.gson.JsonDeserializationContext, java.lang.Class<? extends T>);
+  public static <T> T getAsObject(com.google.gson.JsonObject, java.lang.String, T, com.google.gson.JsonDeserializationContext, java.lang.Class<? extends T>);
+  public static java.lang.String getType(com.google.gson.JsonElement);
+  public static <T> T fromJson(com.google.gson.Gson, java.io.Reader, java.lang.Class<T>);
+  public static <T> T fromNullableJson(com.google.gson.Gson, java.io.Reader, com.google.gson.reflect.TypeToken<T>);
+  public static <T> T fromJson(com.google.gson.Gson, java.io.Reader, com.google.gson.reflect.TypeToken<T>);
+  public static <T> T fromNullableJson(com.google.gson.Gson, java.lang.String, com.google.gson.reflect.TypeToken<T>);
+  public static <T> T fromJson(com.google.gson.Gson, java.lang.String, java.lang.Class<T>);
+  public static com.google.gson.JsonObject parse(java.lang.String);
+  public static com.google.gson.JsonObject parse(java.io.Reader);
+  public static com.google.gson.JsonArray parseArray(java.lang.String);
+  public static com.google.gson.JsonArray parseArray(java.io.Reader);
+  public static java.lang.String toStableString(com.google.gson.JsonElement);
+  public static void writeValue(com.google.gson.stream.JsonWriter, com.google.gson.JsonElement, java.util.Comparator<java.lang.String>) throws java.io.IOException;
+  public static boolean encodesLongerThan(com.google.gson.JsonElement, int);
+}
+Compiled from "SpawnUtil.java"
+public interface net.minecraft.util.SpawnUtil$Strategy {
+  public static final net.minecraft.util.SpawnUtil$Strategy LEGACY_IRON_GOLEM;
+  public static final net.minecraft.util.SpawnUtil$Strategy ON_TOP_OF_COLLIDER;
+  public static final net.minecraft.util.SpawnUtil$Strategy ON_TOP_OF_COLLIDER_NO_LEAVES;
+  public abstract boolean canSpawnOn(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+}
+Compiled from "AbstractListBuilder.java"
+public abstract class net.minecraft.util.AbstractListBuilder<T, B> implements com.mojang.serialization.ListBuilder<T> {
+  protected com.mojang.serialization.DataResult<B> builder;
+  protected net.minecraft.util.AbstractListBuilder(com.mojang.serialization.DynamicOps<T>);
+  public com.mojang.serialization.DynamicOps<T> ops();
+  protected abstract B initBuilder();
+  protected abstract B append(B, T);
+  protected abstract com.mojang.serialization.DataResult<T> build(B, T);
+  public com.mojang.serialization.ListBuilder<T> add(T);
+  public com.mojang.serialization.ListBuilder<T> add(com.mojang.serialization.DataResult<T>);
+  public com.mojang.serialization.ListBuilder<T> withErrorsFrom(com.mojang.serialization.DataResult<?>);
+  public com.mojang.serialization.ListBuilder<T> mapError(java.util.function.UnaryOperator<java.lang.String>);
+  public com.mojang.serialization.DataResult<T> build(T);
+}
+Compiled from "ExtraCodecs.java"
+public class net.minecraft.util.ExtraCodecs$LateBoundIdMapper<I, V> {
+  public net.minecraft.util.ExtraCodecs$LateBoundIdMapper();
+  public com.mojang.serialization.Codec<V> codec(com.mojang.serialization.Codec<I>);
+  public net.minecraft.util.ExtraCodecs$LateBoundIdMapper<I, V> put(I, V);
+  public java.util.Set<V> values();
+}
+Compiled from "CsvOutput.java"
+public class net.minecraft.util.CsvOutput$Builder {
+  public net.minecraft.util.CsvOutput$Builder();
+  public net.minecraft.util.CsvOutput$Builder addColumn(java.lang.String);
+  public net.minecraft.util.CsvOutput build(java.io.Writer) throws java.io.IOException;
+}
+Compiled from "ExtraCodecs.java"
+public final class net.minecraft.util.ExtraCodecs$TagOrElementLocation extends java.lang.Record {
+  public net.minecraft.util.ExtraCodecs$TagOrElementLocation(net.minecraft.resources.Identifier, boolean);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.Identifier id();
+  public boolean tag();
+}
+Compiled from "ProblemReporter.java"
+final class net.minecraft.util.ProblemReporter$Collector$ProblemTreeNode extends java.lang.Record {
+  public net.minecraft.util.ProblemReporter$Collector$ProblemTreeNode(net.minecraft.util.ProblemReporter$PathElement);
+  public net.minecraft.util.ProblemReporter$Collector$ProblemTreeNode child(net.minecraft.util.ProblemReporter$PathElement);
+  public java.util.List<java.lang.String> getLines();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.ProblemReporter$PathElement element();
+  public java.util.List<net.minecraft.util.ProblemReporter$Problem> problems();
+  public java.util.Map<net.minecraft.util.ProblemReporter$PathElement, net.minecraft.util.ProblemReporter$Collector$ProblemTreeNode> children();
+}
+Compiled from "SpawnUtil.java"
+public class net.minecraft.util.SpawnUtil {
+  public net.minecraft.util.SpawnUtil();
+  public static <T extends net.minecraft.world.entity.Mob> java.util.Optional<T> trySpawnMob(net.minecraft.world.entity.EntityType<T>, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, int, int, int, net.minecraft.util.SpawnUtil$Strategy, boolean);
+}
+Compiled from "CsvOutput.java"
+public class net.minecraft.util.CsvOutput {
+  public static net.minecraft.util.CsvOutput$Builder builder();
+  public void writeRow(java.lang.Object...) throws java.io.IOException;
+}
+Compiled from "EasingType.java"
+public final class net.minecraft.util.EasingType$CubicBezier implements net.minecraft.util.EasingType {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.EasingType$CubicBezier> CODEC;
+  public net.minecraft.util.EasingType$CubicBezier(net.minecraft.util.EasingType$CubicBezierControls);
+  public float apply(float);
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "ArrayListDeque.java"
+public class net.minecraft.util.ArrayListDeque<T> extends java.util.AbstractList<T> implements net.minecraft.util.ListAndDeque<T> {
+  public net.minecraft.util.ArrayListDeque();
+  public net.minecraft.util.ArrayListDeque(int);
+  public int size();
+  public int capacity();
+  public T get(int);
+  public T set(int, T);
+  public void add(int, T);
+  public T remove(int);
+  public boolean removeIf(java.util.function.Predicate<? super T>);
+  public void replaceAll(java.util.function.UnaryOperator<T>);
+  public void forEach(java.util.function.Consumer<? super T>);
+  public void addFirst(T);
+  public void addLast(T);
+  public boolean offerFirst(T);
+  public boolean offerLast(T);
+  public T removeFirst();
+  public T removeLast();
+  public net.minecraft.util.ListAndDeque<T> reversed();
+  public T pollFirst();
+  public T pollLast();
+  public T getFirst();
+  public T getLast();
+  public T peekFirst();
+  public T peekLast();
+  public boolean removeFirstOccurrence(java.lang.Object);
+  public boolean removeLastOccurrence(java.lang.Object);
+  public java.util.Iterator<T> descendingIterator();
+  public java.util.List reversed();
+  public java.util.SequencedCollection reversed();
+  public java.util.Deque reversed();
+}
+Compiled from "GsonHelper.java"
+class net.minecraft.util.GsonHelper$CountedAppendable implements java.lang.Appendable {
+  public net.minecraft.util.GsonHelper$CountedAppendable(int);
+  public java.lang.Appendable append(java.lang.CharSequence);
+  public java.lang.Appendable append(java.lang.CharSequence, int, int);
+  public java.lang.Appendable append(char);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$CollectionReferencePathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$CollectionReferencePathElement(net.minecraft.tags.TagKey<?>);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.tags.TagKey<?> id();
+}
+Compiled from "BlockUtil.java"
+public class net.minecraft.util.BlockUtil {
+  public static final int MAX_POSITION_DIFFERENCE_PACKING_RADIUS;
+  public net.minecraft.util.BlockUtil();
+  public static net.minecraft.util.BlockUtil$FoundRectangle getLargestRectangleAround(net.minecraft.core.BlockPos, net.minecraft.core.Direction$Axis, int, net.minecraft.core.Direction$Axis, int, java.util.function.Predicate<net.minecraft.core.BlockPos>);
+  public static java.util.Optional<net.minecraft.core.BlockPos> getTopConnectedBlock(net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.Block, net.minecraft.core.Direction, net.minecraft.world.level.block.Block);
+  public static int clampedPackDifferenceInPosition(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, int, int, int);
+  public static int packDifferenceInPosition(net.minecraft.core.BlockPos, net.minecraft.core.BlockPos, int, int, int);
+  public static net.minecraft.core.BlockPos unpackDifferenceInPosition(net.minecraft.core.BlockPos, int, int, int, int);
+}
+Compiled from "KeyframeTrack.java"
+public final class net.minecraft.util.KeyframeTrack<T> extends java.lang.Record {
+  public net.minecraft.util.KeyframeTrack(java.util.List<net.minecraft.util.Keyframe<T>>, net.minecraft.util.EasingType);
+  public static <T> com.mojang.serialization.MapCodec<net.minecraft.util.KeyframeTrack<T>> mapCodec(com.mojang.serialization.Codec<T>);
+  public static com.mojang.serialization.DataResult<net.minecraft.util.KeyframeTrack<?>> validatePeriod(net.minecraft.util.KeyframeTrack<?>, int);
+  public net.minecraft.util.KeyframeTrackSampler<T> bakeSampler(java.util.Optional<java.lang.Integer>, net.minecraft.world.attribute.LerpFunction<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.util.Keyframe<T>> keyframes();
+  public net.minecraft.util.EasingType easingType();
+}
+Compiled from "StringUtil.java"
+public class net.minecraft.util.StringUtil {
+  public net.minecraft.util.StringUtil();
+  public static java.lang.String formatTickDuration(int, float);
+  public static java.lang.String stripColor(java.lang.String);
+  public static boolean isNullOrEmpty(java.lang.String);
+  public static java.lang.String truncateStringIfNecessary(java.lang.String, int, boolean);
+  public static int lineCount(java.lang.String);
+  public static boolean endsWithNewLine(java.lang.String);
+  public static java.lang.String trimChatMessage(java.lang.String);
+  public static boolean isAllowedChatCharacter(int);
+  public static boolean isValidPlayerName(java.lang.String);
+  public static java.lang.String filterText(java.lang.String);
+  public static java.lang.String filterText(java.lang.String, boolean);
+  public static boolean isWhitespace(int);
+  public static boolean isBlank(java.lang.String);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$IndexedPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$IndexedPathElement(int);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int index();
+}
+Compiled from "LinearCongruentialGenerator.java"
+public class net.minecraft.util.LinearCongruentialGenerator {
+  public net.minecraft.util.LinearCongruentialGenerator();
+  public static long next(long, long);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$MapEntryPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$MapEntryPathElement(java.lang.String, java.lang.String);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String key();
+}
+Compiled from "Prediction.java"
+public final class net.minecraft.util.Prediction extends java.lang.Enum<net.minecraft.util.Prediction> {
+  public static final net.minecraft.util.Prediction PREDICTED;
+  public static final net.minecraft.util.Prediction SERVER_ONLY;
+  public static net.minecraft.util.Prediction[] values();
+  public static net.minecraft.util.Prediction valueOf(java.lang.String);
+}
+Compiled from "EncoderCache.java"
+final class net.minecraft.util.EncoderCache$Key<A, T> extends java.lang.Record {
+  public com.mojang.serialization.DataResult<T> resolve();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public final java.lang.String toString();
+  public com.mojang.serialization.Codec<A> codec();
+  public A value();
+  public com.mojang.serialization.DynamicOps<T> ops();
+}
+Compiled from "DependencySorter.java"
+public class net.minecraft.util.DependencySorter<K, V extends net.minecraft.util.DependencySorter$Entry<K>> {
+  public net.minecraft.util.DependencySorter();
+  public net.minecraft.util.DependencySorter<K, V> addEntry(K, V);
+  public void orderByDependencies(java.util.function.BiConsumer<K, V>);
+}
+Compiled from "ProblemReporter.java"
+public class net.minecraft.util.ProblemReporter$Collector implements net.minecraft.util.ProblemReporter {
+  public static final net.minecraft.util.ProblemReporter$PathElement EMPTY_ROOT;
+  public net.minecraft.util.ProblemReporter$Collector();
+  public net.minecraft.util.ProblemReporter$Collector(net.minecraft.util.ProblemReporter$PathElement);
+  public net.minecraft.util.ProblemReporter forChild(net.minecraft.util.ProblemReporter$PathElement);
+  public void report(net.minecraft.util.ProblemReporter$Problem);
+  public boolean isEmpty();
+  public boolean hasFatalProblems();
+  public void forEach(java.util.function.BiConsumer<java.lang.String, net.minecraft.util.ProblemReporter$Problem>);
+  public java.lang.String getReport();
+  public java.lang.String getTreeReport();
+}
+Compiled from "ClassInstanceMultiMap.java"
+public class net.minecraft.util.ClassInstanceMultiMap<T> extends java.util.AbstractCollection<T> {
+  public net.minecraft.util.ClassInstanceMultiMap(java.lang.Class<T>);
+  public boolean add(T);
+  public boolean remove(java.lang.Object);
+  public boolean contains(java.lang.Object);
+  public <S> java.util.Collection<S> find(java.lang.Class<S>);
+  public java.util.Iterator<T> iterator();
+  public java.util.List<T> getAllInstances();
+  public int size();
+}
+Compiled from "FileZipper.java"
+public class net.minecraft.util.FileZipper implements java.io.Closeable {
+  public net.minecraft.util.FileZipper(java.nio.file.Path);
+  public void add(java.nio.file.Path, java.lang.String);
+  public void add(java.nio.file.Path, java.io.File);
+  public void add(java.nio.file.Path);
+  public void close();
+}
+Compiled from "StaticCache2D.java"
+public interface net.minecraft.util.StaticCache2D$Initializer<T> {
+  public abstract T get(int, int);
+}
+Compiled from "FastBufferedInputStream.java"
+public class net.minecraft.util.FastBufferedInputStream extends java.io.InputStream {
+  public net.minecraft.util.FastBufferedInputStream(java.io.InputStream);
+  public net.minecraft.util.FastBufferedInputStream(java.io.InputStream, int);
+  public int read() throws java.io.IOException;
+  public int read(byte[], int, int) throws java.io.IOException;
+  public long skip(long) throws java.io.IOException;
+  public int available() throws java.io.IOException;
+  public void close() throws java.io.IOException;
+}
+Compiled from "ParticleUtils.java"
+public class net.minecraft.util.ParticleUtils {
+  public net.minecraft.util.ParticleUtils();
+  public static void spawnParticlesOnBlockFaces(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.particles.ParticleOptions, net.minecraft.util.valueproviders.IntProvider);
+  public static void spawnParticlesOnBlockFace(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.particles.ParticleOptions, net.minecraft.util.valueproviders.IntProvider, net.minecraft.core.Direction, java.util.function.Supplier<net.minecraft.world.phys.Vec3>, double);
+  public static void spawnParticlesAlongAxis(net.minecraft.core.Direction$Axis, net.minecraft.world.level.Level, net.minecraft.core.BlockPos, double, net.minecraft.core.particles.ParticleOptions, net.minecraft.util.valueproviders.UniformInt);
+  public static void spawnParticleOnFace(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.core.Direction, net.minecraft.core.particles.ParticleOptions, net.minecraft.world.phys.Vec3, double);
+  public static void spawnParticleBelow(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource, net.minecraft.core.particles.ParticleOptions);
+  public static void spawnParticleInBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int, net.minecraft.core.particles.ParticleOptions);
+  public static void spawnParticles(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int, double, double, boolean, net.minecraft.core.particles.ParticleOptions);
+  public static void spawnSmashAttackParticles(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, int);
+}
+Compiled from "TimeUtil.java"
+public class net.minecraft.util.TimeUtil {
+  public static final long NANOSECONDS_PER_SECOND;
+  public static final long NANOSECONDS_PER_MILLISECOND;
+  public static final long MILLISECONDS_PER_SECOND;
+  public static final long SECONDS_PER_HOUR;
+  public static final int SECONDS_PER_MINUTE;
+  public net.minecraft.util.TimeUtil();
+  public static net.minecraft.util.valueproviders.UniformInt rangeOfSeconds(int, int);
+}
+Compiled from "RandomSource.java"
+public interface net.minecraft.util.RandomSource {
+  public static final double GAUSSIAN_SPREAD_FACTOR;
+  public static net.minecraft.util.RandomSource create();
+  public static net.minecraft.util.RandomSource createThreadSafe();
+  public static net.minecraft.util.RandomSource create(long);
+  public static net.minecraft.util.RandomSource createThreadLocalInstance();
+  public static net.minecraft.util.RandomSource createThreadLocalInstance(long);
+  public abstract net.minecraft.util.RandomSource fork();
+  public abstract net.minecraft.world.level.levelgen.PositionalRandomFactory forkPositional();
+  public abstract void setSeed(long);
+  public abstract int nextInt();
+  public abstract int nextInt(int);
+  public default int nextIntBetweenInclusive(int, int);
+  public abstract long nextLong();
+  public abstract boolean nextBoolean();
+  public abstract float nextFloat();
+  public abstract double nextDouble();
+  public abstract double nextGaussian();
+  public default double triangle(double, double);
+  public default float triangle(float, float);
+  public default void consumeCount(int);
+  public default int nextInt(int, int);
+}
+Compiled from "ProblemReporter.java"
+final class net.minecraft.util.ProblemReporter$Collector$Entry extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.ProblemReporter$Collector source();
+  public net.minecraft.util.ProblemReporter$Problem problem();
+}
+Compiled from "NativeModuleLister.java"
+public final class net.minecraft.util.NativeModuleLister$NativeModuleInfo extends java.lang.Record {
+  public net.minecraft.util.NativeModuleLister$NativeModuleInfo(java.lang.String, java.util.Optional<net.minecraft.util.NativeModuleLister$NativeModuleVersion>);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.util.Optional<net.minecraft.util.NativeModuleLister$NativeModuleVersion> version();
+}
+Compiled from "Interval.java"
+public final class net.minecraft.util.Interval {
+  public static final net.minecraft.util.Interval NaI;
+  public static final net.minecraft.util.Interval INFINITE;
+  public static net.minecraft.util.Interval of(float, float);
+  public static net.minecraft.util.Interval ofSymmetric(float);
+  public static net.minecraft.util.Interval ofExact(float);
+  public static net.minecraft.util.Interval encapsulating(java.util.List<net.minecraft.util.Interval>);
+  public static net.minecraft.util.Interval encapsulating(net.minecraft.util.Interval...);
+  public static net.minecraft.util.Interval encapsulating(float, float);
+  public static net.minecraft.util.Interval add(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval sub(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval mul(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval reciprocal(net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval div(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval min(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval max(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval clamp(net.minecraft.util.Interval, float, float);
+  public static net.minecraft.util.Interval abs(net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval square(net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval pow(net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval log(net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval mapMonotonic(net.minecraft.util.Interval, it.unimi.dsi.fastutil.floats.FloatUnaryOperator);
+  public static net.minecraft.util.Interval lerp(net.minecraft.util.Interval, net.minecraft.util.Interval, net.minecraft.util.Interval);
+  public static net.minecraft.util.Interval lerp(net.minecraft.util.Interval, float, float);
+  public static net.minecraft.util.Interval sign(net.minecraft.util.Interval);
+  public boolean contains(float);
+  public boolean intersects(net.minecraft.util.Interval);
+  public boolean isNaI();
+  public float min();
+  public float max();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "Brightness.java"
+public final class net.minecraft.util.Brightness extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<java.lang.Integer> LIGHT_VALUE_CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.Brightness> CODEC;
+  public static final net.minecraft.util.Brightness FULL_BRIGHT;
+  public net.minecraft.util.Brightness(int, int);
+  public int pack();
+  public static net.minecraft.util.Brightness unpack(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int block();
+  public int sky();
+}
+Compiled from "FileUtil.java"
+public class net.minecraft.util.FileUtil {
+  public net.minecraft.util.FileUtil();
+  public static java.lang.String sanitizeName(java.lang.String);
+  public static java.lang.String findAvailableName(java.nio.file.Path, java.lang.String, java.lang.String) throws java.io.IOException;
+  public static boolean isPathPortable(java.nio.file.Path);
+  public static boolean isPathPartPortable(java.lang.String);
+  public static java.lang.String getFullResourcePath(java.lang.String);
+  public static java.lang.String normalizeResourcePath(java.lang.String);
+  public static com.mojang.serialization.DataResult<java.util.List<java.lang.String>> decomposePath(java.lang.String);
+  public static java.nio.file.Path resolvePath(java.nio.file.Path, java.util.List<java.lang.String>);
+  public static boolean isValidPathSegment(java.lang.String);
+  public static void validatePath(java.lang.String...);
+  public static void createDirectoriesSafe(java.nio.file.Path) throws java.io.IOException;
+  public static boolean isEmptyPath(java.nio.file.Path);
+}
+Compiled from "BinaryAnimator.java"
+public class net.minecraft.util.BinaryAnimator {
+  public net.minecraft.util.BinaryAnimator(int, net.minecraft.util.EasingType);
+  public net.minecraft.util.BinaryAnimator(int);
+  public void tick(boolean);
+  public float getFactor(float);
+}
+Compiled from "CubicSpline.java"
+final class net.minecraft.util.CubicSpline$Multipoint$Point<I extends net.minecraft.util.BoundedFloatFunction<?>> extends java.lang.Record {
+  public static <I extends net.minecraft.util.BoundedFloatFunction<?>> com.mojang.serialization.Codec<net.minecraft.util.CubicSpline$Multipoint$Point<I>> codec(com.mojang.serialization.Codec<net.minecraft.util.CubicSpline<I>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float location();
+  public net.minecraft.util.CubicSpline<I> value();
+  public float derivative();
+}
+Compiled from "StringRepresentable.java"
+public class net.minecraft.util.StringRepresentable$EnumCodec<E extends java.lang.Enum<E> & net.minecraft.util.StringRepresentable> extends net.minecraft.util.StringRepresentable$StringRepresentableCodec<E> {
+  public net.minecraft.util.StringRepresentable$EnumCodec(E[], java.util.function.Function<java.lang.String, E>);
+  public E byName(java.lang.String);
+  public E byName(java.lang.String, E);
+  public E byName(java.lang.String, java.util.function.Supplier<? extends E>);
+}
+Compiled from "PlaceholderLookupProvider.java"
+class net.minecraft.util.PlaceholderLookupProvider$UniversalLookup implements net.minecraft.core.HolderGetter<java.lang.Object> {
+  public java.util.Optional<net.minecraft.core.Holder$Reference<java.lang.Object>> get(net.minecraft.resources.ResourceKey<java.lang.Object>);
+  public net.minecraft.core.Holder$Reference<java.lang.Object> getOrThrow(net.minecraft.resources.ResourceKey<java.lang.Object>);
+  public java.util.Optional<net.minecraft.core.HolderSet$Named<java.lang.Object>> get(net.minecraft.tags.TagKey<java.lang.Object>);
+  public net.minecraft.core.HolderSet$Named<java.lang.Object> getOrThrow(net.minecraft.tags.TagKey<java.lang.Object>);
+  public <T> net.minecraft.core.HolderGetter<T> castAsLookup();
+}
+Compiled from "Signer.java"
+public interface net.minecraft.util.Signer {
+  public static final org.slf4j.Logger LOGGER;
+  public abstract byte[] sign(net.minecraft.util.SignatureUpdater);
+  public default byte[] sign(byte[]);
+  public static net.minecraft.util.Signer from(java.security.PrivateKey, java.lang.String);
+}
+Compiled from "ARGB.java"
+public class net.minecraft.util.ARGB {
+  public net.minecraft.util.ARGB();
+  public static float srgbToLinearChannel(int);
+  public static int linearToSrgbChannel(float);
+  public static int meanLinear(int, int, int, int);
+  public static int alpha(int);
+  public static int red(int);
+  public static int green(int);
+  public static int blue(int);
+  public static int color(int, int, int, int);
+  public static int color(int, int, int);
+  public static int color(net.minecraft.world.phys.Vec3);
+  public static int multiply(int, int);
+  public static org.joml.Vector3fc multiply(org.joml.Vector3fc, org.joml.Vector3fc);
+  public static org.joml.Vector4fc multiply(org.joml.Vector4fc, org.joml.Vector4fc);
+  public static int addRgb(int, int);
+  public static org.joml.Vector3fc addRgb(org.joml.Vector3fc, org.joml.Vector3fc);
+  public static org.joml.Vector4fc addRgb(org.joml.Vector4fc, org.joml.Vector3fc);
+  public static java.lang.Integer subtractRgb(java.lang.Integer, java.lang.Integer);
+  public static org.joml.Vector3fc subtractRgb(org.joml.Vector3fc, org.joml.Vector3fc);
+  public static org.joml.Vector4fc subtractRgb(org.joml.Vector4fc, org.joml.Vector3fc);
+  public static int multiplyAlpha(int, float);
+  public static int scaleRGB(int, float);
+  public static int scaleRGB(int, float, float, float);
+  public static org.joml.Vector3fc scaleRGB(org.joml.Vector3fc, float);
+  public static org.joml.Vector4fc scaleRGB(org.joml.Vector4fc, float);
+  public static org.joml.Vector3fc scaleRGB(org.joml.Vector3fc, float, float, float);
+  public static org.joml.Vector4fc scaleRGB(org.joml.Vector4fc, float, float, float);
+  public static int scaleRGB(int, int);
+  public static int greyscale(int);
+  public static org.joml.Vector3fc greyscale(org.joml.Vector3fc);
+  public static org.joml.Vector4fc greyscale(org.joml.Vector4fc);
+  public static int alphaBlend(int, int);
+  public static org.joml.Vector3fc alphaBlend(org.joml.Vector3fc, org.joml.Vector4fc);
+  public static org.joml.Vector4fc alphaBlend(org.joml.Vector4fc, org.joml.Vector4fc);
+  public static int srgbLerp(float, int, int);
+  public static org.joml.Vector3fc srgbLerp(float, org.joml.Vector3fc, org.joml.Vector3fc);
+  public static org.joml.Vector4fc srgbLerp(float, org.joml.Vector4fc, org.joml.Vector4fc);
+  public static int linearLerp(float, int, int);
+  public static int opaque(int);
+  public static int transparent(int);
+  public static int color(int, int);
+  public static int color(float, int);
+  public static int white(float);
+  public static int white(int);
+  public static int black(float);
+  public static int black(int);
+  public static int gray(float);
+  public static int colorFromFloat(float, float, float, float);
+  public static int colorFromVector3f(org.joml.Vector3fc);
+  public static int colorFromVector4f(org.joml.Vector4fc);
+  public static org.joml.Vector3f vector3fFromRGB24(int);
+  public static org.joml.Vector4f vector4fFromARGB32(int);
+  public static org.joml.Vector4f setVector4fFromARGB32(org.joml.Vector4f, int);
+  public static int average(int, int);
+  public static int as8BitChannel(float);
+  public static float alphaFloat(int);
+  public static float redFloat(int);
+  public static float greenFloat(int);
+  public static float blueFloat(int);
+  public static int toABGR(int);
+  public static int fromABGR(int);
+  public static int setBrightness(int, float);
+}
+Compiled from "ModCheck.java"
+public final class net.minecraft.util.ModCheck$Confidence extends java.lang.Enum<net.minecraft.util.ModCheck$Confidence> {
+  public static final net.minecraft.util.ModCheck$Confidence PROBABLY_NOT;
+  public static final net.minecraft.util.ModCheck$Confidence VERY_LIKELY;
+  public static final net.minecraft.util.ModCheck$Confidence DEFINITELY;
+  public static net.minecraft.util.ModCheck$Confidence[] values();
+  public static net.minecraft.util.ModCheck$Confidence valueOf(java.lang.String);
+}
+Compiled from "NativeModuleLister.java"
+public class net.minecraft.util.NativeModuleLister {
+  public net.minecraft.util.NativeModuleLister();
+  public static java.util.List<net.minecraft.util.NativeModuleLister$NativeModuleInfo> listModules();
+  public static java.util.Optional<net.minecraft.util.NativeModuleLister$NativeModuleVersion> tryGetModuleVersion(java.lang.String);
+  public static void addCrashSection(net.minecraft.CrashReportCategory);
+}
+Compiled from "DelegateDataOutput.java"
+public class net.minecraft.util.DelegateDataOutput implements java.io.DataOutput {
+  public net.minecraft.util.DelegateDataOutput(java.io.DataOutput);
+  public void write(int) throws java.io.IOException;
+  public void write(byte[]) throws java.io.IOException;
+  public void write(byte[], int, int) throws java.io.IOException;
+  public void writeBoolean(boolean) throws java.io.IOException;
+  public void writeByte(int) throws java.io.IOException;
+  public void writeShort(int) throws java.io.IOException;
+  public void writeChar(int) throws java.io.IOException;
+  public void writeInt(int) throws java.io.IOException;
+  public void writeLong(long) throws java.io.IOException;
+  public void writeFloat(float) throws java.io.IOException;
+  public void writeDouble(double) throws java.io.IOException;
+  public void writeBytes(java.lang.String) throws java.io.IOException;
+  public void writeChars(java.lang.String) throws java.io.IOException;
+  public void writeUTF(java.lang.String) throws java.io.IOException;
+}
+Compiled from "LightCoordsUtil.java"
+public class net.minecraft.util.LightCoordsUtil {
+  public static final int FULL_BRIGHT;
+  public static final int FULL_SKY;
+  public net.minecraft.util.LightCoordsUtil();
+  public static int pack(int, int);
+  public static int block(int);
+  public static int sky(int);
+  public static int withBlock(int, int);
+  public static int smoothPack(int, int);
+  public static int smoothBlock(int);
+  public static int smoothSky(int);
+  public static int addSmoothBlockEmission(int, float);
+  public static int max(int, int);
+  public static int lightCoordsWithEmission(int, int);
+  public static int smoothBlend(int, int, int, int);
+  public static int smoothWeightedBlend(int, int, int, int, float, float, float, float);
+  public static int getLightCoords(net.minecraft.world.level.BlockAndLightGetter, net.minecraft.core.BlockPos);
+  public static int getLightCoords(net.minecraft.util.LightCoordsUtil$BrightnessGetter, net.minecraft.world.level.BlockAndLightGetter, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos);
+}
+Compiled from "ModCheck.java"
+public final class net.minecraft.util.ModCheck extends java.lang.Record {
+  public net.minecraft.util.ModCheck(net.minecraft.util.ModCheck$Confidence, java.lang.String);
+  public static net.minecraft.util.ModCheck identify(java.lang.String, java.util.function.Supplier<java.lang.String>, java.lang.String, java.lang.Class<?>);
+  public boolean shouldReportAsModified();
+  public net.minecraft.util.ModCheck merge(net.minecraft.util.ModCheck);
+  public java.lang.String fullDescription();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.ModCheck$Confidence confidence();
+  public java.lang.String description();
+}
+Compiled from "SingleKeyCache.java"
+public class net.minecraft.util.SingleKeyCache<K, V> {
+  public net.minecraft.util.SingleKeyCache(java.util.function.Function<K, V>);
+  public V getValue(K);
+}
+Compiled from "CryptException.java"
+public class net.minecraft.util.CryptException extends java.lang.Exception {
+  public net.minecraft.util.CryptException(java.lang.Throwable);
+}
+Compiled from "RegistryContextSwapper.java"
+public interface net.minecraft.util.RegistryContextSwapper {
+  public abstract <T> com.mojang.serialization.DataResult<T> swapTo(com.mojang.serialization.Codec<T>, T, net.minecraft.core.HolderLookup$Provider);
+}
+Compiled from "CommonLinks.java"
+public class net.minecraft.util.CommonLinks {
+  public static final java.net.URI GDPR;
+  public static final java.net.URI EULA;
+  public static final java.net.URI PRIVACY_STATEMENT;
+  public static final java.net.URI ATTRIBUTION;
+  public static final java.net.URI LICENSES;
+  public static final java.net.URI BUY_MINECRAFT_JAVA;
+  public static final java.net.URI ACCOUNT_SETTINGS;
+  public static final java.net.URI SNAPSHOT_FEEDBACK;
+  public static final java.net.URI RELEASE_FEEDBACK;
+  public static final java.net.URI SNAPSHOT_BUGS_FEEDBACK;
+  public static final java.net.URI GENERAL_HELP;
+  public static final java.net.URI ACCESSIBILITY_HELP;
+  public static final java.net.URI REPORTING_HELP;
+  public static final java.net.URI SUSPENSION_HELP;
+  public static final java.net.URI BLOCKING_HELP;
+  public static final java.net.URI SYMLINK_HELP;
+  public static final java.net.URI PRIVACY_AND_ONLINE_SETTINGS;
+  public static final java.net.URI START_REALMS_TRIAL;
+  public static final java.net.URI BUY_REALMS;
+  public static final java.net.URI REALMS_TERMS;
+  public static final java.net.URI REALMS_CONTENT_CREATION;
+  public static final java.net.URI EXTEND_REALMS_LINK;
+  public static final java.lang.String INTENTIONAL_GAME_DESIGN_BUG_ID;
+  public static final java.net.URI INTENTIONAL_GAME_DESIGN_BUG;
+  public net.minecraft.util.CommonLinks();
+  public static java.net.URI extendRealms(java.lang.String, java.util.UUID, net.minecraft.util.CommonLinks$ExtensionReference);
+}
+Compiled from "ByIdMap.java"
+public class net.minecraft.util.ByIdMap {
+  public net.minecraft.util.ByIdMap();
+  public static <T> java.util.function.IntFunction<T> sparse(java.util.function.ToIntFunction<T>, T[], T);
+  public static <T> java.util.function.IntFunction<T> continuous(java.util.function.ToIntFunction<T>, T[], net.minecraft.util.ByIdMap$OutOfBoundsStrategy);
+}
+Compiled from "Unit.java"
+public final class net.minecraft.util.Unit extends java.lang.Enum<net.minecraft.util.Unit> {
+  public static final net.minecraft.util.Unit INSTANCE;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.Unit> CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.Unit> STREAM_CODEC;
+  public static net.minecraft.util.Unit[] values();
+  public static net.minecraft.util.Unit valueOf(java.lang.String);
+}
+Compiled from "KeyframeTrackSampler.java"
+final class net.minecraft.util.KeyframeTrackSampler$Segment<T> extends java.lang.Record {
+  public net.minecraft.util.KeyframeTrackSampler$Segment(net.minecraft.util.KeyframeTrack<T>, net.minecraft.util.Keyframe<T>, int, net.minecraft.util.Keyframe<T>, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.EasingType easing();
+  public T fromValue();
+  public int fromTicks();
+  public T toValue();
+  public int toTicks();
+}
+Compiled from "CompilableString.java"
+public class net.minecraft.util.CompilableString<T> {
+  public static <T> com.mojang.serialization.Codec<net.minecraft.util.CompilableString<T>> codec(java.util.function.Function<java.lang.String, com.mojang.serialization.DataResult<T>>);
+  public java.lang.String source();
+  public T compiled();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+  public java.lang.String toString();
+}
+Compiled from "ColorRGBA.java"
+public final class net.minecraft.util.ColorRGBA extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.ColorRGBA> CODEC;
+  public net.minecraft.util.ColorRGBA(int);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int rgba();
+}
+Compiled from "NullOps.java"
+public class net.minecraft.util.NullOps implements com.mojang.serialization.DynamicOps<net.minecraft.util.Unit> {
+  public static final net.minecraft.util.NullOps INSTANCE;
+  public <U> U convertTo(com.mojang.serialization.DynamicOps<U>, net.minecraft.util.Unit);
+  public net.minecraft.util.Unit empty();
+  public net.minecraft.util.Unit emptyMap();
+  public net.minecraft.util.Unit emptyList();
+  public net.minecraft.util.Unit createNumeric(java.lang.Number);
+  public net.minecraft.util.Unit createByte(byte);
+  public net.minecraft.util.Unit createShort(short);
+  public net.minecraft.util.Unit createInt(int);
+  public net.minecraft.util.Unit createLong(long);
+  public net.minecraft.util.Unit createFloat(float);
+  public net.minecraft.util.Unit createDouble(double);
+  public net.minecraft.util.Unit createBoolean(boolean);
+  public net.minecraft.util.Unit createString(java.lang.String);
+  public com.mojang.serialization.DataResult<java.lang.Number> getNumberValue(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.lang.Boolean> getBooleanValue(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.lang.String> getStringValue(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<net.minecraft.util.Unit> mergeToList(net.minecraft.util.Unit, net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<net.minecraft.util.Unit> mergeToList(net.minecraft.util.Unit, java.util.List<net.minecraft.util.Unit>);
+  public com.mojang.serialization.DataResult<net.minecraft.util.Unit> mergeToMap(net.minecraft.util.Unit, net.minecraft.util.Unit, net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<net.minecraft.util.Unit> mergeToMap(net.minecraft.util.Unit, java.util.Map<net.minecraft.util.Unit, net.minecraft.util.Unit>);
+  public com.mojang.serialization.DataResult<net.minecraft.util.Unit> mergeToMap(net.minecraft.util.Unit, com.mojang.serialization.MapLike<net.minecraft.util.Unit>);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<com.mojang.datafixers.util.Pair<net.minecraft.util.Unit, net.minecraft.util.Unit>>> getMapValues(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.BiConsumer<net.minecraft.util.Unit, net.minecraft.util.Unit>>> getMapEntries(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<com.mojang.serialization.MapLike<net.minecraft.util.Unit>> getMap(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<net.minecraft.util.Unit>> getStream(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.Consumer<net.minecraft.util.Unit>>> getList(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.nio.ByteBuffer> getByteBuffer(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.util.stream.IntStream> getIntStream(net.minecraft.util.Unit);
+  public com.mojang.serialization.DataResult<java.util.stream.LongStream> getLongStream(net.minecraft.util.Unit);
+  public net.minecraft.util.Unit createMap(java.util.stream.Stream<com.mojang.datafixers.util.Pair<net.minecraft.util.Unit, net.minecraft.util.Unit>>);
+  public net.minecraft.util.Unit createMap(java.util.Map<net.minecraft.util.Unit, net.minecraft.util.Unit>);
+  public net.minecraft.util.Unit createList(java.util.stream.Stream<net.minecraft.util.Unit>);
+  public net.minecraft.util.Unit createByteList(java.nio.ByteBuffer);
+  public net.minecraft.util.Unit createIntList(java.util.stream.IntStream);
+  public net.minecraft.util.Unit createLongList(java.util.stream.LongStream);
+  public net.minecraft.util.Unit remove(net.minecraft.util.Unit, java.lang.String);
+  public com.mojang.serialization.RecordBuilder<net.minecraft.util.Unit> mapBuilder();
+  public com.mojang.serialization.ListBuilder<net.minecraft.util.Unit> listBuilder();
+  public java.lang.String toString();
+  public java.lang.Object remove(java.lang.Object, java.lang.String);
+  public java.lang.Object createLongList(java.util.stream.LongStream);
+  public com.mojang.serialization.DataResult getLongStream(java.lang.Object);
+  public java.lang.Object createIntList(java.util.stream.IntStream);
+  public com.mojang.serialization.DataResult getIntStream(java.lang.Object);
+  public java.lang.Object createByteList(java.nio.ByteBuffer);
+  public com.mojang.serialization.DataResult getByteBuffer(java.lang.Object);
+  public java.lang.Object createList(java.util.stream.Stream);
+  public com.mojang.serialization.DataResult getList(java.lang.Object);
+  public com.mojang.serialization.DataResult getStream(java.lang.Object);
+  public java.lang.Object createMap(java.util.Map);
+  public com.mojang.serialization.DataResult getMap(java.lang.Object);
+  public java.lang.Object createMap(java.util.stream.Stream);
+  public com.mojang.serialization.DataResult getMapEntries(java.lang.Object);
+  public com.mojang.serialization.DataResult getMapValues(java.lang.Object);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, com.mojang.serialization.MapLike);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, java.util.Map);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, java.lang.Object, java.lang.Object);
+  public com.mojang.serialization.DataResult mergeToList(java.lang.Object, java.util.List);
+  public com.mojang.serialization.DataResult mergeToList(java.lang.Object, java.lang.Object);
+  public java.lang.Object createString(java.lang.String);
+  public com.mojang.serialization.DataResult getStringValue(java.lang.Object);
+  public java.lang.Object createBoolean(boolean);
+  public com.mojang.serialization.DataResult getBooleanValue(java.lang.Object);
+  public java.lang.Object createDouble(double);
+  public java.lang.Object createFloat(float);
+  public java.lang.Object createLong(long);
+  public java.lang.Object createInt(int);
+  public java.lang.Object createShort(short);
+  public java.lang.Object createByte(byte);
+  public java.lang.Object createNumeric(java.lang.Number);
+  public com.mojang.serialization.DataResult getNumberValue(java.lang.Object);
+  public java.lang.Object convertTo(com.mojang.serialization.DynamicOps, java.lang.Object);
+  public java.lang.Object emptyList();
+  public java.lang.Object emptyMap();
+  public java.lang.Object empty();
+}
+Compiled from "ExtraCodecs.java"
+public final class net.minecraft.util.ExtraCodecs$StrictUnboundedMapCodec<K, V> extends java.lang.Record implements com.mojang.serialization.codecs.BaseMapCodec<K, V>, com.mojang.serialization.Codec<java.util.Map<K, V>> {
+  public net.minecraft.util.ExtraCodecs$StrictUnboundedMapCodec(com.mojang.serialization.Codec<K>, com.mojang.serialization.Codec<V>);
+  public <T> com.mojang.serialization.DataResult<java.util.Map<K, V>> decode(com.mojang.serialization.DynamicOps<T>, com.mojang.serialization.MapLike<T>);
+  public <T> com.mojang.serialization.DataResult<com.mojang.datafixers.util.Pair<java.util.Map<K, V>, T>> decode(com.mojang.serialization.DynamicOps<T>, T);
+  public <T> com.mojang.serialization.DataResult<T> encode(java.util.Map<K, V>, com.mojang.serialization.DynamicOps<T>, T);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.serialization.Codec<K> keyCodec();
+  public com.mojang.serialization.Codec<V> elementCodec();
+  public com.mojang.serialization.DataResult encode(java.lang.Object, com.mojang.serialization.DynamicOps, java.lang.Object);
+}
+Compiled from "HashOps.java"
+public class net.minecraft.util.HashOps implements com.mojang.serialization.DynamicOps<com.google.common.hash.HashCode> {
+  public static final byte[] EMPTY_MAP_PAYLOAD;
+  public static final byte[] EMPTY_LIST_PAYLOAD;
+  public static final net.minecraft.util.HashOps CRC32C_INSTANCE;
+  public net.minecraft.util.HashOps(com.google.common.hash.HashFunction);
+  public com.google.common.hash.HashCode empty();
+  public com.google.common.hash.HashCode emptyMap();
+  public com.google.common.hash.HashCode emptyList();
+  public com.google.common.hash.HashCode createNumeric(java.lang.Number);
+  public com.google.common.hash.HashCode createByte(byte);
+  public com.google.common.hash.HashCode createShort(short);
+  public com.google.common.hash.HashCode createInt(int);
+  public com.google.common.hash.HashCode createLong(long);
+  public com.google.common.hash.HashCode createFloat(float);
+  public com.google.common.hash.HashCode createDouble(double);
+  public com.google.common.hash.HashCode createString(java.lang.String);
+  public com.google.common.hash.HashCode createBoolean(boolean);
+  public com.google.common.hash.HashCode createMap(java.util.stream.Stream<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>);
+  public com.google.common.hash.HashCode createMap(java.util.Map<com.google.common.hash.HashCode, com.google.common.hash.HashCode>);
+  public com.google.common.hash.HashCode createList(java.util.stream.Stream<com.google.common.hash.HashCode>);
+  public com.google.common.hash.HashCode createByteList(java.nio.ByteBuffer);
+  public com.google.common.hash.HashCode createIntList(java.util.stream.IntStream);
+  public com.google.common.hash.HashCode createLongList(java.util.stream.LongStream);
+  public com.google.common.hash.HashCode remove(com.google.common.hash.HashCode, java.lang.String);
+  public com.mojang.serialization.RecordBuilder<com.google.common.hash.HashCode> mapBuilder();
+  public com.mojang.serialization.ListBuilder<com.google.common.hash.HashCode> listBuilder();
+  public java.lang.String toString();
+  public <U> U convertTo(com.mojang.serialization.DynamicOps<U>, com.google.common.hash.HashCode);
+  public java.lang.Number getNumberValue(com.google.common.hash.HashCode, java.lang.Number);
+  public com.google.common.hash.HashCode set(com.google.common.hash.HashCode, java.lang.String, com.google.common.hash.HashCode);
+  public com.google.common.hash.HashCode update(com.google.common.hash.HashCode, java.lang.String, java.util.function.Function<com.google.common.hash.HashCode, com.google.common.hash.HashCode>);
+  public com.google.common.hash.HashCode updateGeneric(com.google.common.hash.HashCode, com.google.common.hash.HashCode, java.util.function.Function<com.google.common.hash.HashCode, com.google.common.hash.HashCode>);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> get(com.google.common.hash.HashCode, java.lang.String);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> getGeneric(com.google.common.hash.HashCode, com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.lang.Number> getNumberValue(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.lang.Boolean> getBooleanValue(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.lang.String> getStringValue(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> mergeToList(com.google.common.hash.HashCode, com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> mergeToList(com.google.common.hash.HashCode, java.util.List<com.google.common.hash.HashCode>);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> mergeToMap(com.google.common.hash.HashCode, com.google.common.hash.HashCode, com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> mergeToMap(com.google.common.hash.HashCode, java.util.Map<com.google.common.hash.HashCode, com.google.common.hash.HashCode>);
+  public com.mojang.serialization.DataResult<com.google.common.hash.HashCode> mergeToMap(com.google.common.hash.HashCode, com.mojang.serialization.MapLike<com.google.common.hash.HashCode>);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>> getMapValues(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.BiConsumer<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>> getMapEntries(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.util.stream.Stream<com.google.common.hash.HashCode>> getStream(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.util.function.Consumer<java.util.function.Consumer<com.google.common.hash.HashCode>>> getList(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<com.mojang.serialization.MapLike<com.google.common.hash.HashCode>> getMap(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.nio.ByteBuffer> getByteBuffer(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.util.stream.IntStream> getIntStream(com.google.common.hash.HashCode);
+  public com.mojang.serialization.DataResult<java.util.stream.LongStream> getLongStream(com.google.common.hash.HashCode);
+  public java.lang.Object updateGeneric(java.lang.Object, java.lang.Object, java.util.function.Function);
+  public java.lang.Object update(java.lang.Object, java.lang.String, java.util.function.Function);
+  public java.lang.Object set(java.lang.Object, java.lang.String, java.lang.Object);
+  public com.mojang.serialization.DataResult getGeneric(java.lang.Object, java.lang.Object);
+  public com.mojang.serialization.DataResult get(java.lang.Object, java.lang.String);
+  public java.lang.Object remove(java.lang.Object, java.lang.String);
+  public java.lang.Object createLongList(java.util.stream.LongStream);
+  public com.mojang.serialization.DataResult getLongStream(java.lang.Object);
+  public java.lang.Object createIntList(java.util.stream.IntStream);
+  public com.mojang.serialization.DataResult getIntStream(java.lang.Object);
+  public java.lang.Object createByteList(java.nio.ByteBuffer);
+  public com.mojang.serialization.DataResult getByteBuffer(java.lang.Object);
+  public java.lang.Object createList(java.util.stream.Stream);
+  public com.mojang.serialization.DataResult getList(java.lang.Object);
+  public com.mojang.serialization.DataResult getStream(java.lang.Object);
+  public java.lang.Object createMap(java.util.Map);
+  public com.mojang.serialization.DataResult getMap(java.lang.Object);
+  public java.lang.Object createMap(java.util.stream.Stream);
+  public com.mojang.serialization.DataResult getMapEntries(java.lang.Object);
+  public com.mojang.serialization.DataResult getMapValues(java.lang.Object);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, com.mojang.serialization.MapLike);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, java.util.Map);
+  public com.mojang.serialization.DataResult mergeToMap(java.lang.Object, java.lang.Object, java.lang.Object);
+  public com.mojang.serialization.DataResult mergeToList(java.lang.Object, java.util.List);
+  public com.mojang.serialization.DataResult mergeToList(java.lang.Object, java.lang.Object);
+  public java.lang.Object createString(java.lang.String);
+  public com.mojang.serialization.DataResult getStringValue(java.lang.Object);
+  public java.lang.Object createBoolean(boolean);
+  public com.mojang.serialization.DataResult getBooleanValue(java.lang.Object);
+  public java.lang.Object createDouble(double);
+  public java.lang.Object createFloat(float);
+  public java.lang.Object createLong(long);
+  public java.lang.Object createInt(int);
+  public java.lang.Object createShort(short);
+  public java.lang.Object createByte(byte);
+  public java.lang.Object createNumeric(java.lang.Number);
+  public java.lang.Number getNumberValue(java.lang.Object, java.lang.Number);
+  public com.mojang.serialization.DataResult getNumberValue(java.lang.Object);
+  public java.lang.Object convertTo(com.mojang.serialization.DynamicOps, java.lang.Object);
+  public java.lang.Object emptyList();
+  public java.lang.Object emptyMap();
+  public java.lang.Object empty();
+}
+Compiled from "SignatureValidator.java"
+public interface net.minecraft.util.SignatureValidator {
+  public static final net.minecraft.util.SignatureValidator NO_VALIDATION;
+  public static final org.slf4j.Logger LOGGER;
+  public abstract boolean validate(net.minecraft.util.SignatureUpdater, byte[]);
+  public default boolean validate(byte[], byte[]);
+  public static net.minecraft.util.SignatureValidator from(java.security.PublicKey, java.lang.String);
+  public static net.minecraft.util.SignatureValidator from(com.mojang.authlib.services.ServicesKeySet, com.mojang.authlib.services.ServicesKeyType);
+}
+Compiled from "ByIdMap.java"
+public final class net.minecraft.util.ByIdMap$OutOfBoundsStrategy extends java.lang.Enum<net.minecraft.util.ByIdMap$OutOfBoundsStrategy> {
+  public static final net.minecraft.util.ByIdMap$OutOfBoundsStrategy ZERO;
+  public static final net.minecraft.util.ByIdMap$OutOfBoundsStrategy WRAP;
+  public static final net.minecraft.util.ByIdMap$OutOfBoundsStrategy CLAMP;
+  public static net.minecraft.util.ByIdMap$OutOfBoundsStrategy[] values();
+  public static net.minecraft.util.ByIdMap$OutOfBoundsStrategy valueOf(java.lang.String);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$FieldPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$FieldPathElement(java.lang.String);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+}
+Compiled from "ListAndDeque.java"
+public interface net.minecraft.util.ListAndDeque<T> extends java.util.List<T>, java.util.RandomAccess, java.lang.Cloneable, java.io.Serializable, java.util.Deque<T> {
+  public abstract net.minecraft.util.ListAndDeque<T> reversed();
+  public abstract T getFirst();
+  public abstract T getLast();
+  public abstract void addFirst(T);
+  public abstract void addLast(T);
+  public abstract T removeFirst();
+  public abstract T removeLast();
+  public default boolean offer(T);
+  public default T remove();
+  public default T poll();
+  public default T element();
+  public default T peek();
+  public default void push(T);
+  public default T pop();
+  public default java.util.List reversed();
+  public default java.util.SequencedCollection reversed();
+  public default java.util.Deque reversed();
+}
+Compiled from "HttpUtil.java"
+public interface net.minecraft.util.HttpUtil$DownloadProgressListener {
+  public abstract void requestStart();
+  public abstract void downloadStart(java.util.OptionalLong);
+  public abstract void downloadedBytes(long);
+  public abstract void requestFinished(boolean);
+}
+Compiled from "TickThrottler.java"
+public class net.minecraft.util.TickThrottler {
+  public net.minecraft.util.TickThrottler(int, int);
+  public void increment();
+  public void tick();
+  public boolean isUnderThreshold();
+}
+Compiled from "TaskChainer.java"
+public interface net.minecraft.util.TaskChainer {
+  public static final org.slf4j.Logger LOGGER;
+  public static net.minecraft.util.TaskChainer immediate(java.util.concurrent.Executor);
+  public default void append(java.lang.Runnable);
+  public abstract <T> void append(java.util.concurrent.CompletableFuture<T>, java.util.function.Consumer<T>);
+}
+Compiled from "SequencedPriorityIterator.java"
+public final class net.minecraft.util.SequencedPriorityIterator<T> extends com.google.common.collect.AbstractIterator<T> {
+  public net.minecraft.util.SequencedPriorityIterator();
+  public void add(T, int);
+  protected T computeNext();
+}
+Compiled from "HashOps.java"
+final class net.minecraft.util.HashOps$MapHashBuilder extends com.mojang.serialization.RecordBuilder$AbstractUniversalBuilder<com.google.common.hash.HashCode, java.util.List<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>> {
+  public net.minecraft.util.HashOps$MapHashBuilder(net.minecraft.util.HashOps);
+  protected java.util.List<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>> initBuilder();
+  protected java.util.List<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>> append(com.google.common.hash.HashCode, com.google.common.hash.HashCode, java.util.List<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>);
+  protected com.mojang.serialization.DataResult<com.google.common.hash.HashCode> build(java.util.List<com.mojang.datafixers.util.Pair<com.google.common.hash.HashCode, com.google.common.hash.HashCode>>, com.google.common.hash.HashCode);
+  protected java.lang.Object append(java.lang.Object, java.lang.Object, java.lang.Object);
+  protected com.mojang.serialization.DataResult build(java.lang.Object, java.lang.Object);
+  protected java.lang.Object initBuilder();
+}
+Compiled from "StringRepresentable.java"
+public class net.minecraft.util.StringRepresentable$StringRepresentableCodec<S extends net.minecraft.util.StringRepresentable> implements com.mojang.serialization.Codec<S> {
+  public net.minecraft.util.StringRepresentable$StringRepresentableCodec(S[], java.util.function.Function<java.lang.String, S>, java.util.function.ToIntFunction<S>);
+  public <T> com.mojang.serialization.DataResult<com.mojang.datafixers.util.Pair<S, T>> decode(com.mojang.serialization.DynamicOps<T>, T);
+  public <T> com.mojang.serialization.DataResult<T> encode(S, com.mojang.serialization.DynamicOps<T>, T);
+  public com.mojang.serialization.DataResult encode(java.lang.Object, com.mojang.serialization.DynamicOps, java.lang.Object);
+}
+Compiled from "CubicSpline.java"
+public final class net.minecraft.util.CubicSpline$Builder<I extends net.minecraft.util.BoundedFloatFunction<?>> {
+  public net.minecraft.util.CubicSpline$Builder<I> addPoint(float, float);
+  public net.minecraft.util.CubicSpline$Builder<I> addPoint(float, float, float);
+  public net.minecraft.util.CubicSpline$Builder<I> addPoint(float, net.minecraft.util.CubicSpline<I>);
+  public net.minecraft.util.CubicSpline<I> build();
+}
+Compiled from "SimpleBitStorage.java"
+public class net.minecraft.util.SimpleBitStorage$InitializationException extends java.lang.RuntimeException {
+}
+Compiled from "StaticCache2D.java"
+public interface net.minecraft.util.StaticCache2D$MappingFunction<T, U> {
+  public abstract U apply(T, int, int);
+}
+Compiled from "ProblemReporter.java"
+public interface net.minecraft.util.ProblemReporter$Problem {
+  public abstract java.lang.String description();
+  public default boolean isFatal();
+}
+Compiled from "BlockUtil.java"
+public class net.minecraft.util.BlockUtil$FoundRectangle {
+  public final net.minecraft.core.BlockPos minCorner;
+  public final int axis1Size;
+  public final int axis2Size;
+  public net.minecraft.util.BlockUtil$FoundRectangle(net.minecraft.core.BlockPos, int, int);
+}
+Compiled from "NullOps.java"
+final class net.minecraft.util.NullOps$NullListBuilder extends net.minecraft.util.AbstractListBuilder<net.minecraft.util.Unit, net.minecraft.util.Unit> {
+  public net.minecraft.util.NullOps$NullListBuilder(com.mojang.serialization.DynamicOps<net.minecraft.util.Unit>);
+  protected net.minecraft.util.Unit initBuilder();
+  protected net.minecraft.util.Unit append(net.minecraft.util.Unit, net.minecraft.util.Unit);
+  protected com.mojang.serialization.DataResult<net.minecraft.util.Unit> build(net.minecraft.util.Unit, net.minecraft.util.Unit);
+  protected com.mojang.serialization.DataResult build(java.lang.Object, java.lang.Object);
+  protected java.lang.Object append(java.lang.Object, java.lang.Object);
+  protected java.lang.Object initBuilder();
+}
+Compiled from "CompilableString.java"
+public abstract class net.minecraft.util.CompilableString$CommandParserHelper<T> implements java.util.function.Function<java.lang.String, com.mojang.serialization.DataResult<T>> {
+  public net.minecraft.util.CompilableString$CommandParserHelper();
+  public final com.mojang.serialization.DataResult<T> apply(java.lang.String);
+  protected abstract T parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  protected abstract java.lang.String errorMessage(java.lang.String, com.mojang.brigadier.exceptions.CommandSyntaxException);
+  public java.lang.Object apply(java.lang.Object);
+}
+Compiled from "DummyFileAttributes.java"
+public abstract class net.minecraft.util.DummyFileAttributes implements java.nio.file.attribute.BasicFileAttributes {
+  public static final java.nio.file.attribute.BasicFileAttributes DIRECTORY;
+  public static final java.nio.file.attribute.BasicFileAttributes FILE;
+  public net.minecraft.util.DummyFileAttributes();
+  public java.nio.file.attribute.FileTime lastModifiedTime();
+  public java.nio.file.attribute.FileTime lastAccessTime();
+  public java.nio.file.attribute.FileTime creationTime();
+  public boolean isSymbolicLink();
+  public boolean isOther();
+  public long size();
+  public java.lang.Object fileKey();
+}
+Compiled from "DependencySorter.java"
+public interface net.minecraft.util.DependencySorter$Entry<K> {
+  public abstract void visitRequiredDependencies(java.util.function.Consumer<K>);
+  public abstract void visitOptionalDependencies(java.util.function.Consumer<K>);
+}
+Compiled from "PngInfo.java"
+public final class net.minecraft.util.PngInfo extends java.lang.Record {
+  public net.minecraft.util.PngInfo(int, int, byte, byte);
+  public static net.minecraft.util.PngInfo fromStream(java.io.InputStream) throws java.io.IOException;
+  public static net.minecraft.util.PngInfo fromBytes(byte[]) throws java.io.IOException;
+  public static void validateHeader(java.nio.ByteBuffer) throws java.io.IOException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int width();
+  public int height();
+  public byte bitDepth();
+  public byte colorType();
+}
+Compiled from "BlockUtil.java"
+public class net.minecraft.util.BlockUtil$IntBounds {
+  public final int min;
+  public final int max;
+  public net.minecraft.util.BlockUtil$IntBounds(int, int);
+  public java.lang.String toString();
+}
+Compiled from "EasingType.java"
+public final class net.minecraft.util.EasingType$CubicBezierControls extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.EasingType$CubicBezierControls> CODEC;
+  public net.minecraft.util.EasingType$CubicBezierControls(float, float, float, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float x1();
+  public float y1();
+  public float x2();
+  public float y2();
+}
+Compiled from "SortedArraySet.java"
+public class net.minecraft.util.SortedArraySet<T> extends java.util.AbstractSet<T> {
+  public static <T extends java.lang.Comparable<T>> net.minecraft.util.SortedArraySet<T> create();
+  public static <T extends java.lang.Comparable<T>> net.minecraft.util.SortedArraySet<T> create(int);
+  public static <T> net.minecraft.util.SortedArraySet<T> create(java.util.Comparator<T>);
+  public static <T> net.minecraft.util.SortedArraySet<T> create(java.util.Comparator<T>, int);
+  public boolean add(T);
+  public T addOrGet(T);
+  public boolean remove(java.lang.Object);
+  public T get(T);
+  public T first();
+  public T last();
+  public boolean contains(java.lang.Object);
+  public java.util.Iterator<T> iterator();
+  public int size();
+  public java.lang.Object[] toArray();
+  public <U> U[] toArray(U[]);
+  public void clear();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "TriState.java"
+public final class net.minecraft.util.TriState extends java.lang.Enum<net.minecraft.util.TriState> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.util.TriState TRUE;
+  public static final net.minecraft.util.TriState FALSE;
+  public static final net.minecraft.util.TriState DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.TriState> CODEC;
+  public static net.minecraft.util.TriState[] values();
+  public static net.minecraft.util.TriState valueOf(java.lang.String);
+  public static net.minecraft.util.TriState from(boolean);
+  public boolean toBoolean(boolean);
+  public java.lang.String getSerializedName();
+}
+Compiled from "SignatureUpdater.java"
+public interface net.minecraft.util.SignatureUpdater$Output {
+  public abstract void update(byte[]) throws java.security.SignatureException;
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$RootFieldPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$RootFieldPathElement(java.lang.String);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+}
+Compiled from "Mth.java"
+public class net.minecraft.util.Mth {
+  public static final float PI;
+  public static final float HALF_PI;
+  public static final float TWO_PI;
+  public static final float DEG_TO_RAD;
+  public static final float RAD_TO_DEG;
+  public static final float EPSILON;
+  public static final float SQRT_OF_TWO;
+  public static final org.joml.Vector3fc Y_AXIS;
+  public static final org.joml.Vector3fc X_AXIS;
+  public static final org.joml.Vector3fc Z_AXIS;
+  public net.minecraft.util.Mth();
+  public static float sin(double);
+  public static float cos(double);
+  public static float sqrt(float);
+  public static int floor(float);
+  public static int floor(double);
+  public static long lfloor(double);
+  public static float abs(float);
+  public static int abs(int);
+  public static int ceil(float);
+  public static int ceil(double);
+  public static long ceilLong(double);
+  public static int clamp(int, int, int);
+  public static long clamp(long, long, long);
+  public static float clamp(float, float, float);
+  public static double clamp(double, double, double);
+  public static double clampedLerp(double, double, double);
+  public static float clampedLerp(float, float, float);
+  public static int absMax(int, int);
+  public static float absMax(float, float);
+  public static double absMax(double, double);
+  public static int chessboardDistance(int, int, int, int);
+  public static int floorDiv(int, int);
+  public static int nextInt(net.minecraft.util.RandomSource, int, int);
+  public static float nextFloat(net.minecraft.util.RandomSource, float, float);
+  public static double nextDouble(net.minecraft.util.RandomSource, double, double);
+  public static boolean equal(float, float);
+  public static boolean equal(double, double);
+  public static int positiveModulo(int, int);
+  public static float positiveModulo(float, float);
+  public static double positiveModulo(double, double);
+  public static boolean isMultipleOf(int, int);
+  public static byte packDegrees(float);
+  public static float unpackDegrees(byte);
+  public static int wrapDegrees(int);
+  public static float wrapDegrees(long);
+  public static float wrapDegrees(float);
+  public static double wrapDegrees(double);
+  public static float wrapDegrees90(float);
+  public static float degreesDifference(float, float);
+  public static float degreesDifferenceAbs(float, float);
+  public static float rotateIfNecessary(float, float, float);
+  public static float approach(float, float, float);
+  public static float approachDegrees(float, float, float);
+  public static int getInt(java.lang.String, int);
+  public static int smallestEncompassingPowerOfTwo(int);
+  public static int smallestSquareSide(int);
+  public static boolean isPowerOfTwo(int);
+  public static boolean isPowerOfTwo(long);
+  public static int ceillog2(int);
+  public static int log2(int);
+  public static float frac(float);
+  public static double frac(double);
+  public static long getSeed(net.minecraft.core.Vec3i);
+  public static long getSeed(int, int, int);
+  public static java.util.UUID createInsecureUUID(net.minecraft.util.RandomSource);
+  public static double inverseLerp(double, double, double);
+  public static float inverseLerp(float, float, float);
+  public static boolean rayIntersectsAABB(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.AABB);
+  public static double atan2(double, double);
+  public static float invSqrt(float);
+  public static double invSqrt(double);
+  public static double fastInvSqrt(double);
+  public static float fastInvCubeRoot(float);
+  public static int hsvToRgb(float, float, float);
+  public static int hsvToArgb(float, float, float, int);
+  public static int murmurHash3Mixer(int);
+  public static int binarySearch(int, int, java.util.function.IntPredicate);
+  public static int lerpInt(float, int, int);
+  public static int lerpDiscrete(float, int, int);
+  public static float lerp(float, float, float);
+  public static float lerp2(float, float, float, float, float, float);
+  public static float lerp3(float, float, float, float, float, float, float, float, float, float, float);
+  public static net.minecraft.world.phys.Vec3 lerp(double, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec3);
+  public static double lerp(double, double, double);
+  public static double lerp2(double, double, double, double, double, double);
+  public static double lerp3(double, double, double, double, double, double, double, double, double, double, double);
+  public static float catmullrom(float, float, float, float, float);
+  public static float smoothstep(float);
+  public static float smoothstepDerivative(float);
+  public static int sign(double);
+  public static float rotLerp(float, float, float);
+  public static double rotLerp(double, double, double);
+  public static float rotLerpRad(float, float, float);
+  public static float triangleWave(float, float);
+  public static float square(float);
+  public static float cube(float);
+  public static double square(double);
+  public static int square(int);
+  public static long square(long);
+  public static double clampedMap(double, double, double, double, double);
+  public static float clampedMap(float, float, float, float, float);
+  public static double map(double, double, double, double, double);
+  public static float map(float, float, float, float, float);
+  public static double wobble(double);
+  public static int roundToward(int, int);
+  public static long roundToward(long, long);
+  public static int positiveCeilDiv(int, int);
+  public static long positiveCeilDiv(long, long);
+  public static int randomBetweenInclusive(net.minecraft.util.RandomSource, int, int);
+  public static float randomBetween(net.minecraft.util.RandomSource, float, float);
+  public static float normal(net.minecraft.util.RandomSource, float, float);
+  public static double lengthSquared(double, double);
+  public static float lengthSquared(float, float);
+  public static double length(double, double);
+  public static float length(float, float);
+  public static double lengthSquared(double, double, double);
+  public static double length(double, double, double);
+  public static float length(float, float, float);
+  public static float lengthSquared(float, float, float);
+  public static int quantize(double, int);
+  public static java.util.stream.IntStream outFromOrigin(int, int, int);
+  public static java.util.stream.IntStream outFromOrigin(int, int, int, int);
+  public static org.joml.Quaternionf rotationAroundAxis(org.joml.Vector3fc, org.joml.Quaternionf, org.joml.Quaternionf);
+  public static int mulAndTruncate(org.apache.commons.lang3.math.Fraction, int);
+}
+Compiled from "Graph.java"
+public final class net.minecraft.util.Graph {
+  public static <T> boolean depthFirstSearch(java.util.Map<T, java.util.Set<T>>, java.util.Set<T>, java.util.Set<T>, java.util.function.Consumer<T>, T);
+}
+Compiled from "BoundedFloatFunction.java"
+public interface net.minecraft.util.BoundedFloatFunction<C> {
+  public static final net.minecraft.util.BoundedFloatFunction<java.lang.Float> IDENTITY;
+  public abstract float apply(C);
+  public abstract net.minecraft.util.Interval range();
+  public static <C> net.minecraft.util.BoundedFloatFunction<C> constant(float);
+  public default <C2> net.minecraft.util.BoundedFloatFunction<C2> comap(java.util.function.Function<C2, C>);
+}
+Compiled from "TimeSource.java"
+public interface net.minecraft.util.TimeSource {
+  public abstract long get(java.util.concurrent.TimeUnit);
+  public static net.minecraft.util.TimeSource$NanoTimeSource constant(long);
+}
+Compiled from "SignatureUpdater.java"
+public interface net.minecraft.util.SignatureUpdater {
+  public abstract void update(net.minecraft.util.SignatureUpdater$Output) throws java.security.SignatureException;
+}
+Compiled from "StringRepresentable.java"
+public interface net.minecraft.util.StringRepresentable {
+  public static final int PRE_BUILT_MAP_THRESHOLD;
+  public abstract java.lang.String getSerializedName();
+  public static <E extends java.lang.Enum<E> & net.minecraft.util.StringRepresentable> net.minecraft.util.StringRepresentable$EnumCodec<E> fromEnum(java.util.function.Supplier<E[]>);
+  public static <E extends java.lang.Enum<E> & net.minecraft.util.StringRepresentable> net.minecraft.util.StringRepresentable$EnumCodec<E> fromEnumWithMapping(java.util.function.Supplier<E[]>, java.util.function.Function<java.lang.String, java.lang.String>);
+  public static <T extends net.minecraft.util.StringRepresentable> com.mojang.serialization.Codec<T> fromValues(java.util.function.Supplier<T[]>);
+  public static <T extends net.minecraft.util.StringRepresentable> java.util.function.Function<java.lang.String, T> createNameLookup(T[]);
+  public static <T> java.util.function.Function<java.lang.String, T> createNameLookup(T[], java.util.function.Function<T, java.lang.String>);
+  public static com.mojang.serialization.Keyable keys(net.minecraft.util.StringRepresentable[]);
+}
+Compiled from "StrictJsonParser.java"
+public class net.minecraft.util.StrictJsonParser {
+  public net.minecraft.util.StrictJsonParser();
+  public static com.google.gson.JsonElement parse(java.io.Reader) throws com.google.gson.JsonIOException, com.google.gson.JsonSyntaxException;
+  public static com.google.gson.JsonElement parse(java.lang.String) throws com.google.gson.JsonSyntaxException;
+}
+Compiled from "TimeSource.java"
+public interface net.minecraft.util.TimeSource$NanoTimeSource extends java.util.function.LongSupplier,net.minecraft.util.TimeSource {
+  public default long get(java.util.concurrent.TimeUnit);
+}
+Compiled from "SortedArraySet.java"
+class net.minecraft.util.SortedArraySet$ArrayIterator implements java.util.Iterator<T> {
+  public boolean hasNext();
+  public T next();
+  public void remove();
+}
+Compiled from "CommonColors.java"
+public class net.minecraft.util.CommonColors {
+  public static final int WHITE;
+  public static final int BLACK;
+  public static final int GRAY;
+  public static final int DARK_GRAY;
+  public static final int LIGHT_GRAY;
+  public static final int LIGHTER_GRAY;
+  public static final int RED;
+  public static final int SOFT_RED;
+  public static final int GREEN;
+  public static final int BLUE;
+  public static final int YELLOW;
+  public static final int SOFT_YELLOW;
+  public static final int DARK_PURPLE;
+  public static final int HIGH_CONTRAST_DIAMOND;
+  public static final int COSMOS_PINK;
+  public static final int TEXT_GRAY;
+  public net.minecraft.util.CommonColors();
+}
+Compiled from "SimpleBitStorage.java"
+public class net.minecraft.util.SimpleBitStorage implements net.minecraft.util.BitStorage {
+  public net.minecraft.util.SimpleBitStorage(int, int, int[]);
+  public net.minecraft.util.SimpleBitStorage(int, int);
+  public net.minecraft.util.SimpleBitStorage(int, int, long[]);
+  public int getAndSet(int, int);
+  public void set(int, int);
+  public void fill(int);
+  public int get(int);
+  public long[] getRaw();
+  public int getSize();
+  public int getBits();
+  public void getAll(java.util.function.IntConsumer);
+  public void unpack(int[]);
+  public net.minecraft.util.BitStorage copy();
+}
+Compiled from "IdentifierPattern.java"
+public class net.minecraft.util.IdentifierPattern {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.IdentifierPattern> CODEC;
+  public java.util.function.Predicate<java.lang.String> namespacePredicate();
+  public java.util.function.Predicate<java.lang.String> pathPredicate();
+  public java.util.function.Predicate<net.minecraft.resources.Identifier> locationPredicate();
+}
+Compiled from "ProblemReporter.java"
+public interface net.minecraft.util.ProblemReporter$PathElement {
+  public abstract java.lang.String get();
+}
+Compiled from "FormattedCharSequence.java"
+public interface net.minecraft.util.FormattedCharSequence {
+  public static final net.minecraft.util.FormattedCharSequence EMPTY;
+  public abstract boolean accept(net.minecraft.util.FormattedCharSink);
+  public static net.minecraft.util.FormattedCharSequence codepoint(int, net.minecraft.network.chat.Style);
+  public static net.minecraft.util.FormattedCharSequence forward(java.lang.String, net.minecraft.network.chat.Style);
+  public static net.minecraft.util.FormattedCharSequence forward(java.lang.String, net.minecraft.network.chat.Style, it.unimi.dsi.fastutil.ints.Int2IntFunction);
+  public static net.minecraft.util.FormattedCharSequence backward(java.lang.String, net.minecraft.network.chat.Style);
+  public static net.minecraft.util.FormattedCharSequence backward(java.lang.String, net.minecraft.network.chat.Style, it.unimi.dsi.fastutil.ints.Int2IntFunction);
+  public static net.minecraft.util.FormattedCharSink decorateOutput(net.minecraft.util.FormattedCharSink, it.unimi.dsi.fastutil.ints.Int2IntFunction);
+  public static net.minecraft.util.FormattedCharSequence composite();
+  public static net.minecraft.util.FormattedCharSequence composite(net.minecraft.util.FormattedCharSequence);
+  public static net.minecraft.util.FormattedCharSequence composite(net.minecraft.util.FormattedCharSequence, net.minecraft.util.FormattedCharSequence);
+  public static net.minecraft.util.FormattedCharSequence composite(net.minecraft.util.FormattedCharSequence...);
+  public static net.minecraft.util.FormattedCharSequence composite(java.util.List<net.minecraft.util.FormattedCharSequence>);
+  public static net.minecraft.util.FormattedCharSequence fromPair(net.minecraft.util.FormattedCharSequence, net.minecraft.util.FormattedCharSequence);
+  public static net.minecraft.util.FormattedCharSequence fromList(java.util.List<net.minecraft.util.FormattedCharSequence>);
+}
+Compiled from "ExceptionCollector.java"
+public class net.minecraft.util.ExceptionCollector<T extends java.lang.Throwable> {
+  public net.minecraft.util.ExceptionCollector();
+  public void add(T);
+  public void throwIfPresent() throws T;
+}
+Compiled from "ToFloatFunction.java"
+public interface net.minecraft.util.ToFloatFunction<T> {
+  public abstract float applyAsFloat(T);
+}
+Compiled from "ArrayListDeque.java"
+class net.minecraft.util.ArrayListDeque$DescendingIterator implements java.util.Iterator<T> {
+  public net.minecraft.util.ArrayListDeque$DescendingIterator(net.minecraft.util.ArrayListDeque);
+  public boolean hasNext();
+  public T next();
+  public void remove();
+}
+Compiled from "KeyframeTrackSampler.java"
+public class net.minecraft.util.KeyframeTrackSampler<T> {
+  public T sample(long);
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$RootElementPathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$RootElementPathElement(net.minecraft.resources.ResourceKey<?>);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<?> id();
+}
+Compiled from "ProblemReporter.java"
+public final class net.minecraft.util.ProblemReporter$ElementReferencePathElement extends java.lang.Record implements net.minecraft.util.ProblemReporter$PathElement {
+  public net.minecraft.util.ProblemReporter$ElementReferencePathElement(net.minecraft.resources.ResourceKey<?>);
+  public java.lang.String get();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.resources.ResourceKey<?> id();
+}
+Compiled from "ClassTreeIdRegistry.java"
+public class net.minecraft.util.ClassTreeIdRegistry {
+  public static final int NO_ID_VALUE;
+  public net.minecraft.util.ClassTreeIdRegistry();
+  public int getLastIdFor(java.lang.Class<?>);
+  public int getCount(java.lang.Class<?>);
+  public int define(java.lang.Class<?>);
+}
+Compiled from "LenientJsonParser.java"
+public class net.minecraft.util.LenientJsonParser {
+  public net.minecraft.util.LenientJsonParser();
+  public static com.google.gson.JsonElement parse(java.io.Reader) throws com.google.gson.JsonIOException, com.google.gson.JsonSyntaxException;
+  public static com.google.gson.JsonElement parse(java.lang.String) throws com.google.gson.JsonSyntaxException;
+}
+Compiled from "EasingType.java"
+public interface net.minecraft.util.EasingType {
+  public static final net.minecraft.util.ExtraCodecs$LateBoundIdMapper<java.lang.String, net.minecraft.util.EasingType> SIMPLE_REGISTRY;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.EasingType> CODEC;
+  public static final net.minecraft.util.EasingType CONSTANT;
+  public static final net.minecraft.util.EasingType LINEAR;
+  public static final net.minecraft.util.EasingType IN_BACK;
+  public static final net.minecraft.util.EasingType IN_BOUNCE;
+  public static final net.minecraft.util.EasingType IN_CIRC;
+  public static final net.minecraft.util.EasingType IN_CUBIC;
+  public static final net.minecraft.util.EasingType IN_ELASTIC;
+  public static final net.minecraft.util.EasingType IN_EXPO;
+  public static final net.minecraft.util.EasingType IN_QUAD;
+  public static final net.minecraft.util.EasingType IN_QUART;
+  public static final net.minecraft.util.EasingType IN_QUINT;
+  public static final net.minecraft.util.EasingType IN_SINE;
+  public static final net.minecraft.util.EasingType IN_OUT_BACK;
+  public static final net.minecraft.util.EasingType IN_OUT_BOUNCE;
+  public static final net.minecraft.util.EasingType IN_OUT_CIRC;
+  public static final net.minecraft.util.EasingType IN_OUT_CUBIC;
+  public static final net.minecraft.util.EasingType IN_OUT_ELASTIC;
+  public static final net.minecraft.util.EasingType IN_OUT_EXPO;
+  public static final net.minecraft.util.EasingType IN_OUT_QUAD;
+  public static final net.minecraft.util.EasingType IN_OUT_QUART;
+  public static final net.minecraft.util.EasingType IN_OUT_QUINT;
+  public static final net.minecraft.util.EasingType IN_OUT_SINE;
+  public static final net.minecraft.util.EasingType OUT_BACK;
+  public static final net.minecraft.util.EasingType OUT_BOUNCE;
+  public static final net.minecraft.util.EasingType OUT_CIRC;
+  public static final net.minecraft.util.EasingType OUT_CUBIC;
+  public static final net.minecraft.util.EasingType OUT_ELASTIC;
+  public static final net.minecraft.util.EasingType OUT_EXPO;
+  public static final net.minecraft.util.EasingType OUT_QUAD;
+  public static final net.minecraft.util.EasingType OUT_QUART;
+  public static final net.minecraft.util.EasingType OUT_QUINT;
+  public static final net.minecraft.util.EasingType OUT_SINE;
+  public static net.minecraft.util.EasingType registerSimple(java.lang.String, net.minecraft.util.EasingType);
+  public static net.minecraft.util.EasingType cubicBezier(float, float, float, float);
+  public static net.minecraft.util.EasingType symmetricCubicBezier(float, float);
+  public abstract float apply(float);
+}
+Compiled from "InclusiveRange.java"
+public final class net.minecraft.util.InclusiveRange<T extends java.lang.Comparable<T>> extends java.lang.Record {
+  public static final com.mojang.serialization.Codec<net.minecraft.util.InclusiveRange<java.lang.Integer>> INT;
+  public net.minecraft.util.InclusiveRange(T, T);
+  public net.minecraft.util.InclusiveRange(T);
+  public static <T extends java.lang.Comparable<T>> com.mojang.serialization.Codec<net.minecraft.util.InclusiveRange<T>> codec(com.mojang.serialization.Codec<T>);
+  public static <T extends java.lang.Comparable<T>> com.mojang.serialization.Codec<net.minecraft.util.InclusiveRange<T>> codec(com.mojang.serialization.Codec<T>, T, T);
+  public static <T extends java.lang.Comparable<T>> com.mojang.serialization.DataResult<net.minecraft.util.InclusiveRange<T>> create(T, T);
+  public <S extends java.lang.Comparable<S>> net.minecraft.util.InclusiveRange<S> map(java.util.function.Function<? super T, ? extends S>);
+  public boolean isValueInRange(T);
+  public boolean contains(net.minecraft.util.InclusiveRange<T>);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public T minInclusive();
+  public T maxInclusive();
+}
+Compiled from "Util.java"
+public final class net.minecraft.util.Util$OS extends java.lang.Enum<net.minecraft.util.Util$OS> {
+  public static final net.minecraft.util.Util$OS LINUX;
+  public static final net.minecraft.util.Util$OS SOLARIS;
+  public static final net.minecraft.util.Util$OS WINDOWS;
+  public static final net.minecraft.util.Util$OS OSX;
+  public static final net.minecraft.util.Util$OS UNKNOWN;
+  public static net.minecraft.util.Util$OS[] values();
+  public static net.minecraft.util.Util$OS valueOf(java.lang.String);
+  public java.lang.String telemetryName();
+}
+Compiled from "SmoothDouble.java"
+public class net.minecraft.util.SmoothDouble {
+  public net.minecraft.util.SmoothDouble();
+  public double getNewDeltaValue(double, double);
+  public void reset();
+}
+Compiled from "ExtraCodecs.java"
+public class net.minecraft.util.ExtraCodecs {
+  public static final com.mojang.serialization.Codec<com.google.gson.JsonElement> JSON;
+  public static final com.mojang.serialization.Codec<java.lang.Object> JAVA;
+  public static final com.mojang.serialization.Codec<net.minecraft.nbt.Tag> NBT;
+  public static final com.mojang.serialization.Codec<org.joml.Vector2fc> VECTOR2F;
+  public static final com.mojang.serialization.Codec<org.joml.Vector3fc> VECTOR3F;
+  public static final com.mojang.serialization.Codec<org.joml.Vector3ic> VECTOR3I;
+  public static final com.mojang.serialization.Codec<org.joml.Vector4fc> VECTOR4F;
+  public static final com.mojang.serialization.Codec<org.joml.Quaternionfc> QUATERNIONF_COMPONENTS;
+  public static final com.mojang.serialization.Codec<org.joml.AxisAngle4f> AXISANGLE4F;
+  public static final com.mojang.serialization.Codec<org.joml.Quaternionfc> QUATERNIONF;
+  public static final com.mojang.serialization.Codec<org.joml.Matrix4fc> MATRIX4F;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> RGB_COLOR_CODEC;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> ARGB_COLOR_CODEC;
+  public static final com.mojang.serialization.Codec<org.joml.Vector3fc> RGB_COLOR_VEC3_CODEC;
+  public static final com.mojang.serialization.Codec<org.joml.Vector4fc> ARGB_COLOR_VEC4_CODEC;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> STRING_RGB_COLOR;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> STRING_ARGB_COLOR;
+  public static final com.mojang.serialization.Codec<org.joml.Vector3fc> STRING_RGB_VEC3_COLOR;
+  public static final com.mojang.serialization.Codec<org.joml.Vector4fc> STRING_ARGB_VEC4_COLOR;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> UNSIGNED_BYTE;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> NON_NEGATIVE_INT;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> POSITIVE_INT;
+  public static final com.mojang.serialization.Codec<java.lang.Long> NON_NEGATIVE_LONG;
+  public static final com.mojang.serialization.Codec<java.lang.Long> POSITIVE_LONG;
+  public static final com.mojang.serialization.Codec<java.lang.Float> NON_NEGATIVE_FLOAT;
+  public static final com.mojang.serialization.Codec<java.lang.Float> POSITIVE_FLOAT;
+  public static final com.mojang.serialization.Codec<java.util.regex.Pattern> PATTERN;
+  public static final com.mojang.serialization.Codec<java.time.Instant> INSTANT_ISO8601;
+  public static final com.mojang.serialization.Codec<byte[]> BASE64_STRING;
+  public static final com.mojang.serialization.Codec<java.lang.String> ESCAPED_STRING;
+  public static final com.mojang.serialization.Codec<net.minecraft.util.ExtraCodecs$TagOrElementLocation> TAG_OR_ELEMENT_ID;
+  public static final java.util.function.Function<java.util.Optional<java.lang.Long>, java.util.OptionalLong> toOptionalLong;
+  public static final java.util.function.Function<java.util.OptionalLong, java.util.Optional<java.lang.Long>> fromOptionalLong;
+  public static final com.mojang.serialization.Codec<java.util.BitSet> BIT_SET;
+  public static final int MAX_PROPERTY_NAME_LENGTH;
+  public static final int MAX_PROPERTY_VALUE_LENGTH;
+  public static final int MAX_PROPERTY_SIGNATURE_LENGTH;
+  public static final int MAX_PROPERTIES;
+  public static final com.mojang.serialization.Codec<com.mojang.authlib.properties.PropertyMap> PROPERTY_MAP;
+  public static final com.mojang.serialization.Codec<java.lang.String> PLAYER_NAME;
+  public static final com.mojang.serialization.Codec<com.mojang.authlib.GameProfile> AUTHLIB_GAME_PROFILE;
+  public static final com.mojang.serialization.MapCodec<com.mojang.authlib.GameProfile> STORED_GAME_PROFILE;
+  public static final com.mojang.serialization.Codec<java.lang.String> NON_EMPTY_STRING;
+  public static final com.mojang.serialization.Codec<java.lang.Integer> CODEPOINT;
+  public static final com.mojang.serialization.Codec<java.lang.String> RESOURCE_PATH_CODEC;
+  public static final com.mojang.serialization.Codec<java.net.URI> UNTRUSTED_URI;
+  public static final com.mojang.serialization.Codec<java.lang.String> CHAT_STRING;
+  public net.minecraft.util.ExtraCodecs();
+  public static <T> com.mojang.serialization.Codec<T> converter(com.mojang.serialization.DynamicOps<T>);
+  public static <P, I> com.mojang.serialization.Codec<I> intervalCodec(com.mojang.serialization.Codec<P>, java.lang.String, java.lang.String, java.util.function.BiFunction<P, P, com.mojang.serialization.DataResult<I>>, java.util.function.Function<I, P>, java.util.function.Function<I, P>);
+  public static <A> com.mojang.serialization.Codec$ResultFunction<A> orElsePartial(A);
+  public static <E> com.mojang.serialization.Codec<E> idResolverCodec(java.util.function.ToIntFunction<E>, java.util.function.IntFunction<E>, int);
+  public static <I, E> com.mojang.serialization.Codec<E> idResolverCodec(com.mojang.serialization.Codec<I>, java.util.function.Function<I, E>, java.util.function.Function<E, I>);
+  public static <E> com.mojang.serialization.Codec<E> orCompressed(com.mojang.serialization.Codec<E>, com.mojang.serialization.Codec<E>);
+  public static <E> com.mojang.serialization.MapCodec<E> orCompressed(com.mojang.serialization.MapCodec<E>, com.mojang.serialization.MapCodec<E>);
+  public static <E> com.mojang.serialization.Codec<E> overrideLifecycle(com.mojang.serialization.Codec<E>, java.util.function.Function<E, com.mojang.serialization.Lifecycle>, java.util.function.Function<E, com.mojang.serialization.Lifecycle>);
+  public static <E> com.mojang.serialization.Codec<E> overrideLifecycle(com.mojang.serialization.Codec<E>, java.util.function.Function<E, com.mojang.serialization.Lifecycle>);
+  public static <K, V> net.minecraft.util.ExtraCodecs$StrictUnboundedMapCodec<K, V> strictUnboundedMap(com.mojang.serialization.Codec<K>, com.mojang.serialization.Codec<V>);
+  public static <E> com.mojang.serialization.Codec<java.util.List<E>> compactListCodec(com.mojang.serialization.Codec<E>);
+  public static <E> com.mojang.serialization.Codec<java.util.List<E>> compactListCodec(com.mojang.serialization.Codec<E>, com.mojang.serialization.Codec<java.util.List<E>>);
+  public static com.mojang.serialization.Codec<java.lang.Integer> intRange(int, int);
+  public static com.mojang.serialization.Codec<java.lang.Long> longRange(int, int);
+  public static com.mojang.serialization.Codec<java.lang.Float> floatRange(float, float);
+  public static <T> com.mojang.serialization.Codec<java.util.List<T>> nonEmptyList(com.mojang.serialization.Codec<java.util.List<T>>);
+  public static <T> com.mojang.serialization.Codec<net.minecraft.core.HolderSet<T>> nonEmptyHolderSet(com.mojang.serialization.Codec<net.minecraft.core.HolderSet<T>>);
+  public static <M extends java.util.Map<?, ?>> com.mojang.serialization.Codec<M> nonEmptyMap(com.mojang.serialization.Codec<M>);
+  public static <E> com.mojang.serialization.MapCodec<E> retrieveContext(java.util.function.Function<com.mojang.serialization.DynamicOps<?>, com.mojang.serialization.DataResult<E>>);
+  public static <E, L extends java.util.Collection<E>, T> java.util.function.Function<L, com.mojang.serialization.DataResult<L>> ensureHomogenous(java.util.function.Function<E, T>);
+  public static <A> com.mojang.serialization.Codec<A> catchDecoderException(com.mojang.serialization.Codec<A>);
+  public static com.mojang.serialization.Codec<java.time.temporal.TemporalAccessor> temporalCodec(java.time.format.DateTimeFormatter);
+  public static com.mojang.serialization.MapCodec<java.util.OptionalLong> asOptionalLong(com.mojang.serialization.MapCodec<java.util.Optional<java.lang.Long>>);
+  public static <K, V> com.mojang.serialization.Codec<java.util.Map<K, V>> sizeLimitedMap(com.mojang.serialization.Codec<java.util.Map<K, V>>, int);
+  public static <T> com.mojang.serialization.Codec<it.unimi.dsi.fastutil.objects.Object2BooleanMap<T>> object2BooleanMap(com.mojang.serialization.Codec<T>);
+  public static <K, V> com.mojang.serialization.MapCodec<V> dispatchOptionalValue(java.lang.String, java.lang.String, com.mojang.serialization.Codec<K>, java.util.function.Function<? super V, ? extends K>, java.util.function.Function<? super K, ? extends com.mojang.serialization.Codec<? extends V>>);
+  public static <A> com.mojang.serialization.Codec<java.util.Optional<A>> optionalEmptyMap(com.mojang.serialization.Codec<A>);
+  public static <E extends java.lang.Enum<E>> com.mojang.serialization.Codec<E> legacyEnum(java.util.function.Function<java.lang.String, E>);
+  public static com.mojang.serialization.Codec<java.nio.file.Path> pathCodec(java.util.function.Function<java.lang.String, java.nio.file.Path>);
+  public static com.mojang.serialization.Codec<java.nio.file.Path> relativeNormalizedSubPathCodec(java.util.function.Function<java.lang.String, java.nio.file.Path>);
+  public static com.mojang.serialization.Codec<java.nio.file.Path> guardedPathCodec(java.nio.file.Path);
+  public static <A> com.mojang.serialization.MapCodec<A> optionalAlwaysPresentFieldOf(com.mojang.serialization.Codec<A>, java.lang.String, A, boolean);
+  public static <A> com.mojang.serialization.MapCodec<A> optionalAlwaysPresentFieldOf(com.mojang.serialization.Codec<A>, java.lang.String, A);
+}
+Compiled from "ArrayListDeque.java"
+class net.minecraft.util.ArrayListDeque$ReversedView extends java.util.AbstractList<T> implements net.minecraft.util.ListAndDeque<T> {
+  public net.minecraft.util.ArrayListDeque$ReversedView(net.minecraft.util.ArrayListDeque<T>);
+  public net.minecraft.util.ListAndDeque<T> reversed();
+  public T getFirst();
+  public T getLast();
+  public void addFirst(T);
+  public void addLast(T);
+  public boolean offerFirst(T);
+  public boolean offerLast(T);
+  public T pollFirst();
+  public T pollLast();
+  public T peekFirst();
+  public T peekLast();
+  public T removeFirst();
+  public T removeLast();
+  public boolean removeFirstOccurrence(java.lang.Object);
+  public boolean removeLastOccurrence(java.lang.Object);
+  public java.util.Iterator<T> descendingIterator();
+  public int size();
+  public boolean isEmpty();
+  public boolean contains(java.lang.Object);
+  public T get(int);
+  public T set(int, T);
+  public void add(int, T);
+  public T remove(int);
+  public int indexOf(java.lang.Object);
+  public int lastIndexOf(java.lang.Object);
+  public java.util.List<T> subList(int, int);
+  public java.util.Iterator<T> iterator();
+  public void clear();
+  public java.util.List reversed();
+  public java.util.SequencedCollection reversed();
+  public java.util.Deque reversed();
+}
+Compiled from "Crypt.java"
+public class net.minecraft.util.Crypt$SaltSupplier {
+  public net.minecraft.util.Crypt$SaltSupplier();
+  public static long getLong();
+}
+Compiled from "LightCoordsUtil.java"
+public interface net.minecraft.util.LightCoordsUtil$BrightnessGetter {
+  public static final net.minecraft.util.LightCoordsUtil$BrightnessGetter DEFAULT;
+  public abstract int packedBrightness(net.minecraft.world.level.BlockAndLightGetter, net.minecraft.core.BlockPos);
+}
+Compiled from "CrudeIncrementalIntIdentityHashBiMap.java"
+public class net.minecraft.util.CrudeIncrementalIntIdentityHashBiMap<K> implements net.minecraft.core.IdMap<K> {
+  public static <A> net.minecraft.util.CrudeIncrementalIntIdentityHashBiMap<A> create(int);
+  public int getId(K);
+  public K byId(int);
+  public boolean contains(K);
+  public boolean contains(int);
+  public int add(K);
+  public void addMapping(K, int);
+  public java.util.Iterator<K> iterator();
+  public void clear();
+  public int size();
+  public net.minecraft.util.CrudeIncrementalIntIdentityHashBiMap<K> copy();
+}
+Compiled from "EncoderCache.java"
+public class net.minecraft.util.EncoderCache {
+  public net.minecraft.util.EncoderCache(int);
+  public <A> com.mojang.serialization.Codec<A> wrap(com.mojang.serialization.Codec<A>);
+}
+Compiled from "BitStorage.java"
+public interface net.minecraft.util.BitStorage {
+  public abstract int getAndSet(int, int);
+  public abstract void set(int, int);
+  public abstract void fill(int);
+  public abstract int get(int);
+  public abstract long[] getRaw();
+  public abstract int getSize();
+  public abstract int getBits();
+  public abstract void getAll(java.util.function.IntConsumer);
+  public abstract void unpack(int[]);
+  public abstract net.minecraft.util.BitStorage copy();
+}
+Compiled from "StaticCache2D.java"
+public class net.minecraft.util.StaticCache2D<T> {
+  public static <T> net.minecraft.util.StaticCache2D<T> create(int, int, int, net.minecraft.util.StaticCache2D$Initializer<T>);
+  public <U> net.minecraft.util.StaticCache2D<U> map(net.minecraft.util.StaticCache2D$MappingFunction<T, U>);
+  public void forEach(java.util.function.Consumer<T>);
+  public T get(int, int);
+  public boolean contains(int, int);
+  public java.lang.String toString();
+}
+Compiled from "ProblemReporter.java"
+public interface net.minecraft.util.ProblemReporter {
+  public static final net.minecraft.util.ProblemReporter DISCARDING;
+  public abstract net.minecraft.util.ProblemReporter forChild(net.minecraft.util.ProblemReporter$PathElement);
+  public abstract void report(net.minecraft.util.ProblemReporter$Problem);
+}
+Compiled from "CubicSpline.java"
+public final class net.minecraft.util.CubicSpline$Constant<I> extends java.lang.Record implements net.minecraft.util.CubicSpline<I> {
+  public net.minecraft.util.CubicSpline$Constant(float);
+  public java.lang.String parityString();
+  public net.minecraft.util.Interval range();
+  public void forEachCoordinate(java.util.function.Consumer<I>);
+  public <R extends net.minecraft.util.BoundedFloatFunction<?>> net.minecraft.util.CubicSpline<R> mapCoordinates(java.util.function.Function<I, R>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public float value();
+}
+Compiled from "StringDecomposer.java"
+public class net.minecraft.util.StringDecomposer {
+  public net.minecraft.util.StringDecomposer();
+  public static boolean iterate(java.lang.String, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static boolean iterateBackwards(java.lang.String, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static boolean iterateFormatted(java.lang.String, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static boolean iterateFormatted(java.lang.String, int, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static boolean iterateFormatted(java.lang.String, int, net.minecraft.network.chat.Style, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static boolean iterateFormatted(net.minecraft.network.chat.FormattedText, net.minecraft.network.chat.Style, net.minecraft.util.FormattedCharSink);
+  public static java.lang.String filterBrokenSurrogates(java.lang.String);
+  public static java.lang.String getPlainText(net.minecraft.network.chat.FormattedText);
+}
+Compiled from "CubicSpline.java"
+public interface net.minecraft.util.CubicSpline<I> {
+  public abstract void forEachCoordinate(java.util.function.Consumer<I>);
+  public abstract <R extends net.minecraft.util.BoundedFloatFunction<?>> net.minecraft.util.CubicSpline<R> mapCoordinates(java.util.function.Function<I, R>);
+  public abstract net.minecraft.util.Interval range();
+  public abstract java.lang.String parityString();
+  public static <C, I extends net.minecraft.util.BoundedFloatFunction<C>> float sample(net.minecraft.util.CubicSpline<I>, C);
+  public static <C, I extends net.minecraft.util.BoundedFloatFunction<C>> net.minecraft.util.BoundedFloatFunction<C> asSampler(net.minecraft.util.CubicSpline<I>);
+  public static <I extends net.minecraft.util.BoundedFloatFunction<?>> com.mojang.serialization.Codec<net.minecraft.util.CubicSpline<I>> codec(com.mojang.serialization.Codec<I>);
+  public static <I> net.minecraft.util.CubicSpline<I> constant(float);
+  public static <I extends net.minecraft.util.BoundedFloatFunction<?>> net.minecraft.util.CubicSpline$Builder<I> builder(I);
+  public static <I extends net.minecraft.util.BoundedFloatFunction<?>> net.minecraft.util.CubicSpline$Builder<I> builder(I, it.unimi.dsi.fastutil.floats.Float2FloatFunction);
+}
+Compiled from "SpecialDates.java"
+public class net.minecraft.util.SpecialDates {
+  public static final java.time.MonthDay HALLOWEEN;
+  public static final java.util.List<java.time.MonthDay> CHRISTMAS_RANGE;
+  public static final java.time.MonthDay CHRISTMAS;
+  public static final java.time.MonthDay NEW_YEAR;
+  public net.minecraft.util.SpecialDates();
+  public static java.time.MonthDay dayNow();
+  public static boolean isHalloween();
+  public static boolean isExtendedChristmas();
+}
+Compiled from "ProblemReporter.java"
+public class net.minecraft.util.ProblemReporter$ScopedCollector extends net.minecraft.util.ProblemReporter$Collector implements java.lang.AutoCloseable {
+  public net.minecraft.util.ProblemReporter$ScopedCollector(org.slf4j.Logger);
+  public net.minecraft.util.ProblemReporter$ScopedCollector(net.minecraft.util.ProblemReporter$PathElement, org.slf4j.Logger);
+  public void close();
+}
+Compiled from "SegmentedAnglePrecision.java"
+public class net.minecraft.util.SegmentedAnglePrecision {
+  public net.minecraft.util.SegmentedAnglePrecision(int);
+  public boolean isSameAxis(int, int);
+  public int fromDirection(net.minecraft.core.Direction);
+  public int fromDegreesWithTurns(float);
+  public int fromDegrees(float);
+  public float toDegreesWithTurns(int);
+  public float toDegrees(int);
+  public int normalize(int);
+  public int getMask();
+}
+Compiled from "FormattedCharSink.java"
+public interface net.minecraft.util.FormattedCharSink {
+  public abstract boolean accept(int, net.minecraft.network.chat.Style, int);
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.package-info {
+}
+Compiled from "NativeModuleLister.java"
+public final class net.minecraft.util.NativeModuleLister$NativeModuleVersion extends java.lang.Record {
+  public net.minecraft.util.NativeModuleLister$NativeModuleVersion(java.lang.String, java.lang.String, java.lang.String);
+  public java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String description();
+  public java.lang.String version();
+  public java.lang.String company();
+}
+Compiled from "Util.java"
+public class net.minecraft.util.Util {
+  public static final int LINEAR_LOOKUP_THRESHOLD;
+  public static final long NANOS_PER_MILLI;
+  public static final long MILLIS_PER_SECOND;
+  public static final com.google.common.base.Ticker TICKER;
+  public static final java.util.UUID NIL_UUID;
+  public static final java.nio.file.spi.FileSystemProvider ZIP_FILE_SYSTEM_PROVIDER;
+  public static final com.google.common.escape.Escaper CONTROL_CHARACTER_ESCAPER;
+  public net.minecraft.util.Util();
+  public static <K, V> java.util.stream.Collector<java.util.Map$Entry<? extends K, ? extends V>, ?, java.util.Map<K, V>> toMap();
+  public static <T> java.util.stream.Collector<T, ?, java.util.List<T>> toMutableList();
+  public static <T extends java.lang.Comparable<T>> java.lang.String getPropertyName(net.minecraft.world.level.block.state.properties.Property<T>, java.lang.Object);
+  public static java.lang.String makeDescriptionId(java.lang.String, net.minecraft.resources.Identifier);
+  public static net.minecraft.util.TimeSource$NanoTimeSource timeSource();
+  public static void setTimeSource(net.minecraft.util.TimeSource$NanoTimeSource);
+  public static void shutdownTimeSource();
+  public static long getMillis();
+  public static long getNanos();
+  public static long getEpochMillis();
+  public static long toMillis(double);
+  public static java.lang.String getFilenameFormattedDateTime();
+  public static int maxAllowedExecutorThreads();
+  public static net.minecraft.TracingExecutor backgroundExecutor();
+  public static net.minecraft.TracingExecutor ioPool();
+  public static net.minecraft.TracingExecutor nonCriticalIoPool();
+  public static void shutdownExecutors();
+  public static void throwAsRuntime(java.lang.Throwable);
+  public static com.mojang.datafixers.types.Type<?> fetchChoiceType(com.mojang.datafixers.DSL$TypeReference, java.lang.String);
+  public static void runNamed(java.lang.Runnable, java.lang.String);
+  public static <T> java.lang.String getRegisteredName(net.minecraft.core.Registry<T>, T);
+  public static <T> java.util.function.Predicate<T> allOf();
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.function.Predicate<? super T>...);
+  public static <T> java.util.function.Predicate<T> allOf(java.util.List<? extends java.util.function.Predicate<? super T>>);
+  public static <T> java.util.function.Predicate<T> anyOf();
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>, java.util.function.Predicate<? super T>);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.function.Predicate<? super T>...);
+  public static <T> java.util.function.Predicate<T> anyOf(java.util.List<? extends java.util.function.Predicate<? super T>>);
+  public static <T> boolean isSymmetrical(int, int, java.util.List<T>);
+  public static int growByHalf(int, int);
+  public static java.time.format.DateTimeFormatter localizedDateFormatter(java.time.format.FormatStyle);
+  public static java.lang.management.ThreadInfo[] dumpThreadInfo();
+  public static net.minecraft.util.Util$OS getPlatform();
+  public static boolean isAarch64();
+  public static boolean isAppleSiliconMac(java.lang.String);
+  public static java.net.URI parseAndValidateUntrustedUri(java.lang.String) throws java.net.URISyntaxException;
+  public static <T> T findNextInIterable(java.lang.Iterable<T>, T);
+  public static <T> T findPreviousInIterable(java.lang.Iterable<T>, T);
+  public static <T> T make(java.util.function.Supplier<T>);
+  public static <T> T make(T, java.util.function.Consumer<? super T>);
+  public static <K extends java.lang.Enum<K>, V> java.util.Map<K, V> makeEnumMap(java.lang.Class<K>, java.util.function.Function<K, V>);
+  public static <K, V1, V2> java.util.Map<K, V2> mapValues(java.util.Map<K, V1>, java.util.function.Function<? super V1, V2>);
+  public static <K, V1, V2> java.util.Map<K, V2> mapValuesLazy(java.util.Map<K, V1>, com.google.common.base.Function<V1, V2>);
+  public static <T extends java.lang.Enum<T>> java.util.Set<T> allOfEnumExcept(T);
+  public static <V> java.util.concurrent.CompletableFuture<java.util.List<V>> sequence(java.util.List<? extends java.util.concurrent.CompletableFuture<V>>);
+  public static <V> java.util.concurrent.CompletableFuture<java.util.List<V>> sequenceFailFast(java.util.List<? extends java.util.concurrent.CompletableFuture<? extends V>>);
+  public static <V> java.util.concurrent.CompletableFuture<java.util.List<V>> sequenceFailFastAndCancel(java.util.List<? extends java.util.concurrent.CompletableFuture<? extends V>>);
+  public static <T> java.util.Optional<T> ifElse(java.util.Optional<T>, java.util.function.Consumer<T>, java.lang.Runnable);
+  public static <T> java.util.function.Supplier<T> name(java.util.function.Supplier<T>, java.util.function.Supplier<java.lang.String>);
+  public static java.lang.Runnable name(java.lang.Runnable, java.util.function.Supplier<java.lang.String>);
+  public static void logAndPauseIfInIde(java.lang.String);
+  public static void logAndPauseIfInIde(java.lang.String, java.lang.Throwable);
+  public static <T extends java.lang.Throwable> T pauseInIde(T);
+  public static void setPause(java.util.function.Consumer<java.lang.String>);
+  public static java.lang.String describeError(java.lang.Throwable);
+  public static <T> T getRandom(T[], net.minecraft.util.RandomSource);
+  public static int getRandom(int[], net.minecraft.util.RandomSource);
+  public static <T> T getRandom(java.util.List<T>, net.minecraft.util.RandomSource);
+  public static <T> java.util.Optional<T> getRandomSafe(java.util.List<T>, net.minecraft.util.RandomSource);
+  public static boolean safeMoveFile(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...);
+  public static void safeReplaceFile(java.nio.file.Path, java.nio.file.Path, java.nio.file.Path);
+  public static boolean safeReplaceOrMoveFile(java.nio.file.Path, java.nio.file.Path, java.nio.file.Path, boolean);
+  public static int offsetByCodepoints(java.lang.String, int, int);
+  public static java.util.function.Consumer<java.lang.String> prefix(java.lang.String, java.util.function.Consumer<java.lang.String>);
+  public static com.mojang.serialization.DataResult<int[]> fixedSize(java.util.stream.IntStream, int);
+  public static com.mojang.serialization.DataResult<long[]> fixedSize(java.util.stream.LongStream, int);
+  public static <T> com.mojang.serialization.DataResult<java.util.List<T>> fixedSize(java.util.List<T>, int);
+  public static void startTimerHackThread();
+  public static void copyBetweenDirs(java.nio.file.Path, java.nio.file.Path, java.nio.file.Path) throws java.io.IOException;
+  public static java.lang.String sanitizeName(java.lang.String, net.minecraft.CharPredicate);
+  public static <K, V> net.minecraft.util.SingleKeyCache<K, V> singleKeyCache(java.util.function.Function<K, V>);
+  public static <T, R> java.util.function.Function<T, R> memoize(java.util.function.Function<T, R>);
+  public static <T, U, R> java.util.function.BiFunction<T, U, R> memoize(java.util.function.BiFunction<T, U, R>);
+  public static <T> java.util.List<T> toShuffledList(java.util.stream.Stream<T>, net.minecraft.util.RandomSource);
+  public static it.unimi.dsi.fastutil.ints.IntArrayList toShuffledList(java.util.stream.IntStream, net.minecraft.util.RandomSource);
+  public static <T> java.util.List<T> shuffledCopy(T[], net.minecraft.util.RandomSource);
+  public static <T> java.util.List<T> shuffledCopy(it.unimi.dsi.fastutil.objects.ObjectArrayList<T>, net.minecraft.util.RandomSource);
+  public static <T> void shuffle(java.util.List<T>, net.minecraft.util.RandomSource);
+  public static <T> java.util.concurrent.CompletableFuture<T> blockUntilDone(java.util.function.Function<java.util.concurrent.Executor, java.util.concurrent.CompletableFuture<T>>);
+  public static <T> T blockUntilDone(java.util.function.Function<java.util.concurrent.Executor, T>, java.util.function.Predicate<T>);
+  public static <T> java.util.function.ToIntFunction<T> createIndexLookup(java.util.List<T>);
+  public static <T> java.util.function.ToIntFunction<T> createIndexIdentityLookup(java.util.List<T>);
+  public static <A, B> com.mojang.datafixers.Typed<B> writeAndReadTypedOrThrow(com.mojang.datafixers.Typed<A>, com.mojang.datafixers.types.Type<B>, java.util.function.UnaryOperator<com.mojang.serialization.Dynamic<?>>);
+  public static <T> com.mojang.datafixers.Typed<T> readTypedOrThrow(com.mojang.datafixers.types.Type<T>, com.mojang.serialization.Dynamic<?>);
+  public static <T> com.mojang.datafixers.Typed<T> readTypedOrThrow(com.mojang.datafixers.types.Type<T>, com.mojang.serialization.Dynamic<?>, boolean);
+  public static <T> java.util.List<T> copyAndAdd(java.util.List<T>, T);
+  public static <T> java.util.List<T> copyAndAdd(java.util.List<T>, T...);
+  public static <T> java.util.List<T> copyAndAdd(T, java.util.List<T>);
+  public static <T> java.util.List<T> join(java.util.Collection<T>, java.util.Collection<T>);
+  public static <T> java.util.List<T> join(java.util.Collection<T>...);
+  public static <K, V> java.util.Map<K, V> copyAndPut(java.util.Map<K, V>, K, V);
+}
+Compiled from "VisibleForDebug.java"
+public interface net.minecraft.util.VisibleForDebug extends java.lang.annotation.Annotation {
+}
+Compiled from "ZeroBitStorage.java"
+public class net.minecraft.util.ZeroBitStorage implements net.minecraft.util.BitStorage {
+  public static final long[] RAW;
+  public net.minecraft.util.ZeroBitStorage(int);
+  public int getAndSet(int, int);
+  public void set(int, int);
+  public void fill(int);
+  public int get(int);
+  public long[] getRaw();
+  public int getSize();
+  public int getBits();
+  public void getAll(java.util.function.IntConsumer);
+  public void unpack(int[]);
+  public net.minecraft.util.BitStorage copy();
+}

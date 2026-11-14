@@ -1,0 +1,88 @@
+Compiled from "ItemCombinerScreen.java"
+public abstract class net.minecraft.client.gui.screens.inventory.ItemCombinerScreen<T extends net.minecraft.world.inventory.ItemCombinerMenu> extends net.minecraft.client.gui.screens.inventory.AbstractContainerScreen<T> implements net.minecraft.world.inventory.ContainerListener {
+  private final net.minecraft.resources.Identifier menuResource;
+
+  public net.minecraft.client.gui.screens.inventory.ItemCombinerScreen(T, net.minecraft.world.entity.player.Inventory, net.minecraft.network.chat.Component, net.minecraft.resources.Identifier);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokespecial #1                  // Method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen."<init>":(Lnet/minecraft/world/inventory/AbstractContainerMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;)V
+         7: aload_0
+         8: aload         4
+        10: putfield      #7                  // Field menuResource:Lnet/minecraft/resources/Identifier;
+        13: return
+
+  protected void subInit();
+    Code:
+         0: return
+
+  protected void init();
+    Code:
+         0: aload_0
+         1: invokespecial #13                 // Method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen.init:()V
+         4: aload_0
+         5: invokevirtual #17                 // Method subInit:()V
+         8: aload_0
+         9: getfield      #20                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+        12: checkcast     #24                 // class net/minecraft/world/inventory/ItemCombinerMenu
+        15: aload_0
+        16: invokevirtual #26                 // Method net/minecraft/world/inventory/ItemCombinerMenu.addSlotListener:(Lnet/minecraft/world/inventory/ContainerListener;)V
+        19: return
+
+  public void removed();
+    Code:
+         0: aload_0
+         1: invokespecial #30                 // Method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen.removed:()V
+         4: aload_0
+         5: getfield      #20                 // Field menu:Lnet/minecraft/world/inventory/AbstractContainerMenu;
+         8: checkcast     #24                 // class net/minecraft/world/inventory/ItemCombinerMenu
+        11: aload_0
+        12: invokevirtual #33                 // Method net/minecraft/world/inventory/ItemCombinerMenu.removeSlotListener:(Lnet/minecraft/world/inventory/ContainerListener;)V
+        15: return
+
+  public void extractBackground(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iload_3
+         4: fload         4
+         6: invokespecial #36                 // Method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen.extractBackground:(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIF)V
+         9: aload_1
+        10: getstatic     #40                 // Field net/minecraft/client/renderer/RenderPipelines.GUI_TEXTURED:Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;
+        13: aload_0
+        14: getfield      #7                  // Field menuResource:Lnet/minecraft/resources/Identifier;
+        17: aload_0
+        18: getfield      #46                 // Field leftPos:I
+        21: aload_0
+        22: getfield      #50                 // Field topPos:I
+        25: fconst_0
+        26: fconst_0
+        27: aload_0
+        28: getfield      #53                 // Field imageWidth:I
+        31: aload_0
+        32: getfield      #56                 // Field imageHeight:I
+        35: sipush        256
+        38: sipush        256
+        41: invokevirtual #59                 // Method net/minecraft/client/gui/GuiGraphicsExtractor.blit:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIFFIIII)V
+        44: aload_0
+        45: aload_1
+        46: aload_0
+        47: getfield      #46                 // Field leftPos:I
+        50: aload_0
+        51: getfield      #50                 // Field topPos:I
+        54: invokevirtual #65                 // Method extractErrorIcon:(Lnet/minecraft/client/gui/GuiGraphicsExtractor;II)V
+        57: return
+
+  protected abstract void extractErrorIcon(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+
+  public void dataChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, int);
+    Code:
+         0: return
+
+  public void slotChanged(net.minecraft.world.inventory.AbstractContainerMenu, int, net.minecraft.world.item.ItemStack);
+    Code:
+         0: return
+}

@@ -1,0 +1,105 @@
+Compiled from "AbstractCheckpointStorage.java"
+final class com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage$Frame extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage$Checkpoint> checkpoints();
+}
+Compiled from "CheckpointExtension.java"
+public final class com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$StageCheckpoint extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$StageCheckpoint(long, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long stage();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType type();
+  public java.lang.String label();
+}
+Compiled from "AbstractCheckpointStorage.java"
+public final class com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage$Checkpoint extends java.lang.Record {
+  protected com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage$Checkpoint(int, java.lang.String, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int id();
+  public java.lang.String label();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType type();
+}
+Compiled from "CheckpointExtension.java"
+public final class com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints extends java.lang.Record {
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints(long, java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$StageCheckpoint>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long queue();
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$StageCheckpoint> checkpoints();
+}
+Compiled from "CheckpointExtension.java"
+public interface com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage {
+  public abstract void rotate();
+  public abstract void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType, java.util.function.Supplier<java.lang.String>);
+}
+Compiled from "CheckpointExtension.java"
+public interface com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public abstract com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage createStorage(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  public abstract java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints> retrieveCheckpoints(boolean);
+}
+Compiled from "NvidiaCheckpointExtension.java"
+public class com.mojang.renderpearl.backend.vulkan.checkpoints.NvidiaCheckpointExtension implements com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension {
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.NvidiaCheckpointExtension();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage createStorage(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints> retrieveCheckpoints(boolean);
+  public void close();
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.vulkan.checkpoints.package-info {
+}
+Compiled from "CheckpointExtension.java"
+public final class com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType extends java.lang.Enum<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType> {
+  public static final com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType BEGIN_RENDER_PASS;
+  public static final com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType END_RENDER_PASS;
+  public static com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType[] values();
+  public static com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType valueOf(java.lang.String);
+}
+Compiled from "NvidiaCheckpointExtension.java"
+class com.mojang.renderpearl.backend.vulkan.checkpoints.NvidiaCheckpointExtension$NvidiaCheckpointStorage extends com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage {
+  protected com.mojang.renderpearl.backend.vulkan.checkpoints.NvidiaCheckpointExtension$NvidiaCheckpointStorage(com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  protected void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, int);
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints retrieveCheckpoints();
+}
+Compiled from "NoopCheckpointExtension.java"
+public class com.mojang.renderpearl.backend.vulkan.checkpoints.NoopCheckpointExtension implements com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension {
+  public static final com.mojang.renderpearl.backend.vulkan.checkpoints.NoopCheckpointExtension INSTANCE;
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.NoopCheckpointExtension();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage createStorage(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints> retrieveCheckpoints(boolean);
+  public void close();
+}
+Compiled from "AbstractCheckpointStorage.java"
+abstract class com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage implements com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage {
+  protected final org.lwjgl.vulkan.VkQueue queue;
+  protected com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage(com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  public void rotate();
+  public void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType, java.util.function.Supplier<java.lang.String>);
+  protected abstract void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, int);
+  protected com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage$Checkpoint findCheckpoint(int);
+}
+Compiled from "AmdCheckpointExtension.java"
+public class com.mojang.renderpearl.backend.vulkan.checkpoints.AmdCheckpointExtension implements com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension {
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.AmdCheckpointExtension();
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage createStorage(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  public java.util.List<com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints> retrieveCheckpoints(boolean);
+  public void close();
+}
+Compiled from "AmdCheckpointExtension.java"
+class com.mojang.renderpearl.backend.vulkan.checkpoints.AmdCheckpointExtension$AmdCheckpointStorage extends com.mojang.renderpearl.backend.vulkan.checkpoints.AbstractCheckpointStorage implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  protected com.mojang.renderpearl.backend.vulkan.checkpoints.AmdCheckpointExtension$AmdCheckpointStorage(com.mojang.renderpearl.backend.vulkan.VulkanDevice, com.mojang.renderpearl.backend.vulkan.VulkanQueue, int);
+  protected void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, int);
+  public com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$QueueCheckpoints retrieveCheckpoints();
+  public void close();
+}
+Compiled from "NoopCheckpointExtension.java"
+class com.mojang.renderpearl.backend.vulkan.checkpoints.NoopCheckpointExtension$NoopCheckpointStorage implements com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointStorage {
+  public void rotate();
+  public void recordCheckpoint(org.lwjgl.vulkan.VkCommandBuffer, com.mojang.renderpearl.backend.vulkan.checkpoints.CheckpointExtension$CheckpointType, java.util.function.Supplier<java.lang.String>);
+}

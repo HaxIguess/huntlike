@@ -1,0 +1,38 @@
+Compiled from "ServerPingPacketListener.java"
+public interface net.minecraft.network.protocol.ping.ServerPingPacketListener extends net.minecraft.network.PacketListener {
+  public abstract void handlePingRequest(net.minecraft.network.protocol.ping.ServerboundPingRequestPacket);
+}
+Compiled from "ClientPongPacketListener.java"
+public interface net.minecraft.network.protocol.ping.ClientPongPacketListener extends net.minecraft.network.PacketListener {
+  public abstract void handlePongResponse(net.minecraft.network.protocol.ping.ClientboundPongResponsePacket);
+}
+Compiled from "PingPacketTypes.java"
+public class net.minecraft.network.protocol.ping.PingPacketTypes {
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.ping.ClientboundPongResponsePacket> CLIENTBOUND_PONG_RESPONSE;
+  public static final net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.ping.ServerboundPingRequestPacket> SERVERBOUND_PING_REQUEST;
+  public net.minecraft.network.protocol.ping.PingPacketTypes();
+}
+Compiled from "package-info.java"
+interface net.minecraft.network.protocol.ping.package-info {
+}
+Compiled from "ClientboundPongResponsePacket.java"
+public final class net.minecraft.network.protocol.ping.ClientboundPongResponsePacket extends java.lang.Record implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.ping.ClientPongPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.network.protocol.ping.ClientboundPongResponsePacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.ping.ClientboundPongResponsePacket(long);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.ping.ClientboundPongResponsePacket> type();
+  public void handle(net.minecraft.network.protocol.ping.ClientPongPacketListener);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public long time();
+  public void handle(net.minecraft.network.PacketListener);
+}
+Compiled from "ServerboundPingRequestPacket.java"
+public class net.minecraft.network.protocol.ping.ServerboundPingRequestPacket implements net.minecraft.network.protocol.Packet<net.minecraft.network.protocol.ping.ServerPingPacketListener> {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.network.protocol.ping.ServerboundPingRequestPacket> STREAM_CODEC;
+  public net.minecraft.network.protocol.ping.ServerboundPingRequestPacket(long);
+  public net.minecraft.network.protocol.PacketType<net.minecraft.network.protocol.ping.ServerboundPingRequestPacket> type();
+  public void handle(net.minecraft.network.protocol.ping.ServerPingPacketListener);
+  public long getTime();
+  public void handle(net.minecraft.network.PacketListener);
+}

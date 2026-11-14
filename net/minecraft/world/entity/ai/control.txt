@@ -1,0 +1,93 @@
+Compiled from "BodyRotationControl.java"
+public class net.minecraft.world.entity.ai.control.BodyRotationControl implements net.minecraft.world.entity.ai.control.Control {
+  public net.minecraft.world.entity.ai.control.BodyRotationControl(net.minecraft.world.entity.Mob);
+  public void clientTick();
+}
+Compiled from "LookControl.java"
+public class net.minecraft.world.entity.ai.control.LookControl implements net.minecraft.world.entity.ai.control.Control {
+  protected final net.minecraft.world.entity.Mob mob;
+  protected float yMaxRotSpeed;
+  protected float xMaxRotAngle;
+  protected int lookAtCooldown;
+  protected double wantedX;
+  protected double wantedY;
+  protected double wantedZ;
+  public net.minecraft.world.entity.ai.control.LookControl(net.minecraft.world.entity.Mob);
+  public void setLookAt(net.minecraft.world.phys.Vec3);
+  public void setLookAt(net.minecraft.world.entity.Entity);
+  public void setLookAt(net.minecraft.world.entity.Entity, float, float);
+  public void setLookAt(double, double, double);
+  public void setLookAt(double, double, double, float, float);
+  public void tick();
+  protected void clampHeadRotationToBody();
+  protected boolean resetXRotOnTick();
+  public boolean isLookingAtTarget();
+  public double getWantedX();
+  public double getWantedY();
+  public double getWantedZ();
+  protected java.util.Optional<java.lang.Float> getXRotD();
+  protected java.util.Optional<java.lang.Float> getYRotD();
+}
+Compiled from "SmoothSwimmingMoveControl.java"
+public class net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl<T extends net.minecraft.world.entity.Mob> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl(T, int, int, float, float, boolean);
+  public void tick();
+}
+Compiled from "MoveControl.java"
+public final class net.minecraft.world.entity.ai.control.MoveControl$Operation extends java.lang.Enum<net.minecraft.world.entity.ai.control.MoveControl$Operation> {
+  public static final net.minecraft.world.entity.ai.control.MoveControl$Operation WAIT;
+  public static final net.minecraft.world.entity.ai.control.MoveControl$Operation MOVE_TO;
+  public static final net.minecraft.world.entity.ai.control.MoveControl$Operation STRAFE;
+  public static final net.minecraft.world.entity.ai.control.MoveControl$Operation JUMPING;
+  public static net.minecraft.world.entity.ai.control.MoveControl$Operation[] values();
+  public static net.minecraft.world.entity.ai.control.MoveControl$Operation valueOf(java.lang.String);
+}
+Compiled from "JumpControl.java"
+public class net.minecraft.world.entity.ai.control.JumpControl implements net.minecraft.world.entity.ai.control.Control {
+  protected boolean jump;
+  public net.minecraft.world.entity.ai.control.JumpControl(net.minecraft.world.entity.Mob);
+  public void jump();
+  public void tick();
+}
+Compiled from "SmoothSwimmingLookControl.java"
+public class net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl extends net.minecraft.world.entity.ai.control.LookControl {
+  public net.minecraft.world.entity.ai.control.SmoothSwimmingLookControl(net.minecraft.world.entity.Mob, int);
+  public void tick();
+}
+Compiled from "FlyingMoveControl.java"
+public class net.minecraft.world.entity.ai.control.FlyingMoveControl<T extends net.minecraft.world.entity.Mob> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.ai.control.FlyingMoveControl(T, int, boolean);
+  public void tick();
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.ai.control.package-info {
+}
+Compiled from "Control.java"
+public interface net.minecraft.world.entity.ai.control.Control {
+  public default float rotateTowards(float, float, float);
+}
+Compiled from "MoveControl.java"
+public class net.minecraft.world.entity.ai.control.MoveControl<T extends net.minecraft.world.entity.Mob> implements net.minecraft.world.entity.ai.control.Control {
+  public static final float MIN_SPEED;
+  public static final float MIN_SPEED_SQR;
+  protected static final int MAX_TURN;
+  protected final T mob;
+  protected double wantedX;
+  protected double wantedY;
+  protected double wantedZ;
+  protected double speedModifier;
+  protected float strafeForwards;
+  protected float strafeRight;
+  protected net.minecraft.world.entity.ai.control.MoveControl$Operation operation;
+  public net.minecraft.world.entity.ai.control.MoveControl(T);
+  public boolean hasWanted();
+  public double getSpeedModifier();
+  public void setWantedPosition(double, double, double, double);
+  public void strafe(float, float);
+  public void tick();
+  protected float rotlerp(float, float, float);
+  public double getWantedX();
+  public double getWantedY();
+  public double getWantedZ();
+  public void setWait();
+}

@@ -1,0 +1,312 @@
+Compiled from "LevelDebugSynchronizers.java"
+public class net.minecraft.util.debug.LevelDebugSynchronizers {
+  public net.minecraft.util.debug.LevelDebugSynchronizers(net.minecraft.server.level.ServerLevel);
+  public void tick(net.minecraft.util.debug.ServerDebugSubscribers);
+  public void registerChunk(net.minecraft.world.level.chunk.LevelChunk);
+  public void dropChunk(net.minecraft.world.level.ChunkPos);
+  public void registerBlockEntity(net.minecraft.world.level.block.entity.BlockEntity);
+  public void dropBlockEntity(net.minecraft.core.BlockPos);
+  public void registerEntity(net.minecraft.world.entity.Entity);
+  public void dropEntity(net.minecraft.world.entity.Entity);
+  public void startTrackingChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  public void startTrackingEntity(net.minecraft.server.level.ServerPlayer, net.minecraft.world.entity.Entity);
+  public void registerPoi(net.minecraft.world.entity.ai.village.poi.PoiRecord);
+  public void updatePoi(net.minecraft.core.BlockPos);
+  public void dropPoi(net.minecraft.core.BlockPos);
+  public boolean hasAnySubscriberFor(net.minecraft.util.debug.DebugSubscription<?>);
+  public <T> void sendBlockValue(net.minecraft.core.BlockPos, net.minecraft.util.debug.DebugSubscription<T>, T);
+  public <T> void clearBlockValue(net.minecraft.core.BlockPos, net.minecraft.util.debug.DebugSubscription<T>);
+  public <T> void sendEntityValue(net.minecraft.world.entity.Entity, net.minecraft.util.debug.DebugSubscription<T>, T);
+  public <T> void clearEntityValue(net.minecraft.world.entity.Entity, net.minecraft.util.debug.DebugSubscription<T>);
+  public <T> void broadcastEventToTracking(net.minecraft.core.BlockPos, net.minecraft.util.debug.DebugSubscription<T>, T);
+}
+Compiled from "DebugSubscriptions.java"
+public class net.minecraft.util.debug.DebugSubscriptions<T> {
+  public static final net.minecraft.util.debug.DebugSubscription<?> DEDICATED_SERVER_TICK_TIME;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugBeeInfo> BEES;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugBrainDump> BRAINS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugBreezeInfo> BREEZES;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugGoalInfo> GOAL_SELECTORS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugPathInfo> ENTITY_PATHS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugEntityBlockIntersection> ENTITY_BLOCK_INTERSECTIONS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugHiveInfo> BEE_HIVES;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugPoiInfo> POIS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.world.level.redstone.Orientation> REDSTONE_WIRE_ORIENTATIONS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.Unit> VILLAGE_SECTIONS;
+  public static final net.minecraft.util.debug.DebugSubscription<java.util.List<net.minecraft.core.BlockPos>> RAIDS;
+  public static final net.minecraft.util.debug.DebugSubscription<java.util.List<net.minecraft.util.debug.DebugStructureInfo>> STRUCTURES;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugGameEventListenerInfo> GAME_EVENT_LISTENERS;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.core.BlockPos> NEIGHBOR_UPDATES;
+  public static final net.minecraft.util.debug.DebugSubscription<net.minecraft.util.debug.DebugGameEventInfo> GAME_EVENTS;
+  public net.minecraft.util.debug.DebugSubscriptions();
+  public static net.minecraft.util.debug.DebugSubscription<?> bootstrap(net.minecraft.core.Registry<net.minecraft.util.debug.DebugSubscription<?>>);
+}
+Compiled from "DebugValueAccess.java"
+public interface net.minecraft.util.debug.DebugValueAccess$EventVisitor<T> {
+  public abstract void accept(T, int, int);
+}
+Compiled from "DebugGoalInfo.java"
+public final class net.minecraft.util.debug.DebugGoalInfo$DebugGoal extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugGoalInfo$DebugGoal> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugGoalInfo$DebugGoal(int, boolean, java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int priority();
+  public boolean isRunning();
+  public java.lang.String name();
+}
+Compiled from "DebugValueSource.java"
+public interface net.minecraft.util.debug.DebugValueSource {
+  public abstract void registerDebugValues(net.minecraft.server.level.ServerLevel, net.minecraft.util.debug.DebugValueSource$Registration);
+}
+Compiled from "DebugGameEventListenerInfo.java"
+public final class net.minecraft.util.debug.DebugGameEventListenerInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugGameEventListenerInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugGameEventListenerInfo(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int listenerRadius();
+}
+Compiled from "TrackingDebugSynchronizer.java"
+class net.minecraft.util.debug.TrackingDebugSynchronizer$ValueSource<T> {
+  public net.minecraft.util.debug.DebugSubscription$Update<T> pollUpdate(net.minecraft.util.debug.DebugSubscription<T>);
+}
+Compiled from "ServerDebugSubscribers.java"
+public class net.minecraft.util.debug.ServerDebugSubscribers {
+  public net.minecraft.util.debug.ServerDebugSubscribers(net.minecraft.server.MinecraftServer);
+  public void tick();
+  public void broadcastToAll(net.minecraft.util.debug.DebugSubscription<?>, net.minecraft.network.protocol.Packet<?>);
+  public java.util.Set<net.minecraft.util.debug.DebugSubscription<?>> enabledSubscriptions();
+  public boolean hasAnySubscriberFor(net.minecraft.util.debug.DebugSubscription<?>);
+  public boolean hasRequiredPermissions(net.minecraft.server.level.ServerPlayer);
+}
+Compiled from "DebugSubscription.java"
+public final class net.minecraft.util.debug.DebugSubscription$Event<T> extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugSubscription$Event<?>> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugSubscription$Event(net.minecraft.util.debug.DebugSubscription<T>, T);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.debug.DebugSubscription<T> subscription();
+  public T value();
+}
+Compiled from "DebugPathInfo.java"
+public final class net.minecraft.util.debug.DebugPathInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.minecraft.util.debug.DebugPathInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugPathInfo(net.minecraft.world.level.pathfinder.Path, float);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.pathfinder.Path path();
+  public float maxNodeDistance();
+}
+Compiled from "TrackingDebugSynchronizer.java"
+public class net.minecraft.util.debug.TrackingDebugSynchronizer$PoiSynchronizer extends net.minecraft.util.debug.TrackingDebugSynchronizer<net.minecraft.util.debug.DebugPoiInfo> {
+  public net.minecraft.util.debug.TrackingDebugSynchronizer$PoiSynchronizer();
+  protected void sendInitialChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  public void onPoiAdded(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.ai.village.poi.PoiRecord);
+  public void onPoiRemoved(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public void onPoiTicketCountChanged(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+}
+Compiled from "TrackingDebugSynchronizer.java"
+public class net.minecraft.util.debug.TrackingDebugSynchronizer$VillageSectionSynchronizer extends net.minecraft.util.debug.TrackingDebugSynchronizer<net.minecraft.util.Unit> {
+  public net.minecraft.util.debug.TrackingDebugSynchronizer$VillageSectionSynchronizer();
+  protected void sendInitialChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  public void onPoiAdded(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.ai.village.poi.PoiRecord);
+  public void onPoiRemoved(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+}
+Compiled from "DebugSubscription.java"
+public final class net.minecraft.util.debug.DebugSubscription$Update<T> extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugSubscription$Update<?>> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugSubscription$Update(net.minecraft.util.debug.DebugSubscription<T>, java.util.Optional<T>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.debug.DebugSubscription<T> subscription();
+  public java.util.Optional<T> value();
+}
+Compiled from "DebugBrainDump.java"
+public final class net.minecraft.util.debug.DebugBrainDump extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugBrainDump> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugBrainDump(java.lang.String, java.lang.String, int, float, float, java.lang.String, boolean, int, java.util.List<java.lang.String>, java.util.List<java.lang.String>, java.util.List<java.lang.String>, java.util.List<java.lang.String>, java.util.Set<net.minecraft.core.BlockPos>, java.util.Set<net.minecraft.core.BlockPos>);
+  public static net.minecraft.util.debug.DebugBrainDump takeBrainDump(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.LivingEntity);
+  public boolean hasPoi(net.minecraft.core.BlockPos);
+  public boolean hasPotentialPoi(net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.String name();
+  public java.lang.String profession();
+  public int xp();
+  public float health();
+  public float maxHealth();
+  public java.lang.String inventory();
+  public boolean wantsGolem();
+  public int angerLevel();
+  public java.util.List<java.lang.String> activities();
+  public java.util.List<java.lang.String> behaviors();
+  public java.util.List<java.lang.String> memories();
+  public java.util.List<java.lang.String> gossips();
+  public java.util.Set<net.minecraft.core.BlockPos> pois();
+  public java.util.Set<net.minecraft.core.BlockPos> potentialPois();
+}
+Compiled from "DebugBreezeInfo.java"
+public final class net.minecraft.util.debug.DebugBreezeInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugBreezeInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugBreezeInfo(java.util.Optional<java.lang.Integer>, java.util.Optional<net.minecraft.core.BlockPos>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<java.lang.Integer> attackTarget();
+  public java.util.Optional<net.minecraft.core.BlockPos> jumpTarget();
+}
+Compiled from "DebugValueAccess.java"
+public interface net.minecraft.util.debug.DebugValueAccess {
+  public abstract <T> void forEachChunk(net.minecraft.util.debug.DebugSubscription<T>, java.util.function.BiConsumer<net.minecraft.world.level.ChunkPos, T>);
+  public abstract <T> T getChunkValue(net.minecraft.util.debug.DebugSubscription<T>, net.minecraft.world.level.ChunkPos);
+  public abstract <T> void forEachBlock(net.minecraft.util.debug.DebugSubscription<T>, java.util.function.BiConsumer<net.minecraft.core.BlockPos, T>);
+  public abstract <T> T getBlockValue(net.minecraft.util.debug.DebugSubscription<T>, net.minecraft.core.BlockPos);
+  public abstract <T> void forEachEntity(net.minecraft.util.debug.DebugSubscription<T>, java.util.function.BiConsumer<net.minecraft.world.entity.Entity, T>);
+  public abstract <T> T getEntityValue(net.minecraft.util.debug.DebugSubscription<T>, net.minecraft.world.entity.Entity);
+  public abstract <T> void forEachEvent(net.minecraft.util.debug.DebugSubscription<T>, net.minecraft.util.debug.DebugValueAccess$EventVisitor<T>);
+}
+Compiled from "DebugBeeInfo.java"
+public final class net.minecraft.util.debug.DebugBeeInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugBeeInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugBeeInfo(java.util.Optional<net.minecraft.core.BlockPos>, java.util.Optional<net.minecraft.core.BlockPos>, int, java.util.List<net.minecraft.core.BlockPos>);
+  public boolean hasHive(net.minecraft.core.BlockPos);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Optional<net.minecraft.core.BlockPos> hivePos();
+  public java.util.Optional<net.minecraft.core.BlockPos> flowerPos();
+  public int travelTicks();
+  public java.util.List<net.minecraft.core.BlockPos> blacklistedHives();
+}
+Compiled from "DebugStructureInfo.java"
+public final class net.minecraft.util.debug.DebugStructureInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugStructureInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugStructureInfo(net.minecraft.world.level.levelgen.structure.BoundingBox, java.util.List<net.minecraft.util.debug.DebugStructureInfo$Piece>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.structure.BoundingBox boundingBox();
+  public java.util.List<net.minecraft.util.debug.DebugStructureInfo$Piece> pieces();
+}
+Compiled from "DebugSubscription.java"
+public class net.minecraft.util.debug.DebugSubscription<T> {
+  public static final int DOES_NOT_EXPIRE;
+  public net.minecraft.util.debug.DebugSubscription(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T>, int);
+  public net.minecraft.util.debug.DebugSubscription(net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T>);
+  public net.minecraft.util.debug.DebugSubscription$Update<T> packUpdate(T);
+  public net.minecraft.util.debug.DebugSubscription$Update<T> emptyUpdate();
+  public net.minecraft.util.debug.DebugSubscription$Event<T> packEvent(T);
+  public java.lang.String toString();
+  public net.minecraft.network.codec.StreamCodec<? super net.minecraft.network.RegistryFriendlyByteBuf, T> valueStreamCodec();
+  public int expireAfterTicks();
+}
+Compiled from "DebugStructureInfo.java"
+public final class net.minecraft.util.debug.DebugStructureInfo$Piece extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugStructureInfo$Piece> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugStructureInfo$Piece(net.minecraft.world.level.levelgen.structure.BoundingBox, boolean);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.levelgen.structure.BoundingBox boundingBox();
+  public boolean isStart();
+}
+Compiled from "DebugValueSource.java"
+public interface net.minecraft.util.debug.DebugValueSource$Registration {
+  public abstract <T> void register(net.minecraft.util.debug.DebugSubscription<T>, net.minecraft.util.debug.DebugValueSource$ValueGetter<T>);
+}
+Compiled from "DebugValueSource.java"
+public interface net.minecraft.util.debug.DebugValueSource$ValueGetter<T> {
+  public abstract T get();
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.debug.package-info {
+}
+Compiled from "TrackingDebugSynchronizer.java"
+public abstract class net.minecraft.util.debug.TrackingDebugSynchronizer<T> {
+  protected final net.minecraft.util.debug.DebugSubscription<T> subscription;
+  public net.minecraft.util.debug.TrackingDebugSynchronizer(net.minecraft.util.debug.DebugSubscription<T>);
+  public final void tick(net.minecraft.server.level.ServerLevel);
+  protected final void sendToPlayersTrackingChunk(net.minecraft.server.level.ServerLevel, net.minecraft.world.level.ChunkPos, net.minecraft.network.protocol.Packet<? super net.minecraft.network.protocol.game.ClientGamePacketListener>);
+  protected final void sendToPlayersTrackingEntity(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.Entity, net.minecraft.network.protocol.Packet<? super net.minecraft.network.protocol.game.ClientGamePacketListener>);
+  public final void startTrackingChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  public final void startTrackingEntity(net.minecraft.server.level.ServerPlayer, net.minecraft.world.entity.Entity);
+  protected void clear();
+  protected void pollAndSendUpdates(net.minecraft.server.level.ServerLevel);
+  protected void sendInitialChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  protected void sendInitialEntity(net.minecraft.server.level.ServerPlayer, net.minecraft.world.entity.Entity);
+}
+Compiled from "DebugEntityBlockIntersection.java"
+public final class net.minecraft.util.debug.DebugEntityBlockIntersection extends java.lang.Enum<net.minecraft.util.debug.DebugEntityBlockIntersection> {
+  public static final net.minecraft.util.debug.DebugEntityBlockIntersection IN_BLOCK;
+  public static final net.minecraft.util.debug.DebugEntityBlockIntersection IN_FLUID;
+  public static final net.minecraft.util.debug.DebugEntityBlockIntersection IN_AIR;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugEntityBlockIntersection> STREAM_CODEC;
+  public static net.minecraft.util.debug.DebugEntityBlockIntersection[] values();
+  public static net.minecraft.util.debug.DebugEntityBlockIntersection valueOf(java.lang.String);
+  public int color();
+}
+Compiled from "DebugHiveInfo.java"
+public final class net.minecraft.util.debug.DebugHiveInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugHiveInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugHiveInfo(net.minecraft.world.level.block.Block, int, int, boolean);
+  public static net.minecraft.util.debug.DebugHiveInfo pack(net.minecraft.world.level.block.entity.BeehiveBlockEntity);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.level.block.Block type();
+  public int occupantCount();
+  public int honeyLevel();
+  public boolean sedated();
+}
+Compiled from "DebugGameEventInfo.java"
+public final class net.minecraft.util.debug.DebugGameEventInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugGameEventInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugGameEventInfo(net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent>, net.minecraft.world.phys.Vec3);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.Holder<net.minecraft.world.level.gameevent.GameEvent> event();
+  public net.minecraft.world.phys.Vec3 pos();
+}
+Compiled from "DebugGoalInfo.java"
+public final class net.minecraft.util.debug.DebugGoalInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.util.debug.DebugGoalInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugGoalInfo(java.util.List<net.minecraft.util.debug.DebugGoalInfo$DebugGoal>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.util.debug.DebugGoalInfo$DebugGoal> goals();
+}
+Compiled from "DebugPoiInfo.java"
+public final class net.minecraft.util.debug.DebugPoiInfo extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.minecraft.util.debug.DebugPoiInfo> STREAM_CODEC;
+  public net.minecraft.util.debug.DebugPoiInfo(net.minecraft.world.entity.ai.village.poi.PoiRecord);
+  public net.minecraft.util.debug.DebugPoiInfo(net.minecraft.core.BlockPos, net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType>, int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.core.BlockPos pos();
+  public net.minecraft.core.Holder<net.minecraft.world.entity.ai.village.poi.PoiType> poiType();
+  public int freeTicketCount();
+}
+Compiled from "TrackingDebugSynchronizer.java"
+public class net.minecraft.util.debug.TrackingDebugSynchronizer$SourceSynchronizer<T> extends net.minecraft.util.debug.TrackingDebugSynchronizer<T> {
+  public net.minecraft.util.debug.TrackingDebugSynchronizer$SourceSynchronizer(net.minecraft.util.debug.DebugSubscription<T>);
+  protected void clear();
+  protected void pollAndSendUpdates(net.minecraft.server.level.ServerLevel);
+  public void registerChunk(net.minecraft.world.level.ChunkPos, net.minecraft.util.debug.DebugValueSource$ValueGetter<T>);
+  public void registerBlockEntity(net.minecraft.core.BlockPos, net.minecraft.util.debug.DebugValueSource$ValueGetter<T>);
+  public void registerEntity(java.util.UUID, net.minecraft.util.debug.DebugValueSource$ValueGetter<T>);
+  public void dropChunk(net.minecraft.world.level.ChunkPos);
+  public void dropBlockEntity(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos);
+  public void dropEntity(net.minecraft.world.entity.Entity);
+  protected void sendInitialChunk(net.minecraft.server.level.ServerPlayer, net.minecraft.world.level.ChunkPos);
+  protected void sendInitialEntity(net.minecraft.server.level.ServerPlayer, net.minecraft.world.entity.Entity);
+}

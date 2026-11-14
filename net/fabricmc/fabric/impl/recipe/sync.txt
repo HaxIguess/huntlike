@@ -1,0 +1,70 @@
+Compiled from "ClientboundRecipeSyncPayload.java"
+public final class net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload$Entry extends java.lang.Record {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload$Entry> CODEC;
+  public net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload$Entry(net.minecraft.world.item.crafting.RecipeSerializer<?>, java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.RecipeSerializer<?> serializer();
+  public java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>> recipes();
+}
+Compiled from "ClientboundRecipeSyncPayload.java"
+public final class net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload> CODEC;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload> TYPE;
+  public net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload(java.util.List<net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload$Entry>);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.fabricmc.fabric.impl.recipe.sync.ClientboundRecipeSyncPayload$Entry> entries();
+}
+Compiled from "RecipeSyncImpl.java"
+public class net.fabricmc.fabric.impl.recipe.sync.RecipeSyncImpl implements net.fabricmc.api.ModInitializer {
+  public static final net.minecraft.resources.Identifier RECIPE_SYNC_EVENT_PHASE;
+  public net.fabricmc.fabric.impl.recipe.sync.RecipeSyncImpl();
+  public void onInitialize();
+  public static void addSynchronizedSerializer(net.minecraft.world.item.crafting.RecipeSerializer<?>);
+  public static boolean isSynced(net.minecraft.world.item.crafting.RecipeSerializer<?>);
+  public static java.util.Set<net.minecraft.world.item.crafting.RecipeSerializer<?>> getSyncedSerializers();
+}
+Compiled from "ServerboundSupportedRecipeSerializersPayload.java"
+public final class net.fabricmc.fabric.impl.recipe.sync.ServerboundSupportedRecipeSerializersPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.FriendlyByteBuf, net.fabricmc.fabric.impl.recipe.sync.ServerboundSupportedRecipeSerializersPayload> CODEC;
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<net.fabricmc.fabric.impl.recipe.sync.ServerboundSupportedRecipeSerializersPayload> TYPE;
+  public net.fabricmc.fabric.impl.recipe.sync.ServerboundSupportedRecipeSerializersPayload(java.util.Set<net.minecraft.resources.Identifier>);
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<? extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> type();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Set<net.minecraft.resources.Identifier> synchronizedSerializers();
+}
+Compiled from "SyncedSerializerAwareConnection.java"
+public interface net.fabricmc.fabric.impl.recipe.sync.SyncedSerializerAwareConnection {
+  public abstract void fabric_setSyncedRecipeSerializers(java.util.Set<net.minecraft.world.item.crafting.RecipeSerializer<?>>);
+  public abstract java.util.Set<net.minecraft.world.item.crafting.RecipeSerializer<?>> fabric_getSyncedRecipeSerializers();
+}
+Compiled from "SyncedSerializerAwarePreparedRecipe.java"
+public interface net.fabricmc.fabric.impl.recipe.sync.SyncedSerializerAwarePreparedRecipe {
+  public abstract java.util.List<net.minecraft.world.item.crafting.RecipeHolder<?>> fabric_getRecipesBySyncedSerializer(net.minecraft.world.item.crafting.RecipeSerializer<?>);
+}
+Compiled from "SynchronizedRecipesImpl.java"
+public final class net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl extends java.lang.Record implements net.fabricmc.fabric.api.recipe.v1.sync.SynchronizedRecipes {
+  public static final net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl EMPTY;
+  public net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl(net.minecraft.world.item.crafting.RecipeMap);
+  public net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl(com.google.common.collect.Multimap<net.minecraft.world.item.crafting.RecipeType<?>, net.minecraft.world.item.crafting.RecipeHolder<?>>, java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>, net.minecraft.world.item.crafting.RecipeHolder<?>>);
+  public static net.fabricmc.fabric.impl.recipe.sync.SynchronizedRecipesImpl of(java.lang.Iterable<net.minecraft.world.item.crafting.RecipeHolder<?>>);
+  public <I extends net.minecraft.world.item.crafting.RecipeInput, T extends net.minecraft.world.item.crafting.Recipe<I>> java.util.stream.Stream<net.minecraft.world.item.crafting.RecipeHolder<T>> getAllMatches(net.minecraft.world.item.crafting.RecipeType<T>, I, net.minecraft.world.level.Level);
+  public <I extends net.minecraft.world.item.crafting.RecipeInput, T extends net.minecraft.world.item.crafting.Recipe<I>> java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<T>> getAllOfType(net.minecraft.world.item.crafting.RecipeType<T>);
+  public <I extends net.minecraft.world.item.crafting.RecipeInput, T extends net.minecraft.world.item.crafting.Recipe<I>> java.util.Optional<net.minecraft.world.item.crafting.RecipeHolder<T>> getFirstMatch(net.minecraft.world.item.crafting.RecipeType<T>, I, net.minecraft.world.level.Level);
+  public net.minecraft.world.item.crafting.RecipeHolder<?> get(net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>);
+  public java.util.Collection<net.minecraft.world.item.crafting.RecipeHolder<?>> recipes();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.google.common.collect.Multimap<net.minecraft.world.item.crafting.RecipeType<?>, net.minecraft.world.item.crafting.RecipeHolder<?>> byType();
+  public java.util.Map<net.minecraft.resources.ResourceKey<net.minecraft.world.item.crafting.Recipe<?>>, net.minecraft.world.item.crafting.RecipeHolder<?>> byKey();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.impl.recipe.sync.package-info {
+}

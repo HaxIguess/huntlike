@@ -1,0 +1,104 @@
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.animal.rabbit.package-info {
+}
+Compiled from "Rabbit.java"
+public final class net.minecraft.world.entity.animal.rabbit.Rabbit$Variant extends java.lang.Enum<net.minecraft.world.entity.animal.rabbit.Rabbit$Variant> implements net.minecraft.util.StringRepresentable {
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant BROWN;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant WHITE;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant BLACK;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant WHITE_SPLOTCHED;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant GOLD;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant SALT;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant EVIL;
+  public static final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant DEFAULT;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.rabbit.Rabbit$Variant> CODEC;
+  public static final com.mojang.serialization.Codec<net.minecraft.world.entity.animal.rabbit.Rabbit$Variant> LEGACY_CODEC;
+  public static final net.minecraft.network.codec.StreamCodec<io.netty.buffer.ByteBuf, net.minecraft.world.entity.animal.rabbit.Rabbit$Variant> STREAM_CODEC;
+  public static net.minecraft.world.entity.animal.rabbit.Rabbit$Variant[] values();
+  public static net.minecraft.world.entity.animal.rabbit.Rabbit$Variant valueOf(java.lang.String);
+  public java.lang.String getSerializedName();
+  public int id();
+  public static net.minecraft.world.entity.animal.rabbit.Rabbit$Variant byId(int);
+}
+Compiled from "Rabbit.java"
+class net.minecraft.world.entity.animal.rabbit.Rabbit$RaidGardenGoal extends net.minecraft.world.entity.ai.goal.MoveToBlockGoal {
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RaidGardenGoal(net.minecraft.world.entity.animal.rabbit.Rabbit);
+  public boolean canUse();
+  public boolean canContinueToUse();
+  public void tick();
+  protected boolean isValidTarget(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+}
+Compiled from "Rabbit.java"
+class net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitAvoidEntityGoal<T extends net.minecraft.world.entity.LivingEntity> extends net.minecraft.world.entity.ai.goal.AvoidEntityGoal<T> {
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitAvoidEntityGoal(net.minecraft.world.entity.animal.rabbit.Rabbit, java.lang.Class<T>, float, double, double);
+  public boolean canUse();
+}
+Compiled from "Rabbit.java"
+class net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitMoveControl<T extends net.minecraft.world.entity.animal.rabbit.Rabbit> extends net.minecraft.world.entity.ai.control.MoveControl<T> {
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitMoveControl(T);
+  public void tick();
+  public void setWantedPosition(double, double, double, double);
+}
+Compiled from "Rabbit.java"
+class net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitPanicGoal extends net.minecraft.world.entity.ai.goal.PanicGoal {
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitPanicGoal(net.minecraft.world.entity.animal.rabbit.Rabbit, double);
+  public void tick();
+}
+Compiled from "Rabbit.java"
+public class net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitGroupData extends net.minecraft.world.entity.AgeableMob$AgeableMobGroupData {
+  public final net.minecraft.world.entity.animal.rabbit.Rabbit$Variant variant;
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitGroupData(net.minecraft.world.entity.animal.rabbit.Rabbit$Variant);
+}
+Compiled from "Rabbit.java"
+public class net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitJumpControl extends net.minecraft.world.entity.ai.control.JumpControl {
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$RabbitJumpControl(net.minecraft.world.entity.animal.rabbit.Rabbit);
+  public boolean wantJump();
+  public boolean canJump();
+  public void setCanJump(boolean);
+  public void tick();
+}
+Compiled from "Rabbit.java"
+public class net.minecraft.world.entity.animal.rabbit.Rabbit extends net.minecraft.world.entity.animal.Animal {
+  public static final double STROLL_SPEED_MOD;
+  public static final double BREED_SPEED_MOD;
+  public static final double FOLLOW_SPEED_MOD;
+  public static final double FLEE_SPEED_MOD;
+  public static final double ATTACK_SPEED_MOD;
+  public final net.minecraft.world.entity.AnimationState hopAnimationState;
+  public final net.minecraft.world.entity.AnimationState idleHeadTiltAnimationState;
+  public net.minecraft.world.entity.animal.rabbit.Rabbit(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.animal.rabbit.Rabbit>, net.minecraft.world.level.Level);
+  protected void registerGoals();
+  protected net.minecraft.world.entity.EntityDimensions getDefaultDimensions(net.minecraft.world.entity.Pose);
+  protected float getJumpPower();
+  public void jumpFromGround();
+  public float getJumpCompletion(float);
+  public void setSpeedModifier(double);
+  public void setJumping(boolean);
+  public void startJumping();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public void customServerAiStep(net.minecraft.server.level.ServerLevel);
+  public boolean canSpawnSprintParticle();
+  public void aiStep();
+  public static net.minecraft.world.entity.ai.attributes.AttributeSupplier$Builder createAttributes();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  protected net.minecraft.sounds.SoundEvent getJumpSound();
+  protected net.minecraft.sounds.SoundEvent getAmbientSound();
+  protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource);
+  protected net.minecraft.sounds.SoundEvent getDeathSound();
+  public void playAttackSound();
+  public net.minecraft.sounds.SoundSource getSoundSource();
+  public net.minecraft.world.entity.animal.rabbit.Rabbit getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+  public boolean isFood(net.minecraft.world.item.ItemStack);
+  public net.minecraft.world.entity.animal.rabbit.Rabbit$Variant getVariant();
+  public <T> T get(net.minecraft.core.component.DataComponentType<? extends T>);
+  protected void applyImplicitComponents(net.minecraft.core.component.DataComponentGetter);
+  protected <T> boolean applyImplicitComponent(net.minecraft.core.component.DataComponentType<T>, T);
+  public net.minecraft.world.entity.SpawnGroupData finalizeSpawn(net.minecraft.world.level.ServerLevelAccessor, net.minecraft.world.DifficultyInstance, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.world.entity.SpawnGroupData);
+  public static boolean checkRabbitSpawnRules(net.minecraft.world.entity.EntityType<net.minecraft.world.entity.animal.rabbit.Rabbit>, net.minecraft.world.level.LevelAccessor, net.minecraft.world.entity.EntitySpawnReason, net.minecraft.core.BlockPos, net.minecraft.util.RandomSource);
+  public void handleEntityEvent(byte);
+  public net.minecraft.world.phys.Vec3 getLeashOffset();
+  public void setLeashData(net.minecraft.world.entity.Leashable$LeashData);
+  public void baseTick();
+  public net.minecraft.world.entity.AgeableMob getBreedOffspring(net.minecraft.server.level.ServerLevel, net.minecraft.world.entity.AgeableMob);
+}

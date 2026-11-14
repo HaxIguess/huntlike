@@ -1,0 +1,116 @@
+Compiled from "BundlePacketMixin.java"
+public class net.fabricmc.fabric.mixin.networking.BundlePacketMixin {
+  public net.fabricmc.fabric.mixin.networking.BundlePacketMixin();
+}
+Compiled from "ClientboundCustomPayloadPacketMixin.java"
+public class net.fabricmc.fabric.mixin.networking.ClientboundCustomPayloadPacketMixin implements net.fabricmc.fabric.impl.networking.splitter.SplittablePacket,net.fabricmc.fabric.impl.networking.GenericPayloadAccessor {
+  public net.fabricmc.fabric.mixin.networking.ClientboundCustomPayloadPacketMixin();
+  public void fabric_split(net.fabricmc.fabric.impl.networking.PayloadTypeRegistryImpl<?>, io.netty.channel.ChannelHandlerContext, net.minecraft.network.PacketEncoder<?>, net.minecraft.network.protocol.Packet<?>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>) throws java.lang.Exception;
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload fabric_payload();
+}
+Compiled from "ClientboundCustomQueryPacketMixin.java"
+public class net.fabricmc.fabric.mixin.networking.ClientboundCustomQueryPacketMixin {
+  public net.fabricmc.fabric.mixin.networking.ClientboundCustomQueryPacketMixin();
+}
+Compiled from "CommandsMixin.java"
+public class net.fabricmc.fabric.mixin.networking.CommandsMixin {
+  public net.fabricmc.fabric.mixin.networking.CommandsMixin();
+}
+Compiled from "ConnectionMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.ConnectionMixin implements net.fabricmc.fabric.impl.networking.ChannelInfoHolder,net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public java.util.Collection<net.minecraft.resources.Identifier> fabric_getPendingChannelsNames(net.minecraft.network.ConnectionProtocol);
+  public net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+}
+Compiled from "CustomPayloadStreamCodecMixin.java"
+public abstract class net.fabricmc.fabric.mixin.networking.CustomPayloadStreamCodecMixin<B extends net.minecraft.network.FriendlyByteBuf> implements net.minecraft.network.codec.StreamCodec<B, net.minecraft.network.protocol.common.custom.CustomPacketPayload>, net.fabricmc.fabric.impl.networking.FabricCustomPayloadStreamCodec<B> {
+  public net.fabricmc.fabric.mixin.networking.CustomPayloadStreamCodecMixin();
+  public void fabric_setCustomPayloadTypeProvider(net.fabricmc.fabric.impl.networking.CustomPayloadTypeProvider<B>);
+}
+Compiled from "DebugConfigCommandMixin.java"
+public class net.fabricmc.fabric.mixin.networking.DebugConfigCommandMixin {
+  public net.fabricmc.fabric.mixin.networking.DebugConfigCommandMixin();
+}
+Compiled from "IdDispatchCodecMixin.java"
+public abstract class net.fabricmc.fabric.mixin.networking.IdDispatchCodecMixin<B extends io.netty.buffer.ByteBuf, V, T> implements net.minecraft.network.codec.StreamCodec<B, V> {
+  public net.fabricmc.fabric.mixin.networking.IdDispatchCodecMixin();
+  public void encode(B, V, org.spongepowered.asm.mixin.injection.callback.CallbackInfo, T, java.lang.Exception);
+  public void decode(B, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<V>, com.llamalad7.mixinextras.sugar.ref.LocalRef<io.netty.buffer.ByteBuf>);
+  public void decode(B, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<V>, net.minecraft.network.codec.IdDispatchCodec$Entry<B, V, T>, java.lang.Exception, com.llamalad7.mixinextras.sugar.ref.LocalRef<io.netty.buffer.ByteBuf>);
+}
+Compiled from "PacketDecoderMixin.java"
+public class net.fabricmc.fabric.mixin.networking.PacketDecoderMixin implements net.fabricmc.fabric.impl.networking.context.PacketContextSetter {
+  public net.fabricmc.fabric.mixin.networking.PacketDecoderMixin();
+  public void fabric_setPacketContext(net.fabricmc.fabric.api.networking.v1.context.PacketContext);
+}
+Compiled from "PacketEncoderMixin.java"
+public class net.fabricmc.fabric.mixin.networking.PacketEncoderMixin implements net.fabricmc.fabric.impl.networking.context.PacketContextSetter {
+  public net.fabricmc.fabric.mixin.networking.PacketEncoderMixin();
+  public void fabric_setPacketContext(net.fabricmc.fabric.api.networking.v1.context.PacketContext);
+}
+Compiled from "PlayerListMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.PlayerListMixin {
+}
+Compiled from "RegistryFriendlyByteBufMixin.java"
+public class net.fabricmc.fabric.mixin.networking.RegistryFriendlyByteBufMixin implements net.fabricmc.fabric.impl.networking.FabricRegistryFriendlyByteBuf {
+  public net.fabricmc.fabric.mixin.networking.RegistryFriendlyByteBufMixin();
+  public void fabric_setSendableConfigurationChannels(java.util.Set<net.minecraft.resources.Identifier>);
+  public java.util.Set<net.minecraft.resources.Identifier> fabric_getSendableConfigurationChannels();
+}
+Compiled from "ServerCommonPacketListenerImplMixin.java"
+public abstract class net.fabricmc.fabric.mixin.networking.ServerCommonPacketListenerImplMixin implements net.fabricmc.fabric.impl.networking.PacketListenerExtensions,net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  protected net.minecraft.server.MinecraftServer server;
+  protected net.minecraft.network.Connection connection;
+  public net.fabricmc.fabric.mixin.networking.ServerCommonPacketListenerImplMixin();
+  public net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+  public net.fabricmc.fabric.impl.networking.AbstractNetworkAddon<?> getAddon();
+}
+Compiled from "ServerConfigurationPacketListenerImplMixin.java"
+public abstract class net.fabricmc.fabric.mixin.networking.ServerConfigurationPacketListenerImplMixin extends net.minecraft.server.network.ServerCommonPacketListenerImpl implements net.fabricmc.fabric.impl.networking.PacketListenerExtensions,net.fabricmc.fabric.api.networking.v1.FabricServerConfigurationPacketListenerImpl {
+  protected abstract void finishCurrentTask(net.minecraft.server.network.ConfigurationTask$Type);
+  public abstract boolean isAcceptingMessages();
+  public abstract void startConfiguration();
+  public net.fabricmc.fabric.mixin.networking.ServerConfigurationPacketListenerImplMixin(net.minecraft.server.MinecraftServer, net.minecraft.network.Connection, net.minecraft.server.network.CommonListenerCookie);
+  public net.fabricmc.fabric.impl.networking.server.ServerConfigurationNetworkAddon getAddon();
+  public void addTask(net.minecraft.server.network.ConfigurationTask);
+  public void completeTask(net.minecraft.server.network.ConfigurationTask$Type);
+  public net.fabricmc.fabric.impl.networking.AbstractNetworkAddon getAddon();
+}
+Compiled from "ServerEntityMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.ServerEntityMixin {
+}
+Compiled from "ServerGamePacketListenerImplMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.ServerGamePacketListenerImplMixin extends net.minecraft.server.network.ServerCommonPacketListenerImpl implements net.fabricmc.fabric.impl.networking.PacketListenerExtensions {
+  public net.fabricmc.fabric.impl.networking.server.ServerPlayNetworkAddon getAddon();
+  public net.fabricmc.fabric.impl.networking.AbstractNetworkAddon getAddon();
+}
+Compiled from "ServerHandshakePacketListenerImplMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.ServerHandshakePacketListenerImplMixin implements net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+}
+Compiled from "ServerLoginPacketListenerImplMixin.java"
+abstract class net.fabricmc.fabric.mixin.networking.ServerLoginPacketListenerImplMixin implements net.fabricmc.fabric.impl.networking.PacketListenerExtensions,net.fabricmc.fabric.impl.networking.PacketCallbackListener,net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  protected abstract void verifyLoginAndFinishConnectionSetup(com.mojang.authlib.GameProfile);
+  public void sent(net.minecraft.network.protocol.Packet<?>);
+  public net.fabricmc.fabric.impl.networking.server.ServerLoginNetworkAddon getAddon();
+  public net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+  public net.fabricmc.fabric.impl.networking.AbstractNetworkAddon getAddon();
+}
+Compiled from "ServerPlayerMixin.java"
+public class net.fabricmc.fabric.mixin.networking.ServerPlayerMixin implements net.fabricmc.fabric.api.networking.v1.context.PacketContextProvider {
+  public net.minecraft.server.network.ServerGamePacketListenerImpl connection;
+  public net.fabricmc.fabric.mixin.networking.ServerPlayerMixin();
+  public net.fabricmc.fabric.api.networking.v1.context.PacketContext getPacketContext();
+}
+Compiled from "ServerboundCustomPayloadPacketMixin.java"
+public class net.fabricmc.fabric.mixin.networking.ServerboundCustomPayloadPacketMixin implements net.fabricmc.fabric.impl.networking.splitter.SplittablePacket,net.fabricmc.fabric.impl.networking.GenericPayloadAccessor {
+  public net.fabricmc.fabric.mixin.networking.ServerboundCustomPayloadPacketMixin();
+  public void fabric_split(net.fabricmc.fabric.impl.networking.PayloadTypeRegistryImpl<?>, io.netty.channel.ChannelHandlerContext, net.minecraft.network.PacketEncoder<?>, net.minecraft.network.protocol.Packet<?>, java.util.function.Consumer<net.minecraft.network.protocol.Packet<?>>) throws java.lang.Exception;
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload fabric_payload();
+}
+Compiled from "ServerboundCustomQueryAnswerPacketMixin.java"
+public class net.fabricmc.fabric.mixin.networking.ServerboundCustomQueryAnswerPacketMixin {
+  public net.fabricmc.fabric.mixin.networking.ServerboundCustomQueryAnswerPacketMixin();
+}
+Compiled from "package-info.java"
+interface net.fabricmc.fabric.mixin.networking.package-info {
+}

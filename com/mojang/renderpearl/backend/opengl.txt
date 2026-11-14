@@ -1,0 +1,778 @@
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$TextureState {
+  public int binding;
+}
+Compiled from "VertexArray.java"
+final class com.mojang.renderpearl.backend.opengl.VertexArray$Separate extends com.mojang.renderpearl.backend.opengl.VertexArray {
+  public void bind(com.mojang.renderpearl.api.buffers.GpuBufferSlice[]);
+}
+Compiled from "FrameBufferAttachment.java"
+public interface com.mojang.renderpearl.backend.opengl.FrameBufferAttachment {
+  public abstract int glId();
+  public abstract int fboMipLevel();
+  public abstract void addAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+  public abstract void removeAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+}
+Compiled from "GlShaderModule.java"
+public class com.mojang.renderpearl.backend.opengl.GlShaderModule implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final com.mojang.renderpearl.backend.opengl.GlShaderModule INVALID_SHADER;
+  public com.mojang.renderpearl.backend.opengl.GlShaderModule(int, java.lang.String, com.mojang.renderpearl.api.pipeline.ShaderType);
+  public void close();
+  public java.lang.String getLabel();
+  public int getShaderId();
+  public com.mojang.renderpearl.api.pipeline.ShaderType getType();
+}
+Compiled from "DirectStateAccess.java"
+public abstract class com.mojang.renderpearl.backend.opengl.DirectStateAccess {
+  public com.mojang.renderpearl.backend.opengl.DirectStateAccess();
+  public static com.mojang.renderpearl.backend.opengl.DirectStateAccess create(org.lwjgl.opengl.GLCapabilities, java.util.Set<java.lang.String>, com.mojang.renderpearl.backend.opengl.GlHeuristics);
+  public abstract int createBuffer();
+  public abstract void bufferData(int, long, int);
+  public abstract void bufferData(int, java.nio.ByteBuffer, int);
+  public abstract void bufferSubData(int, long, java.nio.ByteBuffer, int);
+  public abstract void bufferStorage(int, long, int);
+  public abstract void bufferStorage(int, java.nio.ByteBuffer, int);
+  public abstract java.nio.ByteBuffer mapBufferRange(int, long, long, int, int);
+  public abstract void unmapBuffer(int, int);
+  public abstract int createFrameBufferObject();
+  public abstract void bindFrameBufferTextures(int, int[], int[], int, int, int);
+  public void bindFrameBufferTextures(int, int, int, int, int);
+  public abstract void blitFrameBuffers(int, int, int, int, int, int, int, int, int, int, int, int);
+  public abstract void flushMappedBufferRange(int, long, long, int);
+  public abstract void copyBufferSubData(int, int, long, long, long);
+}
+Compiled from "GlBackend.java"
+public class com.mojang.renderpearl.backend.opengl.GlBackend implements com.mojang.renderpearl.api.device.GpuBackend {
+  public com.mojang.renderpearl.backend.opengl.GlBackend();
+  public java.lang.String getName();
+  public void loadLibrary() throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public void unloadLibrary();
+  public long createWindow(java.lang.String, int, int, long);
+  public com.mojang.renderpearl.api.device.GpuDevice createDevice(com.mojang.renderpearl.api.device.GpuDebugOptions) throws com.mojang.renderpearl.api.device.BackendCreationException;
+}
+Compiled from "Uniform.java"
+public final class com.mojang.renderpearl.backend.opengl.Uniform$Ubo extends java.lang.Record implements com.mojang.renderpearl.backend.opengl.Uniform {
+  public com.mojang.renderpearl.backend.opengl.Uniform$Ubo(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int blockBinding();
+}
+Compiled from "GlCommandEncoder.java"
+class com.mojang.renderpearl.backend.opengl.GlCommandEncoder implements com.mojang.renderpearl.backend.api.CommandEncoderBackend,com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static final int MAX_SUBMITS_IN_FLIGHT;
+  protected com.mojang.renderpearl.backend.opengl.GlCommandEncoder(com.mojang.renderpearl.backend.opengl.GlDevice);
+  public void close();
+  public long currentSubmitIndex();
+  public int currentSubmitSlot();
+  public void submit();
+  public boolean awaitSubmit(long, long);
+  public com.mojang.renderpearl.api.buffers.TransientMemory transientMemory();
+  public com.mojang.renderpearl.backend.api.RenderPassBackend createRenderPass(com.mojang.renderpearl.api.commands.RenderPassDescriptor);
+  public void clearColorTexture(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc);
+  public void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public void clearColorAndDepthTextures(com.mojang.renderpearl.api.textures.GpuTexture, org.joml.Vector4fc, com.mojang.renderpearl.api.textures.GpuTexture, double, int, int, int, int, int);
+  public void clearDepthTexture(com.mojang.renderpearl.api.textures.GpuTexture, double);
+  public void writeToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, java.nio.ByteBuffer);
+  public void copyToBuffer(com.mojang.renderpearl.api.buffers.GpuBufferSlice, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public void writeToTexture(com.mojang.renderpearl.api.textures.GpuTexture, java.nio.ByteBuffer, int, int, int, int, int, int);
+  public void copyBufferToTexture(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int, int, int, int, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int);
+  public void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int);
+  public void copyTextureToBuffer(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.buffers.GpuBuffer, long, java.lang.Runnable, int, int, int, int, int);
+  public void copyTextureToTexture(com.mojang.renderpearl.api.textures.GpuTexture, com.mojang.renderpearl.api.textures.GpuTexture, int, int, int, int, int, int, int);
+  public com.mojang.renderpearl.api.commands.GpuFence createFence();
+  protected void executeDraw(com.mojang.renderpearl.backend.opengl.GlRenderPass, int, int, int, com.mojang.renderpearl.api.pipeline.IndexType, int, int);
+  public void executeDraws(com.mojang.renderpearl.backend.opengl.GlRenderPass, com.mojang.renderpearl.api.pipeline.IndexType, org.lwjgl.PointerBuffer, java.nio.IntBuffer, java.nio.IntBuffer, int);
+  protected void executeDrawIndirect(com.mojang.renderpearl.backend.opengl.GlRenderPass, com.mojang.renderpearl.api.pipeline.IndexType, com.mojang.renderpearl.backend.opengl.GlBuffer, long, int);
+  public void submitRenderPass();
+  public void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+}
+Compiled from "package-info.java"
+interface com.mojang.renderpearl.backend.opengl.package-info {
+}
+Compiled from "FrameBufferCache.java"
+public class com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey {
+  public final java.util.List<com.mojang.renderpearl.backend.opengl.FrameBufferAttachment> associatedAttachments;
+  public com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey(java.util.List<com.mojang.renderpearl.backend.opengl.FrameBufferAttachment>, com.mojang.renderpearl.backend.opengl.FrameBufferAttachment, int);
+  public int hashCode();
+  public boolean equals(java.lang.Object);
+}
+Compiled from "VertexArray.java"
+public abstract class com.mojang.renderpearl.backend.opengl.VertexArray implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  protected final int vertexArrayId;
+  public static java.util.function.BiFunction<com.mojang.renderpearl.backend.opengl.GlProgram, com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo, com.mojang.renderpearl.backend.opengl.VertexArray> createSource(org.lwjgl.opengl.GLCapabilities, java.util.Set<java.lang.String>);
+  public void close();
+  public abstract void bind(com.mojang.renderpearl.api.buffers.GpuBufferSlice[]);
+}
+Compiled from "GlHeuristics.java"
+public class com.mojang.renderpearl.backend.opengl.GlHeuristics {
+  public boolean isGlOnDx12();
+  public boolean isAmd();
+  public boolean isNvidia();
+  public boolean couldBeIntelGen7();
+  public com.mojang.renderpearl.api.device.DeviceInfo createDeviceInfo(org.lwjgl.opengl.GLCapabilities, int, java.util.Set<java.lang.String>);
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$ScissorState {
+  public final com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState mode;
+}
+Compiled from "GlDebugLabel.java"
+class com.mojang.renderpearl.backend.opengl.GlDebugLabel$Ext extends com.mojang.renderpearl.backend.opengl.GlDebugLabel {
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlBuffer, java.util.function.Supplier<java.lang.String>);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlTexture);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlShaderModule);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlProgram);
+  public boolean exists();
+}
+Compiled from "GlBuffer.java"
+public class com.mojang.renderpearl.backend.opengl.GlBuffer$Direct extends com.mojang.renderpearl.backend.opengl.GlBuffer {
+  protected final int mappingFlags;
+  protected java.nio.ByteBuffer mappedBuffer;
+  protected com.mojang.renderpearl.backend.opengl.GlBuffer$Direct(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, long, int, boolean);
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(long, long, boolean, boolean);
+}
+Compiled from "BufferStorage.java"
+class com.mojang.renderpearl.backend.opengl.BufferStorage$Immutable extends com.mojang.renderpearl.backend.opengl.BufferStorage {
+  public com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, long);
+  public com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, java.nio.ByteBuffer);
+}
+Compiled from "BufferStorage.java"
+class com.mojang.renderpearl.backend.opengl.BufferStorage$Mutable extends com.mojang.renderpearl.backend.opengl.BufferStorage {
+  public com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, long);
+  public com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, java.nio.ByteBuffer);
+}
+Compiled from "GlTransientMemory.java"
+class com.mojang.renderpearl.backend.opengl.GlTransientMemory$Fallback extends com.mojang.renderpearl.backend.opengl.GlTransientMemory {
+  public void close();
+  public void rotate();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateStaging(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice allocateGpu(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateGpuMapped(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadStaging(java.util.List<java.nio.ByteBuffer>, long, int);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadGpu(java.util.List<java.nio.ByteBuffer>, long, int);
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$BlendState {
+  public int srcRgb;
+  public int dstRgb;
+  public int modeRgb;
+  public int srcAlpha;
+  public int dstAlpha;
+  public int modeAlpha;
+}
+Compiled from "GlTransientMemory.java"
+class com.mojang.renderpearl.backend.opengl.GlTransientMemory$TransientGpuBuffer extends com.mojang.renderpearl.backend.opengl.GlBuffer {
+  protected com.mojang.renderpearl.backend.opengl.GlTransientMemory$TransientGpuBuffer(com.mojang.renderpearl.backend.opengl.GlTransientMemory, int, int, long);
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView map(long, long, boolean, boolean);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice(long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice slice();
+}
+Compiled from "GlStateManager.java"
+public class com.mojang.renderpearl.backend.opengl.GlStateManager {
+  public com.mojang.renderpearl.backend.opengl.GlStateManager();
+  public static void _disableScissorTest();
+  public static void _enableScissorTest();
+  public static void _scissorBox(int, int, int, int);
+  public static void _disableDepthTest();
+  public static void _enableDepthTest();
+  public static void _depthFunc(int);
+  public static void _depthMask(boolean);
+  public static void _disableBlend(int);
+  public static void _enableBlend(int);
+  public static void _blendFuncSeparate(int, int, int, int);
+  public static void _blendEquationSeparate(int, int);
+  public static int glGetProgrami(int, int);
+  public static void glAttachShader(int, int);
+  public static void glDeleteShader(int);
+  public static int glCreateShader(int);
+  public static void glShaderSource(int, java.lang.String);
+  public static void glCompileShader(int);
+  public static int glGetShaderi(int, int);
+  public static void _glUseProgram(int);
+  public static int glCreateProgram();
+  public static void glDeleteProgram(int);
+  public static void glLinkProgram(int);
+  public static int _glGetUniformLocation(int, java.lang.CharSequence);
+  public static void _glUniform1i(int, int);
+  public static void _glBindAttribLocation(int, int, java.lang.CharSequence);
+  public static int _glGenBuffers();
+  public static int _glGenVertexArrays();
+  public static void _glBindBuffer(int, int);
+  public static void _glBindVertexArray(int);
+  public static void _glBufferData(int, java.nio.ByteBuffer, int);
+  public static void _glBufferSubData(int, long, java.nio.ByteBuffer);
+  public static void _glBufferData(int, long, int);
+  public static java.nio.ByteBuffer _glMapBufferRange(int, long, long, int);
+  public static void _glUnmapBuffer(int);
+  public static void _glDeleteBuffers(int);
+  public static void _glBindFramebuffer(int, int);
+  public static int getFrameBuffer(int);
+  public static void _glBlitFrameBuffer(int, int, int, int, int, int, int, int, int, int);
+  public static void _glDeleteFramebuffers(int);
+  public static int glGenFramebuffers();
+  public static void _glFramebufferTexture2D(int, int, int, int, int);
+  public static void _glReadBuffer(int);
+  public static void glBlendFuncSeparate(int, int, int, int);
+  public static void glBlendEquationSeparate(int, int);
+  public static java.lang.String glGetShaderInfoLog(int, int);
+  public static java.lang.String glGetProgramInfoLog(int, int);
+  public static void _enableCull();
+  public static void _disableCull();
+  public static void _polygonMode(int, int);
+  public static void _enablePolygonOffset();
+  public static void _disablePolygonOffset();
+  public static void _polygonOffset(float, float);
+  public static void _enableColorLogicOp();
+  public static void _disableColorLogicOp();
+  public static void _logicOp(int);
+  public static void _activeTexture(int);
+  public static void _texParameter(int, int, int);
+  public static int _getTexLevelParameter(int, int, int);
+  public static int _genTexture();
+  public static void _deleteTexture(int);
+  public static void _bindTexture(int);
+  public static void _texImage2D(int, int, int, int, int, int, int, int, java.nio.ByteBuffer);
+  public static void _texSubImage2D(int, int, int, int, int, int, int, int, long);
+  public static void _texSubImage2D(int, int, int, int, int, int, int, int, java.nio.ByteBuffer);
+  public static void _viewport(int, int, int, int);
+  public static void _colorMask(int);
+  public static void _colorMask(int, int);
+  public static void _clear(int);
+  public static void _clearBuffer(int, org.joml.Vector4fc);
+  public static void _clearBuffer(double);
+  public static void _vertexAttribPointer(int, int, int, boolean, int, long);
+  public static void _vertexAttribIPointer(int, int, int, int, long);
+  public static void _enableVertexAttribArray(int);
+  public static void _drawElements(int, int, int, long);
+  public static void _drawArrays(int, int, int);
+  public static void _pixelStore(int, int);
+  public static void _readPixels(int, int, int, int, int, int, long);
+  public static int _getError();
+  public static void clearGlErrors();
+  public static java.lang.String _getString(int);
+  public static int _getInteger(int);
+  public static long _glFenceSync(int, int);
+  public static int _glClientWaitSync(long, int, long);
+  public static void _glDeleteSync(long);
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$ColorLogicState {
+  public final com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState enable;
+  public int op;
+}
+Compiled from "VertexArray.java"
+final class com.mojang.renderpearl.backend.opengl.VertexArray$Emulated extends com.mojang.renderpearl.backend.opengl.VertexArray {
+  public void bind(com.mojang.renderpearl.api.buffers.GpuBufferSlice[]);
+}
+Compiled from "GlTransientMemory.java"
+final class com.mojang.renderpearl.backend.opengl.GlTransientMemory$PersistentMapping$Rotation extends java.lang.Record implements java.lang.Runnable {
+  public void run();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.lang.Runnable staging();
+  public java.lang.Runnable gpu();
+  public java.lang.Runnable gpuMapped();
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$CullState {
+  public final com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState enable;
+}
+Compiled from "Uniform.java"
+public final class com.mojang.renderpearl.backend.opengl.Uniform$Utb extends java.lang.Record implements com.mojang.renderpearl.backend.opengl.Uniform {
+  public com.mojang.renderpearl.backend.opengl.Uniform$Utb(int, com.mojang.renderpearl.api.GpuFormat);
+  public com.mojang.renderpearl.backend.opengl.Uniform$Utb(int, com.mojang.renderpearl.api.GpuFormat, int);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int samplerIndex();
+  public com.mojang.renderpearl.api.GpuFormat format();
+  public int texture();
+}
+Compiled from "GlTransientMemory.java"
+final class com.mojang.renderpearl.backend.opengl.GlTransientMemory$Fallback$GlAllocation extends java.lang.Record implements com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public boolean suboptimal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.backend.opengl.GlBuffer glBuffer();
+  public long hostBuffer();
+}
+Compiled from "GlTransientMemory.java"
+public abstract class com.mojang.renderpearl.backend.opengl.GlTransientMemory implements com.mojang.renderpearl.api.buffers.TransientMemory,com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  protected final com.mojang.renderpearl.backend.opengl.DirectStateAccess dsa;
+  protected final com.mojang.renderpearl.backend.opengl.BufferStorage bufferStorage;
+  protected final com.mojang.renderpearl.backend.opengl.GlDebugLabel debugLabels;
+  protected final com.mojang.renderpearl.backend.opengl.GlHeuristics heuristics;
+  public void close();
+  public java.nio.ByteBuffer allocateCpu(long, long, long, long);
+  public void rotate();
+}
+Compiled from "GlDebugLabel.java"
+class com.mojang.renderpearl.backend.opengl.GlDebugLabel$Core extends com.mojang.renderpearl.backend.opengl.GlDebugLabel {
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlBuffer, java.util.function.Supplier<java.lang.String>);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlTexture);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlShaderModule);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlProgram);
+  public void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public void popDebugGroup();
+  public boolean exists();
+}
+Compiled from "GlDebug.java"
+public class com.mojang.renderpearl.backend.opengl.GlDebug {
+  public com.mojang.renderpearl.backend.opengl.GlDebug();
+  public static java.lang.String sourceToString(int);
+  public static java.lang.String typeToString(int);
+  public static java.lang.String severityToString(int);
+  public java.util.List<java.lang.String> getLastOpenGlDebugMessages();
+  public static com.mojang.renderpearl.backend.opengl.GlDebug enableDebugCallback(int, boolean, java.util.Set<java.lang.String>);
+}
+Compiled from "GlPipelineRecompiler.java"
+public class com.mojang.renderpearl.backend.opengl.GlPipelineRecompiler {
+  public static final int MAX_LOG_LENGTH;
+  public static final java.lang.String UNIFORM_FORMAT_STRING;
+  public static final java.lang.String PUSH_CONSTANT_BLOCK_NAME;
+  public com.mojang.renderpearl.backend.opengl.GlPipelineRecompiler(com.mojang.renderpearl.backend.opengl.GlDebugLabel, boolean);
+  public java.util.Map<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader, java.lang.String> decompileShaders(com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo);
+  public com.mojang.renderpearl.backend.opengl.GlProgram compileProgram(com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo, java.util.Map<com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo$Shader, java.lang.String>);
+}
+Compiled from "GlBuffer.java"
+public abstract class com.mojang.renderpearl.backend.opengl.GlBuffer extends com.mojang.renderpearl.backend.common.BaseGpuBuffer {
+  protected static final com.mojang.jtracy.MemoryPool MEMORY_POOL;
+  protected final boolean canPersistentMap;
+  protected int mappingRefCount;
+  protected com.mojang.renderpearl.backend.opengl.GlBuffer(int, long, int, boolean);
+  public int handle();
+  public void checkCanBeUsed();
+}
+Compiled from "GlDebug.java"
+class com.mojang.renderpearl.backend.opengl.GlDebug$LogEntry {
+  public java.lang.String toString();
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$DepthState {
+  public final com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState mode;
+  public boolean mask;
+  public int func;
+}
+Compiled from "Uniform.java"
+public final class com.mojang.renderpearl.backend.opengl.Uniform$Sampler extends java.lang.Record implements com.mojang.renderpearl.backend.opengl.Uniform {
+  public com.mojang.renderpearl.backend.opengl.Uniform$Sampler(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int samplerIndex();
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState {
+  public com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState(int);
+  public void disable();
+  public void enable();
+  public void setEnabled(boolean);
+}
+Compiled from "GlQueryPool.java"
+public class com.mojang.renderpearl.backend.opengl.GlQueryPool implements com.mojang.renderpearl.api.commands.GpuQueryPool {
+  public com.mojang.renderpearl.backend.opengl.GlQueryPool(int);
+  public int size();
+  public java.util.OptionalLong getValue(int);
+  public java.util.OptionalLong[] getValues(int, int);
+  protected void writeTimestamp(int);
+  public void close();
+}
+Compiled from "GlSurface.java"
+public class com.mojang.renderpearl.backend.opengl.GlSurface implements com.mojang.renderpearl.backend.api.GpuSurfaceBackend {
+  public void configure(com.mojang.renderpearl.api.device.GpuSurface$Configuration) throws com.mojang.renderpearl.api.device.SurfaceException;
+  public boolean isSuboptimal();
+  public void acquireNextTexture() throws com.mojang.renderpearl.api.device.SurfaceException;
+  public void blitFromTexture(com.mojang.renderpearl.backend.api.CommandEncoderBackend, com.mojang.renderpearl.api.textures.GpuTextureView);
+  public void present();
+  public void close();
+  public java.util.Collection<com.mojang.renderpearl.api.device.GpuSurface$PresentMode> supportedPresentModes();
+}
+Compiled from "GlRenderPass.java"
+class com.mojang.renderpearl.backend.opengl.GlRenderPass implements com.mojang.renderpearl.backend.api.RenderPassBackend {
+  protected com.mojang.renderpearl.backend.opengl.GlRenderPipeline pipeline;
+  protected final com.mojang.renderpearl.api.buffers.GpuBufferSlice[] vertexBuffers;
+  protected boolean vertexBufferDirty;
+  protected com.mojang.renderpearl.api.buffers.GpuBuffer indexBuffer;
+  protected com.mojang.renderpearl.api.pipeline.IndexType indexType;
+  protected boolean indexBufferDirty;
+  protected boolean scissorStateDirty;
+  protected final it.unimi.dsi.fastutil.objects.ReferenceList<java.lang.Object> uniforms;
+  protected final it.unimi.dsi.fastutil.booleans.BooleanList dirtyUniforms;
+  protected boolean anyUniformDirty;
+  protected com.mojang.renderpearl.api.buffers.GpuBufferSlice pushConstants;
+  protected boolean pushConstantsDirty;
+  protected final int colorAttachmentCount;
+  public com.mojang.renderpearl.backend.opengl.GlRenderPass(com.mojang.renderpearl.backend.opengl.GlCommandEncoder, com.mojang.renderpearl.backend.opengl.GlDevice, int, com.mojang.blaze3d.systems.ScissorState);
+  public void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public void popDebugGroup();
+  public void setPipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline);
+  public void setUniform(int, java.lang.Object);
+  public void pushConstants(java.nio.ByteBuffer);
+  public void enableScissor(int, int, int, int);
+  public void disableScissor();
+  public boolean isScissorEnabled();
+  public int getScissorX();
+  public int getScissorY();
+  public int getScissorWidth();
+  public int getScissorHeight();
+  public void setVertexBuffer(int, com.mojang.renderpearl.api.buffers.GpuBufferSlice);
+  public void setIndexBuffer(com.mojang.renderpearl.api.buffers.GpuBuffer, com.mojang.renderpearl.api.pipeline.IndexType);
+  public void drawIndexed(int, int, int, int, int);
+  public void multiDrawIndexed(java.nio.IntBuffer, int, int, int);
+  public void multiDrawIndexed(org.lwjgl.PointerBuffer, java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public void drawIndexedIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public void draw(int, int, int, int);
+  public void multiDraw(java.nio.IntBuffer, int, int, int);
+  public void multiDraw(java.nio.IntBuffer, java.nio.IntBuffer, int);
+  public void drawIndirect(com.mojang.renderpearl.api.buffers.GpuBufferSlice, int);
+  public void writeTimestamp(com.mojang.renderpearl.api.commands.GpuQueryPool, int);
+}
+Compiled from "GlFence.java"
+public class com.mojang.renderpearl.backend.opengl.GlFence implements com.mojang.renderpearl.api.commands.GpuFence {
+  public void close();
+  public boolean awaitCompletion(long);
+}
+Compiled from "DirectStateAccess.java"
+class com.mojang.renderpearl.backend.opengl.DirectStateAccess$Core extends com.mojang.renderpearl.backend.opengl.DirectStateAccess {
+  public int createBuffer();
+  public void bufferData(int, long, int);
+  public void bufferData(int, java.nio.ByteBuffer, int);
+  public void bufferSubData(int, long, java.nio.ByteBuffer, int);
+  public void bufferStorage(int, long, int);
+  public void bufferStorage(int, java.nio.ByteBuffer, int);
+  public java.nio.ByteBuffer mapBufferRange(int, long, long, int, int);
+  public void unmapBuffer(int, int);
+  public int createFrameBufferObject();
+  public void bindFrameBufferTextures(int, int[], int[], int, int, int);
+  public void blitFrameBuffers(int, int, int, int, int, int, int, int, int, int, int, int);
+  public void flushMappedBufferRange(int, long, long, int);
+  public void copyBufferSubData(int, int, long, long, long);
+}
+Compiled from "GlConst.java"
+public class com.mojang.renderpearl.backend.opengl.GlConst {
+  public static final int GL_READ_FRAMEBUFFER;
+  public static final int GL_DRAW_FRAMEBUFFER;
+  public static final int GL_TRUE;
+  public static final int GL_FALSE;
+  public static final int GL_NONE;
+  public static final int GL_LINES;
+  public static final int GL_LINE_STRIP;
+  public static final int GL_TRIANGLE_STRIP;
+  public static final int GL_TRIANGLE_FAN;
+  public static final int GL_TRIANGLES;
+  public static final int GL_POINTS;
+  public static final int GL_WRITE_ONLY;
+  public static final int GL_READ_ONLY;
+  public static final int GL_READ_WRITE;
+  public static final int GL_MAP_READ_BIT;
+  public static final int GL_MAP_WRITE_BIT;
+  public static final int GL_EQUAL;
+  public static final int GL_LEQUAL;
+  public static final int GL_LESS;
+  public static final int GL_GREATER;
+  public static final int GL_GEQUAL;
+  public static final int GL_ALWAYS;
+  public static final int GL_TEXTURE_MAG_FILTER;
+  public static final int GL_TEXTURE_MIN_FILTER;
+  public static final int GL_TEXTURE_WRAP_S;
+  public static final int GL_TEXTURE_WRAP_T;
+  public static final int GL_NEAREST;
+  public static final int GL_LINEAR;
+  public static final int GL_NEAREST_MIPMAP_LINEAR;
+  public static final int GL_LINEAR_MIPMAP_LINEAR;
+  public static final int GL_CLAMP_TO_EDGE;
+  public static final int GL_REPEAT;
+  public static final int GL_FRONT;
+  public static final int GL_FRONT_AND_BACK;
+  public static final int GL_LINE;
+  public static final int GL_FILL;
+  public static final int GL_BYTE;
+  public static final int GL_UNSIGNED_BYTE;
+  public static final int GL_SHORT;
+  public static final int GL_UNSIGNED_SHORT;
+  public static final int GL_INT;
+  public static final int GL_UNSIGNED_INT;
+  public static final int GL_FLOAT;
+  public static final int GL_ZERO;
+  public static final int GL_ONE;
+  public static final int GL_SRC_COLOR;
+  public static final int GL_ONE_MINUS_SRC_COLOR;
+  public static final int GL_SRC_ALPHA;
+  public static final int GL_ONE_MINUS_SRC_ALPHA;
+  public static final int GL_DST_ALPHA;
+  public static final int GL_ONE_MINUS_DST_ALPHA;
+  public static final int GL_DST_COLOR;
+  public static final int GL_ONE_MINUS_DST_COLOR;
+  public static final int GL_REPLACE;
+  public static final int GL_DEPTH_BUFFER_BIT;
+  public static final int GL_COLOR_BUFFER_BIT;
+  public static final int GL_RGBA8;
+  public static final int GL_PROXY_TEXTURE_2D;
+  public static final int GL_RGBA;
+  public static final int GL_TEXTURE_WIDTH;
+  public static final int GL_BGR;
+  public static final int GL_FUNC_ADD;
+  public static final int GL_MIN;
+  public static final int GL_MAX;
+  public static final int GL_FUNC_SUBTRACT;
+  public static final int GL_FUNC_REVERSE_SUBTRACT;
+  public static final int GL_DEPTH_COMPONENT24;
+  public static final int GL_STATIC_DRAW;
+  public static final int GL_DYNAMIC_DRAW;
+  public static final int GL_STREAM_DRAW;
+  public static final int GL_STATIC_READ;
+  public static final int GL_DYNAMIC_READ;
+  public static final int GL_STREAM_READ;
+  public static final int GL_STATIC_COPY;
+  public static final int GL_DYNAMIC_COPY;
+  public static final int GL_STREAM_COPY;
+  public static final int GL_SYNC_GPU_COMMANDS_COMPLETE;
+  public static final int GL_TIMEOUT_EXPIRED;
+  public static final int GL_WAIT_FAILED;
+  public static final int GL_UNPACK_SWAP_BYTES;
+  public static final int GL_UNPACK_LSB_FIRST;
+  public static final int GL_UNPACK_ROW_LENGTH;
+  public static final int GL_UNPACK_SKIP_ROWS;
+  public static final int GL_UNPACK_SKIP_PIXELS;
+  public static final int GL_UNPACK_ALIGNMENT;
+  public static final int GL_PACK_ALIGNMENT;
+  public static final int GL_PACK_ROW_LENGTH;
+  public static final int GL_MAX_TEXTURE_SIZE;
+  public static final int GL_TEXTURE_2D;
+  public static final int[] CUBEMAP_TARGETS;
+  public static final int GL_DEPTH_COMPONENT;
+  public static final int GL_DEPTH_COMPONENT32;
+  public static final int GL_FRAMEBUFFER;
+  public static final int GL_RENDERBUFFER;
+  public static final int GL_COLOR_ATTACHMENT0;
+  public static final int GL_DEPTH_ATTACHMENT;
+  public static final int GL_FRAMEBUFFER_COMPLETE;
+  public static final int GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT;
+  public static final int GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT;
+  public static final int GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER;
+  public static final int GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER;
+  public static final int GL_FRAMEBUFFER_UNSUPPORTED;
+  public static final int GL_LINK_STATUS;
+  public static final int GL_COMPILE_STATUS;
+  public static final int GL_VERTEX_SHADER;
+  public static final int GL_FRAGMENT_SHADER;
+  public static final int GL_TEXTURE0;
+  public static final int GL_TEXTURE1;
+  public static final int GL_TEXTURE2;
+  public static final int GL_TEXTURE_COMPARE_MODE;
+  public static final int GL_ARRAY_BUFFER;
+  public static final int GL_ELEMENT_ARRAY_BUFFER;
+  public static final int GL_PIXEL_PACK_BUFFER;
+  public static final int GL_COPY_READ_BUFFER;
+  public static final int GL_COPY_WRITE_BUFFER;
+  public static final int GL_PIXEL_UNPACK_BUFFER;
+  public static final int GL_UNIFORM_BUFFER;
+  public static final int GL_RGB;
+  public static final int GL_RG;
+  public static final int GL_R8;
+  public static final int GL_RED;
+  public static final int GL_OUT_OF_MEMORY;
+  public com.mojang.renderpearl.backend.opengl.GlConst();
+  public static int toGl(com.mojang.renderpearl.api.pipeline.CompareOp);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.PolygonMode);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.BlendFactor);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.BlendOp);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.PrimitiveTopology);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.IndexType);
+  public static int toGl(com.mojang.renderpearl.api.textures.AddressMode);
+  public static int glFormatChannelCount(int);
+  public static boolean isGlFormatInteger(int);
+  public static boolean isFormatNormalized(com.mojang.renderpearl.api.GpuFormat);
+  public static int toGlInternalId(com.mojang.renderpearl.api.GpuFormat);
+  public static int toGlExternalId(com.mojang.renderpearl.api.GpuFormat);
+  public static int toGlType(com.mojang.renderpearl.api.GpuFormat);
+  public static int toGl(com.mojang.renderpearl.api.pipeline.ShaderType);
+  public static int bufferUsageToGlFlag(int);
+  public static int bufferUsageToGlEnum(int);
+}
+Compiled from "GlRenderPipeline.java"
+public final class com.mojang.renderpearl.backend.opengl.GlRenderPipeline implements com.mojang.renderpearl.backend.api.BackendRenderPipeline {
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.backend.opengl.GlProgram program();
+  public com.mojang.renderpearl.backend.opengl.VertexArray vertexArray();
+  public void bind();
+  public int primitiveTopology();
+}
+Compiled from "GlSampler.java"
+public class com.mojang.renderpearl.backend.opengl.GlSampler implements com.mojang.renderpearl.api.textures.GpuSampler {
+  public com.mojang.renderpearl.backend.opengl.GlSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public int getId();
+  public com.mojang.renderpearl.api.textures.AddressMode getAddressModeU();
+  public com.mojang.renderpearl.api.textures.AddressMode getAddressModeV();
+  public com.mojang.renderpearl.api.textures.FilterMode getMinFilter();
+  public com.mojang.renderpearl.api.textures.FilterMode getMagFilter();
+  public int getMaxAnisotropy();
+  public java.util.OptionalDouble getMaxLod();
+  public void close();
+  public boolean isClosed();
+}
+Compiled from "FrameBufferCache.java"
+public class com.mojang.renderpearl.backend.opengl.FrameBufferCache {
+  public com.mojang.renderpearl.backend.opengl.FrameBufferCache();
+  public int getFbo(com.mojang.renderpearl.backend.opengl.DirectStateAccess, java.util.List<com.mojang.renderpearl.backend.opengl.FrameBufferAttachment>, com.mojang.renderpearl.backend.opengl.FrameBufferAttachment);
+  public int getFbo(com.mojang.renderpearl.backend.opengl.DirectStateAccess, java.util.List<com.mojang.renderpearl.backend.opengl.FrameBufferAttachment>, com.mojang.renderpearl.backend.opengl.FrameBufferAttachment, int);
+  public void destroyFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+}
+Compiled from "DirectStateAccess.java"
+class com.mojang.renderpearl.backend.opengl.DirectStateAccess$Emulated extends com.mojang.renderpearl.backend.opengl.DirectStateAccess {
+  public int createBuffer();
+  public void bufferData(int, long, int);
+  public void bufferData(int, java.nio.ByteBuffer, int);
+  public void bufferSubData(int, long, java.nio.ByteBuffer, int);
+  public void bufferStorage(int, long, int);
+  public void bufferStorage(int, java.nio.ByteBuffer, int);
+  public java.nio.ByteBuffer mapBufferRange(int, long, long, int, int);
+  public void unmapBuffer(int, int);
+  public void flushMappedBufferRange(int, long, long, int);
+  public void copyBufferSubData(int, int, long, long, long);
+  public int createFrameBufferObject();
+  public void bindFrameBufferTextures(int, int[], int[], int, int, int);
+  public void blitFrameBuffers(int, int, int, int, int, int, int, int, int, int, int, int);
+}
+Compiled from "GlUtil.java"
+public class com.mojang.renderpearl.backend.opengl.GlUtil {
+  public com.mojang.renderpearl.backend.opengl.GlUtil();
+  public static int selectBufferBindTarget(int);
+}
+Compiled from "GlDebugLabel.java"
+public abstract class com.mojang.renderpearl.backend.opengl.GlDebugLabel {
+  public com.mojang.renderpearl.backend.opengl.GlDebugLabel();
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlBuffer, java.util.function.Supplier<java.lang.String>);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlTexture);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlShaderModule);
+  public void applyLabel(com.mojang.renderpearl.backend.opengl.GlProgram);
+  public void pushDebugGroup(java.util.function.Supplier<java.lang.String>);
+  public void popDebugGroup();
+  public static com.mojang.renderpearl.backend.opengl.GlDebugLabel create(org.lwjgl.opengl.GLCapabilities, boolean, java.util.Set<java.lang.String>);
+  public boolean exists();
+}
+Compiled from "BufferStorage.java"
+public abstract class com.mojang.renderpearl.backend.opengl.BufferStorage {
+  public com.mojang.renderpearl.backend.opengl.BufferStorage();
+  public static com.mojang.renderpearl.backend.opengl.BufferStorage create(org.lwjgl.opengl.GLCapabilities, java.util.Set<java.lang.String>, boolean);
+  public abstract com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, long);
+  public abstract com.mojang.renderpearl.backend.opengl.GlBuffer createBuffer(com.mojang.renderpearl.backend.opengl.GlHeuristics, com.mojang.renderpearl.backend.opengl.DirectStateAccess, int, java.nio.ByteBuffer);
+}
+Compiled from "GlDevice.java"
+class com.mojang.renderpearl.backend.opengl.GlDevice implements com.mojang.renderpearl.backend.api.GpuDeviceBackend {
+  protected static boolean USE_GL_ARB_vertex_attrib_binding;
+  protected static boolean USE_GL_KHR_debug;
+  protected static boolean USE_GL_EXT_debug_label;
+  protected static boolean USE_GL_ARB_debug_output;
+  protected static boolean USE_GL_ARB_direct_state_access;
+  protected static boolean USE_GL_ARB_buffer_storage;
+  protected static boolean USE_GL_ARB_base_instance;
+  protected static boolean USE_GL_ARB_draw_indirect;
+  protected static boolean USE_GL_ARB_multi_draw_indirect;
+  protected static boolean USE_GL_ARB_shader_draw_parameters;
+  public com.mojang.renderpearl.backend.opengl.GlDevice(com.mojang.renderpearl.backend.opengl.GlBackend, com.mojang.renderpearl.api.device.GpuDebugOptions) throws com.mojang.renderpearl.api.device.BackendCreationException;
+  public com.mojang.renderpearl.backend.opengl.GlHeuristics heuristics();
+  public com.mojang.renderpearl.backend.opengl.GlDebugLabel debugLabels();
+  public com.mojang.renderpearl.backend.api.GpuSurfaceBackend createSurface(long, java.util.function.BooleanSupplier);
+  public com.mojang.renderpearl.backend.api.CommandEncoderBackend createCommandEncoder();
+  public com.mojang.renderpearl.api.textures.GpuSampler createSampler(com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.AddressMode, com.mojang.renderpearl.api.textures.FilterMode, com.mojang.renderpearl.api.textures.FilterMode, int, java.util.OptionalDouble);
+  public com.mojang.renderpearl.api.textures.GpuTexture createTexture(java.lang.String, int, com.mojang.renderpearl.api.GpuFormat, int, int, int, int);
+  public com.mojang.renderpearl.api.textures.GpuTextureView createTextureView(com.mojang.renderpearl.api.textures.GpuTexture, int, int);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, long);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer createBuffer(java.util.function.Supplier<java.lang.String>, int, java.nio.ByteBuffer);
+  public java.util.List<java.lang.String> getLastDebugMessages();
+  public boolean isDebuggingEnabled();
+  public void close();
+  public com.mojang.renderpearl.backend.opengl.DirectStateAccess directStateAccess();
+  public com.mojang.renderpearl.backend.api.BackendRenderPipeline$Pending compilePipeline(com.mojang.renderpearl.backend.api.BackendRenderPipeline$CreateInfo);
+  public com.mojang.renderpearl.backend.opengl.BufferStorage getBufferStorage();
+  public com.mojang.renderpearl.backend.opengl.FrameBufferCache frameBufferCache();
+  public com.mojang.renderpearl.api.commands.GpuQueryPool createTimestampQueryPool(int);
+  public long getTimestampCalibrationOffset();
+  public com.mojang.renderpearl.api.device.DeviceInfo getDeviceInfo();
+}
+Compiled from "GlProgram.java"
+public class com.mojang.renderpearl.backend.opengl.GlProgram implements com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public static com.mojang.renderpearl.backend.opengl.GlProgram link(java.util.List<com.mojang.renderpearl.backend.opengl.GlShaderModule>, java.lang.String) throws com.mojang.renderpearl.util.ShaderCompileException;
+  public void setupBindGroupLayouts(java.util.List<com.mojang.renderpearl.api.pipeline.BindGroupLayout$UniformDescription>);
+  public void close();
+  public com.mojang.renderpearl.backend.opengl.Uniform getUniform(int);
+  public int uniformCount();
+  public int getProgramId();
+  public java.lang.String toString();
+  public java.lang.String getDebugLabel();
+  public com.mojang.renderpearl.backend.opengl.Uniform$Ubo pushConstant();
+}
+Compiled from "GlTransientMemory.java"
+class com.mojang.renderpearl.backend.opengl.GlTransientMemory$PersistentMapping extends com.mojang.renderpearl.backend.opengl.GlTransientMemory {
+  public void close();
+  public void rotate();
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateStaging(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice allocateGpu(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice$MappedView allocateGpuMapped(long, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadStaging(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice uploadGpu(java.util.List<java.nio.ByteBuffer>, long, int, long, long);
+  public com.mojang.renderpearl.api.buffers.GpuBufferSlice upload(java.util.List<java.nio.ByteBuffer>, long, int, long, long, boolean);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadStaging(java.util.List<java.nio.ByteBuffer>, long, int);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUploadGpu(java.util.List<java.nio.ByteBuffer>, long, int);
+  public java.util.List<com.mojang.renderpearl.api.buffers.GpuBufferSlice> multiUpload(java.util.List<java.nio.ByteBuffer>, long, int, boolean);
+}
+Compiled from "Uniform.java"
+public interface com.mojang.renderpearl.backend.opengl.Uniform extends com.mojang.renderpearl.util.UncheckedAutoCloseable {
+  public default void close();
+}
+Compiled from "GlTextureView.java"
+public class com.mojang.renderpearl.backend.opengl.GlTextureView extends com.mojang.renderpearl.backend.common.BaseGpuTextureView implements com.mojang.renderpearl.backend.opengl.FrameBufferAttachment {
+  protected com.mojang.renderpearl.backend.opengl.GlTextureView(com.mojang.renderpearl.backend.opengl.GlTexture, int, int, com.mojang.renderpearl.backend.opengl.FrameBufferCache);
+  public boolean isClosed();
+  public void close();
+  public com.mojang.renderpearl.backend.opengl.GlTexture texture();
+  public int glId();
+  public int fboMipLevel();
+  public void addAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+  public void removeAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+  public com.mojang.renderpearl.api.textures.GpuTexture texture();
+}
+Compiled from "GlStateManager.java"
+class com.mojang.renderpearl.backend.opengl.GlStateManager$PolygonOffsetState {
+  public final com.mojang.renderpearl.backend.opengl.GlStateManager$BooleanState fill;
+  public float factor;
+  public float units;
+}
+Compiled from "GlTransientMemory.java"
+final class com.mojang.renderpearl.backend.opengl.GlTransientMemory$PersistentMapping$GlAllocation extends java.lang.Record implements com.mojang.renderpearl.backend.util.TransientBlockAllocator$Allocator$Block {
+  public boolean suboptimal();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int glBuffer();
+  public long hostPtr();
+  public long size();
+}
+Compiled from "GlTexture.java"
+public class com.mojang.renderpearl.backend.opengl.GlTexture extends com.mojang.renderpearl.backend.common.BaseGpuTexture implements com.mojang.renderpearl.backend.opengl.FrameBufferAttachment {
+  protected final int id;
+  protected boolean closed;
+  protected com.mojang.renderpearl.backend.opengl.GlTexture(int, java.lang.String, com.mojang.renderpearl.api.GpuFormat, int, int, int, int, int, com.mojang.renderpearl.backend.opengl.FrameBufferCache);
+  public void close();
+  public boolean isClosed();
+  public int glId();
+  public int fboMipLevel();
+  public void addAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+  public void removeAssociatedFbo(com.mojang.renderpearl.backend.opengl.FrameBufferCache$CacheKey);
+  public void addViews();
+  public void removeViews();
+}
+Compiled from "GlDebugLabel.java"
+class com.mojang.renderpearl.backend.opengl.GlDebugLabel$Empty extends com.mojang.renderpearl.backend.opengl.GlDebugLabel {
+}

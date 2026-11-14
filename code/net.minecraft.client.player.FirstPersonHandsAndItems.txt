@@ -1,0 +1,501 @@
+Compiled from "FirstPersonHandsAndItems.java"
+public class net.minecraft.client.player.FirstPersonHandsAndItems {
+  private net.minecraft.world.item.ItemStack mainHandItem;
+
+  private net.minecraft.world.item.ItemStack offHandItem;
+
+  private float mainHandHeight;
+
+  private float oMainHandHeight;
+
+  private float offHandHeight;
+
+  private float oOffHandHeight;
+
+  public net.minecraft.client.player.FirstPersonHandsAndItems();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: getstatic     #7                  // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+         8: putfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+        11: aload_0
+        12: getstatic     #7                  // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+        15: putfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+        18: return
+
+  public void tick(net.minecraft.client.player.LocalPlayer);
+    Code:
+         0: aload_0
+         1: aload_0
+         2: getfield      #21                 // Field mainHandHeight:F
+         5: putfield      #25                 // Field oMainHandHeight:F
+         8: aload_0
+         9: aload_0
+        10: getfield      #28                 // Field offHandHeight:F
+        13: putfield      #31                 // Field oOffHandHeight:F
+        16: aload_1
+        17: invokevirtual #34                 // Method net/minecraft/client/player/LocalPlayer.getMainHandItem:()Lnet/minecraft/world/item/ItemStack;
+        20: astore_2
+        21: aload_1
+        22: invokevirtual #40                 // Method net/minecraft/client/player/LocalPlayer.getOffhandItem:()Lnet/minecraft/world/item/ItemStack;
+        25: astore_3
+        26: aload_0
+        27: aload_0
+        28: getfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+        31: aload_2
+        32: aload_1
+        33: invokevirtual #43                 // Method shouldInstantlyReplaceVisibleItem:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/player/LocalPlayer;)Z
+        36: ifeq          44
+        39: aload_0
+        40: aload_2
+        41: putfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+        44: aload_0
+        45: aload_0
+        46: getfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+        49: aload_3
+        50: aload_1
+        51: invokevirtual #43                 // Method shouldInstantlyReplaceVisibleItem:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/player/LocalPlayer;)Z
+        54: ifeq          62
+        57: aload_0
+        58: aload_3
+        59: putfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+        62: aload_1
+        63: invokevirtual #47                 // Method net/minecraft/client/player/LocalPlayer.isHandsBusy:()Z
+        66: ifeq          104
+        69: aload_0
+        70: aload_0
+        71: getfield      #21                 // Field mainHandHeight:F
+        74: ldc           #51                 // float 0.4f
+        76: fsub
+        77: fconst_0
+        78: fconst_1
+        79: invokestatic  #52                 // Method net/minecraft/util/Mth.clamp:(FFF)F
+        82: putfield      #21                 // Field mainHandHeight:F
+        85: aload_0
+        86: aload_0
+        87: getfield      #28                 // Field offHandHeight:F
+        90: ldc           #51                 // float 0.4f
+        92: fsub
+        93: fconst_0
+        94: fconst_1
+        95: invokestatic  #52                 // Method net/minecraft/util/Mth.clamp:(FFF)F
+        98: putfield      #28                 // Field offHandHeight:F
+       101: goto          194
+       104: aload_1
+       105: fconst_1
+       106: invokevirtual #58                 // Method net/minecraft/client/player/LocalPlayer.getItemSwapScale:(F)F
+       109: fstore        4
+       111: aload_0
+       112: getfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       115: aload_2
+       116: if_acmpeq     123
+       119: fconst_0
+       120: goto          131
+       123: fload         4
+       125: fload         4
+       127: fmul
+       128: fload         4
+       130: fmul
+       131: fstore        5
+       133: aload_0
+       134: getfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+       137: aload_3
+       138: if_acmpeq     145
+       141: fconst_0
+       142: goto          146
+       145: fconst_1
+       146: fstore        6
+       148: aload_0
+       149: dup
+       150: getfield      #21                 // Field mainHandHeight:F
+       153: fload         5
+       155: aload_0
+       156: getfield      #21                 // Field mainHandHeight:F
+       159: fsub
+       160: ldc           #62                 // float -0.4f
+       162: ldc           #51                 // float 0.4f
+       164: invokestatic  #52                 // Method net/minecraft/util/Mth.clamp:(FFF)F
+       167: fadd
+       168: putfield      #21                 // Field mainHandHeight:F
+       171: aload_0
+       172: dup
+       173: getfield      #28                 // Field offHandHeight:F
+       176: fload         6
+       178: aload_0
+       179: getfield      #28                 // Field offHandHeight:F
+       182: fsub
+       183: ldc           #62                 // float -0.4f
+       185: ldc           #51                 // float 0.4f
+       187: invokestatic  #52                 // Method net/minecraft/util/Mth.clamp:(FFF)F
+       190: fadd
+       191: putfield      #28                 // Field offHandHeight:F
+       194: aload_0
+       195: getfield      #21                 // Field mainHandHeight:F
+       198: ldc           #63                 // float 0.1f
+       200: fcmpg
+       201: ifge          209
+       204: aload_0
+       205: aload_2
+       206: putfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       209: aload_0
+       210: getfield      #28                 // Field offHandHeight:F
+       213: ldc           #63                 // float 0.1f
+       215: fcmpg
+       216: ifge          224
+       219: aload_0
+       220: aload_3
+       221: putfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+       224: return
+
+  public void itemUsed(net.minecraft.world.InteractionHand);
+    Code:
+         0: aload_1
+         1: getstatic     #64                 // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+         4: if_acmpne     15
+         7: aload_0
+         8: fconst_0
+         9: putfield      #21                 // Field mainHandHeight:F
+        12: goto          20
+        15: aload_0
+        16: fconst_0
+        17: putfield      #28                 // Field offHandHeight:F
+        20: return
+
+  public void extractRenderState(net.minecraft.client.player.LocalPlayer, float, net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState);
+    Code:
+         0: aload_1
+         1: invokevirtual #70                 // Method net/minecraft/client/player/LocalPlayer.getCurrentSwing:()Lnet/minecraft/world/entity/LivingEntity$SwingDescription;
+         4: astore        4
+         6: aload_3
+         7: aload         4
+         9: ifnonnull     18
+        12: getstatic     #64                 // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+        15: goto          23
+        18: aload         4
+        20: invokevirtual #74                 // Method net/minecraft/world/entity/LivingEntity$SwingDescription.hand:()Lnet/minecraft/world/InteractionHand;
+        23: putfield      #80                 // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.attackHand:Lnet/minecraft/world/InteractionHand;
+        26: aload_3
+        27: aload_1
+        28: fload_2
+        29: invokevirtual #85                 // Method net/minecraft/client/player/LocalPlayer.getViewXRot:(F)F
+        32: putfield      #88                 // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.viewXRot:F
+        35: aload_3
+        36: aload_1
+        37: fload_2
+        38: invokevirtual #91                 // Method net/minecraft/client/player/LocalPlayer.getViewYRot:(F)F
+        41: putfield      #94                 // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.viewYRot:F
+        44: aload_3
+        45: fload_2
+        46: aload_1
+        47: getfield      #97                 // Field net/minecraft/client/player/LocalPlayer.xBobO:F
+        50: aload_1
+        51: getfield      #100                // Field net/minecraft/client/player/LocalPlayer.xBob:F
+        54: invokestatic  #103                // Method net/minecraft/util/Mth.lerp:(FFF)F
+        57: putfield      #106                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.xBob:F
+        60: aload_3
+        61: fload_2
+        62: aload_1
+        63: getfield      #107                // Field net/minecraft/client/player/LocalPlayer.yBobO:F
+        66: aload_1
+        67: getfield      #110                // Field net/minecraft/client/player/LocalPlayer.yBob:F
+        70: invokestatic  #103                // Method net/minecraft/util/Mth.lerp:(FFF)F
+        73: putfield      #113                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.yBob:F
+        76: aload_3
+        77: aload_1
+        78: invokevirtual #114                // Method net/minecraft/client/player/LocalPlayer.isScoping:()Z
+        81: putfield      #117                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.isScoping:Z
+        84: aload_3
+        85: aload_1
+        86: invokevirtual #120                // Method net/minecraft/client/player/LocalPlayer.getUseItemRemainingTicks:()I
+        89: putfield      #124                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.useItemRemainingTicks:I
+        92: aload_3
+        93: aload_1
+        94: invokestatic  #128                // Method evaluateWhichHandsToRender:(Lnet/minecraft/client/player/LocalPlayer;)Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+        97: putfield      #132                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.handRenderSelection:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       100: aload_3
+       101: aload_0
+       102: getfield      #13                 // Field mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       105: putfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       108: aload_3
+       109: aload_0
+       110: getfield      #18                 // Field offHandItem:Lnet/minecraft/world/item/ItemStack;
+       113: putfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       116: aload_3
+       117: aload_0
+       118: getfield      #21                 // Field mainHandHeight:F
+       121: putfield      #138                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandHeight:F
+       124: aload_3
+       125: aload_0
+       126: getfield      #25                 // Field oMainHandHeight:F
+       129: putfield      #139                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.oldMainHandHeight:F
+       132: aload_3
+       133: aload_0
+       134: getfield      #28                 // Field offHandHeight:F
+       137: putfield      #142                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandHeight:F
+       140: aload_3
+       141: aload_0
+       142: getfield      #31                 // Field oOffHandHeight:F
+       145: putfield      #143                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.oldOffHandHeight:F
+       148: aload_1
+       149: invokevirtual #146                // Method net/minecraft/client/player/LocalPlayer.getMainArm:()Lnet/minecraft/world/entity/HumanoidArm;
+       152: getstatic     #150                // Field net/minecraft/world/entity/HumanoidArm.RIGHT:Lnet/minecraft/world/entity/HumanoidArm;
+       155: if_acmpne     162
+       158: iconst_1
+       159: goto          163
+       162: iconst_0
+       163: istore        5
+       165: iload         5
+       167: ifeq          176
+       170: getstatic     #156                // Field net/minecraft/world/item/ItemDisplayContext.FIRST_PERSON_RIGHT_HAND:Lnet/minecraft/world/item/ItemDisplayContext;
+       173: goto          179
+       176: getstatic     #162                // Field net/minecraft/world/item/ItemDisplayContext.FIRST_PERSON_LEFT_HAND:Lnet/minecraft/world/item/ItemDisplayContext;
+       179: astore        6
+       181: iload         5
+       183: ifeq          192
+       186: getstatic     #162                // Field net/minecraft/world/item/ItemDisplayContext.FIRST_PERSON_LEFT_HAND:Lnet/minecraft/world/item/ItemDisplayContext;
+       189: goto          195
+       192: getstatic     #156                // Field net/minecraft/world/item/ItemDisplayContext.FIRST_PERSON_RIGHT_HAND:Lnet/minecraft/world/item/ItemDisplayContext;
+       195: astore        7
+       197: aload_3
+       198: getfield      #165                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandRenderState:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+       201: invokevirtual #169                // Method net/minecraft/client/renderer/item/ItemStackRenderState.clear:()V
+       204: aload_3
+       205: getfield      #174                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandRenderState:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+       208: invokevirtual #169                // Method net/minecraft/client/renderer/item/ItemStackRenderState.clear:()V
+       211: aload_1
+       212: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+       215: invokevirtual #181                // Method net/minecraft/client/Minecraft.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+       218: aload_3
+       219: getfield      #165                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandRenderState:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+       222: aload_3
+       223: getfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       226: aload         6
+       228: aload_1
+       229: invokevirtual #187                // Method net/minecraft/client/player/LocalPlayer.level:()Lnet/minecraft/world/level/Level;
+       232: aload_1
+       233: aload_1
+       234: invokevirtual #191                // Method net/minecraft/client/player/LocalPlayer.getId:()I
+       237: aload         6
+       239: invokevirtual #194                // Method net/minecraft/world/item/ItemDisplayContext.ordinal:()I
+       242: iadd
+       243: invokevirtual #197                // Method net/minecraft/client/renderer/item/ItemModelResolver.updateForTopItem:(Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/ItemOwner;I)V
+       246: aload_1
+       247: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+       250: invokevirtual #181                // Method net/minecraft/client/Minecraft.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+       253: aload_3
+       254: getfield      #174                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandRenderState:Lnet/minecraft/client/renderer/item/ItemStackRenderState;
+       257: aload_3
+       258: getfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       261: aload         7
+       263: aload_1
+       264: invokevirtual #187                // Method net/minecraft/client/player/LocalPlayer.level:()Lnet/minecraft/world/level/Level;
+       267: aload_1
+       268: aload_1
+       269: invokevirtual #191                // Method net/minecraft/client/player/LocalPlayer.getId:()I
+       272: aload         7
+       274: invokevirtual #194                // Method net/minecraft/world/item/ItemDisplayContext.ordinal:()I
+       277: iadd
+       278: invokevirtual #197                // Method net/minecraft/client/renderer/item/ItemModelResolver.updateForTopItem:(Lnet/minecraft/client/renderer/item/ItemStackRenderState;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/ItemOwner;I)V
+       281: aload_3
+       282: aload_3
+       283: getfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       286: aload_1
+       287: invokevirtual #203                // Method net/minecraft/world/item/ItemStack.getUseDuration:(Lnet/minecraft/world/entity/LivingEntity;)I
+       290: putfield      #207                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandUseDuration:I
+       293: aload_3
+       294: aload_3
+       295: getfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       298: aload_1
+       299: invokevirtual #203                // Method net/minecraft/world/item/ItemStack.getUseDuration:(Lnet/minecraft/world/entity/LivingEntity;)I
+       302: putfield      #210                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandUseDuration:I
+       305: aload_3
+       306: aload_3
+       307: getfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       310: aload_1
+       311: invokestatic  #213                // Method net/minecraft/world/item/CrossbowItem.getChargeDuration:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I
+       314: putfield      #219                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandChargeDuration:I
+       317: aload_3
+       318: aload_3
+       319: getfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       322: aload_1
+       323: invokestatic  #213                // Method net/minecraft/world/item/CrossbowItem.getChargeDuration:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)I
+       326: putfield      #222                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandChargeDuration:I
+       329: aload_3
+       330: aload_1
+       331: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+       334: invokevirtual #181                // Method net/minecraft/client/Minecraft.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+       337: aload_3
+       338: getfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       341: invokevirtual #225                // Method net/minecraft/client/renderer/item/ItemModelResolver.swapAnimationScale:(Lnet/minecraft/world/item/ItemStack;)F
+       344: putfield      #229                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandSwapScale:F
+       347: aload_3
+       348: aload_1
+       349: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+       352: invokevirtual #181                // Method net/minecraft/client/Minecraft.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+       355: aload_3
+       356: getfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       359: invokevirtual #225                // Method net/minecraft/client/renderer/item/ItemModelResolver.swapAnimationScale:(Lnet/minecraft/world/item/ItemStack;)F
+       362: putfield      #232                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandSwapScale:F
+       365: aload_3
+       366: aload_0
+       367: aload_1
+       368: aload_3
+       369: getfield      #136                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandItem:Lnet/minecraft/world/item/ItemStack;
+       372: aload_3
+       373: getfield      #235                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.mainHandMapRenderState:Lnet/minecraft/client/renderer/state/MapRenderState;
+       376: invokevirtual #239                // Method extractMapRenderState:(Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/state/MapRenderState;)Z
+       379: putfield      #243                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.hasMainHandMapData:Z
+       382: aload_3
+       383: aload_0
+       384: aload_1
+       385: aload_3
+       386: getfield      #137                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandItem:Lnet/minecraft/world/item/ItemStack;
+       389: aload_3
+       390: getfield      #246                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.offHandMapRenderState:Lnet/minecraft/client/renderer/state/MapRenderState;
+       393: invokevirtual #239                // Method extractMapRenderState:(Lnet/minecraft/client/player/LocalPlayer;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/client/renderer/state/MapRenderState;)Z
+       396: putfield      #249                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState.hasOffHandMapData:Z
+       399: return
+
+  private boolean shouldInstantlyReplaceVisibleItem(net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemStack, net.minecraft.client.player.LocalPlayer);
+    Code:
+         0: aload_1
+         1: aload_2
+         2: invokedynamic #252,  0            // InvokeDynamic #0:test:()Ljava/util/function/Predicate;
+         7: invokestatic  #256                // Method net/minecraft/world/item/ItemStack.matchesIgnoringComponents:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;Ljava/util/function/Predicate;)Z
+        10: ifeq          15
+        13: iconst_1
+        14: ireturn
+        15: aload_3
+        16: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+        19: invokevirtual #181                // Method net/minecraft/client/Minecraft.getItemModelResolver:()Lnet/minecraft/client/renderer/item/ItemModelResolver;
+        22: aload_2
+        23: invokevirtual #260                // Method net/minecraft/client/renderer/item/ItemModelResolver.shouldPlaySwapAnimation:(Lnet/minecraft/world/item/ItemStack;)Z
+        26: ifne          33
+        29: iconst_1
+        30: goto          34
+        33: iconst_0
+        34: ireturn
+
+  private boolean extractMapRenderState(net.minecraft.client.player.LocalPlayer, net.minecraft.world.item.ItemStack, net.minecraft.client.renderer.state.MapRenderState);
+    Code:
+         0: aload_2
+         1: getstatic     #264                // Field net/minecraft/core/component/DataComponents.MAP_ID:Lnet/minecraft/core/component/DataComponentType;
+         4: invokevirtual #270                // Method net/minecraft/world/item/ItemStack.get:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+         7: checkcast     #274                // class net/minecraft/world/level/saveddata/maps/MapId
+        10: astore        4
+        12: aload         4
+        14: ifnonnull     21
+        17: aconst_null
+        18: goto          30
+        21: aload         4
+        23: aload_1
+        24: invokevirtual #187                // Method net/minecraft/client/player/LocalPlayer.level:()Lnet/minecraft/world/level/Level;
+        27: invokestatic  #276                // Method net/minecraft/world/item/MapItem.getSavedData:(Lnet/minecraft/world/level/saveddata/maps/MapId;Lnet/minecraft/world/level/Level;)Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;
+        30: astore        5
+        32: aload         4
+        34: ifnull        42
+        37: aload         5
+        39: ifnonnull     44
+        42: iconst_0
+        43: ireturn
+        44: aload_1
+        45: getfield      #177                // Field net/minecraft/client/player/LocalPlayer.minecraft:Lnet/minecraft/client/Minecraft;
+        48: invokevirtual #282                // Method net/minecraft/client/Minecraft.getMapRenderer:()Lnet/minecraft/client/renderer/MapRenderer;
+        51: aload         4
+        53: aload         5
+        55: aload_3
+        56: invokevirtual #286                // Method net/minecraft/client/renderer/MapRenderer.extractRenderState:(Lnet/minecraft/world/level/saveddata/maps/MapId;Lnet/minecraft/world/level/saveddata/maps/MapItemSavedData;Lnet/minecraft/client/renderer/state/MapRenderState;)V
+        59: iconst_1
+        60: ireturn
+
+  public static net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState$HandRenderSelection evaluateWhichHandsToRender(net.minecraft.client.player.LocalPlayer);
+    Code:
+         0: aload_0
+         1: invokevirtual #34                 // Method net/minecraft/client/player/LocalPlayer.getMainHandItem:()Lnet/minecraft/world/item/ItemStack;
+         4: astore_1
+         5: aload_0
+         6: invokevirtual #40                 // Method net/minecraft/client/player/LocalPlayer.getOffhandItem:()Lnet/minecraft/world/item/ItemStack;
+         9: astore_2
+        10: aload_1
+        11: getstatic     #292                // Field net/minecraft/world/item/Items.BOW:Lnet/minecraft/world/item/Item;
+        14: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        17: ifne          30
+        20: aload_2
+        21: getstatic     #292                // Field net/minecraft/world/item/Items.BOW:Lnet/minecraft/world/item/Item;
+        24: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        27: ifeq          34
+        30: iconst_1
+        31: goto          35
+        34: iconst_0
+        35: istore_3
+        36: aload_1
+        37: getstatic     #302                // Field net/minecraft/world/item/Items.CROSSBOW:Lnet/minecraft/world/item/Item;
+        40: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        43: ifne          56
+        46: aload_2
+        47: getstatic     #302                // Field net/minecraft/world/item/Items.CROSSBOW:Lnet/minecraft/world/item/Item;
+        50: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        53: ifeq          60
+        56: iconst_1
+        57: goto          61
+        60: iconst_0
+        61: istore        4
+        63: iload_3
+        64: ifne          76
+        67: iload         4
+        69: ifne          76
+        72: getstatic     #305                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.RENDER_BOTH_HANDS:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+        75: areturn
+        76: aload_0
+        77: invokevirtual #310                // Method net/minecraft/client/player/LocalPlayer.isUsingItem:()Z
+        80: ifeq          148
+        83: aload_0
+        84: invokevirtual #313                // Method net/minecraft/client/player/LocalPlayer.getUseItem:()Lnet/minecraft/world/item/ItemStack;
+        87: astore        5
+        89: aload_0
+        90: invokevirtual #316                // Method net/minecraft/client/player/LocalPlayer.getUsedItemHand:()Lnet/minecraft/world/InteractionHand;
+        93: astore        6
+        95: aload         5
+        97: getstatic     #292                // Field net/minecraft/world/item/Items.BOW:Lnet/minecraft/world/item/Item;
+       100: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       103: ifne          117
+       106: aload         5
+       108: getstatic     #302                // Field net/minecraft/world/item/Items.CROSSBOW:Lnet/minecraft/world/item/Item;
+       111: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+       114: ifeq          123
+       117: aload         6
+       119: invokestatic  #319                // Method net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.onlyForHand:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       122: areturn
+       123: aload         6
+       125: getstatic     #64                 // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+       128: if_acmpne     144
+       131: aload_2
+       132: invokestatic  #323                // Method isChargedCrossbow:(Lnet/minecraft/world/item/ItemStack;)Z
+       135: ifeq          144
+       138: getstatic     #326                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.RENDER_MAIN_HAND_ONLY:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       141: goto          147
+       144: getstatic     #305                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.RENDER_BOTH_HANDS:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       147: areturn
+       148: aload_1
+       149: invokestatic  #323                // Method isChargedCrossbow:(Lnet/minecraft/world/item/ItemStack;)Z
+       152: ifeq          159
+       155: getstatic     #326                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.RENDER_MAIN_HAND_ONLY:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       158: areturn
+       159: getstatic     #305                // Field net/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection.RENDER_BOTH_HANDS:Lnet/minecraft/client/renderer/state/level/FirstPersonHandsAndItemsRenderState$HandRenderSelection;
+       162: areturn
+
+  private static boolean isChargedCrossbow(net.minecraft.world.item.ItemStack);
+    Code:
+         0: aload_0
+         1: getstatic     #302                // Field net/minecraft/world/item/Items.CROSSBOW:Lnet/minecraft/world/item/Item;
+         4: invokevirtual #298                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+         7: ifeq          21
+        10: aload_0
+        11: invokestatic  #329                // Method net/minecraft/world/item/CrossbowItem.isCharged:(Lnet/minecraft/world/item/ItemStack;)Z
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+}

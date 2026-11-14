@@ -1,0 +1,359 @@
+Compiled from "ModelProvider.java"
+class net.minecraft.client.data.models.ModelProvider$BlockStateGeneratorCollector implements java.util.function.Consumer<net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator> {
+  public void accept(net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator);
+  public void validate();
+  public java.util.concurrent.CompletableFuture<?> save(net.minecraft.data.CachedOutput, net.minecraft.data.PackOutput$PathProvider);
+  public void accept(java.lang.Object);
+}
+Compiled from "ModelProvider.java"
+public class net.minecraft.client.data.models.ModelProvider implements net.minecraft.data.DataProvider {
+  public net.minecraft.client.data.models.ModelProvider(net.minecraft.data.PackOutput);
+  public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public java.lang.String getName();
+}
+Compiled from "BlockModelGenerators.java"
+public class net.minecraft.client.data.models.BlockModelGenerators {
+  public final java.util.function.Consumer<net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator> blockStateOutput;
+  public final net.minecraft.client.data.models.ItemModelOutput itemModelOutput;
+  public final java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance> modelOutput;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator NOP;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator UV_LOCK;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator X_ROT_90;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator X_ROT_180;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator X_ROT_270;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator Y_ROT_90;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator Y_ROT_180;
+  public static final net.minecraft.client.renderer.block.dispatch.VariantMutator Y_ROT_270;
+  public static final net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> ROTATION_FACING;
+  public static final net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> ROTATIONS_COLUMN_WITH_FACING;
+  public static final net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> ROTATION_TORCH;
+  public static final net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> ROTATION_HORIZONTAL_FACING_ALT;
+  public static final net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> ROTATION_HORIZONTAL_FACING;
+  public static net.minecraft.client.renderer.block.dispatch.Variant plainModel(net.minecraft.resources.Identifier);
+  public static net.minecraft.client.data.models.MultiVariant variant(net.minecraft.client.renderer.block.dispatch.Variant);
+  public static net.minecraft.client.data.models.MultiVariant variants(net.minecraft.client.renderer.block.dispatch.Variant...);
+  public static net.minecraft.client.data.models.MultiVariant plainVariant(net.minecraft.resources.Identifier);
+  public static net.minecraft.client.data.models.blockstates.ConditionBuilder condition();
+  public static <T extends java.lang.Enum<T> & net.minecraft.util.StringRepresentable> net.minecraft.client.data.models.blockstates.ConditionBuilder condition(net.minecraft.world.level.block.state.properties.EnumProperty<T>, T, T...);
+  public static net.minecraft.client.data.models.blockstates.ConditionBuilder condition(net.minecraft.world.level.block.state.properties.BooleanProperty, boolean);
+  public static net.minecraft.client.renderer.block.dispatch.multipart.Condition or(net.minecraft.client.data.models.blockstates.ConditionBuilder...);
+  public static net.minecraft.client.renderer.block.dispatch.multipart.Condition and(net.minecraft.client.data.models.blockstates.ConditionBuilder...);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createMirroredCubeGenerator(net.minecraft.world.level.block.Block, net.minecraft.client.renderer.block.dispatch.Variant, net.minecraft.client.data.models.model.TextureMapping, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createNorthWestMirroredCubeGenerator(net.minecraft.world.level.block.Block, net.minecraft.client.renderer.block.dispatch.Variant, net.minecraft.client.data.models.model.TextureMapping, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createMirroredColumnGenerator(net.minecraft.world.level.block.Block, net.minecraft.client.renderer.block.dispatch.Variant, net.minecraft.client.data.models.model.TextureMapping, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public net.minecraft.client.data.models.BlockModelGenerators(java.util.function.Consumer<net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator>, net.minecraft.client.data.models.ItemModelOutput, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public final void registerSimpleItemModel(net.minecraft.world.item.Item, net.minecraft.resources.Identifier);
+  public final void registerSimpleItemModel(net.minecraft.world.level.block.Block, net.minecraft.resources.Identifier);
+  public final void registerSimpleTintedItemModel(net.minecraft.world.level.block.Block, net.minecraft.resources.Identifier, net.minecraft.client.color.item.ItemTintSource);
+  public final net.minecraft.resources.Identifier createFlatItemModel(net.minecraft.world.item.Item);
+  public final net.minecraft.resources.Identifier createFlatItemModelWithBlockTexture(net.minecraft.world.item.Item, net.minecraft.world.level.block.Block);
+  public final net.minecraft.resources.Identifier createFlatItemModelWithBlockTexture(net.minecraft.world.item.Item, net.minecraft.world.level.block.Block, java.lang.String);
+  public final net.minecraft.resources.Identifier createFlatItemModel(net.minecraft.world.item.Item, net.minecraft.client.resources.model.sprite.Material);
+  public final net.minecraft.resources.Identifier createTwoLayeredItemModel(net.minecraft.world.item.Item, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material);
+  public final void registerSimpleFlatItemModel(net.minecraft.world.item.Item);
+  public final void registerSimpleFlatItemModel(net.minecraft.world.level.block.Block);
+  public final void registerSimpleFlatItemModel(net.minecraft.world.level.block.Block, java.lang.String);
+  public static net.minecraft.client.data.models.MultiVariant createRotatedVariants(net.minecraft.client.renderer.block.dispatch.Variant);
+  public static net.minecraft.client.data.models.MultiVariant createRotatedVariants(net.minecraft.client.renderer.block.dispatch.Variant, net.minecraft.client.renderer.block.dispatch.Variant);
+  public static net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.data.models.MultiVariant> createBooleanModelDispatch(net.minecraft.world.level.block.state.properties.BooleanProperty, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createRotatedMirroredVariantBlock(net.minecraft.world.level.block.Block);
+  public final void createRotatedVariantBlock(net.minecraft.world.level.block.Block);
+  public final void createRotatedVariantBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public final void createRotatedVariantBlock(net.minecraft.world.level.block.Block, net.minecraft.resources.Identifier);
+  public final void createBrushableBlock(net.minecraft.world.level.block.Block);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createButton(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createDoor(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createCustomFence(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createFence(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createWall(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createFenceGate(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, boolean);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createStairs(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createOrientableTrapdoor(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createTrapdoor(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createBed(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createStrawBed(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createSign(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createHangingSign(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.MultiVariantGenerator createSimpleBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.renderer.block.dispatch.VariantMutator> createRotatedPillar();
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createPillarBlockUVLocked(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TextureMapping, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createAxisAlignedPillarBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant);
+  public final void createAxisAlignedPillarBlockCustomModel(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant);
+  public final void createAxisAlignedPillarBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public final void createHorizontallyRotatedBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createRotatedPillarWithHorizontalVariant(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createRotatedPillarWithHorizontalVariant(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public final void createCreakingHeart(net.minecraft.world.level.block.Block);
+  public final net.minecraft.resources.Identifier createCreakingHeartModel(net.minecraft.client.data.models.model.TexturedModel$Provider, net.minecraft.world.level.block.Block, java.lang.String);
+  public final net.minecraft.resources.Identifier createSuffixedVariant(net.minecraft.world.level.block.Block, java.lang.String, net.minecraft.client.data.models.model.ModelTemplate, java.util.function.Function<net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.data.models.model.TextureMapping>);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createPressurePlate(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createSlab(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createTrivialCube(net.minecraft.world.level.block.Block);
+  public final void createTrivialBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public void createTintedLeaves(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider, int);
+  public final void createItemWithGrassTint(net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider family(net.minecraft.world.level.block.Block);
+  public final void createDoor(net.minecraft.world.level.block.Block);
+  public final void copyDoorModel(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createOrientableTrapdoor(net.minecraft.world.level.block.Block);
+  public final void createTrapdoor(net.minecraft.world.level.block.Block);
+  public final void copyTrapdoorModel(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.data.models.BlockModelGenerators$WoodProvider woodProvider(net.minecraft.world.level.block.Block);
+  public final void createNonTemplateModelBlock(net.minecraft.world.level.block.Block);
+  public final void createNonTemplateModelBlock(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createCrossBlockWithDefaultItem(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createCrossBlockWithDefaultItem(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType, net.minecraft.client.data.models.model.TextureMapping);
+  public final void createCrossBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createCrossBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType, net.minecraft.client.data.models.model.TextureMapping);
+  public final void createCrossBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType, net.minecraft.world.level.block.state.properties.Property<java.lang.Integer>, int...);
+  public final void createPlantWithDefaultItem(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createPlant(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createCoralFans(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createStems(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createCoral(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createDoublePlant(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createDoublePlantWithDefaultItem(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createTintedDoublePlant(net.minecraft.world.level.block.Block);
+  public final void createDoubleBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createPassiveRail(net.minecraft.world.level.block.Block);
+  public final void createActiveRail(net.minecraft.world.level.block.Block);
+  public final void createAirLikeBlock(net.minecraft.world.level.block.Block, net.minecraft.world.item.Item);
+  public final void createAirLikeBlock(net.minecraft.world.level.block.Block, net.minecraft.client.resources.model.sprite.Material);
+  public final net.minecraft.client.data.models.MultiVariant createParticleOnlyBlockModel(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public void createParticleOnlyBlock(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createParticleOnlyBlock(net.minecraft.world.level.block.Block);
+  public final void createFullAndCarpetBlocks(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createLeafLitter(net.minecraft.world.level.block.Block);
+  public final void createFlowerBed(net.minecraft.world.level.block.Block);
+  public final void createSegmentedBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, java.util.function.Function<net.minecraft.client.data.models.blockstates.ConditionBuilder, net.minecraft.client.data.models.blockstates.ConditionBuilder>, net.minecraft.client.data.models.MultiVariant, java.util.function.Function<net.minecraft.client.data.models.blockstates.ConditionBuilder, net.minecraft.client.data.models.blockstates.ConditionBuilder>, net.minecraft.client.data.models.MultiVariant, java.util.function.Function<net.minecraft.client.data.models.blockstates.ConditionBuilder, net.minecraft.client.data.models.blockstates.ConditionBuilder>, net.minecraft.client.data.models.MultiVariant, java.util.function.Function<net.minecraft.client.data.models.blockstates.ConditionBuilder, net.minecraft.client.data.models.blockstates.ConditionBuilder>);
+  public final void createColoredBlockWithRandomRotations(net.minecraft.client.data.models.model.TexturedModel$Provider, java.util.List<net.minecraft.world.level.block.Block>);
+  public final void createColoredBlockWithStateRotations(net.minecraft.client.data.models.model.TexturedModel$Provider, java.util.List<net.minecraft.world.level.block.Block>);
+  public final void createGlassBlocks(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createCommandBlock(net.minecraft.world.level.block.Block);
+  public final void createAnvil(net.minecraft.world.level.block.Block);
+  public static net.minecraft.client.data.models.MultiVariant createBambooModels(int);
+  public static <T extends java.lang.Comparable<T>> net.minecraft.client.data.models.blockstates.PropertyDispatch<net.minecraft.client.data.models.MultiVariant> createEmptyOrFullDispatch(net.minecraft.world.level.block.state.properties.Property<T>, T, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createBeeNest(net.minecraft.world.level.block.Block, java.util.function.Function<net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TextureMapping>);
+  public final void createCropBlock(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.properties.Property<java.lang.Integer>, int...);
+  public final void createFurnace(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TexturedModel$Provider);
+  public final void createCampfires(net.minecraft.world.level.block.Block...);
+  public final void createAzalea(net.minecraft.world.level.block.Block);
+  public final void createPottedAzalea(net.minecraft.world.level.block.Block);
+  public final void createMushroomBlock(net.minecraft.world.level.block.Block);
+  public final void createCraftingTableLike(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, java.util.function.BiFunction<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TextureMapping>);
+  public final void createPumpkinVariant(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TextureMapping);
+  public final void createDispenserBlock(net.minecraft.world.level.block.Block);
+  public final void createCopperBulb(net.minecraft.world.level.block.Block);
+  public static net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator createCopperBulb(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void copyCopperBulbModel(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createAmethystCluster(net.minecraft.world.level.block.Block);
+  public final void createSpeleothem(net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.data.models.MultiVariant createSpeleothemVariant(net.minecraft.core.Direction, net.minecraft.world.level.block.state.properties.SpeleothemThickness, net.minecraft.world.level.block.Block);
+  public final void createNyliumBlock(net.minecraft.world.level.block.Block);
+  public final void createRotatableColumn(net.minecraft.world.level.block.Block);
+  public final void createLightningRod(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createFarmland(net.minecraft.world.level.block.Block, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.data.models.model.ModelTemplate);
+  public final net.minecraft.client.data.models.MultiVariant createFloorFireModels(net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.data.models.MultiVariant createSideFireModels(net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.data.models.MultiVariant createTopFireModels(net.minecraft.world.level.block.Block);
+  public final void createLantern(net.minecraft.world.level.block.Block);
+  public final void createCopperLantern(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createCopperChain(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createGrassLikeBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.MultiVariant);
+  public final void createWeightedPressurePlate(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void copyModel(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createBarsAndItem(net.minecraft.world.level.block.Block);
+  public final void createBarsAndItem(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void createBars(net.minecraft.world.level.block.Block, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier, net.minecraft.resources.Identifier);
+  public final void createNonTemplateHorizontalBlock(net.minecraft.world.level.block.Block);
+  public final void createPistonVariant(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.MultiVariant, net.minecraft.client.data.models.model.TextureMapping);
+  public final void createNormalTorch(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final net.minecraft.client.renderer.block.dispatch.Variant createTurtleEggModel(int, java.lang.String, net.minecraft.client.data.models.model.TextureMapping);
+  public final net.minecraft.client.renderer.block.dispatch.Variant createTurtleEggModel(int, int);
+  public final void createMultiface(net.minecraft.world.level.block.Block);
+  public final void createMultiface(net.minecraft.world.level.block.Block, net.minecraft.world.item.Item);
+  public static <T extends net.minecraft.world.level.block.state.properties.Property<?>> java.util.Map<T, net.minecraft.client.renderer.block.dispatch.VariantMutator> selectMultifaceProperties(net.minecraft.world.level.block.state.StateHolder<?, ?>, java.util.function.Function<net.minecraft.core.Direction, T>);
+  public final void createMultifaceBlockStates(net.minecraft.world.level.block.Block);
+  public final void createMossyCarpet(net.minecraft.world.level.block.Block);
+  public final void createHangingMoss(net.minecraft.world.level.block.Block);
+  public final void createShelf(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public final void addShelfPart(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.TextureMapping, net.minecraft.client.data.models.blockstates.MultiPartGenerator, net.minecraft.client.data.models.model.ModelTemplate, java.lang.Boolean, net.minecraft.world.level.block.state.properties.SideChainPart);
+  public static void forEachHorizontalDirection(java.util.function.BiConsumer<net.minecraft.core.Direction, net.minecraft.client.renderer.block.dispatch.VariantMutator>);
+  public static net.minecraft.client.renderer.block.dispatch.multipart.Condition shelfCondition(net.minecraft.core.Direction, java.lang.Boolean, net.minecraft.world.level.block.state.properties.SideChainPart);
+  public final void addSlotStateAndRotationVariants(net.minecraft.client.data.models.blockstates.MultiPartGenerator, net.minecraft.client.renderer.block.dispatch.multipart.Condition, net.minecraft.client.renderer.block.dispatch.VariantMutator);
+  public final void addBookSlotModel(net.minecraft.client.data.models.blockstates.MultiPartGenerator, net.minecraft.client.renderer.block.dispatch.multipart.Condition, net.minecraft.client.renderer.block.dispatch.VariantMutator, net.minecraft.world.level.block.state.properties.BooleanProperty, net.minecraft.client.data.models.model.ModelTemplate, boolean);
+  public final void createShulkerBox(net.minecraft.world.level.block.Block, net.minecraft.world.item.DyeColor);
+  public final void createGrowingPlant(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.client.data.models.BlockModelGenerators$PlantType);
+  public final void createNetherRoots(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public static net.minecraft.client.renderer.block.dispatch.VariantMutator applyRotation(net.minecraft.core.FrontAndTop);
+  public final void createHead(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.SkullBlock$Type, net.minecraft.resources.Identifier);
+  public final void createCopperGolemStatue(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.world.level.block.WeatheringCopper$WeatherState);
+  public final void createBanner(net.minecraft.world.item.DyeColor);
+  public final void createChest(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.resources.Identifier, boolean);
+  public final void createChest(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block, net.minecraft.client.renderer.MultiblockChestResources<net.minecraft.resources.Identifier>, boolean);
+  public final void createBed(net.minecraft.world.item.DyeColor);
+  public final void generateSimpleSpecialItemModel(net.minecraft.world.level.block.Block, java.util.Optional<com.mojang.math.Transformation>, net.minecraft.client.renderer.special.SpecialModelRenderer$Unbaked<?>);
+  public void run();
+  public final void createCopperChainItem(net.minecraft.world.item.Item, net.minecraft.world.item.Item);
+  public final void createCandleAndCandleCake(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+}
+Compiled from "ItemModelGenerators.java"
+public class net.minecraft.client.data.models.ItemModelGenerators {
+  public static final net.minecraft.resources.Identifier TRIM_PREFIX_HELMET;
+  public static final net.minecraft.resources.Identifier TRIM_PREFIX_CHESTPLATE;
+  public static final net.minecraft.resources.Identifier TRIM_PREFIX_LEGGINGS;
+  public static final net.minecraft.resources.Identifier TRIM_PREFIX_BOOTS;
+  public static final java.util.List<net.minecraft.client.data.models.ItemModelGenerators$TrimMaterialData> TRIM_MATERIAL_MODELS;
+  public final net.minecraft.client.data.models.ItemModelOutput itemModelOutput;
+  public final java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance> modelOutput;
+  public static net.minecraft.resources.Identifier prefixForSlotTrim(java.lang.String);
+  public net.minecraft.client.data.models.ItemModelGenerators(net.minecraft.client.data.models.ItemModelOutput, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+  public final void declareCustomModelItem(net.minecraft.world.item.Item);
+  public final net.minecraft.resources.Identifier createFlatItemModel(net.minecraft.world.item.Item, net.minecraft.client.data.models.model.ModelTemplate);
+  public final void generateFlatItem(net.minecraft.world.item.Item, net.minecraft.client.data.models.model.ModelTemplate);
+  public final net.minecraft.resources.Identifier createFlatItemModel(net.minecraft.world.item.Item, java.lang.String, net.minecraft.client.data.models.model.ModelTemplate);
+  public final net.minecraft.resources.Identifier createFlatItemModel(net.minecraft.world.item.Item, net.minecraft.world.item.Item, net.minecraft.client.data.models.model.ModelTemplate);
+  public final void generateFlatItem(net.minecraft.world.item.Item, net.minecraft.world.item.Item, net.minecraft.client.data.models.model.ModelTemplate);
+  public final void generateFlatItem(net.minecraft.world.item.Item, net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelTemplate);
+  public final void generateItemWithTintedOverlay(net.minecraft.world.item.Item, net.minecraft.client.color.item.ItemTintSource);
+  public final void generateItemWithTintedOverlay(net.minecraft.world.item.Item, java.lang.String, net.minecraft.client.color.item.ItemTintSource);
+  public final void generateItemWithTintedBaseLayer(net.minecraft.world.item.Item, int);
+  public final java.util.List<net.minecraft.client.renderer.item.RangeSelectItemModel$Entry> createCompassModels(net.minecraft.world.item.Item);
+  public final void generateStandardCompassItem(net.minecraft.world.item.Item);
+  public final void generateRecoveryCompassItem(net.minecraft.world.item.Item);
+  public final void generateClockItem(net.minecraft.world.item.Item);
+  public final net.minecraft.resources.Identifier generateLayeredItem(net.minecraft.world.item.Item, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material);
+  public final net.minecraft.resources.Identifier generateLayeredItem(net.minecraft.resources.Identifier, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material);
+  public final void generateLayeredItem(net.minecraft.resources.Identifier, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material, net.minecraft.client.resources.model.sprite.Material);
+  public final void generateTrimmableArmorSet(net.minecraft.world.item.Item, net.minecraft.world.item.Item, net.minecraft.world.item.Item, net.minecraft.world.item.Item, boolean, java.util.Map<net.minecraft.world.item.equipment.trim.TrimMaterials$Palette, net.minecraft.world.item.equipment.trim.TrimMaterials$Palette>);
+  public final void generateTrimmableItem(net.minecraft.world.item.Item, net.minecraft.resources.Identifier, boolean, java.util.Map<net.minecraft.world.item.equipment.trim.TrimMaterials$Palette, net.minecraft.world.item.equipment.trim.TrimMaterials$Palette>);
+  public final void generateBundleModels(net.minecraft.world.item.Item);
+  public final net.minecraft.resources.Identifier generateBundleCoverModel(net.minecraft.world.item.Item, net.minecraft.client.data.models.model.ModelTemplate, java.lang.String);
+  public final void generateBow(net.minecraft.world.item.Item);
+  public final void generateCrossbow(net.minecraft.world.item.Item);
+  public final void generateBooleanDispatch(net.minecraft.world.item.Item, net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty, net.minecraft.client.renderer.item.ItemModel$Unbaked, net.minecraft.client.renderer.item.ItemModel$Unbaked);
+  public final void generateElytra(net.minecraft.world.item.Item);
+  public final void generateBrush(net.minecraft.world.item.Item);
+  public final void generateFishingRod(net.minecraft.world.item.Item);
+  public final void generateGoatHorn(net.minecraft.world.item.Item);
+  public final void generateShield(net.minecraft.world.item.Item);
+  public static net.minecraft.client.renderer.item.ItemModel$Unbaked createFlatModelDispatch(net.minecraft.client.renderer.item.ItemModel$Unbaked, net.minecraft.client.renderer.item.ItemModel$Unbaked);
+  public final void generateSpyglass(net.minecraft.world.item.Item);
+  public final void generateTrident(net.minecraft.world.item.Item);
+  public final void generateSpear(net.minecraft.world.item.Item);
+  public final void addPotionTint(net.minecraft.world.item.Item, net.minecraft.resources.Identifier);
+  public final void generatePotion(net.minecraft.world.item.Item);
+  public final void generateTippedArrow(net.minecraft.world.item.Item);
+  public final void generateDyedItem(net.minecraft.world.item.Item, int);
+  public final void generateTwoLayerDyedItem(net.minecraft.world.item.Item);
+  public void run();
+}
+Compiled from "BlockModelGenerators.java"
+public final class net.minecraft.client.data.models.BlockModelGenerators$PlantType extends java.lang.Enum<net.minecraft.client.data.models.BlockModelGenerators$PlantType> {
+  public static final net.minecraft.client.data.models.BlockModelGenerators$PlantType TINTED;
+  public static final net.minecraft.client.data.models.BlockModelGenerators$PlantType NOT_TINTED;
+  public static final net.minecraft.client.data.models.BlockModelGenerators$PlantType EMISSIVE_NOT_TINTED;
+  public static net.minecraft.client.data.models.BlockModelGenerators$PlantType[] values();
+  public static net.minecraft.client.data.models.BlockModelGenerators$PlantType valueOf(java.lang.String);
+  public net.minecraft.client.data.models.model.ModelTemplate getCross();
+  public net.minecraft.client.data.models.model.ModelTemplate getCrossPot();
+  public net.minecraft.resources.Identifier createItemModelUsingBlockTexture(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.world.level.block.Block);
+  public net.minecraft.resources.Identifier createItemModelUsingBlockTexture(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.world.level.block.Block, java.lang.String);
+  public net.minecraft.resources.Identifier createItemModelUsingItemTexture(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.world.level.block.Block);
+  public net.minecraft.resources.Identifier createItemModelUsingItemTexture(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.world.level.block.Block, java.lang.String);
+  public net.minecraft.client.data.models.model.TextureMapping getTextureMapping(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.model.TextureMapping getPlantTextureMapping(net.minecraft.world.level.block.Block);
+}
+Compiled from "BlockModelGenerators.java"
+final class net.minecraft.client.data.models.BlockModelGenerators$BookSlotModelCacheKey extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.client.data.models.model.ModelTemplate template();
+  public java.lang.String modelSuffix();
+}
+Compiled from "BlockModelGenerators.java"
+public class net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider {
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.client.data.models.model.TextureMapping);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider fullBlock(net.minecraft.world.level.block.Block, net.minecraft.client.data.models.model.ModelTemplate);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider donateModelTo(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider button(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider carpet(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider wall(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider customFence(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider fence(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider customFenceGate(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider fenceGate(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider pressurePlate(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider sign(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider customHangingSign(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider hangingSign(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider slab(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider stairs(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$BlockFamilyProvider generateFor(net.minecraft.data.BlockFamily);
+}
+Compiled from "ItemModelGenerators.java"
+public final class net.minecraft.client.data.models.ItemModelGenerators$TrimMaterialData extends java.lang.Record {
+  public net.minecraft.client.data.models.ItemModelGenerators$TrimMaterialData(net.minecraft.world.item.equipment.trim.TrimMaterials$Palette, net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimMaterial>);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.equipment.trim.TrimMaterials$Palette palette();
+  public net.minecraft.resources.ResourceKey<net.minecraft.world.item.equipment.trim.TrimMaterial> materialKey();
+}
+Compiled from "ModelProvider.java"
+class net.minecraft.client.data.models.ModelProvider$ItemInfoCollector implements net.minecraft.client.data.models.ItemModelOutput {
+  public void accept(net.minecraft.world.item.Item, net.minecraft.client.renderer.item.ItemModel$Unbaked, net.minecraft.client.renderer.item.ClientItem$Properties);
+  public void copy(net.minecraft.world.item.Item, net.minecraft.world.item.Item);
+  public void finalizeAndValidate();
+  public java.util.concurrent.CompletableFuture<?> save(net.minecraft.data.CachedOutput, net.minecraft.data.PackOutput$PathProvider);
+}
+Compiled from "EquipmentAssetProvider.java"
+public class net.minecraft.client.data.models.EquipmentAssetProvider implements net.minecraft.data.DataProvider {
+  public net.minecraft.client.data.models.EquipmentAssetProvider(net.minecraft.data.PackOutput);
+  public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public java.lang.String getName();
+}
+Compiled from "MultiVariant.java"
+public final class net.minecraft.client.data.models.MultiVariant extends java.lang.Record {
+  public net.minecraft.client.data.models.MultiVariant(net.minecraft.util.random.WeightedList<net.minecraft.client.renderer.block.dispatch.Variant>);
+  public net.minecraft.client.data.models.MultiVariant with(net.minecraft.client.renderer.block.dispatch.VariantMutator);
+  public net.minecraft.client.renderer.block.dispatch.BlockStateModel$Unbaked toUnbaked();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.util.random.WeightedList<net.minecraft.client.renderer.block.dispatch.Variant> variants();
+}
+Compiled from "BlockModelGenerators.java"
+interface net.minecraft.client.data.models.BlockModelGenerators$BlockStateGeneratorSupplier {
+  public abstract net.minecraft.client.data.models.blockstates.BlockModelDefinitionGenerator create(net.minecraft.world.level.block.Block, net.minecraft.client.renderer.block.dispatch.Variant, net.minecraft.client.data.models.model.TextureMapping, java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance>);
+}
+Compiled from "ModelProvider.java"
+class net.minecraft.client.data.models.ModelProvider$SimpleModelCollector implements java.util.function.BiConsumer<net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance> {
+  public void accept(net.minecraft.resources.Identifier, net.minecraft.client.data.models.model.ModelInstance);
+  public java.util.concurrent.CompletableFuture<?> save(net.minecraft.data.CachedOutput, net.minecraft.data.PackOutput$PathProvider);
+  public void accept(java.lang.Object, java.lang.Object);
+}
+Compiled from "ItemModelOutput.java"
+public interface net.minecraft.client.data.models.ItemModelOutput {
+  public default void accept(net.minecraft.world.item.Item, net.minecraft.client.renderer.item.ItemModel$Unbaked);
+  public abstract void accept(net.minecraft.world.item.Item, net.minecraft.client.renderer.item.ItemModel$Unbaked, net.minecraft.client.renderer.item.ClientItem$Properties);
+  public abstract void copy(net.minecraft.world.item.Item, net.minecraft.world.item.Item);
+}
+Compiled from "BlockModelGenerators.java"
+public class net.minecraft.client.data.models.BlockModelGenerators$WoodProvider {
+  public net.minecraft.client.data.models.BlockModelGenerators$WoodProvider(net.minecraft.client.data.models.BlockModelGenerators, net.minecraft.client.data.models.model.TextureMapping);
+  public net.minecraft.client.data.models.BlockModelGenerators$WoodProvider wood(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$WoodProvider log(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$WoodProvider logWithHorizontal(net.minecraft.world.level.block.Block);
+  public net.minecraft.client.data.models.BlockModelGenerators$WoodProvider logUVLocked(net.minecraft.world.level.block.Block);
+}
+Compiled from "WaypointStyleProvider.java"
+public class net.minecraft.client.data.models.WaypointStyleProvider implements net.minecraft.data.DataProvider {
+  public net.minecraft.client.data.models.WaypointStyleProvider(net.minecraft.data.PackOutput);
+  public java.util.concurrent.CompletableFuture<?> run(net.minecraft.data.CachedOutput);
+  public java.lang.String getName();
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.data.models.package-info {
+}

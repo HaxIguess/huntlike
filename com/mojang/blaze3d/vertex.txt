@@ -1,0 +1,320 @@
+Compiled from "UberGpuBuffer.java"
+public class com.mojang.blaze3d.vertex.UberGpuBuffer<T> implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.UberGpuBuffer(java.lang.String, int, int, int, com.mojang.blaze3d.vertex.StagingBuffer);
+  public <U extends T> boolean addAllocation(U, com.mojang.blaze3d.vertex.UberGpuBuffer$UploadCallback<U>, java.nio.ByteBuffer);
+  public boolean uploadStagedAllocations(com.mojang.renderpearl.api.device.GpuDevice, com.mojang.blaze3d.vertex.StagingBuffer$Uploader);
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Allocation getAllocation(T);
+  public void removeAllocation(T);
+  public com.mojang.renderpearl.api.buffers.GpuBuffer getGpuBuffer(com.mojang.blaze3d.vertex.TlsfAllocator$Allocation);
+  public void printStatistics();
+  public void close();
+}
+Compiled from "StagingBuffer.java"
+class com.mojang.blaze3d.vertex.StagingBuffer$Cpu extends com.mojang.blaze3d.vertex.StagingBuffer {
+  protected java.nio.ByteBuffer getWriteBuffer();
+  protected void copyTo(com.mojang.renderpearl.api.commands.CommandEncoder, com.mojang.renderpearl.api.buffers.GpuBuffer, long, long, long);
+  public void close();
+}
+Compiled from "TlsfAllocator.java"
+public class com.mojang.blaze3d.vertex.TlsfAllocator$Allocation {
+  public long getSize();
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Heap getHeap();
+  public long getOffsetFromHeap();
+  public boolean isFreed();
+}
+Compiled from "StagingBuffer.java"
+public abstract class com.mojang.blaze3d.vertex.StagingBuffer implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.StagingBuffer();
+  public static com.mojang.blaze3d.vertex.StagingBuffer create(java.lang.String, com.mojang.renderpearl.api.device.GpuDevice, int);
+  public com.mojang.blaze3d.vertex.StagingBuffer$BufferHandle tryAppend(java.nio.ByteBuffer);
+  protected abstract java.nio.ByteBuffer getWriteBuffer();
+  protected abstract void copyTo(com.mojang.renderpearl.api.commands.CommandEncoder, com.mojang.renderpearl.api.buffers.GpuBuffer, long, long, long);
+  protected void rotateBuffer();
+  public com.mojang.blaze3d.vertex.StagingBuffer$Uploader startUploading(com.mojang.renderpearl.api.commands.CommandEncoder);
+  public abstract void close();
+}
+Compiled from "TlsfAllocator.java"
+final class com.mojang.blaze3d.vertex.TlsfAllocator$IndexPair extends java.lang.Record {
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int firstLevelIndex();
+  public int secondLevelIndex();
+}
+Compiled from "DefaultVertexFormat.java"
+public class com.mojang.blaze3d.vertex.DefaultVertexFormat {
+  public static final java.lang.String POSITION_SEMANTIC_NAME;
+  public static final java.lang.String COLOR_SEMANTIC_NAME;
+  public static final java.lang.String UV0_SEMANTIC_NAME;
+  public static final java.lang.String UV1_SEMANTIC_NAME;
+  public static final java.lang.String UV2_SEMANTIC_NAME;
+  public static final java.lang.String UV3_SEMANTIC_NAME;
+  public static final java.lang.String NORMAL_SEMANTIC_NAME;
+  public static final java.lang.String LINE_WIDTH_SEMANTIC_NAME;
+  public static final java.lang.String CHUNK_POSITION_SEMANTIC_NAME;
+  public static final java.lang.String CHUNK_VISIBILITY_SEMANTIC_NAME;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat BLOCK;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat CHUNK_DATA_INSTANCED;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat ENTITY;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat ENTITY_GLINT_SPECIAL;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat PARTICLE;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR_NORMAL;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR_LIGHTMAP;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_TEX;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_TEX_COLOR;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR_TEX_LIGHTMAP;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_TEX_LIGHTMAP_COLOR;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_TEX_COLOR_NORMAL;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR_LINE_WIDTH;
+  public static final com.mojang.renderpearl.api.vertex.VertexFormat POSITION_COLOR_NORMAL_LINE_WIDTH;
+  public com.mojang.blaze3d.vertex.DefaultVertexFormat();
+}
+Compiled from "UberGpuBuffer.java"
+final class com.mojang.blaze3d.vertex.UberGpuBuffer$StagedAllocationEntry<T> extends java.lang.Record implements java.lang.AutoCloseable {
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.blaze3d.vertex.StagingBuffer$BufferHandle buffer();
+  public com.mojang.blaze3d.vertex.UberGpuBuffer$UploadCallback<T> callback();
+}
+Compiled from "UberGpuBuffer.java"
+public interface com.mojang.blaze3d.vertex.UberGpuBuffer$UploadCallback<T> {
+  public abstract void bufferHasBeenUploaded(T);
+}
+Compiled from "StagingBuffer.java"
+public class com.mojang.blaze3d.vertex.StagingBuffer$BufferHandle implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.StagingBuffer$BufferHandle(com.mojang.blaze3d.vertex.StagingBuffer, int, int);
+  public long size();
+  public void close();
+}
+Compiled from "StagingBuffer.java"
+class com.mojang.blaze3d.vertex.StagingBuffer$PersistentlyMapped extends com.mojang.blaze3d.vertex.StagingBuffer {
+  protected java.nio.ByteBuffer getWriteBuffer();
+  protected void copyTo(com.mojang.renderpearl.api.commands.CommandEncoder, com.mojang.renderpearl.api.buffers.GpuBuffer, long, long, long);
+  protected void rotateBuffer();
+  public void close();
+}
+Compiled from "MeshData.java"
+public final class com.mojang.blaze3d.vertex.MeshData$SortState extends java.lang.Record {
+  public com.mojang.blaze3d.vertex.MeshData$SortState(com.mojang.blaze3d.vertex.CompactVectorArray, com.mojang.renderpearl.api.pipeline.IndexType);
+  public com.mojang.blaze3d.vertex.ByteBufferBuilder$Result buildSortedIndexBuffer(com.mojang.blaze3d.vertex.ByteBufferBuilder, com.mojang.blaze3d.vertex.VertexSorting);
+  public void writeSortedIndexBuffer(java.nio.ByteBuffer, com.mojang.blaze3d.vertex.VertexSorting);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.blaze3d.vertex.CompactVectorArray centroids();
+  public com.mojang.renderpearl.api.pipeline.IndexType indexType();
+}
+Compiled from "MeshData.java"
+public final class com.mojang.blaze3d.vertex.MeshData$DrawState extends java.lang.Record {
+  public com.mojang.blaze3d.vertex.MeshData$DrawState(com.mojang.renderpearl.api.vertex.VertexFormat, int, int, com.mojang.renderpearl.api.pipeline.PrimitiveTopology, com.mojang.renderpearl.api.pipeline.IndexType);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.renderpearl.api.vertex.VertexFormat format();
+  public int vertexCount();
+  public int indexCount();
+  public com.mojang.renderpearl.api.pipeline.PrimitiveTopology primitiveTopology();
+  public com.mojang.renderpearl.api.pipeline.IndexType indexType();
+}
+Compiled from "StagingBuffer.java"
+public class com.mojang.blaze3d.vertex.StagingBuffer$Uploader implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.StagingBuffer$Uploader(com.mojang.blaze3d.vertex.StagingBuffer, com.mojang.renderpearl.api.commands.CommandEncoder);
+  public void copyTo(com.mojang.blaze3d.vertex.StagingBuffer$BufferHandle, com.mojang.renderpearl.api.buffers.GpuBuffer, long);
+  public void close();
+  public void checkValidFor(com.mojang.blaze3d.vertex.StagingBuffer);
+}
+Compiled from "QuadInstance.java"
+public class com.mojang.blaze3d.vertex.QuadInstance {
+  public com.mojang.blaze3d.vertex.QuadInstance();
+  public int getColor(int);
+  public int getLightCoords(int);
+  public int getLightCoordsWithEmission(int, int);
+  public int overlayCoords();
+  public void setColor(int, int);
+  public void setLightCoords(int, int);
+  public void setColor(int);
+  public void setLightCoords(int);
+  public void setOverlayCoords(int);
+  public void multiplyColor(int);
+  public void scaleColor(float);
+}
+Compiled from "ByteBufferBuilder.java"
+public class com.mojang.blaze3d.vertex.ByteBufferBuilder$Result implements java.lang.AutoCloseable {
+  public java.nio.ByteBuffer byteBuffer();
+  public int size();
+  public void close();
+}
+Compiled from "VertexSorting.java"
+public interface com.mojang.blaze3d.vertex.VertexSorting$DistanceFunction {
+  public abstract float apply(org.joml.Vector3f);
+}
+Compiled from "TlsfAllocator.java"
+public class com.mojang.blaze3d.vertex.TlsfAllocator {
+  public com.mojang.blaze3d.vertex.TlsfAllocator(com.mojang.blaze3d.vertex.TlsfAllocator$Heap);
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Allocation allocate(long, int);
+  public void free(com.mojang.blaze3d.vertex.TlsfAllocator$Allocation);
+  public boolean isCompletelyFree();
+  public void printAllocatorStatistics(java.lang.String);
+}
+Compiled from "MeshData.java"
+public class com.mojang.blaze3d.vertex.MeshData implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.MeshData(com.mojang.blaze3d.vertex.ByteBufferBuilder$Result, com.mojang.blaze3d.vertex.MeshData$DrawState);
+  public static void decodeQuadCentroids(java.nio.ByteBuffer, int, com.mojang.renderpearl.api.vertex.VertexFormat, com.mojang.blaze3d.vertex.CompactVectorArray, int);
+  public java.nio.ByteBuffer vertexBuffer();
+  public java.nio.ByteBuffer indexBuffer();
+  public com.mojang.blaze3d.vertex.ByteBufferBuilder$Result vertexBufferSlice();
+  public com.mojang.blaze3d.vertex.MeshData$DrawState drawState();
+  public com.mojang.blaze3d.vertex.MeshData$SortState sortQuads(com.mojang.blaze3d.vertex.ByteBufferBuilder, com.mojang.blaze3d.vertex.VertexSorting);
+  public void close();
+}
+Compiled from "VertexSorting.java"
+public interface com.mojang.blaze3d.vertex.VertexSorting {
+  public static final com.mojang.blaze3d.vertex.VertexSorting DISTANCE_TO_ORIGIN;
+  public static final com.mojang.blaze3d.vertex.VertexSorting ORTHOGRAPHIC_Z;
+  public static com.mojang.blaze3d.vertex.VertexSorting byDistance(float, float, float);
+  public static com.mojang.blaze3d.vertex.VertexSorting byDistance(org.joml.Vector3fc);
+  public static com.mojang.blaze3d.vertex.VertexSorting byDistance(com.mojang.blaze3d.vertex.VertexSorting$DistanceFunction);
+  public abstract int[] sort(com.mojang.blaze3d.vertex.CompactVectorArray);
+}
+Compiled from "VertexConsumer.java"
+public interface com.mojang.blaze3d.vertex.VertexConsumer {
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer addVertex(float, float, float);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setColor(int, int, int, int);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setColor(int);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setUv(float, float);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setUv1(int, int);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setUv2(int, int);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setUv3(float, float);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setNormal(float, float, float);
+  public abstract com.mojang.blaze3d.vertex.VertexConsumer setLineWidth(float);
+  public default void addVertex(float, float, float, int, float, float, int, int, float, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer setColor(float, float, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer setLight(int);
+  public default com.mojang.blaze3d.vertex.VertexConsumer setOverlay(int);
+  public default void putBlockBakedQuad(float, float, float, net.minecraft.client.resources.model.geometry.BakedQuad, com.mojang.blaze3d.vertex.QuadInstance);
+  public default void putBakedQuad(com.mojang.blaze3d.vertex.PoseStack$Pose, net.minecraft.client.resources.model.geometry.BakedQuad, com.mojang.blaze3d.vertex.QuadInstance);
+  public default void putBakedQuadWithGlint(com.mojang.blaze3d.vertex.PoseStack$Pose, net.minecraft.client.resources.model.geometry.BakedQuad, com.mojang.blaze3d.vertex.QuadInstance, com.mojang.blaze3d.vertex.PoseStack$Pose);
+  public default com.mojang.blaze3d.vertex.VertexConsumer addVertex(org.joml.Vector3fc);
+  public default com.mojang.blaze3d.vertex.VertexConsumer addVertex(com.mojang.blaze3d.vertex.PoseStack$Pose, org.joml.Vector3fc);
+  public default com.mojang.blaze3d.vertex.VertexConsumer addVertex(com.mojang.blaze3d.vertex.PoseStack$Pose, float, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer addVertex(org.joml.Matrix4fc, float, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer addVertexWith2DPose(org.joml.Matrix3x2fc, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer setNormal(com.mojang.blaze3d.vertex.PoseStack$Pose, float, float, float);
+  public default com.mojang.blaze3d.vertex.VertexConsumer setNormal(com.mojang.blaze3d.vertex.PoseStack$Pose, org.joml.Vector3fc);
+}
+Compiled from "SheetedDecalTextureGenerator.java"
+public class com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator implements com.mojang.blaze3d.vertex.VertexConsumer {
+  public com.mojang.blaze3d.vertex.SheetedDecalTextureGenerator(com.mojang.blaze3d.vertex.VertexConsumer, com.mojang.blaze3d.vertex.PoseStack$Pose, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer addVertex(float, float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setColor(int, int, int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setColor(int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv(float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv1(int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv2(int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv3(float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setNormal(float, float, float);
+  public static void setSheetedDecalUv(org.joml.Vector3f, org.joml.Vector3f, org.joml.Matrix4fc, org.joml.Matrix3fc, float, com.mojang.blaze3d.vertex.VertexConsumer);
+  public com.mojang.blaze3d.vertex.VertexConsumer setLineWidth(float);
+}
+Compiled from "ByteBufferBuilder.java"
+public class com.mojang.blaze3d.vertex.ByteBufferBuilder implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.vertex.ByteBufferBuilder(int, long);
+  public com.mojang.blaze3d.vertex.ByteBufferBuilder(int);
+  public static com.mojang.blaze3d.vertex.ByteBufferBuilder exactlySized(int);
+  public long reserve(int);
+  public com.mojang.blaze3d.vertex.ByteBufferBuilder$Result build();
+  public void clear();
+  public void discard();
+  public void close();
+}
+Compiled from "CompactVectorArray.java"
+public class com.mojang.blaze3d.vertex.CompactVectorArray {
+  public com.mojang.blaze3d.vertex.CompactVectorArray(int);
+  public int size();
+  public void set(int, org.joml.Vector3fc);
+  public void set(int, float, float, float);
+  public org.joml.Vector3f get(int, org.joml.Vector3f);
+  public float getX(int);
+  public float getY(int);
+  public float getZ(int);
+}
+Compiled from "PoseStack.java"
+public class com.mojang.blaze3d.vertex.PoseStack {
+  public com.mojang.blaze3d.vertex.PoseStack();
+  public void translate(double, double, double);
+  public void translate(float, float, float);
+  public void translate(net.minecraft.world.phys.Vec3);
+  public void scale(float, float, float);
+  public void rotate(org.joml.Quaternionfc);
+  public void rotate(com.mojang.math.Axis, float);
+  public void rotateDegrees(com.mojang.math.Axis, float);
+  public void rotateAround(org.joml.Quaternionfc, float, float, float);
+  public void pushPose();
+  public void popPose();
+  public com.mojang.blaze3d.vertex.PoseStack$Pose last();
+  public boolean isEmpty();
+  public void setIdentity();
+  public void mulPose(org.joml.Matrix4fc);
+  public void mulPose(com.mojang.math.Transformation);
+}
+Compiled from "TlsfAllocator.java"
+public class com.mojang.blaze3d.vertex.TlsfAllocator$Heap {
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Heap(long);
+}
+Compiled from "PoseStack.java"
+public final class com.mojang.blaze3d.vertex.PoseStack$Pose {
+  public com.mojang.blaze3d.vertex.PoseStack$Pose();
+  public void set(com.mojang.blaze3d.vertex.PoseStack$Pose);
+  public org.joml.Matrix4f pose();
+  public org.joml.Matrix3f normal();
+  public org.joml.Vector3f transformNormal(org.joml.Vector3fc, org.joml.Vector3f);
+  public org.joml.Vector3f transformNormal(float, float, float, org.joml.Vector3f);
+  public org.joml.Matrix4f translate(float, float, float);
+  public void scale(float, float, float);
+  public void rotate(org.joml.Quaternionfc);
+  public void rotate(com.mojang.math.Axis, float);
+  public void rotateDegrees(com.mojang.math.Axis, float);
+  public void rotateAround(org.joml.Quaternionfc, float, float, float);
+  public void setIdentity();
+  public void mulPose(org.joml.Matrix4fc);
+  public void mulPose(com.mojang.math.Transformation);
+  public com.mojang.blaze3d.vertex.PoseStack$Pose copy();
+}
+Compiled from "UberGpuBuffer.java"
+public class com.mojang.blaze3d.vertex.UberGpuBuffer$UberGpuBufferHeap extends com.mojang.blaze3d.vertex.TlsfAllocator$Heap {
+  public com.mojang.blaze3d.vertex.UberGpuBuffer$UberGpuBufferHeap(long, com.mojang.renderpearl.api.device.GpuDevice, int, java.lang.String);
+}
+Compiled from "package-info.java"
+interface com.mojang.blaze3d.vertex.package-info {
+}
+Compiled from "TlsfAllocator.java"
+class com.mojang.blaze3d.vertex.TlsfAllocator$Block {
+  public final com.mojang.blaze3d.vertex.TlsfAllocator$Heap heap;
+  public long offsetFromHeap;
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Block nextFreeBlock;
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Block previousFreeBlock;
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Block nextPhysicalBlock;
+  public com.mojang.blaze3d.vertex.TlsfAllocator$Block previousPhysicalBlock;
+}
+Compiled from "BufferBuilder.java"
+public class com.mojang.blaze3d.vertex.BufferBuilder implements com.mojang.blaze3d.vertex.VertexConsumer {
+  public com.mojang.blaze3d.vertex.BufferBuilder(com.mojang.blaze3d.vertex.ByteBufferBuilder, com.mojang.renderpearl.api.pipeline.PrimitiveTopology, com.mojang.renderpearl.api.vertex.VertexFormat);
+  public com.mojang.blaze3d.vertex.MeshData build();
+  public com.mojang.blaze3d.vertex.MeshData buildOrThrow();
+  public com.mojang.blaze3d.vertex.VertexConsumer addVertex(float, float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setColor(int, int, int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setColor(int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv(float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv1(int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setOverlay(int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv2(int, int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setUv3(float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setLight(int);
+  public com.mojang.blaze3d.vertex.VertexConsumer setNormal(float, float, float);
+  public com.mojang.blaze3d.vertex.VertexConsumer setLineWidth(float);
+  public void addVertex(float, float, float, int, float, float, int, int, float, float, float);
+}

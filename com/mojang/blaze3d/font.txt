@@ -1,0 +1,84 @@
+Compiled from "GlyphProvider.java"
+public final class com.mojang.blaze3d.font.GlyphProvider$Conditional extends java.lang.Record implements java.lang.AutoCloseable {
+  public com.mojang.blaze3d.font.GlyphProvider$Conditional(com.mojang.blaze3d.font.GlyphProvider, net.minecraft.client.gui.font.FontOption$Filter);
+  public void close();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public com.mojang.blaze3d.font.GlyphProvider provider();
+  public net.minecraft.client.gui.font.FontOption$Filter filter();
+}
+Compiled from "SpaceProvider.java"
+public class com.mojang.blaze3d.font.SpaceProvider implements com.mojang.blaze3d.font.GlyphProvider {
+  public com.mojang.blaze3d.font.SpaceProvider(java.util.Map<java.lang.Integer, java.lang.Float>);
+  public com.mojang.blaze3d.font.UnbakedGlyph getGlyph(int);
+  public it.unimi.dsi.fastutil.ints.IntSet getSupportedGlyphs();
+}
+Compiled from "TrueTypeGlyphProvider.java"
+public class com.mojang.blaze3d.font.TrueTypeGlyphProvider implements com.mojang.blaze3d.font.GlyphProvider {
+  public com.mojang.blaze3d.font.TrueTypeGlyphProvider(java.nio.ByteBuffer, org.lwjgl.util.freetype.FT_Face, float, float, float, float, java.lang.String);
+  public com.mojang.blaze3d.font.UnbakedGlyph getGlyph(int);
+  public void close();
+  public it.unimi.dsi.fastutil.ints.IntSet getSupportedGlyphs();
+}
+Compiled from "TrueTypeGlyphProvider.java"
+class com.mojang.blaze3d.font.TrueTypeGlyphProvider$Glyph implements com.mojang.blaze3d.font.UnbakedGlyph {
+  public com.mojang.blaze3d.font.GlyphInfo info();
+  public net.minecraft.client.gui.font.glyphs.BakedGlyph bake(com.mojang.blaze3d.font.UnbakedGlyph$Stitcher);
+}
+Compiled from "UnbakedGlyph.java"
+public interface com.mojang.blaze3d.font.UnbakedGlyph {
+  public abstract com.mojang.blaze3d.font.GlyphInfo info();
+  public abstract net.minecraft.client.gui.font.glyphs.BakedGlyph bake(com.mojang.blaze3d.font.UnbakedGlyph$Stitcher);
+}
+Compiled from "package-info.java"
+interface com.mojang.blaze3d.font.package-info {
+}
+Compiled from "TrueTypeGlyphProvider.java"
+class com.mojang.blaze3d.font.TrueTypeGlyphProvider$GlyphEntry {
+}
+Compiled from "GlyphProvider.java"
+public interface com.mojang.blaze3d.font.GlyphProvider extends java.lang.AutoCloseable {
+  public static final float BASELINE;
+  public default void close();
+  public default com.mojang.blaze3d.font.UnbakedGlyph getGlyph(int);
+  public abstract it.unimi.dsi.fastutil.ints.IntSet getSupportedGlyphs();
+}
+Compiled from "SpaceProvider.java"
+public final class com.mojang.blaze3d.font.SpaceProvider$Definition extends java.lang.Record implements net.minecraft.client.gui.font.providers.GlyphProviderDefinition {
+  public static final com.mojang.serialization.MapCodec<com.mojang.blaze3d.font.SpaceProvider$Definition> CODEC;
+  public com.mojang.blaze3d.font.SpaceProvider$Definition(java.util.Map<java.lang.Integer, java.lang.Float>);
+  public net.minecraft.client.gui.font.providers.GlyphProviderType type();
+  public com.mojang.datafixers.util.Either<net.minecraft.client.gui.font.providers.GlyphProviderDefinition$Loader, net.minecraft.client.gui.font.providers.GlyphProviderDefinition$Reference> unpack();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.Integer, java.lang.Float> advances();
+}
+Compiled from "GlyphInfo.java"
+public interface com.mojang.blaze3d.font.GlyphInfo {
+  public abstract float getAdvance();
+  public default float getAdvance(boolean);
+  public default float getBoldOffset();
+  public default float getShadowOffset();
+  public static com.mojang.blaze3d.font.GlyphInfo simple(float);
+}
+Compiled from "GlyphBitmap.java"
+public interface com.mojang.blaze3d.font.GlyphBitmap {
+  public abstract int getPixelWidth();
+  public abstract int getPixelHeight();
+  public abstract void upload(int, int, com.mojang.renderpearl.api.textures.GpuTexture);
+  public abstract boolean isColored();
+  public abstract float getOversample();
+  public default float getLeft();
+  public default float getRight();
+  public default float getTop();
+  public default float getBottom();
+  public default float getBearingLeft();
+  public default float getBearingTop();
+}
+Compiled from "UnbakedGlyph.java"
+public interface com.mojang.blaze3d.font.UnbakedGlyph$Stitcher {
+  public abstract net.minecraft.client.gui.font.glyphs.BakedGlyph stitch(com.mojang.blaze3d.font.GlyphInfo, com.mojang.blaze3d.font.GlyphBitmap);
+  public abstract net.minecraft.client.gui.font.glyphs.BakedGlyph getMissing();
+}

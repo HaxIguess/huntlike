@@ -1,0 +1,265 @@
+Compiled from "package-info.java"
+interface net.minecraft.commands.package-info {
+}
+Compiled from "CommandSigningContext.java"
+public interface net.minecraft.commands.CommandSigningContext {
+  public static final net.minecraft.commands.CommandSigningContext ANONYMOUS;
+  public abstract net.minecraft.network.chat.PlayerChatMessage getArgument(java.lang.String);
+}
+Compiled from "ArgumentVisitor.java"
+public class net.minecraft.commands.ArgumentVisitor {
+  public net.minecraft.commands.ArgumentVisitor();
+  public static <S> void visitArguments(com.mojang.brigadier.ParseResults<S>, net.minecraft.commands.ArgumentVisitor$Output<S>, boolean);
+}
+Compiled from "ParserUtils.java"
+public class net.minecraft.commands.ParserUtils {
+  public net.minecraft.commands.ParserUtils();
+  public static java.lang.String readWhile(com.mojang.brigadier.StringReader, net.minecraft.CharPredicate);
+}
+Compiled from "CommandSourceStack.java"
+public class net.minecraft.commands.CommandSourceStack implements net.minecraft.commands.SharedSuggestionProvider, net.minecraft.commands.ExecutionCommandSource<net.minecraft.commands.CommandSourceStack>, net.fabricmc.fabric.api.permission.v1.PermissionContextOwner {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_PLAYER;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_ENTITY;
+  public net.minecraft.commands.CommandSourceStack(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.server.MinecraftServer, net.minecraft.world.entity.Entity);
+  public net.minecraft.commands.CommandSourceStack(net.minecraft.commands.CommandSource, net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2, net.minecraft.server.level.ServerLevel, net.minecraft.server.permissions.PermissionSet, net.minecraft.network.chat.Component, net.minecraft.server.MinecraftServer);
+  public net.minecraft.commands.CommandSourceStack withSource(net.minecraft.commands.CommandSource);
+  public net.minecraft.commands.CommandSourceStack withEntity(net.minecraft.world.entity.Entity);
+  public net.minecraft.commands.CommandSourceStack withPosition(net.minecraft.world.phys.Vec3);
+  public net.minecraft.commands.CommandSourceStack withRotation(net.minecraft.world.phys.Vec2);
+  public net.minecraft.commands.CommandSourceStack withCallback(net.minecraft.commands.CommandResultCallback);
+  public net.minecraft.commands.CommandSourceStack withCallback(net.minecraft.commands.CommandResultCallback, java.util.function.BinaryOperator<net.minecraft.commands.CommandResultCallback>);
+  public net.minecraft.commands.CommandSourceStack withSuppressedOutput();
+  public net.minecraft.commands.CommandSourceStack withPermission(net.minecraft.server.permissions.PermissionSet);
+  public net.minecraft.commands.CommandSourceStack withMaximumPermission(net.minecraft.server.permissions.PermissionSet);
+  public net.minecraft.commands.CommandSourceStack withAnchor(net.minecraft.commands.arguments.EntityAnchorArgument$Anchor);
+  public net.minecraft.commands.CommandSourceStack withLevel(net.minecraft.server.level.ServerLevel);
+  public net.minecraft.commands.CommandSourceStack facing(net.minecraft.world.entity.Entity, net.minecraft.commands.arguments.EntityAnchorArgument$Anchor);
+  public net.minecraft.commands.CommandSourceStack facing(net.minecraft.world.phys.Vec3);
+  public net.minecraft.commands.CommandSourceStack withSigningContext(net.minecraft.commands.CommandSigningContext, net.minecraft.util.TaskChainer);
+  public net.minecraft.network.chat.Component getDisplayName();
+  public java.lang.String getTextName();
+  public net.minecraft.server.permissions.PermissionSet permissions();
+  public net.minecraft.world.phys.Vec3 getPosition();
+  public net.minecraft.server.level.ServerLevel getLevel();
+  public net.minecraft.world.entity.Entity getEntity();
+  public net.minecraft.world.entity.Entity getEntityOrException() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.server.level.ServerPlayer getPlayerOrException() throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.server.level.ServerPlayer getPlayer();
+  public boolean isPlayer();
+  public net.minecraft.world.phys.Vec2 getRotation();
+  public net.minecraft.server.MinecraftServer getServer();
+  public net.minecraft.commands.arguments.EntityAnchorArgument$Anchor getAnchor();
+  public net.minecraft.commands.CommandSigningContext getSigningContext();
+  public net.minecraft.util.TaskChainer getChatMessageChainer();
+  public boolean shouldFilterMessageTo(net.minecraft.server.level.ServerPlayer);
+  public void sendChatMessage(net.minecraft.network.chat.OutgoingChatMessage, boolean, net.minecraft.network.chat.ChatType$Bound);
+  public void sendSystemMessage(net.minecraft.network.chat.Component);
+  public void sendSuccess(java.util.function.Supplier<net.minecraft.network.chat.Component>, boolean);
+  public void sendFailure(net.minecraft.network.chat.Component);
+  public net.minecraft.commands.CommandResultCallback callback();
+  public java.util.Collection<java.lang.String> getOnlinePlayerNames();
+  public java.util.Collection<java.lang.String> getAllTeams();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailableSounds();
+  public java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailablePostEffects();
+  public java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> customSuggestion(com.mojang.brigadier.context.CommandContext<?>);
+  public <E> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestRegistryElements(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, com.mojang.brigadier.suggestion.SuggestionsBuilder, com.mojang.brigadier.context.CommandContext<?>, java.util.function.Predicate<E>);
+  public java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public net.minecraft.core.RegistryAccess registryAccess();
+  public net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack> dispatcher();
+  public void handleError(com.mojang.brigadier.exceptions.CommandExceptionType, com.mojang.brigadier.Message, boolean, net.minecraft.commands.execution.TraceCallbacks);
+  public boolean isSilent();
+  public net.minecraft.commands.ExecutionCommandSource withCallback(net.minecraft.commands.CommandResultCallback);
+}
+Compiled from "Commands.java"
+public class net.minecraft.commands.Commands {
+  public static final java.lang.String COMMAND_PREFIX;
+  public static final net.minecraft.server.permissions.PermissionCheck LEVEL_ALL;
+  public static final net.minecraft.server.permissions.PermissionCheck LEVEL_MODERATORS;
+  public static final net.minecraft.server.permissions.PermissionCheck LEVEL_GAMEMASTERS;
+  public static final net.minecraft.server.permissions.PermissionCheck LEVEL_ADMINS;
+  public static final net.minecraft.server.permissions.PermissionCheck LEVEL_OWNERS;
+  public net.minecraft.commands.Commands(net.minecraft.commands.Commands$CommandSelection, net.minecraft.commands.CommandBuildContext);
+  public static <S> com.mojang.brigadier.ParseResults<S> mapSource(com.mojang.brigadier.ParseResults<S>, java.util.function.UnaryOperator<S>);
+  public void performPrefixedCommand(net.minecraft.commands.CommandSourceStack, java.lang.String);
+  public static java.lang.String trimOptionalPrefix(java.lang.String);
+  public void performCommand(com.mojang.brigadier.ParseResults<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static void executeCommandInContext(net.minecraft.commands.CommandSourceStack, java.util.function.Consumer<net.minecraft.commands.execution.ExecutionContext<net.minecraft.commands.CommandSourceStack>>);
+  public void sendCommands(net.minecraft.server.level.ServerPlayer);
+  public static com.mojang.brigadier.builder.LiteralArgumentBuilder<net.minecraft.commands.CommandSourceStack> literal(java.lang.String);
+  public static <T> com.mojang.brigadier.builder.RequiredArgumentBuilder<net.minecraft.commands.CommandSourceStack, T> argument(java.lang.String, com.mojang.brigadier.arguments.ArgumentType<T>);
+  public static java.util.function.Predicate<java.lang.String> createValidator(net.minecraft.commands.Commands$ParseFunction);
+  public com.mojang.brigadier.CommandDispatcher<net.minecraft.commands.CommandSourceStack> getDispatcher();
+  public static <S> void validateParseResults(com.mojang.brigadier.ParseResults<S>) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static <S> com.mojang.brigadier.exceptions.CommandSyntaxException getParseException(com.mojang.brigadier.ParseResults<S>);
+  public static net.minecraft.commands.CommandBuildContext createValidationContext(net.minecraft.core.HolderLookup$Provider);
+  public static void validate();
+  public static <T extends net.minecraft.server.permissions.PermissionSetSupplier> net.minecraft.server.permissions.PermissionProviderCheck<T> hasPermission(net.minecraft.server.permissions.PermissionCheck);
+  public static net.minecraft.commands.CommandSourceStack createCompilationContext(net.minecraft.server.permissions.PermissionSet);
+}
+Compiled from "SharedSuggestionProvider.java"
+public class net.minecraft.commands.SharedSuggestionProvider$TextCoordinates {
+  public static final net.minecraft.commands.SharedSuggestionProvider$TextCoordinates DEFAULT_LOCAL;
+  public static final net.minecraft.commands.SharedSuggestionProvider$TextCoordinates DEFAULT_GLOBAL;
+  public final java.lang.String x;
+  public final java.lang.String y;
+  public final java.lang.String z;
+  public net.minecraft.commands.SharedSuggestionProvider$TextCoordinates(java.lang.String, java.lang.String, java.lang.String);
+}
+Compiled from "CacheableFunction.java"
+public class net.minecraft.commands.CacheableFunction {
+  public static final com.mojang.serialization.Codec<net.minecraft.commands.CacheableFunction> CODEC;
+  public net.minecraft.commands.CacheableFunction(net.minecraft.resources.Identifier);
+  public java.util.Optional<net.minecraft.commands.functions.CommandFunction<net.minecraft.commands.CommandSourceStack>> get(net.minecraft.server.ServerFunctionManager);
+  public net.minecraft.resources.Identifier getId();
+  public boolean equals(java.lang.Object);
+  public int hashCode();
+}
+Compiled from "CommandSigningContext.java"
+public final class net.minecraft.commands.CommandSigningContext$SignedArguments extends java.lang.Record implements net.minecraft.commands.CommandSigningContext {
+  public net.minecraft.commands.CommandSigningContext$SignedArguments(java.util.Map<java.lang.String, net.minecraft.network.chat.PlayerChatMessage>);
+  public net.minecraft.network.chat.PlayerChatMessage getArgument(java.lang.String);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.Map<java.lang.String, net.minecraft.network.chat.PlayerChatMessage> arguments();
+}
+Compiled from "ExecutionCommandSource.java"
+public interface net.minecraft.commands.ExecutionCommandSource<T extends net.minecraft.commands.ExecutionCommandSource<T>> extends net.minecraft.server.permissions.PermissionSetSupplier {
+  public abstract T withCallback(net.minecraft.commands.CommandResultCallback);
+  public abstract net.minecraft.commands.CommandResultCallback callback();
+  public default T clearCallbacks();
+  public abstract com.mojang.brigadier.CommandDispatcher<T> dispatcher();
+  public abstract void handleError(com.mojang.brigadier.exceptions.CommandExceptionType, com.mojang.brigadier.Message, boolean, net.minecraft.commands.execution.TraceCallbacks);
+  public abstract boolean isSilent();
+  public default void handleError(com.mojang.brigadier.exceptions.CommandSyntaxException, boolean, net.minecraft.commands.execution.TraceCallbacks);
+  public static <T extends net.minecraft.commands.ExecutionCommandSource<T>> com.mojang.brigadier.ResultConsumer<T> resultConsumer();
+}
+Compiled from "BrigadierExceptions.java"
+public class net.minecraft.commands.BrigadierExceptions implements com.mojang.brigadier.exceptions.BuiltInExceptionProvider {
+  public net.minecraft.commands.BrigadierExceptions();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType doubleTooLow();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType doubleTooHigh();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType floatTooLow();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType floatTooHigh();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType integerTooLow();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType integerTooHigh();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType longTooLow();
+  public com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType longTooHigh();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType literalIncorrect();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedStartOfQuote();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedEndOfQuote();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidEscape();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidBool();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidInt();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedInt();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidLong();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedLong();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidDouble();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedDouble();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerInvalidFloat();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedFloat();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType readerExpectedBool();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType readerExpectedSymbol();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType dispatcherUnknownCommand();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType dispatcherUnknownArgument();
+  public com.mojang.brigadier.exceptions.SimpleCommandExceptionType dispatcherExpectedArgumentSeparator();
+  public com.mojang.brigadier.exceptions.DynamicCommandExceptionType dispatcherParseException();
+}
+Compiled from "SharedSuggestionProvider.java"
+public final class net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType extends java.lang.Enum<net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType> {
+  public static final net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType TAGS;
+  public static final net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType ELEMENTS;
+  public static final net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType ALL;
+  public static net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType[] values();
+  public static net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType valueOf(java.lang.String);
+  public boolean shouldSuggestTags();
+  public boolean shouldSuggestElements();
+}
+Compiled from "CommandBuildContext.java"
+public interface net.minecraft.commands.CommandBuildContext extends net.minecraft.core.HolderLookup$Provider {
+  public static net.minecraft.commands.CommandBuildContext simple(net.minecraft.core.HolderLookup$Provider, net.minecraft.world.flag.FeatureFlagSet);
+  public abstract net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+}
+Compiled from "FunctionInstantiationException.java"
+public class net.minecraft.commands.FunctionInstantiationException extends java.lang.Exception {
+  public net.minecraft.commands.FunctionInstantiationException(net.minecraft.network.chat.Component);
+  public net.minecraft.network.chat.Component messageComponent();
+}
+Compiled from "SharedSuggestionProvider.java"
+public interface net.minecraft.commands.SharedSuggestionProvider extends net.minecraft.server.permissions.PermissionSetSupplier {
+  public static final com.google.common.base.CharMatcher MATCH_SPLITTER;
+  public abstract java.util.Collection<java.lang.String> getOnlinePlayerNames();
+  public default java.util.Collection<java.lang.String> getCustomTabSuggestions();
+  public default java.util.Collection<java.lang.String> getSelectedEntities();
+  public abstract java.util.Collection<java.lang.String> getAllTeams();
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailableSounds();
+  public abstract java.util.stream.Stream<net.minecraft.resources.Identifier> getAvailablePostEffects();
+  public abstract java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> customSuggestion(com.mojang.brigadier.context.CommandContext<?>);
+  public default java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates> getRelevantCoordinates();
+  public default java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates> getAbsoluteCoordinates();
+  public abstract java.util.Set<net.minecraft.resources.ResourceKey<net.minecraft.world.level.Level>> levels();
+  public abstract net.minecraft.core.RegistryAccess registryAccess();
+  public abstract net.minecraft.world.flag.FeatureFlagSet enabledFeatures();
+  public default <E> void suggestRegistryElements(net.minecraft.core.HolderLookup<E>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Predicate<E>);
+  public static <S, E> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType);
+  public static <S, E> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder, net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, java.util.function.Predicate<E>);
+  public abstract <E> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestRegistryElements(net.minecraft.resources.ResourceKey<? extends net.minecraft.core.Registry<E>>, net.minecraft.commands.SharedSuggestionProvider$ElementSuggestionType, com.mojang.brigadier.suggestion.SuggestionsBuilder, com.mojang.brigadier.context.CommandContext<?>, java.util.function.Predicate<E>);
+  public static <T> void filterResources(java.lang.Iterable<T>, java.lang.String, java.util.function.Function<T, net.minecraft.resources.Identifier>, java.util.function.Consumer<T>);
+  public static <T> void filterResources(java.lang.Iterable<T>, java.lang.String, java.lang.String, java.util.function.Function<T, net.minecraft.resources.Identifier>, java.util.function.Consumer<T>);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.lang.Iterable<net.minecraft.resources.Identifier>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.lang.String);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.util.stream.Stream<net.minecraft.resources.Identifier>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.lang.String);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.lang.Iterable<net.minecraft.resources.Identifier>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static <T> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.lang.Iterable<T>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Function<T, net.minecraft.resources.Identifier>, java.util.function.Function<T, com.mojang.brigadier.Message>);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.util.stream.Stream<net.minecraft.resources.Identifier>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static <T> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestResource(java.util.stream.Stream<T>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Function<T, net.minecraft.resources.Identifier>, java.util.function.Function<T, com.mojang.brigadier.Message>);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggestCoordinates(java.lang.String, java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Predicate<java.lang.String>);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggest2DCoordinates(java.lang.String, java.util.Collection<net.minecraft.commands.SharedSuggestionProvider$TextCoordinates>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Predicate<java.lang.String>);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggest(java.lang.Iterable<java.lang.String>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggest(java.util.stream.Stream<java.lang.String>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggest(java.lang.String[], com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public static <T> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> suggest(java.lang.Iterable<T>, com.mojang.brigadier.suggestion.SuggestionsBuilder, java.util.function.Function<T, java.lang.String>, java.util.function.Function<T, com.mojang.brigadier.Message>);
+  public static boolean matchesSubStr(java.lang.String, java.lang.String);
+}
+Compiled from "CommandSourceStack.java"
+public interface net.minecraft.commands.CommandSourceStack$NamesProvider {
+  public static final net.minecraft.commands.CommandSourceStack$NamesProvider FOR_ENTITY;
+  public abstract net.minecraft.network.chat.Component displayName(net.minecraft.world.entity.Entity);
+  public abstract java.lang.String textName(net.minecraft.world.entity.Entity);
+  public static net.minecraft.commands.CommandSourceStack$NamesProvider constant(net.minecraft.network.chat.Component);
+}
+Compiled from "Commands.java"
+public final class net.minecraft.commands.Commands$CommandSelection extends java.lang.Enum<net.minecraft.commands.Commands$CommandSelection> {
+  public static final net.minecraft.commands.Commands$CommandSelection ALL;
+  public static final net.minecraft.commands.Commands$CommandSelection DEDICATED;
+  public static final net.minecraft.commands.Commands$CommandSelection INTEGRATED;
+  public final boolean includeIntegrated;
+  public final boolean includeDedicated;
+  public static net.minecraft.commands.Commands$CommandSelection[] values();
+  public static net.minecraft.commands.Commands$CommandSelection valueOf(java.lang.String);
+}
+Compiled from "ArgumentVisitor.java"
+public interface net.minecraft.commands.ArgumentVisitor$Output<S> {
+  public abstract <T> void accept(com.mojang.brigadier.context.CommandContextBuilder<S>, com.mojang.brigadier.tree.ArgumentCommandNode<S, T>, com.mojang.brigadier.context.ParsedArgument<S, T>);
+}
+Compiled from "CommandResultCallback.java"
+public interface net.minecraft.commands.CommandResultCallback {
+  public static final net.minecraft.commands.CommandResultCallback EMPTY;
+  public abstract void onResult(boolean, int);
+  public default void onSuccess(int);
+  public default void onFailure();
+  public static net.minecraft.commands.CommandResultCallback chain(net.minecraft.commands.CommandResultCallback, net.minecraft.commands.CommandResultCallback);
+}
+Compiled from "Commands.java"
+public interface net.minecraft.commands.Commands$ParseFunction {
+  public abstract void parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "CommandSource.java"
+public interface net.minecraft.commands.CommandSource {
+  public static final net.minecraft.commands.CommandSource NULL;
+  public abstract void sendSystemMessage(net.minecraft.network.chat.Component);
+  public abstract boolean acceptsSuccess();
+  public abstract boolean acceptsFailure();
+  public abstract boolean shouldInformAdmins();
+  public default boolean alwaysAccepts();
+}

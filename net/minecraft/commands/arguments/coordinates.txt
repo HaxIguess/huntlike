@@ -1,0 +1,138 @@
+Compiled from "RotationArgument.java"
+public class net.minecraft.commands.arguments.coordinates.RotationArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.coordinates.Coordinates> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_COMPLETE;
+  public net.minecraft.commands.arguments.coordinates.RotationArgument();
+  public static net.minecraft.commands.arguments.coordinates.RotationArgument rotation();
+  public static net.minecraft.commands.arguments.coordinates.Coordinates getRotation(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.coordinates.Coordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "BlockPosArgument.java"
+public class net.minecraft.commands.arguments.coordinates.BlockPosArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.coordinates.Coordinates> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_LOADED;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_OUT_OF_WORLD;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_OUT_OF_BOUNDS;
+  public net.minecraft.commands.arguments.coordinates.BlockPosArgument();
+  public static net.minecraft.commands.arguments.coordinates.BlockPosArgument blockPos();
+  public static net.minecraft.core.BlockPos getLoadedBlockPos(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.BlockPos getLoadedBlockPos(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, net.minecraft.server.level.ServerLevel, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.core.BlockPos getBlockPos(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.core.BlockPos getSpawnablePos(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public net.minecraft.commands.arguments.coordinates.Coordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "Vec2Argument.java"
+public class net.minecraft.commands.arguments.coordinates.Vec2Argument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.coordinates.Coordinates> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_COMPLETE;
+  public net.minecraft.commands.arguments.coordinates.Vec2Argument(boolean);
+  public static net.minecraft.commands.arguments.coordinates.Vec2Argument vec2();
+  public static net.minecraft.commands.arguments.coordinates.Vec2Argument vec2(boolean);
+  public static net.minecraft.world.phys.Vec2 getVec2(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.coordinates.Coordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "WorldCoordinates.java"
+public final class net.minecraft.commands.arguments.coordinates.WorldCoordinates extends java.lang.Record implements net.minecraft.commands.arguments.coordinates.Coordinates {
+  public static final net.minecraft.commands.arguments.coordinates.WorldCoordinates ZERO_ROTATION;
+  public net.minecraft.commands.arguments.coordinates.WorldCoordinates(net.minecraft.commands.arguments.coordinates.WorldCoordinate, net.minecraft.commands.arguments.coordinates.WorldCoordinate, net.minecraft.commands.arguments.coordinates.WorldCoordinate);
+  public net.minecraft.world.phys.Vec3 getPosition(net.minecraft.commands.CommandSourceStack);
+  public net.minecraft.world.phys.Vec2 getRotation(net.minecraft.commands.CommandSourceStack);
+  public boolean isXRelative();
+  public boolean isYRelative();
+  public boolean isZRelative();
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinates parseInt(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinates parseDouble(com.mojang.brigadier.StringReader, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinates absolute(double, double, double);
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinates absolute(net.minecraft.world.phys.Vec2);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.commands.arguments.coordinates.WorldCoordinate x();
+  public net.minecraft.commands.arguments.coordinates.WorldCoordinate y();
+  public net.minecraft.commands.arguments.coordinates.WorldCoordinate z();
+}
+Compiled from "Coordinates.java"
+public interface net.minecraft.commands.arguments.coordinates.Coordinates {
+  public abstract net.minecraft.world.phys.Vec3 getPosition(net.minecraft.commands.CommandSourceStack);
+  public abstract net.minecraft.world.phys.Vec2 getRotation(net.minecraft.commands.CommandSourceStack);
+  public default net.minecraft.core.BlockPos getBlockPos(net.minecraft.commands.CommandSourceStack);
+  public abstract boolean isXRelative();
+  public abstract boolean isYRelative();
+  public abstract boolean isZRelative();
+}
+Compiled from "WorldCoordinate.java"
+public final class net.minecraft.commands.arguments.coordinates.WorldCoordinate extends java.lang.Record {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_EXPECTED_DOUBLE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_EXPECTED_INT;
+  public net.minecraft.commands.arguments.coordinates.WorldCoordinate(boolean, double);
+  public double get(double);
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinate parseDouble(com.mojang.brigadier.StringReader, boolean) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static net.minecraft.commands.arguments.coordinates.WorldCoordinate parseInt(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public static boolean isRelative(com.mojang.brigadier.StringReader);
+  public boolean isRelative();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public boolean relative();
+  public double value();
+}
+Compiled from "LocalCoordinates.java"
+public final class net.minecraft.commands.arguments.coordinates.LocalCoordinates extends java.lang.Record implements net.minecraft.commands.arguments.coordinates.Coordinates {
+  public static final char PREFIX_LOCAL_COORDINATE;
+  public net.minecraft.commands.arguments.coordinates.LocalCoordinates(double, double, double);
+  public net.minecraft.world.phys.Vec3 getPosition(net.minecraft.commands.CommandSourceStack);
+  public net.minecraft.world.phys.Vec3 apply(net.minecraft.world.phys.Vec3, net.minecraft.world.phys.Vec2);
+  public net.minecraft.world.phys.Vec2 getRotation(net.minecraft.commands.CommandSourceStack);
+  public boolean isXRelative();
+  public boolean isYRelative();
+  public boolean isZRelative();
+  public static net.minecraft.commands.arguments.coordinates.LocalCoordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public double left();
+  public double up();
+  public double forwards();
+}
+Compiled from "package-info.java"
+interface net.minecraft.commands.arguments.coordinates.package-info {
+}
+Compiled from "Vec3Argument.java"
+public class net.minecraft.commands.arguments.coordinates.Vec3Argument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.coordinates.Coordinates> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_COMPLETE;
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_MIXED_TYPE;
+  public net.minecraft.commands.arguments.coordinates.Vec3Argument(boolean);
+  public static net.minecraft.commands.arguments.coordinates.Vec3Argument vec3();
+  public static net.minecraft.commands.arguments.coordinates.Vec3Argument vec3(boolean);
+  public static net.minecraft.world.phys.Vec3 getVec3(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public static net.minecraft.commands.arguments.coordinates.Coordinates getCoordinates(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.coordinates.Coordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "ColumnPosArgument.java"
+public class net.minecraft.commands.arguments.coordinates.ColumnPosArgument implements com.mojang.brigadier.arguments.ArgumentType<net.minecraft.commands.arguments.coordinates.Coordinates> {
+  public static final com.mojang.brigadier.exceptions.SimpleCommandExceptionType ERROR_NOT_COMPLETE;
+  public net.minecraft.commands.arguments.coordinates.ColumnPosArgument();
+  public static net.minecraft.commands.arguments.coordinates.ColumnPosArgument columnPos();
+  public static net.minecraft.server.level.ColumnPos getColumnPos(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public net.minecraft.commands.arguments.coordinates.Coordinates parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public <S> java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions> listSuggestions(com.mojang.brigadier.context.CommandContext<S>, com.mojang.brigadier.suggestion.SuggestionsBuilder);
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}
+Compiled from "SwizzleArgument.java"
+public class net.minecraft.commands.arguments.coordinates.SwizzleArgument implements com.mojang.brigadier.arguments.ArgumentType<java.util.EnumSet<net.minecraft.core.Direction$Axis>> {
+  public net.minecraft.commands.arguments.coordinates.SwizzleArgument();
+  public static net.minecraft.commands.arguments.coordinates.SwizzleArgument swizzle();
+  public static java.util.EnumSet<net.minecraft.core.Direction$Axis> getSwizzle(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack>, java.lang.String);
+  public java.util.EnumSet<net.minecraft.core.Direction$Axis> parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+  public java.util.Collection<java.lang.String> getExamples();
+  public java.lang.Object parse(com.mojang.brigadier.StringReader) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+}

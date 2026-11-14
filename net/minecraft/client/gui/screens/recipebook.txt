@@ -1,0 +1,229 @@
+Compiled from "RecipeButton.java"
+public class net.minecraft.client.gui.screens.recipebook.RecipeButton extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.screens.recipebook.RecipeButton(net.minecraft.client.gui.screens.recipebook.SlotSelectTime);
+  public void init(net.minecraft.client.gui.screens.recipebook.RecipeCollection, boolean, net.minecraft.client.gui.screens.recipebook.RecipeBookPage, net.minecraft.util.context.ContextMap);
+  public net.minecraft.client.gui.screens.recipebook.RecipeCollection getCollection();
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public boolean isOnlyOption();
+  public net.minecraft.world.item.crafting.display.RecipeDisplayId getCurrentRecipe();
+  public net.minecraft.world.item.ItemStack getDisplayStack();
+  public java.util.List<net.minecraft.network.chat.Component> getTooltipText(net.minecraft.world.item.ItemStack);
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public int getWidth();
+  protected boolean isValidClickButton(net.minecraft.client.input.MouseButtonInfo);
+}
+Compiled from "RecipeBookComponent.java"
+public abstract class net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<T extends net.minecraft.world.inventory.RecipeBookMenu> implements net.minecraft.client.gui.components.events.GuiEventListener, net.minecraft.client.gui.components.Renderable, net.minecraft.client.gui.narration.NarratableEntry {
+  public static final net.minecraft.client.gui.components.WidgetSprites RECIPE_BUTTON_SPRITES;
+  protected static final net.minecraft.resources.Identifier RECIPE_BOOK_LOCATION;
+  public static final int IMAGE_WIDTH;
+  public static final int IMAGE_HEIGHT;
+  protected net.minecraft.client.gui.components.CycleButton<java.lang.Boolean> filterButton;
+  protected final T menu;
+  protected net.minecraft.client.Minecraft minecraft;
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent(T, java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo>);
+  public void init(int, int, net.minecraft.client.Minecraft, boolean);
+  protected abstract net.minecraft.client.gui.components.WidgetSprites getFilterButtonTextures();
+  public int updateScreenPosition(int, int);
+  public void toggleVisibility();
+  public boolean isVisible();
+  protected void setVisible(boolean);
+  protected abstract boolean isCraftingSlot(net.minecraft.world.inventory.Slot);
+  public void slotClicked(net.minecraft.world.inventory.Slot);
+  protected abstract void selectMatchingRecipes(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.world.entity.player.StackedItemContents);
+  public void tick();
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void extractTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, net.minecraft.world.inventory.Slot);
+  protected abstract net.minecraft.network.chat.Component getRecipeFilterName();
+  public void extractGhostRecipe(net.minecraft.client.gui.GuiGraphicsExtractor, boolean);
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean mouseDragged(net.minecraft.client.input.MouseButtonEvent, double, double);
+  public boolean hasClickedOutside(double, double, int, int, int, int);
+  public boolean keyPressed(net.minecraft.client.input.KeyEvent);
+  public boolean keyReleased(net.minecraft.client.input.KeyEvent);
+  public boolean charTyped(net.minecraft.client.input.CharacterEvent);
+  public boolean preeditUpdated(net.minecraft.client.input.PreeditEvent);
+  public boolean isMouseOver(double, double);
+  public void setFocused(boolean);
+  public boolean isFocused();
+  public boolean capturesInput();
+  public void recipesUpdated();
+  public void recipeShown(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public void fillGhostRecipe(net.minecraft.world.item.crafting.display.RecipeDisplay);
+  protected abstract void fillGhostRecipe(net.minecraft.client.gui.screens.recipebook.GhostSlots, net.minecraft.world.item.crafting.display.RecipeDisplay, net.minecraft.util.context.ContextMap);
+  protected void sendUpdateSettings();
+  public net.minecraft.client.gui.narration.NarratableEntry$NarrationPriority narrationPriority();
+  public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+}
+Compiled from "GhostSlots.java"
+final class net.minecraft.client.gui.screens.recipebook.GhostSlots$GhostSlot extends java.lang.Record {
+  public net.minecraft.world.item.ItemStack getItem(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public java.util.List<net.minecraft.world.item.ItemStack> items();
+  public boolean isResultSlot();
+}
+Compiled from "RecipeBookPage.java"
+public class net.minecraft.client.gui.screens.recipebook.RecipeBookPage {
+  public static final int ITEMS_PER_PAGE;
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookPage(net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<?>, net.minecraft.client.gui.screens.recipebook.SlotSelectTime, boolean);
+  public void init(net.minecraft.client.Minecraft, int, int);
+  public void updateCollections(java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeCollection>, boolean, boolean);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, int, int, float);
+  public void extractTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, int, int);
+  public net.minecraft.world.item.crafting.display.RecipeDisplayId getLastClickedRecipe();
+  public net.minecraft.client.gui.screens.recipebook.RecipeCollection getLastClickedRecipeCollection();
+  public void setInvisible();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, int, int, int, int, boolean);
+  public void recipeShown(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public net.minecraft.client.ClientRecipeBook getRecipeBook();
+  protected void listButtons(java.util.function.Consumer<net.minecraft.client.gui.components.AbstractWidget>);
+}
+Compiled from "OverlayRecipeComponent.java"
+class net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayCraftingRecipeButton extends net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton {
+  public net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayCraftingRecipeButton(net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent, int, int, net.minecraft.world.item.crafting.display.RecipeDisplayId, net.minecraft.world.item.crafting.display.RecipeDisplay, net.minecraft.util.context.ContextMap, boolean);
+  protected net.minecraft.resources.Identifier getSprite(boolean);
+}
+Compiled from "OverlayRecipeComponent.java"
+abstract class net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton extends net.minecraft.client.gui.components.AbstractWidget {
+  public net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton(int, int, net.minecraft.world.item.crafting.display.RecipeDisplayId, boolean, java.util.List<net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton$Pos>);
+  protected static net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton$Pos createGridPos(int, int, java.util.List<net.minecraft.world.item.ItemStack>);
+  protected abstract net.minecraft.resources.Identifier getSprite(boolean);
+  public void updateWidgetNarration(net.minecraft.client.gui.narration.NarrationElementOutput);
+  public void extractWidgetRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+}
+Compiled from "RecipeBookTabButton.java"
+public class net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton extends net.minecraft.client.gui.components.ImageButton {
+  public static final int WIDTH;
+  public static final int HEIGHT;
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton(int, int, net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo, net.minecraft.client.gui.components.Button$OnPress);
+  public void startAnimation(net.minecraft.client.ClientRecipeBook, boolean);
+  public void extractContents(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  protected void handleCursor(net.minecraft.client.gui.GuiGraphicsExtractor);
+  public net.minecraft.world.item.crafting.ExtendedRecipeBookCategory getCategory();
+  public boolean updateVisibility(net.minecraft.client.ClientRecipeBook);
+  public void select();
+  public void unselect();
+}
+Compiled from "RecipeButton.java"
+final class net.minecraft.client.gui.screens.recipebook.RecipeButton$ResolvedEntry extends java.lang.Record {
+  public net.minecraft.world.item.ItemStack selectItem(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.crafting.display.RecipeDisplayId id();
+  public java.util.List<net.minecraft.world.item.ItemStack> displayItems();
+}
+Compiled from "RecipeCollection.java"
+public class net.minecraft.client.gui.screens.recipebook.RecipeCollection {
+  public static final net.minecraft.client.gui.screens.recipebook.RecipeCollection EMPTY;
+  public net.minecraft.client.gui.screens.recipebook.RecipeCollection(java.util.List<net.minecraft.world.item.crafting.display.RecipeDisplayEntry>);
+  public void selectRecipes(net.minecraft.world.entity.player.StackedItemContents, java.util.function.Predicate<net.minecraft.world.item.crafting.display.RecipeDisplay>);
+  public boolean isCraftable(net.minecraft.world.item.crafting.display.RecipeDisplayId);
+  public boolean hasCraftable();
+  public boolean hasAnySelected();
+  public java.util.List<net.minecraft.world.item.crafting.display.RecipeDisplayEntry> getRecipes();
+  public java.util.List<net.minecraft.world.item.crafting.display.RecipeDisplayEntry> getSelectedRecipes(net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus);
+}
+Compiled from "CraftingRecipeBookComponent.java"
+public class net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent extends net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<net.minecraft.world.inventory.AbstractCraftingMenu> {
+  public net.minecraft.client.gui.screens.recipebook.CraftingRecipeBookComponent(net.minecraft.world.inventory.AbstractCraftingMenu);
+  protected boolean isCraftingSlot(net.minecraft.world.inventory.Slot);
+  protected void fillGhostRecipe(net.minecraft.client.gui.screens.recipebook.GhostSlots, net.minecraft.world.item.crafting.display.RecipeDisplay, net.minecraft.util.context.ContextMap);
+  protected net.minecraft.client.gui.components.WidgetSprites getFilterButtonTextures();
+  protected net.minecraft.network.chat.Component getRecipeFilterName();
+  protected void selectMatchingRecipes(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.world.entity.player.StackedItemContents);
+}
+Compiled from "OverlayRecipeComponent.java"
+class net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlaySmeltingRecipeButton extends net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton {
+  public net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlaySmeltingRecipeButton(net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent, int, int, net.minecraft.world.item.crafting.display.RecipeDisplayId, net.minecraft.world.item.crafting.display.RecipeDisplay, net.minecraft.util.context.ContextMap, boolean);
+  protected net.minecraft.resources.Identifier getSprite(boolean);
+}
+Compiled from "FurnaceRecipeBookComponent.java"
+public class net.minecraft.client.gui.screens.recipebook.FurnaceRecipeBookComponent extends net.minecraft.client.gui.screens.recipebook.RecipeBookComponent<net.minecraft.world.inventory.AbstractFurnaceMenu> {
+  public net.minecraft.client.gui.screens.recipebook.FurnaceRecipeBookComponent(net.minecraft.world.inventory.AbstractFurnaceMenu, net.minecraft.network.chat.Component, java.util.List<net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo>);
+  protected net.minecraft.client.gui.components.WidgetSprites getFilterButtonTextures();
+  protected boolean isCraftingSlot(net.minecraft.world.inventory.Slot);
+  protected void fillGhostRecipe(net.minecraft.client.gui.screens.recipebook.GhostSlots, net.minecraft.world.item.crafting.display.RecipeDisplay, net.minecraft.util.context.ContextMap);
+  protected net.minecraft.network.chat.Component getRecipeFilterName();
+  protected void selectMatchingRecipes(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.world.entity.player.StackedItemContents);
+}
+Compiled from "GhostSlots.java"
+public class net.minecraft.client.gui.screens.recipebook.GhostSlots {
+  public net.minecraft.client.gui.screens.recipebook.GhostSlots(net.minecraft.client.gui.screens.recipebook.SlotSelectTime);
+  public void clear();
+  protected void setInput(net.minecraft.world.inventory.Slot, net.minecraft.util.context.ContextMap, net.minecraft.world.item.crafting.display.SlotDisplay);
+  protected void setResult(net.minecraft.world.inventory.Slot, net.minecraft.util.context.ContextMap, net.minecraft.world.item.crafting.display.SlotDisplay);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.Minecraft, boolean);
+  public void extractTooltip(net.minecraft.client.gui.GuiGraphicsExtractor, net.minecraft.client.Minecraft, int, int, net.minecraft.world.inventory.Slot);
+}
+Compiled from "SearchRecipeBookCategory.java"
+public final class net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory extends java.lang.Enum<net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory> implements net.minecraft.world.item.crafting.ExtendedRecipeBookCategory {
+  public static final net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory CRAFTING;
+  public static final net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory FURNACE;
+  public static final net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory BLAST_FURNACE;
+  public static final net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory SMOKER;
+  public static net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory[] values();
+  public static net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory valueOf(java.lang.String);
+  public java.util.List<net.minecraft.world.item.crafting.RecipeBookCategory> includedCategories();
+}
+Compiled from "RecipeBookComponent.java"
+public final class net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo extends java.lang.Record {
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo(net.minecraft.client.gui.screens.recipebook.SearchRecipeBookCategory);
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo(net.minecraft.world.item.Item, net.minecraft.world.item.crafting.RecipeBookCategory);
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo(net.minecraft.world.item.Item, net.minecraft.world.item.Item, net.minecraft.world.item.crafting.RecipeBookCategory);
+  public net.minecraft.client.gui.screens.recipebook.RecipeBookComponent$TabInfo(net.minecraft.world.item.ItemStack, java.util.Optional<net.minecraft.world.item.ItemStack>, net.minecraft.world.item.crafting.ExtendedRecipeBookCategory);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public net.minecraft.world.item.ItemStack primaryIcon();
+  public java.util.Optional<net.minecraft.world.item.ItemStack> secondaryIcon();
+  public net.minecraft.world.item.crafting.ExtendedRecipeBookCategory category();
+}
+Compiled from "RecipeUpdateListener.java"
+public interface net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener {
+  public abstract void recipesUpdated();
+  public abstract void fillGhostRecipe(net.minecraft.world.item.crafting.display.RecipeDisplay);
+}
+Compiled from "package-info.java"
+interface net.minecraft.client.gui.screens.recipebook.package-info {
+}
+Compiled from "SlotSelectTime.java"
+public interface net.minecraft.client.gui.screens.recipebook.SlotSelectTime {
+  public abstract int currentIndex();
+}
+Compiled from "OverlayRecipeComponent.java"
+public final class net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton$Pos extends java.lang.Record {
+  public net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton$Pos(int, int, java.util.List<net.minecraft.world.item.ItemStack>);
+  public net.minecraft.world.item.ItemStack selectIngredient(int);
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int x();
+  public int y();
+  public java.util.List<net.minecraft.world.item.ItemStack> ingredients();
+}
+Compiled from "OverlayRecipeComponent.java"
+public class net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent implements net.minecraft.client.gui.components.events.GuiEventListener,net.minecraft.client.gui.components.Renderable {
+  public static final int BUTTON_SIZE;
+  public net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent(net.minecraft.client.gui.screens.recipebook.SlotSelectTime, boolean);
+  public void init(net.minecraft.client.gui.screens.recipebook.RecipeCollection, net.minecraft.util.context.ContextMap, boolean, int, int, int, int, float);
+  public net.minecraft.client.gui.screens.recipebook.RecipeCollection getRecipeCollection();
+  public net.minecraft.world.item.crafting.display.RecipeDisplayId getLastRecipeClicked();
+  public boolean mouseClicked(net.minecraft.client.input.MouseButtonEvent, boolean);
+  public boolean isMouseOver(double, double);
+  public void extractRenderState(net.minecraft.client.gui.GuiGraphicsExtractor, int, int, float);
+  public void setVisible(boolean);
+  public boolean isVisible();
+  public void setFocused(boolean);
+  public boolean isFocused();
+}
+Compiled from "RecipeCollection.java"
+public final class net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus extends java.lang.Enum<net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus> {
+  public static final net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus ANY;
+  public static final net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus CRAFTABLE;
+  public static final net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus NOT_CRAFTABLE;
+  public static net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus[] values();
+  public static net.minecraft.client.gui.screens.recipebook.RecipeCollection$CraftableStatus valueOf(java.lang.String);
+}

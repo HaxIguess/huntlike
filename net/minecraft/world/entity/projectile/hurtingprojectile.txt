@@ -1,0 +1,84 @@
+Compiled from "DragonFireball.java"
+public class net.minecraft.world.entity.projectile.hurtingprojectile.DragonFireball extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile {
+  public static final float SPLASH_RANGE;
+  public net.minecraft.world.entity.projectile.hurtingprojectile.DragonFireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.DragonFireball>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.DragonFireball(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+  protected net.minecraft.core.particles.ParticleOptions getTrailParticle();
+  protected boolean shouldBurn();
+}
+Compiled from "SmallFireball.java"
+public class net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball extends net.minecraft.world.entity.projectile.hurtingprojectile.Fireball {
+  public net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball(net.minecraft.world.level.Level, double, double, double, net.minecraft.world.phys.Vec3);
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHitBlock(net.minecraft.world.phys.BlockHitResult);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+}
+Compiled from "Fireball.java"
+public abstract class net.minecraft.world.entity.projectile.hurtingprojectile.Fireball extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile implements net.minecraft.world.entity.projectile.ItemSupplier {
+  public net.minecraft.world.entity.projectile.hurtingprojectile.Fireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.Fireball>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.Fireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.Fireball>, double, double, double, net.minecraft.world.phys.Vec3, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.Fireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.Fireball>, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3, net.minecraft.world.level.Level);
+  public void setItem(net.minecraft.world.item.ItemStack);
+  protected void playEntityOnFireExtinguishedSound();
+  public net.minecraft.world.item.ItemStack getItem();
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public net.minecraft.world.entity.SlotAccess getSlot(int);
+  public boolean shouldRenderAtSqrDistance(double);
+}
+Compiled from "LargeFireball.java"
+public class net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball extends net.minecraft.world.entity.projectile.hurtingprojectile.Fireball {
+  public net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3, int);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+}
+Compiled from "AbstractHurtingProjectile.java"
+public abstract class net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile extends net.minecraft.world.entity.projectile.Projectile {
+  public static final double INITAL_ACCELERATION_POWER;
+  public static final double DEFLECTION_SCALE;
+  public double accelerationPower;
+  protected net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile>, net.minecraft.world.level.Level);
+  protected net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile>, double, double, double, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile>, double, double, double, net.minecraft.world.phys.Vec3, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile>, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3, net.minecraft.world.level.Level);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean shouldRenderAtSqrDistance(double);
+  protected net.minecraft.world.level.ClipContext$Block getClipType();
+  public void tick();
+  public boolean hurtServer(net.minecraft.server.level.ServerLevel, net.minecraft.world.damagesource.DamageSource, float);
+  protected boolean canHitEntity(net.minecraft.world.entity.Entity);
+  protected boolean shouldBurn();
+  protected net.minecraft.core.particles.ParticleOptions getTrailParticle();
+  protected float getInertia();
+  protected float getLiquidInertia();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+  public float getLightLevelDependentMagicValue();
+  protected void onDeflection(boolean);
+}
+Compiled from "WitherSkull.java"
+public class net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull extends net.minecraft.world.entity.projectile.hurtingprojectile.AbstractHurtingProjectile {
+  public net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull(net.minecraft.world.entity.EntityType<? extends net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull>, net.minecraft.world.level.Level);
+  public net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull(net.minecraft.world.level.Level, net.minecraft.world.entity.LivingEntity, net.minecraft.world.phys.Vec3);
+  protected float getInertia();
+  public boolean isOnFire();
+  public float getBlockExplosionResistance(net.minecraft.world.level.Explosion, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState, float);
+  protected void onHitEntity(net.minecraft.world.phys.EntityHitResult);
+  protected void onHit(net.minecraft.world.phys.HitResult);
+  protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData$Builder);
+  public boolean isDangerous();
+  public void setDangerous(boolean);
+  protected boolean shouldBurn();
+  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput);
+  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput);
+}
+Compiled from "package-info.java"
+interface net.minecraft.world.entity.projectile.hurtingprojectile.package-info {
+}

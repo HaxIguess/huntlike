@@ -1,0 +1,100 @@
+Compiled from "LevelDat.java"
+public class net.minecraft.util.filefix.access.LevelDat extends net.minecraft.util.filefix.access.CompressedNbt {
+  public net.minecraft.util.filefix.access.LevelDat(java.nio.file.Path, int);
+  public java.util.Optional<com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>> read() throws java.io.IOException;
+  public <T> void write(com.mojang.serialization.Dynamic<T>);
+}
+Compiled from "PlayerData.java"
+public class net.minecraft.util.filefix.access.PlayerData extends net.minecraft.util.filefix.access.CompressedNbt {
+  public net.minecraft.util.filefix.access.PlayerData(java.nio.file.Path, int);
+  public java.util.Optional<com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>> read() throws java.io.IOException;
+  public <T> void write(com.mojang.serialization.Dynamic<T>);
+}
+Compiled from "FileResourceType.java"
+public class net.minecraft.util.filefix.access.FileResourceType<T extends java.lang.AutoCloseable> {
+  public net.minecraft.util.filefix.access.FileResourceType(net.minecraft.util.filefix.access.FileResourceType$AccessFactory<T>);
+  public T create(java.nio.file.Path, int);
+}
+Compiled from "package-info.java"
+interface net.minecraft.util.filefix.access.package-info {
+}
+Compiled from "FileResourceType.java"
+public interface net.minecraft.util.filefix.access.FileResourceType$AccessFactory<T> {
+  public abstract T create(java.nio.file.Path, int);
+}
+Compiled from "FileResourceTypes.java"
+public class net.minecraft.util.filefix.access.FileResourceTypes {
+  public static final net.minecraft.util.filefix.access.FileResourceType<net.minecraft.util.filefix.access.LevelDat> LEVEL_DAT;
+  public static final net.minecraft.util.filefix.access.FileResourceType<net.minecraft.util.filefix.access.PlayerData> PLAYER_DATA;
+  public net.minecraft.util.filefix.access.FileResourceTypes();
+  public static net.minecraft.util.filefix.access.FileResourceType<net.minecraft.util.filefix.access.SavedDataNbt> savedData(com.mojang.datafixers.DSL$TypeReference);
+  public static net.minecraft.util.filefix.access.FileResourceType<net.minecraft.util.filefix.access.SavedDataNbt> savedData(com.mojang.datafixers.DSL$TypeReference, net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity);
+  public static net.minecraft.util.filefix.access.FileResourceType<net.minecraft.util.filefix.access.ChunkNbt> chunk(net.minecraft.util.datafix.DataFixTypes, net.minecraft.world.level.chunk.storage.RegionStorageInfo);
+}
+Compiled from "FileAccess.java"
+public class net.minecraft.util.filefix.access.FileAccess<T extends java.lang.AutoCloseable> implements java.lang.AutoCloseable {
+  public net.minecraft.util.filefix.access.FileAccess(net.minecraft.util.filefix.access.FileAccessProvider, net.minecraft.util.filefix.access.FileResourceType<T>, net.minecraft.util.filefix.access.FileRelation);
+  public java.util.List<T> get();
+  public T getOnlyFile();
+  public void close();
+}
+Compiled from "ChunkNbt.java"
+public class net.minecraft.util.filefix.access.ChunkNbt implements java.lang.AutoCloseable {
+  public net.minecraft.util.filefix.access.ChunkNbt(net.minecraft.world.level.chunk.storage.RegionStorageInfo, java.nio.file.Path, net.minecraft.util.datafix.DataFixTypes, int);
+  public java.util.concurrent.CompletableFuture<?> updateChunk(net.minecraft.world.level.ChunkPos, net.minecraft.nbt.CompoundTag, java.util.function.UnaryOperator<net.minecraft.nbt.CompoundTag>);
+  public void close() throws java.io.IOException;
+}
+Compiled from "CompressedNbt.java"
+public abstract class net.minecraft.util.filefix.access.CompressedNbt implements java.lang.AutoCloseable {
+  public net.minecraft.util.filefix.access.CompressedNbt(java.nio.file.Path, net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity);
+  public abstract java.util.Optional<com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>> read() throws java.io.IOException;
+  protected final java.util.Optional<com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>> readFile() throws java.io.IOException;
+  public abstract <T> void write(com.mojang.serialization.Dynamic<T>);
+  protected final <T> void writeFile(com.mojang.serialization.Dynamic<T>);
+  public java.nio.file.Path path();
+  public void close();
+}
+Compiled from "FileAccessProvider.java"
+public class net.minecraft.util.filefix.access.FileAccessProvider implements java.lang.AutoCloseable {
+  public net.minecraft.util.filefix.access.FileAccessProvider(int);
+  public <T extends java.lang.AutoCloseable> net.minecraft.util.filefix.access.FileAccess<T> getFileAccess(net.minecraft.util.filefix.access.FileResourceType<T>, net.minecraft.util.filefix.access.FileRelation);
+  public void freeze();
+  public java.lang.ScopedValue<java.nio.file.Path> baseDirectory();
+  public int dataVersion();
+  public void close();
+}
+Compiled from "FileRelation.java"
+public interface net.minecraft.util.filefix.access.FileRelation {
+  public static final org.slf4j.Logger LOGGER;
+  public static final net.minecraft.util.filefix.access.FileRelation ORIGIN;
+  public static final net.minecraft.util.filefix.access.FileRelation REGION;
+  public static final net.minecraft.util.filefix.access.FileRelation DATA;
+  public static final net.minecraft.util.filefix.access.FileRelation PLAYER_DATA;
+  public static final net.minecraft.util.filefix.access.FileRelation DIMENSIONS;
+  public static final net.minecraft.util.filefix.access.FileRelation DIMENSIONS_DATA;
+  public static final net.minecraft.util.filefix.access.FileRelation GENERATED_NAMESPACES;
+  public static final net.minecraft.util.filefix.access.FileRelation OLD_OVERWORLD;
+  public static final net.minecraft.util.filefix.access.FileRelation OLD_NETHER;
+  public static final net.minecraft.util.filefix.access.FileRelation OLD_END;
+  public abstract java.util.List<java.nio.file.Path> getPaths(java.nio.file.Path);
+  public static net.minecraft.util.filefix.access.FileRelation forDataFileInDimension(java.lang.String, java.lang.String);
+  public default net.minecraft.util.filefix.access.FileRelation forFile(java.lang.String);
+  public default net.minecraft.util.filefix.access.FileRelation resolve(net.minecraft.util.filefix.access.FileRelation);
+  public default net.minecraft.util.filefix.access.FileRelation join(net.minecraft.util.filefix.access.FileRelation...);
+  public static java.util.List<java.nio.file.Path> directoriesInPath(java.nio.file.Path);
+}
+Compiled from "CompressedNbt.java"
+public final class net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity extends java.lang.Enum<net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity> {
+  public static final net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity IMPORTANT;
+  public static final net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity NEUTRAL;
+  public static final net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity MINOR;
+  public static net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity[] values();
+  public static net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity valueOf(java.lang.String);
+  public void log(java.lang.String, java.nio.file.Path);
+}
+Compiled from "SavedDataNbt.java"
+public class net.minecraft.util.filefix.access.SavedDataNbt extends net.minecraft.util.filefix.access.CompressedNbt {
+  public net.minecraft.util.filefix.access.SavedDataNbt(com.mojang.datafixers.DSL$TypeReference, java.nio.file.Path, int, net.minecraft.util.filefix.access.CompressedNbt$MissingSeverity);
+  public java.util.Optional<com.mojang.serialization.Dynamic<net.minecraft.nbt.Tag>> read() throws java.io.IOException;
+  public <T> void write(com.mojang.serialization.Dynamic<T>);
+}
