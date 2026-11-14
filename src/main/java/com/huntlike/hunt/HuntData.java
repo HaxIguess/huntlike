@@ -69,6 +69,54 @@ public final class HuntData {
 	public Quest quest;
 	/** The player's own quest, paused while they are in a Hunting Pack (its quota shows "paused"), or null. */
 	public Quest pausedQuest;
+	/** Spiritual Compass ★ waypoints (registered lodestones), in the order they were added. */
+	public final java.util.List<Waypoint> waypoints = new java.util.ArrayList<>();
+	/** The waypoint the compass guides to ("dimension|x|y|z"), or "" for none. */
+	public String waypointTarget = "";
+
+	/** A lodestone registered with a Spiritual Compass ★: its name, place and dye color (-1 for none). */
+	public static final class Waypoint {
+		public String name;
+		public String dimension;
+		public int x;
+		public int y;
+		public int z;
+		public int color = -1;
+
+		public Waypoint(String name, String dimension, int x, int y, int z) {
+			this.name = name;
+			this.dimension = dimension;
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		public String key() {
+			return dimension + "|" + x + "|" + y + "|" + z;
+		}
+
+		public boolean at(String dimension, int x, int y, int z) {
+			return this.dimension.equals(dimension) && this.x == x && this.y == y && this.z == z;
+		}
+	}
+
+	public Waypoint waypoint(String dimension, int x, int y, int z) {
+		for (Waypoint waypoint : waypoints) {
+			if (waypoint.at(dimension, x, y, z)) {
+				return waypoint;
+			}
+		}
+		return null;
+	}
+
+	public Waypoint target() {
+		for (Waypoint waypoint : waypoints) {
+			if (waypoint.key().equals(waypointTarget)) {
+				return waypoint;
+			}
+		}
+		return null;
+	}
 
 	/** Per-Hunt progress. */
 	public static final class Progress {
@@ -145,6 +193,19 @@ public final class HuntData {
 		tag.putInt("wildfireBlazes", wildfireBlazes);
 		tag.putInt("wildfireEvilborns", wildfireEvilborns);
 		tag.putInt("wildfireBuffs", wildfireBuffs);
+		net.minecraft.nbt.ListTag waypointList = new net.minecraft.nbt.ListTag();
+		for (Waypoint waypoint : waypoints) {
+			CompoundTag w = new CompoundTag();
+			w.putString("name", waypoint.name);
+			w.putString("dimension", waypoint.dimension);
+			w.putInt("x", waypoint.x);
+			w.putInt("y", waypoint.y);
+			w.putInt("z", waypoint.z);
+			w.putInt("color", waypoint.color);
+			waypointList.add(w);
+		}
+		tag.put("waypoints", waypointList);
+		tag.putString("waypointTarget", waypointTarget);
 		tag.putInt("dailyCharges", dailyCharges);
 		tag.putLong("dailyDay", dailyDay);
 		CompoundTag hunts = new CompoundTag();
@@ -223,6 +284,15 @@ public final class HuntData {
 		data.wildfireBlazes = tag.getIntOr("wildfireBlazes", 0);
 		data.wildfireEvilborns = tag.getIntOr("wildfireEvilborns", 0);
 		data.wildfireBuffs = tag.getIntOr("wildfireBuffs", 0);
+		for (net.minecraft.nbt.Tag t : tag.getListOrEmpty("waypoints")) {
+			if (t instanceof CompoundTag w) {
+				Waypoint waypoint = new Waypoint(w.getStringOr("name", "Lodestone"), w.getStringOr("dimension", "minecraft:overworld"),
+						w.getIntOr("x", 0), w.getIntOr("y", 0), w.getIntOr("z", 0));
+				waypoint.color = w.getIntOr("color", -1);
+				data.waypoints.add(waypoint);
+			}
+		}
+		data.waypointTarget = tag.getStringOr("waypointTarget", "");
 		data.dailyCharges = tag.getIntOr("dailyCharges", DAILY_CHARGES);
 		data.dailyDay = tag.getLongOr("dailyDay", -1L);
 		CompoundTag hunts = tag.getCompoundOrEmpty("hunts");

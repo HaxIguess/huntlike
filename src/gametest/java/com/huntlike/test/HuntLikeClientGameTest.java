@@ -203,6 +203,8 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			mutations(context, singleplayer);
 			mutationCommand(context, singleplayer);
 			horsepower(context, singleplayer);
+			newTools(context, singleplayer);
+			clusterMutationAndYummy(context, singleplayer);
 			trophy(context, singleplayer);
 			catalystAndPulverizer(context, singleplayer);
 			dailyRefill(context, singleplayer);
@@ -1391,6 +1393,272 @@ public class HuntLikeClientGameTest implements FabricClientGameTest {
 			throw new AssertionError("The Sylviornis attack event didn't reach the client");
 		}
 		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
+		context.waitTicks(3);
+	}
+
+	/** The running Cluster boss's bodies. */
+	private static List<net.minecraft.world.entity.Mob> clusterBodies(MinecraftServer server) {
+		return com.huntlike.hunt.ClusterFight.bodies(player(server));
+	}
+
+	/**
+	 * A Mineral Cluster boss (whole-bar phases: any body counts) and Yummy! before the first split: a one-shot on a Tier III
+	 * main body leaves it at 1 health with its owner eaten. Also /huntlike xp add for a named player.
+	 */
+	private static void clusterMutationAndYummy(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		int xpBefore = singleplayer.getServer().computeOnServer(server -> QuestManager.data(player(server)).progress("animal").xp);
+		singleplayer.getServer().runOnServer(server -> cmd(server, "huntlike xp add 7 animal " + player(server).getScoreboardName()));
+		assertServer(singleplayer, "/huntlike xp add 7 animal <player> gives that player 7 XP", server ->
+				QuestManager.data(player(server)).progress("animal").xp == xpBefore + 7);
+
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.RESISTANCE, 2400, 4));
+			cmd(server, "huntlike boss cluster 1 mutation Mineral " + player.getScoreboardName());
+		});
+		context.waitTicks(80);
+		context.runOnClient(client -> client.gui.toastManager().clear());
+		context.waitTicks(3);
+		context.takeScreenshot("98m-mutation-cluster");
+		assertServer(singleplayer, "Cluster mutation: /huntlike boss cluster 1 mutation Mineral summons a Mineral Cluster", server -> {
+			var quest = QuestManager.data(player(server)).quest;
+			return quest != null && "Mineral".equals(quest.mutation) && !clusterBodies(server).isEmpty();
+		});
+		// The opening phase: a plain hit takes no health.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
+			var body = clusterBodies(server).get(0);
+			body.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 3.0F);
+		});
+		context.waitTicks(12);
+		assertServer(singleplayer, "Cluster mutation: a hit during the opening phase takes no health", server -> {
+			var body = clusterBodies(server).get(0);
+			return body.getHealth() >= body.getMaxHealth() - 0.01F;
+		});
+		// A pickaxe clears it; then a one-shot splits the main body and the whole bar falls past 75% and 50%.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_PICKAXE));
+			var body = clusterBodies(server).get(0);
+			body.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 1.0F);
+		});
+		context.waitTicks(12);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
+			var body = clusterBodies(server).get(0);
+			body.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 100000.0F);
+		});
+		context.waitTicks(12);
+		assertServer(singleplayer, "Cluster mutation: the split pieces are in a phase (a hit on one takes no health)", server -> {
+			ServerPlayer player = player(server);
+			var bodies = clusterBodies(server);
+			if (bodies.size() < 2) {
+				return false;
+			}
+			var piece = bodies.get(0);
+			float before = piece.getHealth();
+			piece.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 2.0F);
+			HuntLike.LOGGER.info("[test] Cluster mutation pieces {}, piece health {} -> {}, bar {}", bodies.size(), before, piece.getHealth(),
+					com.huntlike.hunt.ClusterFight.wholeFraction(player));
+			return piece.getHealth() >= before - 0.01F;
+		});
+		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
+		context.waitTicks(5);
+
+		// Yummy! before the first split.
+		singleplayer.getServer().runOnServer(server -> cmd(server, "huntlike boss cluster 3 mutation none " + player(server).getScoreboardName()));
+		context.waitTicks(80);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var main = clusterBodies(server).stream().filter(b -> com.huntlike.hunt.ClusterFight.generation(b) == 0).findFirst().orElse(null);
+			if (main != null) {
+				player.teleportTo(main.getX() + 3, main.getY(), main.getZ());
+				main.hurtServer(player.level(), player.level().damageSources().playerAttack(player), 100000.0F);
+			}
+		});
+		context.waitTicks(5);
+		assertServer(singleplayer, "Yummy!: a one-shot on the Tier III main body eats its owner before it can split", server -> {
+			var bodies = clusterBodies(server);
+			HuntLike.LOGGER.info("[test] Yummy one-shot: bodies {}, consumed {}", bodies.size(), com.huntlike.hunt.ClusterFight.isConsumed(player(server)));
+			return com.huntlike.hunt.ClusterFight.isConsumed(player(server)) && bodies.size() == 1
+					&& com.huntlike.hunt.ClusterFight.generation(bodies.get(0)) == 0 && bodies.get(0).getHealth() <= 1.0F;
+		});
+		context.takeScreenshot("98n-yummy-one-shot");
+		singleplayer.getServer().runOnServer(server -> QuestManager.fail(player(server), QuestManager.data(player(server))));
+		context.waitTicks(5);
+		assertServer(singleplayer, "Yummy!: let go when the quest ends", server -> !com.huntlike.hunt.ClusterFight.isConsumed(player(server)));
+	}
+
+	/** The Femurang, the Blessing Scroll, the Corroded Palladium pickaxe upgrade and the Spiritual Compass ★ with waypoints. */
+	private static void newTools(ClientGameTestContext context, TestSingleplayerContext singleplayer) {
+		// Femurang: 6 damage (9 with Sharpness V), thrown at a zombie, then back in hand.
+		assertServer(singleplayer, "Femurang: 6 damage, 9 with Sharpness V", server -> {
+			ServerPlayer player = player(server);
+			var level = player.level();
+			var stack = new net.minecraft.world.item.ItemStack(com.huntlike.tools.ModTools.FEMURANG);
+			var source = level.damageSources().playerAttack(player);
+			float plain = net.minecraft.world.item.enchantment.EnchantmentHelper.modifyDamage(level, stack, player, source, 6.0F);
+			stack.enchant(level.registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT)
+					.getOrThrow(net.minecraft.world.item.enchantment.Enchantments.SHARPNESS), 5);
+			float sharp = net.minecraft.world.item.enchantment.EnchantmentHelper.modifyDamage(level, stack, player, source, 6.0F);
+			HuntLike.LOGGER.info("[test] Femurang damage {} / Sharpness V {}", plain, sharp);
+			return Math.abs(plain - 6.0F) < 0.01F && Math.abs(sharp - 9.0F) < 0.01F;
+		});
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var level = player.level();
+			player.setYRot(0.0F);
+			player.setXRot(0.0F);
+			player.connection.teleport(player.getX(), player.getY(), player.getZ(), 0.0F, 0.0F);
+			var zombie = net.minecraft.world.entity.EntityTypes.ZOMBIE.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			zombie.snapTo(player.getX(), player.getY(), player.getZ() + 6.0, 180.0F, 0.0F);
+			zombie.setNoAi(true);
+			zombie.addTag("huntlike_femurang_target");
+			level.addFreshEntity(zombie);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(com.huntlike.tools.ModTools.FEMURANG));
+			player.getMainHandItem().use(level, player, net.minecraft.world.InteractionHand.MAIN_HAND);
+		});
+		context.waitTicks(2);
+		context.takeScreenshot("98o-femurang-flying");
+		context.waitTicks(10);
+		assertServer(singleplayer, "Femurang: the zombie took 6 damage and the Femurang is coming back", server -> {
+			ServerPlayer player = player(server);
+			var zombie = player.level().getEntitiesOfClass(net.minecraft.world.entity.monster.zombie.Zombie.class, player.getBoundingBox().inflate(20),
+					z -> z.entityTags().contains("huntlike_femurang_target")).stream().findFirst().orElse(null);
+			HuntLike.LOGGER.info("[test] Femurang target health {}", zombie == null ? -1 : zombie.getHealth());
+			return zombie != null && Math.abs(zombie.getHealth() - (zombie.getMaxHealth() - 6.0F)) < 0.01F;
+		});
+		context.waitTicks(40);
+		assertServer(singleplayer, "Femurang: back in hand, ready to throw again", server -> {
+			ServerPlayer player = player(server);
+			return !com.huntlike.tools.FemurangItem.flying(player) && !player.getCooldowns().isOnCooldown(player.getMainHandItem());
+		});
+		singleplayer.getServer().runOnServer(server -> player(server).level().getEntitiesOfClass(net.minecraft.world.entity.monster.zombie.Zombie.class,
+				player(server).getBoundingBox().inflate(20), z -> z.entityTags().contains("huntlike_femurang_target"))
+				.forEach(net.minecraft.world.entity.Entity::discard));
+
+		// Blessing Scroll: Regeneration V for a second, one use of three.
+		assertServer(singleplayer, "Blessing Scroll: Regeneration V for 1 second and one use spent", server -> {
+			ServerPlayer player = player(server);
+			player.removeEffect(net.minecraft.world.effect.MobEffects.REGENERATION);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(com.huntlike.tools.ModTools.BLESSING_SCROLL));
+			player.getMainHandItem().use(player.level(), player, net.minecraft.world.InteractionHand.MAIN_HAND);
+			var effect = player.getEffect(net.minecraft.world.effect.MobEffects.REGENERATION);
+			var scroll = player.getMainHandItem();
+			return effect != null && effect.getAmplifier() == 4 && effect.getDuration() <= 20 && scroll.getDamageValue() == 1
+					&& scroll.getMaxDamage() == 3;
+		});
+
+		// A master cleric trades 45 Golden Meat for a Blessing Scroll.
+		assertServer(singleplayer, "Cleric (master): 45 Golden Meat -> Blessing Scroll", server -> {
+			ServerPlayer player = player(server);
+			var level = player.level();
+			var cleric = net.minecraft.world.entity.EntityTypes.VILLAGER.create(level, net.minecraft.world.entity.EntitySpawnReason.COMMAND);
+			cleric.snapTo(player.getX() + 3, player.getY(), player.getZ(), 0, 0);
+			cleric.setVillagerData(cleric.getVillagerData().withProfession(level.registryAccess(),
+					net.minecraft.world.entity.npc.villager.VillagerProfession.CLERIC).withLevel(5));
+			level.addFreshEntity(cleric);
+			boolean found = cleric.getOffers().stream().anyMatch(offer -> offer.getResult().is(com.huntlike.tools.ModTools.BLESSING_SCROLL)
+					&& offer.getCostA().is(com.huntlike.registry.ModItems.GOLDEN_MEAT) && offer.getCostA().getCount() == 45);
+			HuntLike.LOGGER.info("[test] Master cleric offers: {}", cleric.getOffers().stream().map(o -> o.getCostA() + " -> " + o.getResult()).toList());
+			cleric.discard();
+			return found;
+		});
+
+		// Corroded Palladium at the smithing table.
+		assertServer(singleplayer, "Corroded Palladium: Unbreaking III -> IV once, Slimy Core template; II is refused", server -> {
+			ServerPlayer player = player(server);
+			var level = player.level();
+			var unbreaking = level.registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.ENCHANTMENT)
+					.getOrThrow(net.minecraft.world.item.enchantment.Enchantments.UNBREAKING);
+			var menu = new net.minecraft.world.inventory.SmithingMenu(99, player.getInventory(),
+					net.minecraft.world.inventory.ContainerLevelAccess.create(level, player.blockPosition()));
+			var pickaxe = new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.DIAMOND_PICKAXE);
+			pickaxe.enchant(unbreaking, 3);
+			menu.getSlot(0).set(new net.minecraft.world.item.ItemStack(com.huntlike.registry.ModItems.SLIMY_CORE));
+			menu.getSlot(1).set(pickaxe);
+			menu.getSlot(2).set(new net.minecraft.world.item.ItemStack(com.huntlike.registry.ModItems.CORRODED_PALLADIUM));
+			menu.createResult();
+			var result = menu.getSlot(3).getItem();
+			int level4 = net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(unbreaking, result);
+			var again = com.huntlike.tools.PalladiumUpgrade.upgrade(level, result);
+			var weak = new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_PICKAXE);
+			weak.enchant(unbreaking, 2);
+			var refused = com.huntlike.tools.PalladiumUpgrade.upgrade(level, weak);
+			HuntLike.LOGGER.info("[test] Palladium result {} with Unbreaking {}", result, level4);
+			menu.getSlot(0).set(net.minecraft.world.item.ItemStack.EMPTY);
+			menu.getSlot(1).set(net.minecraft.world.item.ItemStack.EMPTY);
+			menu.getSlot(2).set(net.minecraft.world.item.ItemStack.EMPTY);
+			return result.is(net.minecraft.world.item.Items.DIAMOND_PICKAXE) && level4 == 4 && again.isEmpty() && refused.isEmpty();
+		});
+
+		// Spiritual Compass + Slime-Washed Holmium on an anvil: the Spiritual Compass ★.
+		assertServer(singleplayer, "Anvil: Spiritual Compass + Slime-Washed Holmium = Spiritual Compass ★", server -> {
+			ServerPlayer player = player(server);
+			var menu = new net.minecraft.world.inventory.AnvilMenu(98, player.getInventory(),
+					net.minecraft.world.inventory.ContainerLevelAccess.create(player.level(), player.blockPosition()));
+			menu.getSlot(0).set(new net.minecraft.world.item.ItemStack(com.huntlike.registry.ModItems.SPIRITUAL_COMPASS));
+			menu.getSlot(1).set(new net.minecraft.world.item.ItemStack(com.huntlike.registry.ModItems.SLIME_WASHED_HOLMIUM));
+			menu.createResult();
+			boolean ok = menu.getSlot(2).getItem().is(com.huntlike.tools.ModTools.SPIRITUAL_COMPASS_STAR);
+			menu.getSlot(0).set(net.minecraft.world.item.ItemStack.EMPTY);
+			menu.getSlot(1).set(net.minecraft.world.item.ItemStack.EMPTY);
+			return ok;
+		});
+		// Waypoints: right-click a lodestone with the ★ compass, then with an empty hand for its menu.
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var level = player.level();
+			var data = QuestManager.data(player);
+			data.waypoints.clear();
+			data.waypointTarget = "";
+			player.setAttached(QuestManager.DATA, data);
+			var pos = player.blockPosition().offset(2, 0, 0);
+			level.setBlockAndUpdate(pos, net.minecraft.world.level.block.Blocks.LODESTONE.defaultBlockState());
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new net.minecraft.world.item.ItemStack(com.huntlike.tools.ModTools.SPIRITUAL_COMPASS_STAR));
+			var hit = new net.minecraft.world.phys.BlockHitResult(pos.getCenter(), net.minecraft.core.Direction.UP, pos, false);
+			player.gameMode.useItemOn(player, level, player.getMainHandItem(), net.minecraft.world.InteractionHand.MAIN_HAND, hit);
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
+			player.gameMode.useItemOn(player, level, player.getMainHandItem(), net.minecraft.world.InteractionHand.MAIN_HAND, hit);
+		});
+		context.waitTicks(5);
+		context.takeScreenshot("98p-lodestone-menu");
+		assertServer(singleplayer, "Waypoints: the lodestone is \"Lodestone 1\" and its menu is open", server -> {
+			ServerPlayer player = player(server);
+			var data = QuestManager.data(player);
+			return data.waypoints.size() == 1 && "Lodestone 1".equals(data.waypoints.get(0).name)
+					&& player.containerMenu instanceof com.huntlike.tools.LodestoneMenu;
+		});
+		assertServer(singleplayer, "Lodestone menu: renamed, dyed red (one dye used), guided to", server -> {
+			ServerPlayer player = player(server);
+			var menu = (com.huntlike.tools.LodestoneMenu) player.containerMenu;
+			com.huntlike.tools.Waypoints.rename(player, "Home");
+			menu.getSlot(0).set(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.RED_DYE, 2));
+			menu.clickMenuButton(player, com.huntlike.tools.LodestoneMenu.BUTTON_DYE);
+			var waypoint = QuestManager.data(player).waypoints.get(0);
+			return "Home".equals(waypoint.name) && waypoint.color == net.minecraft.world.item.DyeColor.RED.getTextColor()
+					&& menu.getSlot(0).getItem().getCount() == 1 && QuestManager.data(player).target() == waypoint;
+		});
+		context.waitTicks(5);
+		context.takeScreenshot("98q-lodestone-menu-dyed");
+		singleplayer.getServer().runOnServer(server -> player(server).closeContainer());
+		context.waitTicks(3);
+		context.setScreen(() -> new com.huntlike.client.screen.WaypointListScreen());
+		context.waitTicks(3);
+		context.takeScreenshot("98r-waypoint-list");
+		context.setScreen(() -> null);
+		singleplayer.getServer().runOnServer(server -> {
+			ServerPlayer player = player(server);
+			var data = QuestManager.data(player);
+			data.waypoints.clear();
+			data.waypointTarget = "";
+			player.setAttached(QuestManager.DATA, data);
+			QuestManager.sync(player);
+			player.level().setBlockAndUpdate(player.blockPosition().offset(2, 0, 0), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState());
+			player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, net.minecraft.world.item.ItemStack.EMPTY);
+		});
 		context.waitTicks(3);
 	}
 

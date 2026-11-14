@@ -43,7 +43,9 @@ import com.huntlike.hunt.HuntData.Quest;
  * ingot, stone to another mineral, upgraded). Bejeweled drops amethyst, a diamond or an emerald whatever the pickaxe;
  * netherite's 1% turns amethyst into budding amethyst; Fortune doubles with a level% chance.
  *
- * <p>Animal bosses for now (Cluster fights split their health between bodies: to review).
+ * <p>Cluster bosses use the whole fight's bar (every body, and the bodies still to split off): the phases open at 100, 75,
+ * 50 and 25% of it and as the last body would die, and a hit on any body counts toward the open phase. The state of a
+ * Cluster fight is kept under its owner's id; an Animal boss's under its own.
  */
 public final class Mutations {
 	private Mutations() {
@@ -141,12 +143,35 @@ public final class Mutations {
 		}
 		State state = new State(mutation);
 		state.pending = 1;
-		STATES.put(boss.getUUID(), state);
+		STATES.put(key(boss), state);
 		spray(boss, mutation);
 	}
 
+	/** Where a boss's state is kept: a Cluster body's under its fight (the owner), anything else under itself. */
+	private static UUID key(LivingEntity boss) {
+		if (ClusterFight.isBody(boss)) {
+			UUID owner = BossController.ownerOf(boss);
+			if (owner != null) {
+				return owner;
+			}
+		}
+		return boss.getUUID();
+	}
+
+	/** Health left: a Cluster's whole bar, else the boss's own. */
+	private static float fraction(LivingEntity boss) {
+		if (ClusterFight.isBody(boss) && boss.level() instanceof ServerLevel level) {
+			UUID owner = BossController.ownerOf(boss);
+			ServerPlayer player = owner == null ? null : level.getServer().getPlayerList().getPlayer(owner);
+			if (player != null) {
+				return ClusterFight.wholeFraction(player);
+			}
+		}
+		return boss.getHealth() / boss.getMaxHealth();
+	}
+
 	private static State state(LivingEntity boss) {
-		State state = STATES.get(boss.getUUID());
+		State state = STATES.get(key(boss));
 		if (state == null && boss instanceof Mob mob && mob.level() instanceof ServerLevel level) {
 			// After a restart: rebuilt from the quest, phases already passed counted as entered.
 			UUID owner = BossController.ownerOf(boss);
@@ -155,11 +180,11 @@ public final class Mutations {
 			Mutation mutation = quest == null ? null : Mutation.byTitle(quest.mutation);
 			if (mutation != null) {
 				state = new State(mutation);
-				float fraction = boss.getHealth() / boss.getMaxHealth();
+				float fraction = fraction(boss);
 				for (int i = 0; i < THRESHOLDS.length; i++) {
 					state.entered[i] = fraction <= THRESHOLDS[i];
 				}
-				STATES.put(boss.getUUID(), state);
+				STATES.put(key(boss), state);
 			}
 		}
 		return state;
@@ -167,7 +192,7 @@ public final class Mutations {
 
 	/** No regeneration while a phase is open. */
 	public static boolean blocksRegen(LivingEntity boss) {
-		State state = STATES.get(boss.getUUID());
+		State state = STATES.get(key(boss));
 		return state != null && state.pending > 0;
 	}
 
@@ -217,7 +242,7 @@ public final class Mutations {
 
 	/** After damage: phases for the thresholds it fell past. */
 	public static void afterDamage(LivingEntity boss) {
-		State state = STATES.get(boss.getUUID());
+		State state = STATES.get(key(boss));
 		if (state == null) {
 			return;
 		}
@@ -225,7 +250,7 @@ public final class Mutations {
 	}
 
 	private static void enterThresholds(LivingEntity boss, State state) {
-		float fraction = boss.getHealth() / boss.getMaxHealth();
+		float fraction = fraction(boss);
 		for (int i = 0; i < THRESHOLDS.length; i++) {
 			if (!state.entered[i] && fraction <= THRESHOLDS[i]) {
 				state.entered[i] = true;
@@ -237,8 +262,12 @@ public final class Mutations {
 
 	/** A mutated boss can't die with phases open: it stays at 1 health, the dying phase is added (and any it skipped). */
 	private static boolean allowDeath(LivingEntity boss, DamageSource source, float amount) {
-		State state = STATES.get(boss.getUUID());
+		State state = STATES.get(key(boss));
 		if (state == null) {
+			return true;
+		}
+		if (ClusterFight.isBody(boss) && !ClusterFight.isLastBody(boss)) {
+			// A Cluster body that splits, or isn't the last one left: the fight goes on (the bar is checked once it has split).
 			return true;
 		}
 		if (!state.dying) {
@@ -259,10 +288,11 @@ public final class Mutations {
 			boss.setHealth(1.0F);
 			return false;
 		}
-		STATES.remove(boss.getUUID());
+		STATES.remove(key(boss));
 		return true;
 	}
 
+	/** An Animal boss's id, or a Cluster fight's owner. */
 	public static void forget(UUID boss) {
 		STATES.remove(boss);
 	}

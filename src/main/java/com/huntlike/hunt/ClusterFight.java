@@ -216,6 +216,10 @@ public final class ClusterFight {
 
 	// ---------------------------------------------------------------- spawn, tick, death
 
+	public static void initialize() {
+		net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.ALLOW_DEATH.register(ClusterFight::allowMainDeath);
+	}
+
 	public static void spawn(ServerPlayer player, HuntData data, Quest quest) {
 		ServerLevel level = player.level();
 		Hunt hunt = HuntDefs.hunt(quest.hunt);
@@ -233,10 +237,22 @@ public final class ClusterFight {
 		quest.bossUuid = main.getUUID().toString();
 		quest.bossSpawnTime = level.getGameTime();
 		quest.phase = HuntData.PHASE_BOSS;
+		quest.mutation = quest.forcedMutation == null ? Mutations.roll(level.getRandom())
+				: "none".equals(quest.forcedMutation) ? "" : quest.forcedMutation;
+		quest.forcedMutation = null;
 		player.setAttached(QuestManager.DATA, data);
 		level.addFreshEntity(main);
+		Mutations.forget(player.getUUID());
+		Mutations.start(main, quest);
 		level.sendParticles(ParticleTypes.EXPLOSION, main.getX(), main.getY() + 0.5, main.getZ(), 1, 0, 0, 0, 0);
 		player.sendSystemMessage(Messages.bossSpawned(hunt, tier.number()));
+		Mutations.Mutation mutation = Mutations.Mutation.byTitle(quest.mutation);
+		if (mutation != null) {
+			for (ServerPlayer member : HuntingPacks.membersOnline(player, quest)) {
+				member.sendSystemMessage(Mutations.announcement(hunt, tier, mutation));
+				QuestManager.playSound(member, SoundEvents.ELDER_GUARDIAN_CURSE, 1.4F);
+			}
+		}
 		QuestManager.playSound(player, SoundEvents.EVOKER_PREPARE_SUMMON, 1.0F);
 		QuestManager.playSound(player, SoundEvents.TRIAL_SPAWNER_SPAWN_MOB, 0.8F);
 		QuestManager.sync(player);
@@ -288,7 +304,7 @@ public final class ClusterFight {
 
 		if (main != null) {
 			main.setNoAi(frozen);
-			if (elapsed % 20 == 0) {
+			if (elapsed % 20 == 0 && !Mutations.blocksRegen(main)) {
 				main.heal(regen(tier, fight));
 			}
 			int t = tier.number();
@@ -377,6 +393,8 @@ public final class ClusterFight {
 					entity.getY() + 0.5, entity.getZ(), 40, 0.6, 0.4, 0.6, 0.1);
 		}
 		if (spawned > 0) {
+			// The whole bar may have fallen past a mutation threshold with this body's death.
+			Mutations.afterDamage(entity);
 			return;
 		}
 		boolean othersAlive = false;
@@ -439,6 +457,7 @@ public final class ClusterFight {
 	}
 
 	public static void forget(ServerPlayer owner) {
+		Mutations.forget(owner.getUUID());
 		Fight fight = FIGHTS.remove(owner.getUUID());
 		if (fight != null) {
 			release(owner, fight);
@@ -451,6 +470,48 @@ public final class ClusterFight {
 
 	// ---------------------------------------------------------------- boss bar
 
+	/** Health left in the whole cluster: every living body, and what its splits will still have. */
+	private static double wholeHealth(ClusterSpec spec, List<Mob> bodies) {
+		double health = 0;
+		for (Mob body : bodies) {
+			health += Math.max(0.0F, body.getHealth()) + spec.futureHealth(Math.max(0, generation(body)));
+		}
+		return health;
+	}
+
+	/** The whole cluster's health as a fraction of the fight's total (the boss bar), or 1 with no fight. */
+	public static float wholeFraction(ServerPlayer owner) {
+		Quest quest = QuestManager.data(owner).quest;
+		if (quest == null || !HuntDefs.isCluster(HuntDefs.hunt(quest.hunt))) {
+			return 1.0F;
+		}
+		ClusterSpec spec = HuntDefs.clusterSpec(HuntDefs.hunt(quest.hunt).tier(quest.tier));
+		return (float) (wholeHealth(spec, bodies(owner)) / spec.totalHealth());
+	}
+
+	/** This body won't split and no other body of its fight is alive: its death ends the fight. */
+	public static boolean isLastBody(LivingEntity body) {
+		UUID ownerId = BossController.ownerOf(body);
+		if (ownerId == null || !(body.level() instanceof ServerLevel level)) {
+			return true;
+		}
+		ServerPlayer owner = level.getServer().getPlayerList().getPlayer(ownerId);
+		Quest quest = owner == null ? null : QuestManager.data(owner).quest;
+		if (quest == null || !HuntDefs.isCluster(HuntDefs.hunt(quest.hunt))) {
+			return true;
+		}
+		ClusterSpec spec = HuntDefs.clusterSpec(HuntDefs.hunt(quest.hunt).tier(quest.tier));
+		if (generation(body) < spec.generations()) {
+			return false;
+		}
+		for (Mob other : bodies(owner)) {
+			if (other != body) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/** Name, the whole cluster's health, slimes left and time; shown to the owner and helpers nearby. */
 	private static void updateBar(ServerPlayer owner, Hunt hunt, Tier tier, List<Mob> bodies, long elapsed, Fight fight) {
 		ServerBossEvent bar = BARS.computeIfAbsent(owner.getUUID(), id -> new ServerBossEvent(UUID.randomUUID(),
@@ -459,13 +520,11 @@ public final class ClusterFight {
 			return;
 		}
 		ClusterSpec spec = HuntDefs.clusterSpec(tier);
-		double health = 0;
-		for (Mob body : bodies) {
-			health += body.getHealth() + spec.futureHealth(Math.max(0, generation(body)));
-		}
+		double health = wholeHealth(spec, bodies);
 		int total = spec.totalHealth();
 		int seconds = (int) Math.max(0, (QuestManager.BOSS_TIME_LIMIT - elapsed) / 20);
-		MutableComponent name = Messages.c(tier.bossName(), tier.color())
+		Quest quest = QuestManager.data(owner).quest;
+		MutableComponent name = Mutations.barName(tier, quest == null ? "" : quest.mutation)
 				.append(Messages.c("  ❤ " + (int) Math.ceil(health) + "/" + total, HuntDefs.RED))
 				.append(Messages.c("  Slimes left: " + bodies.size(), hunt.color()))
 				.append(Messages.c(String.format("  %d:%02d", seconds / 60, seconds % 60), HuntDefs.GRAY));
@@ -567,10 +626,11 @@ public final class ClusterFight {
 		return fight == null ? 0 : fight.progress;
 	}
 
-	private static void startYummy(ServerPlayer owner, Mob main, Tier tier, Fight fight) {
+	/** Starts Yummy! if the owner is close enough to be eaten; returns whether it started. */
+	private static boolean startYummy(ServerPlayer owner, Mob main, Tier tier, Fight fight) {
 		fight.yummyDone = true;
-		if (owner.isSpectator() || owner.distanceTo(main) > 24.0) {
-			return;
+		if (owner.isSpectator() || owner.level() != main.level() || owner.distanceTo(main) > 24.0) {
+			return false;
 		}
 		int count = Math.max(1, (tier.number() - 2) * 5);
 		fight.keys = new int[count];
@@ -595,6 +655,35 @@ public final class ClusterFight {
 				.withStyle(style -> style.withBold(true))));
 		QuestManager.playSound(owner, SoundEvents.GENERIC_EAT.value(), 0.6F);
 		sendYummy(owner, fight);
+		return true;
+	}
+
+	/**
+	 * Yummy! always comes before the first split: a main body (Tier III and up) that would die before using it stays at
+	 * 1 health and eats its owner now (a single big hit, like a Sharpness V scythe on The Vile, used to skip it).
+	 */
+	public static boolean allowMainDeath(LivingEntity entity, DamageSource source, float amount) {
+		if (generation(entity) != 0 || !(entity instanceof Mob main) || !(entity.level() instanceof ServerLevel level)) {
+			return true;
+		}
+		UUID ownerId = BossController.ownerOf(entity);
+		ServerPlayer owner = ownerId == null ? null : level.getServer().getPlayerList().getPlayer(ownerId);
+		Quest quest = owner == null ? null : QuestManager.data(owner).quest;
+		if (quest == null || quest.phase != HuntData.PHASE_BOSS || !HuntDefs.isCluster(HuntDefs.hunt(quest.hunt))) {
+			return true;
+		}
+		Tier tier = HuntDefs.hunt(quest.hunt).tier(quest.tier);
+		Fight fight = fight(owner);
+		if (tier.number() < 3 || fight.yummyDone || owner.isDeadOrDying()) {
+			return true;
+		}
+		if (!startYummy(owner, main, tier, fight)) {
+			// Too far away to be eaten: the ability is spent and the body dies as it would have.
+			return true;
+		}
+		main.setHealth(1.0F);
+		fight.watchActive = false;
+		return false;
 	}
 
 	private static void hold(ServerPlayer owner, Mob main) {

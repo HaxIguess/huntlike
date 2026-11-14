@@ -20,7 +20,7 @@ import com.huntlike.interlude.ModInterlude;
 /**
  * The Growing Slime Ball on an anvil: an enchanted book or any enchanted item on the left, the Slimeball on the right, and
  * every enchantment below its maximum goes up one level, for 5 levels per enchantment raised (see GrowingSlimeBall). A Horseshoe on Pom's
- * Skeletal Remains adds a star (up to 5) for 5 levels.
+ * Skeletal Remains adds a star (up to 5) for 5 levels. Slime-Washed Holmium on a Spiritual Compass makes it a Spiritual Compass ★.
  */
 @Mixin(AnvilMenu.class)
 public abstract class AnvilMenuMixin extends ItemCombinerMenu {
@@ -43,6 +43,10 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 			huntlike$horseshoe(book, ci);
 			return;
 		}
+		if (ball.is(com.huntlike.registry.ModItems.SLIME_WASHED_HOLMIUM)) {
+			huntlike$holmium(book, ci);
+			return;
+		}
 		if (!ball.is(ModInterlude.GROWING_SLIME_BALL)) {
 			return;
 		}
@@ -56,6 +60,20 @@ public abstract class AnvilMenuMixin extends ItemCombinerMenu {
 		this.resultSlots.setItem(0, result);
 		this.repairItemCountCost = 1;
 		this.cost.set(com.huntlike.interlude.GrowingSlimeBall.cost(book));
+		this.broadcastChanges();
+	}
+
+	/** Slime-Washed Holmium on a Spiritual Compass: the Spiritual Compass ★ (waypoints), for 5 levels. */
+	private void huntlike$holmium(ItemStack compass, CallbackInfo ci) {
+		ci.cancel();
+		if (!compass.is(com.huntlike.registry.ModItems.SPIRITUAL_COMPASS)) {
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
+			return;
+		}
+		this.resultSlots.setItem(0, compass.transmuteCopy(com.huntlike.tools.ModTools.SPIRITUAL_COMPASS_STAR, 1));
+		this.repairItemCountCost = 1;
+		this.cost.set(5);
 		this.broadcastChanges();
 	}
 

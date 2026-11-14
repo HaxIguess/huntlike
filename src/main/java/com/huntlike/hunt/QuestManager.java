@@ -130,6 +130,7 @@ public final class QuestManager {
 		ServerEntityEvents.ENTITY_LOAD.register(QuestManager::onEntityLoad);
 		HuntingPacks.initialize();
 		Mutations.initialize();
+		ClusterFight.initialize();
 	}
 
 	public static HuntData data(ServerPlayer player) {
@@ -194,6 +195,8 @@ public final class QuestManager {
 					playSound(player, SoundEvents.BEACON_DEACTIVATE, 0.8F);
 				}
 			}
+			case "waypoint_rename" -> com.huntlike.tools.Waypoints.rename(player, action.hunt());
+			case "waypoint_target" -> com.huntlike.tools.Waypoints.target(player, action.value());
 			case "buy_tokens" -> buyTokens(player, data, hunt, action.value() == 1);
 			case "buy_gear" -> buyGear(player, data, hunt, action.value());
 			case "koro_click" -> KoroManager.click(player, data);

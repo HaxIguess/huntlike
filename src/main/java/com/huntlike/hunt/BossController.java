@@ -388,8 +388,8 @@ public final class BossController {
 			return false;
 		}
 		boolean allowed = !(source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypeTags.IS_DROWNING) || source.is(DamageTypes.IN_WALL));
-		if (allowed && !ClusterFight.isBody(entity)) {
-			// A mutated boss in a hit phase takes no damage: the hit only counts toward the phase.
+		if (allowed) {
+			// A mutated boss in a hit phase takes no damage: the hit only counts toward the phase (any Cluster body counts).
 			return Mutations.onHit(entity, source);
 		}
 		return allowed;
@@ -401,6 +401,7 @@ public final class BossController {
 		}
 		if (ClusterFight.isBody(entity)) {
 			ClusterFight.onDamaged(entity, source);
+			Mutations.afterDamage(boss);
 			return;
 		}
 		if (source.getEntity() instanceof ServerPlayer player) {

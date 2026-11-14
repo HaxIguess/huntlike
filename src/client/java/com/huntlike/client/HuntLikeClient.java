@@ -60,6 +60,13 @@ public class HuntLikeClient implements ClientModInitializer {
 		EntityRendererRegistry.register(ModEntities.PET_SLIME, com.huntlike.client.pet.PetSlimeRenderer::new);
 		EntityRendererRegistry.register(ModEntities.PET_MAGMA, com.huntlike.client.pet.PetMagmaRenderer::new);
 		net.minecraft.client.gui.screens.MenuScreens.register(com.huntlike.pet.PetMenu.TYPE, com.huntlike.client.pet.PetScreen::new);
+		net.minecraft.client.gui.screens.MenuScreens.register(com.huntlike.tools.LodestoneMenu.TYPE,
+				com.huntlike.client.screen.LodestoneScreen::new);
+		EntityRendererRegistry.register(com.huntlike.tools.ModTools.FEMURANG_ENTITY, com.huntlike.client.entity.FemurangRenderer::new);
+		com.huntlike.tools.SpiritualCompassStarItem.openList = () -> net.minecraft.client.Minecraft.getInstance().gui
+				.setScreen(new com.huntlike.client.screen.WaypointListScreen());
+		com.huntlike.tools.Waypoints.clientHasWaypoint = (level, pos) -> ClientHuntState.data.waypoint(
+				com.huntlike.tools.Waypoints.dimension(level), pos.getX(), pos.getY(), pos.getZ()) != null;
 		EntityRendererRegistry.register(ModEntities.BLUCKY, BluckyRenderer::new);
 		EntityRendererRegistry.register(ModEntities.HOT_HEAD, HotHeadRenderer::new);
 		EntityRendererRegistry.register(ModEntities.VARIANCE_SLIME, VarianceSlimeRenderer::new);

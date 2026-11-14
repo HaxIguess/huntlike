@@ -86,6 +86,9 @@ public final class ModCreativeTab {
 			output.accept(ModItems.WARM_AND_SLIMY_BEEF_JERKY);
 			output.accept(ModItems.GOLDEN_MEAT);
 			output.accept(ModItems.SPIRITUAL_COMPASS);
+			output.accept(com.huntlike.tools.ModTools.SPIRITUAL_COMPASS_STAR);
+			output.accept(com.huntlike.tools.ModTools.FEMURANG);
+			output.accept(com.huntlike.tools.ModTools.BLESSING_SCROLL);
 		});
 		register(BLOCKS, ModBlocks.ALPHA_ALTAR, output -> {
 			output.accept(ModBlocks.ALPHA_ALTAR);

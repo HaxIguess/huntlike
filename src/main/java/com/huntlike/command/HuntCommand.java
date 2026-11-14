@@ -26,7 +26,7 @@ import com.huntlike.hunt.QuestManager;
 
 /**
  * Operator commands:
- * /huntlike xp|tokens add &lt;amount&gt; [hunt], /huntlike reset,
+ * /huntlike xp|tokens add &lt;amount&gt; [hunt] [players], /huntlike reset,
  * /huntlike quest start &lt;players&gt; &lt;hunt&gt; &lt;tier&gt;, /huntlike quest cancel &lt;players&gt;,
  * /huntlike stats [player], /huntlike boss &lt;hunt&gt; &lt;tier&gt; [players],
  * /huntlike questline &lt;hunt&gt; &lt;chapter&gt; [players] (animal = Koro, cluster = Towernaar; one past the last = all done).
@@ -41,12 +41,16 @@ public final class HuntCommand {
 						.requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
 						.then(Commands.literal("xp").then(Commands.literal("add")
 								.then(Commands.argument("amount", IntegerArgumentType.integer(0))
-										.executes(ctx -> add(ctx, true, HuntDefs.ANIMAL))
-										.then(huntArgument().executes(ctx -> add(ctx, true, hunt(ctx)))))))
+										.executes(ctx -> add(ctx, true, HuntDefs.ANIMAL, null))
+										.then(huntArgument().executes(ctx -> add(ctx, true, hunt(ctx), null))
+												.then(Commands.argument("players", EntityArgument.players())
+														.executes(ctx -> add(ctx, true, hunt(ctx), EntityArgument.getPlayers(ctx, "players"))))))))
 						.then(Commands.literal("tokens").then(Commands.literal("add")
 								.then(Commands.argument("amount", IntegerArgumentType.integer(0))
-										.executes(ctx -> add(ctx, false, HuntDefs.ANIMAL))
-										.then(huntArgument().executes(ctx -> add(ctx, false, hunt(ctx)))))))
+										.executes(ctx -> add(ctx, false, HuntDefs.ANIMAL, null))
+										.then(huntArgument().executes(ctx -> add(ctx, false, hunt(ctx), null))
+												.then(Commands.argument("players", EntityArgument.players())
+														.executes(ctx -> add(ctx, false, hunt(ctx), EntityArgument.getPlayers(ctx, "players"))))))))
 						.then(Commands.literal("reset").executes(HuntCommand::reset))
 						.then(Commands.literal("quest")
 								.then(Commands.literal("start")
@@ -110,7 +114,7 @@ public final class HuntCommand {
 		return names;
 	}
 
-	/** Summons the boss with the given mutation (or "none", for none at all). Animal bosses only for now. */
+	/** Summons the boss with the given mutation (or "none", for none at all). */
 	private static int mutatedBoss(CommandContext<CommandSourceStack> ctx, Collection<ServerPlayer> players) throws CommandSyntaxException {
 		Hunt hunt = hunt(ctx);
 		String name = StringArgumentType.getString(ctx, "mutation");
@@ -122,10 +126,6 @@ public final class HuntCommand {
 		}
 		if (mutation == null) {
 			ctx.getSource().sendFailure(Component.literal("Unknown mutation: " + name + " (" + String.join(", ", mutationNames()) + ")"));
-			return 0;
-		}
-		if (HuntDefs.isCluster(hunt) && !mutation.equals("none")) {
-			ctx.getSource().sendFailure(Component.literal("Cluster bosses can't be mutated yet."));
 			return 0;
 		}
 		int count = start(ctx, players, true);
@@ -279,21 +279,27 @@ public final class HuntCommand {
 				.append(Component.literal(value).withStyle(ChatFormatting.WHITE));
 	}
 
-	private static int add(CommandContext<CommandSourceStack> ctx, boolean xp, Hunt hunt) throws CommandSyntaxException {
-		ServerPlayer player = ctx.getSource().getPlayerOrException();
+	/** Adds XP or Ritual Tokens to the given players, or to the one running the command. */
+	private static int add(CommandContext<CommandSourceStack> ctx, boolean xp, Hunt hunt, Collection<ServerPlayer> targets)
+			throws CommandSyntaxException {
+		Collection<ServerPlayer> players = targets == null ? java.util.List.of(ctx.getSource().getPlayerOrException()) : targets;
 		int amount = IntegerArgumentType.getInteger(ctx, "amount");
-		HuntData data = QuestManager.data(player);
-		HuntData.Progress progress = data.progress(hunt.id());
-		if (xp) {
-			progress.xp += amount;
-		} else {
-			progress.tokens += amount;
+		for (ServerPlayer player : players) {
+			HuntData data = QuestManager.data(player);
+			HuntData.Progress progress = data.progress(hunt.id());
+			if (xp) {
+				progress.xp += amount;
+			} else {
+				progress.tokens += amount;
+			}
+			player.setAttached(QuestManager.DATA, data);
+			QuestManager.sync(player);
 		}
-		player.setAttached(QuestManager.DATA, data);
-		QuestManager.sync(player);
+		String who = targets == null ? "" : players.size() == 1 ? " to " + players.iterator().next().getName().getString()
+				: " to " + players.size() + " players";
 		ctx.getSource().sendSuccess(() -> Component.literal("Added " + amount + " " + hunt.name()
-				+ (xp ? " XP." : " Ritual Tokens.")), false);
-		return 1;
+				+ (xp ? " XP" : " Ritual Tokens") + who + "."), true);
+		return players.size();
 	}
 
 	private static int reset(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
